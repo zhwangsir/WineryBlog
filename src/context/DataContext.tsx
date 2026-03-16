@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { Post } from '../data/posts';
 
 interface SiteConfig {
+  domain?: string;
   title: string;
   author: string;
   subtitle: string;
@@ -35,6 +36,13 @@ interface SiteConfig {
     accentColor?: string;
     cursorUrl?: string;
     globalBackground?: string;
+    waveStyle?: 'smooth' | 'dynamic';
+    waveSpeed?: 'slow' | 'normal' | 'fast';
+    waveEnabled?: boolean;
+    sakuraEnabled?: boolean;
+    sakuraDensity?: number;
+    sakuraSpeed?: 'slow' | 'normal' | 'fast';
+    mascotEnabled?: boolean;
   };
   music?: {
     enabled: boolean;
