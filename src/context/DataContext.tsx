@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode, useRef, useState, useMemo } from 'react';
 import { Post } from '../data/posts';
 
 interface SiteConfig {
@@ -100,15 +100,14 @@ function formatWordCount(count: number): string {
 }
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  
   const configRef = useRef<SiteConfig | null>(null);
   const postsRef = useRef<Post[]>([]);
   const categoriesRef = useRef<Category[]>([]);
   const tagsRef = useRef<string[]>([]);
   const totalWordCountRef = useRef<string>('0字');
+  const loadingRef = useRef<boolean>(true);
   
-  const [forceRender, setForceRender] = useState(0);
+  const [, forceUpdate] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +121,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         
         if (configRes.ok) {
           newConfig = await configRes.json();
-          configRef.current = newConfig;
         }
         
         if (postsRes.ok) {
@@ -169,26 +167,27 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           configRef.current = newConfig;
         }
         
-        setForceRender(n => n + 1);
+        loadingRef.current = false;
+        forceUpdate(n => n + 1);
       } catch (error) {
         console.error("Failed to fetch data:", error);
-      } finally {
-        setLoading(false);
+        loadingRef.current = false;
+        forceUpdate(n => n + 1);
       }
     };
 
     fetchData();
   }, []);
 
-  const value = useMemo(() => ({
+  const value = useMemo<DataContextType>(() => ({
     config: configRef.current,
     posts: postsRef.current,
     categories: categoriesRef.current,
     tags: tagsRef.current,
-    loading,
+    loading: loadingRef.current,
     refreshData: async () => {},
     totalWordCount: totalWordCountRef.current
-  }), [loading]);
+  }), []);
 
   return (
     <DataContext.Provider value={value}>
