@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
 import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon } from 'lucide-react';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { SEO } from '../components/SEO';
-import { TableOfContents } from '../components/TableOfContents';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -21,13 +17,17 @@ function simpleHash(str: string): string {
 export const PostDetail: React.FC = () => {
   const { posts, config } = useData();
   const { id } = useParams<{ id: string }>();
-  const post = posts.find(p => p.id === id);
+  
+  const postRef = useRef(posts.find(p => p.id === id));
+  postRef.current = posts.find(p => p.id === id);
+  const post = postRef.current;
   
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState('');
   const [verifying, setVerifying] = useState(false);
+  const viewCounted = useRef(false);
 
   useEffect(() => {
     if (post?.isLocked) {
@@ -36,13 +36,14 @@ export const PostDetail: React.FC = () => {
         setIsUnlocked(true);
       }
     }
-  }, [post?.id, post?.isLocked]);
+  }, [id]);
 
   useEffect(() => {
-    if (post?.id && !post.isLocked) {
+    if (post?.id && !post.isLocked && !viewCounted.current) {
+      viewCounted.current = true;
       fetch(`/api/posts/${post.id}/view`, { method: 'POST' });
     }
-  }, [post?.id, post?.isLocked]);
+  }, [id]);
 
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -172,90 +173,58 @@ export const PostDetail: React.FC = () => {
   }
 
   return (
-    <>
-      <SEO 
-        title={`${post.title} - ${config?.title || 'WineryBlog'}`}
-        description={post.excerpt}
-        author={config?.author}
-        keywords={[...post.tags, post.category]}
-        ogType="article"
-      />
-      <div className="flex gap-8">
-        {/* Main Content */}
-        <article className="flex-1 min-w-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col gap-8"
-          >
-            {/* Cover Image */}
-            {post.cover && (
-              <div className="w-full aspect-[21/9] rounded-xl overflow-hidden">
-                <img
-                  src={post.cover}
-                  alt={post.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-
-            <header className="flex flex-col gap-6 border-b border-border pb-8">
-              <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent transition-colors w-fit">
-                <ArrowLeft className="w-4 h-4" />
-                返回
-              </Link>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight">
-                {post.title}
-              </h1>
-              
-              <div className="flex flex-wrap items-center gap-6 text-sm text-text-secondary">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-accent" />
-                  <time dateTime={post.date}>{post.date}</time>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Folder className="w-4 h-4 text-accent" />
-                  <Link to={`/archive?category=${encodeURIComponent(post.category)}`} className="hover:text-accent transition-colors">
-                    {post.category}
-                  </Link>
-                </div>
-                {post.views !== undefined && post.views > 0 && (
-                  <div className="flex items-center gap-2 text-text-muted">
-                    <ViewIcon className="w-4 h-4" />
-                    <span>{post.views} 次阅读</span>
-                  </div>
-                )}
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Tag className="w-4 h-4 text-accent" />
-                  {post.tags.map((tag, i) => (
-                    <React.Fragment key={tag}>
-                      <Link to={`/archive?tag=${encodeURIComponent(tag)}`} className="hover:text-accent transition-colors">
-                        {tag}
-                      </Link>
-                      {i < post.tags.length - 1 && <span className="text-border">,</span>}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </header>
-
-            <div className="prose prose-lg dark:prose-invert max-w-none text-text-secondary leading-relaxed">
-              <p className="text-xl text-text-muted italic border-l-4 border-accent pl-4 mb-8">
-                {post.excerpt}
-              </p>
-              <Markdown remarkPlugins={[remarkGfm]}>
-                {post.content}
-              </Markdown>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col gap-8"
+    >
+      <header className="flex flex-col gap-6 border-b border-border pb-8">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent transition-colors w-fit">
+          <ArrowLeft className="w-4 h-4" />
+          返回
+        </Link>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight">
+          {post.title}
+        </h1>
+        
+        <div className="flex flex-wrap items-center gap-6 text-sm text-text-secondary">
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-accent" />
+            <time dateTime={post.date}>{post.date}</time>
+          </div>
+          <div className="flex items-center gap-2">
+            <Folder className="w-4 h-4 text-accent" />
+            <Link to={`/archive?category=${encodeURIComponent(post.category)}`} className="hover:text-accent transition-colors">
+              {post.category}
+            </Link>
+          </div>
+          {post.views !== undefined && post.views > 0 && (
+            <div className="flex items-center gap-2 text-text-muted">
+              <ViewIcon className="w-4 h-4" />
+              <span>{post.views} 次阅读</span>
             </div>
-          </motion.div>
-        </article>
+          )}
+          <div className="flex items-center gap-2 flex-wrap">
+            <Tag className="w-4 h-4 text-accent" />
+            {post.tags.map((tag, i) => (
+              <React.Fragment key={tag}>
+                <Link to={`/archive?tag=${encodeURIComponent(tag)}`} className="hover:text-accent transition-colors">
+                  {tag}
+                </Link>
+                {i < post.tags.length - 1 && <span className="text-border">,</span>}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </header>
 
-        {/* Right Sidebar - Table of Contents */}
-        <aside className="hidden xl:block w-64 shrink-0">
-          <TableOfContents content={post.content} />
-        </aside>
+      <div className="prose prose-lg dark:prose-invert max-w-none text-text-secondary leading-relaxed">
+        <p className="text-xl text-text-muted italic border-l-4 border-accent pl-4 mb-8">
+          {post.excerpt}
+        </p>
+        <div className="whitespace-pre-wrap">{post.content}</div>
       </div>
-    </>
+    </motion.div>
   );
 };
