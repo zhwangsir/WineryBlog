@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-bg-base: var(--bg-base);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+}
+
+@layer base {
+  :root {
+    --bg-base: #fdfbfb;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f5f3f4;
+    --accent: #ff6b81;
+    --accent-hover: #ff8598;
+    --text-primary: #2d262a;
+    --text-secondary: #6b6366;
+    --text-muted: #a19b9d;
+    --border: #e6e2e4;
+  }
+
+  .dark {
+    --bg-base: #1a1618;
+    --bg-card: #251f22;
+    --bg-card-hover: #2d262a;
+    --accent: #ff6b81;
+    --accent-hover: #ff8598;
+    --text-primary: #ffffff;
+    --text-secondary: #a19b9d;
+    --text-muted: #6b6366;
+    --border: #3a3236;
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+  }
+}
+
+body {
+  @apply bg-bg-base text-text-primary font-sans antialiased transition-colors duration-300;
+}
