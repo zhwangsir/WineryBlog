@@ -125,6 +125,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return formatWordCount(total);
   }, [posts]);
 
+  // Calculate category count (excluding '归档')
+  const categoryCount = useMemo(() => 
+    categories.filter(c => !c.isHome).length,
+    [categories.length]
+  );
+
   // Update config with computed word count
   const configWithComputedStats = useMemo(() => {
     if (!config) return null;
@@ -134,11 +140,11 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         ...config.stats,
         words: totalWordCount,
         articles: posts.length,
-        categories: categories.filter(c => !c.isHome).length,
+        categories: categoryCount,
         tags: tags.length
       }
     };
-  }, [config, totalWordCount, posts.length, categories, tags.length]);
+  }, [config, totalWordCount, posts.length, categoryCount, tags.length]);
 
   const fetchData = async () => {
     try {
@@ -169,8 +175,23 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
         ];
         
-        setCategories(computedCategories);
-        setTags(Array.from(tagSet));
+        // Only update state if categories actually changed
+        setCategories(prev => {
+          if (prev.length === computedCategories.length) {
+            const prevJson = JSON.stringify(prev);
+            const newJson = JSON.stringify(computedCategories);
+            if (prevJson === newJson) return prev;
+          }
+          return computedCategories;
+        });
+        
+        const newTags = Array.from(tagSet);
+        setTags(prev => {
+          if (prev.length === newTags.length && prev.every((t, i) => t === newTags[i])) {
+            return prev;
+          }
+          return newTags;
+        });
       }
     } catch (error) {
       console.error("Failed to fetch data:", error);

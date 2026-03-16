@@ -13,7 +13,7 @@
     "content": "# 欢迎来到 WineryBlog\n\n你好！欢迎来到我的个人博客！\n\n这是一个基于 React + Express + TypeScript 构建的现代化博客系统，参考了Firefly主题模板，\n\n## 关于这个博客\n\n这个博客主要用于：\n\n- 📝 记录学习笔记\n- 💻 分享技术文章\n- 🎮 分享游戏相关内容\n\n## 特色功能\n\n- ✨ 樱花飘落特效\n- 🎵 背景音乐播放器\n- 🔒 文章加密保护\n- 📱 响应式设计\n\n欢迎常来看看！",
     "isLocked": false,
     "password": "",
-    "views": 533
+    "views": 821
   },
   {
     "id": "tech-stack",
@@ -30,6 +30,6 @@
     "content": "# WineryBlog 技术栈介绍\n\n## 前端技术\n\n### React 19\n作为核心 UI 框架，React 19 提供了更强大的性能和开发体验。\n\n### TypeScript\n全程使用 TypeScript 进行类型检查，确保代码质量。\n\n### Tailwind CSS v4\n使用最新的 Tailwind CSS v4 进行样式开发，原子化 CSS 更加高效。\n\n### Motion\n使用 Motion (原 Framer Motion) 实现流畅的动画效果。\n\n## 后端技术\n\n### Express\n轻量级的 Node.js Web 框架，提供 RESTful API。\n\n### JSON File Storage\n使用 JSON 文件进行数据存储，简单高效。\n\n## 部署\n\n项目可以部署到各种平台，包括 Vercel、Netlify 等。\n\n---",
     "isLocked": false,
     "password": "",
-    "views": 593
+    "views": 600
   }
 ]
