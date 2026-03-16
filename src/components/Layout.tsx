@@ -7,7 +7,6 @@ import { StatsCard } from './StatsCard';
 import { Footer } from './Footer';
 import { MusicPlayer } from './MusicPlayer';
 import { Wave } from './Wave';
-import { ParticleWave } from './ParticleWave';
 import { ParticleBackground } from './ParticleBackground';
 import { FireflyBackground } from './FireflyBackground';
 import { Sakura } from './Sakura';
@@ -104,14 +103,7 @@ export const Layout: React.FC = () => {
           {/* Wave at bottom of Hero */}
           {theme?.waveEnabled !== false && (
             <div className="absolute bottom-0 left-0 right-0 z-10">
-              {theme?.waveStyle === 'dynamic' ? (
-                <ParticleWave />
-              ) : (
-                <Wave 
-                  style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
-                  speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
-                />
-              )}
+              <Wave />
             </div>
           )}
         </div>
@@ -153,15 +145,7 @@ export const Layout: React.FC = () => {
       {/* Bottom Wave - before Footer */}
       {theme?.waveEnabled !== false && (
         <div className="relative">
-          {theme?.waveStyle === 'dynamic' ? (
-            <ParticleWave flip />
-          ) : (
-            <Wave 
-              flip
-              style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
-              speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
-            />
-          )}
+          <Wave flip />
         </div>
       )}
 
