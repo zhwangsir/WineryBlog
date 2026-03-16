@@ -316,6 +316,55 @@ export const ManageConfig: React.FC = () => {
               />
             </div>
           </div>
+
+          {/* Wave Effects Settings */}
+          <div className="mt-6 pt-6 border-t border-border">
+            <h3 className="text-lg font-bold text-text-primary mb-4">Wave Effects</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Enable Wave Effects</label>
+                <div className="flex items-center gap-3 mt-2">
+                  <input 
+                    type="checkbox" 
+                    id="waveEnabled"
+                    checked={formData.theme?.waveEnabled !== false}
+                    onChange={e => handleThemeChange('waveEnabled', e.target.checked)}
+                    className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+                  />
+                  <label htmlFor="waveEnabled" className="text-sm font-medium text-text-primary cursor-pointer">
+                    Enable animated wave transitions
+                  </label>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Wave Style</label>
+                <select 
+                  value={formData.theme?.waveStyle || 'smooth'}
+                  onChange={e => handleThemeChange('waveStyle', e.target.value)}
+                  className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                >
+                  <option value="smooth">Smooth (SVG Gradient)</option>
+                  <option value="dynamic">Dynamic (Particle Wave)</option>
+                </select>
+                <p className="text-xs text-text-muted">
+                  Smooth: Elegant layered waves with gradients<br/>
+                  Dynamic: Animated particles following wave patterns
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Wave Speed</label>
+                <select 
+                  value={formData.theme?.waveSpeed || 'normal'}
+                  onChange={e => handleThemeChange('waveSpeed', e.target.value)}
+                  className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                >
+                  <option value="slow">Slow (Relaxed)</option>
+                  <option value="normal">Normal (Default)</option>
+                  <option value="fast">Fast (Dynamic)</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Music Settings */}

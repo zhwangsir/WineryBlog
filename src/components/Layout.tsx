@@ -7,6 +7,7 @@ import { StatsCard } from './StatsCard';
 import { Footer } from './Footer';
 import { MusicPlayer } from './MusicPlayer';
 import { Wave } from './Wave';
+import { ParticleWave } from './ParticleWave';
 import { ParticleBackground } from './ParticleBackground';
 import { FireflyBackground } from './FireflyBackground';
 import { cn } from '../utils/cn';
@@ -79,7 +80,17 @@ export const Layout: React.FC = () => {
       <ParticleBackground />
 
       {/* Top Wave */}
-      <Wave className="hidden md:block" />
+      {theme?.waveEnabled !== false && (
+        theme?.waveStyle === 'dynamic' ? (
+          <ParticleWave className="hidden md:block" />
+        ) : (
+          <Wave 
+            className="hidden md:block" 
+            style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
+            speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
+          />
+        )
+      )}
 
       <Navbar />
       
@@ -120,7 +131,18 @@ export const Layout: React.FC = () => {
       </main>
 
       {/* Bottom Wave */}
-      <Wave className="hidden md:block" flip />
+      {theme?.waveEnabled !== false && (
+        theme?.waveStyle === 'dynamic' ? (
+          <ParticleWave className="hidden md:block" flip />
+        ) : (
+          <Wave 
+            className="hidden md:block" 
+            flip
+            style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
+            speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
+          />
+        )
+      )}
 
       <Footer />
       <MusicPlayer />

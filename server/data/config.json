@@ -30,7 +30,10 @@
   "theme": {
     "accentColor": "#F27D26",
     "cursorUrl": "/images/HuTao/cursor.cur",
-    "globalBackground": ""
+    "globalBackground": "",
+    "waveStyle": "smooth",
+    "waveSpeed": "normal",
+    "waveEnabled": true
   },
   "music": {
     "enabled": false,
