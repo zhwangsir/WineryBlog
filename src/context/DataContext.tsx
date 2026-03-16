@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
 import { Post } from '../data/posts';
 
 interface SiteConfig {
@@ -84,136 +84,114 @@ interface DataContextType {
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-// Count words in text (Chinese characters + English words)
 function countWords(text: string): number {
   if (!text) return 0;
-  
-  // Count Chinese characters
   const chineseChars = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
-  
-  // Count English words (sequences of letters)
   const englishWords = (text.match(/[a-zA-Z]+/g) || []).length;
-  
   return chineseChars + englishWords;
 }
 
-// Format word count (e.g., 12500 -> "1.3万字", 850 -> "850字")
 function formatWordCount(count: number): string {
   if (count >= 10000) {
     const wan = (count / 10000).toFixed(1);
-    // Remove trailing .0
     return `${wan.replace(/\.0$/, '')}万字`;
   }
   return `${count}字`;
 }
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [config, setConfig] = useState<SiteConfig | null>(null);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Calculate total word count from all posts
-  const totalWordCount = useMemo(() => {
-    let total = 0;
-    posts.forEach(post => {
-      total += countWords(post.title);
-      total += countWords(post.excerpt);
-      total += countWords(post.content);
-    });
-    return formatWordCount(total);
-  }, [posts]);
-
-  // Calculate category count (excluding '归档')
-  const categoryCount = useMemo(() => 
-    categories.filter(c => !c.isHome).length,
-    [categories.length]
-  );
-
-  // Update config with computed word count
-  const configWithComputedStats = useMemo(() => {
-    if (!config) return null;
-    return {
-      ...config,
-      stats: {
-        ...config.stats,
-        words: totalWordCount,
-        articles: posts.length,
-        categories: categoryCount,
-        tags: tags.length
-      }
-    };
-  }, [config, totalWordCount, posts.length, categoryCount, tags.length]);
-
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const [configRes, postsRes] = await Promise.all([
-        fetch('/api/config'),
-        fetch('/api/posts')
-      ]);
-      
-      if (configRes.ok) {
-        setConfig(await configRes.json());
-      }
-      if (postsRes.ok) {
-        const fetchedPosts: Post[] = await postsRes.json();
-        setPosts(fetchedPosts);
-        
-        // Compute categories
-        const catMap = new Map<string, number>();
-        const tagSet = new Set<string>();
-        
-        fetchedPosts.forEach(post => {
-          catMap.set(post.category, (catMap.get(post.category) || 0) + 1);
-          post.tags.forEach(tag => tagSet.add(tag));
-        });
-        
-        const computedCategories: Category[] = [
-          { name: '归档', count: fetchedPosts.length, isHome: true },
-          ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
-        ];
-        
-        // Only update state if categories actually changed
-        setCategories(prev => {
-          if (prev.length === computedCategories.length) {
-            const prevJson = JSON.stringify(prev);
-            const newJson = JSON.stringify(computedCategories);
-            if (prevJson === newJson) return prev;
-          }
-          return computedCategories;
-        });
-        
-        const newTags = Array.from(tagSet);
-        setTags(prev => {
-          if (prev.length === newTags.length && prev.every((t, i) => t === newTags[i])) {
-            return prev;
-          }
-          return newTags;
-        });
-      }
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+  const configRef = useRef<SiteConfig | null>(null);
+  const postsRef = useRef<Post[]>([]);
+  const categoriesRef = useRef<Category[]>([]);
+  const tagsRef = useRef<string[]>([]);
+  const totalWordCountRef = useRef<string>('0字');
+  
+  const [forceRender, setForceRender] = useState(0);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [configRes, postsRes] = await Promise.all([
+          fetch('/api/config'),
+          fetch('/api/posts')
+        ]);
+        
+        let newConfig: SiteConfig | null = null;
+        
+        if (configRes.ok) {
+          newConfig = await configRes.json();
+          configRef.current = newConfig;
+        }
+        
+        if (postsRes.ok) {
+          const newPosts: Post[] = await postsRes.json();
+          postsRef.current = newPosts;
+          
+          const catMap = new Map<string, number>();
+          const tagSet = new Set<string>();
+          let total = 0;
+          
+          newPosts.forEach(post => {
+            catMap.set(post.category, (catMap.get(post.category) || 0) + 1);
+            post.tags.forEach(tag => tagSet.add(tag));
+            total += countWords(post.title);
+            total += countWords(post.excerpt);
+            total += countWords(post.content);
+          });
+          
+          const computedCategories: Category[] = [
+            { name: '归档', count: newPosts.length, isHome: true },
+            ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
+          ];
+          
+          const categoryCount = computedCategories.filter((c) => !c.isHome).length;
+          
+          categoriesRef.current = computedCategories;
+          tagsRef.current = Array.from(tagSet);
+          totalWordCountRef.current = formatWordCount(total);
+          
+          if (newConfig) {
+            const updatedConfig: SiteConfig = {
+              ...newConfig,
+              stats: {
+                ...newConfig.stats,
+                words: formatWordCount(total),
+                articles: newPosts.length,
+                categories: categoryCount,
+                tags: tagSet.size
+              }
+            };
+            configRef.current = updatedConfig;
+          }
+        } else if (newConfig) {
+          configRef.current = newConfig;
+        }
+        
+        setForceRender(n => n + 1);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
   }, []);
 
+  const value = useMemo(() => ({
+    config: configRef.current,
+    posts: postsRef.current,
+    categories: categoriesRef.current,
+    tags: tagsRef.current,
+    loading,
+    refreshData: async () => {},
+    totalWordCount: totalWordCountRef.current
+  }), [loading]);
+
   return (
-    <DataContext.Provider value={{ 
-      config: configWithComputedStats, 
-      posts, 
-      categories, 
-      tags, 
-      loading, 
-      refreshData: fetchData,
-      totalWordCount 
-    }}>
+    <DataContext.Provider value={value}>
       {children}
     </DataContext.Provider>
   );
