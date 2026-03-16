@@ -36,13 +36,13 @@ export const PostDetail: React.FC = () => {
         setIsUnlocked(true);
       }
     }
-  }, [post]);
+  }, [post?.id, post?.isLocked]);
 
   useEffect(() => {
     if (post?.id && !post.isLocked) {
       fetch(`/api/posts/${post.id}/view`, { method: 'POST' });
     }
-  }, [post]);
+  }, [post?.id, post?.isLocked]);
 
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault();
