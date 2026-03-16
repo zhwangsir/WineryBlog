@@ -52,8 +52,9 @@
     "autoplay": false
   },
   "social": [
-    { "platform": "github", "url": "https://github.com" },
-    { "platform": "mail", "url": "mailto:hello@wineryz.top" }
+    { "platform": "github", "url": "https://github.com/zhwangsir" },
+    { "platform": "mail", "url": "mailto:1255399340@qq.com" },
+    { "platform": "qq", "url": "https://qm.qq.com/q/RtrCbelec8" }
   ],
   "footer": {
     "copyright": "© 2026 WineryBlog. All rights reserved.",

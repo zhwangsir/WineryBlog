@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Mail, Github, Globe, ExternalLink } from 'lucide-react';
+import { Mail, Github, MessageCircle, Globe, ExternalLink } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { SEO } from '../components/SEO';
 import Markdown from 'react-markdown';
@@ -9,6 +9,7 @@ import remarkGfm from 'remark-gfm';
 const iconMap: Record<string, React.ElementType> = {
   mail: Mail,
   github: Github,
+  qq: MessageCircle,
   globe: Globe,
 };
 

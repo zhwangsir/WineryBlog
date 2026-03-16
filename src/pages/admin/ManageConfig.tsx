@@ -569,7 +569,7 @@ export const ManageConfig: React.FC = () => {
               <div key={index} className="flex items-center gap-4 bg-bg-base p-4 rounded-xl border border-border">
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-medium text-text-secondary">Platform (github, mail, etc.)</label>
+                    <label className="text-xs font-medium text-text-secondary">Platform (github, mail, qq, etc.)</label>
                     <input 
                       type="text" 
                       value={social.platform}
