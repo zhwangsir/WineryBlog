@@ -39,16 +39,24 @@ export const Mascot: React.FC<MascotProps> = ({
 
       setTimeout(() => {
         setCurrentMessage(null);
-      }, 4000);
+      }, 6000);
 
       setMessageIndex((prev) => (prev + 1) % messages.length);
     };
 
-    showMessage();
-    const interval = setInterval(showMessage, 8000);
+    // 延迟 3 秒后显示第一条消息
+    const initialDelay = setTimeout(() => {
+      showMessage();
+    }, 3000);
 
-    return () => clearInterval(interval);
-  }, [enabled, messages, messageIndex]);
+    // 每 15 秒切换一次消息
+    const interval = setInterval(showMessage, 15000);
+
+    return () => {
+      clearTimeout(initialDelay);
+      clearInterval(interval);
+    };
+  }, [enabled, messages]);
 
   if (!enabled) return null;
 

@@ -95,23 +95,27 @@ export const Layout: React.FC = () => {
         name={config?.profile?.name}
       />
 
-      {/* Top Wave */}
-      {theme?.waveEnabled !== false && (
-        theme?.waveStyle === 'dynamic' ? (
-          <ParticleWave className="hidden md:block" />
-        ) : (
-          <Wave 
-            className="hidden md:block" 
-            style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
-            speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
-          />
-        )
-      )}
-
       <Navbar />
       
-      {/* Hero Section */}
-      {location.pathname === '/' && <Hero />}
+      {/* Hero Section with Wave */}
+      {location.pathname === '/' && (
+        <div className="relative">
+          <Hero />
+          {/* Wave at bottom of Hero */}
+          {theme?.waveEnabled !== false && (
+            <div className="absolute bottom-0 left-0 right-0 z-10">
+              {theme?.waveStyle === 'dynamic' ? (
+                <ParticleWave />
+              ) : (
+                <Wave 
+                  style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
+                  speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
+                />
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Main Content Area */}
       <main className={cn(
@@ -146,18 +150,19 @@ export const Layout: React.FC = () => {
         
       </main>
 
-      {/* Bottom Wave */}
+      {/* Bottom Wave - before Footer */}
       {theme?.waveEnabled !== false && (
-        theme?.waveStyle === 'dynamic' ? (
-          <ParticleWave className="hidden md:block" flip />
-        ) : (
-          <Wave 
-            className="hidden md:block" 
-            flip
-            style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
-            speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
-          />
-        )
+        <div className="relative">
+          {theme?.waveStyle === 'dynamic' ? (
+            <ParticleWave flip />
+          ) : (
+            <Wave 
+              flip
+              style={theme?.waveStyle as 'smooth' | 'dynamic' || 'smooth'}
+              speed={theme?.waveSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
+            />
+          )}
+        </div>
       )}
 
       <Footer />
