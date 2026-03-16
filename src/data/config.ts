@@ -9,7 +9,7 @@ export const siteConfig = {
     credit: "Pixiv - 水菜カステラ"
   },
   profile: {
-    avatar: "/images/avatar.svg", 
+    avatar: "/images/HuTao/hutao68.png", 
     name: "Winery",
     bio: "永远相信，美好的事情即将发生。"
   },

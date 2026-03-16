@@ -74,7 +74,7 @@ export const About: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-accent/20 shrink-0">
               <img 
-                src={config?.profile?.avatar || '/images/HuTao/avatar.Cxp9qlib_DMTcv.png'}
+                src={config?.profile?.avatar || '/images/HuTao/hutao68.png'}
                 alt={config?.profile?.name || 'Avatar'}
                 className="w-full h-full object-cover"
               />
