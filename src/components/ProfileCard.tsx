@@ -21,43 +21,49 @@ export const ProfileCard: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-bg-card rounded-2xl p-6 shadow-lg border border-border flex flex-col items-center gap-4 sticky top-24 group"
+      className="bg-bg-card rounded-2xl p-6 card-shadow border border-border/50 flex flex-col items-center gap-4 sticky top-24 group"
     >
-      {/* Avatar */}
-      <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-bg-base shadow-inner group-hover:scale-105 transition-transform duration-300">
-        <img 
-          src={siteConfig?.profile.avatar} 
-          alt={siteConfig?.profile.name} 
-          className="w-full h-full object-cover"
-          referrerPolicy="no-referrer"
-        />
+      {/* Avatar with Firefly style */}
+      <div className="relative">
+        <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-bg-base shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <img 
+            src={siteConfig?.profile.avatar} 
+            alt={siteConfig?.profile.name} 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        {/* Online indicator */}
+        <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-bg-card" />
       </div>
 
-      {/* Name & Bio */}
+      {/* Name & Bio with Firefly style */}
       <div className="text-center">
-        <h2 className="text-xl font-bold text-text-primary mb-1 group-hover:text-accent transition-colors">
+        <h2 className="text-xl font-bold text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">
           {siteConfig?.profile.name}
         </h2>
-        <div className="w-8 h-1 bg-accent mx-auto rounded-full mb-3 group-hover:w-16 transition-all duration-300" />
+        <div className="w-12 h-1 bg-gradient-to-r from-accent to-accent-hover mx-auto rounded-full mb-3 group-hover:w-20 transition-all duration-500" />
         <p className="text-sm text-text-secondary leading-relaxed">
           {siteConfig?.profile.bio}
         </p>
       </div>
 
-      {/* Social Links */}
+      {/* Social Links with Firefly style */}
       {socials.length > 0 && (
         <div className="flex items-center gap-3 mt-2">
           {socials.map((social, index) => (
-            <a
+            <motion.a
               key={index}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-bg-base flex items-center justify-center text-text-secondary hover:bg-accent hover:text-white transition-colors border border-border"
+              className="w-9 h-9 rounded-full bg-bg-base flex items-center justify-center text-text-secondary hover:bg-accent hover:text-white transition-all duration-300 border border-border/50 hover:border-accent hover:shadow-md"
               title={social.platform}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               {getSocialIcon(social.platform)}
-            </a>
+            </motion.a>
           ))}
         </div>
       )}

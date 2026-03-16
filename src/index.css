@@ -19,27 +19,39 @@
 
 @layer base {
   :root {
-    --bg-base: #fdfbfb;
+    /* Firefly 风格柔和色彩系统 */
+    --bg-base: #f8f9fa;
     --bg-card: #ffffff;
-    --bg-card-hover: #f5f3f4;
-    --accent: #F27D26;
-    --accent-hover: #E56B1E;
-    --text-primary: #2d262a;
-    --text-secondary: #6b6366;
-    --text-muted: #a19b9d;
-    --border: #e6e2e4;
+    --bg-card-hover: #f1f3f4;
+    --accent: #ff7e5f;
+    --accent-hover: #ff9a82;
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --text-muted: #95a5a6;
+    --border: #e8ecef;
+    
+    /* 新增 Firefly 风格变量 */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
   }
 
   .dark {
-    --bg-base: #1a1618;
-    --bg-card: #251f22;
-    --bg-card-hover: #2d262a;
-    --accent: #F27D26;
-    --accent-hover: #E56B1E;
-    --text-primary: #ffffff;
-    --text-secondary: #a19b9d;
-    --text-muted: #6b6366;
-    --border: #3a3236;
+    --bg-base: #0f1419;
+    --bg-card: #1a1f2e;
+    --bg-card-hover: #252b3b;
+    --accent: #ff7e5f;
+    --accent-hover: #ff9a82;
+    --text-primary: #e8ecf0;
+    --text-secondary: #a0aec0;
+    --text-muted: #64748b;
+    --border: #2d3748;
   }
 }
 
@@ -57,6 +69,34 @@
   }
   .custom-scrollbar:hover::-webkit-scrollbar-thumb {
     background: var(--text-muted);
+  }
+  
+  /* Firefly 风格卡片阴影 */
+  .card-shadow {
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card-shadow:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+  }
+  
+  /* Firefly 风格渐变文字 */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Firefly 风格玻璃效果 */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .dark .glass {
+    background: rgba(26, 31, 46, 0.8);
   }
 }
 

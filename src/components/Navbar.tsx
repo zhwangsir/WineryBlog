@@ -53,8 +53,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-bg-base/90 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        scrolled 
+          ? "bg-bg-base/80 backdrop-blur-xl shadow-lg py-3" 
+          : "bg-gradient-to-b from-black/30 to-transparent py-5"
       )}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
           {/* Logo */}

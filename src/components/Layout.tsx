@@ -118,7 +118,7 @@ export const Layout: React.FC = () => {
       )}
 
       {/* Main Content Area */}
-      <main className={cn(
+      <main id="main-content" className={cn(
         "flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 flex gap-6 lg:gap-8 relative z-0",
         location.pathname !== '/' && "pt-24 md:pt-32"
       )}>
