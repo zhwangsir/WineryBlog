@@ -33,7 +33,11 @@
     "globalBackground": "",
     "waveStyle": "smooth",
     "waveSpeed": "normal",
-    "waveEnabled": true
+    "waveEnabled": true,
+    "sakuraEnabled": true,
+    "sakuraDensity": 50,
+    "sakuraSpeed": "normal",
+    "mascotEnabled": true
   },
   "music": {
     "enabled": false,

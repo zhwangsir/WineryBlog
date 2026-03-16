@@ -365,6 +365,77 @@ export const ManageConfig: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Sakura Effects Settings - Firefly Style */}
+          <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm mt-6">
+            <h3 className="text-lg font-bold text-text-primary mb-4">Sakura Effects (Firefly Style)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Enable Sakura</label>
+                <div className="flex items-center gap-3 mt-2">
+                  <input 
+                    type="checkbox" 
+                    id="sakuraEnabled"
+                    checked={formData.theme?.sakuraEnabled !== false}
+                    onChange={e => handleThemeChange('sakuraEnabled', e.target.checked)}
+                    className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+                  />
+                  <label htmlFor="sakuraEnabled" className="text-sm font-medium text-text-primary cursor-pointer">
+                    Enable falling cherry blossom petals
+                  </label>
+                </div>
+                <p className="text-xs text-text-muted mt-1">
+                  Beautiful sakura petals floating down (Firefly theme)
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Petal Density</label>
+                <input 
+                  type="number" 
+                  min="10"
+                  max="200"
+                  value={formData.theme?.sakuraDensity || 50}
+                  onChange={e => handleThemeChange('sakuraDensity', parseInt(e.target.value))}
+                  className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                />
+                <p className="text-xs text-text-muted">
+                  Number of petals (10-200)
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-text-primary">Fall Speed</label>
+                <select 
+                  value={formData.theme?.sakuraSpeed || 'normal'}
+                  onChange={e => handleThemeChange('sakuraSpeed', e.target.value)}
+                  className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                >
+                  <option value="slow">Slow (Relaxed)</option>
+                  <option value="normal">Normal (Default)</option>
+                  <option value="fast">Fast (Dynamic)</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          {/* Mascot Settings - Firefly Style */}
+          <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm mt-6">
+            <h3 className="text-lg font-bold text-text-primary mb-4">Mascot (Firefly Style)</h3>
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                id="mascotEnabled"
+                checked={formData.theme?.mascotEnabled !== false}
+                onChange={e => handleThemeChange('mascotEnabled', e.target.checked)}
+                className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+              />
+              <label htmlFor="mascotEnabled" className="text-sm font-medium text-text-primary cursor-pointer">
+                Enable Mascot Character
+              </label>
+            </div>
+            <p className="text-xs text-text-muted mt-2 ml-7">
+              Show an animated mascot character on the page (Firefly style with avatar, name, and messages)
+            </p>
+          </section>
         </section>
 
         {/* Music Settings */}

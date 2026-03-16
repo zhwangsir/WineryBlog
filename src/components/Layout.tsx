@@ -10,6 +10,8 @@ import { Wave } from './Wave';
 import { ParticleWave } from './ParticleWave';
 import { ParticleBackground } from './ParticleBackground';
 import { FireflyBackground } from './FireflyBackground';
+import { Sakura } from './Sakura';
+import { Mascot } from './Mascot';
 import { cn } from '../utils/cn';
 import { motion, AnimatePresence } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -78,6 +80,20 @@ export const Layout: React.FC = () => {
       {/* Background Effects */}
       <FireflyBackground />
       <ParticleBackground />
+
+      {/* Sakura Effect - Firefly Style */}
+      <Sakura 
+        enabled={theme?.sakuraEnabled !== false}
+        density={theme?.sakuraDensity || 50}
+        speed={theme?.sakuraSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
+      />
+
+      {/* Mascot - Firefly Style */}
+      <Mascot 
+        enabled={theme?.mascotEnabled !== false}
+        avatar={config?.profile?.avatar}
+        name={config?.profile?.name}
+      />
 
       {/* Top Wave */}
       {theme?.waveEnabled !== false && (
