@@ -6,3 +6,18 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Static assets - images, videos, etc.
+public/images/
+public/videos/
+public/audio/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.mp3
+*.wav
+*.ico
+*.cur
