@@ -52,6 +52,48 @@ export const ManageConfig: React.FC = () => {
     handleChange('footer', field, value);
   };
 
+  const handleAboutChange = (field: string, value: any) => {
+    handleChange('about', field, value);
+  };
+
+  const handleAboutSkillsChange = (index: number, value: string) => {
+    setFormData((prev: any) => {
+      const newSkills = [...(prev.about?.skills || [])];
+      newSkills[index] = value;
+      return {
+        ...prev,
+        about: {
+          ...prev.about,
+          skills: newSkills
+        }
+      };
+    });
+  };
+
+  const addAboutSkill = () => {
+    setFormData((prev: any) => ({
+      ...prev,
+      about: {
+        ...prev.about,
+        skills: [...(prev.about?.skills || []), '']
+      }
+    }));
+  };
+
+  const removeAboutSkill = (index: number) => {
+    setFormData((prev: any) => {
+      const newSkills = [...(prev.about?.skills || [])];
+      newSkills.splice(index, 1);
+      return {
+        ...prev,
+        about: {
+          ...prev.about,
+          skills: newSkills
+        }
+      };
+    });
+  };
+
   const handleSocialChange = (index: number, field: string, value: string) => {
     setFormData((prev: any) => {
       const newSocial = [...(prev.social || [])];
@@ -557,6 +599,61 @@ export const ManageConfig: React.FC = () => {
             {(!formData.social || formData.social.length === 0) && (
               <p className="text-sm text-text-secondary text-center py-4">No social links added yet.</p>
             )}
+          </div>
+        </section>
+
+        {/* About Page Settings */}
+        <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-text-primary mb-6">About Page</h2>
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-text-primary">About Content (Markdown)</label>
+              <textarea 
+                value={formData.about?.content || ''}
+                onChange={e => handleAboutChange('content', e.target.value)}
+                rows={10}
+                placeholder="# 关于我\n\n你好！我是...\n\n## 技术栈\n\n- React\n- TypeScript\n- ..."
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors resize-y font-mono text-sm"
+              />
+              <p className="text-xs text-text-muted">支持 Markdown 格式，将显示在 About 页面</p>
+            </div>
+            
+            {/* Skills */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium text-text-primary">Skills</label>
+                <button 
+                  type="button"
+                  onClick={addAboutSkill}
+                  className="text-sm text-accent hover:text-accent-hover font-medium"
+                >
+                  + Add Skill
+                </button>
+              </div>
+              <div className="flex flex-col gap-2">
+                {(formData.about?.skills || []).map((skill: string, index: number) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <input 
+                      type="text" 
+                      value={skill}
+                      onChange={e => handleAboutSkillsChange(index, e.target.value)}
+                      placeholder="e.g., React / Vue / TypeScript"
+                      className="flex-1 px-3 py-2 bg-bg-base border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                    <button 
+                      type="button"
+                      onClick={() => removeAboutSkill(index)}
+                      className="p-2 text-text-secondary hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                {(!formData.about?.skills || formData.about.skills.length === 0) && (
+                  <p className="text-sm text-text-secondary text-center py-2">No skills added yet.</p>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 

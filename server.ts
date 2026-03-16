@@ -2,6 +2,59 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import fs from "fs/promises";
 import path from "path";
+import crypto from "crypto";
+
+// JWT Secret (in production, use environment variable)
+const JWT_SECRET = "wineryblog-secret-key-2026";
+const SESSION_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
+
+// In-memory session store (in production, use Redis)
+const sessions = new Map<string, { username: string; expiry: number }>();
+
+// Generate simple token
+function generateToken(username: string): string {
+  const timestamp = Date.now();
+  const data = `${username}:${timestamp}:${JWT_SECRET}`;
+  const hash = crypto.createHash("sha256").update(data).digest("hex");
+  return `${username}:${timestamp}:${hash}`;
+}
+
+// Verify token
+function verifyToken(token: string): { valid: boolean; username?: string } {
+  const parts = token.split(":");
+  if (parts.length !== 3) return { valid: false };
+
+  const [username, timestamp, hash] = parts;
+  const data = `${username}:${timestamp}:${JWT_SECRET}`;
+  const expectedHash = crypto.createHash("sha256").update(data).digest("hex");
+
+  if (hash !== expectedHash) return { valid: false };
+
+  // Check expiry
+  const tokenTime = parseInt(timestamp);
+  if (Date.now() - tokenTime > SESSION_EXPIRY) return { valid: false };
+
+  return { valid: true, username };
+}
+
+// Auth middleware
+function authMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const token = req.headers.authorization?.replace("Bearer ", "") || req.cookies?.token;
+
+  if (!token) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+
+  const result = verifyToken(token);
+  if (!result.valid) {
+    res.status(401).json({ error: "Invalid or expired token" });
+    return;
+  }
+
+  (req as any).user = { username: result.username };
+  next();
+}
 
 async function startServer() {
   const app = express();
@@ -13,22 +66,52 @@ async function startServer() {
   const CONFIG_FILE = path.join(DATA_DIR, "config.json");
   const POSTS_FILE = path.join(DATA_DIR, "posts.json");
 
-  // API Routes
-  app.get("/api/config", async (req, res) => {
+  // Auth Routes
+  app.post("/api/auth/login", async (req, res) => {
     try {
+      const { username, password } = req.body;
       const data = await fs.readFile(CONFIG_FILE, "utf-8");
-      res.json(JSON.parse(data));
+      const config = JSON.parse(data);
+
+      if (username === config.admin?.username && password === config.admin?.password) {
+        const token = generateToken(username);
+        res.json({ success: true, token, username });
+      } else {
+        res.status(401).json({ error: "Invalid username or password" });
+      }
     } catch (error) {
-      res.status(500).json({ error: "Failed to read config" });
+      res.status(500).json({ error: "Login failed" });
     }
   });
 
-  app.put("/api/config", async (req, res) => {
+  app.post("/api/auth/logout", (req, res) => {
+    res.json({ success: true });
+  });
+
+  app.get("/api/auth/verify", (req, res) => {
+    const token = req.headers.authorization?.replace("Bearer ", "");
+    if (!token) {
+      res.status(401).json({ error: "No token provided" });
+      return;
+    }
+    const result = verifyToken(token);
+    if (result.valid) {
+      res.json({ valid: true, username: result.username });
+    } else {
+      res.status(401).json({ error: "Invalid token" });
+    }
+  });
+
+  // Public Routes
+  app.get("/api/config", async (req, res) => {
     try {
-      await fs.writeFile(CONFIG_FILE, JSON.stringify(req.body, null, 2));
-      res.json({ success: true });
+      const data = await fs.readFile(CONFIG_FILE, "utf-8");
+      const config = JSON.parse(data);
+      // Remove sensitive admin info from public config
+      const { admin, ...publicConfig } = config;
+      res.json(publicConfig);
     } catch (error) {
-      res.status(500).json({ error: "Failed to save config" });
+      res.status(500).json({ error: "Failed to read config" });
     }
   });
 
@@ -41,11 +124,25 @@ async function startServer() {
     }
   });
 
-  app.post("/api/posts", async (req, res) => {
+  // Protected Routes
+  app.put("/api/config", authMiddleware, async (req, res) => {
+    try {
+      // Preserve admin credentials when updating config
+      const currentData = await fs.readFile(CONFIG_FILE, "utf-8");
+      const currentConfig = JSON.parse(currentData);
+      const newConfig = { ...req.body, admin: currentConfig.admin };
+      await fs.writeFile(CONFIG_FILE, JSON.stringify(newConfig, null, 2));
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to save config" });
+    }
+  });
+
+  app.post("/api/posts", authMiddleware, async (req, res) => {
     try {
       const data = await fs.readFile(POSTS_FILE, "utf-8");
       const posts = JSON.parse(data);
-      const newPost = { ...req.body, id: Date.now().toString() };
+      const newPost = { ...req.body, id: Date.now().toString(), views: 0 };
       posts.push(newPost);
       await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2));
       res.json(newPost);
@@ -54,7 +151,7 @@ async function startServer() {
     }
   });
 
-  app.put("/api/posts/:id", async (req, res) => {
+  app.put("/api/posts/:id", authMiddleware, async (req, res) => {
     try {
       const data = await fs.readFile(POSTS_FILE, "utf-8");
       let posts = JSON.parse(data);
@@ -71,7 +168,7 @@ async function startServer() {
     }
   });
 
-  app.delete("/api/posts/:id", async (req, res) => {
+  app.delete("/api/posts/:id", authMiddleware, async (req, res) => {
     try {
       const data = await fs.readFile(POSTS_FILE, "utf-8");
       let posts = JSON.parse(data);
@@ -80,6 +177,24 @@ async function startServer() {
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ error: "Failed to delete post" });
+    }
+  });
+
+  // View count endpoint (public)
+  app.post("/api/posts/:id/view", async (req, res) => {
+    try {
+      const data = await fs.readFile(POSTS_FILE, "utf-8");
+      let posts = JSON.parse(data);
+      const index = posts.findIndex((p: any) => p.id === req.params.id);
+      if (index !== -1) {
+        posts[index].views = (posts[index].views || 0) + 1;
+        await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2));
+        res.json({ views: posts[index].views });
+      } else {
+        res.status(404).json({ error: "Post not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update view count" });
     }
   });
 

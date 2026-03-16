@@ -1,10 +1,27 @@
 import React from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, FileText, Settings, LogOut } from 'lucide-react';
+import { Outlet, Link, useLocation, Navigate } from 'react-router-dom';
+import { LayoutDashboard, FileText, Settings, LogOut, Loader2 } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { useAuth, useRequireAuth } from '../../context/AuthContext';
 
 export const AdminLayout: React.FC = () => {
   const location = useLocation();
+  const { isAuthenticated, loading, logout } = useAuth();
+
+  // Require auth for all admin routes
+  useRequireAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-bg-base flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-accent animate-spin" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
+  }
 
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
@@ -44,10 +61,16 @@ export const AdminLayout: React.FC = () => {
           })}
         </nav>
 
-        <div className="p-4 border-t border-border">
-          <Link to="/" className="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-bg-base hover:text-text-primary transition-colors">
+        <div className="p-4 border-t border-border space-y-2">
+          <button
+            onClick={logout}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-red-500/10 hover:text-red-500 transition-colors"
+          >
             <LogOut className="w-5 h-5" />
-            Back to Site
+            退出登录
+          </button>
+          <Link to="/" className="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-bg-base hover:text-text-primary transition-colors">
+            ← 返回博客
           </Link>
         </div>
       </aside>

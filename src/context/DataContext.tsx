@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
 import { Post } from '../data/posts';
 
 interface SiteConfig {
@@ -60,6 +60,10 @@ interface SiteConfig {
     copyright: string;
     icp?: string;
   };
+  about?: {
+    content: string;
+    skills?: string[];
+  };
 }
 
 interface Category {
@@ -75,9 +79,33 @@ interface DataContextType {
   tags: string[];
   loading: boolean;
   refreshData: () => Promise<void>;
+  totalWordCount: string;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
+
+// Count words in text (Chinese characters + English words)
+function countWords(text: string): number {
+  if (!text) return 0;
+  
+  // Count Chinese characters
+  const chineseChars = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
+  
+  // Count English words (sequences of letters)
+  const englishWords = (text.match(/[a-zA-Z]+/g) || []).length;
+  
+  return chineseChars + englishWords;
+}
+
+// Format word count (e.g., 12500 -> "1.3万字", 850 -> "850字")
+function formatWordCount(count: number): string {
+  if (count >= 10000) {
+    const wan = (count / 10000).toFixed(1);
+    // Remove trailing .0
+    return `${wan.replace(/\.0$/, '')}万字`;
+  }
+  return `${count}字`;
+}
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [config, setConfig] = useState<SiteConfig | null>(null);
@@ -85,6 +113,32 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Calculate total word count from all posts
+  const totalWordCount = useMemo(() => {
+    let total = 0;
+    posts.forEach(post => {
+      total += countWords(post.title);
+      total += countWords(post.excerpt);
+      total += countWords(post.content);
+    });
+    return formatWordCount(total);
+  }, [posts]);
+
+  // Update config with computed word count
+  const configWithComputedStats = useMemo(() => {
+    if (!config) return null;
+    return {
+      ...config,
+      stats: {
+        ...config.stats,
+        words: totalWordCount,
+        articles: posts.length,
+        categories: categories.filter(c => !c.isHome).length,
+        tags: tags.length
+      }
+    };
+  }, [config, totalWordCount, posts.length, categories, tags.length]);
 
   const fetchData = async () => {
     try {
@@ -130,7 +184,15 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   return (
-    <DataContext.Provider value={{ config, posts, categories, tags, loading, refreshData: fetchData }}>
+    <DataContext.Provider value={{ 
+      config: configWithComputedStats, 
+      posts, 
+      categories, 
+      tags, 
+      loading, 
+      refreshData: fetchData,
+      totalWordCount 
+    }}>
       {children}
     </DataContext.Provider>
   );

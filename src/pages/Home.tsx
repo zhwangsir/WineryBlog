@@ -5,16 +5,24 @@ import { PostCard } from '../components/PostCard';
 import { motion } from 'motion/react';
 import { Home as HomeIcon } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { SEO } from '../components/SEO';
 
 export const Home: React.FC = () => {
-  const { posts, categories } = useData();
+  const { posts, categories, config } = useData();
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col gap-6"
-    >
+    <>
+      <SEO 
+        title={config?.title || 'WineryBlog'}
+        description={config?.subtitle || '永远相信，美好的事情即将发生。'}
+        author={config?.author}
+        keywords={['博客', '技术', ...(config?.tags || [])]}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col gap-6"
+      >
       {/* Category Bar - Firefly Style */}
       <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-2">
         {categories.map((cat) => {
@@ -50,5 +58,6 @@ export const Home: React.FC = () => {
         ))}
       </div>
     </motion.div>
+    </>
   );
 };

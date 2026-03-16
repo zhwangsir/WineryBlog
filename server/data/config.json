@@ -3,6 +3,10 @@
   "title": "WineryBlog",
   "author": "Winery",
   "subtitle": "永远相信，美好的事情即将发生。",
+  "admin": {
+    "username": "admin",
+    "password": "wineryblog2026"
+  },
   "hero": {
     "title": "Lovely HuTao!",
     "subtitle": "逗留采血色，伴君眠花房。",

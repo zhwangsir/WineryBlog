@@ -50,6 +50,24 @@ export const Navbar: React.FC = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Global keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl+K or / to open search
+      if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !searchOpen)) {
+        // Don't trigger if user is typing in an input
+        if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+          return;
+        }
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [searchOpen]);
+
   return (
     <>
       <nav className={cn(

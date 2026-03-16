@@ -72,15 +72,6 @@ export const Sidebar: React.FC = () => {
         })}
       </nav>
 
-      {/* Music Player Placeholder */}
-      <div className="flex flex-col gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-        <div className="flex items-center gap-2 text-gray-700 font-medium text-sm">
-          <Music className="w-4 h-4" />
-          <h3>音乐</h3>
-        </div>
-        <p className="text-xs text-gray-500">暂未播放</p>
-      </div>
-
       {/* Categories */}
       <div className="flex flex-col gap-3">
         <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3">分类</h3>
