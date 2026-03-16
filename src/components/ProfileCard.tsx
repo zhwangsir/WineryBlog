@@ -1,7 +1,7 @@
 import React from 'react';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
-import { Github, Twitter, Mail, Link as LinkIcon } from 'lucide-react';
+import { Github, Mail, Link as LinkIcon } from 'lucide-react';
 
 export const ProfileCard: React.FC = () => {
   const { config: siteConfig } = useData();
@@ -10,7 +10,6 @@ export const ProfileCard: React.FC = () => {
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
       case 'github': return <Github className="w-4 h-4" />;
-      case 'twitter': return <Twitter className="w-4 h-4" />;
       case 'mail': return <Mail className="w-4 h-4" />;
       default: return <LinkIcon className="w-4 h-4" />;
     }

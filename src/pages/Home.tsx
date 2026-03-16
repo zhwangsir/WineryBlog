@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { PostCard } from '../components/PostCard';
+import { WaterfallGrid } from '../components/WaterfallGrid';
 import { motion } from 'motion/react';
 import { Home as HomeIcon } from 'lucide-react';
 import { cn } from '../utils/cn';
@@ -58,12 +59,12 @@ export const Home: React.FC = () => {
         })}
       </div>
 
-      {/* Posts Grid - Firefly Style */}
-      <div className="grid grid-cols-1 gap-6">
+      {/* Posts Waterfall Grid - Masonry Layout */}
+      <WaterfallGrid gap={24} minColumnWidth={350} maxColumns={3}>
         {sortedPosts.map((post, index) => (
           <PostCard key={post.id} post={post} index={index} />
         ))}
-      </div>
+      </WaterfallGrid>
     </motion.div>
     </>
   );

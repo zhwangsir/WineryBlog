@@ -22,6 +22,7 @@ WineryBlog 是一个现代化的高性能个人博客系统，采用前后端一
 ## 技术栈
 
 ### 前端
+
 - **React 19** - UI 框架
 - **TypeScript** - 类型安全
 - **React Router v7** - 路由管理
@@ -31,6 +32,7 @@ WineryBlog 是一个现代化的高性能个人博客系统，采用前后端一
 - **Lucide React** - 图标库
 
 ### 后端
+
 - **Express** - Node.js Web 框架
 - **Vite** - 开发服务器与构建工具
 
@@ -48,7 +50,7 @@ npm install
 npm run dev
 ```
 
-服务运行在 http://localhost:3000
+服务运行在 <http://localhost:3000>
 
 ### 生产构建
 
@@ -98,7 +100,7 @@ wineryblog/
   "author": "Winery",
   "subtitle": "永远相信，美好的事情即将发生。",
   "hero": {
-    "title": "Lovely HuTao!",
+    "title": "吾妻胡桃!",
     "subtitle": "逗留采血色，伴君眠花房。",
     "image": "/images/hero.svg",
     "credit": "Pixiv - 水菜カステラ"
@@ -135,14 +137,14 @@ wineryblog/
 
 ## API 接口
 
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/api/config` | 获取博客配置 |
-| PUT | `/api/config` | 更新博客配置 |
-| GET | `/api/posts` | 获取所有文章 |
-| POST | `/api/posts` | 创建文章 |
-| PUT | `/api/posts/:id` | 更新文章 |
-| DELETE | `/api/posts/:id` | 删除文章 |
+| 方法     | 路径               | 描述     |
+| ------ | ---------------- | ------ |
+| GET    | `/api/config`    | 获取博客配置 |
+| PUT    | `/api/config`    | 更新博客配置 |
+| GET    | `/api/posts`     | 获取所有文章 |
+| POST   | `/api/posts`     | 创建文章   |
+| PUT    | `/api/posts/:id` | 更新文章   |
+| DELETE | `/api/posts/:id` | 删除文章   |
 
 ## 后台管理
 

@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
         style={{
           backgroundImage: `url(${siteConfig?.hero.image})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'top',
           backgroundRepeat: 'no-repeat',
         }}
       >
