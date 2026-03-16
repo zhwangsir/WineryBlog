@@ -124,11 +124,12 @@ export const ManageConfig: React.FC = () => {
           <h2 className="text-xl font-bold text-text-primary mb-6">General</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">Site Title</label>
+              <label className="text-sm font-medium text-text-primary">Domain</label>
               <input 
                 type="text" 
-                value={formData.title || ''}
-                onChange={e => handleChange('', 'title', e.target.value)}
+                value={formData.domain || ''}
+                onChange={e => handleChange('', 'domain', e.target.value)}
+                placeholder="blog.wineryz.top"
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
               />
             </div>
@@ -138,6 +139,15 @@ export const ManageConfig: React.FC = () => {
                 type="text" 
                 value={formData.author || ''}
                 onChange={e => handleChange('', 'author', e.target.value)}
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <label className="text-sm font-medium text-text-primary">Site Title</label>
+              <input 
+                type="text" 
+                value={formData.title || ''}
+                onChange={e => handleChange('', 'title', e.target.value)}
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
               />
             </div>
@@ -444,14 +454,112 @@ export const ManageConfig: React.FC = () => {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">ICP License (Optional)</label>
+              <label className="text-sm font-medium text-text-primary">ICP License</label>
               <input 
                 type="text" 
                 value={formData.footer?.icp || ''}
                 onChange={e => handleFooterChange('icp', e.target.value)}
+                placeholder="豫ICP备xxxxxxxx号-x"
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
               />
             </div>
+          </div>
+        </section>
+
+        {/* Navigation Settings */}
+        <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-text-primary">Navigation Menu</h2>
+            <button 
+              type="button"
+              onClick={() => {
+                setFormData((prev: any) => ({
+                  ...prev,
+                  nav: [...(prev.nav || []), { name: '', path: '', icon: 'Home', external: false, href: '' }]
+                }));
+              }}
+              className="text-sm text-accent hover:text-accent-hover font-medium"
+            >
+              + Add Menu Item
+            </button>
+          </div>
+          <div className="flex flex-col gap-4">
+            {(formData.nav || []).map((item: any, index: number) => (
+              <div key={index} className="flex items-center gap-4 bg-bg-base p-4 rounded-xl border border-border">
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">Name</label>
+                    <input 
+                      type="text" 
+                      value={item.name}
+                      onChange={(e) => {
+                        const newNav = [...(formData.nav || [])];
+                        newNav[index] = { ...newNav[index], name: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, nav: newNav }));
+                      }}
+                      placeholder="Home"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">Path</label>
+                    <input 
+                      type="text" 
+                      value={item.path}
+                      onChange={(e) => {
+                        const newNav = [...(formData.nav || [])];
+                        newNav[index] = { ...newNav[index], path: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, nav: newNav }));
+                      }}
+                      placeholder="/"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">Icon</label>
+                    <input 
+                      type="text" 
+                      value={item.icon}
+                      onChange={(e) => {
+                        const newNav = [...(formData.nav || [])];
+                        newNav[index] = { ...newNav[index], icon: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, nav: newNav }));
+                      }}
+                      placeholder="Home"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">External URL (optional)</label>
+                    <input 
+                      type="text" 
+                      value={item.href || ''}
+                      onChange={(e) => {
+                        const newNav = [...(formData.nav || [])];
+                        newNav[index] = { ...newNav[index], external: !!e.target.value, href: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, nav: newNav }));
+                      }}
+                      placeholder="https://example.com"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => {
+                    const newNav = [...(formData.nav || [])];
+                    newNav.splice(index, 1);
+                    setFormData((prev: any) => ({ ...prev, nav: newNav }));
+                  }}
+                  className="p-2 text-text-secondary hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors mt-6"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            {(!formData.nav || formData.nav.length === 0) && (
+              <p className="text-sm text-text-secondary text-center py-4">No navigation items added yet.</p>
+            )}
           </div>
         </section>
 

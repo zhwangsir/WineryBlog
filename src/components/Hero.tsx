@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
+import { Wave } from './Wave';
 
 export const Hero: React.FC = () => {
   const { config: siteConfig } = useData();
@@ -23,6 +24,9 @@ export const Hero: React.FC = () => {
         {/* Overlay gradient for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-bg-base" />
       </motion.div>
+
+      {/* Top Wave */}
+      <Wave className="absolute top-0 left-0 right-0" />
 
       {/* Content */}
       <motion.div 
@@ -47,8 +51,8 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom gradient fade into background */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-base to-transparent z-0" />
+      {/* Bottom Wave */}
+      <Wave className="absolute bottom-0 left-0 right-0" flip />
     </div>
   );
 };

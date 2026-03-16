@@ -6,6 +6,9 @@ import { ProfileCard } from './ProfileCard';
 import { StatsCard } from './StatsCard';
 import { Footer } from './Footer';
 import { MusicPlayer } from './MusicPlayer';
+import { Wave } from './Wave';
+import { ParticleBackground } from './ParticleBackground';
+import { FireflyBackground } from './FireflyBackground';
 import { cn } from '../utils/cn';
 import { motion, AnimatePresence } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -71,6 +74,13 @@ export const Layout: React.FC = () => {
         <div className="fixed inset-0 bg-bg-base/80 backdrop-blur-[2px] z-[-1]" />
       )}
 
+      {/* Background Effects */}
+      <FireflyBackground />
+      <ParticleBackground />
+
+      {/* Top Wave */}
+      <Wave className="hidden md:block" />
+
       <Navbar />
       
       {/* Hero Section */}
@@ -108,6 +118,9 @@ export const Layout: React.FC = () => {
         </aside>
         
       </main>
+
+      {/* Bottom Wave */}
+      <Wave className="hidden md:block" flip />
 
       <Footer />
       <MusicPlayer />

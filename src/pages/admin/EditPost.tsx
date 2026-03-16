@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
-import { ArrowLeft, Save } from 'lucide-react';
+import { ArrowLeft, Save, Eye, EyeOff } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export const EditPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,8 +18,11 @@ export const EditPost: React.FC = () => {
     tags: '',
     excerpt: '',
     content: '',
-    isLocked: false
+    isLocked: false,
+    password: ''
   });
+
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     if (!isNew && posts.length > 0) {
@@ -30,7 +35,8 @@ export const EditPost: React.FC = () => {
           tags: post.tags.join(', '),
           excerpt: post.excerpt,
           content: post.content,
-          isLocked: post.isLocked || false
+          isLocked: post.isLocked || false,
+          password: post.password || ''
         });
       }
     }
@@ -89,102 +95,165 @@ export const EditPost: React.FC = () => {
             <p className="text-text-secondary">Write or edit your blog content.</p>
           </div>
         </div>
-        <button 
-          onClick={handleSubmit}
-          className="flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-xl hover:bg-accent-hover transition-colors font-medium shadow-sm"
-        >
-          <Save className="w-5 h-5" />
-          Save Post
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+            type="button"
+            onClick={() => setShowPreview(!showPreview)}
+            className="flex items-center gap-2 px-4 py-2.5 text-text-secondary bg-bg-base border border-border rounded-xl hover:text-accent hover:border-accent transition-colors font-medium"
+          >
+            {showPreview ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            {showPreview ? 'Edit' : 'Preview'}
+          </button>
+          <button 
+            onClick={handleSubmit}
+            className="flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-xl hover:bg-accent-hover transition-colors font-medium shadow-sm"
+          >
+            <Save className="w-5 h-5" />
+            Save Post
+          </button>
+        </div>
       </header>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-text-primary">Title</label>
-            <input 
-              type="text" 
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
-            />
+      {showPreview ? (
+        <div className="bg-bg-card border border-border rounded-2xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-text-primary mb-4">{formData.title}</h2>
+          <div className="text-sm text-text-secondary mb-6">
+            {formData.date} · {formData.category} · {formData.tags}
           </div>
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {formData.content || '*No content*'}
+            </ReactMarkdown>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-text-primary">Title</label>
+              <input 
+                type="text" 
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
           
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-text-primary">Date</label>
-            <input 
-              type="date" 
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
-            />
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-text-primary">Date</label>
+              <input 
+                type="date" 
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-text-primary">Category</label>
+              <input 
+                type="text" 
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                placeholder="e.g., 教程, 论文阅读, 项目文档"
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-text-primary">Tags (comma separated)</label>
+              <input 
+                type="text" 
+                name="tags"
+                value={formData.tags}
+                onChange={handleChange}
+                placeholder="e.g., React, TypeScript, 教程"
+                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4 p-4 bg-bg-base rounded-xl border border-border">
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                id="isLocked"
+                name="isLocked"
+                checked={formData.isLocked}
+                onChange={handleChange}
+                className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+              />
+              <label htmlFor="isLocked" className="text-sm font-medium text-text-primary cursor-pointer">
+                Lock Post (Password Protected)
+              </label>
+            </div>
+            
+            {formData.isLocked && (
+              <div className="flex flex-col gap-2 ml-7">
+                <label className="text-sm font-medium text-text-primary">Password</label>
+                <input 
+                  type="password" 
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter password to protect this post"
+                  className="w-full md:w-1/2 px-4 py-2 bg-bg-card border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-text-primary">Category</label>
-            <input 
-              type="text" 
-              name="category"
-              value={formData.category}
+            <label className="text-sm font-medium text-text-primary">Excerpt</label>
+            <textarea 
+              name="excerpt"
+              value={formData.excerpt}
               onChange={handleChange}
-              required
-              className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+              rows={2}
+              placeholder="Brief description of the post..."
+              className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors resize-none"
             />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-text-primary">Tags (comma separated)</label>
-            <input 
-              type="text" 
-              name="tags"
-              value={formData.tags}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
-            />
+          <div className="flex flex-col gap-2 flex-1">
+            <label className="text-sm font-medium text-text-primary">Content (Markdown Supported)</label>
+            <div className="border border-border rounded-xl overflow-hidden">
+              <textarea 
+                name="content"
+                value={formData.content}
+                onChange={handleChange}
+                rows={20}
+                required
+                placeholder="Write your content in Markdown format...
+
+# Heading 1
+## Heading 2
+
+**Bold** and *italic* text
+
+- List item 1
+- List item 2
+
+[Link](https://example.com)
+
+```code block```
+
+> Quote"
+                className="w-full px-4 py-3 bg-bg-base text-text-primary focus:outline-none focus:border-accent transition-colors font-mono text-sm resize-y"
+              />
+            </div>
+            <p className="text-xs text-text-muted">
+              Supports Markdown syntax: headings, bold, italic, lists, links, code blocks, tables, etc.
+            </p>
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <input 
-            type="checkbox" 
-            id="isLocked"
-            name="isLocked"
-            checked={formData.isLocked}
-            onChange={handleChange}
-            className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
-          />
-          <label htmlFor="isLocked" className="text-sm font-medium text-text-primary cursor-pointer">
-            Lock Post (Private)
-          </label>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-text-primary">Excerpt</label>
-          <textarea 
-            name="excerpt"
-            value={formData.excerpt}
-            onChange={handleChange}
-            rows={2}
-            className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors resize-none"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2 flex-1">
-          <label className="text-sm font-medium text-text-primary">Content (Markdown)</label>
-          <textarea 
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            rows={15}
-            required
-            className="w-full px-4 py-3 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors font-mono text-sm resize-y"
-          />
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 };
