@@ -7,6 +7,10 @@ export interface Post {
   excerpt: string;
   content: string;
   isLocked?: boolean;
+  password?: string;
+  cover?: string;
+  pinned?: boolean;
+  views?: number;
 }
 
 export const categories = [

@@ -9,6 +9,13 @@ import { SEO } from '../components/SEO';
 
 export const Home: React.FC = () => {
   const { posts, categories, config } = useData();
+  
+  const sortedPosts = [...posts].sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    return 0;
+  });
+  
   return (
     <>
       <SEO 
@@ -53,7 +60,7 @@ export const Home: React.FC = () => {
 
       {/* Posts Grid - Firefly Style */}
       <div className="grid grid-cols-1 gap-6">
-        {posts.map((post, index) => (
+        {sortedPosts.map((post, index) => (
           <PostCard key={post.id} post={post} index={index} />
         ))}
       </div>

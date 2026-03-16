@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Post } from '../data/posts';
-import { Calendar, Folder, Lock, Clock } from 'lucide-react';
+import { Calendar, Folder, Lock, Clock, Eye, Pin } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface PostCardProps {
@@ -13,20 +13,39 @@ export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
+  const coverImage = post.cover || `https://picsum.photos/seed/${post.id}/800/450`;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group bg-bg-card rounded-xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg"
+      className="group bg-bg-card rounded-xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg relative"
     >
+      {/* Pinned Badge */}
+      {post.pinned && (
+        <div className="absolute top-3 left-3 z-10 flex items-center gap-1 px-2 py-1 rounded-full bg-accent text-white text-xs font-medium shadow-lg">
+          <Pin className="w-3 h-3" />
+          置顶
+        </div>
+      )}
+
       {/* Cover Image */}
       <Link to={`/post/${post.id}`} className="block relative aspect-[16/9] overflow-hidden">
-        <img
-          src={`https://picsum.photos/seed/${post.id}/800/450`}
-          alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        {post.cover ? (
+          <img
+            src={post.cover}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-accent/20 via-accent/10 to-bg-base group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+            <span className="text-4xl font-bold text-accent/30">
+              {post.title.charAt(0)}
+            </span>
+          </div>
+        )}
+        
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
@@ -64,6 +83,12 @@ export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
             <Clock className="w-3.5 h-3.5" />
             {readingTime} 分钟
           </span>
+          {post.views !== undefined && post.views > 0 && (
+            <span className="flex items-center gap-1">
+              <Eye className="w-3.5 h-3.5" />
+              {post.views}
+            </span>
+          )}
         </div>
 
         {/* Excerpt */}

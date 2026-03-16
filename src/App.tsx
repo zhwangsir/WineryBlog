@@ -8,6 +8,7 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { Archive } from './pages/Archive';
 import { About } from './pages/About';
+import { Friends } from './pages/Friends';
 import { PostDetail } from './pages/PostDetail';
 import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
@@ -40,6 +41,7 @@ const AppContent = () => {
           <Route index element={<Home />} />
           <Route path="archive" element={<Archive />} />
           <Route path="about" element={<About />} />
+          <Route path="friends" element={<Friends />} />
           <Route path="post/:id" element={<PostDetail />} />
         </Route>
 
