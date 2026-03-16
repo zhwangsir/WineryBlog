@@ -9,11 +9,38 @@ interface PostCardProps {
   index: number;
 }
 
+// HuTao images for random cover
+const huTaoImages = [
+  '/images/HuTao/hutao1.png',
+  '/images/HuTao/hutao2.png',
+  '/images/HuTao/hutao3.png',
+  '/images/HuTao/hutao4.png',
+  '/images/HuTao/hutao5.png',
+  '/images/HuTao/hutao6.png',
+  '/images/HuTao/hutao7.png',
+  '/images/HuTao/hutao8.png',
+  '/images/HuTao/hutao9.png',
+  '/images/HuTao/hutao10.png',
+];
+
+// Get a random image based on post id (consistent for same post)
+const getRandomImage = (id: string): string => {
+  // Use post id to generate consistent random index
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = ((hash << 5) - hash) + id.charCodeAt(i);
+    hash = hash & hash;
+  }
+  const index = Math.abs(hash) % huTaoImages.length;
+  return huTaoImages[index];
+};
+
 export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-  const coverImage = post.cover || `https://picsum.photos/seed/${post.id}/800/450`;
+  // Use post cover if specified, otherwise use random HuTao image
+  const coverImage = post.cover || getRandomImage(post.id);
 
   return (
     <motion.article
@@ -32,19 +59,11 @@ export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
 
       {/* Cover Image */}
       <Link to={`/post/${post.id}`} className="block relative aspect-[16/9] overflow-hidden">
-        {post.cover ? (
-          <img
-            src={post.cover}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-accent/20 via-accent/10 to-bg-base group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-            <span className="text-4xl font-bold text-accent/30">
-              {post.title.charAt(0)}
-            </span>
-          </div>
-        )}
+        <img
+          src={coverImage}
+          alt={post.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
