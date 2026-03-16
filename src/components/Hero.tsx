@@ -3,36 +3,19 @@ import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
 
-// List of images in the HuTao folder
-const huTaoImages = [
-  '/images/HuTao/hutao1.png',
-  '/images/HuTao/hutao2.png',
-  '/images/HuTao/hutao3.png',
-  '/images/HuTao/hutao4.png',
-  '/images/HuTao/hutao5.png',
-  '/images/HuTao/hutao6.png',
-  '/images/HuTao/hutao7.png',
-  '/images/HuTao/hutao8.png',
-  '/images/HuTao/hutao9.png',
-  '/images/HuTao/hutao10.png',
-];
-
-// Get a random image from the list
-const getRandomImage = (): string => {
-  const randomIndex = Math.floor(Math.random() * huTaoImages.length);
-  return huTaoImages[randomIndex];
-};
+// Fixed background image
+const HERO_BG_IMAGE = '/images/HuTao/hutao10.png';
 
 export const Hero: React.FC = () => {
   const { config: siteConfig } = useData();
-  const [heroImage, setHeroImage] = useState<string>('');
+  const [heroImage, setHeroImage] = useState<string>(HERO_BG_IMAGE);
 
   useEffect(() => {
-    // Use random HuTao image if no specific hero image is set
+    // Use config hero image if specified, otherwise use fixed HuTao image
     if (siteConfig?.hero.image) {
       setHeroImage(siteConfig.hero.image);
     } else {
-      setHeroImage(getRandomImage());
+      setHeroImage(HERO_BG_IMAGE);
     }
   }, [siteConfig?.hero.image]);
 
