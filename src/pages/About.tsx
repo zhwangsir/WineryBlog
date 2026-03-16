@@ -17,10 +17,9 @@ export const About: React.FC = () => {
   const { config } = useData();
   
   const aboutContent = config?.about?.content || `
-你好！我是 ${config?.author || 'WineryBlog'} 的作者。
+你好！我是 ${'WineryBlog'} 的作者。
 
-这是一个基于 React + Express + TypeScript 构建的个人博客系统，
-主题以《原神》中的角色胡桃为设计灵感。
+这是一个基于 React + Express + TypeScript 构建的个人博客系统用以记录我个人的生活。
 
 ## 关于这个博客
 

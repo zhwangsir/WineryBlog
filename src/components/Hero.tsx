@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
 
+// List of images in the HuTao folder
+const huTaoImages = [
+  '/images/HuTao/hutao1.png',
+  '/images/HuTao/hutao2.png',
+  '/images/HuTao/hutao3.png',
+  '/images/HuTao/hutao4.png',
+  '/images/HuTao/hutao5.png',
+  '/images/HuTao/hutao6.png',
+  '/images/HuTao/hutao7.png',
+  '/images/HuTao/hutao8.png',
+  '/images/HuTao/hutao9.png',
+  '/images/HuTao/hutao10.png',
+];
+
+// Get a random image from the list
+const getRandomImage = (): string => {
+  const randomIndex = Math.floor(Math.random() * huTaoImages.length);
+  return huTaoImages[randomIndex];
+};
+
 export const Hero: React.FC = () => {
   const { config: siteConfig } = useData();
+  const [heroImage, setHeroImage] = useState<string>('');
+
+  useEffect(() => {
+    // Use random HuTao image if no specific hero image is set
+    if (siteConfig?.hero.image) {
+      setHeroImage(siteConfig.hero.image);
+    } else {
+      setHeroImage(getRandomImage());
+    }
+  }, [siteConfig?.hero.image]);
 
   return (
     <div className="relative w-full h-[400px] md:h-[450px] flex items-center justify-center overflow-hidden">
@@ -12,7 +42,7 @@ export const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url(${siteConfig?.hero.image})`,
+          backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'top',
           backgroundRepeat: 'no-repeat',
