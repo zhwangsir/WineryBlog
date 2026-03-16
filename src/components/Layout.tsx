@@ -53,7 +53,7 @@ export const Layout: React.FC = () => {
         document.head.removeChild(styleEl);
       }
     };
-  }, [theme]);
+  }, [theme?.accentColor, theme?.cursorUrl, theme?.globalBackground]);
 
   return (
     <div 

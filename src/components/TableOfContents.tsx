@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'motion/react';
 
 interface TocItem {
@@ -12,10 +12,11 @@ interface TableOfContentsProps {
 }
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
-  const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
+  // Parse headings from content - memoized to prevent re-parsing
+  const headings = useMemo<TocItem[]>(() => {
     const headingRegex = /^(#{2,3})\s+(.+)$/gm;
     const items: TocItem[] = [];
     let match;
@@ -27,10 +28,18 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => 
       items.push({ id, text, level });
     }
 
-    setHeadings(items);
+    return items;
   }, [content]);
 
+  // Setup IntersectionObserver
   useEffect(() => {
+    if (headings.length === 0) return;
+
+    // Disconnect previous observer if exists
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,6 +51,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => 
       { rootMargin: '-80px 0px -80% 0px' }
     );
 
+    observerRef.current = observer;
+
+    // Observe all heading elements
     headings.forEach((heading) => {
       const element = document.getElementById(heading.id);
       if (element) {
@@ -49,7 +61,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => 
       }
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [headings]);
 
   const scrollToHeading = (id: string) => {
