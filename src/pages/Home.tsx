@@ -60,7 +60,7 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Posts Waterfall Grid - Masonry Layout */}
-      <WaterfallGrid gap={24} minColumnWidth={350} maxColumns={3}>
+      <WaterfallGrid gap={24} minColumnWidth={280} maxColumns={3}>
         {sortedPosts.map((post, index) => (
           <PostCard key={post.id} post={post} index={index} />
         ))}
