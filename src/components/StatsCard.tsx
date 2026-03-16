@@ -12,6 +12,9 @@ export const StatsCard: React.FC = () => {
     { label: '分类', value: stats.categories, icon: Folder },
     { label: '标签', value: stats.tags, icon: Tag },
     { label: '总字数', value: stats.words, icon: Type },
+  ] : [];
+
+  const metaItems = stats ? [
     { label: '运行时长', value: `${stats.runningDays} 天`, icon: Clock },
     { label: '最后活动', value: stats.lastActivity, icon: Activity },
   ] : [];
@@ -20,37 +23,50 @@ export const StatsCard: React.FC = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-bg-card rounded-2xl p-6 shadow-lg border border-border sticky top-24 group"
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="bg-bg-card rounded-xl p-5 border border-border/50"
     >
-      <div className="flex items-center gap-2 mb-6">
-        <div className="w-1 h-4 bg-accent rounded-full group-hover:h-6 transition-all duration-300" />
-        <h3 className="text-lg font-bold text-text-primary group-hover:text-accent transition-colors">站点统计</h3>
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-5">
+        <div className="w-1 h-5 bg-accent rounded-full" />
+        <h3 className="font-bold text-text-primary">站点统计</h3>
       </div>
 
-      <ul className="flex flex-col gap-4">
+      {/* Main Stats Grid */}
+      <div className="grid grid-cols-2 gap-3 mb-4">
         {statItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <li key={index} className="flex items-center justify-between text-sm group/item hover:bg-bg-base p-2 -mx-2 rounded-lg transition-colors cursor-default">
-              <div className="flex items-center gap-3 text-text-secondary group-hover/item:text-accent transition-colors">
-                <Icon className="w-4 h-4 text-accent" />
-                <span>{item.label}</span>
+            <div 
+              key={index} 
+              className="bg-bg-base rounded-lg p-3 group hover:border-accent/30 border border-transparent transition-all"
+            >
+              <div className="flex items-center gap-2 text-text-muted mb-1">
+                <Icon className="w-3.5 h-3.5" />
+                <span className="text-xs">{item.label}</span>
               </div>
-              <span className="font-bold text-text-primary group-hover/item:text-accent transition-colors">{item.value}</span>
-            </li>
+              <span className="text-lg font-bold text-text-primary group-hover:text-accent transition-colors">
+                {item.value}
+              </span>
+            </div>
           );
         })}
-      </ul>
+      </div>
 
-      {/* Mascot Placeholder */}
-      <div className="absolute -bottom-8 -right-8 w-32 h-32 pointer-events-none opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 group-hover:-rotate-6">
-        <img 
-          src="/images/mascot.svg" 
-          alt="Mascot" 
-          className="w-full h-full object-contain drop-shadow-2xl"
-          referrerPolicy="no-referrer"
-        />
+      {/* Meta Info */}
+      <div className="space-y-2 pt-3 border-t border-border/50">
+        {metaItems.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <div key={index} className="flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 text-text-muted">
+                <Icon className="w-3.5 h-3.5" />
+                <span>{item.label}</span>
+              </div>
+              <span className="text-text-secondary">{item.value}</span>
+            </div>
+          );
+        })}
       </div>
     </motion.div>
   );

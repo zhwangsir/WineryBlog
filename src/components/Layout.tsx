@@ -4,11 +4,9 @@ import { Navbar } from './Navbar';
 import { Hero } from './Hero';
 import { ProfileCard } from './ProfileCard';
 import { StatsCard } from './StatsCard';
+import { Calendar } from './Calendar';
 import { Footer } from './Footer';
 import { MusicPlayer } from './MusicPlayer';
-import { Wave } from './Wave';
-import { ParticleBackground } from './ParticleBackground';
-import { FireflyBackground } from './FireflyBackground';
 import { Sakura } from './Sakura';
 import { Mascot } from './Mascot';
 import { cn } from '../utils/cn';
@@ -34,7 +32,6 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     if (theme?.accentColor) {
       document.documentElement.style.setProperty('--accent', theme.accentColor);
-      // Simple hover color calculation (just slightly lighter/darker, or same for simplicity)
       document.documentElement.style.setProperty('--accent-hover', theme.accentColor);
     }
 
@@ -42,7 +39,6 @@ export const Layout: React.FC = () => {
 
     if (theme?.cursorUrl) {
       document.documentElement.style.setProperty('cursor', `url(${theme.cursorUrl}), auto`);
-      // Also apply to common interactive elements to ensure it overrides defaults
       styleEl = document.createElement('style');
       styleEl.innerHTML = `
         * { cursor: url(${theme.cursorUrl}), auto !important; }
@@ -71,14 +67,10 @@ export const Layout: React.FC = () => {
         })
       }}
     >
-      {/* Optional overlay if background image is set, to ensure readability */}
+      {/* Optional overlay if background image is set */}
       {theme?.globalBackground && (
         <div className="fixed inset-0 bg-bg-base/80 backdrop-blur-[2px] z-[-1]" />
       )}
-
-      {/* Background Effects */}
-      <FireflyBackground />
-      <ParticleBackground />
 
       {/* Sakura Effect - Firefly Style */}
       <Sakura 
@@ -96,62 +88,45 @@ export const Layout: React.FC = () => {
 
       <Navbar />
       
-      {/* Hero Section with Wave */}
-      {location.pathname === '/' && (
-        <div className="relative">
-          <Hero />
-          {/* Wave at bottom of Hero */}
-          {theme?.waveEnabled !== false && (
-            <div className="absolute bottom-0 left-0 right-0 z-10">
-              <Wave />
-            </div>
-          )}
-        </div>
-      )}
+      {/* Hero Section - No Wave */}
+      {location.pathname === '/' && <Hero />}
 
-      {/* Main Content Area */}
-      <main id="main-content" className={cn(
-        "flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 flex gap-6 lg:gap-8 relative z-0",
+      {/* Main Content Area - Firefly Style */}
+      <main className={cn(
+        "flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-8",
         location.pathname !== '/' && "pt-24 md:pt-32"
       )}>
-        
-        {/* Left Sidebar (Profile) */}
-        <aside className="hidden lg:block w-64 xl:w-72 shrink-0">
-          <ProfileCard />
-        </aside>
+        <div className="flex gap-6 lg:gap-8">
+          {/* Left Sidebar */}
+          <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
+            <ProfileCard />
+          </aside>
 
-        {/* Center Content */}
-        <div className="flex-1 min-w-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
+          {/* Center Content */}
+          <div className="flex-1 min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={location.pathname}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Outlet />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Sidebar */}
+          <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
+            <StatsCard />
+            <Calendar />
+          </aside>
         </div>
-
-        {/* Right Sidebar (Stats) */}
-        <aside className="hidden xl:block w-64 shrink-0 relative">
-          <StatsCard />
-        </aside>
-        
       </main>
-
-      {/* Bottom Wave - before Footer */}
-      {theme?.waveEnabled !== false && (
-        <div className="relative">
-          <Wave flip />
-        </div>
-      )}
 
       <Footer />
       <MusicPlayer />
     </div>
   );
 };
-
