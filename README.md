@@ -100,7 +100,7 @@ wineryblog/
   "author": "Winery",
   "subtitle": "永远相信，美好的事情即将发生。",
   "hero": {
-    "title": "吾妻胡桃!",
+    "title": "胡桃的胡是胡吃海喝的胡，胡桃的桃却不是淘气的淘",
     "subtitle": "逗留采血色，伴君眠花房。",
     "image": "/images/hero.svg",
     "credit": "Pixiv - 水菜カステラ"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
@@ -15,37 +15,26 @@ import { useData } from '../context/DataContext';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
-  const { config } = useData();
+  const { config, loading } = useData();
+  const configRef = useRef(config);
+  configRef.current = config;
 
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname, location.search]);
-
-  // Don't apply layout to admin routes
-  if (location.pathname.startsWith('/admin')) {
-    return <Outlet />;
-  }
-
-  const theme = config?.theme;
+  }, [location.pathname]);
 
   useEffect(() => {
+    const theme = configRef.current?.theme;
     if (theme?.accentColor) {
       document.documentElement.style.setProperty('--accent', theme.accentColor);
-      document.documentElement.style.setProperty('--accent-hover', theme.accentColor);
     }
 
     let styleEl: HTMLStyleElement | null = null;
 
     if (theme?.cursorUrl) {
-      document.documentElement.style.setProperty('cursor', `url(${theme.cursorUrl}), auto`);
       styleEl = document.createElement('style');
-      styleEl.innerHTML = `
-        * { cursor: url(${theme.cursorUrl}), auto !important; }
-      `;
+      styleEl.innerHTML = `* { cursor: url(${theme.cursorUrl}), auto !important; }`;
       document.head.appendChild(styleEl);
-    } else {
-      document.documentElement.style.removeProperty('cursor');
     }
 
     return () => {
@@ -53,7 +42,13 @@ export const Layout: React.FC = () => {
         document.head.removeChild(styleEl);
       }
     };
-  }, [theme?.accentColor, theme?.cursorUrl, theme?.globalBackground]);
+  }, [loading]);
+
+  if (location.pathname.startsWith('/admin')) {
+    return <Outlet />;
+  }
+
+  const theme = config?.theme;
 
   return (
     <div 
@@ -67,19 +62,16 @@ export const Layout: React.FC = () => {
         })
       }}
     >
-      {/* Optional overlay if background image is set */}
       {theme?.globalBackground && (
         <div className="fixed inset-0 bg-bg-base/80 backdrop-blur-[2px] z-[-1]" />
       )}
 
-      {/* Sakura Effect - Firefly Style */}
       <Sakura 
         enabled={theme?.sakuraEnabled !== false}
         density={theme?.sakuraDensity || 50}
         speed={theme?.sakuraSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
       />
 
-      {/* Mascot - Firefly Style */}
       <Mascot 
         enabled={theme?.mascotEnabled !== false}
         avatar={config?.profile?.avatar}
@@ -88,21 +80,17 @@ export const Layout: React.FC = () => {
 
       <Navbar />
       
-      {/* Hero Section - No Wave */}
       {location.pathname === '/' && <Hero />}
 
-      {/* Main Content Area - Firefly Style */}
       <main className={cn(
         "flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-8",
         location.pathname !== '/' && "pt-24 md:pt-32"
       )}>
         <div className="flex gap-6 lg:gap-8">
-          {/* Left Sidebar */}
           <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
             <ProfileCard />
           </aside>
 
-          {/* Center Content */}
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
               <motion.div
@@ -117,7 +105,6 @@ export const Layout: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Right Sidebar */}
           <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
             <StatsCard />
             <Calendar />
