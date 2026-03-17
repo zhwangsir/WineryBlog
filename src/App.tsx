@@ -12,7 +12,6 @@ import { Friends } from './pages/Friends';
 import { PostDetail } from './pages/PostDetail';
 import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
-import { Loader2 } from 'lucide-react';
 
 // Admin Pages
 import { AdminLayout } from './pages/admin/AdminLayout';
@@ -23,16 +22,6 @@ import { EditPost } from './pages/admin/EditPost';
 import { ManageConfig } from './pages/admin/ManageConfig';
 
 const AppContent = () => {
-  const { loading } = useData();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-bg-base flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-accent animate-spin" />
-      </div>
-    );
-  }
-
   return (
     <AuthProvider>
       <Routes>

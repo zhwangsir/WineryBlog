@@ -175,7 +175,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     get loading() { return loading; },
     get refreshData() { return async () => {}; },
     get totalWordCount() { return totalWordCountRef.current; },
-  }), [loading]);
+  }), []);
 
   return (
     <DataContext.Provider value={value}>
