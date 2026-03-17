@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, ReactNode, useRef, useState, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode, useState, useCallback } from 'react';
 import { Post } from '../data/posts';
 
 interface SiteConfig {
@@ -100,82 +100,87 @@ function formatWordCount(count: number): string {
 }
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const configRef = useRef<SiteConfig | null>(null);
-  const postsRef = useRef<Post[]>([]);
-  const categoriesRef = useRef<Category[]>([]);
-  const tagsRef = useRef<string[]>([]);
-  const totalWordCountRef = useRef<string>('0字');
+  const [config, setConfig] = useState<SiteConfig | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [totalWordCount, setTotalWordCount] = useState<string>('0字');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [configRes, postsRes] = await Promise.all([
-          fetch('/api/config'),
-          fetch('/api/posts')
-        ]);
-        
-        if (configRes.ok) {
-          configRef.current = await configRes.json();
-        }
-        
-        if (postsRes.ok) {
-          const newPosts: Post[] = await postsRes.json();
-          postsRef.current = newPosts;
-          
-          const catMap = new Map<string, number>();
-          const tagSet = new Set<string>();
-          let total = 0;
-          
-          newPosts.forEach(post => {
-            catMap.set(post.category, (catMap.get(post.category) || 0) + 1);
-            post.tags.forEach(tag => tagSet.add(tag));
-            total += countWords(post.title);
-            total += countWords(post.excerpt);
-            total += countWords(post.content);
-          });
-          
-          const computedCategories: Category[] = [
-            { name: '归档', count: newPosts.length, isHome: true },
-            ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
-          ];
-          
-          categoriesRef.current = computedCategories;
-          tagsRef.current = Array.from(tagSet);
-          totalWordCountRef.current = formatWordCount(total);
-          
-          if (configRef.current) {
-            configRef.current = {
-              ...configRef.current,
-              stats: {
-                ...configRef.current.stats,
-                words: formatWordCount(total),
-                articles: newPosts.length,
-                categories: computedCategories.filter(c => !c.isHome).length,
-                tags: tagSet.size
-              }
-            };
-          }
-        }
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      } finally {
-        setLoading(false);
+  const fetchData = useCallback(async () => {
+    try {
+      const [configRes, postsRes] = await Promise.all([
+        fetch('/api/config'),
+        fetch('/api/posts')
+      ]);
+      
+      let newConfig: SiteConfig | null = null;
+      
+      if (configRes.ok) {
+        newConfig = await configRes.json();
       }
-    };
-
-    fetchData();
+      
+      if (postsRes.ok) {
+        const newPosts: Post[] = await postsRes.json();
+        setPosts(newPosts);
+        
+        const catMap = new Map<string, number>();
+        const tagSet = new Set<string>();
+        let total = 0;
+        
+        newPosts.forEach(post => {
+          catMap.set(post.category, (catMap.get(post.category) || 0) + 1);
+          post.tags.forEach(tag => tagSet.add(tag));
+          total += countWords(post.title);
+          total += countWords(post.excerpt);
+          total += countWords(post.content);
+        });
+        
+        const computedCategories: Category[] = [
+          { name: '归档', count: newPosts.length, isHome: true },
+          ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
+        ];
+        
+        setCategories(computedCategories);
+        setTags(Array.from(tagSet));
+        setTotalWordCount(formatWordCount(total));
+        
+        if (newConfig) {
+          const updatedConfig: SiteConfig = {
+            ...newConfig,
+            stats: {
+              ...newConfig.stats,
+              words: formatWordCount(total),
+              articles: newPosts.length,
+              categories: computedCategories.filter(c => !c.isHome).length,
+              tags: tagSet.size
+            }
+          };
+          setConfig(updatedConfig);
+        }
+      } else if (newConfig) {
+        setConfig(newConfig);
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const value = useMemo<DataContextType>(() => ({
-    get config() { return configRef.current; },
-    get posts() { return postsRef.current; },
-    get categories() { return categoriesRef.current; },
-    get tags() { return tagsRef.current; },
-    get loading() { return loading; },
-    get refreshData() { return async () => {}; },
-    get totalWordCount() { return totalWordCountRef.current; },
-  }), []);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const value: DataContextType = {
+    config,
+    posts,
+    categories,
+    tags,
+    loading,
+    refreshData: fetchData,
+    totalWordCount
+  };
 
   return (
     <DataContext.Provider value={value}>
