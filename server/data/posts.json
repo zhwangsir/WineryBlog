@@ -13,7 +13,7 @@
     "content": "# 欢迎来到 WineryBlog\n\n你好！欢迎来到我的个人博客！\n\n这是一个基于 React + Express + TypeScript 构建的现代化博客系统，参考了Firefly主题模板，\n\n## 关于这个博客\n\n这个博客主要用于：\n\n- 📝 记录学习笔记\n- 💻 分享技术文章\n- 🎮 分享游戏相关内容\n\n## 特色功能\n\n- ✨ 樱花飘落特效\n- 🎵 背景音乐播放器\n- 🔒 文章加密保护\n- 📱 响应式设计\n\n欢迎常来看看！",
     "isLocked": false,
     "password": "",
-    "views": 1357
+    "views": 1367
   },
   {
     "id": "tech-stack",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
@@ -8,76 +8,60 @@ const HERO_BG_IMAGE = '/images/HuTao/hutao10.png';
 interface TypewriterProps {
   text: string;
   speed?: number;
-  loop?: boolean;
   className?: string;
 }
 
 const Typewriter: React.FC<TypewriterProps> = ({ 
   text, 
   speed = 100, 
-  loop = false,
   className = ''
 }) => {
   const [displayText, setDisplayText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
   const indexRef = useRef(0);
+  const hasStartedRef = useRef(false);
+  const textRef = useRef(text);
+
+  useEffect(() => {
+    textRef.current = text;
+  }, [text]);
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
-    }, 500);
-
+    }, 530);
     return () => clearInterval(cursorInterval);
   }, []);
 
   useEffect(() => {
-    if (!text) return;
+    if (hasStartedRef.current) return;
+    if (!textRef.current) return;
     
-    setDisplayText('');
-    indexRef.current = 0;
-    setIsTyping(true);
-
+    hasStartedRef.current = true;
+    
     const typeChar = () => {
-      if (indexRef.current < text.length) {
-        setDisplayText(text.slice(0, indexRef.current + 1));
+      if (indexRef.current < textRef.current.length) {
+        setDisplayText(textRef.current.slice(0, indexRef.current + 1));
         indexRef.current++;
-        setTimeout(typeChar, speed + Math.random() * 50);
-      } else {
-        setIsTyping(false);
-        if (loop) {
-          setTimeout(() => {
-            setDisplayText('');
-            indexRef.current = 0;
-            setIsTyping(true);
-          }, 2000);
-        }
+        setTimeout(typeChar, speed + Math.random() * 40);
       }
     };
 
-    const startTimeout = setTimeout(typeChar, 500);
-    return () => clearTimeout(startTimeout);
-  }, [text, speed, loop]);
+    const timeout = setTimeout(typeChar, 500);
+    return () => clearTimeout(timeout);
+  }, [speed]);
 
   return (
     <span className={className}>
       {displayText}
-      <span className={`inline-block w-0.5 h-[0.9em] ml-0.5 align-middle bg-white ${showCursor ? 'animate-pulse' : 'opacity-0'}`} />
+      <span className={`inline-block w-0.5 h-[0.9em] ml-0.5 align-middle bg-white transition-opacity ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
     </span>
   );
 };
 
 export const Hero: React.FC = () => {
   const { config: siteConfig } = useData();
-  const [heroImage, setHeroImage] = useState<string>(HERO_BG_IMAGE);
-
-  useEffect(() => {
-    if (siteConfig?.hero.image) {
-      setHeroImage(siteConfig.hero.image);
-    } else {
-      setHeroImage(HERO_BG_IMAGE);
-    }
-  }, [siteConfig?.hero.image]);
+  const heroImage = useMemo(() => siteConfig?.hero.image || HERO_BG_IMAGE, [siteConfig?.hero.image]);
 
   return (
     <div className="relative w-full h-[400px] md:h-[450px] flex items-center justify-center overflow-hidden">
@@ -109,7 +93,7 @@ export const Hero: React.FC = () => {
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          transition={{ delay: 2, duration: 0.8 }}
           className="text-lg md:text-xl text-white/90 font-medium drop-shadow-md"
         >
           {siteConfig?.hero.subtitle}
