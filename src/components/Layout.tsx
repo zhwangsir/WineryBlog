@@ -10,7 +10,7 @@ import { MusicPlayer } from './MusicPlayer';
 import { Sakura } from './Sakura';
 import { Mascot } from './Mascot';
 import { cn } from '../utils/cn';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 
 export const Layout: React.FC = () => {
@@ -92,7 +92,6 @@ export const Layout: React.FC = () => {
           </aside>
 
           <div className="flex-1 min-w-0">
-            <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}
                 initial={{ opacity: 0, y: 10 }}
@@ -102,7 +101,6 @@ export const Layout: React.FC = () => {
               >
                 <Outlet />
               </motion.div>
-            </AnimatePresence>
           </div>
 
           <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
