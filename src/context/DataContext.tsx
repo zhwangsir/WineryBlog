@@ -105,9 +105,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const categoriesRef = useRef<Category[]>([]);
   const tagsRef = useRef<string[]>([]);
   const totalWordCountRef = useRef<string>('0字');
-  const loadingRef = useRef<boolean>(true);
-  
-  const [, forceUpdate] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,10 +115,8 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           fetch('/api/posts')
         ]);
         
-        let newConfig: SiteConfig | null = null;
-        
         if (configRes.ok) {
-          newConfig = await configRes.json();
+          configRef.current = await configRes.json();
         }
         
         if (postsRes.ok) {
@@ -144,35 +140,27 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
           ];
           
-          const categoryCount = computedCategories.filter((c) => !c.isHome).length;
-          
           categoriesRef.current = computedCategories;
           tagsRef.current = Array.from(tagSet);
           totalWordCountRef.current = formatWordCount(total);
           
-          if (newConfig) {
-            const updatedConfig: SiteConfig = {
-              ...newConfig,
+          if (configRef.current) {
+            configRef.current = {
+              ...configRef.current,
               stats: {
-                ...newConfig.stats,
+                ...configRef.current.stats,
                 words: formatWordCount(total),
                 articles: newPosts.length,
-                categories: categoryCount,
+                categories: computedCategories.filter(c => !c.isHome).length,
                 tags: tagSet.size
               }
             };
-            configRef.current = updatedConfig;
           }
-        } else if (newConfig) {
-          configRef.current = newConfig;
         }
-        
-        loadingRef.current = false;
-        forceUpdate(n => n + 1);
       } catch (error) {
         console.error("Failed to fetch data:", error);
-        loadingRef.current = false;
-        forceUpdate(n => n + 1);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -180,14 +168,14 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const value = useMemo<DataContextType>(() => ({
-    config: configRef.current,
-    posts: postsRef.current,
-    categories: categoriesRef.current,
-    tags: tagsRef.current,
-    loading: loadingRef.current,
-    refreshData: async () => {},
-    totalWordCount: totalWordCountRef.current
-  }), []);
+    get config() { return configRef.current; },
+    get posts() { return postsRef.current; },
+    get categories() { return categoriesRef.current; },
+    get tags() { return tagsRef.current; },
+    get loading() { return loading; },
+    get refreshData() { return async () => {}; },
+    get totalWordCount() { return totalWordCountRef.current; },
+  }), [loading]);
 
   return (
     <DataContext.Provider value={value}>
