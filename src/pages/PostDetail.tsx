@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
 import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon } from 'lucide-react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -18,9 +20,7 @@ export const PostDetail: React.FC = () => {
   const { posts, config } = useData();
   const { id } = useParams<{ id: string }>();
   
-  const postRef = useRef(posts.find(p => p.id === id));
-  postRef.current = posts.find(p => p.id === id);
-  const post = postRef.current;
+  const post = posts.find(p => p.id === id);
   
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -223,7 +223,9 @@ export const PostDetail: React.FC = () => {
         <p className="text-xl text-text-muted italic border-l-4 border-accent pl-4 mb-8">
           {post.excerpt}
         </p>
-        <div className="whitespace-pre-wrap">{post.content}</div>
+        <Markdown remarkPlugins={[remarkGfm]}>
+          {post.content}
+        </Markdown>
       </div>
     </motion.div>
   );
