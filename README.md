@@ -1,193 +1,76 @@
 # WineryBlog
 
-一个功能完整的个人博客系统，基于 React + Express + TypeScript 构建。
+个人博客：React 19 + Express + TypeScript，JSON 文件存配置与文章（无独立数据库）。UI 参考 Firefly，灵感来自胡桃主题。
 
-## 项目简介
+> **路径**：`ALLProject/WineryBlog`  
+> **状态**：维护  
+> **最后更新**：2026-08-27
 
-WineryBlog 是一个现代化的高性能个人博客系统，采用前后端一体化架构，使用 JSON 文件作为轻量级数据存储，融合了二次元美学与现代 Web 设计理念，UI界面参考Firefly主题模板进行设计。
+## 身份与远程
 
-## 特性
+| 项 | 值 |
+|----|----|
+| origin（Gitee） | https://gitee.com/Winery_z/WineryBlog.git |
+| github（备份） | https://github.com/zhwangsir/WineryBlog.git |
+| 分支 | main 跟踪 origin/main |
+| package.json | name 仍为 `react-example`，version `0.0.0`（与产品名不一致） |
+| 配置域名 | blog.wineryz.top（server/data/config.json 的 domain 字段） |
 
-- ✨ 现代化 UI 设计，灵感来自原神胡桃主题
-- 📝 Markdown 文章支持，完整的富文本编辑器
-- 🔒 文章密码保护功能
-- 🎨 丰富的主题定制选项
-- 📱 响应式设计，完美适配各种设备
-- 🎵 可配置的背景音乐播放器
-- ✨ 粒子动画和萤火虫效果
-- 🌊 波浪过渡动画
-- 🖱️ 自定义鼠标样式
-- 📊 完整的后台管理系统
+集群真相源：**[`../ToIV/AGENTS.md`](../ToIV/AGENTS.md)**。
+
+## 文档五件套
+
+README.md / AGENTS.md / DEVELOPMENT.md / STATE.json / TEST_LOG.md。
+
+## 特性（代码里有）
+
+- Markdown 文章（@uiw/react-md-editor、react-markdown、remark-gfm）
+- 文章锁（isLocked + password 字段）
+- 主题：accentColor、自定义鼠标、背景、波浪、樱花、吉祥物开关
+- MusicPlayer、粒子 / 萤火虫 / 樱花背景
+- 后台：/admin 登录、仪表盘、文章 CRUD、网站设置
+- RSS：/rss.xml（最新 20 篇）
 
 ## 技术栈
 
-### 前端
+React 19、React Router 7、Tailwind 4、Motion、lucide-react、Express、tsx、Vite 6。可选依赖 @google/genai（已声明）。脚本：npm run dev / build / preview / lint / start（dev 与 start 都是 tsx server.ts）。
 
-- **React 19** - UI 框架
-- **TypeScript** - 类型安全
-- **React Router v7** - 路由管理
-- **Tailwind CSS v4** - 原子化 CSS 框架
-- **Tailwind Typography** - Markdown 文章样式
-- **Motion** - 动画库
-- **Lucide React** - 图标库
+## 端口
 
-### 后端
+`server.ts` 内硬编码 **PORT = 3000**。端口规划建议 4101，**代码尚未改**。
 
-- **Express** - Node.js Web 框架
-- **Vite** - 开发服务器与构建工具
+## 启动
 
-## 快速开始
-
-### 安装依赖
-
-```bash
-npm install
 ```
-
-### 开发模式
-
-```bash
+npm install
 npm run dev
 ```
 
-服务运行在 <http://localhost:3000>
+访问 http://localhost:3000 。生产：`npm run build` 后 `NODE_ENV=production npm start`。
 
-### 生产构建
+## 数据与配置
 
-```bash
-npm run build
-```
+- `server/data/config.json`：站点标题、作者、hero、theme、footer、nav 等
+- `server/data/posts.json`：文章数组
+- `.env.example` 只有 GEMINI_API_KEY / APP_URL 模板说明
 
-### 代码检查
+公开配置字段示例：domain=blog.wineryz.top，title=WineryBlog，author=Winery。**admin 凭证存在 config.json 内，不要把真实口令写进 README 或公开仓库**；DEVELOPMENT.md 已提示应改哈希或移出 git。
 
-```bash
-npm run lint
-```
+## API（摘要）
 
-## 项目结构
+- POST /api/auth/login|logout，GET /api/auth/verify
+- GET/PUT /api/config（PUT 需鉴权；GET 会剥离 admin）
+- GET/POST/PUT/DELETE /api/posts，POST /api/posts/:id/view
+- GET /rss.xml
 
-```
-wineryblog/
-├── server/                 # Express 后端服务
-│   ├── data/
-│   │   ├── config.json    # 博客配置
-│   │   └── posts.json     # 文章数据
-│   └── server.ts          # 服务入口
-├── src/                    # React 前端
-│   ├── components/        # UI 组件
-│   │   ├── Wave.tsx              # 波浪组件
-│   │   ├── ParticleBackground.tsx # 粒子背景
-│   │   ├── FireflyBackground.tsx  # 萤火虫效果
-│   │   └── ...
-│   ├── pages/             # 页面组件
-│   │   └── admin/         # 管理后台
-│   ├── context/           # 状态管理
-│   └── utils/             # 工具函数
-├── public/images/         # 静态资源
-├── package.json           # 依赖配置
-├── vite.config.ts         # Vite 配置
-└── server.ts              # 主入口
-```
+前端路由：/、/archive、/about、/friends、/post/:id；后台 /admin/*。
 
-## 配置说明
+## 已知问题（来自 DEVELOPMENT.md）
 
-### 基础配置 (server/data/config.json)
+- JWT 相关密钥在 server.ts 硬编码，生产应改环境变量
+- session 存内存，重启失效
+- package name / version 占位
+- 文章锁若只在前端校验可被绕过
+- 旧 README 写「部署到 js.org」仅为历史建议，当前以自有域名配置为准
 
-```json
-{
-  "domain": "blog.wineryz.top",
-  "title": "WineryBlog",
-  "author": "Winery",
-  "subtitle": "永远相信，美好的事情即将发生。",
-  "hero": {
-    "title": "胡桃的胡是胡吃海喝的胡，胡桃的桃却不是淘气的淘",
-    "subtitle": "逗留采血色，伴君眠花房。",
-    "image": "/images/hero.svg",
-    "credit": "Pixiv - 水菜カステラ"
-  },
-  "theme": {
-    "accentColor": "#F27D26",
-    "cursorUrl": "",
-    "globalBackground": ""
-  },
-  "footer": {
-    "copyright": "© 2026 WineryBlog. All rights reserved.",
-    "icp": "豫ICP备xxxxxxxx号-x"
-  }
-}
-```
-
-### 文章配置
-
-文章存储在 `server/data/posts.json`，支持以下字段：
-
-```json
-{
-  "id": "1",
-  "title": "文章标题",
-  "date": "2026-03-16",
-  "category": "分类",
-  "tags": ["标签1", "标签2"],
-  "excerpt": "文章摘要",
-  "content": "Markdown 内容",
-  "isLocked": false,
-  "password": ""
-}
-```
-
-## API 接口
-
-| 方法     | 路径               | 描述     |
-| ------ | ---------------- | ------ |
-| GET    | `/api/config`    | 获取博客配置 |
-| PUT    | `/api/config`    | 更新博客配置 |
-| GET    | `/api/posts`     | 获取所有文章 |
-| POST   | `/api/posts`     | 创建文章   |
-| PUT    | `/api/posts/:id` | 更新文章   |
-| DELETE | `/api/posts/:id` | 删除文章   |
-
-## 后台管理
-
-访问 `/admin` 进入后台管理系统：
-
-- **仪表盘** - 查看博客统计数据
-- **文章管理** - 创建、编辑、删除文章
-- **网站设置** - 配置博客各项参数
-
-## 主题定制
-
-### 主题色
-
-在设置中修改 `accentColor` 来调整主题色。
-
-### 自定义鼠标
-
-设置 `theme.cursorUrl` 为自定义光标图片路径。
-
-### 背景图片
-
-设置 `theme.globalBackground` 为背景图片 URL。
-
-## 部署
-
-### 构建生产版本
-
-```bash
-npm run build
-```
-
-### 部署到服务器
-
-1. 构建项目：`npm run build`
-2. 设置环境变量 `NODE_ENV=production`
-3. 运行：`npm start`
-
-### 部署到 js.org 免费域名
-
-1. 将代码推送到 GitHub
-2. 创建名为 `username.github.io` 的仓库（如需自定义域名可跳过）
-3. 在 GitHub 仓库设置中添加你的 js.org 子域名
-
-## 许可证
-
-MIT License
+push：`origin` 与 `github` 都要推。
