@@ -30,5 +30,35 @@
 - x34_backtracking | 数据结构与算法 | 回溯与剪枝：排列组合的系统化搜索
 - x35_compiler_intro | 计算机组成 | 编译原理入门：从源码到可执行
 
+## Batch 7 — 语言与算法与游戏 — status: pending
+- x36_go_intro | 编程语言 | Go 入门：并发编程的轻量之道
+- x37_sliding_window | 数据结构与算法 | 滑动窗口与双指针：线性时间的子串艺术
+- x38_unity_animator | 游戏与图形 | Unity 动画系统：Animator 状态机
+
+## Batch 8 — 智能与通信 — status: pending
+- x39_ai_agent | 人工智能 | AI Agent 开发：工具调用与规划循环
+- x40_grpc_micro | 后端开发 | gRPC 与微服务通信
+- x41_game_audio | 游戏与图形 | 游戏音效与资源管线
+
+## Batch 9 — 移动与前端性能 — status: pending
+- x42_swiftui | 移动与跨端 | Swift 与 SwiftUI 入门
+- x43_react_perf | Web 前端 | React 性能优化实战
+- x44_tree_heap | 数据结构与算法 | 树与堆：优先队列的艺术
+
+## Batch 10 — 数据与运维 — status: pending
+- x45_redis_ha | 数据库 | Redis 高可用：哨兵与集群
+- x46_nginx_deep | 操作系统与运维 | Nginx 深入：反向代理与负载均衡
+- x47_weapp | 移动与跨端 | 微信小程序开发入门
+
+## Batch 11 — AI 与 Web 性能 — status: pending
+- x48_nlp_intro | 人工智能 | NLP 入门：从分词到大模型
+- x49_web_perf | Web 前端 | Web 性能优化实战
+- x50_cv_intro | 人工智能 | 计算机视觉入门：从像素到识别
+
+## Batch 12 — 工具精通 — status: pending
+- x51_regex | 编程基础与工具 | 正则表达式精通
+- x52_git_advanced | 编程基础与工具 | Git 高级技巧与团队工作流
+- x53_flutter_state | 移动与跨端 | Flutter 状态管理进阶
+
 ## 完成判据
-Batch 2-6 全部 `done` 且 build 脚本输出 149 篇教程 → 任务结束（CronPauseSelf）。
+Batch 2-12 全部 `done` 且 build 脚本输出 167 篇教程 → 任务结束（CronPauseSelf）。
