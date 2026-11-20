@@ -55,7 +55,7 @@
 - x49_web_perf | Web 前端 | Web 性能优化实战
 - x50_cv_intro | 人工智能 | 计算机视觉入门：从像素到识别
 
-## Batch 12 — 工具精通 — status: pending
+## Batch 12 — 工具精通 — status: done
 - x51_regex | 编程基础与工具 | 正则表达式精通
 - x52_git_advanced | 编程基础与工具 | Git 高级技巧与团队工作流
 - x53_flutter_state | 移动与跨端 | Flutter 状态管理进阶

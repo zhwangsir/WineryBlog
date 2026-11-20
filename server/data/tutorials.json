@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:47:16.612Z",
+  "generatedAt": "2026-11-20T12:48:45.619Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -10,7 +10,7 @@
       "name": "编程基础与工具",
       "icon": "Wrench",
       "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-      "count": 12
+      "count": 14
     },
     {
       "id": "langs",
@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 15
+      "count": 16
     },
     {
       "id": "games",
@@ -1040,6 +1040,23 @@
       "href": "/post/x-x08_os_concepts"
     },
     {
+      "id": "x-x51_regex",
+      "kind": "md",
+      "title": "正则表达式精通",
+      "summary": "从元字符到分组捕获、零宽断言、灾难性回溯——一次写对，处处受用的文本模式语言。",
+      "domain": "basics",
+      "category": "编程基础与工具",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "正则表达式",
+        "Regex",
+        "文本处理"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x51_regex"
+    },
+    {
       "id": "w83_hardware",
       "kind": "post",
       "title": "计算机组成：硬件架构与各种处理单元",
@@ -1058,6 +1075,24 @@
       ],
       "prereqs": [],
       "href": "/post/w83_hardware"
+    },
+    {
+      "id": "x-x52_git_advanced",
+      "kind": "md",
+      "title": "Git 高级技巧与团队工作流",
+      "summary": "rebase 与 merge 的真相、交互式变基改写历史、解决冲突的章法、团队分支模型——从会用 Git 到驾驭 Git。",
+      "domain": "basics",
+      "category": "编程基础与工具",
+      "difficulty": "高级",
+      "minutes": 14,
+      "tags": [
+        "Git",
+        "rebase",
+        "团队协作",
+        "工作流"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x52_git_advanced"
     },
     {
       "id": "s05_hadoop_yarn",
@@ -2286,6 +2321,24 @@
       ],
       "prereqs": [],
       "href": "/post/w38_okhttp"
+    },
+    {
+      "id": "x-x53_flutter_state",
+      "kind": "md",
+      "title": "Flutter 状态管理进阶",
+      "summary": "setState 的局限、Provider/Riverpod/Bloc 三大方案对比、不可变状态与单向数据流——跨过 Flutter 的第一道坎。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "高级",
+      "minutes": 10,
+      "tags": [
+        "Flutter",
+        "状态管理",
+        "Riverpod",
+        "Provider"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x53_flutter_state"
     },
     {
       "id": "w91_uniapp_project",
