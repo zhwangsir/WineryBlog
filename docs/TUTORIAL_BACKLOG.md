@@ -80,7 +80,7 @@
 - x64_ts_generics | Web 前端 | TypeScript 泛型进阶：约束、推断与工具类型实现
 - x65_redis_internals | 数据库 | Redis 数据结构底层实现
 
-## Batch 17 — Python 与 Java 深度 — status: pending
+## Batch 17 — Python 与 Java 深度 — status: done
 - x66_python_decorators | 编程语言 | Python 装饰器与生成器：闭包的两种应用
 - x67_jvm_memory | 编程语言 | JVM 内存模型与垃圾回收
 - x68_java_collections | 编程语言 | Java 集合框架源码剖析

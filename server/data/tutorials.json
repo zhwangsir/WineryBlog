@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T14:36:09.821Z",
+  "generatedAt": "2026-11-20T14:55:26.672Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 15
+      "count": 18
     },
     {
       "id": "algo",
@@ -2167,6 +2167,24 @@
       "href": "/post/w11_rust_basics"
     },
     {
+      "id": "x-x67_jvm_memory",
+      "kind": "md",
+      "title": "JVM 内存模型与垃圾回收",
+      "summary": "运行时数据区五大区域、对象分配与逃逸、分代回收与 G1/ZGC——OOM 与 GC 调优的原理地图。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "JVM",
+        "垃圾回收",
+        "内存模型",
+        "Java"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x67_jvm_memory"
+    },
+    {
       "id": "x-x03_java_arrays",
       "kind": "md",
       "title": "Java 数组与字符串",
@@ -2237,6 +2255,24 @@
       "href": "/post/x-x12_python_automation"
     },
     {
+      "id": "x-x66_python_decorators",
+      "kind": "md",
+      "title": "Python 装饰器与生成器：闭包的两种应用",
+      "summary": "闭包是地基，装饰器是包装，生成器是流动——一条主线讲透 Python 两大高级特性。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "Python",
+        "装饰器",
+        "生成器",
+        "闭包"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x66_python_decorators"
+    },
+    {
       "id": "s03_rust_ownership",
       "kind": "post",
       "title": "Rust 所有权、借用与生命周期详解",
@@ -2271,6 +2307,24 @@
       ],
       "prereqs": [],
       "href": "/post/w07_concepts_concurrency"
+    },
+    {
+      "id": "x-x68_java_collections",
+      "kind": "md",
+      "title": "Java 集合框架源码剖析",
+      "summary": "ArrayList 扩容、HashMap 数组+链表+红黑树、ConcurrentHashMap 并发设计——面试高频的源码真相。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "高级",
+      "minutes": 17,
+      "tags": [
+        "Java",
+        "集合",
+        "HashMap",
+        "ArrayList"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x68_java_collections"
     },
     {
       "id": "w12_rust_structs_generics",
