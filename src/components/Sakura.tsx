@@ -35,6 +35,8 @@ export const Sakura: React.FC<SakuraProps> = ({
 
   useEffect(() => {
     if (!enabled) return;
+    // 尊重系统"减少动态"偏好（hallmark 硬底线）
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { pickLine } from '../lib/petLines';
 import { speakPetLine } from '../lib/petVoice';
@@ -44,6 +44,11 @@ function clampPos(p: Pos, size: number): Pos {
     y: Math.max(MARGIN, Math.min(p.y, window.innerHeight - h - MARGIN)),
   };
 }
+
+const PET_MODEL_URLS: Record<string, string> = {
+  hutao: '/live2d/hutao/HuTao.model3.json',
+  haru: '/live2d/haru/haru_greeter_t03.model3.json',
+};
 
 const isHidden = () => sessionStorage.getItem(`${STORE_KEY}-hidden`) === '1';
 
@@ -129,13 +134,13 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         (app.view as HTMLCanvasElement).style.pointerEvents = 'none';
         pixiHostRef.current?.appendChild(app.view as HTMLCanvasElement);
 
-        const model = await Live2DModel.from('/live2d/hutao/HuTao.model3.json', {
+        const live2dModel = await Live2DModel.from(PET_MODEL_URLS[model] || PET_MODEL_URLS.hutao, {
           autoInteract: false,   // 点击/拖动由外层命中层处理
           autoUpdate: false,     // 由下方 ticker 手动驱动（autoUpdate 挂接在本环境失效）
         });
-        if (disposed) { model.destroy(); return; }
-        modelRef.current = model;
-        (window as any).__petModel = model;   // 调试钩子：读取视线参数
+        if (disposed) { live2dModel.destroy(); return; }
+        modelRef.current = live2dModel;
+        (window as any).__petModel = live2dModel;   // 调试钩子：读取视线参数
 
         // 眼神跟随鼠标：全局监听（canvas 指针穿透不影响 window 级监听）
         onPointerMove = (e: PointerEvent) => {
@@ -144,15 +149,16 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         window.addEventListener('pointermove', onPointerMove, { passive: true });
 
         // 缩放到 260px 高，锚定底部居中
-        const scale = (petSize.h - 30) / model.internalModel.height;
-        model.scale.set(scale);
-        model.x = (petSize.w - model.internalModel.width * scale) / 2;
-        model.y = petSize.h - model.internalModel.height * scale;
-        app.stage.addChild(model);
+        const scale = (petSize.h - 30) / live2dModel.internalModel.height;
+        live2dModel.scale.set(scale);
+        live2dModel.x = (petSize.w - live2dModel.internalModel.width * scale) / 2;
+        live2dModel.y = petSize.h - live2dModel.internalModel.height * scale;
+        app.stage.addChild(live2dModel);
 
         // 自主循环：驱动 Live2D 内部更新（眨眼/物理/焦点）+ 待机呼吸 + 渲染。
         // 用 setInterval 而非 rAF —— rAF 在后台标签/嵌入式 webview 中会被节流到 0。
-        const baseY = model.y;
+        const baseY = live2dModel.y;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let last = performance.now();
         let warned = false;
         const loop = () => {
@@ -160,9 +166,11 @@ export const PetMascot: React.FC<PetMascotProps> = ({
           const dt = Math.min(t - last, 100);
           last = t;
           try {
-            model.update(dt);
-            model.rotation = Math.sin(t / 1400) * 0.02;
-            model.y = baseY + Math.sin(t / 900) * 3;
+            live2dModel.update(dt);
+            if (!reducedMotion) {
+              live2dModel.rotation = Math.sin(t / 1400) * 0.02;
+              live2dModel.y = baseY + Math.sin(t / 900) * 3;
+            }
             app.render();
             warned = false;
           } catch (e) {

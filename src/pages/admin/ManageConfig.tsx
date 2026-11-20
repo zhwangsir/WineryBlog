@@ -511,7 +511,8 @@ export const ManageConfig: React.FC = () => {
                   onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), model: e.target.value })}
                   className="px-3 py-1.5 bg-bg-base border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent"
                 >
-                  <option value="hutao">胡桃（本地 moc3）</option>
+                  <option value="hutao">胡桃（原神 · 本地 moc3）</option>
+                  <option value="haru">春 Haru（实验性 · 渲染兼容攻坚中）</option>
                   <option value="fallback">静态头像模式</option>
                 </select>
               </div>

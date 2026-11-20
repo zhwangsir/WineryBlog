@@ -67,7 +67,7 @@
     "mascotEnabled": true,
     "pet": {
       "enabled": true,
-      "model": "hutao",
+      "model": "haru",
       "voiceEnabled": false,
       "size": 0.5,
       "opacity": 1
