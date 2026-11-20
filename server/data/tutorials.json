@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:41:47.170Z",
+  "generatedAt": "2026-11-20T12:43:11.177Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 11
+      "count": 12
     },
     {
       "id": "data",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 17
+      "count": 18
     },
     {
       "id": "security",
@@ -80,7 +80,7 @@
       "name": "游戏与图形",
       "icon": "Gamepad2",
       "blurb": "游戏循环、物理与碰撞、Unity 引擎、图形编程",
-      "count": 7
+      "count": 8
     }
   ],
   "tutorials": [
@@ -156,6 +156,24 @@
         "t03_python_basics"
       ],
       "href": "/post/t05_pytorch_dl"
+    },
+    {
+      "id": "x-x39_ai_agent",
+      "kind": "md",
+      "title": "AI Agent 开发：工具调用与规划循环",
+      "summary": "Agent = LLM + 工具 + 循环。从 Function Calling 原理到手写一个能查库算数的迷你 Agent。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "AI Agent",
+        "Function Calling",
+        "ReAct",
+        "LLM应用"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x39_ai_agent"
     },
     {
       "id": "w66_ai_animation",
@@ -737,6 +755,24 @@
       ],
       "prereqs": [],
       "href": "/post/s10_node_eventloop"
+    },
+    {
+      "id": "x-x40_grpc_micro",
+      "kind": "md",
+      "title": "gRPC 与微服务通信",
+      "summary": "Protobuf 契约、四种流模式、与 REST 的取舍——服务间通信的高性能方案。",
+      "domain": "backend",
+      "category": "后端开发",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "gRPC",
+        "Protobuf",
+        "微服务",
+        "RPC"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x40_grpc_micro"
     },
     {
       "id": "w17_php_project",
@@ -1595,6 +1631,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x14_gamedev_overview"
+    },
+    {
+      "id": "x-x41_game_audio",
+      "kind": "md",
+      "title": "游戏音效与资源管线",
+      "summary": "音效分层设计、动态混音、资源加载与打包——让游戏\"听起来\"和\"加载起来\"都专业。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "游戏音效",
+        "资源管理",
+        "Asset Pipeline",
+        "游戏开发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x41_game_audio"
     },
     {
       "id": "x-x23_unity_platformer",

@@ -35,7 +35,7 @@
 - x37_sliding_window | 数据结构与算法 | 滑动窗口与双指针：线性时间的子串艺术
 - x38_unity_animator | 游戏与图形 | Unity 动画系统：Animator 状态机
 
-## Batch 8 — 智能与通信 — status: pending
+## Batch 8 — 智能与通信 — status: done
 - x39_ai_agent | 人工智能 | AI Agent 开发：工具调用与规划循环
 - x40_grpc_micro | 后端开发 | gRPC 与微服务通信
 - x41_game_audio | 游戏与图形 | 游戏音效与资源管线
