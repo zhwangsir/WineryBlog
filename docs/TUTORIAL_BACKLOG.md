@@ -132,7 +132,7 @@
 - x85_knowledge_graph | 人工智能 | 知识图谱：本体建模与图谱构建
 - x86_reinforcement | 人工智能 | 强化学习入门：MDP、Q-Learning 与策略梯度
 
-## Batch 27 — 扩展方向补齐 — status: pending
+## Batch 27 — 扩展方向补齐 — status: done
 - x87_cloud_native | 分布式与并行 | 云原生基础：服务网格与可观测性
 - x88_func_programming | 编程语言 | 函数式编程入门：Haskell 思维与 Monad
 - x89_digital_logic | 计算机组成 | 数字逻辑设计：门电路、组合与时序逻辑

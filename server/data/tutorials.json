@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T17:34:47.237Z",
+  "generatedAt": "2026-11-20T17:54:47.933Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -10,14 +10,14 @@
       "name": "编程基础与工具",
       "icon": "Wrench",
       "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-      "count": 17
+      "count": 18
     },
     {
       "id": "langs",
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 18
+      "count": 19
     },
     {
       "id": "algo",
@@ -87,7 +87,7 @@
       "name": "分布式与并行",
       "icon": "Boxes",
       "blurb": "CAP、共识算法、并行编程与云原生（CS2023 PDC）",
-      "count": 3
+      "count": 4
     },
     {
       "id": "matht",
@@ -1134,6 +1134,24 @@
       "href": "/post/x-x08_os_concepts"
     },
     {
+      "id": "x-x89_digital_logic",
+      "kind": "md",
+      "title": "数字逻辑设计：门电路、组合与时序逻辑",
+      "summary": "从晶体管到加法器再到状态机——CPU 的每一 bit 都由这些电路搭建，硬件世界的第一性原理。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "数字逻辑",
+        "门电路",
+        "时序逻辑",
+        "计算机组成"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x89_digital_logic"
+    },
+    {
       "id": "x-x51_regex",
       "kind": "md",
       "title": "正则表达式精通",
@@ -1474,6 +1492,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x65_redis_internals"
+    },
+    {
+      "id": "x-x87_cloud_native",
+      "kind": "md",
+      "title": "云原生基础：服务网格与可观测性",
+      "summary": "容器编排、声明式 API、服务网格与可观测性三支柱——云原生技术栈的概念地图与工程实践。",
+      "domain": "dist",
+      "category": "分布式与并行",
+      "difficulty": "入门",
+      "minutes": 10,
+      "tags": [
+        "云原生",
+        "Kubernetes",
+        "服务网格",
+        "可观测性"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x87_cloud_native"
     },
     {
       "id": "x-x75_dist_basics",
@@ -2385,6 +2421,24 @@
       ],
       "prereqs": [],
       "href": "/post/w11_rust_basics"
+    },
+    {
+      "id": "x-x88_func_programming",
+      "kind": "md",
+      "title": "函数式编程入门：Haskell 思维与 Monad",
+      "summary": "纯函数、不可变、代数数据类型、Monad——从 Haskell 视角建立函数式的思维模型并反哺多范式编程。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "入门",
+      "minutes": 15,
+      "tags": [
+        "函数式编程",
+        "Haskell",
+        "Monad",
+        "不可变"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x88_func_programming"
     },
     {
       "id": "x-x67_jvm_memory",
