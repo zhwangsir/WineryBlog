@@ -75,7 +75,7 @@
 - x61_useeffect_deep | Web 前端 | useEffect 完全指南：依赖、清理与时机
 - x62_react_fiber | Web 前端 | React Fiber 架构：可中断渲染
 
-## Batch 16 — TS 与 Redis 深度 — status: pending
+## Batch 16 — TS 与 Redis 深度 — status: done
 - x63_ts_typesystem | Web 前端 | TypeScript 类型系统基础：结构化类型与收窄
 - x64_ts_generics | Web 前端 | TypeScript 泛型进阶：约束、推断与工具类型实现
 - x65_redis_internals | 数据库 | Redis 数据结构底层实现

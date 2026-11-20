@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T14:15:56.059Z",
+  "generatedAt": "2026-11-20T14:36:09.821Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 27
+      "count": 29
     },
     {
       "id": "backend",
@@ -52,7 +52,7 @@
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 14
+      "count": 15
     },
     {
       "id": "ai",
@@ -1346,6 +1346,24 @@
       "href": "/post/x-x19_redis_practice"
     },
     {
+      "id": "x-x65_redis_internals",
+      "kind": "md",
+      "title": "Redis 数据结构底层实现",
+      "summary": "SDS、dict 渐进式 rehash、listpack、skiplist——懂了底层结构，每条 O(1)/O(logN) 命令都有依据。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "高级",
+      "minutes": 14,
+      "tags": [
+        "Redis",
+        "SDS",
+        "跳表",
+        "底层实现"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x65_redis_internals"
+    },
+    {
       "id": "w45_css_basics",
       "kind": "post",
       "title": "CSS 基础与弹性布局",
@@ -1396,6 +1414,24 @@
       ],
       "prereqs": [],
       "href": "/post/w53_threejs_canvas"
+    },
+    {
+      "id": "x-x63_ts_typesystem",
+      "kind": "md",
+      "title": "TypeScript 类型系统基础：结构化类型与收窄",
+      "summary": "结构化类型的兼容规则、联合与收窄的全部手段、unknown 与 any 的边界——类型系统的地基篇。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "入门",
+      "minutes": 23,
+      "tags": [
+        "TypeScript",
+        "类型收窄",
+        "结构化类型",
+        "前端"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x63_ts_typesystem"
     },
     {
       "id": "s08_ts_generics",
@@ -1774,6 +1810,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x43_react_perf"
+    },
+    {
+      "id": "x-x64_ts_generics",
+      "kind": "md",
+      "title": "TypeScript 泛型进阶：约束、推断与工具类型实现",
+      "summary": "泛型约束、keyof/typeof、映射类型、条件类型与 infer——手写全部内置工具类型，读懂类型体操。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 25,
+      "tags": [
+        "TypeScript",
+        "泛型",
+        "类型体操",
+        "工具类型"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x64_ts_generics"
     },
     {
       "id": "x-x49_web_perf",

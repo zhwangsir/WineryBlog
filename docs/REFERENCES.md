@@ -34,3 +34,7 @@
 - [x] ref-selenium-dev-documentation | Selenium 官方文档 | https://www.selenium.dev/documentation/
 - [x] ref-pyautogui-readthedocs-io | pyautogui 官方文档 | https://pyautogui.readthedocs.io/
 - [x] ref-github-com-hiyouga-llama-factory | LLaMA-Factory | https://github.com/hiyouga/LLaMA-Factory
+
+## Batch 23 — TS 类型系统参考
+- [x] ref-ts-narrowing | TS Handbook：类型收窄 | https://www.typescriptlang.org/docs/handbook/2/narrowing.html
+- [x] ref-ts-generics | TS Handbook：泛型 | https://www.typescriptlang.org/docs/handbook/2/generics.html
