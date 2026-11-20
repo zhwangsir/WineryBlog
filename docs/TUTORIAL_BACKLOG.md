@@ -85,7 +85,7 @@
 - x67_jvm_memory | 编程语言 | JVM 内存模型与垃圾回收
 - x68_java_collections | 编程语言 | Java 集合框架源码剖析
 
-## Batch 18 — 网络深度 — status: pending
+## Batch 18 — 网络深度 — status: done
 - x69_tcp_deep | 计算机网络 | TCP 深入：三次握手、四次挥手与状态机
 - x70_http_cache | Web 前端 | HTTP 缓存完全指南
 - x71_tls_handshake | 计算机网络 | TLS 握手与证书体系

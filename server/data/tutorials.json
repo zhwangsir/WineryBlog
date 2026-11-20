@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T15:16:41.154Z",
+  "generatedAt": "2026-11-20T15:35:38.923Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -31,14 +31,14 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 25
+      "count": 27
     },
     {
       "id": "frontend",
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 29
+      "count": 30
     },
     {
       "id": "backend",
@@ -1578,6 +1578,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x54_flex_container"
+    },
+    {
+      "id": "x-x70_http_cache",
+      "kind": "md",
+      "title": "HTTP 缓存完全指南",
+      "summary": "强缓存与协商缓存的两级判定、Cache-Control 全指令、CDN 与浏览器缓存的分层协作。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "HTTP",
+        "缓存",
+        "强缓存",
+        "协商缓存"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x70_http_cache"
     },
     {
       "id": "w46_js_core",
@@ -3165,6 +3183,24 @@
       "href": "/post/w20_nat"
     },
     {
+      "id": "x-x71_tls_handshake",
+      "kind": "md",
+      "title": "TLS 握手与证书体系：HTTPS 的安全基石",
+      "summary": "TLS 1.2 与 1.3 的握手全程、证书链验证、前向保密——\"为什么 HTTPS 安全\"的完整答案。",
+      "domain": "system",
+      "category": "计算机网络",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "TLS",
+        "HTTPS",
+        "证书",
+        "密码学"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x71_tls_handshake"
+    },
+    {
       "id": "w25_linux_permissions",
       "kind": "post",
       "title": "Ubuntu 权限与用户管理",
@@ -3391,6 +3427,24 @@
       ],
       "prereqs": [],
       "href": "/post/w37_tcp_udp"
+    },
+    {
+      "id": "x-x69_tcp_deep",
+      "kind": "md",
+      "title": "TCP 深入：三次握手、四次挥手与状态机",
+      "summary": "连接建立与拆除的每一步、十一态状态机、重传与拥塞控制——TCP 可靠性的完整机制地图。",
+      "domain": "system",
+      "category": "计算机网络",
+      "difficulty": "高级",
+      "minutes": 11,
+      "tags": [
+        "TCP",
+        "三次握手",
+        "四次挥手",
+        "网络"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x69_tcp_deep"
     }
   ]
 }
