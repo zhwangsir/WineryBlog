@@ -28,6 +28,9 @@
   },
   "nav": [
     { "name": "主页", "path": "/", "icon": "Home" },
+    { "name": "学习路线", "path": "/learning", "icon": "Route" },
+    { "name": "知识图谱", "path": "/graph", "icon": "Waypoints" },
+    { "name": "AI 馆员", "path": "/ai", "icon": "Bot" },
     { "name": "归档", "path": "/archive", "icon": "Archive" },
     { "name": "关于我", "path": "/about", "icon": "User" }
   ],

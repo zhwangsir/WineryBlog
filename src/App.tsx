@@ -10,6 +10,9 @@ import { Archive } from './pages/Archive';
 import { About } from './pages/About';
 import { Friends } from './pages/Friends';
 import { PostDetail } from './pages/PostDetail';
+import { LearningPaths } from './pages/LearningPaths';
+import { KnowledgeGraph } from './pages/KnowledgeGraph';
+import { AIChat } from './pages/AIChat';
 import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
 
@@ -32,6 +35,9 @@ const AppContent = () => {
           <Route path="about" element={<About />} />
           <Route path="friends" element={<Friends />} />
           <Route path="post/:id" element={<PostDetail />} />
+          <Route path="learning" element={<LearningPaths />} />
+          <Route path="graph" element={<KnowledgeGraph />} />
+          <Route path="ai" element={<AIChat />} />
         </Route>
 
         {/* Admin Routes */}

@@ -250,6 +250,152 @@ async function startServer() {
     }
   });
 
+  // ===== Knowledge Graph (built from posts) =====
+  app.get("/api/graph", async (req, res) => {
+    try {
+      const data = await fs.readFile(POSTS_FILE, "utf-8");
+      const posts = JSON.parse(data);
+
+      const PREREQ_PAIRS: [string, string][] = [
+        ["CS 自学总纲", "数据结构与算法入门"],
+        ["Python 基础入门", "深度学习与 PyTorch 入门"],
+        ["深度学习与 PyTorch 入门", "大语言模型自学路线"],
+        ["大语言模型自学路线", "本地大模型部署实战：Ollama 与 SGLang"],
+        ["大语言模型自学路线", "本地知识库与 RAG 实战"],
+        ["网络基础：IP 地址与访问流程", "HTTP/HTTPS 协议详解"],
+        ["HTTP/HTTPS 协议详解", "SQL 注入实战进阶：Union、报错、盲注与防御"],
+        ["JAVA程序基础", "面向对象编程"],
+        ["面向对象编程", "Java数组"],
+        ["Java数组", "Java 核心进阶：集合框架与并发编程入门"],
+        ["Java 核心进阶：集合框架与并发编程入门", "SpringMVC 与 MyBatis 入门"],
+        ["Promise异步处理解决方案", "JavaScript 异步编程全解：事件循环、Promise 与 async/await"],
+        ["JavaScript 异步编程全解：事件循环、Promise 与 async/await", "React 核心补充：Hooks 与状态管理"],
+        ["TypeScript 进阶：泛型与类型体操入门", "前端工程化入门：npm、Vite 与构建部署"],
+        ["数据结构与算法入门", "数据库系统导论"],
+        ["docker的安装", "Docker 常用命令与 Compose 实战"],
+        ["Docker 常用命令与 Compose 实战", "Linux 服务器运维清单：Nginx、防火墙与日常巡检"],
+        ["git快速入门", "Git 分支、合并与团队协作工作流"],
+        ["排序与搜索算法全解", "动态规划入门：从递推到刷题套路"],
+        ["MySQL 入门：从建库到查询", "数据库系统导论"],
+        ["1.什么是机器学习", "深度学习与 PyTorch 入门"],
+      ];
+
+      const nodes = posts.map((p: any) => ({
+        id: p.id,
+        t: p.title,
+        s: p.category,
+        href: `/post/${p.id}`,
+      }));
+      const seqOf = new Map<string, number>();
+      nodes.forEach((n: any, i: number) => seqOf.set(n.id, i));
+
+      const edgeSet = new Set<string>();
+      const edges: { a: number; b: number; k: string }[] = [];
+      function addEdge(aId: string, bId: string, k: string) {
+        const a = seqOf.get(aId), b = seqOf.get(bId);
+        if (a === undefined || b === undefined || a === b) return;
+        const lo = Math.min(a, b), hi = Math.max(a, b);
+        const key = `${lo}-${hi}`;
+        if (edgeSet.has(key)) return;
+        edgeSet.add(key);
+        edges.push({ a: lo, b: hi, k });
+      }
+
+      // 1) curated prerequisites
+      for (const [from, to] of PREREQ_PAIRS) {
+        const a = posts.find((p: any) => p.title === from);
+        const b = posts.find((p: any) => p.title === to);
+        if (a && b) addEdge(a.id, b.id, "pre");
+      }
+      // 2) series chains (titles like "1.xxx" in same category)
+      const byCat = new Map<string, any[]>();
+      posts.forEach((p: any) => {
+        const arr = byCat.get(p.category) || [];
+        arr.push(p);
+        byCat.set(p.category, arr);
+      });
+      byCat.forEach((arr: any[], cat: string) => {
+        const numbered = arr
+          .filter((p: any) => /^(\d+)[\.、]/.test(p.title))
+          .map((p: any) => ({ p, num: parseFloat(p.title.match(/^(\d+)[\.、]/)[1]) }))
+          .sort((x: any, y: any) => x.num - y.num);
+        for (let i = 0; i < numbered.length - 1; i++) {
+          addEdge(numbered[i].p.id, numbered[i + 1].p.id, "next");
+        }
+      });
+      // 3) same-category ring (related)
+      byCat.forEach((arr: any[], cat: string) => {
+        if (arr.length > 2) {
+          arr.forEach((p: any, i: number) => {
+            for (const off of [1, 2]) {
+              const q = arr[(i + off) % arr.length];
+              if (q !== p) addEdge(p.id, q.id, "rel");
+            }
+          });
+        }
+      });
+      // 4) shared tags (strong overlap)
+      posts.forEach((p: any, i: number) => {
+        posts.forEach((q: any, j: number) => {
+          if (j <= i || p.category !== q.category) return;
+          const shared = (p.tags || []).filter((t: string) => (q.tags || []).includes(t));
+          if (shared.length >= 2) addEdge(p.id, q.id, "rel");
+        });
+      });
+
+      const shelfColors: Record<string, string> = {
+        "方法与工具": "#8a8577", "编程语言": "#a63d2a", "数据结构与算法": "#c28a2e",
+        "计算机网络": "#3a7d8c", "计算机组成": "#7a8b3a", "操作系统与运维": "#4a5fb0",
+        "数据库": "#2e8b74", "Web 前端": "#d4694f", "后端开发": "#5a4fa0",
+        "移动与跨端": "#b05a8c", "大数据": "#3a6ea5", "人工智能": "#8c5a2e",
+        "信息安全": "#6e3a8c", "项目实战": "#4a8c5c", "随笔": "#7a8b7a", "技术": "#3a7d8c",
+      };
+
+      res.json({ nodes, edges, colors: shelfColors });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to build graph" });
+    }
+  });
+
+  // ===== AI Librarian proxy (engine-adaptive, LAN LLM) =====
+  const AI_UPSTREAM = "http://192.168.71.84:8000/v1/chat/completions";
+  const AI_MODELS = "http://192.168.71.84:8000/v1/models";
+  let upModel: string | null = null;
+  let upModelAt = 0;
+  async function getUpstreamModel(): Promise<string | null> {
+    if (upModel && Date.now() - upModelAt < 60000) return upModel;
+    try {
+      const r = await fetch(AI_MODELS);
+      const j: any = await r.json();
+      if (j.data && j.data.length > 0) {
+        upModel = j.data[0].id;
+        upModelAt = Date.now();
+        console.log(`AI upstream model: ${upModel}`);
+        return upModel;
+      }
+    } catch (e: any) {
+      console.log("model discovery failed:", e.message);
+    }
+    return upModel;
+  }
+
+  app.post("/api/ai", async (req, res) => {
+    try {
+      const body = req.body || {};
+      const upModel = await getUpstreamModel();
+      if (upModel) body.model = upModel;
+      const r = await fetch(AI_UPSTREAM, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const text = await r.text();
+      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+    } catch (e: any) {
+      res.status(502).json({ error: "AI proxy failed", detail: e.message });
+    }
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
