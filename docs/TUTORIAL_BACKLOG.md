@@ -15,7 +15,7 @@
 - x25_message_queue | 后端开发 | 消息队列入门：RabbitMQ 与 Kafka
 - x26_mongodb | 数据库 | MongoDB 入门：文档模型与聚合查询
 
-## Batch 4 — AI 应用与移动 — status: pending
+## Batch 4 — AI 应用与移动 — status: done
 - x27_vector_db | 人工智能 | 向量数据库实战：语义检索的基石
 - x28_lora_finetune | 人工智能 | LoRA 微调入门：让开源模型学会你的领域
 - x29_jetpack_compose | 移动与跨端 | Jetpack Compose 入门：声明式 Android UI

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:20:06.486Z",
+  "generatedAt": "2026-11-20T12:21:26.803Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 15
+      "count": 17
     },
     {
       "id": "security",
@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 11
+      "count": 12
     },
     {
       "id": "games",
@@ -120,6 +120,24 @@
       ],
       "prereqs": [],
       "href": "/post/w63_ml_overview"
+    },
+    {
+      "id": "x-x28_lora_finetune",
+      "kind": "md",
+      "title": "LoRA 微调入门：让开源模型学会你的领域",
+      "summary": "全参微调 vs LoRA 原理、数据构造、一次真实微调全流程——消费级显卡定制自己的模型。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "LoRA",
+        "微调",
+        "大模型",
+        "PEFT"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x28_lora_finetune"
     },
     {
       "id": "x-x16_prompt_engineering",
@@ -342,6 +360,24 @@
         "t07_llm_roadmap"
       ],
       "href": "/post/t12_rag"
+    },
+    {
+      "id": "x-x27_vector_db",
+      "kind": "md",
+      "title": "向量数据库实战：语义检索的基石",
+      "summary": "Embedding 原理、相似度度量、Milvus/pgvector 选型与实战——让机器\"理解\"语义的检索系统。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "高级",
+      "minutes": 7,
+      "tags": [
+        "向量数据库",
+        "Embedding",
+        "RAG",
+        "语义检索"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x27_vector_db"
     },
     {
       "id": "x-x17_transformer",
@@ -1748,6 +1784,24 @@
       ],
       "prereqs": [],
       "href": "/post/w90_flutter_uniapp"
+    },
+    {
+      "id": "x-x29_jetpack_compose",
+      "kind": "md",
+      "title": "Jetpack Compose 入门：声明式 Android UI",
+      "summary": "从 XML 到声明式：Composable 函数、状态驱动、列表与导航——Android UI 的现代写法。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "入门",
+      "minutes": 15,
+      "tags": [
+        "Jetpack Compose",
+        "Android",
+        "Kotlin",
+        "声明式UI"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x29_jetpack_compose"
     },
     {
       "id": "w09_kotlin_intro",
