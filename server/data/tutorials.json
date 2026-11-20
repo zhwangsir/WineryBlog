@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:43:11.177Z",
+  "generatedAt": "2026-11-20T12:44:32.707Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 9
+      "count": 10
     },
     {
       "id": "system",
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 16
+      "count": 17
     },
     {
       "id": "backend",
@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 13
+      "count": 14
     },
     {
       "id": "games",
@@ -525,6 +525,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x04_graph_algorithms"
+    },
+    {
+      "id": "x-x44_tree_heap",
+      "kind": "md",
+      "title": "树与堆：优先队列的艺术",
+      "summary": "遍历四式、BST 性质、堆的插入与弹出——排行榜、任务调度、Top-K 问题的结构答案。",
+      "domain": "algo",
+      "category": "数据结构与算法",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "二叉树",
+        "堆",
+        "优先队列",
+        "算法"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x44_tree_heap"
     },
     {
       "id": "x-x37_sliding_window",
@@ -1507,6 +1525,24 @@
       "href": "/post/s07_js_async"
     },
     {
+      "id": "x-x43_react_perf",
+      "kind": "md",
+      "title": "React 性能优化实战",
+      "summary": "重组渲染的成因与测量、memo 体系、虚拟列表与代码分割——让大列表页面如丝般顺滑。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 13,
+      "tags": [
+        "React",
+        "性能优化",
+        "useMemo",
+        "虚拟列表"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x43_react_perf"
+    },
+    {
       "id": "w47_render_eventloop",
       "kind": "post",
       "title": "浏览器渲染原理与事件循环",
@@ -2035,6 +2071,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x30_react_native"
+    },
+    {
+      "id": "x-x42_swiftui",
+      "kind": "md",
+      "title": "Swift 与 SwiftUI 入门",
+      "summary": "Swift 语法要点、SwiftUI 声明式界面、状态绑定与导航——iOS 原生开发的现代入口。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "Swift",
+        "SwiftUI",
+        "iOS",
+        "声明式UI"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x42_swiftui"
     },
     {
       "id": "s13_android_components",

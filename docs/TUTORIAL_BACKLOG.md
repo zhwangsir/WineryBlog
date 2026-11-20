@@ -40,7 +40,7 @@
 - x40_grpc_micro | 后端开发 | gRPC 与微服务通信
 - x41_game_audio | 游戏与图形 | 游戏音效与资源管线
 
-## Batch 9 — 移动与前端性能 — status: pending
+## Batch 9 — 移动与前端性能 — status: done
 - x42_swiftui | 移动与跨端 | Swift 与 SwiftUI 入门
 - x43_react_perf | Web 前端 | React 性能优化实战
 - x44_tree_heap | 数据结构与算法 | 树与堆：优先队列的艺术
