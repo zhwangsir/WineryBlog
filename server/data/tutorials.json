@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:03:47.810Z",
+  "generatedAt": "2026-11-20T12:11:51.714Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -80,7 +80,7 @@
       "name": "游戏与图形",
       "icon": "Gamepad2",
       "blurb": "游戏循环、物理与碰撞、Unity 引擎、图形编程",
-      "count": 2
+      "count": 5
     }
   ],
   "tutorials": [
@@ -1309,6 +1309,42 @@
       "href": "/post/s07_js_async"
     },
     {
+      "id": "x-x21_graphics_basics",
+      "kind": "md",
+      "title": "图形学基础入门：从像素到管线",
+      "summary": "像素、三角形与光栅化——GPU 渲染管线的全景地图，看懂屏幕上每一帧是怎么画出来的。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "入门",
+      "minutes": 9,
+      "tags": [
+        "图形学",
+        "GPU",
+        "渲染管线",
+        "WebGL"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x21_graphics_basics"
+    },
+    {
+      "id": "x-x22_game_physics",
+      "kind": "md",
+      "title": "游戏物理入门：碰撞、重力与轨迹",
+      "summary": "欧拉积分、AABB 与圆形碰撞、斜面反弹与惯性——用初等数学实现可信的游戏物理。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "游戏物理",
+        "碰撞检测",
+        "重力",
+        "游戏开发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x22_game_physics"
+    },
+    {
       "id": "x-x15_unity_intro",
       "kind": "md",
       "title": "Unity 游戏开发入门：场景、组件与第一个游戏",
@@ -1343,6 +1379,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x14_gamedev_overview"
+    },
+    {
+      "id": "x-x23_unity_platformer",
+      "kind": "md",
+      "title": "Unity 2D 平台跳跃实战：从白盒到可玩关卡",
+      "summary": "角色控制器、Tilemap 关卡、摄像机跟随与死亡重生——做出第一个完整可玩的平台跳跃游戏。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "高级",
+      "minutes": 10,
+      "tags": [
+        "Unity",
+        "2D",
+        "平台跳跃",
+        "游戏开发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x23_unity_platformer"
     },
     {
       "id": "s01_java_collections_concurrency",
