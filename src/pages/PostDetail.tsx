@@ -29,10 +29,33 @@ export const PostDetail: React.FC = () => {
   const [error, setError] = useState('');
   const [verifying, setVerifying] = useState(false);
   const [tutorOpen, setTutorOpen] = useState(false);
+  const [tutCatalog, setTutCatalog] = useState<{ id: string; domain: string; title: string; href: string }[]>([]);
   const viewCounted = useRef(false);
 
   // tutorial content gets the AI tutor; blog posts don't
   const isTutorial = !!post && post.category !== '随笔';
+
+  // load catalog once for prev/next + related tutorials
+  useEffect(() => {
+    if (!isTutorial || tutCatalog.length) return;
+    fetch('/api/tutorials').then(r => r.json())
+      .then((j: { tutorials: { id: string; domain: string; title: string; href: string }[] }) => setTutCatalog(j.tutorials || []))
+      .catch(() => {});
+  }, [isTutorial, tutCatalog.length]);
+
+  const neighbors = (() => {
+    if (!post || !tutCatalog.length) return null;
+    const cur = tutCatalog.find(t => t.id === post.id);
+    if (!cur) return null;
+    const siblings = tutCatalog.filter(t => t.domain === cur.domain);
+    const idx = siblings.findIndex(t => t.id === cur.id);
+    return {
+      prev: idx > 0 ? siblings[idx - 1] : null,
+      next: idx < siblings.length - 1 ? siblings[idx + 1] : null,
+      related: siblings.filter(t => t.id !== cur.id).slice(0, 4),
+      domainName: cur.domain,
+    };
+  })();
 
   useEffect(() => {
     if (post?.isLocked) {
@@ -232,6 +255,41 @@ export const PostDetail: React.FC = () => {
           {post.content}
         </Markdown>
       </div>
+
+      {/* tutorial navigation: prev/next + related */}
+      {neighbors && (
+        <div className="flex flex-col gap-4 border-t border-border pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {neighbors.prev ? (
+              <Link to={neighbors.prev.href} className="group bg-bg-card border border-border/60 rounded-xl p-4 hover:border-accent/50 transition-all">
+                <span className="text-xs text-text-muted">← 上一篇</span>
+                <p className="font-bold text-text-primary group-hover:text-accent transition-colors mt-1">{neighbors.prev.title}</p>
+              </Link>
+            ) : <div />}
+            {neighbors.next && (
+              <Link to={neighbors.next.href} className="group bg-bg-card border border-border/60 rounded-xl p-4 text-right hover:border-accent/50 transition-all">
+                <span className="text-xs text-text-muted">下一篇 →</span>
+                <p className="font-bold text-text-primary group-hover:text-accent transition-colors mt-1">{neighbors.next.title}</p>
+              </Link>
+            )}
+          </div>
+          {neighbors.related.length > 0 && (
+            <div className="bg-bg-card border border-border/60 rounded-xl p-4">
+              <p className="text-sm font-bold text-text-primary mb-3">📚 相关教程（同域推荐）</p>
+              <div className="flex flex-col gap-2">
+                {neighbors.related.map(t => (
+                  <Link key={t.id} to={t.href} className="text-sm text-text-secondary hover:text-accent transition-colors">
+                    · {t.title}
+                  </Link>
+                ))}
+              </div>
+              <Link to="/tutorials" className="inline-block mt-3 text-xs text-accent hover:underline">
+                进入教程中心 →
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
 
       {isTutorial && (
         <>

@@ -27,7 +27,16 @@ export const CareerRoute: React.FC = () => {
   const { career } = useParams();
   const [data, setData] = useState<{ c: Career; tuts: Tutorial[] } | null>(null);
   const [notFound, setNotFound] = useState(false);
-  const [done, setDone] = useState<Record<string, boolean>>({});
+  // learning progress persists across visits, keyed per career route
+  const [done, setDone] = useState<Record<string, boolean>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem(`route-progress:${career}`) || '{}');
+    } catch { return {}; }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(`route-progress:${career}`, JSON.stringify(done));
+  }, [done, career]);
 
   useEffect(() => {
     Promise.all([
