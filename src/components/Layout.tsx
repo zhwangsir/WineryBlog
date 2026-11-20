@@ -23,7 +23,7 @@ export const Layout: React.FC = () => {
   const [petChatOpen, setPetChatOpen] = useState(false);
 
   const pet = (config as any)?.theme?.pet as
-    | { enabled?: boolean; model?: 'hutao' | 'fallback'; voiceEnabled?: boolean; autoDodge?: boolean }
+    | { enabled?: boolean; model?: 'hutao' | 'fallback'; voiceEnabled?: boolean; autoDodge?: boolean; size?: number; opacity?: number }
     | undefined;
   const petOn = pet ? pet.enabled !== false : true; // 默认启用胡桃桌宠
 
@@ -85,6 +85,8 @@ export const Layout: React.FC = () => {
           voiceEnabled={pet?.voiceEnabled === true}
           autoDodge={pet?.autoDodge !== false}
           model={(pet?.model as 'hutao' | 'fallback') || 'hutao'}
+          size={pet?.size || 1}
+          opacity={pet?.opacity || 1}
           fallbackAvatar={config?.profile?.avatar}
           name={config?.profile?.name}
           onOpenChat={() => setPetChatOpen(true)}

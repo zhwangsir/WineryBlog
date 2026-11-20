@@ -530,6 +530,9 @@ export const ManageConfig: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3">
+                <label htmlFor="petDodge" className="text-sm font-medium text-text-primary cursor-pointer">
+                  自动避让（遮挡可交互元素时自己走开）
+                </label>
                 <input
                   type="checkbox"
                   id="petDodge"
@@ -537,10 +540,36 @@ export const ManageConfig: React.FC = () => {
                   onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), autoDodge: e.target.checked })}
                   className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
                 />
-                <label htmlFor="petDodge" className="text-sm font-medium text-text-primary cursor-pointer">
-                  自动避让（遮挡可交互元素时自己走开）
-                </label>
               </div>
+
+              <div className="flex items-center gap-3">
+                <label htmlFor="petSize" className="text-sm font-medium text-text-primary w-28">桌宠大小</label>
+                <input
+                  type="range" id="petSize" min="0.5" max="1.5" step="0.05"
+                  value={formData.theme?.pet?.size || 1}
+                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), size: parseFloat(e.target.value) })}
+                  className="flex-1 accent-orange-500"
+                />
+                <span className="text-sm text-text-secondary w-14 text-right">
+                  {Math.round((formData.theme?.pet?.size || 1) * 100)}%
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <label htmlFor="petOpacity" className="text-sm font-medium text-text-primary w-28">不透明度</label>
+                <input
+                  type="range" id="petOpacity" min="0.3" max="1" step="0.05"
+                  value={formData.theme?.pet?.opacity || 1}
+                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), opacity: parseFloat(e.target.value) })}
+                  className="flex-1 accent-orange-500"
+                />
+                <span className="text-sm text-text-secondary w-14 text-right">
+                  {Math.round((formData.theme?.pet?.opacity || 1) * 100)}%
+                </span>
+              </div>
+              <p className="text-xs text-text-muted">
+                保存后刷新前台页面生效；桌宠位置由前台拖动决定（自动记忆）。
+              </p>
             </div>
           </section>
         </section>

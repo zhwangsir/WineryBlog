@@ -15,10 +15,10 @@
     "bio": "永远相信，美好的事情即将发生。"
   },
   "stats": {
-    "articles": 117,
-    "categories": 15,
-    "tags": 285,
-    "words": "7.1万字",
+    "articles": 209,
+    "categories": 18,
+    "tags": 450,
+    "words": "23.8万字",
     "runningDays": 0,
     "lastActivity": "刚刚"
   },
@@ -69,7 +69,9 @@
       "enabled": true,
       "model": "hutao",
       "voiceEnabled": false,
-      "autoDodge": true
+      "autoDodge": true,
+      "size": 1.3,
+      "opacity": 0.8
     }
   },
   "music": {

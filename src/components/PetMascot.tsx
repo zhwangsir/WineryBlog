@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { pickLine } from '../lib/petLines';
 import { speakPetLine } from '../lib/petVoice';
@@ -12,31 +12,37 @@ interface PetMascotProps {
   /** 模型加载失败时的回落头像 */
   fallbackAvatar?: string;
   name?: string;
+  /** 桌宠整体缩放（0.5-1.5，1 = 基准 220×300） */
+  size?: number;
+  /** 桌宠不透明度（0.3-1） */
+  opacity?: number;
   /** 双击/长按打开胡桃对话面板 */
   onOpenChat?: () => void;
 }
 
 const STORE_KEY = 'winery-pet-state';
-const PET_SIZE = { w: 220, h: 300 };
+const PET_BASE = { w: 220, h: 300 };
 const MARGIN = 8;
 
 type Pos = { x: number; y: number };
 
-function loadPos(): Pos {
+function loadPos(size: number): Pos {
+  const w = PET_BASE.w * size, h = PET_BASE.h * size;
   try {
     const saved = JSON.parse(localStorage.getItem(`${STORE_KEY}-pos`) || 'null');
     if (saved && typeof saved.x === 'number') return saved;
   } catch { /* ignore */ }
   return {
-    x: window.innerWidth - PET_SIZE.w - 12,
-    y: window.innerHeight - PET_SIZE.h - 12,
+    x: window.innerWidth - w - 12,
+    y: window.innerHeight - h - 12,
   };
 }
 
-function clampPos(p: Pos): Pos {
+function clampPos(p: Pos, size: number): Pos {
+  const w = PET_BASE.w * size, h = PET_BASE.h * size;
   return {
-    x: Math.max(MARGIN, Math.min(p.x, window.innerWidth - PET_SIZE.w - MARGIN)),
-    y: Math.max(MARGIN, Math.min(p.y, window.innerHeight - PET_SIZE.h - MARGIN)),
+    x: Math.max(MARGIN, Math.min(p.x, window.innerWidth - w - MARGIN)),
+    y: Math.max(MARGIN, Math.min(p.y, window.innerHeight - h - MARGIN)),
   };
 }
 
@@ -53,8 +59,13 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   model = 'hutao',
   fallbackAvatar = '/images/HuTao/hutao68.png',
   name = '胡桃',
+  size = 1,
+  opacity = 1,
   onOpenChat,
 }) => {
+  // 归一化尺寸参数，供所有布局/边界计算使用
+  const clampedSize = Math.max(0.5, Math.min(1.5, size || 1));
+  const petSize = { w: Math.round(PET_BASE.w * clampedSize), h: Math.round(PET_BASE.h * clampedSize) };
   const hostRef = useRef<HTMLDivElement>(null);
   const pixiHostRef = useRef<HTMLDivElement>(null);
   const hitRef = useRef<HTMLDivElement>(null);
@@ -92,7 +103,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   // ---- 初始化：位置 + PIXI + Live2D 模型 ----
   useEffect(() => {
     if (!enabled || hidden) return;
-    applyPos(clampPos(loadPos()));
+    applyPos(clampPos(loadPos(clampedSize), clampedSize));
     if (model === 'fallback') { setLive2dFailed(true); return; }   // 明确选择静态模式
 
     let disposed = false;
@@ -107,8 +118,8 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
         const app = new PIXI.Application({
           view: undefined,
-          width: PET_SIZE.w,
-          height: PET_SIZE.h,
+          width: petSize.w,
+          height: petSize.h,
           backgroundAlpha: 0,
           autoDensity: true,
           resolution: Math.min(window.devicePixelRatio || 1, 2),
@@ -136,10 +147,10 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         window.addEventListener('pointermove', onPointerMove, { passive: true });
 
         // 缩放到 260px 高，锚定底部居中
-        const scale = (PET_SIZE.h - 30) / model.internalModel.height;
+        const scale = (petSize.h - 30) / model.internalModel.height;
         model.scale.set(scale);
-        model.x = (PET_SIZE.w - model.internalModel.width * scale) / 2;
-        model.y = PET_SIZE.h - model.internalModel.height * scale;
+        model.x = (petSize.w - model.internalModel.width * scale) / 2;
+        model.y = petSize.h - model.internalModel.height * scale;
         app.stage.addChild(model);
 
         // 自主循环：驱动 Live2D 内部更新（眨眼/物理/焦点）+ 待机呼吸 + 渲染。
@@ -236,11 +247,11 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     const cur = posRef.current;
     const vw = window.innerWidth, vh = window.innerHeight;
     const candidates: Pos[] = [
-      { x: vw - PET_SIZE.w - 12, y: vh - PET_SIZE.h - 12 },
-      { x: 12, y: vh - PET_SIZE.h - 12 },
-      { x: vw - PET_SIZE.w - 12, y: 70 },
+      { x: vw - petSize.w - 12, y: vh - petSize.h - 12 },
+      { x: 12, y: vh - petSize.h - 12 },
+      { x: vw - petSize.w - 12, y: 70 },
       { x: 12, y: 70 },
-      { x: (vw - PET_SIZE.w) / 2, y: vh - PET_SIZE.h - 12 },
+      { x: (vw - petSize.w) / 2, y: vh - petSize.h - 12 },
     ].map(clampPos);
 
     let target: Pos | null = null;
@@ -270,7 +281,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       if (el) el.style.opacity = '0.35';
     }
     window.setTimeout(() => { dodgeBusy.current = false; }, 800);
-  }, [applyPos, rectInteracts, showBubble]);
+  }, [applyPos, rectInteracts, showBubble, clampedSize, petSize.w, petSize.h]);
 
   useEffect(() => {
     if (!enabled || hidden || !autoDodge || !ready) return;
@@ -298,7 +309,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     const dx = e.clientX - d.startX, dy = e.clientY - d.startY;
     if (Math.abs(dx) + Math.abs(dy) > 6) d.moved = true;
     if (d.moved) {
-      applyPos(clampPos({ x: d.baseX + dx, y: d.baseY + dy }));
+      applyPos(clampPos({ x: d.baseX + dx, y: d.baseY + dy }, clampedSize));
       const model = modelRef.current;
       if (model) model.rotation = Math.max(-0.25, Math.min(0.25, dx / 200)); // 拖动倾斜
     }
@@ -350,7 +361,11 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     <div
       ref={hostRef}
       className="fixed z-[900] select-none"
-      style={{ width: PET_SIZE.w, height: PET_SIZE.h, touchAction: 'none', cursor: 'grab' }}
+      style={{
+        width: petSize.w, height: petSize.h,
+        opacity: Math.max(0.3, Math.min(1, opacity || 1)),
+        touchAction: 'none', cursor: 'grab',
+      }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
@@ -401,10 +416,10 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         ref={hitRef}
         className="absolute z-10"
         style={{
-          left: PET_SIZE.w / 2 - 60,
-          top: 40,
-          width: 120,
-          height: PET_SIZE.h - 50,
+          left: petSize.w / 2 - 60 * clampedSize,
+          top: 40 * clampedSize,
+          width: 120 * clampedSize,
+          height: petSize.h - 50,
           pointerEvents: ready ? 'auto' : 'none',
           cursor: 'grab',
         }}
