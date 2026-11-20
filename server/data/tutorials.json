@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:21:26.803Z",
+  "generatedAt": "2026-11-20T12:22:57.501Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 6
+      "count": 7
     },
     {
       "id": "system",
@@ -73,14 +73,14 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 12
+      "count": 13
     },
     {
       "id": "games",
       "name": "游戏与图形",
       "icon": "Gamepad2",
       "blurb": "游戏循环、物理与碰撞、Unity 引擎、图形编程",
-      "count": 5
+      "count": 6
     }
   ],
   "tutorials": [
@@ -435,6 +435,24 @@
         "t01_cs_roadmap"
       ],
       "href": "/post/t02_algorithms"
+    },
+    {
+      "id": "x-x31_hash_string",
+      "kind": "md",
+      "title": "哈希与字符串算法：从 Map 到 KMP",
+      "summary": "哈希冲突与扩容、字符串匹配从暴力到 KMP、滚动哈希——高频面试题背后的原理。",
+      "domain": "algo",
+      "category": "数据结构与算法",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "哈希表",
+        "KMP",
+        "字符串算法",
+        "算法"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x31_hash_string"
     },
     {
       "id": "x-x05_bitwise_algorithms",
@@ -1435,6 +1453,24 @@
       "href": "/post/x-x22_game_physics"
     },
     {
+      "id": "x-x32_cocos_creator",
+      "kind": "md",
+      "title": "Cocos Creator 入门：国产引擎做 2D 游戏",
+      "summary": "组件化工作流、Node 树与 UITransform、生命周期能力——用 TypeScript 上手的轻量 2D 引擎。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "入门",
+      "minutes": 10,
+      "tags": [
+        "Cocos Creator",
+        "TypeScript",
+        "2D游戏",
+        "游戏引擎"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x32_cocos_creator"
+    },
+    {
       "id": "x-x15_unity_intro",
       "kind": "md",
       "title": "Unity 游戏开发入门：场景、组件与第一个游戏",
@@ -1819,6 +1855,24 @@
       ],
       "prereqs": [],
       "href": "/post/w09_kotlin_intro"
+    },
+    {
+      "id": "x-x30_react_native",
+      "kind": "md",
+      "title": "React Native 入门：用 React 写原生 App",
+      "summary": "已会 React 的一步跨进移动端：核心组件差异、导航、原生能力与渲染原理。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "入门",
+      "minutes": 14,
+      "tags": [
+        "React Native",
+        "跨端",
+        "移动开发",
+        "React"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x30_react_native"
     },
     {
       "id": "w43_android_ui",

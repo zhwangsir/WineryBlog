@@ -20,7 +20,7 @@
 - x28_lora_finetune | 人工智能 | LoRA 微调入门：让开源模型学会你的领域
 - x29_jetpack_compose | 移动与跨端 | Jetpack Compose 入门：声明式 Android UI
 
-## Batch 5 — 跨端与算法 — status: pending
+## Batch 5 — 跨端与算法 — status: done
 - x30_react_native | 移动与跨端 | React Native 入门：用 React 写原生 App
 - x31_hash_string | 数据结构与算法 | 哈希与字符串算法：从 Map 到 KMP
 - x32_cocos_creator | 游戏与图形 | Cocos Creator 入门：国产引擎做 2D 游戏
