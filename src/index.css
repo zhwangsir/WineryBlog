@@ -2,6 +2,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* 主题切换基于 html.dark class（应用内手动切换），
+   必须声明 dark: 变体跟随 class 而非系统偏好 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Runtime-configured media lives in server/data — keep the Tailwind
    scanner from registering those URLs as CSS asset dependencies */
 @source not "server/data";

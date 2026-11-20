@@ -132,7 +132,9 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         appRef.current = app;
         // 画布不拦截指针：透明区域点击穿透到页面，交互由命中层承担
         (app.view as HTMLCanvasElement).style.pointerEvents = 'none';
+        pixiHostRef.current?.querySelectorAll('canvas').forEach(cv => cv.remove());
         pixiHostRef.current?.appendChild(app.view as HTMLCanvasElement);
+        (app.view as HTMLCanvasElement).style.background = 'transparent';
 
         const live2dModel = await Live2DModel.from(PET_MODEL_URLS[model] || PET_MODEL_URLS.hutao, {
           autoInteract: false,   // 点击/拖动由外层命中层处理
@@ -194,6 +196,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       try {
         modelRef.current?.destroy();
         appRef.current?.destroy(false, { children: true });
+        pixiHostRef.current?.querySelectorAll('canvas').forEach(cv => cv.remove());
       } catch { /* ignore */ }
       modelRef.current = null; appRef.current = null;
     };
