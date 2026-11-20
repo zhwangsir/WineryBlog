@@ -7,8 +7,11 @@ coverage/
 .env*
 !.env.example
 
-# Static assets - images, videos, etc.
-public/images/
+# Static assets - keep small generated SVG defaults tracked,
+# large media uploads stay out of git
+public/images/**
+!public/images/**/
+!public/images/**/*.svg
 public/videos/
 public/audio/
 *.png
@@ -21,3 +24,6 @@ public/audio/
 *.wav
 *.ico
 *.cur
+
+# user uploads (avatar/background settings)
+server/data/uploads/

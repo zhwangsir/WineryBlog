@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
 
-const HERO_BG_IMAGE = '/images/HuTao/hutao10.png';
+const HERO_BG_IMAGE = '/images/default-hero.svg';
 
 interface TypewriterProps {
   text: string;
@@ -86,11 +86,12 @@ export const Hero: React.FC = () => {
   const [heroImage, setHeroImage] = useState<string>(HERO_BG_IMAGE);
 
   useEffect(() => {
-    if (siteConfig?.hero.image) {
-      setHeroImage(siteConfig.hero.image);
-    } else {
-      setHeroImage(HERO_BG_IMAGE);
-    }
+    const candidate = siteConfig?.hero.image || HERO_BG_IMAGE;
+    setHeroImage(candidate);
+    // if the configured image fails to load, fall back to the default banner
+    const probe = new Image();
+    probe.onerror = () => setHeroImage(HERO_BG_IMAGE);
+    probe.src = candidate;
   }, [siteConfig?.hero.image]);
 
   return (

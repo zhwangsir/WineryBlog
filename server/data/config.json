@@ -3,10 +3,6 @@
   "title": "WineryBlog",
   "author": "Winery",
   "subtitle": "永远相信，美好的事情即将发生。",
-  "admin": {
-    "username": "admin",
-    "password": "wineryblog2026"
-  },
   "hero": {
     "title": "胡桃的胡是胡吃海喝的胡，胡桃的桃却不是淘气的淘",
     "subtitle": "逗留采血色，伴君眠花房。",
@@ -14,29 +10,53 @@
     "credit": "Pixiv - 水菜カステラ"
   },
   "profile": {
-    "avatar": "/images/HuTao/hutao68.png",
+    "avatar": "/images/default-avatar.svg",
     "name": "Winery",
     "bio": "永远相信，美好的事情即将发生。"
   },
   "stats": {
-    "articles": 0,
-    "categories": 0,
-    "tags": 0,
-    "words": "0",
+    "articles": 117,
+    "categories": 15,
+    "tags": 285,
+    "words": "7.1万字",
     "runningDays": 0,
     "lastActivity": "刚刚"
   },
   "nav": [
-    { "name": "主页", "path": "/", "icon": "Home" },
-    { "name": "学习路线", "path": "/learning", "icon": "Route" },
-    { "name": "知识图谱", "path": "/graph", "icon": "Waypoints" },
-    { "name": "AI 馆员", "path": "/ai", "icon": "Bot" },
-    { "name": "归档", "path": "/archive", "icon": "Archive" },
-    { "name": "关于我", "path": "/about", "icon": "User" }
+    {
+      "name": "主页",
+      "path": "/",
+      "icon": "Home"
+    },
+    {
+      "name": "学习路线",
+      "path": "/learning",
+      "icon": "Route"
+    },
+    {
+      "name": "知识图谱",
+      "path": "/graph",
+      "icon": "Waypoints"
+    },
+    {
+      "name": "AI 馆员",
+      "path": "/ai",
+      "icon": "Bot"
+    },
+    {
+      "name": "归档",
+      "path": "/archive",
+      "icon": "Archive"
+    },
+    {
+      "name": "关于我",
+      "path": "/about",
+      "icon": "User"
+    }
   ],
   "theme": {
     "accentColor": "#F27D26",
-    "cursorUrl": "/images/HuTao/cursor.cur",
+    "cursorUrl": "",
     "globalBackground": "",
     "waveStyle": "smooth",
     "waveSpeed": "normal",
@@ -55,12 +75,25 @@
     "autoplay": false
   },
   "social": [
-    { "platform": "github", "url": "https://github.com/zhwangsir" },
-    { "platform": "mail", "url": "mailto:1255399340@qq.com" },
-    { "platform": "qq", "url": "https://qm.qq.com/q/RtrCbelec8" }
+    {
+      "platform": "github",
+      "url": "https://github.com/zhwangsir"
+    },
+    {
+      "platform": "mail",
+      "url": "mailto:1255399340@qq.com"
+    },
+    {
+      "platform": "qq",
+      "url": "https://qm.qq.com/q/RtrCbelec8"
+    }
   ],
   "footer": {
     "copyright": "© 2026 WineryBlog. All rights reserved.",
     "icp": "豫ICP备2023031722号-1"
+  },
+  "admin": {
+    "username": "admin",
+    "password": "wineryblog2026"
   }
 }

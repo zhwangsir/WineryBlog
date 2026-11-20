@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
 import { Github, Mail, MessageCircle, Link as LinkIcon } from 'lucide-react';
 
+const DEFAULT_AVATAR = '/images/default-avatar.svg';
+
 export const ProfileCard: React.FC = () => {
   const { config: siteConfig } = useData();
   const socials = siteConfig?.social || [];
+  const [avatarFailed, setAvatarFailed] = useState(false);
+  const avatarSrc =
+    !siteConfig?.profile.avatar || avatarFailed ? DEFAULT_AVATAR : siteConfig.profile.avatar;
 
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
@@ -27,9 +32,10 @@ export const ProfileCard: React.FC = () => {
       <div className="relative">
         <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-bg-base shadow-lg group-hover:scale-105 transition-transform duration-300">
           <img 
-            src={siteConfig?.profile.avatar} 
+            src={avatarSrc} 
             alt={siteConfig?.profile.name} 
             className="w-full h-full object-cover"
+            onError={() => setAvatarFailed(true)}
             referrerPolicy="no-referrer"
           />
         </div>

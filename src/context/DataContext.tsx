@@ -64,6 +64,13 @@ interface SiteConfig {
     content: string;
     skills?: string[];
   };
+  tags?: string[];
+  friends?: {
+    name: string;
+    url: string;
+    avatar: string;
+    desc: string;
+  }[];
 }
 
 interface Category {

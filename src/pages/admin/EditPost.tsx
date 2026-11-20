@@ -4,6 +4,7 @@ import { useData } from '../../context/DataContext';
 import { ArrowLeft, Save, Eye, EyeOff } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { apiFetch } from '../../utils/api';
 
 export const EditPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -60,9 +61,8 @@ export const EditPost: React.FC = () => {
       const url = isNew ? '/api/posts' : `/api/posts/${id}`;
       const method = isNew ? 'POST' : 'PUT';
       
-      const res = await fetch(url, {
+      const res = await apiFetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(postData)
       });
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
 import { Save } from 'lucide-react';
+import { apiFetch } from '../../utils/api';
+import { ImageUploadField } from '../../components/admin/ImageUploadField';
 
 export const ManageConfig: React.FC = () => {
   const { config, refreshData } = useData();
@@ -121,9 +123,8 @@ export const ManageConfig: React.FC = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('/api/config', {
+      const res = await apiFetch('/api/config', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
       if (res.ok) {
@@ -207,7 +208,7 @@ export const ManageConfig: React.FC = () => {
 
         {/* Hero Settings */}
         <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-text-primary mb-6">Hero Section</h2>
+          <h2 className="text-xl font-bold text-text-primary mb-6">首页横幅（Hero）</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-text-primary">Hero Title</label>
@@ -227,13 +228,13 @@ export const ManageConfig: React.FC = () => {
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">Background Image URL</label>
-              <input 
-                type="text" 
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <ImageUploadField
+                label="背景图片"
                 value={formData.hero?.image || ''}
-                onChange={e => handleHeroChange('image', e.target.value)}
-                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                onChange={url => handleHeroChange('image', url)}
+                preview="wide"
+                hint="首页顶部横幅背景，支持上传或填写外链（建议 1920×600 以上）"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -250,7 +251,7 @@ export const ManageConfig: React.FC = () => {
 
         {/* Profile Settings */}
         <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-text-primary mb-6">Profile Card</h2>
+          <h2 className="text-xl font-bold text-text-primary mb-6">个人资料（头像）</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-text-primary">Display Name</label>
@@ -262,21 +263,21 @@ export const ManageConfig: React.FC = () => {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">Avatar URL</label>
+              <label className="text-sm font-medium text-text-primary">Bio</label>
               <input 
                 type="text" 
-                value={formData.profile?.avatar || ''}
-                onChange={e => handleProfileChange('avatar', e.target.value)}
+                value={formData.profile?.bio || ''}
+                onChange={e => handleProfileChange('bio', e.target.value)}
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
               />
             </div>
             <div className="flex flex-col gap-2 md:col-span-2">
-              <label className="text-sm font-medium text-text-primary">Bio</label>
-              <textarea 
-                value={formData.profile?.bio || ''}
-                onChange={e => handleProfileChange('bio', e.target.value)}
-                rows={3}
-                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors resize-none"
+              <ImageUploadField
+                label="头像"
+                value={formData.profile?.avatar || ''}
+                onChange={url => handleProfileChange('avatar', url)}
+                preview="square"
+                hint="显示在侧边栏个人卡片、吉祥物与关于页（建议正方形图片）"
               />
             </div>
           </div>
@@ -338,23 +339,23 @@ export const ManageConfig: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">Custom Cursor URL</label>
-              <input 
-                type="text" 
-                placeholder="e.g., /cursor.png"
+              <label className="text-sm font-medium text-text-primary">Custom Cursor</label>
+              <ImageUploadField
+                label="自定义鼠标指针"
                 value={formData.theme?.cursorUrl || ''}
-                onChange={e => handleThemeChange('cursorUrl', e.target.value)}
-                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                onChange={url => handleThemeChange('cursorUrl', url)}
+                accept="image/x-icon,image/png,image/svg+xml,image/gif"
+                preview="square"
+                hint=".cur / .png / .svg 指针文件，留空使用默认"
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-text-primary">Global Background URL</label>
-              <input 
-                type="text" 
-                placeholder="e.g., /bg.jpg"
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <ImageUploadField
+                label="全局背景"
                 value={formData.theme?.globalBackground || ''}
-                onChange={e => handleThemeChange('globalBackground', e.target.value)}
-                className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                onChange={url => handleThemeChange('globalBackground', url)}
+                preview="wide"
+                hint="整站固定背景图，会叠加半透明遮罩保证可读性；留空使用纯色背景"
               />
             </div>
           </div>
@@ -526,12 +527,13 @@ export const ManageConfig: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-text-primary">Cover Image URL</label>
-                <input 
-                  type="text" 
+                <label className="text-sm font-medium text-text-primary">Cover Image</label>
+                <ImageUploadField
+                  label="播放器封面"
                   value={formData.music?.cover || ''}
-                  onChange={e => handleMusicChange('cover', e.target.value)}
-                  className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors"
+                  onChange={url => handleMusicChange('cover', url)}
+                  preview="square"
+                  hint="留空时自动使用头像"
                 />
               </div>
               <div className="flex flex-col justify-center gap-2">

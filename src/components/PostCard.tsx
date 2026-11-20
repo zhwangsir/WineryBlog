@@ -9,30 +9,27 @@ interface PostCardProps {
   index: number;
 }
 
-// HuTao images for random cover
-const huTaoImages = [
-  '/images/HuTao/hutao1.png',
-  '/images/HuTao/hutao2.png',
-  '/images/HuTao/hutao3.png',
-  '/images/HuTao/hutao4.png',
-  '/images/HuTao/hutao5.png',
-  '/images/HuTao/hutao6.png',
-  '/images/HuTao/hutao7.png',
-  '/images/HuTao/hutao8.png',
-  '/images/HuTao/hutao9.png',
-  '/images/HuTao/hutao10.png',
+// Generated gradient covers for posts without an explicit cover
+const coverImages = [
+  '/images/covers/cover1.svg',
+  '/images/covers/cover2.svg',
+  '/images/covers/cover3.svg',
+  '/images/covers/cover4.svg',
+  '/images/covers/cover5.svg',
+  '/images/covers/cover6.svg',
+  '/images/covers/cover7.svg',
+  '/images/covers/cover8.svg',
 ];
 
-// Get a random image based on post id (consistent for same post)
+// Get a consistent cover based on post id
 const getRandomImage = (id: string): string => {
-  // Use post id to generate consistent random index
   let hash = 0;
   for (let i = 0; i < id.length; i++) {
     hash = ((hash << 5) - hash) + id.charCodeAt(i);
     hash = hash & hash;
   }
-  const index = Math.abs(hash) % huTaoImages.length;
-  return huTaoImages[index];
+  const index = Math.abs(hash) % coverImages.length;
+  return coverImages[index];
 };
 
 export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {

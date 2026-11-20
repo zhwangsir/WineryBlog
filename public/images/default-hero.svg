@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171019"/>
+      <stop offset="0.6" stop-color="#3a1f22"/>
+      <stop offset="1" stop-color="#5c2e1e"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.78" cy="0.32" r="0.18">
+      <stop offset="0" stop-color="#ffdfae" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#ffbe6e" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ffbe6e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="haze" cx="0.2" cy="0.85" r="0.5">
+      <stop offset="0" stop-color="#F27D26" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#F27D26" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="600" fill="url(#sky)"/>
+  <rect width="1920" height="600" fill="url(#moon)"/>
+  <rect width="1920" height="600" fill="url(#haze)"/>
+  <!-- layered hills -->
+  <path d="M0 470 Q 320 380 700 460 T 1400 450 T 1920 430 V 600 H 0 Z" fill="#1d1417" opacity="0.85"/>
+  <path d="M0 520 Q 420 440 900 510 T 1920 500 V 600 H 0 Z" fill="#120d10"/>
+  <!-- drifting petals -->
+  <g fill="#ffb37e" opacity="0.5">
+    <circle cx="240" cy="150" r="3"/>
+    <circle cx="520" cy="90" r="2.2"/>
+    <circle cx="810" cy="180" r="2.6"/>
+    <circle cx="1120" cy="110" r="2"/>
+    <circle cx="1460" cy="200" r="3"/>
+    <circle cx="1700" cy="120" r="2.4"/>
+    <circle cx="380" cy="260" r="2"/>
+    <circle cx="980" cy="300" r="2.2"/>
+    <circle cx="1600" cy="300" r="2"/>
+  </g>
+</svg>

@@ -253,7 +253,7 @@ export const MusicPlayer: React.FC = () => {
               "w-10 h-10 rounded-full overflow-hidden shrink-0 border-2",
               isPlaying ? "border-accent animate-[spin_8s_linear_infinite]" : "border-border"
             )}>
-              <img src={currentSong.cover} alt="Cover" className="w-full h-full object-cover" />
+              <img src={currentSong.cover} alt="Cover" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = '/images/default-avatar.svg'; }} />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-sm font-bold text-text-primary truncate max-w-[120px]">
@@ -314,7 +314,7 @@ export const MusicPlayer: React.FC = () => {
                   "w-16 h-16 rounded-xl overflow-hidden shrink-0 shadow-lg",
                   isPlaying && "animate-[spin_8s_linear_infinite]"
                 )}>
-                  <img src={currentSong.cover} alt="Cover" className="w-full h-full object-cover" />
+                  <img src={currentSong.cover} alt="Cover" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = '/images/default-avatar.svg'; }} />
                 </div>
                 <div className="flex flex-col min-w-0 flex-1">
                   <span className="text-base font-bold text-text-primary truncate">{currentSong.title}</span>

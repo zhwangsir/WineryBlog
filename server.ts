@@ -60,11 +60,87 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(express.json());
+  // Large limit: image uploads arrive as base64 JSON
+  app.use(express.json({ limit: "20mb" }));
 
   const DATA_DIR = path.join(process.cwd(), "server", "data");
   const CONFIG_FILE = path.join(DATA_DIR, "config.json");
   const POSTS_FILE = path.join(DATA_DIR, "posts.json");
+  const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
+
+  // ===== Media uploads (avatar / backgrounds / covers) =====
+  const IMAGE_EXT: Record<string, string> = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/webp": "webp",
+    "image/gif": "gif",
+    "image/svg+xml": "svg",
+    "image/x-icon": "ico",
+    "image/vnd.microsoft.icon": "ico",
+    "audio/mpeg": "mp3",
+    "audio/wav": "wav",
+    "audio/x-wav": "wav",
+    "audio/ogg": "ogg",
+  };
+
+  // Uploaded media, served at /uploads/*
+  await fs.mkdir(UPLOAD_DIR, { recursive: true });
+  app.use("/uploads", express.static(UPLOAD_DIR, { maxAge: "1h" }));
+
+  app.post("/api/upload", authMiddleware, async (req, res) => {
+    try {
+      const { name, data } = req.body || {};
+      if (typeof data !== "string" || !data.startsWith("data:")) {
+        res.status(400).json({ error: "data must be a base64 data URL" });
+        return;
+      }
+      const m = data.match(/^data:([^;]+);base64,(.+)$/s);
+      if (!m) {
+        res.status(400).json({ error: "Malformed data URL" });
+        return;
+      }
+      const mime = m[1].toLowerCase();
+      const ext = IMAGE_EXT[mime];
+      if (!ext) {
+        res.status(415).json({ error: `Unsupported file type: ${mime}` });
+        return;
+      }
+      const buf = Buffer.from(m[2], "base64");
+      if (buf.length === 0) {
+        res.status(400).json({ error: "Empty file" });
+        return;
+      }
+      if (buf.length > 8 * 1024 * 1024) {
+        res.status(413).json({ error: "File too large (max 8MB)" });
+        return;
+      }
+      // Sanitize original name; fall back to "file"
+      const safeBase = (String(name || "file").replace(/\.[^.]+$/, "").replace(/[^\w\u4e00-\u9fa5-]+/g, "_").slice(0, 40)) || "file";
+      const filename = `${Date.now().toString(36)}-${safeBase}.${ext}`;
+      await fs.writeFile(path.join(UPLOAD_DIR, filename), buf);
+      res.json({ url: `/uploads/${filename}`, size: buf.length });
+    } catch (error: any) {
+      res.status(500).json({ error: "Upload failed", detail: error.message });
+    }
+  });
+
+  app.get("/api/uploads", authMiddleware, async (req, res) => {
+    try {
+      const files = await fs.readdir(UPLOAD_DIR);
+      const items = await Promise.all(
+        files
+          .filter((f) => !f.startsWith("."))
+          .map(async (f) => {
+            const st = await fs.stat(path.join(UPLOAD_DIR, f));
+            return { url: `/uploads/${f}`, name: f, size: st.size, mtime: st.mtimeMs };
+          })
+      );
+      items.sort((a: any, b: any) => b.mtime - a.mtime);
+      res.json(items);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to list uploads" });
+    }
+  });
 
   // Auth Routes
   app.post("/api/auth/login", async (req, res) => {

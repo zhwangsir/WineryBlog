@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { Plus, Edit, Trash2, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { apiFetch } from '../../utils/api';
 
 export const ManagePosts: React.FC = () => {
   const { posts, refreshData } = useData();
@@ -15,7 +16,7 @@ export const ManagePosts: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        await fetch(`/api/posts/${id}`, { method: 'DELETE' });
+        await apiFetch(`/api/posts/${id}`, { method: 'DELETE' });
         await refreshData();
       } catch (error) {
         console.error('Failed to delete post:', error);
