@@ -29,9 +29,9 @@
       "icon": "Home"
     },
     {
-      "name": "学习路线",
-      "path": "/learning",
-      "icon": "Route"
+      "name": "教程中心",
+      "path": "/tutorials",
+      "icon": "GraduationCap"
     },
     {
       "name": "知识图谱",

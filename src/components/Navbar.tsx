@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MapPin, Search, Moon, Sun, Menu, X, Home, Archive, FileText, User, Route as RouteIcon, Waypoints, Bot } from 'lucide-react';
+import { MapPin, Search, Moon, Sun, Menu, X, Home, Archive, FileText, User, Route as RouteIcon, Waypoints, Bot, GraduationCap } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { cn } from '../utils/cn';
 import { motion, AnimatePresence } from 'motion/react';
@@ -8,7 +8,7 @@ import { SearchModal } from './SearchModal';
 import { ColorPicker } from './ColorPicker';
 
 const iconMap: Record<string, React.ElementType> = {
-  Home, Archive, FileText, User, Route: RouteIcon, Waypoints, Bot
+  Home, Archive, FileText, User, Route: RouteIcon, Waypoints, Bot, GraduationCap
 };
 
 export const Navbar: React.FC = () => {

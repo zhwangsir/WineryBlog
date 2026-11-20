@@ -2531,5 +2531,319 @@
     "_shelfPath": "大数据/导论",
     "shelfPath": "大数据/导论",
     "words2": 674
+  },
+  {
+    "id": "x-x01_java_syntax",
+    "title": "Java 基础语法与程序结构",
+    "date": "2026-11-20",
+    "category": "编程语言",
+    "tags": [
+      "Java",
+      "语法",
+      "基础"
+    ],
+    "excerpt": "main 方法、变量与类型、运算符、流程控制——Java 程序的最小骨架。",
+    "content": "## 1. 程序入口\n\n```java\npublic class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello\");\n    }\n}\n```\n\n- `public class Hello`：类名必须与文件名一致（Hello.java）\n- `public static void main(String[] args)`：JVM 入口，固定签名\n- `System.out.println`：标准输出\n\n编译运行：`javac Hello.java` → `java Hello`\n\n## 2. 变量与数据类型\n\n```java\nint age = 20;                    // 整数（4 字节）\nlong bigNum = 3000000000L;       // 长整数（8 字节，加 L 后缀）\ndouble price = 9.99;             // 双精度浮点\nfloat rate = 0.5f;               // 单精度浮点（加 f 后缀）\nboolean active = true;           // 布尔\nchar grade = 'A';                // 字符（单引号）\nString name = \"winery\";          // 字符串（引用类型，双引号）\n```\n\n类型转换：\n\n```java\nint x = (int) 3.99;              // 强制转换 → 3（截断）\nlong big = x;                    // 自动提升（小→大）\nString s = String.valueOf(x);    // 转字符串\nint n = Integer.parseInt(\"42\");  // 字符串转整数\n```\n\n## 3. 运算符\n\n```java\nint a = 10, b = 3;\na + b;  a - b;  a * b;  a / b;      // 算术（整数除法截断：10/3=3）\na % b;                               // 取余 → 1\na++;  b--;  a += 5;                  // 自增自减复合赋值\na == b;  a != b;  a > b;             // 比较（返回 boolean）\n&&  ||  !                            // 逻辑与/或/非（短路求值）\n&  |  ^  ~  <<  >>  >>>             // 位运算\n```\n\n**字符串比较用 `.equals()` 不用 `==`**：\n\n```java\nString s1 = \"hello\";\nString s2 = new String(\"hello\");\ns1 == s2;          // false（比较引用）\ns1.equals(s2);     // true（比较内容）\n```\n\n## 4. 流程控制\n\n```java\n// if-else\nif (score >= 90) { grade = \"A\"; }\nelse if (score >= 80) { grade = \"B\"; }\nelse { grade = \"C\"; }\n\n// switch（Java 14+ 箭头语法）\nswitch (day) {\n    case 1 -> System.out.println(\"周一\");\n    case 2 -> System.out.println(\"周二\");\n    default -> System.out.println(\"其他\");\n}\n\n// while / do-while\nwhile (count < 10) { count++; }\n\n// for / for-each\nfor (int i = 0; i < 10; i++) { ... }\nfor (String s : names) { System.out.println(s); }\n\n// break / continue\nfor (int i = 0; i < 100; i++) {\n    if (i % 2 == 0) continue;    // 跳过偶数\n    if (i > 50) break;           // 提前退出\n    System.out.println(i);\n}\n```\n\n## 5. 方法\n\n```java\n// 修饰符 返回类型 方法名(参数列表)\npublic static int add(int a, int b) {\n    return a + b;\n}\n\n// 可变参数\npublic static int sum(int... nums) {\n    int total = 0;\n    for (int n : nums) total += n;\n    return total;\n}\n\n// 方法重载：同名不同参数\npublic static double add(double a, double b) { return a + b; }\n```\n\n## 6. 下一步\n\n- 《面向对象编程》——类与对象、封装继承多态\n- 《Java 核心进阶：集合框架与并发编程入门》——集合与并发\n- 《SpringMVC》——Java Web 框架\n\n## 延伸阅读\n\n- 站内相关：《Java 核心进阶：集合框架与并发编程入门》《Spring Boot 快速上手》\n- [Java 官方教程](https://docs.oracle.com/javase/tutorial/)",
+    "views": 0
+  },
+  {
+    "id": "x-x02_java_oop",
+    "title": "Java 面向对象编程（精要）",
+    "date": "2026-11-20",
+    "category": "编程语言",
+    "tags": [
+      "Java",
+      "OOP",
+      "类",
+      "接口"
+    ],
+    "excerpt": "类与对象、封装继承多态、抽象类与接口、static 与 final——OOP 全景。",
+    "content": "## 1. 类与对象\n\n```java\npublic class Student {\n    // 属性（成员变量）\n    private String name;\n    private int score;\n\n    // 构造器\n    public Student(String name, int score) {\n        this.name = name;\n        this.score = score;\n    }\n\n    // 方法\n    public void study() {\n        this.score += 10;\n    }\n\n    // getter/setter\n    public String getName() { return name; }\n    public void setScore(int score) { this.score = score; }\n}\n\nStudent s = new Student(\"winery\", 60);   // 创建对象\ns.study();\n```\n\n`new` 在堆内存创建对象，`s` 是栈上的引用。成员变量有默认值（数值 0、布尔 false、引用 null）。\n\n## 2. 封装\n\n属性 `private` + 公共 getter/setter，控制访问并加入校验逻辑：\n\n```java\npublic void setScore(int score) {\n    if (score < 0 || score > 100) throw new IllegalArgumentException(\"分数范围 0-100\");\n    this.score = score;\n}\n```\n\n## 3. 继承\n\n```java\npublic class GradStudent extends Student {\n    private String topic;\n\n    public GradStudent(String name, int score, String topic) {\n        super(name, score);           // 调用父类构造器\n        this.topic = topic;\n    }\n\n    @Override                          // 重写父类方法\n    public void study() {\n        super.study();                 // 先执行父类逻辑\n        System.out.println(\"研究方向：\" + topic);\n    }\n}\n```\n\nJava **单继承**（一个类只能 extends 一个父类），但可以实现多个接口。\n\n## 4. 多态\n\n```java\nStudent s = new GradStudent(\"困\", 90, \"AI\");\ns.study();    // 运行时调用 GradStudent 的 study（动态绑定）\n```\n\n父类引用指向子类对象 → 调用方法时执行子类重写版本。这是策略模式和模板方法的基础。\n\n## 5. 抽象类与接口\n\n```java\n// 抽象类：不能实例化，可以有构造器和成员变量\npublic abstract class Animal {\n    protected String name;\n    public Animal(String name) { this.name = name; }\n    public abstract void makeSound();       // 抽象方法：子类必须实现\n    public void sleep() { System.out.println(name + \" 睡觉\"); }   // 具体方法\n}\n\n// 接口：纯行为契约（Java 8+ 可有 default 方法）\npublic interface Comparable<T> {\n    int compareTo(T other);\n}\n```\n\n## 6. static 与 final\n\n```java\npublic class Counter {\n    private static int count = 0;          // 类变量（所有实例共享）\n    private final String id;               // 实例常量（构造后不可变）\n    public static final int MAX = 100;     // 类常量\n\n    public Counter(String id) { this.id = id; count++; }\n    public static int getCount() { return count; }   // 静态方法\n}\n```\n\n## 7. 常用 Object 方法\n\n```java\nobj.toString()       // 打印表示（建议重写）\nobj.equals(other)    // 内容比较（建议重写 + hashCode）\nobj.hashCode()       // 哈希码（equals 和 hashCode 必须成对重写）\nobj instanceof Type  // 类型检查\n```\n\n## 8. 下一步\n\n- 《Java 核心进阶：集合框架与并发编程入门》——集合是对象的容器\n- 《SpringMVC》——面向对象在 Web 框架中的应用\n\n## 延伸阅读\n\n- [Oracle Java 教程 · OOP](https://docs.oracle.com/javase/tutorial/java/concepts/)\n- 《Head First Java》——入门最佳",
+    "views": 0
+  },
+  {
+    "id": "x-x03_java_arrays",
+    "title": "Java 数组与字符串",
+    "date": "2026-11-20",
+    "category": "编程语言",
+    "tags": [
+      "Java",
+      "数组",
+      "字符串"
+    ],
+    "excerpt": "数组声明与操作、多维数组、String 常用方法与 StringBuilder。",
+    "content": "## 1. 数组\n\n```java\n// 声明与初始化\nint[] arr = new int[5];               // 动态：长度 5，默认值 0\nint[] arr2 = {1, 2, 3, 4, 5};         // 静态：直接赋值\n\n// 访问与修改\narr[0] = 100;\nint first = arr2[0];                   // 1\nint len = arr2.length;                 // 长度（不是方法，无括号）\n\n// 遍历\nfor (int i = 0; i < arr2.length; i++) { System.out.println(arr2[i]); }\nfor (int x : arr2) { System.out.println(x); }   // for-each\n\n// 多维数组\nint[][] matrix = new int[3][4];        // 3 行 4 列\nint[][] grid = {{1, 2}, {3, 4}};\n```\n\n**工具类 Arrays**：\n\n```java\nimport java.util.Arrays;\nArrays.sort(arr);                     // 排序\nArrays.fill(arr, 0);                  // 填充\nint[] copy = Arrays.copyOf(arr, 10);  // 复制（扩容）\nint idx = Arrays.binarySearch(arr, 42);  // 二分查找\nString s = Arrays.toString(arr);      // 打印\n```\n\n## 2. String：不可变对象\n\n```java\nString s = \"Hello World\";\ns.length();                    // 长度\ns.charAt(0);                   // 取字符 → 'H'\ns.substring(0, 5);             // 截取 → \"Hello\"\ns.indexOf(\"World\");            // 查找位置 → 6\ns.toUpperCase();               // 转大写（返回新串）\ns.trim();                      // 去首尾空格\ns.replace(\"World\", \"Java\");    // 替换（返回新串）\ns.split(\" \");                  // 分割 → String[]\nString.join(\"-\", \"a\", \"b\");    // 拼接 → \"a-b\"\nString.format(\"%s is %d\", name, age);   // 格式化\ns.equals(\"Hello World\");       // 内容比较\ns.equalsIgnoreCase(\"hello world\");      // 忽略大小写比较\ns.contains(\"World\");           // 包含\ns.startsWith(\"Hello\");         // 前缀\n```\n\n**String 不可变**：每次修改返回新对象，原对象不变。频繁拼接用 StringBuilder：\n\n```java\nStringBuilder sb = new StringBuilder();\nfor (int i = 0; i < 100; i++) {\n    sb.append(i).append(\",\");\n}\nString result = sb.toString();\n```\n\n## 3. 类型转换\n\n```java\n// 字符串 ↔ 数字\nint n = Integer.parseInt(\"42\");\ndouble d = Double.parseDouble(\"3.14\");\nString s = String.valueOf(42);\n\n// char ↔ int\nchar c = 'A';\nint code = c;                 // 65\nchar back = (char)(code + 1); // 'B'\n\n// 格式化\nString formatted = String.format(\"%.2f\", 3.14159);   // \"3.14\"\n```\n\n## 4. 下一步\n\n- 《面向对象编程》→ 《Java 核心进阶：集合框架与并发编程入门》\n- 《算法入门》——用 Java 实现排序与搜索\n\n## 延伸阅读\n\n- [Oracle String 文档](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)\n- 站内相关：《JAVA 程序基础》《面向对象编程》《算法入门》",
+    "views": 0
+  },
+  {
+    "id": "x-x04_graph_algorithms",
+    "title": "图与遍历算法（BFS/DFS/拓扑）",
+    "date": "2026-11-20",
+    "category": "数据结构与算法",
+    "tags": [
+      "图",
+      "BFS",
+      "DFS",
+      "拓扑排序",
+      "算法"
+    ],
+    "excerpt": "图的表示、BFS/DFS 遍历、拓扑排序与最短路径——图论算法的核心骨架。",
+    "content": "## 1. 图的表示\n\n```python\n# 邻接表（最常用）\nfrom collections import defaultdict\ngraph = defaultdict(list)\ngraph[0].append(1)\ngraph[0].append(2)\ngraph[1].append(3)\n\n# 邻接矩阵\nmatrix = [[0]*5 for _ in range(5)]\nmatrix[0][1] = 1    # 0 → 1 有边\n```\n\n## 2. BFS：广度优先搜索\n\n按\"层\"遍历——先访问起始节点，再访问所有距离 1 的节点，然后距离 2……适合**最短路径**（无权图）。\n\n```python\nfrom collections import deque\n\ndef bfs(graph, start):\n    visited = {start}\n    queue = deque([start])\n    while queue:\n        node = queue.popleft()\n        print(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n```\n\nLC 题型：二叉树层序遍历（LC102）、岛屿数量（LC200）、单词接龙（LC127）。\n\n## 3. DFS：深度优先搜索\n\n沿着一条路径走到底再回溯——适合**连通性、路径搜索、拓扑排序**。\n\n```python\ndef dfs(graph, node, visited):\n    visited.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n```\n\n递归DFS 注意递归深度（Python 默认 1000），大图改用显式栈：\n\n```python\ndef dfs_iterative(graph, start):\n    visited = set()\n    stack = [start]\n    while stack:\n        node = stack.pop()\n        if node in visited: continue\n        visited.add(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                stack.append(neighbor)\n```\n\n## 4. 拓扑排序：DAG 的线性顺序\n\n有向无环图（DAG）的拓扑排序——依赖关系的线性化（课程表 LC210）。\n\n```python\ndef topo_sort(graph, n):\n    in_degree = [0] * n\n    for u in range(n):\n        for v in graph[u]:\n            in_degree[v] += 1\n    queue = deque([i for i in range(n) if in_degree[i] == 0])\n    result = []\n    while queue:\n        node = queue.popleft()\n        result.append(node)\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    return result if len(result) == n else []   # 空 = 有环\n```\n\n## 5. 最短路径算法对比\n\n| 算法 | 适用 | 复杂度 |\n| --- | --- | --- |\n| BFS | 无权图 | O(V+E) |\n| Dijkstra | 非负权图 | O((V+E)logV) |\n| Bellman-Ford | 可检测负环 | O(VE) |\n| Floyd-Warshall | 全源最短路径 | O(V³) |\n\nDijkstra 核心（优先队列优化）：\n\n```python\nimport heapq\ndef dijkstra(graph, start):\n    dist = {start: 0}\n    heap = [(0, start)]\n    while heap:\n        d, u = heapq.heappop(heap)\n        if d > dist[u]: continue    # 剪枝\n        for v, w in graph[u]:\n            if dist[u] + w < dist.get(v, float('inf')):\n                dist[v] = dist[u] + w\n                heapq.heappush(heap, (dist[v], v))\n    return dist\n```\n\n## 6. 并查集（Union-Find）\n\n动态连通性问题（LC 547 省份数量）：\n\n```python\nclass UnionFind:\n    def __init__(self, n):\n        self.parent = list(range(n))\n    def find(self, x):\n        while self.parent[x] != x:\n            self.parent[x] = self.parent[self.parent[x]]   # 路径压缩\n            x = self.parent[x]\n        return x\n    def union(self, x, y):\n        self.parent[self.find(x)] = self.find(y)\n```\n\n## 延伸阅读\n\n- 站内相关：《数据结构与算法入门》《排序与搜索算法全解》\n- [LeetCode 图论题单](https://leetcode.cn/tag/graph/)",
+    "views": 0
+  },
+  {
+    "id": "x-x05_bitwise_algorithms",
+    "title": "贪心与二分答案专题",
+    "date": "2026-11-20",
+    "category": "数据结构与算法",
+    "tags": [
+      "贪心",
+      "二分答案",
+      "算法"
+    ],
+    "excerpt": "贪心策略的证明方法、二分答案的模板与典型应用——从\"直觉\"到\"可证明\"。",
+    "content": "## 1. 贪心算法：局部最优 → 全局最优\n\n贪心的关键不是\"每次选最大的\"而是**能证明局部最优导致全局最优**。\n\n经典贪心题：\n\n- **区间调度**（LC 435 无重叠区间）：按右端点排序，保留最多不重叠区间\n- **分发饼干**（LC 455）：小饼干喂小胃口\n- **跳跃游戏**（LC 55）：维护最远可达位置\n\n贪心证明方法：**交换论证**——假设存在最优解不是贪心解，通过交换元素构造出贪心解，证明不劣于假设。\n\n## 2. 二分答案：在值域上二分\n\n当答案具有**单调性**（x 可行 → x+1 也可行）时，在答案值域上二分：\n\n```python\ndef binary_search_answer(lo, hi, check):\n    \"\"\"check(x) 返回 True 表示 x 可行\"\"\"\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if check(mid):\n            hi = mid          # mid 可行，尝试更小\n        else:\n            lo = mid + 1      # mid 不可行，尝试更大\n    return lo                 # lo = 最小可行值\n```\n\n典型应用：\n\n- **LC 410 分割数组最大和**：二分\"最大子数组和\"的值，check 是否能分 ≤ m 段\n- **LC 875 爱吃香蕉的珂珂**：二分吃香蕉速度\n- **LC 1011 运输货物**：二分船的运载能力\n\n## 3. 二分查找三大模板对比\n\n```python\n# 模板一：找确切值（左右闭区间）\nl, r = 0, len(a) - 1\nwhile l <= r:\n    m = (l + r) // 2\n    if a[m] == t: return m\n    if a[m] < t: l = m + 1\n    else: r = m - 1\n\n# 模板二：找左边界（第一个 >= t）\nl, r = 0, len(a)\nwhile l < r:\n    m = (l + r) // 2\n    if a[m] < t: l = m + 1\n    else: r = m\n\n# 模板三：找右边界（最后一个 <= t）\nl, r = -1, len(a) - 1\nwhile l < r:\n    m = (l + r + 1) // 2     # +1 防死循环\n    if a[m] <= t: l = m\n    else: r = m - 1\n```\n\n## 4. 经典贪心题集\n\n| 题目 | 策略 |\n| --- | --- |\n| LC 55 跳跃游戏 | 维护最远可达 |\n| LC 452 引爆气球 | 按右端点排序，贪心射箭 |\n| LC 435 无重叠区间 | 按右端点排序，保留最多 |\n| LC 763 划分字母区间 | 记录每字母最后位置 |\n\n## 5. 延伸阅读\n\n- 站内相关：《数据结构与算法入门》《排序与搜索算法全解》《动态规划入门》\n- 《算法导论》第 16 章（贪心）第 15 章（DP 对比）",
+    "views": 0
+  },
+  {
+    "id": "x-x06_ip_subnet",
+    "title": "IP 地址与子网划分",
+    "date": "2026-11-20",
+    "category": "计算机网络",
+    "tags": [
+      "IP",
+      "子网",
+      "CIDR",
+      "网络"
+    ],
+    "excerpt": "IPv4 地址结构、子网掩码、CIDR 记法与私网地址——网络的门牌系统。",
+    "content": "## 1. IPv4 地址结构\n\n32 位二进制 → 4 个字节 → 点分十进制：\n\n```text\n192.168.71.121\n└─┬─┘└┬─┘└┬─┘└┬─┘\n 192   168   71   121\n```\n\n**网络部分 + 主机部分**由子网掩码划分。\n\n## 2. 子网掩码与 CIDR\n\n子网掩码标记哪些位是网络号：\n\n```text\nIP:      192.168.71.121\n掩码:    255.255.255.0    (/24)\n────────────────────────\n网络号:  192.168.71.0\n主机号:  0.0.0.121\n```\n\nCIDR 记法：`192.168.71.0/24` 表示前 24 位是网络号，主机位 8 位 → 254 个可用地址（去掉网络地址和广播地址）。\n\n常用 CIDR：\n\n| CIDR | 掩码 | 可用主机 |\n|------|------|----------|\n| /24 | 255.255.255.0 | 254 |\n| /25 | 255.255.255.128 | 126 |\n| /26 | 255.255.255.192 | 62 |\n| /16 | 255.255.0.0 | 65,534 |\n| /8 | 255.0.0.0 | 16,777,214 |\n\n## 3. 特殊地址\n\n- `0.0.0.0`：所有网络接口（服务监听用）\n- `127.0.0.1`：本地回环\n- `255.255.255.255`：广播\n- `169.254.x.x`：DHCP 分配失败时的自动私有地址\n\n## 4. 私网地址（RFC 1918）\n\n```text\n10.0.0.0/8          (10.0.0.0 ~ 10.255.255.255)\n172.16.0.0/12       (172.16.0.0 ~ 172.31.255.255)\n192.168.0.0/16      (192.168.0.0 ~ 192.168.255.255)\n```\n\n你的内网 `192.168.71.x` 就是 C 类私网——路由器不做 NAT 时无法被公网访问。\n\n## 5. 子网划分实例\n\n把 `192.168.71.0/24` 分成 4 个子网：\n\n```text\n借 2 位主机位做子网位 → /26\n\n子网 1: 192.168.71.0/26    (0-63)     可用: 1-62\n子网 2: 192.168.71.64/26   (64-127)   可用: 65-126\n子网 3: 192.168.71.128/26  (128-191)  可用: 129-190\n子网 4: 192.168.71.192/26  (192-255)  可用: 193-254\n```\n\n每子网可用主机 = 2^6 - 2 = 62（去掉网络地址和广播地址）。\n\n## 6. 实用命令\n\n```bash\n# Windows\nipconfig /all\nroute print\n\n# Linux\nip addr show\nip route show\n```\n\n## 延伸阅读\n\n- [Subnet Cheat Sheet](https://www.freecodecamp.org/news/subnet-cheat-sheet/)\n- 站内相关：《网络基础：IP 地址与访问流程》《NAT 网络地址转换》",
+    "views": 0
+  },
+  {
+    "id": "x-x07_dns_flow",
+    "title": "DNS 与一次完整的网页访问",
+    "date": "2026-11-20",
+    "category": "计算机网络",
+    "tags": [
+      "DNS",
+      "HTTP",
+      "网络",
+      "排障"
+    ],
+    "excerpt": "DNS 解析全过程、hosts 文件、缓存层级与排障命令。",
+    "content": "## 1. DNS 解析完整链路\n\n```\n浏览器输入 baidu.com\n  ↓\n1. 浏览器 DNS 缓存\n2. 系统 hosts 文件 (/etc/hosts 或 C:\\Windows\\System32\\drivers\\etc\\hosts)\n3. 本地 DNS 服务器（运营商或 8.8.8.8）\n4. 根 DNS → .com 顶级 → baidu.com 权威 DNS\n  ↓\n返回 IP → 浏览器建立 TCP 连接\n```\n\n## 2. DNS 记录类型\n\n| 类型 | 用途 |\n| --- | --- |\n| A | 域名 → IPv4 |\n| AAAA | 域名 → IPv6 |\n| CNAME | 域名 → 另一个域名（如 CDN） |\n| MX | 邮件服务器 |\n| TXT | 文本（验证/SPF） |\n| NS | 权威 DNS 服务器 |\n\n## 3. hosts 文件：本地 DNS 覆盖\n\n```text\n# Linux: /etc/hosts\n# Windows: C:\\Windows\\System32\\drivers\\etc\\hosts\n192.168.71.82  spark01\n192.168.71.84  spark02\n192.168.71.121 winery\n```\n\n集群节点互通的标准做法——所有节点保持同一份 hosts。Hadoop/ES 对 hostname 解析极其敏感。\n\n## 4. DNS 排障命令\n\n```bash\nnslookup baidu.com              # 查询解析\nnslookup baidu.com 8.8.8.8     # 指定 DNS 服务器\ndig baidu.com ANY               # 全部记录\nipconfig /flushdns              # Windows 清缓存\nsudo systemd-resolve --flush-caches   # Linux 清缓存\n```\n\n## 5. 一次完整的网页访问（全流程串联）\n\n```\n1. URL 解析（协议/域名/路径）\n2. DNS 解析 → 获取 IP\n3. TCP 三次握手（SYN → SYN+ACK → ACK）\n4. TLS 握手（HTTPS）\n5. 发送 HTTP 请求\n6. 服务器处理 → 返回 HTTP 响应\n7. 浏览器解析渲染\n8. 关闭/复用 TCP 连接\n```\n\n排障对应每一步：DNS 不通 → 查 hosts/DNS；TCP 不通 → 查防火墙/路由；TLS 失败 → 查证书；HTTP 4xx/5xx → 查应用。\n\n## 延伸阅读\n\n- 站内相关：《网络基础：IP 地址与访问流程》《HTTP/HTTPS 协议详解》《NAT 网络地址转换》《主机名与 hosts 解析配置》",
+    "views": 0
+  },
+  {
+    "id": "x-x08_os_concepts",
+    "title": "操作系统核心概念",
+    "date": "2026-11-20",
+    "category": "计算机组成",
+    "tags": [
+      "操作系统",
+      "进程",
+      "内存",
+      "调度"
+    ],
+    "excerpt": "进程与线程、虚拟内存、调度算法、系统调用——OS 核心概念速览。",
+    "content": "## 1. 进程与线程\n\n- **进程**：资源分配的基本单位（独立地址空间、文件描述符、信号处理）\n- **线程**：CPU 调度的基本单位（共享进程地址空间，有自己的栈和寄存器）\n\n```bash\nps aux | head -5          # 进程列表\nps -eLf | wc -l           # 含线程数\ntop -H                    # 按线程查看\n```\n\n**进程间通信（IPC）**：管道、消息队列、共享内存、信号量、Socket。\n**线程同步**：互斥锁、条件变量、读写锁、信号量。\n\n## 2. 虚拟内存\n\n每个进程有独立的虚拟地址空间（64 位系统 256TB），通过页表映射到物理内存：\n\n```\n虚拟地址 → 页表查找 → 物理地址\n                ↓ 未命中\n           Page Fault → 从磁盘调入\n```\n\n- **页面置换**：LRU（最近最少使用）、Clock（时钟算法）\n- **TLB**：页表缓存，加速地址转换\n- **Swap**：物理内存不足时换出到磁盘（`swapon --show` 查看）\n\n## 3. CPU 调度\n\nLinux 使用 **CFS（Completely Fair Scheduler）**：\n\n- 每个进程有 vruntime（虚拟运行时间）\n- 调度器选择 vruntime 最小的进程运行\n- 优先级通过 nice 值（-20 ~ 19）影响 vruntime 增长速度\n\n```bash\nnice -n 10 command        # 低优先级运行\nrenice -n 5 -p <pid>      # 修改运行中进程优先级\nchrt                      # 实时调度策略查看\n```\n\n## 4. 系统调用（System Call）\n\n用户态 → 内核态的接口：\n\n```bash\nstrace ls                 # 追踪系统调用\nstrace -c ls              # 统计调用次数\n```\n\n常用：`open/read/write/close`（文件）、`fork/exec`（进程）、`mmap`（内存映射）、`socket/bind/listen`（网络）。\n\n## 5. 中断\n\n硬件打断 CPU 当前执行——中断处理程序（ISR）响应：\n\n- **硬件中断**：网卡收包、定时器到期、磁盘完成\n- **软中断**：`softirq` 处理延迟任务（网络收包后半部）\n- 查看：`cat /proc/interrupts`、`vmstat` 的 in 列\n\n## 6. 性能监控\n\n```bash\nvmstat 1                  # 每秒系统状态（r/b/wa 列最重要）\niostat -x 1               # 磁盘 IO\nmpstat -P ALL 1           # 每核 CPU\nsar -n DEV 1              # 网络流量\n```\n\n高 load 排查流程：`uptime` 看负载 → `top` 看 CPU → `vmstat` 看 IO → `iostat -x` 看磁盘 → `pidstat` 定位进程。\n\n## 延伸阅读\n\n- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 进阶》\n- 《深入理解计算机系统（CSAPP）》第 8-9 章——进程与虚拟内存",
+    "views": 0
+  },
+  {
+    "id": "x-x09_grep_awk",
+    "title": "Linux 文本三剑客：grep/sed/awk",
+    "date": "2026-11-20",
+    "category": "操作系统与运维",
+    "tags": [
+      "Linux",
+      "grep",
+      "sed",
+      "awk",
+      "文本处理"
+    ],
+    "excerpt": "三剑客的组合拳——grep 搜索、sed 替换、awk 分析，日志处理的完整工具链。",
+    "content": "## 1. grep：搜索\n\n```bash\ngrep \"error\" app.log              # 基本搜索\ngrep -i \"error\" app.log           # 忽略大小写\ngrep -n \"error\" app.log           # 显示行号\ngrep -r \"TODO\" src/               # 递归搜目录\ngrep -c \"GET\" access.log          # 统计匹配行数\ngrep -v \"debug\" app.log           # 反向（排除）\ngrep -E \"error|warn\" app.log      # 扩展正则\ngrep -A 3 -B 1 \"error\" app.log    # 显示匹配行后3行前1行\n```\n\n## 2. sed：流编辑器\n\n```bash\nsed 's/old/new/' file             # 替换每行第一个匹配\nsed 's/old/new/g' file            # 全局替换\nsed -i 's/old/new/g' file         # 直接修改文件\nsed -n '10,20p' file              # 打印 10-20 行\nsed '/debug/d' file               # 删除包含 debug 的行\nsed '1d' file                     # 删除第一行\n```\n\n## 3. awk：按列分析\n\n```bash\nawk '{print $1}' access.log       # 打印第一列\nawk '{sum += $NF} END {print sum}' file    # 最后一列求和\nawk -F: '{print $1}' /etc/passwd  # 以冒号分列\nawk '$3 > 100 {print $1}' file    # 条件过滤\nawk 'NR > 1 {print}' file         # 跳过标题行\n```\n\n内置变量：`$0` 整行、`$1..$NF` 各列、`NF` 列数、`NR` 行号、`FS` 列分隔符。\n\n## 4. 三剑客组合拳\n\n**日志分析实战**：\n\n```bash\n# 统计每个 IP 的请求次数（Top 10）\nawk '{print $1}' access.log | sort | uniq -c | sort -rn | head -10\n\n# 统计各状态码分布\nawk '{print $9}' access.log | sort | uniq -c | sort -rn\n\n# 找出所有 5xx 请求的 URL\ngrep \" 5[0-9][0-9] \" access.log | awk '{print $7}' | sort | uniq -c | sort -rn\n\n# 统计每个接口的平均响应时间\nawk '{sum[$7] += $NF; count[$7]++} END {for (url in sum) printf \"%s %.2fms\\n\", url, sum[url]/count[url]}' timing.log\n```\n\n## 5. 实用别名（加到 ~/.bashrc）\n\n```bash\nalias ll='ls -lah'\nalias gs='git status'\nalias ports='ss -tlnp | grep LISTEN'\nalias myip='curl -s ifconfig.me'\n```\n\n## 延伸阅读\n\n- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 进阶》《Linux 服务器运维清单》\n- [GNU sed 手册](https://www.gnu.org/software/sed/manual/sed.html)\n- [GNU awk 手册](https://www.gnu.org/software/gawk/manual/gawk.html)",
+    "views": 0
+  },
+  {
+    "id": "x-x10_shell_script",
+    "title": "Shell 脚本入门",
+    "date": "2026-11-20",
+    "category": "操作系统与运维",
+    "tags": [
+      "Shell",
+      "Bash",
+      "脚本",
+      "自动化"
+    ],
+    "excerpt": "变量、条件、循环、函数与参数——把重复操作写成一行脚本。",
+    "content": "## 1. 第一个脚本\n\n```bash\n#!/bin/bash\n# hello.sh\necho \"Hello, $USER\"\n```\n\n```bash\nchmod +x hello.sh      # 加执行权限\n./hello.sh             # 运行\nbash hello.sh          # 或直接 bash 运行\n```\n\n`#!/bin/bash` 是 shebang：告诉系统用哪个解释器执行。\n\n## 2. 变量\n\n```bash\nNAME=\"winery\"              # 赋值等号两边不能有空格！\necho \"Hello, $NAME\"        # 引用（双引号内解析）\necho 'Hello, $NAME'        # 单引号不解析（原样输出）\n\nreadonly PI=3.14            # 只读变量\nunset NAME                  # 删除变量\n```\n\n**命令替换**：\n\n```bash\nCURRENT_DATE=$(date +%Y-%m-%d)\nFILE_COUNT=$(ls | wc -l)\necho \"Today is $CURRENT_DATE, $FILE_COUNT files\"\n```\n\n**位置参数**：\n\n```bash\n./script.sh arg1 arg2\necho $1                     # arg1\necho $2                     # arg2\necho $#                     # 参数个数\necho $@                     # 所有参数\n```\n\n## 3. 条件判断\n\n```bash\n# 数字比较\nif [ \"$1\" -gt 10 ]; then\n    echo \"大于 10\"\nelif [ \"$1\" -eq 10 ]; then\n    echo \"等于 10\"\nelse\n    echo \"小于 10\"\nfi\n\n# 字符串比较\nif [ -z \"$NAME\" ]; then echo \"为空\"; fi      # -z 空串\nif [ -n \"$NAME\" ]; then echo \"非空\"; fi      # -n 非空\nif [ \"$A\" = \"$B\" ]; then echo \"相等\"; fi\n\n# 文件测试\nif [ -f \"$FILE\" ]; then echo \"是文件\"; fi\nif [ -d \"$DIR\" ]; then echo \"是目录\"; fi\nif [ -x \"$FILE\" ]; then echo \"可执行\"; fi\n```\n\n## 4. 循环\n\n```bash\n# for 遍历列表\nfor item in apple banana cherry; do\n    echo \"水果: $item\"\ndone\n\n# for 范围\nfor i in {1..10}; do echo \"$i\"; done\nfor i in $(seq 1 10); do echo \"$i\"; done\n\n# while 读文件逐行\nwhile IFS= read -r line; do\n    echo \"处理: $line\"\ndone < input.txt\n\n# C 风格 for\nfor ((i = 0; i < 10; i++)); do echo $i; done\n```\n\n## 5. 函数\n\n```bash\ndeploy() {\n    local ENV=$1               # local 限定作用域\n    local BRANCH=${2:-main}    # 默认值\n    echo \"部署 $ENV 分支 $BRANCH\"\n    # 部署逻辑...\n}\n\ndeploy \"production\" \"release\"\ndeploy \"staging\"\n\n# 返回值：echo 输出 + $() 捕获\nget_version() {\n    echo \"1.0.0\"\n}\nVERSION=$(get_version)\n```\n\n## 6. 实用脚本模板\n\n```bash\n#!/bin/bash\nset -euo pipefail              # 出错即退出 + 未定义变量报错 + 管道错误传播\n\nBACKUP_DIR=\"/backup/$(date +%Y%m%d)\"\nmkdir -p \"$BACKUP_DIR\"\ntar -czf \"$BACKUP_DIR/data.tar.gz\" /var/www/data\n\n# 只保留最近 7 天\nfind \"$BACKUP_DIR\" -name \"*.tar.gz\" -mtime +7 -delete\n\necho \"备份完成: $BACKUP_DIR\"\n```\n\n`set -euo pipefail` 三行是生产脚本标配：出错即退出 + 未定义变量报错 + 管道中间错误传播。\n\n## 延伸阅读\n\n- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 服务器运维清单》\n- [Google Shell 风格指南](https://google.github.io/styleguide/shellguide.html)",
+    "views": 0
+  },
+  {
+    "id": "x-x11_kotlin_coroutines",
+    "title": "Kotlin 协程与 Flow",
+    "date": "2026-11-20",
+    "category": "移动与跨端",
+    "tags": [
+      "Kotlin",
+      "协程",
+      "Flow",
+      "异步"
+    ],
+    "excerpt": "挂起函数、协程作用域、Flow 数据流——Kotlin 异步编程的核心。",
+    "content": "## 1. 协程：轻量级异步\n\n```kotlin\nimport kotlinx.coroutines.*\n\nfun main() = runBlocking {\n    launch {                        // 启动协程\n        delay(1000L)                // 非阻塞挂起 1 秒\n        println(\"World!\")\n    }\n    print(\"Hello, \")\n}\n```\n\n协程比线程轻量万倍：可启动十万级协程而只占几 MB 内存。`delay` 不阻塞线程——线程让给其他协程。\n\n## 2. 协程作用域\n\n| 作用域 | 生命周期 | Android 场景 |\n| --- | --- | --- |\n| `GlobalScope` | 全局 | ⚠️ 不推荐（泄漏） |\n| `lifecycleScope` | Activity/Fragment | UI 相关 |\n| `viewModelScope` | ViewModel | 数据加载 |\n\n```kotlin\nclass MyViewModel : ViewModel() {\n    fun loadData() {\n        viewModelScope.launch {     // ViewModel 销毁时自动取消\n            val data = fetchFromNetwork()\n            _uiState.value = data\n        }\n    }\n}\n```\n\n## 3. 挂起函数\n\n```kotlin\nsuspend fun fetchUser(id: Int): User {\n    delay(1000)                    // 模拟网络请求\n    return User(\"winery\", 3)\n}\n\n// 串行调用（总耗时 = 各次之和）\nval user = fetchUser(1)\nval orders = fetchOrders(user.id)\n\n// 并行调用（总耗时 = 最长的那个）\nval userDeferred = async { fetchUser(1) }\nval ordersDeferred = async { fetchOrders(1) }\nval user = userDeferred.await()\nval orders = ordersDeferred.await()\n```\n\n## 4. 异常处理\n\n```kotlin\ntry {\n    viewModelScope.launch {\n        val data = fetchData()\n    }\n} catch (e: Exception) {\n    _error.value = e.message\n}\n\n// CoroutineExceptionHandler\nval handler = CoroutineExceptionHandler { _, e ->\n    println(\"捕获: $e\")\n}\nlaunch(handler) { throw Exception(\"崩了\") }\n```\n\n## 5. Flow：响应式数据流\n\n```kotlin\nfun fetchData(): Flow<String> = flow {\n    emit(\"开始加载\")\n    delay(1000)\n    emit(\"数据块1\")\n    delay(500)\n    emit(\"数据块2\")\n}\n\n// 收集\nlifecycleScope.launch {\n    fetchData().collect { value ->\n        println(\"收到: $value\")\n    }\n}\n```\n\nFlow 操作符链：\n\n```kotlin\nflowOf(1, 2, 3)\n    .map { it * 2 }\n    .filter { it > 2 }\n    .onEach { println(\"收到 $it\") }\n    .collect()\n```\n\n## 6. StateFlow 与 SharedFlow\n\n```kotlin\n// StateFlow：状态持有（总是有值）\nprivate val _uiState = MutableStateFlow<UiState>(UiState.Loading)\nval uiState: StateFlow<UiState> = _uiState.asStateFlow()\n\n// SharedFlow：事件广播\nprivate val _events = MutableSharedFlow<Event>()\nval events = _events.asSharedFlow()\n\nfun sendEvent(e: Event) { _events.emit(e) }\n```\n\n## 7. Android 实战模式\n\n```kotlin\nclass MyViewModel : ViewModel() {\n    private val _items = MutableStateFlow<List<Item>>(emptyList())\n    val items: StateFlow<List<Item>> = _items.asStateFlow()\n\n    fun refresh() {\n        viewModelScope.launch {\n            _items.value = repository.fetchItems()\n        }\n    }\n}\n```\n\n## 延伸阅读\n\n- [Kotlin 协程官方指南](https://kotlinlang.org/docs/coroutines-guide.html)\n- 站内相关：《2.Kotlin 必知必会》《Android 四大组件与生命周期》《OkHttp 使用指南》",
+    "views": 0
+  },
+  {
+    "id": "x-x11_sql_advanced",
+    "title": "事务与隔离级别",
+    "date": "2026-11-20",
+    "category": "数据库",
+    "tags": [
+      "事务",
+      "ACID",
+      "隔离级别",
+      "MVCC"
+    ],
+    "excerpt": "ACID 四特性、隔离级别与并发问题、MVCC 原理——数据库事务全景。",
+    "content": "## 1. 事务的 ACID\n\n- **原子性（Atomicity）**：全成或全不做（undo log 回滚）\n- **一致性（Consistency）**：约束不被破坏\n- **隔离性（Isolation）**：并发事务互不干扰（锁 + MVCC）\n- **持久性（Durability）**：提交后数据不丢（redo log + WAL）\n\n```sql\nBEGIN;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;    -- 或 ROLLBACK 撤销\n```\n\n## 2. 并发问题\n\n| 问题 | 描述 | 示例 |\n|------|------|------|\n| 脏读 | 读到未提交的数据 | A 改了但未提交，B 读到了 |\n| 不可重复读 | 同一行两次读取值不同 | A 读两次，B 中间改了 |\n| 幻读 | 同条件两次查询行数不同 | A 查两次，B 中间插入了 |\n\n## 3. 隔离级别\n\n```sql\nSET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;\n```\n\n| 级别 | 脏读 | 不可重复读 | 幻读 |\n|------|------|------|------|\n| READ UNCOMMITTED | 有 | 有 | 有 |\n| READ COMMITTED | 无 | 有 | 有 |\n| REPEATABLE READ（MySQL 默认）| 无 | 无 | InnoDB 基本避免 |\n| SERIALIZABLE | 无 | 无 | 无 |\n\n## 4. MVCC：多版本并发控制\n\nInnoDB 每行有隐藏列：`trx_id`（最后修改的事务）+ `roll_pointer`（undo log 链）。\n\n读操作不加锁，通过 Read View 判断版本可见性：\n- REPEATABLE READ：整个事务期间使用同一个 Read View\n- READ COMMITTED：每次 SELECT 生成新 Read View\n\n这就是 InnoDB 能做到\"读写不阻塞\"的原因。\n\n## 5. 锁机制\n\n```sql\n-- 行锁（InnoDB）：锁定索引记录\nSELECT * FROM users WHERE id = 1 FOR UPDATE;   -- 排他锁\nSELECT * FROM users WHERE id = 1 LOCK IN SHARE MODE;  -- 共享锁\n\n-- 间隙锁（REPEATABLE READ）：锁住索引间隙，防幻读\n-- 意向锁：表级锁，表示表内有行锁\n```\n\n死锁：两个事务互相等待对方持有的锁。InnoDB 自动检测并回滚代价小的事务。`SHOW ENGINE INNODB STATUS` 查看最近死锁。\n\n## 6. 索引优化实战\n\n```sql\n-- B+ 树索引\nCREATE INDEX idx_user_created ON orders(user_id, created_at);\n\n-- 联合索引最左前缀\nWHERE user_id = 1                    → 命中\nWHERE user_id = 1 AND created_at > x → 命中\nWHERE created_at > x                 → 不命中（缺最左列）\n\n-- 覆盖索引：查询列全在索引中，不回表\nSELECT user_id FROM orders WHERE user_id = 1;    -- 覆盖索引，不回表\n\n-- EXPLAIN 分析\nEXPLAIN SELECT * FROM orders WHERE user_id = 1;\n-- type: ref（索引）/ ALL（全表扫 = 优化）\n-- rows: 预估扫描行数\n-- Extra: Using index（覆盖索引）/ Using filesort（需优化）\n```\n\n## 延伸阅读\n\n- 站内相关：《数据库系统导论》《SQL 快速入门》《SQL 进阶：JOIN、聚合与索引》《Redis 入门》\n- 《高性能 MySQL》——进阶必读",
+    "views": 0
+  },
+  {
+    "id": "x-x12_python_automation",
+    "title": "Python 自动化：Selenium 与 pyautogui",
+    "date": "2026-11-20",
+    "category": "编程语言",
+    "tags": [
+      "Python",
+      "Selenium",
+      "pyautogui",
+      "自动化"
+    ],
+    "excerpt": "浏览器自动化与桌面 GUI 自动化——让重复工作自动完成的两大利器。",
+    "content": "## 1. Selenium：浏览器自动化\n\n```bash\npip install selenium webdriver-manager\n```\n\n```python\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\n\ndriver = webdriver.Chrome()     # 自动下载 ChromeDriver\ndriver.get(\"https://www.baidu.com\")\n\n# 查找元素（8 种定位方式）\nsearch = driver.find_element(By.ID, \"kw\")\nsearch = driver.find_element(By.NAME, \"wd\")\nsearch = driver.find_element(By.CSS_SELECTOR, \"#kw\")\nsearch = driver.find_element(By.XPATH, \"//input[@id='kw']\")\n\n# 操作\nsearch.send_keys(\"Python 自动化\")\nsearch.submit()\n\n# 等待元素出现（显式等待）\nWebDriverWait(driver, 10).until(\n    EC.presence_of_element_located((By.CSS_SELECTOR, \"#results\"))\n)\n\n# 获取数据\nresults = driver.find_elements(By.CSS_SELECTOR, \".result h3\")\nfor r in results: print(r.text)\n\ndriver.quit()\n```\n\n## 2. 显式等待 vs 隐式等待\n\n```python\nfrom selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\n\n# 显式等待：最多等 10 秒直到条件满足\nel = WebDriverWait(driver, 10).until(\n    EC.element_to_be_clickable((By.ID, \"submit\"))\n)\n\n# 常用条件\nEC.presence_of_element_located((By.ID, \"id\"))     # 存在\nEC.visibility_of_element_located((By.ID, \"id\"))   # 可见\nEC.element_to_be_clickable((By.ID, \"id\"))          # 可点击\nEC.url_contains(\"/page\")                           # URL 包含\nEC.title_is(\"标题\")                                # 页面标题\n```\n\n## 3. pyautogui：桌面 GUI 自动化\n\n```bash\npip install pyautogui\n```\n\n```python\nimport pyautogui\nimport time\n\npyautogui.click(100, 200)          # 点击坐标\npyautogui.typewrite(\"hello\", interval=0.05)  # 打字\npyautogui.hotkey(\"ctrl\", \"c\")      # 快捷键\npyautogui.screenshot(\"screen.png\") # 截屏\n\n# 安全模式：鼠标甩到左上角立即停止\npyautogui.FAILSAFE = True\n```\n\n## 4. 实战：自动填表提交\n\n```python\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nimport time\n\ndriver = webdriver.Chrome()\ndriver.get(\"http://target.com/form\")\n\n# 填写表单\ndriver.find_element(By.NAME, \"username\").send_keys(\"winery\")\ndriver.find_element(By.NAME, \"password\").send_keys(\"secret\")\ndriver.find_element(By.CSS_SELECTOR, \"button[type=submit]\").click()\n\ntime.sleep(2)\nprint(\"URL:\", driver.current_url)\n\ndriver.quit()\n```\n\n## 5. Headless 模式（无浏览器窗口）\n\n```python\noptions = webdriver.ChromeOptions()\noptions.add_argument(\"--headless=new\")\noptions.add_argument(\"--no-sandbox\")\ndriver = webdriver.Chrome(options=options)\n```\n\n适合服务器定时任务（CI/CD、爬虫、监控），不需要显示浏览器窗口。\n\n## 6. 最佳实践\n\n1. **优先 CSS 选择器**（比 XPath 快且可读）\n2. **显式等待**代替 `time.sleep()`\n3. **Page Object 模式**：页面封装成类，测试脚本只调方法\n4. **Headless 测试** + 截图断言\n5. **日志和重试**：失败自动截图保存现场\n\n## 延伸阅读\n\n- [Selenium 官方文档](https://www.selenium.dev/documentation/)\n- [pyautogui 官方文档](https://pyautogui.readthedocs.io/)\n- 站内相关：《Python 基础入门》《gui 自动化操作》《Web 安全学习路线总纲》",
+    "views": 0
+  },
+  {
+    "id": "x-x13_software_testing",
+    "title": "软件测试入门：从手工到自动化",
+    "date": "2026-11-20",
+    "category": "方法与工具",
+    "tags": [
+      "软件测试",
+      "QA",
+      "自动化测试",
+      "测试用例"
+    ],
+    "excerpt": "测试思维、用例设计方法、接口与 UI 自动化——质量保障工程师的完整入门地图。",
+    "content": "## 1. 什么是软件测试\n\n测试不是为了\"证明软件没有 bug\"（不可能），而是**在有限成本内尽可能多地发现缺陷、给出质量信心**。\n\n| 层级 | 测什么 | 谁来做 |\n| --- | --- | --- |\n| 单元测试 | 函数/类 | 开发 |\n| 集成测试 | 模块之间接口 | 开发/测试 |\n| 系统测试 | 完整功能 | 测试 |\n| 验收测试 | 业务需求 | 测试/产品 |\n\n测试金字塔：底层单元测试数量最多、运行最快；顶层手工探索测试最少。\n\n## 2. 测试用例设计（核心手艺）\n\n### 等价类划分\n把输入分成若干\"等价类\"，每类取一个代表：\n\n```\n输入：年龄（18-60 有效）\n有效等价类：25        → 1 条用例\n无效等价类：10、70、-1、\"abc\" → 4 条用例\n边界值：17、18、60、61        → 4 条用例\n```\n\n### 边界值分析\nBug 最爱藏在边界上。区间 `[1,100]` 必测：`0、1、2、99、100、101`。\n\n### 判定表\n多条件组合用表格穷举：\n\n| 条件 | 已登录 | 有库存 | 动作 |\n| --- | --- | --- | --- |\n| 1 | 是 | 是 | 可下单 |\n| 2 | 是 | 否 | 提示缺货 |\n| 3 | 否 | - | 跳转登录 |\n\n### 场景法\n按用户路径走：`打开首页 → 搜索 → 加购 → 结算 → 支付`，每条路径的正向/异常分支都要覆盖。\n\n## 3. 缺陷报告怎么写\n\n一个好 Bug 单 = **一步复现**：\n\n```\n标题：【结算页】优惠券金额为 0 时下单报 500\n环境：Chrome 120 / staging\n前置：账号 A 持有满减券（门槛 100）\n步骤：\n1. 加购 100 元商品\n2. 选择 0 元优惠券（异常数据）\n3. 点击结算\n期望：提示优惠券不可用，正常下单\n实际：页面报 500，订单未创建\n复现率：5/5\n附件：截图 + 请求响应 + 订单号\n```\n\n## 4. 接口测试\n\nUI 还没做就能测接口——**左移**是效率的关键：\n\n```python\nimport requests\n\ndef test_login_ok():\n    r = requests.post(\"https://api.demo.com/login\", json={\n        \"username\": \"tester\", \"password\": \"right-pass\"\n    })\n    assert r.status_code == 200\n    assert \"token\" in r.json()\n    assert r.elapsed.total_seconds() < 2      # 性能断言\n\ndef test_login_wrong_pass():\n    r = requests.post(\"https://api.demo.com/login\", json={\n        \"username\": \"tester\", \"password\": \"wrong\"\n    })\n    assert r.status_code in (401, 403)        # 不能 500！\n    assert \"token\" not in r.json()            # 不能泄漏 token\n```\n\n断言三板斧：**状态码**、**业务字段**、**响应时间**。\n\n## 5. UI 自动化（Selenium 现代实践）\n\n```python\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\n\ndef test_search(driver):\n    driver.get(\"https://demo.com\")\n    box = driver.find_element(By.CSS_SELECTOR, \"#search\")\n    box.send_keys(\"键盘\")\n    box.submit()\n\n    # 显式等待：结果出现再断言（拒绝 sleep）\n    WebDriverWait(driver, 10).until(\n        EC.presence_of_element_located((By.CLASS_NAME, \"result-item\"))\n    )\n    assert len(driver.find_elements(By.CLASS_NAME, \"result-item\")) > 0\n```\n\n五条军规：\n1. **显式等待**替代 `time.sleep`\n2. **选择器稳定**：优先 `data-testid`，避免脆的 CSS 路径\n3. **一用例一断言主题**：一个用例只验证一件事\n4. **测试数据自造自清**：不依赖别人留下的数据\n5. **失败自动截图**：留现场\n\n## 6. 测试策略：怎么决定测什么\n\n- **风险驱动**：支付、登录这类高风险功能重点测\n- **变更驱动**：回归测试聚焦本次改动影响面\n- **80/20**：80% 的缺陷集中在 20% 的模块，历史 Bug 多的地方继续加测\n\n## 7. 学习路径\n\n1. 手工功能测试 → 用例设计方法（本文 §2）\n2. SQL + HTTP（能查数据、能抓接口）\n3. Python + pytest + Selenium 自动化\n4. CI 集成：Git 提交触发自动化回归\n5. 性能测试（JMeter）与安全测试（延伸）\n\n## 延伸阅读\n\n- 站内相关：《Python 自动化：Selenium 与 pyautogui》《SQL 快速入门》《HTTP/HTTPS 协议详解》\n- 《Google 软件测试之道》——测试金字塔的出处",
+    "views": 0
+  },
+  {
+    "id": "x-x14_gamedev_overview",
+    "title": "游戏开发概论：循环、实体与玩法",
+    "date": "2026-11-20",
+    "category": "游戏与图形",
+    "tags": [
+      "游戏开发",
+      "游戏循环",
+      "ECS",
+      "游戏设计"
+    ],
+    "excerpt": "游戏如何运转：游戏循环、实体系统、碰撞与状态机——一切引擎背后的共同骨架。",
+    "content": "## 1. 游戏的本质是一个循环\n\n所有游戏（不管 2D 手游还是 3A 大作）每秒都在重复同一件事：\n\n```\nwhile (游戏运行中) {\n    处理输入();      // 键盘、鼠标、手柄\n    更新逻辑();      // 移动、碰撞、AI、动画进度\n    渲染画面();      // 把世界画到屏幕上\n}                    // 目标：每秒 60 次（60 FPS）\n```\n\n这就是**游戏循环（Game Loop）**。帧率 60 FPS 意味着每帧预算只有 **16.7ms**——超了就掉帧卡顿。\n\n```javascript\n// 浏览器里的游戏循环\nlet last = 0;\nfunction loop(t) {\n  const dt = (t - last) / 1000;   // 距上帧秒数\n  last = t;\n  update(dt);                      // 逻辑用 dt 缩放，不同帧率速度一致\n  render();\n  requestAnimationFrame(loop);\n}\nrequestAnimationFrame(loop);\n```\n\n**关键概念：dt（delta time）**。移动速度永远乘以 dt，否则高刷屏游戏会变快：\n\n```javascript\nplayer.x += speed * dt;   // ✓ 任何帧率下每秒移动 speed 像素\nplayer.x += speed;        // ✗ 144Hz 屏会比 60Hz 快 2.4 倍\n```\n\n## 2. 实体：游戏世界的基本单位\n\n游戏里的每个\"东西\"——玩家、子弹、敌人、金币——都是实体。两种组织方式：\n\n### 继承式（OOP 直觉）\n```\nEntity → Player → PlayerWithJetpack\n       → Enemy → FlyingEnemy → Boss\n```\n问题：能力一多，类爆炸。`会飞的Boss亡灵马`要怎么继承？\n\n### 组合式（ECS 思想，业界主流）\n实体 = 一组组件的容器：\n\n```javascript\nplayer = {\n  position: { x: 0, y: 0 },\n  velocity: { x: 0, y: 0 },\n  sprite: 'hero.png',\n  health: { hp: 100, maxHp: 100 },\n  collider: { w: 32, h: 48 },\n};\n```\n\n系统遍历处理：`移动系统`处理所有有 position+velocity 的实体；`渲染系统`画所有有 sprite 的。**能力和实体解耦**，给新实体加\"飞行\"只需挂一个 velocity 组件。\n\nUnity 的 GameObject + Component、Cocos、Godot 全是这个思路。\n\n## 3. 让东西动起来：运动与碰撞\n\n### 速度与加速度（Verlet/欧拉积分）\n```javascript\n// 每帧\nvelocity.y += gravity * dt;      // 重力加速度\nposition.x += velocity.x * dt;\nposition.y += velocity.y * dt;\n```\n\n### AABB 碰撞检测（轴对齐包围盒）\n2D 游戏最常用的碰撞：两个矩形是否重叠\n\n```javascript\nfunction aabb(a, b) {\n  return a.x < b.x + b.w &&\n         a.x + a.w > b.x &&\n         a.y < b.y + b.h &&\n         a.y + a.h > b.y;\n}\n```\n\n碰到后怎么办 → **碰撞响应**：子弹消失+扣血（触发器）、角色停在墙上（物理阻挡）。\n\n## 4. 让敌人会思考：状态机（FSM）\n\n敌人 AI 的标准做法——有限状态机：\n\n```\n   巡逻 ──发现玩家──→ 追击\n    ↑                  │\n    │ 走到巡逻点        │ 进入攻击距离\n    │                  ↓\n   ←──丢失目标      攻击 ──玩家离开──→ 追击\n```\n\n```javascript\nconst state = { PATROL: 0, CHASE: 1, ATTACK: 2 };\n\nfunction updateEnemy(e, dt) {\n  switch (e.state) {\n    case state.PATROL:\n      moveTo(e, e.patrolTarget);\n      if (canSee(e, player)) e.state = state.CHASE;\n      break;\n    case state.CHASE:\n      moveTo(e, player.position);\n      if (dist(e, player) < 50) e.state = state.ATTACK;\n      if (!canSee(e, player)) e.state = state.PATROL;\n      break;\n    case state.ATTACK:\n      attack(e, player);\n      if (dist(e, player) > 80) e.state = state.CHASE;\n      break;\n  }\n}\n```\n\n## 5. 什么让游戏\"好玩\"\n\n技术只是载体，玩法设计才是灵魂。三个可操作的设计原则：\n\n1. **即时反馈**：每个输入 0.1 秒内要有视听反馈（跳跃有音效+挤压动画）\n2. **心流区间**：难度略高于当前能力，玩家就进入沉浸状态——好的难度曲线是\"刚死的次数够多但不想砸键盘\"\n3. **易学难精**：30 秒学会核心操作，100 小时还在精进（超级马里奥：跑跳两层操作，速通选手练上万次）\n\n## 6. 你的第一个游戏该做什么\n\n**弹球（Pong/Breakout）**是公认的最佳起点，麻雀虽小五脏俱全：\n\n- 输入：键盘/鼠标控制挡板\n- 物理：球的匀速运动 + AABB 碰撞（挡板/砖块/墙）\n- 游戏状态：得分、游戏结束、重新开始\n- 渲染：纯 Canvas 2D\n\n做完弹球，再挑战：贪吃蛇 → Flappy Bird → 平台跳跃。\n\n## 延伸阅读\n\n- 站内相关：《Unity 游戏开发入门：场景、组件与第一个游戏》《Three.js 与 Canvas 2d 入门》《图与遍历算法（BFS/DFS/拓扑）》\n- 《游戏设计艺术》（The Art of Game Design）——玩法设计圣经\n- gameprogrammingpatterns.com ——游戏编程模式（免费在线）",
+    "views": 0
+  },
+  {
+    "id": "x-x15_unity_intro",
+    "title": "Unity 游戏开发入门：场景、组件与第一个游戏",
+    "date": "2026-11-20",
+    "category": "游戏与图形",
+    "tags": [
+      "Unity",
+      "C#",
+      "游戏开发",
+      "GameObject"
+    ],
+    "excerpt": "从安装到发布：认识 Unity 编辑器、GameObject-Component 心智模型，亲手做出可玩的小游戏。",
+    "content": "## 1. 安装与工程创建\n\n1. 下载 [Unity Hub](https://unity.com/download)，登录免费个人版\n2. 安装 LTS 长期支持版（勾选 **Windows Build Support** 和 IDE）\n3. Hub → New Project → 选 **2D (Built-in)** 模板 → 命名 `Pong`\n\n首次打开编辑器，五大窗口：\n\n| 窗口 | 作用 |\n| --- | --- |\n| Scene | 搭建关卡的工作台 |\n| Game | 玩家看到的画面（点 Play 预览） |\n| Hierarchy | 当前场景所有对象的层级树 |\n| Inspector | 选中对象的组件属性 |\n| Project | 工程文件（Assets 资源库） |\n\n## 2. 核心心智模型：GameObject + Component\n\nUnity 里**一切皆 GameObject**（空的容器），行为全部来自**组件**：\n\n```\nGameObject \"Player\"\n ├─ Transform   （必有：位置/旋转/缩放）\n ├─ SpriteRenderer（画个图）\n ├─ Rigidbody2D （物理体：重力/碰撞）\n └─ PlayerController（你写的 C# 脚本）\n```\n\n这和前端给 div 挂 class、后端给类注入依赖是同一种组合思想。**加能力 = 挂组件，去掉能力 = 移除组件。**\n\n## 3. 第一个脚本：控制角色移动\n\nProject → 右键 Create → C# Script → 命名 `PlayerController`（文件名必须与类名一致）：\n\n```csharp\nusing UnityEngine;\n\npublic class PlayerController : MonoBehaviour\n{\n    public float speed = 5f;          // Inspector 里可调\n\n    void Update()                      // 每帧调用一次\n    {\n        float x = Input.GetAxis(\"Horizontal\");   // A/D 或 ←/→\n        float y = Input.GetAxis(\"Vertical\");\n\n        Vector3 pos = transform.position;\n        pos.x += x * speed * Time.deltaTime;     // deltaTime = dt\n        pos.y += y * speed * Time.deltaTime;\n        transform.position = pos;\n    }\n}\n```\n\n把脚本拖到 Player 对象上 → Play，WASD 可以动了。`Time.deltaTime` 就是上一课的 dt，Unity 帮你算好了。\n\n生命周期三兄弟：\n\n| 函数 | 调用时机 |\n| --- | --- |\n| `Awake()` | 对象初始化（不管脚本是否启用） |\n| `Start()` | 第一帧 Update 前 |\n| `Update()` | 每帧（放输入与逻辑） |\n| `FixedUpdate()` | 固定物理步频（放物理力） |\n\n## 4. 碰撞：让物理引擎干活\n\n给球加 **Rigidbody2D**（受物理控制）+ **Circle Collider 2D**（形状）；给墙加 **Box Collider 2D**（静态碰撞体）。碰撞回调写脚本里：\n\n```csharp\npublic class Ball : MonoBehaviour\n{\n    void OnCollisionEnter2D(Collision2D col)     // 物理碰撞\n    {\n        Debug.Log(\"撞到 \" + col.gameObject.name);\n    }\n\n    void OnTriggerEnter2D(Collider2D other)      // 触发器（勾选 Is Trigger）\n    {\n        if (other.CompareTag(\"Coin\"))\n        {\n            Destroy(other.gameObject);           // 吃金币\n            Score.Add(10);\n        }\n    }\n}\n```\n\n区分：**碰撞**=有物理阻挡（墙）；**触发器**=只通知不阻挡（金币、陷阱区域）。\n\n## 5. 游戏管理：单例与状态\n\n新建 `GameManager` 管分数和游戏结束：\n\n```csharp\npublic class GameManager : MonoBehaviour\n{\n    public static GameManager Instance { get; private set; }\n    public int score;\n\n    void Awake() { Instance = this; }          // 单例模式\n\n    public void GameOver()\n    {\n        Debug.Log(\"得分: \" + score);\n        Time.timeScale = 0;                    // 暂停游戏世界\n    }\n}\n```\n\n## 6. 预制体（Prefab）：复用游戏对象\n\n把调好的对象从 Hierarchy **拖回 Project 窗口** → 变成 Prefab 资产。之后：\n\n- 代码动态生成：`Instantiate(prefab, pos, Quaternion.identity)`\n- 改一处，所有实例同步更新\n\n子弹、敌人、金币都做成 Prefab，用 `Instantiate` 生成。\n\n## 7. 发布 WebGL\n\nFile → Build Settings → 选 **WebGL** → Build。产出网页版，部署到任意静态服务器即可在线游玩（也是毕业项目要求的发布形态）。\n\n## 8. 学习路线图\n\n1. 本文：移动 + 碰撞 + Prefab → 做完 Pong\n2. Tilemap 关卡编辑 + 2D 光照 → 平台跳跃\n3. Animator 状态机 → 角色动画（待机/跑/跳）\n4. ScriptableObject 数据配置 → 伤害表、关卡表\n5. 对象池 → 优化大量子弹的生成销毁\n\n## 延伸阅读\n\n- 站内相关：《游戏开发概论：循环、实体与玩法》《数据结构与算法入门》\n- Unity 官方 Learn 平台：learn.unity.com（免费路径 Ruby's Adventure）\n- 《Unity 游戏开发实战》",
+    "views": 0
+  },
+  {
+    "id": "x-x16_prompt_engineering",
+    "title": "Prompt 工程入门：与大模型高效协作的方法",
+    "date": "2026-11-20",
+    "category": "人工智能",
+    "tags": [
+      "Prompt",
+      "LLM",
+      "AI 应用",
+      "提示词"
+    ],
+    "excerpt": "角色设定、上下文组织、少样本示例、结构化输出——让模型稳定输出高质量结果的工程方法。",
+    "content": "## 1. Prompt 为什么是\"工程\"\n\n大模型像一位**读过全网资料但没有任何你上下文的顾问**。Prompt 工程就是把三件事讲清楚：\n\n1. **你是谁**（角色）\n2. **你要什么**（任务 + 边界）\n3. **怎么交付**（格式 + 标准）\n\n同一问题，Prompt 质量不同，结果天差地别：\n\n```\n✗ 帮我写个周报\n✓ 你是互联网团队的项目经理。根据我下面的流水记录，写一份\n  给部门总监的周报：分「本周进展/风险/下周计划」三节，每节\n  不超过 3 条，语气客观精炼，不写废话。\n  流水：…\n```\n\n## 2. 五个核心技巧\n\n### ① 角色锚定\n给模型一个专业身份，激活对应领域的表达模式：\n\n```\n你是一位有 10 年经验的后端架构师，擅长把复杂问题讲给初级工程师听。\n```\n\n### ② 结构化上下文\n用分隔符明确区分「材料」和「指令」，防止模型混淆：\n\n```\n请基于 <资料> 回答问题，资料之外的不要编造。\n\n<资料>\n{text}\n</资料>\n\n问题：{q}\n```\n\n### ③ 少样本示例（Few-shot）\n给 2-3 个输入输出示例，模型会模仿格式与风格：\n\n```\n把报错翻译成人话：\n输入: TypeError: cannot read 'map' of undefined\n输出: 你在 undefined 上调用了 .map()，通常是数组没初始化或异步数据还没回来。\n\n输入: EADDRINUSE: address already in use :3000\n输出: 3000 端口被占用——上一个进程没杀干净，换个端口或 kill 掉旧进程。\n```\n\n### ④ 思维链（Chain of Thought）\n要求「一步一步推理」能显著提升数学/逻辑类任务质量：\n\n```\n请一步步推理：先列出已知条件，再逐条推导，最后给出结论。\n```\n\n### ⑤ 结构化输出\n指定格式，下游代码才能稳定解析：\n\n```\n以 JSON 输出，schema：{\"sentiment\": \"pos|neg|neutral\", \"score\": 0-1, \"reason\": \"\"}\n只输出 JSON，不要多余文字。\n```\n\n## 3. 高级模式\n\n### 分解（把大任务拆小）\n写 5000 字报告会崩，但「先列大纲 → 逐节扩写 → 统一润色」三步很稳。**与模型协作 = 好的甲方：目标清晰、步骤拆细、每步验收。**\n\n### 自我批改\n```\n先草拟答案，然后以挑剔审稿人身份列出 3 个问题，再据此改出终稿。\n```\n\n### 兜底指令\n```\n如果资料里没有答案，回答「资料中未提及」，禁止编造。\n```\n（RAG 场景必备，抑制幻觉。）\n\n## 4. 常见坑\n\n| 坑 | 现象 | 对策 |\n| --- | --- | --- |\n| 指令太客气 | 「麻烦帮我写个大概之类的」 | 明确动词：生成/翻译/改写/评分 |\n| 多任务混杂 | 一段话让它又翻译又总结 | 拆成多轮，或编号分步 |\n| 关键约束埋没 | 要求写在长文中间 | 约束放开头或结尾，加粗强调 |\n| 无边界 | 模型自由发挥编造 | 给「不知道就说不知道」的许可 |\n\n## 5. 迭代：Prompt 是调出来的\n\n把 Prompt 当代码：**版本化 + 对照测试**。准备 5 个典型输入，改一版跑一遍，记录效果，直到稳定。官方文档和模型都会升级，Prompt 也要维护。\n\n## 延伸阅读\n\n- 站内相关：《大语言模型自学路线》《本地知识库与 RAG 实战》《深度学习与 PyTorch 入门》\n- OpenAI Prompt Engineering Guide / Anthropic 文档（各家官方最佳实践）",
+    "views": 0
+  },
+  {
+    "id": "x-x17_transformer",
+    "title": "Transformer 原理：从注意力到 GPT",
+    "date": "2026-11-20",
+    "category": "人工智能",
+    "tags": [
+      "Transformer",
+      "Attention",
+      "GPT",
+      "深度学习"
+    ],
+    "excerpt": "注意力机制的直觉与公式、位置编码、Decoder 逐词生成——看懂大模型的架构基因。",
+    "content": "## 1. 为什么需要注意力\n\nRNN 逐词处理长文本，词越远记忆越稀薄；Transformer（2017《Attention Is All You Need》）用**注意力**让每个词**直接看到所有词**，且全部并行计算——这是 LLM 时代的架构基石。\n\n## 2. 注意力的直觉\n\n句子「小明把书放在桌上，然后他打开了**它**」——「它」指书还是桌？人脑会**回头看**相关词。注意力就是可微分的\"回头看\"：\n\n每个词生成三个向量：\n- **Q（Query）**：我在找什么\n- **K（Key）**：我是什么（可被检索的标签）\n- **V（Value）**：我的实际内容\n\n```\nAttention(Q, K, V) = softmax(QKᵀ / √d) V\n```\n\n用人话翻译：`Q·K` 算出\"每个词与我的相关度\" → softmax 变成权重（和为 1）→ 加权求和 V，得到\"融合了上下文的新表示\"。`√d` 缩放防止点积过大导致 softmax 饱和。\n\n## 3. 多头注意力\n\n一次注意力只够捕捉一种关系。**多头** = 并行 8-64 组独立 Q/K/V 投影：\n\n- 头 1 可能学会\"语法关系\"（主语-谓语）\n- 头 2 学会\"指代关系\"（它 → 书）\n- 头 3 学会\"位置相邻关系\"\n\n最后拼接各头输出再线性融合。\n\n## 4. 位置编码\n\n注意力本身**无视顺序**（把句子打乱结果一样）。要理解语序，必须注入位置信息：\n\n- 原版：正弦位置编码\n- 现代主流：**RoPE**（旋转位置编码，LLaMA/Qwen 系标配），把相对位置信息旋转进 Q/K\n\n## 5. 三种 Transformer\n\n| 结构 | 代表 | 擅长 |\n| --- | --- | --- |\n| Encoder-only | BERT | 理解类：分类、检索、相似度 |\n| Decoder-only | **GPT** | 生成类：对话、写作、代码 |\n| Encoder-Decoder | T5 | 翻译、摘要（输入→输出映射） |\n\n现代 LLM 几乎都是 **Decoder-only**，核心机制是**因果注意力（causal mask）**：每个词只能看左边的词（不能偷看未来），训练目标只有一个——**预测下一个词**。\n\n```\n输入:  我 爱 北 京\n预测:  爱   北  京  天\n```\n\n## 6. 逐词生成与采样\n\n推理时模型一次只产出一个词，然后自回归地喂回去：\n\n```\n输出概率分布 → 采样策略：\n- temperature：温度越高越随机（0 = 总选最高概率，答案确定但呆板）\n- top-p：只在累计概率前 p 的候选里采样，兼顾多样与合理\n```\n\n这就是你在 WebUI 调 temperature 滑条时实际发生的事。\n\n## 7. 从 GPT 到 Chat：预训练 + 对齐\n\n1. **预训练**：海量文本学\"预测下一词\"——获得知识与世界模型\n2. **SFT**：人工标注问答对，学会\"对话格式\"\n3. **RLHF/DPO**：人类偏好排序反馈，学会\"有帮助、无害\"\n\n所以原始 GPT 会接龙而不是回答问题——对齐阶段赋予了它助手行为。\n\n## 8. 动手感受\n\n用 PyTorch 写一个迷你因果自注意力（约 15 行）：\n\n```python\nimport torch, torch.nn.functional as F\n\nx = torch.randn(1, 5, 64)                     # batch, seq, dim\nQ, K, V = x, x, x                              # 简化：自投影\nscores = Q @ K.transpose(-2, -1) / (64 ** 0.5)\nmask = torch.triu(torch.ones(5, 5), diagonal=1).bool()\nscores.masked_fill_(mask, float('-inf'))       # 因果掩码：只看左边\nout = F.softmax(scores, dim=-1) @ V\nprint(out.shape)                               # torch.Size([1, 5, 64])\n```\n\n跑一遍，打印 `softmax(scores)` 看看每个位置\"看向\"了谁——注意力不再抽象。\n\n## 延伸阅读\n\n- 站内相关：《深度学习与 PyTorch 入门》《大语言模型自学路线》《本地大模型部署实战：Ollama 与 SGLang》\n- The Illustrated Transformer（Jay Alammar 图解系列）\n- 《Attention Is All You Need》原始论文",
+    "views": 0
+  },
+  {
+    "id": "x-x18_css_grid",
+    "title": "CSS Grid 与响应式布局",
+    "date": "2026-11-20",
+    "category": "Web 前端",
+    "tags": [
+      "CSS",
+      "Grid",
+      "响应式布局",
+      "前端"
+    ],
+    "excerpt": "二维网格布局系统、minmax/fr 自动化、媒体查询与容器查询——现代响应式布局的完整方案。",
+    "content": "## 1. Flex 不够时用 Grid\n\nFlex 是**一维**布局（一行或一列），Grid 是**二维**（行+列同时定义）。页面级骨架（侧边栏+主区+页脚）用 Grid，组件内部排列用 Flex——两者是搭档不是对手。\n\n## 2. Grid 基本用法\n\n```css\n.page {\n  display: grid;\n  grid-template-columns: 240px 1fr;    /* 侧边栏固定，主区自适应 */\n  grid-template-rows: auto 1fr auto;   /* 头/内容/尾 */\n  gap: 16px;\n  min-height: 100vh;\n}\n.header  { grid-column: 1 / -1; }     /* 从第 1 条线跨到最后 */\n.sidebar { grid-row: 2 / 3; }\n.main    { grid-column: 2; grid-row: 2; }\n.footer  { grid-column: 1 / -1; }\n```\n\n核心坐标是**网格线**：`grid-column: 1 / 3` 表示从第 1 条线到第 3 条线（占 2 列）。\n\n## 3. fr 与 minmax：自适应的精髓\n\n`fr`（fraction）是剩余空间的份数；`minmax(min, max)` 限定尺寸范围：\n\n```css\n/* 三等分 */\ngrid-template-columns: repeat(3, 1fr);\n\n/* 经典卡片布局：不写媒体查询就自动响应！ */\ngrid-template-columns: repeat(auto-fill, minmax(260px, 1fr));\n```\n\n这行的意思：每列至少 260px，能塞几列塞几列，多余空间均分。**容器变窄自动变两列/一列**——很多场景不再需要断点。\n\n## 4. 命名区域：像画格子一样布局\n\n```css\n.page {\n  display: grid;\n  grid-template-areas:\n    \"header header\"\n    \"sidebar main\"\n    \"footer footer\";\n  grid-template-columns: 220px 1fr;\n}\n.header  { grid-area: header; }\n.sidebar { grid-area: sidebar; }\n.main    { grid-area: main; }\n.footer  { grid-area: footer; }\n\n/* 移动端重排：改一张图就够 */\n@media (max-width: 768px) {\n  .page {\n    grid-template-areas:\n      \"header\"\n      \"main\"\n      \"sidebar\"\n      \"footer\";\n    grid-template-columns: 1fr;\n  }\n}\n```\n\n可读性极强，布局即文档。\n\n## 5. 媒体查询的正确姿势\n\n```css\n/* 移动优先：默认样式给小屏 */\n.cards { grid-template-columns: 1fr; }\n\n/* 逐渐增强，用 min-width 而非 max-width */\n@media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }\n@media (min-width: 1024px) { .cards { grid-template-columns: repeat(3, 1fr); } }\n```\n\n断点不必堆设备尺寸，3 个够了：`640 / 1024 / 1440`。\n\n## 6. 容器查询：真正的组件级响应\n\n媒体查询响应的是**视口**，组件响应的应该是**自己所在容器**——同一个卡片放进侧栏和放进主区应该不同表现：\n\n```css\n.card-wrap { container-type: inline-size; }\n\n@container (min-width: 480px) {\n  .card { display: flex; }              /* 容器够宽才横排 */\n}\n```\n\n2023 年后所有现代浏览器已支持，设计系统组件的首选。\n\n## 7. 实战检查清单\n\n1. 先画格子草图（几行几列，哪里固定哪里自适应）\n2. 骨架用 Grid + `grid-template-areas`\n3. 卡片列表用 `repeat(auto-fill, minmax(...))`\n4. 组件内部排列用 Flex\n5. 移动优先写样式，`min-width` 逐级增强\n6. 用 DevTools 的网格叠加层（点击 grid 标记）调试对齐\n\n## 延伸阅读\n\n- 站内相关：《CSS 基础与弹性布局》《前端工程化入门：npm、Vite 与构建部署》\n- Grid Garden（游戏化学 Grid）\n- MDN CSS Grid 完整指南",
+    "views": 0
+  },
+  {
+    "id": "x-x19_redis_practice",
+    "title": "Redis 实战：缓存三大问题与数据结构选型",
+    "date": "2026-11-20",
+    "category": "数据库",
+    "tags": [
+      "Redis",
+      "缓存",
+      "高并发",
+      "数据结构"
+    ],
+    "excerpt": "五大基础数据结构的业务映射、缓存穿透/击穿/雪崩的成因与对策、分布式锁与过期策略。",
+    "content": "## 1. Redis 在系统里的位置\n\nRedis = 基于内存的键值数据库，单线程事件循环（命令执行无并发竞争），读写 10 万+ QPS。三大典型用途：\n\n1. **缓存**：挡在数据库前面，热点数据毫秒级返回\n2. **分布式协调**：锁、限流、排行榜\n3. **数据结构服务**：计数、队列、签到、去重\n\n## 2. 数据结构选型（背下这张表）\n\n| 结构 | 业务映射 | 例 |\n| --- | --- | --- |\n| String | 缓存、计数器、分布式锁 | `SET post:123:title \"标题\" EX 3600` |\n| Hash | 对象缓存 | `HSET user:1 name a age 20` |\n| List | 简单队列、最新列表 | `LPUSH + BRPOP`（阻塞消费） |\n| Set | 去重、共同关注 | `SADD viewed:1 post:9`；`SINTER` 算交集 |\n| ZSet | 排行榜、延迟队列 | `ZADD rank 98.5 player:1`；`ZREVRANGE` 取前10 |\n\n## 3. 缓存三大问题（面试与事故高发区）\n\n### 穿透：查不存在的数据，每次都打到 DB\n```\n请求 id=-1（恶意）→ 缓存无 → DB 无 → 不回写缓存 → 每次都穿透\n```\n对策：\n- **空值缓存**：DB 查无也写 `SET id:-1 \"\" EX 60`（短 TTL）\n- **布隆过滤器**：在缓存前加一层\"可能存在\"判断，不存在的直接拒绝\n\n### 击穿：热点 key 过期瞬间，并发全部打到 DB\n对策：\n- **互斥重建**：拿到分布式锁的那 1 个请求查 DB 回写，其余等待\n- **逻辑过期**：value 里带过期时间，发现逻辑过期后异步刷新，旧值先顶上\n\n### 雪崩：大批 key 同时过期 / Redis 宕机\n对策：\n- TTL 加随机抖动：`EX 3600 + random(0, 300)`\n- 多级缓存（本地 Caffeine + Redis）\n- Redis 高可用（哨兵/集群）+ 熔断降级\n\n## 4. 分布式锁的正确姿势\n\n```bash\n# 加锁：原子 SET NX（不存在才设置）+ 过期时间（防死锁）+ 唯一值（防误删）\nSET lock:order:123 \"uuid-a\" NX EX 10\n```\n\n```python\nimport uuid, redis\n\nr = redis.Redis()\ndef acquire(key, ttl=10):\n    token = str(uuid.uuid4())\n    if r.set(f\"lock:{key}\", token, nx=True, ex=ttl):\n        return token\n    return None\n\ndef release(key, token):\n    # Lua 保证\"判断+删除\"原子性，避免删掉别人的锁\n    lua = \"\"\"\n    if redis.call('get', KEYS[1]) == ARGV[1] then\n        return redis.call('del', KEYS[1])\n    end\n    \"\"\"\n    r.eval(lua, 1, f\"lock:{key}\", token)\n```\n\n生产环境直接用 **Redisson（Java）/ redlock-py**：自动续期（看门狗）、可重入。\n\n## 5. 过期与淘汰策略\n\n- **主动过期**：key 过期后惰性删除（访问时）+ 定期随机抽检删除\n- **内存满时**：`maxmemory-policy` 决定淘汰谁\n  - `allkeys-lru`（最常用）：整库 LRU 淘汰\n  - `volatile-lru`：只淘汰设置了 TTL 的\n  - 缓存场景选 `allkeys-lru`；绝不能丢的数据（如购物车）别只存 Redis\n\n## 6. 持久化：RDB 与 AOF\n\n| 方式 | 原理 | 特点 |\n| --- | --- | --- |\n| RDB | 定时全量快照 | 恢复快，可能丢最后几分钟 |\n| AOF | 每条写命令追加日志 | 丢数据少（每秒刷盘），文件大恢复慢 |\n\n生产标配：**RDB + AOF 混合**（4.0+），重启先载 RDB 骨架再重放 AOF 增量。\n\n## 7. 缓存一致性：先更新库还是先删缓存？\n\n经典方案 **Cache Aside**：\n```\n读：先读缓存，未命中读 DB 并回写\n写：先更新 DB，再删除缓存（不是更新缓存！）\n```\n删除而非更新：避免并发写覆盖、避免写后没人读的浪费。残余不一致窗口极小，要求再高则用延迟双删或订阅 binlog（Canal）异步刷新。\n\n## 延伸阅读\n\n- 站内相关：《Redis 入门》《事务与隔离级别》《MySQL 入门：从建库到查询》\n- 《Redis 设计与实现》——数据结构内部实现",
+    "views": 0
+  },
+  {
+    "id": "x-x20_assembly",
+    "title": "汇编语言入门：CPU 在想什么",
+    "date": "2026-11-20",
+    "category": "计算机组成",
+    "tags": [
+      "汇编",
+      "CPU",
+      "寄存器",
+      "计算机组成"
+    ],
+    "excerpt": "寄存器、内存寻址、栈与函数调用——读懂 CPU 视角的世界，看清高级语言之下的机器。",
+    "content": "## 1. 为什么要学汇编\n\n不是让你手写汇编，而是：调试看得懂崩溃栈、性能分析看得懂反汇编、理解缓冲区溢出（安全方向基石）。**汇编 = CPU 执行指令的直接文本化。**\n\n```\nC 语言:      x = a + b;\n编译器生成:  mov eax, [a]     ; 把变量 a 从内存搬进寄存器 eax\n             add eax, [b]     ; 加上 b\n             mov [x], eax     ; 存回 x\n```\n\nCPU 只认识\"从哪取数、做什么运算、结果放哪\"。\n\n## 2. 寄存器：CPU 的口袋\n\nx86-64 的通用寄存器（每个 64 位）：\n\n| 寄存器 | 惯例用途 |\n| --- | --- |\n| rax | 返回值 / 算术 |\n| rbx, rcx, rdx, rsi, rdi | 通用 / 参数 |\n| rsp | 栈顶指针 |\n| rbp | 当前栈帧基址 |\n| rip | **下一条指令地址**（程序计数器） |\n\n函数调用约定（System V）：前 6 个整型参数依次放 `rdi, rsi, rdx, rcx, r8, r9`，返回值放 `rax`。看反汇编前先背这张表。\n\n## 3. 高频指令 Top 10\n\n```nasm\nmov rax, rbx        ; 传送：rax = rbx\nmov rax, [rdi]      ; 内存读：rax = rdi 指向的内存内容（[] 解引用）\nadd rax, 1          ; 加\nsub rax, rbx        ; 减\nimul rax, rbx       ; 乘\nxor rax, rax        ; 异或自己 = 清零（惯用法）\ncmp rax, 0          ; 比较（设置标志位）\nje  label           ; 相等则跳（jump if equal）\njmp label           ; 无条件跳\ncall func / ret     ; 调用 / 返回\npush rax / pop rax  ; 压栈 / 出栈\n```\n\n条件组合：`je`（等于）、`jne`（不等）、`jl/jg`（小于/大于）——if 语句在汇编里就是 cmp + 条件跳转。\n\n## 4. 内存寻址：变量的真身\n\n```nasm\nmov al,  [rdi]              ; 读 1 字节\nmov ax,  [rdi]              ; 读 2 字节\nmov eax, [rdi]              ; 读 4 字节\nmov rax, [rdi + 8]          ; 基址 + 偏移（结构体成员/数组元素）\nmov rax, [rdi + rcx*8]      ; 数组下标访问：base + i*8\n```\n\n`[rdi + rcx*8]` 正是 `arr[i]` 的机器形态——数组下标本质是地址算术，这也是越界访问能摸到相邻内存的原因。\n\n## 5. 栈与函数调用\n\n每次 `call` 都在栈上压一个**栈帧**：\n\n```nasm\nfunc:\n    push rbp            ; 保存调用者的栈帧基址\n    mov  rbp, rsp       ; 建立自己的栈帧\n    sub  rsp, 16        ; 给局部变量留空间\n    ; ... 函数体 ...\n    mov  rsp, rbp       ; 恢复栈顶\n    pop  rbp            ; 恢复调用者栈帧\n    ret                 ; 弹出返回地址到 rip\n```\n\n**缓冲区溢出的原理**：局部数组（如 `char buf[8]`）在栈帧里，写满 8 字节还继续写就会覆盖栈上更高地址处的**返回地址**——攻击者塞入自己的地址，`ret` 时 rip 就跳去执行攻击者的代码。理解了栈帧 layout，就理解了溢出攻击与防护（栈金丝雀/DEP）为什么长那样。\n\n## 6. 一个完整例子：函数三数求和\n\n```c\nint add3(int a, int b, int c) { return a + b + c; }\n```\n\n```nasm\nadd3:\n    lea eax, [rdi + rsi]    ; eax = a + b（lea 是\"算地址\"指令，常被用来做算术）\n    add eax, edx            ; eax += c\n    ret                     ; 返回值已在 rax（eax 是其低 32 位）\n```\n\n编译器优化后连栈都不用开——参数全在寄存器里。\n\n## 7. 动手环境\n\n```bash\n# Linux 下最短的实验回路\ngcc -O0 -S demo.c -o demo.s    # 输出汇编文本（-O0 便于阅读）\nobjdump -d a.out               # 反汇编二进制\ngdb a.out                      # 布置断点后: disass / info registers\n```\n\n初学建议把 `-O2` 关掉（`-O0`），先看\"直白版\"汇编，再对照优化版感受编译器的魔法（内联、循环展开、指令重排）。\n\n## 延伸阅读\n\n- 站内相关：《计算机组成：硬件架构与各种处理单元》《操作系统核心概念》《文件上传漏洞原理、利用与防御》\n- 《CSAPP 深入理解计算机系统》第 3 章——机器级程序\n- Intel 汇编语法速查（vs AT&T：操作数方向相反）",
+    "views": 0
   }
 ]

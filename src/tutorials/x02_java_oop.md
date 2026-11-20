@@ -1,5 +1,5 @@
 ---
-title: Java 面向对象编程
+title: Java 面向对象编程（精要）
 category: 编程语言/Java 基础
 order: 2
 tags: [Java, OOP, 类, 接口]

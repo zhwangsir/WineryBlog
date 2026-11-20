@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
-import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon } from 'lucide-react';
+import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon, GraduationCap } from 'lucide-react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { TutorPanel } from '../components/TutorPanel';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -27,7 +28,11 @@ export const PostDetail: React.FC = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState('');
   const [verifying, setVerifying] = useState(false);
+  const [tutorOpen, setTutorOpen] = useState(false);
   const viewCounted = useRef(false);
+
+  // tutorial content gets the AI tutor; blog posts don't
+  const isTutorial = !!post && post.category !== '随笔';
 
   useEffect(() => {
     if (post?.isLocked) {
@@ -227,6 +232,29 @@ export const PostDetail: React.FC = () => {
           {post.content}
         </Markdown>
       </div>
+
+      {isTutorial && (
+        <>
+          {/* floating AI tutor launcher */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 }}
+            onClick={() => setTutorOpen(true)}
+            className="fixed bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-3 rounded-full bg-accent text-white shadow-lg hover:bg-accent-hover hover:scale-105 transition-all"
+            title="AI 助教：引导 / 讲解 / 检验 / 实操"
+          >
+            <GraduationCap className="w-5 h-5" />
+            <span className="text-sm font-medium hidden sm:inline">AI 助教</span>
+          </motion.button>
+          <TutorPanel
+            open={tutorOpen}
+            onClose={() => setTutorOpen(false)}
+            title={post.title}
+            content={post.content}
+          />
+        </>
+      )}
     </motion.div>
   );
 };

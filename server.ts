@@ -433,6 +433,88 @@ async function startServer() {
     }
   });
 
+  // ===== Tutorial catalog & career routes =====
+  const TUTORIALS_FILE = path.join(DATA_DIR, "tutorials.json");
+  const CAREERS_FILE = path.join(DATA_DIR, "careers.json");
+
+  app.get("/api/tutorials", async (req, res) => {
+    try {
+      res.json(JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8")));
+    } catch (error) {
+      res.status(500).json({ error: "Failed to load tutorials" });
+    }
+  });
+
+  app.get("/api/careers", async (req, res) => {
+    try {
+      res.json(JSON.parse(await fs.readFile(CAREERS_FILE, "utf-8")));
+    } catch (error) {
+      res.status(500).json({ error: "Failed to load careers" });
+    }
+  });
+
+  // ===== AI tutor: mode-driven teaching over the current tutorial =====
+  // Research-based design (Khanmigo / Harvard AI-tutor RCT 2025):
+  // - default to Socratic guiding, but never trap the student:
+  //   two failed rounds -> tiered hints -> answer
+  // - explain/quiz/practice modes give direct value when wanted
+  const TUTOR_MODE_PROMPTS: Record<string, string> = {
+    explain:
+      "模式=讲解。你是这篇教程的私人讲解员。把用户问的知识点讲透：先一句话点破本质，再分层展开（类比 → 原理 → 代码示例）。一次只讲透一个问题；讲完用一句『检验一下：…』给出一个自测小问题。",
+    socratic:
+      "模式=引导（苏格拉底）。规则：1) 一次只问一个具体的问题，引导学生自己想通，绝不直接给最终答案；2) 学生答对时先肯定，再追问更深一层；3) 如果学生连续两轮答不上、或明确说「不会 / 直接告诉我」，立即停止追问，改用阶梯提示：先给思路提示 → 再给关键步骤 → 最后才给答案；4) 所有引导必须围绕本教程内容，不跑题。",
+    quiz:
+      "模式=检验。你是考官。出 3 道题（概念简答 / 场景分析 / 动手编程各一），一次只出一题。学生作答后：逐题批改——判定对错、指出错因、给出参考答案与评分（满分 10 分），然后出下一题。三题结束后汇总总分、薄弱点和下一步学习建议。",
+    practice:
+      "模式=实操。你是实战教练。设计一个 30-60 分钟可完成的小练习，结构：目标（做什么）→ 分解步骤（4-6 步，每步带验收标准）→ 常见坑提示 → 扩展挑战。学生卡住时只给当前步骤的提示，不跳步替学生写完。",
+  };
+
+  app.post("/api/tutor", async (req, res) => {
+    try {
+      const { mode = "socratic", title = "", content = "", messages = [] } = req.body || {};
+      const modePrompt = TUTOR_MODE_PROMPTS[mode] || TUTOR_MODE_PROMPTS.socratic;
+      const system = [
+        `你是「WineryBlog 教程中心」的 AI 助教，当前教学材料是教程《${title}》。`,
+        "以下为本教程全文，你的所有讲解、提问、出题都必须以它为纲，可以适当延伸但不可背离：",
+        "===== 教程全文开始 =====",
+        String(content || "").slice(0, 60000),
+        "===== 教程全文结束 =====",
+        modePrompt,
+        "全程用简体中文；代码保留原文格式；语气友善专业，称呼学生为「你」。",
+      ].join("\n");
+
+      const upModel = await getUpstreamModel();
+      // weaker instruction-following models honor instructions near the end
+      // of the conversation much better than system-only rules
+      const modeReminder =
+        `\n\n[教学模式提醒：本回合你处于「${mode}」模式，以上模式说明中的行为规则具有最高优先级，` +
+        `请严格按该模式的行为特征回复，忽略与之冲突的默认习惯。]`;
+      const wired = messages.slice(-16).map((m: any, i: number, arr: any[]) =>
+        i === arr.length - 1 && m.role === "user"
+          ? { ...m, content: `${m.content}${modeReminder}` }
+          : m
+      );
+      if (!wired.length || wired[wired.length - 1].role !== "user") {
+        wired.push({ role: "user", content: `开始本回合的教学。${modeReminder}` });
+      }
+      const body: any = {
+        messages: [{ role: "system", content }, ...wired],
+        temperature: 0.7,
+        max_tokens: 1600,
+      };
+      if (upModel) body.model = upModel;
+      const r = await fetch(AI_UPSTREAM, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const text = await r.text();
+      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+    } catch (e: any) {
+      res.status(502).json({ error: "AI tutor failed", detail: e.message });
+    }
+  });
+
   // ===== AI Librarian proxy (engine-adaptive, LAN LLM) =====
   const AI_UPSTREAM = "http://192.168.71.84:8000/v1/chat/completions";
   const AI_MODELS = "http://192.168.71.84:8000/v1/models";
