@@ -117,7 +117,7 @@
 - x76_consensus | 分布式与并行 | 共识算法：Paxos 与 Raft
 - x77_parallel_prog | 分布式与并行 | 并行编程入门：OpenMP、CUDA 与并行模式
 
-## Batch 24 — 软件工程深水区（CS2023 SE） — status: pending
+## Batch 24 — 软件工程深水区（CS2023 SE） — status: done
 - x78_design_patterns | 软件工程 | 设计模式：场景化精选与权衡
 - x79_refactoring | 软件工程 | 重构：代码坏味道与安全手法
 - x80_arch_styles | 软件工程 | 软件架构风格：分层、六边形与事件驱动

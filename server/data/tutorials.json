@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:49:43.574Z",
+  "generatedAt": "2026-11-20T16:55:01.296Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -87,6 +87,13 @@
       "name": "分布式与并行",
       "icon": "Boxes",
       "blurb": "CAP、共识算法、并行编程与云原生（CS2023 PDC）",
+      "count": 3
+    },
+    {
+      "id": "swe",
+      "name": "软件工程",
+      "icon": "Blocks",
+      "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
       "count": 3
     }
   ],
@@ -3096,6 +3103,60 @@
       ],
       "prereqs": [],
       "href": "/post/w33_file_upload"
+    },
+    {
+      "id": "x-x78_design_patterns",
+      "kind": "md",
+      "title": "设计模式：场景化精选与权衡",
+      "summary": "不背 23 式目录——从真实场景出发讲清高价值模式的用法与代价，以及\"不用模式\"的时机。",
+      "domain": "swe",
+      "category": "软件工程",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "设计模式",
+        "软件工程",
+        "架构",
+        "代码质量"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x78_design_patterns"
+    },
+    {
+      "id": "x-x80_arch_styles",
+      "kind": "md",
+      "title": "软件架构风格：分层、六边形与事件驱动",
+      "summary": "架构 = 重要决策的集合。分层/六边形/事件驱动/微服务的适用场景与权衡，以及如何做架构决策。",
+      "domain": "swe",
+      "category": "软件工程",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "软件架构",
+        "架构风格",
+        "微服务",
+        "CQRS"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x80_arch_styles"
+    },
+    {
+      "id": "x-x79_refactoring",
+      "kind": "md",
+      "title": "重构：代码坏味道与安全手法",
+      "summary": "认清坏味道、掌握安全手法、理解测试安全网——在不停机的前提下持续改善代码结构。",
+      "domain": "swe",
+      "category": "软件工程",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "重构",
+        "代码质量",
+        "技术债",
+        "软件工程"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x79_refactoring"
     },
     {
       "id": "w22_linux_basics",
