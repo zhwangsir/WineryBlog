@@ -530,19 +530,6 @@ export const ManageConfig: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3">
-                <label htmlFor="petDodge" className="text-sm font-medium text-text-primary cursor-pointer">
-                  自动避让（遮挡可交互元素时自己走开）
-                </label>
-                <input
-                  type="checkbox"
-                  id="petDodge"
-                  checked={formData.theme?.pet?.autoDodge !== false}
-                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), autoDodge: e.target.checked })}
-                  className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
-                />
-              </div>
-
-              <div className="flex items-center gap-3">
                 <label htmlFor="petSize" className="text-sm font-medium text-text-primary w-28">桌宠大小</label>
                 <input
                   type="range" id="petSize" min="0.5" max="1.5" step="0.05"

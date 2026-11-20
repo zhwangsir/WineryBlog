@@ -38,3 +38,12 @@
 ## Batch 23 — TS 类型系统参考
 - [x] ref-ts-narrowing | TS Handbook：类型收窄 | https://www.typescriptlang.org/docs/handbook/2/narrowing.html
 - [x] ref-ts-generics | TS Handbook：泛型 | https://www.typescriptlang.org/docs/handbook/2/generics.html
+
+## Batch 24 — OS/体系结构/分布式参考
+- [x] ref-ostep | OSTEP 操作系统教材（免费在线） | https://pages.cs.wisc.edu/~remzi/OSTEP/
+- [x] ref-csapp | CSAPP 深入理解计算机系统资源站 | https://csapp.cs.cmu.edu/
+- [x] ref-raft | Raft 共识算法可视化 | https://raft.github.io/
+- [x] ref-refactoring-guru | Refactoring Guru 设计模式 | https://refactoring.guru/design-patterns
+- [x] ref-seeing-theory | Seeing Theory 概率可视化 | https://seeing-theory.brown.edu/
+- [x] ref-3b1b-linalg | 3Blue1Brown 线性代数本质 | https://www.3blue1brown.com/topics/linear-algebra
+- [x] ref-mit-ocw-6006 | MIT OCW 6.006 算法导论 | https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/

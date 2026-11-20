@@ -6,7 +6,6 @@ import { speakPetLine } from '../lib/petVoice';
 interface PetMascotProps {
   enabled?: boolean;
   voiceEnabled?: boolean;
-  autoDodge?: boolean;
   /** 'hutao' = 本地胡桃模型；'fallback' = 跳过 Live2D 用静态头像 */
   model?: 'hutao' | 'fallback';
   /** 模型加载失败时的回落头像 */
@@ -55,7 +54,6 @@ const isHidden = () => sessionStorage.getItem(`${STORE_KEY}-hidden`) === '1';
 export const PetMascot: React.FC<PetMascotProps> = ({
   enabled = true,
   voiceEnabled = false,
-  autoDodge = true,
   model = 'hutao',
   fallbackAvatar = '/images/HuTao/hutao68.png',
   name = '胡桃',
@@ -74,7 +72,6 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   const posRef = useRef<Pos>({ x: -9999, y: -9999 });
   const dragState = useRef({ dragging: false, startX: 0, startY: 0, baseX: 0, baseY: 0, moved: false });
   const lastTap = useRef(0);
-  const dodgeBusy = useRef(false);
 
   const [ready, setReady] = useState(false);
   const [live2dFailed, setLive2dFailed] = useState(false);
@@ -218,80 +215,6 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     return () => window.clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, hidden]);
-
-  // ---- 自动避让：命中层矩形与页面可交互元素几何相交 → 滑向空闲候选位 ----
-  const rectInteracts = useCallback((): number => {
-    const hit = hitRef.current;
-    const host = hostRef.current;
-    if (!hit || !host) return 0;
-    const hr = hit.getBoundingClientRect();
-    if (hr.width === 0) return 0;
-    const els = document.querySelectorAll('a,button,input,textarea,select,[role="button"]');
-    let hits = 0;
-    for (const el of els) {
-      if (host.contains(el)) continue;
-      const r = el.getBoundingClientRect();
-      if (r.width === 0 || r.height === 0) continue;
-      if (r.bottom <= 0 || r.top >= window.innerHeight) continue;   // 视口外
-      if (r.left < hr.right && r.right > hr.left && r.top < hr.bottom && r.bottom > hr.top) {
-        hits++;
-        if (hits >= 2) return hits;
-      }
-    }
-    return hits;
-  }, []);
-
-  const dodge = useCallback(() => {
-    if (dodgeBusy.current) return;
-    dodgeBusy.current = true;
-    const cur = posRef.current;
-    const vw = window.innerWidth, vh = window.innerHeight;
-    const candidates: Pos[] = [
-      { x: vw - petSize.w - 12, y: vh - petSize.h - 12 },
-      { x: 12, y: vh - petSize.h - 12 },
-      { x: vw - petSize.w - 12, y: 70 },
-      { x: 12, y: 70 },
-      { x: (vw - petSize.w) / 2, y: vh - petSize.h - 12 },
-    ].map(clampPos);
-
-    let target: Pos | null = null;
-    for (const c of candidates) {
-      if (Math.abs(c.x - cur.x) < 40 && Math.abs(c.y - cur.y) < 40) continue;
-      // 候选位先摆过去测相交数（测完回原位，最终定位用动画滑过去）
-      const prev = posRef.current;
-      applyPos(c);
-      const hits = rectInteracts();
-      applyPos(prev);
-      if (hits === 0) { target = c; break; }
-    }
-    if (target) {
-      showBubble(pickLine('dodge'), 'dodge');
-      // 平滑滑动 + 挥手感（快速摆动一次）
-      const model = modelRef.current;
-      if (model) {
-        let t = 0;
-        const wave = () => { t += 1; model.rotation = Math.sin(t / 3) * 0.15; if (t < 36) requestAnimationFrame(wave); else model.rotation = 0; };
-        wave();
-      }
-      applyPos(target, true);
-      localStorage.setItem(`${STORE_KEY}-pos`, JSON.stringify(target));
-    } else {
-      // 无处可去：贴边半透明
-      const el = hostRef.current;
-      if (el) el.style.opacity = '0.35';
-    }
-    window.setTimeout(() => { dodgeBusy.current = false; }, 800);
-  }, [applyPos, rectInteracts, showBubble, clampedSize, petSize.w, petSize.h]);
-
-  useEffect(() => {
-    if (!enabled || hidden || !autoDodge || !ready) return;
-    const timer = window.setInterval(() => {
-      const el = hostRef.current;
-      if (!el || dragState.current.dragging) return;
-      if (rectInteracts() >= 2) dodge();
-    }, 1500);
-    return () => window.clearInterval(timer);
-  }, [enabled, hidden, autoDodge, ready, rectInteracts, dodge]);
 
   // ---- 拖动 + 点击/双击 ----
   const onPointerDown = (e: React.PointerEvent) => {

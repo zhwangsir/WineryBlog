@@ -24,6 +24,9 @@ const DOMAINS = [
   { id: 'security', name: '信息安全', icon: 'Shield', blurb: 'Web 安全、渗透测试、CTF、密码学' },
   { id: 'mobile', name: '移动与跨端', icon: 'Smartphone', blurb: 'Android、iOS、Flutter、跨平台方案' },
   { id: 'games', name: '游戏与图形', icon: 'Gamepad2', blurb: '游戏循环、物理与碰撞、Unity 引擎、图形编程' },
+  { id: 'dist', name: '分布式与并行', icon: 'Boxes', blurb: 'CAP、共识算法、并行编程与云原生（CS2023 PDC）' },
+  { id: 'matht', name: '数学与理论', icon: 'Sigma', blurb: '离散数学、概率统计、计算理论——CS 的地基（CS2023 MSF/AL）' },
+  { id: 'swe', name: '软件工程', icon: 'Blocks', blurb: '设计模式、重构、架构风格——把代码变成工程（CS2023 SE）' },
   { id: 'projects', name: '项目实战', icon: 'Rocket', blurb: '完整项目复盘：从需求到上线' },
 ];
 
@@ -35,6 +38,7 @@ const CATEGORY_TO_DOMAIN = {
   '计算机网络': 'system',
   '操作系统与运维': 'system',
   'Web 前端': 'frontend',
+  '人机交互': 'frontend',
   '后端开发': 'backend',
   '数据库': 'data',
   '大数据': 'data',
@@ -42,6 +46,10 @@ const CATEGORY_TO_DOMAIN = {
   '信息安全': 'security',
   '移动与跨端': 'mobile',
   '游戏与图形': 'games',
+  '分布式与并行': 'dist',
+  '数学基础': 'matht',
+  '计算理论': 'matht',
+  '软件工程': 'swe',
   '项目实战': 'projects',
 };
 

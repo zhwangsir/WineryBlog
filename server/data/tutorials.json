@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T14:55:26.672Z",
+  "generatedAt": "2026-11-20T15:16:41.154Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -31,7 +31,7 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 22
+      "count": 25
     },
     {
       "id": "frontend",
@@ -3266,6 +3266,60 @@
       ],
       "prereqs": [],
       "href": "/post/w41_hosts_hostname"
+    },
+    {
+      "id": "x-x71_filesystem",
+      "kind": "md",
+      "title": "文件系统实现：inode、日志与崩溃一致性",
+      "summary": "目录项与 inode 分离、磁盘块分配、日志文件系统——掉电不丢数据的工程实现。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "文件系统",
+        "inode",
+        "ext4",
+        "操作系统"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x71_filesystem"
+    },
+    {
+      "id": "x-x70_virtual_memory",
+      "kind": "md",
+      "title": "虚拟内存与分页：MMU、页表与缺页处理",
+      "summary": "虚拟地址翻译、多级页表、TLB 缓存、缺页异常——内存隔离与大内存幻觉的完整机制。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "虚拟内存",
+        "分页",
+        "MMU",
+        "操作系统"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x70_virtual_memory"
+    },
+    {
+      "id": "x-x69_process_thread",
+      "kind": "md",
+      "title": "进程与线程：调度、上下文切换与通信",
+      "summary": "进程地址空间、线程共享模型、五大调度算法与上下文切换成本——并发的 OS 底座。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "进程",
+        "线程",
+        "调度",
+        "操作系统"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x69_process_thread"
     },
     {
       "id": "s06_docker_compose",

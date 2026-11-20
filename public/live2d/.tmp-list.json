@@ -1,0 +1,130 @@
+[
+  {
+    "name": "F01.exp3.json",
+    "path": "test/assets/haru/expressions/F01.exp3.json",
+    "sha": "3b7fe7157f34d17c5f23b0b50220de1ed0a0a9be",
+    "size": 142,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F01.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F01.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/3b7fe7157f34d17c5f23b0b50220de1ed0a0a9be",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F01.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F01.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/3b7fe7157f34d17c5f23b0b50220de1ed0a0a9be",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F01.exp3.json"
+    }
+  },
+  {
+    "name": "F02.exp3.json",
+    "path": "test/assets/haru/expressions/F02.exp3.json",
+    "sha": "253a61e4e5b5241dbd826ab89f16aeaaec73f7e4",
+    "size": 546,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F02.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F02.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/253a61e4e5b5241dbd826ab89f16aeaaec73f7e4",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F02.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F02.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/253a61e4e5b5241dbd826ab89f16aeaaec73f7e4",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F02.exp3.json"
+    }
+  },
+  {
+    "name": "F03.exp3.json",
+    "path": "test/assets/haru/expressions/F03.exp3.json",
+    "sha": "55b8fd244806ca2f3fe8e3ff946df8ce2f5b3a24",
+    "size": 873,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F03.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F03.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/55b8fd244806ca2f3fe8e3ff946df8ce2f5b3a24",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F03.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F03.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/55b8fd244806ca2f3fe8e3ff946df8ce2f5b3a24",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F03.exp3.json"
+    }
+  },
+  {
+    "name": "F04.exp3.json",
+    "path": "test/assets/haru/expressions/F04.exp3.json",
+    "sha": "554f48e8608e01af9f7a5cb561850837d520d926",
+    "size": 988,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F04.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F04.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/554f48e8608e01af9f7a5cb561850837d520d926",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F04.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F04.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/554f48e8608e01af9f7a5cb561850837d520d926",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F04.exp3.json"
+    }
+  },
+  {
+    "name": "F05.exp3.json",
+    "path": "test/assets/haru/expressions/F05.exp3.json",
+    "sha": "82c308ac4242d37ab610052c6e97f1fd00f58c2f",
+    "size": 556,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F05.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F05.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/82c308ac4242d37ab610052c6e97f1fd00f58c2f",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F05.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F05.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/82c308ac4242d37ab610052c6e97f1fd00f58c2f",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F05.exp3.json"
+    }
+  },
+  {
+    "name": "F06.exp3.json",
+    "path": "test/assets/haru/expressions/F06.exp3.json",
+    "sha": "1783f20183a8ad215329365efdd452c244b4b356",
+    "size": 557,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F06.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F06.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/1783f20183a8ad215329365efdd452c244b4b356",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F06.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F06.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/1783f20183a8ad215329365efdd452c244b4b356",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F06.exp3.json"
+    }
+  },
+  {
+    "name": "F07.exp3.json",
+    "path": "test/assets/haru/expressions/F07.exp3.json",
+    "sha": "7155c075005c0feed060fe0fb634fd7796129ba6",
+    "size": 1067,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F07.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F07.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/7155c075005c0feed060fe0fb634fd7796129ba6",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F07.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F07.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/7155c075005c0feed060fe0fb634fd7796129ba6",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F07.exp3.json"
+    }
+  },
+  {
+    "name": "F08.exp3.json",
+    "path": "test/assets/haru/expressions/F08.exp3.json",
+    "sha": "f2c378745fed42d97257fcbbae98ec700844dfe0",
+    "size": 490,
+    "url": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F08.exp3.json?ref=master",
+    "html_url": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F08.exp3.json",
+    "git_url": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/f2c378745fed42d97257fcbbae98ec700844dfe0",
+    "download_url": "https://raw.githubusercontent.com/guansss/pixi-live2d-display/master/test/assets/haru/expressions/F08.exp3.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/guansss/pixi-live2d-display/contents/test/assets/haru/expressions/F08.exp3.json?ref=master",
+      "git": "https://api.github.com/repos/guansss/pixi-live2d-display/git/blobs/f2c378745fed42d97257fcbbae98ec700844dfe0",
+      "html": "https://github.com/guansss/pixi-live2d-display/blob/master/test/assets/haru/expressions/F08.exp3.json"
+    }
+  }
+]
