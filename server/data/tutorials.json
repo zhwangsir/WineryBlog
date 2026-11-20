@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T15:35:38.923Z",
+  "generatedAt": "2026-11-20T15:55:19.476Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -31,14 +31,14 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 27
+      "count": 29
     },
     {
       "id": "frontend",
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 30
+      "count": 31
     },
     {
       "id": "backend",
@@ -1848,6 +1848,24 @@
       "href": "/post/x-x64_ts_generics"
     },
     {
+      "id": "x-x72_vue_reactivity",
+      "kind": "md",
+      "title": "Vue 响应式原理：从 defineProperty 到 Proxy",
+      "summary": "数据变→视图自动更新的机制全貌：defineProperty 的局限、Proxy 的全面拦截、依赖收集与派发。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 13,
+      "tags": [
+        "Vue",
+        "响应式",
+        "Proxy",
+        "前端"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x72_vue_reactivity"
+    },
+    {
       "id": "x-x49_web_perf",
       "kind": "md",
       "title": "Web 性能优化实战",
@@ -3183,6 +3201,24 @@
       "href": "/post/w20_nat"
     },
     {
+      "id": "x-x74_shell_params",
+      "kind": "md",
+      "title": "Shell 参数扩展完整语法",
+      "summary": "${var} 的全部形态：默认值、子串、前后缀删除、替换与大小写——一行顶十行的 Bash 内建语法。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "Shell",
+        "Bash",
+        "参数扩展",
+        "脚本"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x74_shell_params"
+    },
+    {
       "id": "x-x71_tls_handshake",
       "kind": "md",
       "title": "TLS 握手与证书体系：HTTPS 的安全基石",
@@ -3375,6 +3411,24 @@
       ],
       "prereqs": [],
       "href": "/post/s06_docker_compose"
+    },
+    {
+      "id": "x-x73_docker_image",
+      "kind": "md",
+      "title": "Docker 镜像原理：分层、UnionFS 与 Dockerfile 优化",
+      "summary": "镜像分层与 overlay2、写时复制与 whiteout、Dockerfile 缓存规则与体积优化——容器的文件系统真相。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "高级",
+      "minutes": 13,
+      "tags": [
+        "Docker",
+        "镜像分层",
+        "UnionFS",
+        "容器"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x73_docker_image"
     },
     {
       "id": "x-x46_nginx_deep",
