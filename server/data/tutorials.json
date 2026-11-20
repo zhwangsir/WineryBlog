@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:55:01.296Z",
+  "generatedAt": "2026-11-20T17:14:54.328Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -87,6 +87,13 @@
       "name": "分布式与并行",
       "icon": "Boxes",
       "blurb": "CAP、共识算法、并行编程与云原生（CS2023 PDC）",
+      "count": 3
+    },
+    {
+      "id": "matht",
+      "name": "数学与理论",
+      "icon": "Sigma",
+      "blurb": "离散数学、概率统计、计算理论——CS 的地基（CS2023 MSF/AL）",
       "count": 3
     },
     {
@@ -2502,6 +2509,60 @@
       ],
       "prereqs": [],
       "href": "/post/w12_rust_structs_generics"
+    },
+    {
+      "id": "x-x83_probability",
+      "kind": "md",
+      "title": "概率统计与信息论：贝叶斯、假设检验与熵",
+      "summary": "条件概率与贝叶斯、期望方差、假设检验的真义、香农熵与交叉熵——AI 与数据驱动决策的数学地基。",
+      "domain": "matht",
+      "category": "数学基础",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "概率统计",
+        "贝叶斯",
+        "假设检验",
+        "信息论"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x83_probability"
+    },
+    {
+      "id": "x-x81_discrete_math",
+      "kind": "md",
+      "title": "离散数学：集合、逻辑、数论与图论",
+      "summary": "计算机的数学是离散的：集合与关系、命题逻辑、模运算与 RSA、归纳证明——CS 的数学地基。",
+      "domain": "matht",
+      "category": "数学基础",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "离散数学",
+        "数论",
+        "逻辑",
+        "图论"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x81_discrete_math"
+    },
+    {
+      "id": "x-x82_computation_theory",
+      "kind": "md",
+      "title": "计算理论：自动机、可计算性与 NP 完全",
+      "summary": "什么是\"可计算\"与\"难解\"：自动机层级、图灵机、停机问题、P/NP——计算能力的边界地图。",
+      "domain": "matht",
+      "category": "计算理论",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "计算理论",
+        "自动机",
+        "NP完全",
+        "可计算性"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x82_computation_theory"
     },
     {
       "id": "w42_android_intro",

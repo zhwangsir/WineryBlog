@@ -122,7 +122,7 @@
 - x79_refactoring | 软件工程 | 重构：代码坏味道与安全手法
 - x80_arch_styles | 软件工程 | 软件架构风格：分层、六边形与事件驱动
 
-## Batch 25 — 数学与计算理论（CS2023 MSF/AL） — status: pending
+## Batch 25 — 数学与计算理论（CS2023 MSF/AL） — status: done
 - x81_discrete_math | 数学基础 | 离散数学：集合、逻辑、数论与图论
 - x82_computation_theory | 计算理论 | 计算理论：自动机、可计算性与 NP 完全
 - x83_probability | 数学基础 | 概率统计与信息论：贝叶斯、假设检验与熵
