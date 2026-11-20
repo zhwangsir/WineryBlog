@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T18:13:18.835Z",
+  "generatedAt": "2026-11-20T18:54:35.626Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 19
+      "count": 20
     },
     {
       "id": "algo",
@@ -2300,6 +2300,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x36_go_intro"
+    },
+    {
+      "id": "x-x90_java_basics",
+      "kind": "md",
+      "title": "JAVA程序基础",
+      "summary": "从安装 JDK 到跑通第一个程序：Java 的编译运行机制、基本结构与学习路线起点。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "入门",
+      "minutes": 13,
+      "tags": [
+        "Java",
+        "JDK",
+        "入门",
+        "编译运行"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x90_java_basics"
     },
     {
       "id": "w08_java_awt",

@@ -3972,6 +3972,21 @@
     "views": 0
   },
   {
+    "id": "x-x90_java_basics",
+    "title": "JAVA程序基础",
+    "date": "2026-11-20",
+    "category": "编程语言",
+    "tags": [
+      "Java",
+      "JDK",
+      "入门",
+      "编译运行"
+    ],
+    "excerpt": "从安装 JDK 到跑通第一个程序：Java 的编译运行机制、基本结构与学习路线起点。",
+    "content": "## 1. Java 是什么，为什么值得学\n\nJava 是企业级后端的**事实标准**：银行、电商、政务系统的主流语言。三个核心特质：\n\n| 特质 | 含义 | 收益 |\n| --- | --- | --- |\n| 一次编写，到处运行 | 源码编译成字节码，跑在 JVM 上 | 跨平台 |\n| 自动内存管理 | 垃圾回收（GC） | 不用手动 malloc/free |\n| 强类型 + 静态检查 | 编译期拦截大量错误 | 大团队协作可靠 |\n\n**学习成本**：语法偏啰嗦（对比 Python），但正因结构严谨，是理解\"类型系统、面向对象、内存模型\"的最佳教学语言。\n\n## 2. 安装 JDK 与选择版本\n\n- **JDK**（Java Development Kit）= 编译器 + 运行时 + 工具\n- 版本选择：**LTS 版**（17 或 21）——长期支持，企业主流\n\n```bash\n# 验证安装\njava -version      # 运行时\njavac -version     # 编译器（JRE 里没有这个，必须装 JDK）\n```\n\n常见发行版：Oracle JDK、Eclipse Temurin（推荐，免费开源）、Amazon Corretto。装完配置 `JAVA_HOME` 环境变量（IDE 会自动探测）。\n\n## 3. 第一个程序：HelloWorld 完整解剖\n\n```java\npublic class HelloWorld {                    // 类：Java 代码必须住在类里\n    public static void main(String[] args) { // 程序入口（固定签名）\n        System.out.println(\"Hello, World!\"); // 打印一行\n    }\n}\n```\n\n逐部分拆解（每一段都有含义）：\n\n| 片段 | 含义 |\n| --- | --- |\n| `public` | 访问修饰符：对外公开 |\n| `class HelloWorld` | 类声明；**文件名必须与类名一致**（HelloWorld.java） |\n| `static` | 属于类而非实例——JVM 无需创建对象即可调用 |\n| `void` | 无返回值 |\n| `String[] args` | 命令行参数（启动时传入） |\n| `System.out.println` | 标准输出打印 |\n\n**编译运行两步**（理解 Java 与脚本语言的本质差异）：\n\n```bash\njavac HelloWorld.java    # 编译 → 生成 HelloWorld.class（字节码）\njava HelloWorld          # JVM 执行字节码\n```\n\n**字节码是 Java 跨平台的秘密**：`.class` 不是机器码，是 JVM 的\"汇编\"；每种平台有对应的 JVM 把字节码翻译成本地指令——\"一次编写，到处运行\"。\n\n## 4. 开发环境：IDEA 与项目结构\n\n- **IntelliJ IDEA Community**（免费）——Java 事实标准 IDE\n- 项目结构（Maven 约定）：\n\n```\nproject/\n  src/main/java/       源码（包路径 = 目录层级）\n  src/main/resources   资源文件\n  pom.xml              依赖与构建配置（见 Maven 教程）\n```\n\n**包（package）**：类的命名空间，`package com.winery.demo;` 对应目录 `com/winery/demo/`——全大写类名、全小写包名是铁律规范。\n\n## 5. 基本语法速览（与后续教程的衔接地图）\n\n```java\nint age = 20;                       // 强类型：变量必须声明类型\nfinal double PI = 3.14;             // final = 常量不可改\nString name = \"Winery\";             // String 是引用类型（注意大写 S）\nboolean active = true;\n\nif (age >= 18) {                    // 条件\n    System.out.println(\"成年\");\n} else {\n    System.out.println(\"未成年\");\n}\n\nfor (int i = 0; i < 5; i++) {       // 计数循环\n    System.out.println(i);\n}\n\nint[] nums = {1, 2, 3};             // 数组\nfor (int x : nums) {                // 增强循环\n    System.out.println(x);\n}\n```\n\n后续深入：变量与运算符细节 → 面向对象（类/继承/接口）→ 集合与泛型——见延伸阅读的学习顺序。\n\n## 6. 编译运行机制：JDK/JRE/JVM 三者关系\n\n```\n.java 源码 ──javac──→ .class 字节码 ──JVM──→ 机器码\n        JDK = JRE + 编译器工具      JRE = JVM + 核心类库\n```\n\n- **JDK**：开发者用（含 javac）\n- **JRE**：仅运行（用户机器）\n- **JVM**：执行字节码的虚拟机（GC、内存管理都在这层）\n\n**为什么理解这个很重要**：`UnsupportedClassVersionError`（高版本编译、低版本运行）、内存 OOM 排查、GC 调优——全部建立在这套分层认知上（深入见站内《JVM 内存模型与垃圾回收》）。\n\n## 7. 陷阱速查表\n\n| 现象 | 原因 | 修法 |\n| --- | --- | --- |\n| 找不到或无法加载主类 | 类名与文件名不一致 / 包路径错 | 文件名=类名；在正确目录执行 |\n| javac 不是内部命令 | 只装了 JRE 或 PATH 未配 | 装 JDK 并配 JAVA_HOME/PATH |\n| `int x = \"abc\"` 编译错误 | 强类型不匹配 | 类型一致或转换 |\n| 中文输出乱码 | 编码不一致（GBK vs UTF-8） | javac -encoding UTF-8；IDE 统一 UTF-8 |\n| 大小写写错 | `system` ≠ `System` | Java 严格区分大小写 |\n\n## 8. 自测五题\n\n1. JDK、JRE、JVM 的包含关系？\n2. 为什么文件名必须与 public 类名一致？\n3. 字节码如何实现\"一次编写，到处运行\"？\n4. main 方法的固定签名是什么？每个部分的含义？\n5. `javac` 与 `java` 命令分别做什么？\n\n（答案均在正文对应小节。）\n\n## 延伸阅读\n\n- 站内：《Java 基础：语法、程序结构与数组》（语法主线，本篇的下一段旅程）、《Java 基础语法与程序结构》（对照补漏）、《Java 面向对象编程》（OOP 灵魂）、《Maven 构建工具入门》（工程化第一步）\n- 站内参考资料：《Java 官方教程》（本地镜像 /post/ref-docs-oracle-com-javase-tutorial）\n- 《Java 核心技术·卷 1》（Core Java）——入门到进阶的标准教材",
+    "views": 0
+  },
+  {
     "id": "ref-3b1b-linalg",
     "title": "3Blue1Brown",
     "date": "2026-11-20",
