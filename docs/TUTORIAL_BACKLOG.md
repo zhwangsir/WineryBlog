@@ -127,7 +127,7 @@
 - x82_computation_theory | 计算理论 | 计算理论：自动机、可计算性与 NP 完全
 - x83_probability | 数学基础 | 概率统计与信息论：贝叶斯、假设检验与熵
 
-## Batch 26 — AI 前沿与人机交互 — status: pending
+## Batch 26 — AI 前沿与人机交互 — status: done
 - x84_hci | 人机交互 | 人机交互与可用性设计（CS2023 HCI）
 - x85_knowledge_graph | 人工智能 | 知识图谱：本体建模与图谱构建
 - x86_reinforcement | 人工智能 | 强化学习入门：MDP、Q-Learning 与策略梯度

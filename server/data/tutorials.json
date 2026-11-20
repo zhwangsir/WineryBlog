@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T17:14:54.328Z",
+  "generatedAt": "2026-11-20T17:34:47.237Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 31
+      "count": 32
     },
     {
       "id": "backend",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 20
+      "count": 22
     },
     {
       "id": "security",
@@ -175,6 +175,24 @@
       ],
       "prereqs": [],
       "href": "/post/w63_ml_overview"
+    },
+    {
+      "id": "x-x86_reinforcement",
+      "kind": "md",
+      "title": "强化学习入门：MDP、Q-Learning 与策略梯度",
+      "summary": "从环境交互中学习：MDP 数学框架、Q-Learning 表格实现、策略梯度与 DQN——RLHF 的前置地基。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "强化学习",
+        "MDP",
+        "Q-Learning",
+        "RLHF"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x86_reinforcement"
     },
     {
       "id": "t05_pytorch_dl",
@@ -394,6 +412,24 @@
       ],
       "prereqs": [],
       "href": "/post/w87_lmstudio"
+    },
+    {
+      "id": "x-x85_knowledge_graph",
+      "kind": "md",
+      "title": "知识图谱：本体建模与图谱构建",
+      "summary": "实体-关系网络、本体建模、抽取与消歧流水线、Cypher 查询、GraphRAG——结构化知识的完整链路。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "知识图谱",
+        "Neo4j",
+        "NER",
+        "GraphRAG"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x85_knowledge_graph"
     },
     {
       "id": "x-x17_transformer",
@@ -1869,6 +1905,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x58_event_loop"
+    },
+    {
+      "id": "x-x84_hci",
+      "kind": "md",
+      "title": "人机交互与可用性设计（CS2023 HCI）",
+      "summary": "认知心理学 + 设计原则 + 可访问性——CS2023 独立知识域：让\"能用\"变成\"好用\"的完整方法论。",
+      "domain": "frontend",
+      "category": "人机交互",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "HCI",
+        "可用性",
+        "无障碍",
+        "交互设计"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x84_hci"
     },
     {
       "id": "w54_ui_libs",
