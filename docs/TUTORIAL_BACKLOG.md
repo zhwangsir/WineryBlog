@@ -60,5 +60,50 @@
 - x52_git_advanced | 编程基础与工具 | Git 高级技巧与团队工作流
 - x53_flutter_state | 移动与跨端 | Flutter 状态管理进阶
 
+## Batch 13 — CSS 深度拆分（知识粒度细化） — status: done
+- x54_flex_container | Web 前端 | Flexbox 容器属性逐个击破
+- x55_flex_items | Web 前端 | Flexbox 子项属性详解
+- x56_grid_container | Web 前端 | CSS Grid 容器全属性指南
+
+## Batch 14 — JS 异步深度 — status: pending
+- x57_promise_impl | Web 前端 | 手写 Promise：从规范到实现
+- x58_event_loop | Web 前端 | 事件循环深度剖析：宏任务微任务与调度
+- x59_async_await | Web 前端 | async/await 原理：生成器与协程
+
+## Batch 15 — React 深度 — status: pending
+- x60_usestate_deep | Web 前端 | useState 深度剖析：闭包陷阱与批处理
+- x61_useeffect_deep | Web 前端 | useEffect 完全指南：依赖、清理与时机
+- x62_react_fiber | Web 前端 | React Fiber 架构：可中断渲染
+
+## Batch 16 — TS 与 Redis 深度 — status: pending
+- x63_ts_typesystem | Web 前端 | TypeScript 类型系统基础：结构化类型与收窄
+- x64_ts_generics | Web 前端 | TypeScript 泛型进阶：约束、推断与工具类型实现
+- x65_redis_internals | 数据库 | Redis 数据结构底层实现
+
+## Batch 17 — Python 与 Java 深度 — status: pending
+- x66_python_decorators | 编程语言 | Python 装饰器与生成器：闭包的两种应用
+- x67_jvm_memory | 编程语言 | JVM 内存模型与垃圾回收
+- x68_java_collections | 编程语言 | Java 集合框架源码剖析
+
+## Batch 18 — 网络深度 — status: pending
+- x69_tcp_deep | 计算机网络 | TCP 深入：三次握手、四次挥手与状态机
+- x70_http_cache | Web 前端 | HTTP 缓存完全指南
+- x71_tls_handshake | 计算机网络 | TLS 握手与证书体系
+
+## Batch 19 — 框架与工具深度 — status: pending
+- x72_vue_reactivity | Web 前端 | Vue 响应式原理：从 defineProperty 到 Proxy
+- x73_docker_image | 操作系统与运维 | Docker 镜像原理：分层与优化
+- x74_shell_params | 操作系统与运维 | Shell 参数扩展完整语法
+
+## Batch 20 — 参考资料（本地化外链内容） — status: pending
+> 用 scripts/fetch-references.mjs 抓取下方清单 → src/references/*.md
+- [ ] ref-mdn-flex | MDN Flexbox 基本概念 | https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+- [ ] ref-mdn-grid | MDN Grid 布局核心概念 | https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
+- [ ] ref-react-thinking | React 官方：用 React 思考 | https://react.dev/learn/thinking-in-react
+- [ ] ref-mdn-eventloop | MDN 并发模型与事件循环 | https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop
+
 ## 完成判据
-Batch 2-12 全部 `done` 且 build 脚本输出 167 篇教程 → 任务结束（CronPauseSelf）。
+Batch 2-20 全部 `done` 且 build 脚本输出 ≥185 篇教程 → 任务结束（CronPauseSelf）。
+
+### 细化写作新标准（Batch 13 起生效）
+正文 250-400 行；每个知识点独立小节：定义 → 语法逐项表格 → 边界行为与陷阱 → 可运行示例 → 与相邻知识点的对比。深度要求：讲透"为什么这样设计"，不止"怎么用"。

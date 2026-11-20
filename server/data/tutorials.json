@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:48:45.619Z",
+  "generatedAt": "2026-11-20T12:56:49.338Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 18
+      "count": 21
     },
     {
       "id": "backend",
@@ -1488,6 +1488,60 @@
       ],
       "prereqs": [],
       "href": "/post/x-x18_css_grid"
+    },
+    {
+      "id": "x-x56_grid_container",
+      "kind": "md",
+      "title": "CSS Grid 容器全属性指南",
+      "summary": "grid-template-columns/rows/areas 逐值解析、隐式与显式网格、auto-fill 与 minmax 组合、对齐体系。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "CSS",
+        "Grid",
+        "grid-template",
+        "前端"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x56_grid_container"
+    },
+    {
+      "id": "x-x55_flex_items",
+      "kind": "md",
+      "title": "Flexbox 子项属性详解",
+      "summary": "flex-grow/shrink/basis 三兄弟的完整算法、flex 简写陷阱、align-self 与 order——子项层的全部规则。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "CSS",
+        "Flexbox",
+        "flex-grow",
+        "前端"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x55_flex_items"
+    },
+    {
+      "id": "x-x54_flex_container",
+      "kind": "md",
+      "title": "Flexbox 容器属性逐个击破",
+      "summary": "flex-direction、justify-content、align-items 等容器属性逐个深挖：每个值的行为、边界与陷阱。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 19,
+      "tags": [
+        "CSS",
+        "Flexbox",
+        "前端",
+        "布局"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x54_flex_container"
     },
     {
       "id": "w46_js_core",

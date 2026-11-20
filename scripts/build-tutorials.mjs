@@ -48,6 +48,11 @@ const CATEGORY_TO_DOMAIN = {
 // blog categories stay on the home feed; everything else is tutorial content
 const BLOG_CATEGORIES = new Set(['随笔', '项目实战']);
 
+// local reference mirrors: kept in posts.json (searchable/archivable)
+// but excluded from the tutorial catalog
+const TUTORIAL_EXCLUDE = new Set(['参考资料']);
+const REF_DIR = path.join(ROOT, 'src', 'references');
+
 // curated prerequisites (same pairs the knowledge graph uses)
 const PREREQ_PAIRS = [
   ['CS 自学总纲', '数据结构与算法入门'],
@@ -148,6 +153,29 @@ for (const file of mdFiles) {
   injected.push(id);
 }
 
+// ---- inject local reference mirrors into posts --------------------------
+const refFiles = fs.existsSync(REF_DIR) ? fs.readdirSync(REF_DIR).filter(f => f.endsWith('.md')) : [];
+const refInjected = [];
+for (const file of refFiles) {
+  const slug = file.replace(/\.md$/, '');
+  const id = 'ref-' + slug;
+  const raw = fs.readFileSync(path.join(REF_DIR, file), 'utf-8');
+  const { meta, body } = parseFrontmatter(raw);
+  const post = {
+    id,
+    title: meta.title || slug,
+    date: today,
+    category: '参考资料',
+    tags: [...(meta.tags || []), '参考资料'],
+    excerpt: meta.summary || '',
+    content: body.trim(),
+    views: 0,
+  };
+  const idx = posts.findIndex(p => p.id === id);
+  if (idx >= 0) posts[idx] = post; else posts.push(post);
+  refInjected.push(id);
+}
+
 fs.writeFileSync(POSTS_FILE, JSON.stringify(posts, null, 2));
 
 // ---- build tutorials.json ------------------------------------------------
@@ -162,7 +190,7 @@ for (const [from, to] of PREREQ_PAIRS) {
 }
 
 const tutorials = posts
-  .filter(p => !BLOG_CATEGORIES.has(p.category))
+  .filter(p => !BLOG_CATEGORIES.has(p.category) && !TUTORIAL_EXCLUDE.has(p.category))
   .map(p => {
     const cat = CATEGORY_TO_DOMAIN[p.category] ? p.category : p.category.split('/')[0].trim();
     const domain = CATEGORY_TO_DOMAIN[cat] || 'basics';
@@ -204,6 +232,6 @@ const out = {
 };
 fs.writeFileSync(TUT_FILE, JSON.stringify(out, null, 2));
 
-console.log(`posts: ${posts.length} (injected ${injected.length} md tutorials)`);
+console.log(`posts: ${posts.length} (injected ${injected.length} md tutorials, ${refInjected.length} references)`);
 console.log(`tutorials: ${tutorials.length} across ${domains.length} domains`);
 for (const d of domains) console.log(`  ${d.name}: ${d.count}`);
