@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
 import { Copyright } from 'lucide-react';
 
-const HERO_BG_IMAGE = '/images/default-hero.svg';
+const HERO_BG_IMAGE = '/images/HuTao/hutao10.png';
 
 interface TypewriterProps {
   text: string;

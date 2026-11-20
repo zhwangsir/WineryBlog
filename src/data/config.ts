@@ -5,11 +5,11 @@ export const siteConfig = {
   hero: {
     title: "Lovely HuTao!",
     subtitle: "逗留采血色，伴君眠花房。",
-    image: "/images/default-hero.svg", 
+    image: "/images/HuTao/hutao10.png",
     credit: "Pixiv - 水菜カステラ"
   },
   profile: {
-    avatar: "/images/default-avatar.svg", 
+    avatar: "/images/HuTao/hutao68.png",
     name: "Winery",
     bio: "永远相信，美好的事情即将发生。"
   },

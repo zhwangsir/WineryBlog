@@ -15,7 +15,7 @@ interface MascotProps {
 
 export const Mascot: React.FC<MascotProps> = ({
   enabled = true,
-  avatar = '/images/default-avatar.svg',
+  avatar = '/images/HuTao/hutao68.png',
   name = 'Hutao',
   messages = [
     '你好呀！欢迎来到我的博客~',

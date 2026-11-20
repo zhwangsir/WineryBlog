@@ -12,6 +12,11 @@ coverage/
 public/images/**
 !public/images/**/
 !public/images/**/*.svg
+
+# HuTao theme media (~300MB) works locally only; upload equivalents
+# via the admin panel or serve from a CDN when deploying
+public/images/HuTao/*.png
+public/images/HuTao/*.jpeg
 public/videos/
 public/audio/
 *.png
@@ -24,6 +29,10 @@ public/audio/
 *.wav
 *.ico
 *.cur
+# small theme essentials stay tracked (negations must come after the
+# global extension rules above to win)
+!public/images/favicon.ico
+!public/images/cursor.cur
 
 # user uploads (avatar/background settings)
 server/data/uploads/
