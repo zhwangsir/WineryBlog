@@ -142,21 +142,27 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         model.y = PET_SIZE.h - model.internalModel.height * scale;
         app.stage.addChild(model);
 
-        // 自主 rAF 循环：驱动 Live2D 内部更新（眨眼/物理/焦点）+ 待机呼吸 + 渲染。
-        // 不依赖 PIXI ticker —— 本环境的 Application ticker 不会自动运行。
+        // 自主循环：驱动 Live2D 内部更新（眨眼/物理/焦点）+ 待机呼吸 + 渲染。
+        // 用 setInterval 而非 rAF —— rAF 在后台标签/嵌入式 webview 中会被节流到 0。
         const baseY = model.y;
         let last = performance.now();
-        const loop = (t: number) => {
+        let warned = false;
+        const loop = () => {
+          const t = performance.now();
           const dt = Math.min(t - last, 100);
           last = t;
-          try { model.update(dt); } catch { /* 模型销毁窗口期 */ }
-          model.rotation = Math.sin(t / 1400) * 0.02;
-          model.y = baseY + Math.sin(t / 900) * 3;
-          app.render();
-          rafId = requestAnimationFrame(loop);
+          try {
+            model.update(dt);
+            model.rotation = Math.sin(t / 1400) * 0.02;
+            model.y = baseY + Math.sin(t / 900) * 3;
+            app.render();
+            warned = false;
+          } catch (e) {
+            if (!warned) { console.warn('[pet] render loop:', e); warned = true; }
+          }
         };
-        let rafId = requestAnimationFrame(loop);
-        cleanupFns.push(() => cancelAnimationFrame(rafId));
+        const loopId = window.setInterval(loop, 33);   // ≈30fps
+        cleanupFns.push(() => window.clearInterval(loopId));
 
         setReady(true);
       } catch (e) {
