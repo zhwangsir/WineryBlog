@@ -64,7 +64,13 @@
     "sakuraEnabled": true,
     "sakuraDensity": 50,
     "sakuraSpeed": "normal",
-    "mascotEnabled": true
+    "mascotEnabled": true,
+    "pet": {
+      "enabled": true,
+      "model": "hutao",
+      "voiceEnabled": false,
+      "autoDodge": true
+    }
   },
   "music": {
     "enabled": false,

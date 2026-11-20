@@ -7,6 +7,8 @@ interface PetMascotProps {
   enabled?: boolean;
   voiceEnabled?: boolean;
   autoDodge?: boolean;
+  /** 'hutao' = 本地胡桃模型；'fallback' = 跳过 Live2D 用静态头像 */
+  model?: 'hutao' | 'fallback';
   /** 模型加载失败时的回落头像 */
   fallbackAvatar?: string;
   name?: string;
@@ -48,12 +50,14 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   enabled = true,
   voiceEnabled = false,
   autoDodge = true,
+  model = 'hutao',
   fallbackAvatar = '/images/HuTao/hutao68.png',
   name = '胡桃',
   onOpenChat,
 }) => {
   const hostRef = useRef<HTMLDivElement>(null);
   const pixiHostRef = useRef<HTMLDivElement>(null);
+  const hitRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<any>(null);
   const appRef = useRef<any>(null);
   const posRef = useRef<Pos>({ x: -9999, y: -9999 });
@@ -89,6 +93,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   useEffect(() => {
     if (!enabled || hidden) return;
     applyPos(clampPos(loadPos()));
+    if (model === 'fallback') { setLive2dFailed(true); return; }   // 明确选择静态模式
 
     let disposed = false;
     (async () => {
@@ -105,9 +110,12 @@ export const PetMascot: React.FC<PetMascotProps> = ({
           backgroundAlpha: 0,
           autoDensity: true,
           resolution: Math.min(window.devicePixelRatio || 1, 2),
+          preserveDrawingBuffer: false,
         });
         if (disposed) { app.destroy(false); return; }
         appRef.current = app;
+        // 画布不拦截指针：透明区域点击穿透到页面，交互由命中层承担
+        (app.view as HTMLCanvasElement).style.pointerEvents = 'none';
         pixiHostRef.current?.appendChild(app.view as HTMLCanvasElement);
 
         const model = await Live2DModel.from('/live2d/hutao/HuTao.model3.json', {
@@ -147,7 +155,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       } catch { /* ignore */ }
       modelRef.current = null; appRef.current = null;
     };
-  }, [enabled, hidden, applyPos]);
+  }, [enabled, hidden, model, applyPos]);
 
   // ---- 开场问候 ----
   useEffect(() => {
@@ -174,18 +182,23 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, hidden]);
 
-  // ---- 自动避让：检测遮挡可交互元素 → 滑向空闲候选位 ----
-  const rectInteracts = useCallback((x: number, y: number): number => {
+  // ---- 自动避让：命中层矩形与页面可交互元素几何相交 → 滑向空闲候选位 ----
+  const rectInteracts = useCallback((): number => {
+    const hit = hitRef.current;
+    const host = hostRef.current;
+    if (!hit || !host) return 0;
+    const hr = hit.getBoundingClientRect();
+    if (hr.width === 0) return 0;
+    const els = document.querySelectorAll('a,button,input,textarea,select,[role="button"]');
     let hits = 0;
-    const cols = 4, rows = 5;
-    for (let i = 1; i < cols; i++) {
-      for (let j = 1; j < rows; j++) {
-        const px = x + (PET_SIZE.w * i) / cols;
-        const py = y + (PET_SIZE.h * j) / rows;
-        const el = document.elementFromPoint(px, py);
-        if (el && hostRef.current && !hostRef.current.contains(el)) {
-          if (el.closest('a,button,input,textarea,select,[role="button"],label')) hits++;
-        }
+    for (const el of els) {
+      if (host.contains(el)) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) continue;
+      if (r.bottom <= 0 || r.top >= window.innerHeight) continue;   // 视口外
+      if (r.left < hr.right && r.right > hr.left && r.top < hr.bottom && r.bottom > hr.top) {
+        hits++;
+        if (hits >= 2) return hits;
       }
     }
     return hits;
@@ -207,7 +220,12 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     let target: Pos | null = null;
     for (const c of candidates) {
       if (Math.abs(c.x - cur.x) < 40 && Math.abs(c.y - cur.y) < 40) continue;
-      if (rectInteracts(c.x, c.y) === 0) { target = c; break; }
+      // 候选位先摆过去测相交数（测完回原位，最终定位用动画滑过去）
+      const prev = posRef.current;
+      applyPos(c);
+      const hits = rectInteracts();
+      applyPos(prev);
+      if (hits === 0) { target = c; break; }
     }
     if (target) {
       showBubble(pickLine('dodge'), 'dodge');
@@ -233,14 +251,14 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     const timer = window.setInterval(() => {
       const el = hostRef.current;
       if (!el || dragState.current.dragging) return;
-      if (rectInteracts(posRef.current.x, posRef.current.y) >= 2) dodge();
+      if (rectInteracts() >= 2) dodge();
     }, 1500);
     return () => window.clearInterval(timer);
   }, [enabled, hidden, autoDodge, ready, rectInteracts, dodge]);
 
   // ---- 拖动 + 点击/双击 ----
   const onPointerDown = (e: React.PointerEvent) => {
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    try { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); } catch { /* 合成事件无活动指针，忽略 */ }
     dragState.current = {
       dragging: true,
       startX: e.clientX, startY: e.clientY,
@@ -270,13 +288,15 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       showBubble(pickLine('drag'), 'drag');
       return;
     }
-    // 点击（未拖动）：双击开面板，单击台词
+    // 点击（未拖动）：快速二连击打开面板，单击出台词
     const now = Date.now();
-    if (now - lastTap.current < 350) {
+    if (now - lastTap.current < 600) {
       lastTap.current = 0;
+      (window as any).__petOpenCalls = ((window as any).__petOpenCalls || 0) + 1;
       onOpenChat?.();
       return;
     }
+    (window as any).__petTapSingle = ((window as any).__petTapSingle || 0) + 1;
     lastTap.current = now;
     showBubble(pickLine('tap'), 'tap');
   };
@@ -308,6 +328,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onDoubleClick={() => { lastTap.current = 0; onOpenChat?.(); }}
     >
       {/* 台词气泡 */}
       <AnimatePresence>
@@ -335,8 +356,8 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         ×
       </button>
 
-      {/* Live2D 画布 / 静态回落 */}
-      <div ref={pixiHostRef} className="w-full h-full relative" data-pet-name={name}>
+      {/* Live2D 画布（指针穿透） / 静态回落 */}
+      <div ref={pixiHostRef} className="w-full h-full relative" data-pet-name={name} style={{ pointerEvents: 'none' }}>
         {!ready && (
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-4">
             <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-orange-200/70 shadow-lg animate-bounce">
@@ -348,6 +369,20 @@ export const PetMascot: React.FC<PetMascotProps> = ({
           </div>
         )}
       </div>
+
+      {/* 命中层：近似模型身体矩形，承担拖动与点击（未加载完成时不拦截） */}
+      <div
+        ref={hitRef}
+        className="absolute z-10"
+        style={{
+          left: PET_SIZE.w / 2 - 60,
+          top: 40,
+          width: 120,
+          height: PET_SIZE.h - 50,
+          pointerEvents: ready ? 'auto' : 'none',
+          cursor: 'grab',
+        }}
+      />
     </div>
   );
 };

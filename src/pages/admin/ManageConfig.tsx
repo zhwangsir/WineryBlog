@@ -479,6 +479,70 @@ export const ManageConfig: React.FC = () => {
               Show an animated mascot character on the page (Firefly style with avatar, name, and messages)
             </p>
           </section>
+
+          {/* Pet (Live2D HuTao) Settings */}
+          <section className="bg-bg-card border border-orange-300/40 rounded-2xl p-6 shadow-sm mt-6">
+            <h3 className="text-lg font-bold text-text-primary mb-4">胡桃桌宠（Live2D）</h3>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="petEnabled"
+                  checked={formData.theme?.pet?.enabled !== false}
+                  onChange={e => handleThemeChange('pet', {
+                    ...(formData.theme?.pet || {}),
+                    enabled: e.target.checked,
+                  })}
+                  className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+                />
+                <label htmlFor="petEnabled" className="text-sm font-medium text-text-primary cursor-pointer">
+                  启用 Live2D 桌宠（替代静态吉祥物）
+                </label>
+              </div>
+              <p className="text-xs text-text-muted ml-7 -mt-2">
+                关闭后回落为静态吉祥物（Mascot）。桌宠支持拖动、位置记忆、遮挡自动避让、点击台词与双击对话。
+              </p>
+
+              <div className="flex items-center gap-3">
+                <label htmlFor="petModel" className="text-sm font-medium text-text-primary w-28">模型</label>
+                <select
+                  id="petModel"
+                  value={formData.theme?.pet?.model || 'hutao'}
+                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), model: e.target.value })}
+                  className="px-3 py-1.5 bg-bg-base border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent"
+                >
+                  <option value="hutao">胡桃（本地 moc3）</option>
+                  <option value="fallback">静态头像模式</option>
+                </select>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="petVoice"
+                  checked={formData.theme?.pet?.voiceEnabled === true}
+                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), voiceEnabled: e.target.checked })}
+                  className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+                />
+                <label htmlFor="petVoice" className="text-sm font-medium text-text-primary cursor-pointer">
+                  台词语音（音频包优先，浏览器 TTS 兜底）
+                </label>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="petDodge"
+                  checked={formData.theme?.pet?.autoDodge !== false}
+                  onChange={e => handleThemeChange('pet', { ...(formData.theme?.pet || {}), autoDodge: e.target.checked })}
+                  className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+                />
+                <label htmlFor="petDodge" className="text-sm font-medium text-text-primary cursor-pointer">
+                  自动避让（遮挡可交互元素时自己走开）
+                </label>
+              </div>
+            </div>
+          </section>
         </section>
 
         {/* Music Settings */}

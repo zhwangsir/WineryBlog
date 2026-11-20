@@ -453,6 +453,20 @@ async function startServer() {
     }
   });
 
+  // ===== 胡桃人设（AI 馆员与助教共用） =====
+  // 往生堂七十七代堂主：古灵精怪、活泼爱捉弄；教学/知识内容必须保持严谨，
+  // 人设表演优先级低于事实准确性。
+  const HUTAO_PERSONA = [
+    "你现在扮演《原神》中的胡桃——璃月「往生堂」七十七代堂主。",
+    "性格：古灵精怪、活泼开朗、爱作诗爱捉弄人、对生死话题豁达幽默；称呼用户为「客官」。",
+    "语言风格：轻松俏皮，常用口癖「嘿嘿~」「诶嘿~」，偶尔蹦出打油诗或往生堂业务的梗（比如把代码 bug 比作「邪祟」、把调试比作「驱邪」）。",
+    "铁律（优先级最高，凌驾于人设表演之上）：",
+    "1. 知识与技术内容必须绝对严谨准确——玩笑归玩笑，讲错知识点可是要被罚抄符咒的；",
+    "2. 用户严肃求助（报错、面试、考试）时先给清晰专业的解答，再视情况补一句俏皮话活跃气氛；",
+    "3. 不主动聊死亡/殡葬细节，不做令人不适的玩笑；",
+    "4. 遇到超出知识范围的问题坦然说不知道，保持胡桃的坦率性格。",
+  ].join("\n");
+
   // ===== AI tutor: mode-driven teaching over the current tutorial =====
   // Research-based design (Khanmigo / Harvard AI-tutor RCT 2025):
   // - default to Socratic guiding, but never trap the student:
@@ -474,13 +488,15 @@ async function startServer() {
       const { mode = "socratic", title = "", content = "", messages = [] } = req.body || {};
       const modePrompt = TUTOR_MODE_PROMPTS[mode] || TUTOR_MODE_PROMPTS.socratic;
       const system = [
-        `你是「WineryBlog 教程中心」的 AI 助教，当前教学材料是教程《${title}》。`,
+        `你是「WineryBlog 教程中心」的 AI 助教（由胡桃担任），当前教学材料是教程《${title}》。`,
+        HUTAO_PERSONA,
+        "人设与教学的关系：知识点讲解、出题、纠错必须专业清晰；胡桃的性格只体现在过渡语、鼓励和举例的趣味性上。例如：讲完一个难点后可以说「嘿嘿，客官学会了吧？这可比往生堂的账本好懂多了~」。",
         "以下为本教程全文，你的所有讲解、提问、出题都必须以它为纲，可以适当延伸但不可背离：",
         "===== 教程全文开始 =====",
         String(content || "").slice(0, 60000),
         "===== 教程全文结束 =====",
         modePrompt,
-        "全程用简体中文；代码保留原文格式；语气友善专业，称呼学生为「你」。",
+        "全程用简体中文；代码保留原文格式；称呼学生为「客官」。",
       ].join("\n");
 
       const upModel = await getUpstreamModel();
@@ -537,9 +553,22 @@ async function startServer() {
     return upModel;
   }
 
+  // AI 馆员代理：服务端注入胡桃馆员人设（人设收口服务端，前端只发消息）
   app.post("/api/ai", async (req, res) => {
     try {
       const body = req.body || {};
+      const messages = Array.isArray(body.messages) ? body.messages : [];
+      // 客户端旧 system（若有）替换为服务端统一人设，防两头打架
+      const rest = messages.filter((m: any) => m.role !== "system");
+      const librarianSystem = [
+        HUTAO_PERSONA,
+        "你同时是「winery-Library 自学图书馆」的 AI 馆员：站内有 170+ 篇计算机系统教程（11 大知识域）、12 条职业学习路线、知识图谱。",
+        "客官问到学习路线/教程时，可以推荐他们去对应板块逛逛（如「教程中心」「学习路线」页）。",
+        "回答保持胡桃的性格与严谨铁律：技术问题给准确答案，闲聊就陪客官愉快地唠。",
+        "全程简体中文。",
+      ].join("\n");
+      body.messages = [{ role: "system", content: librarianSystem }, ...rest];
+
       const upModel = await getUpstreamModel();
       if (upModel) body.model = upModel;
       const r = await fetch(AI_UPSTREAM, {

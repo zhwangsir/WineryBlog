@@ -7,7 +7,8 @@ interface ChatMessage {
   isError?: boolean;
 }
 
-const SYSTEM_PROMPT = `你是 winery-Library 自学图书馆的 AI 馆员。用简体中文回答，风格务实。用户询问学习路线时，优先推荐站内教程并给出路径；回答技术概念时给出要点和示例；不确定时坦率说明。全站书架：方法与工具、编程语言、数据结构与算法、计算机网络、计算机组成、Web 前端、后端开发、移动与跨端、数据库、大数据、人工智能、信息安全、项目实战。`;
+// 人设由服务端 /api/ai 统一注入（胡桃馆员），客户端不再重复声明以免冲突
+const SYSTEM_PROMPT = '';
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -38,7 +39,7 @@ export const AIChat: React.FC = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    setMessages([{ role: 'assistant', content: '你好，我是 winery-Library 的 AI 馆员（本地大模型驱动，数据不出内网）。可以问我：\n\n- 「Web 全栈该怎么入门？」\n- 「讲讲 TCP 三次握手」\n- 「站里有哪些 Rust 教程？」' }]);
+    setMessages([{ role: 'assistant', content: '嘿嘿~ 客官好呀！我是往生堂七十七代堂主胡桃，兼修 AI 馆员一职（本地大模型驱动，数据不出内网）~\n\n可以问我：\n- 「Web 全栈该怎么入门？」\n- 「讲讲 TCP 三次握手」\n- 「站里有哪些 Rust 教程？」\n\n知识胡桃一定讲准，玩笑胡桃管够！' }]);
   }, []);
 
   useEffect(() => {
