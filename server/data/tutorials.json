@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T14:07:18.387Z",
+  "generatedAt": "2026-11-20T14:15:56.059Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 24
+      "count": 27
     },
     {
       "id": "backend",
@@ -1561,6 +1561,24 @@
       "href": "/post/w46_js_core"
     },
     {
+      "id": "x-x62_react_fiber",
+      "kind": "md",
+      "title": "React Fiber 架构：可中断渲染",
+      "summary": "FiberNode 结构、双缓冲树、可中断渲染与优先级——React 16 重写背后的问题与解法。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "React",
+        "Fiber",
+        "并发",
+        "架构"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x62_react_fiber"
+    },
+    {
       "id": "s09_react_hooks",
       "kind": "post",
       "title": "React 核心补充：Hooks 与状态管理",
@@ -1596,6 +1614,42 @@
       ],
       "prereqs": [],
       "href": "/post/w51_websocket"
+    },
+    {
+      "id": "x-x61_useeffect_deep",
+      "kind": "md",
+      "title": "useEffect 完全指南：依赖、清理与时机",
+      "summary": "effect 的执行时机、依赖数组的精确语义、清理函数、竞态处理——把最容易被误用的 Hook 讲透。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "React",
+        "useEffect",
+        "Hooks",
+        "副作用"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x61_useeffect_deep"
+    },
+    {
+      "id": "x-x60_usestate_deep",
+      "kind": "md",
+      "title": "useState 深度剖析：闭包陷阱与批处理",
+      "summary": "状态快照、闭包陷阱、函数式更新、自动批处理——把 useState 背后的调度机制讲透。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "React",
+        "useState",
+        "Hooks",
+        "闭包"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x60_usestate_deep"
     },
     {
       "id": "w49_proxy",

@@ -97,6 +97,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
     let disposed = false;
     let onPointerMove: ((e: PointerEvent) => void) | null = null;
+    const cleanupFns: (() => void)[] = [];
     (async () => {
       try {
         const PIXI = await import('pixi.js');
@@ -112,6 +113,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
           autoDensity: true,
           resolution: Math.min(window.devicePixelRatio || 1, 2),
           preserveDrawingBuffer: false,
+          autoStart: false,              // 渲染由下方自主 rAF 循环驱动
         });
         if (disposed) { app.destroy(false); return; }
         appRef.current = app;
@@ -121,7 +123,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
         const model = await Live2DModel.from('/live2d/hutao/HuTao.model3.json', {
           autoInteract: false,   // 点击/拖动由外层命中层处理
-          autoUpdate: true,
+          autoUpdate: false,     // 由下方 ticker 手动驱动（autoUpdate 挂接在本环境失效）
         });
         if (disposed) { model.destroy(); return; }
         modelRef.current = model;
@@ -140,13 +142,21 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         model.y = PET_SIZE.h - model.internalModel.height * scale;
         app.stage.addChild(model);
 
-        // 待机呼吸：轻微摆动（模型无 motion 文件，用程序动画补）
+        // 自主 rAF 循环：驱动 Live2D 内部更新（眨眼/物理/焦点）+ 待机呼吸 + 渲染。
+        // 不依赖 PIXI ticker —— 本环境的 Application ticker 不会自动运行。
         const baseY = model.y;
-        app.ticker.add(() => {
-          const t = performance.now();
+        let last = performance.now();
+        const loop = (t: number) => {
+          const dt = Math.min(t - last, 100);
+          last = t;
+          try { model.update(dt); } catch { /* 模型销毁窗口期 */ }
           model.rotation = Math.sin(t / 1400) * 0.02;
           model.y = baseY + Math.sin(t / 900) * 3;
-        });
+          app.render();
+          rafId = requestAnimationFrame(loop);
+        };
+        let rafId = requestAnimationFrame(loop);
+        cleanupFns.push(() => cancelAnimationFrame(rafId));
 
         setReady(true);
       } catch (e) {
@@ -158,6 +168,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     return () => {
       disposed = true;
       if (onPointerMove) window.removeEventListener('pointermove', onPointerMove);
+      cleanupFns.forEach(fn => fn());
       try {
         modelRef.current?.destroy();
         appRef.current?.destroy(false, { children: true });

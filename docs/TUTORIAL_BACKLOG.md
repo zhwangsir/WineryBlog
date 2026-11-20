@@ -70,7 +70,7 @@
 - x58_event_loop | Web 前端 | 事件循环深度剖析：宏任务微任务与调度
 - x59_async_await | Web 前端 | async/await 原理：生成器与协程
 
-## Batch 15 — React 深度 — status: pending
+## Batch 15 — React 深度 — status: done
 - x60_usestate_deep | Web 前端 | useState 深度剖析：闭包陷阱与批处理
 - x61_useeffect_deep | Web 前端 | useEffect 完全指南：依赖、清理与时机
 - x62_react_fiber | Web 前端 | React Fiber 架构：可中断渲染
