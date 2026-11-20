@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:26:51.106Z",
+  "generatedAt": "2026-11-20T12:41:47.170Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -17,14 +17,14 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 14
+      "count": 15
     },
     {
       "id": "algo",
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 8
+      "count": 9
     },
     {
       "id": "system",
@@ -80,7 +80,7 @@
       "name": "游戏与图形",
       "icon": "Gamepad2",
       "blurb": "游戏循环、物理与碰撞、Unity 引擎、图形编程",
-      "count": 6
+      "count": 7
     }
   ],
   "tutorials": [
@@ -507,6 +507,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x04_graph_algorithms"
+    },
+    {
+      "id": "x-x37_sliding_window",
+      "kind": "md",
+      "title": "滑动窗口与双指针：线性时间的子串艺术",
+      "summary": "同向/相向/快慢双指针、可变长滑动窗口模板——把 O(n²) 暴力降到 O(n) 的通用心法。",
+      "domain": "algo",
+      "category": "数据结构与算法",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "滑动窗口",
+        "双指针",
+        "算法",
+        "优化"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x37_sliding_window"
     },
     {
       "id": "x-x05_bitwise_algorithms",
@@ -1543,6 +1561,24 @@
       "href": "/post/x-x22_game_physics"
     },
     {
+      "id": "x-x38_unity_animator",
+      "kind": "md",
+      "title": "Unity 动画系统：Animator 状态机",
+      "summary": "Animation Clip → Animator Controller → 代码驱动切换——让角色会跑、会跳、会摔的完整动画管线。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "Unity",
+        "Animator",
+        "动画状态机",
+        "游戏开发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x38_unity_animator"
+    },
+    {
       "id": "x-x14_gamedev_overview",
       "kind": "md",
       "title": "游戏开发概论：循环、实体与玩法",
@@ -1577,6 +1613,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x23_unity_platformer"
+    },
+    {
+      "id": "x-x36_go_intro",
+      "kind": "md",
+      "title": "Go 入门：并发编程的轻量之道",
+      "summary": "语法速览、goroutine 与 channel、sync 包——为什么云原生世界选择了 Go。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "Go",
+        "Goroutine",
+        "Channel",
+        "并发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x36_go_intro"
     },
     {
       "id": "w08_java_awt",

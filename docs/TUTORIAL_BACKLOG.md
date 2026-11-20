@@ -30,7 +30,7 @@
 - x34_backtracking | 数据结构与算法 | 回溯与剪枝：排列组合的系统化搜索
 - x35_compiler_intro | 计算机组成 | 编译原理入门：从源码到可执行
 
-## Batch 7 — 语言与算法与游戏 — status: pending
+## Batch 7 — 语言与算法与游戏 — status: done
 - x36_go_intro | 编程语言 | Go 入门：并发编程的轻量之道
 - x37_sliding_window | 数据结构与算法 | 滑动窗口与双指针：线性时间的子串艺术
 - x38_unity_animator | 游戏与图形 | Unity 动画系统：Animator 状态机
