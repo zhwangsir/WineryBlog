@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:11:51.714Z",
+  "generatedAt": "2026-11-20T12:20:06.486Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -45,14 +45,14 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 9
+      "count": 11
     },
     {
       "id": "data",
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 11
+      "count": 12
     },
     {
       "id": "ai",
@@ -472,6 +472,24 @@
       "href": "/post/t10_sorting_search"
     },
     {
+      "id": "x-x25_message_queue",
+      "kind": "md",
+      "title": "消息队列入门：RabbitMQ 与 Kafka",
+      "summary": "为什么要消息队列、RabbitMQ 路由模型、Kafka 分区与消费组——异步解耦的两种世界观。",
+      "domain": "backend",
+      "category": "后端开发",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "消息队列",
+        "RabbitMQ",
+        "Kafka",
+        "异步解耦"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x25_message_queue"
+    },
+    {
       "id": "w15_express",
       "kind": "post",
       "title": "Express 快速入门",
@@ -592,6 +610,24 @@
       ],
       "prereqs": [],
       "href": "/post/w13_fastapi"
+    },
+    {
+      "id": "x-x24_jwt_oauth",
+      "kind": "md",
+      "title": "JWT 与 OAuth2：现代认证鉴权",
+      "summary": "Session vs Token、JWT 结构与陷阱、OAuth2 授权码流程——登录系统的完整原理与实现。",
+      "domain": "backend",
+      "category": "后端开发",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "JWT",
+        "OAuth2",
+        "认证",
+        "安全"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x24_jwt_oauth"
     },
     {
       "id": "s10_node_eventloop",
@@ -843,6 +879,24 @@
       ],
       "prereqs": [],
       "href": "/post/s05_hadoop_yarn"
+    },
+    {
+      "id": "x-x26_mongodb",
+      "kind": "md",
+      "title": "MongoDB 入门：文档模型与聚合查询",
+      "summary": "文档模型与场景取舍、CRUD 与索引、聚合管道五阶段——最流行的文档数据库实战入门。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "MongoDB",
+        "NoSQL",
+        "聚合管道",
+        "文档数据库"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x26_mongodb"
     },
     {
       "id": "w29_redis_intro",

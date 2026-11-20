@@ -10,7 +10,7 @@
 - x22_game_physics | 游戏与图形 | 游戏物理入门：碰撞、重力与轨迹
 - x23_unity_platformer | 游戏与图形 | Unity 2D 平台跳跃实战
 
-## Batch 3 — 后端与数据深水区 — status: pending
+## Batch 3 — 后端与数据深水区 — status: done
 - x24_jwt_oauth | 后端开发 | JWT 与 OAuth2：现代认证鉴权
 - x25_message_queue | 后端开发 | 消息队列入门：RabbitMQ 与 Kafka
 - x26_mongodb | 数据库 | MongoDB 入门：文档模型与聚合查询
