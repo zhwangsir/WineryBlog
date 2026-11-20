@@ -183,10 +183,11 @@ const tutorials = posts
   });
 
 // keep reading order sensible inside each domain: difficulty then title
-// (default collation keeps ASCII titles before CJK ones)
+// plain code-point compare keeps ASCII titles before CJK ones deterministically
+const byTitle = (a, b) => (a.title < b.title ? -1 : a.title > b.title ? 1 : 0);
 tutorials.sort((a, b) =>
   a.domain === b.domain
-    ? ['入门', '进阶', '高级'].indexOf(a.difficulty) - ['入门', '进阶', '高级'].indexOf(b.difficulty) || a.title.localeCompare(b.title)
+    ? ['入门', '进阶', '高级'].indexOf(a.difficulty) - ['入门', '进阶', '高级'].indexOf(b.difficulty) || byTitle(a, b)
     : a.domain.localeCompare(b.domain)
 );
 

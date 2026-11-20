@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:26:02.485Z",
+  "generatedAt": "2026-11-20T12:26:51.106Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -85,43 +85,6 @@
   ],
   "tutorials": [
     {
-      "id": "t05_pytorch_dl",
-      "kind": "post",
-      "title": "深度学习与 PyTorch 入门",
-      "summary": "张量、自动求导、训练循环——用 60 行代码跑通第一个神经网络，并给出从李宏毅到 CS231n 的完整课程路线。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "入门",
-      "minutes": 11,
-      "tags": [
-        "深度学习",
-        "PyTorch",
-        "神经网络",
-        "AI 补充"
-      ],
-      "prereqs": [
-        "t03_python_basics"
-      ],
-      "href": "/post/t05_pytorch_dl"
-    },
-    {
-      "id": "w63_ml_overview",
-      "kind": "post",
-      "title": "什么是机器学习",
-      "summary": "机器学习的定义、监督/无监督两大类型与学习路线入口。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "入门",
-      "minutes": 4,
-      "tags": [
-        "机器学习",
-        "监督学习",
-        "概念"
-      ],
-      "prereqs": [],
-      "href": "/post/w63_ml_overview"
-    },
-    {
       "id": "x-x28_lora_finetune",
       "kind": "md",
       "title": "LoRA 微调入门：让开源模型学会你的领域",
@@ -156,6 +119,132 @@
       ],
       "prereqs": [],
       "href": "/post/x-x16_prompt_engineering"
+    },
+    {
+      "id": "w63_ml_overview",
+      "kind": "post",
+      "title": "什么是机器学习",
+      "summary": "机器学习的定义、监督/无监督两大类型与学习路线入口。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 4,
+      "tags": [
+        "机器学习",
+        "监督学习",
+        "概念"
+      ],
+      "prereqs": [],
+      "href": "/post/w63_ml_overview"
+    },
+    {
+      "id": "t05_pytorch_dl",
+      "kind": "post",
+      "title": "深度学习与 PyTorch 入门",
+      "summary": "张量、自动求导、训练循环——用 60 行代码跑通第一个神经网络，并给出从李宏毅到 CS231n 的完整课程路线。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "深度学习",
+        "PyTorch",
+        "神经网络",
+        "AI 补充"
+      ],
+      "prereqs": [
+        "t03_python_basics"
+      ],
+      "href": "/post/t05_pytorch_dl"
+    },
+    {
+      "id": "w66_ai_animation",
+      "kind": "post",
+      "title": "AI 动画制作流程",
+      "summary": "从故事剧情到成片输出——AI 动画的五阶段全流程与各环节工具。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 3,
+      "tags": [
+        "AI 动画",
+        "ComfyUI",
+        "视频",
+        "工作流"
+      ],
+      "prereqs": [],
+      "href": "/post/w66_ai_animation"
+    },
+    {
+      "id": "w65_comfyui",
+      "kind": "post",
+      "title": "ComfyUI 文生图工作流",
+      "summary": "节点连接逻辑、最小文生图工作流与显存/模型实操要点。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ComfyUI",
+        "文生图",
+        "Stable Diffusion",
+        "节点"
+      ],
+      "prereqs": [],
+      "href": "/post/w65_comfyui"
+    },
+    {
+      "id": "w88_comfyui_workflow",
+      "kind": "post",
+      "title": "ComfyUI 文生图工作流与模型",
+      "summary": "节点连接逻辑、四大模型类型与文生图工作流实操（两篇合一）。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ComfyUI",
+        "文生图",
+        "模型",
+        "工作流"
+      ],
+      "prereqs": [],
+      "href": "/post/w88_comfyui_workflow"
+    },
+    {
+      "id": "w36_comfyui_models",
+      "kind": "post",
+      "title": "ComfyUI 模型体系指南",
+      "summary": "四大模型类型、架构世代与工作流组合思路。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "ComfyUI",
+        "SD",
+        "Flux",
+        "LoRA"
+      ],
+      "prereqs": [],
+      "href": "/post/w36_comfyui_models"
+    },
+    {
+      "id": "w67_clawhub",
+      "kind": "post",
+      "title": "clawhub 与自我改进智能体",
+      "summary": "clawhub 的智能体技能安装机制与 self-improving-agent（自我改进智能体）的用法。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "clawhub",
+        "智能体",
+        "self-improving"
+      ],
+      "prereqs": [],
+      "href": "/post/w67_clawhub"
     },
     {
       "id": "t07_llm_roadmap",
@@ -232,93 +321,40 @@
       "href": "/post/w87_lmstudio"
     },
     {
-      "id": "w66_ai_animation",
-      "kind": "post",
-      "title": "AI 动画制作流程",
-      "summary": "从故事剧情到成片输出——AI 动画的五阶段全流程与各环节工具。",
+      "id": "x-x17_transformer",
+      "kind": "md",
+      "title": "Transformer 原理：从注意力到 GPT",
+      "summary": "注意力机制的直觉与公式、位置编码、Decoder 逐词生成——看懂大模型的架构基因。",
       "domain": "ai",
       "category": "人工智能",
-      "difficulty": "进阶",
-      "minutes": 3,
+      "difficulty": "高级",
+      "minutes": 9,
       "tags": [
-        "AI 动画",
-        "ComfyUI",
-        "视频",
-        "工作流"
+        "Transformer",
+        "Attention",
+        "GPT",
+        "深度学习"
       ],
       "prereqs": [],
-      "href": "/post/w66_ai_animation"
+      "href": "/post/x-x17_transformer"
     },
     {
-      "id": "w67_clawhub",
-      "kind": "post",
-      "title": "clawhub 与自我改进智能体",
-      "summary": "clawhub 的智能体技能安装机制与 self-improving-agent（自我改进智能体）的用法。",
+      "id": "x-x27_vector_db",
+      "kind": "md",
+      "title": "向量数据库实战：语义检索的基石",
+      "summary": "Embedding 原理、相似度度量、Milvus/pgvector 选型与实战——让机器\"理解\"语义的检索系统。",
       "domain": "ai",
       "category": "人工智能",
-      "difficulty": "进阶",
-      "minutes": 5,
+      "difficulty": "高级",
+      "minutes": 7,
       "tags": [
-        "clawhub",
-        "智能体",
-        "self-improving"
+        "向量数据库",
+        "Embedding",
+        "RAG",
+        "语义检索"
       ],
       "prereqs": [],
-      "href": "/post/w67_clawhub"
-    },
-    {
-      "id": "w36_comfyui_models",
-      "kind": "post",
-      "title": "ComfyUI 模型体系指南",
-      "summary": "四大模型类型、架构世代与工作流组合思路。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "ComfyUI",
-        "SD",
-        "Flux",
-        "LoRA"
-      ],
-      "prereqs": [],
-      "href": "/post/w36_comfyui_models"
-    },
-    {
-      "id": "w65_comfyui",
-      "kind": "post",
-      "title": "ComfyUI 文生图工作流",
-      "summary": "节点连接逻辑、最小文生图工作流与显存/模型实操要点。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "ComfyUI",
-        "文生图",
-        "Stable Diffusion",
-        "节点"
-      ],
-      "prereqs": [],
-      "href": "/post/w65_comfyui"
-    },
-    {
-      "id": "w88_comfyui_workflow",
-      "kind": "post",
-      "title": "ComfyUI 文生图工作流与模型",
-      "summary": "节点连接逻辑、四大模型类型与文生图工作流实操（两篇合一）。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "ComfyUI",
-        "文生图",
-        "模型",
-        "工作流"
-      ],
-      "prereqs": [],
-      "href": "/post/w88_comfyui_workflow"
+      "href": "/post/x-x27_vector_db"
     },
     {
       "id": "t06_local_llm",
@@ -362,42 +398,6 @@
       "href": "/post/t12_rag"
     },
     {
-      "id": "x-x27_vector_db",
-      "kind": "md",
-      "title": "向量数据库实战：语义检索的基石",
-      "summary": "Embedding 原理、相似度度量、Milvus/pgvector 选型与实战——让机器\"理解\"语义的检索系统。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "高级",
-      "minutes": 7,
-      "tags": [
-        "向量数据库",
-        "Embedding",
-        "RAG",
-        "语义检索"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x27_vector_db"
-    },
-    {
-      "id": "x-x17_transformer",
-      "kind": "md",
-      "title": "Transformer 原理：从注意力到 GPT",
-      "summary": "注意力机制的直觉与公式、位置编码、Decoder 逐词生成——看懂大模型的架构基因。",
-      "domain": "ai",
-      "category": "人工智能",
-      "difficulty": "高级",
-      "minutes": 9,
-      "tags": [
-        "Transformer",
-        "Attention",
-        "GPT",
-        "深度学习"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x17_transformer"
-    },
-    {
       "id": "t11_dp_intro",
       "kind": "post",
       "title": "动态规划入门：从递推到刷题套路",
@@ -437,6 +437,23 @@
       "href": "/post/t02_algorithms"
     },
     {
+      "id": "w18_bitwise",
+      "kind": "post",
+      "title": "位运算详解",
+      "summary": "与或异或移位的真值表、典型应用（去重/状态压缩/权限）与易错点。",
+      "domain": "algo",
+      "category": "数据结构与算法",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "位运算",
+        "算法",
+        "二进制"
+      ],
+      "prereqs": [],
+      "href": "/post/w18_bitwise"
+    },
+    {
       "id": "x-x31_hash_string",
       "kind": "md",
       "title": "哈希与字符串算法：从 Map 到 KMP",
@@ -473,23 +490,6 @@
       "href": "/post/x-x34_backtracking"
     },
     {
-      "id": "x-x05_bitwise_algorithms",
-      "kind": "md",
-      "title": "贪心与二分答案专题",
-      "summary": "贪心策略的证明方法、二分答案的模板与典型应用——从\"直觉\"到\"可证明\"。",
-      "domain": "algo",
-      "category": "数据结构与算法",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "贪心",
-        "二分答案",
-        "算法"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x05_bitwise_algorithms"
-    },
-    {
       "id": "x-x04_graph_algorithms",
       "kind": "md",
       "title": "图与遍历算法（BFS/DFS/拓扑）",
@@ -509,21 +509,21 @@
       "href": "/post/x-x04_graph_algorithms"
     },
     {
-      "id": "w18_bitwise",
-      "kind": "post",
-      "title": "位运算详解",
-      "summary": "与或异或移位的真值表、典型应用（去重/状态压缩/权限）与易错点。",
+      "id": "x-x05_bitwise_algorithms",
+      "kind": "md",
+      "title": "贪心与二分答案专题",
+      "summary": "贪心策略的证明方法、二分答案的模板与典型应用——从\"直觉\"到\"可证明\"。",
       "domain": "algo",
       "category": "数据结构与算法",
       "difficulty": "进阶",
-      "minutes": 7,
+      "minutes": 4,
       "tags": [
-        "位运算",
-        "算法",
-        "二进制"
+        "贪心",
+        "二分答案",
+        "算法"
       ],
       "prereqs": [],
-      "href": "/post/w18_bitwise"
+      "href": "/post/x-x05_bitwise_algorithms"
     },
     {
       "id": "t10_sorting_search",
@@ -542,24 +542,6 @@
       ],
       "prereqs": [],
       "href": "/post/t10_sorting_search"
-    },
-    {
-      "id": "x-x25_message_queue",
-      "kind": "md",
-      "title": "消息队列入门：RabbitMQ 与 Kafka",
-      "summary": "为什么要消息队列、RabbitMQ 路由模型、Kafka 分区与消费组——异步解耦的两种世界观。",
-      "domain": "backend",
-      "category": "后端开发",
-      "difficulty": "入门",
-      "minutes": 11,
-      "tags": [
-        "消息队列",
-        "RabbitMQ",
-        "Kafka",
-        "异步解耦"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x25_message_queue"
     },
     {
       "id": "w15_express",
@@ -666,6 +648,24 @@
       "href": "/post/w58_springmvc_mybatis"
     },
     {
+      "id": "x-x25_message_queue",
+      "kind": "md",
+      "title": "消息队列入门：RabbitMQ 与 Kafka",
+      "summary": "为什么要消息队列、RabbitMQ 路由模型、Kafka 分区与消费组——异步解耦的两种世界观。",
+      "domain": "backend",
+      "category": "后端开发",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "消息队列",
+        "RabbitMQ",
+        "Kafka",
+        "异步解耦"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x25_message_queue"
+    },
+    {
       "id": "w13_fastapi",
       "kind": "post",
       "title": "FastAPI：用 Python 写现代后端接口",
@@ -739,40 +739,20 @@
       "href": "/post/w17_php_project"
     },
     {
-      "id": "x-x35_compiler_intro",
-      "kind": "md",
-      "title": "编译原理入门：从源码到可执行",
-      "summary": "词法→语法→语义→中间代码→优化的完整旅程——看懂编译器的同时看懂 Babel/V8/SQL 引擎。",
+      "id": "w01_git_install",
+      "kind": "post",
+      "title": "Git 安装与基础配置",
+      "summary": "Windows/macOS/Linux 三平台安装、首次配置与最小可用工作流。",
       "domain": "basics",
-      "category": "计算机组成",
+      "category": "方法与工具",
       "difficulty": "入门",
-      "minutes": 13,
+      "minutes": 10,
       "tags": [
-        "编译原理",
-        "词法分析",
-        "语法分析",
-        "LLVM"
+        "Git",
+        "版本控制"
       ],
       "prereqs": [],
-      "href": "/post/x-x35_compiler_intro"
-    },
-    {
-      "id": "x-x20_assembly",
-      "kind": "md",
-      "title": "汇编语言入门：CPU 在想什么",
-      "summary": "寄存器、内存寻址、栈与函数调用——读懂 CPU 视角的世界，看清高级语言之下的机器。",
-      "domain": "basics",
-      "category": "计算机组成",
-      "difficulty": "入门",
-      "minutes": 13,
-      "tags": [
-        "汇编",
-        "CPU",
-        "寄存器",
-        "计算机组成"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x20_assembly"
+      "href": "/post/w01_git_install"
     },
     {
       "id": "w84_embedded",
@@ -793,6 +773,42 @@
       "href": "/post/w84_embedded"
     },
     {
+      "id": "x-x20_assembly",
+      "kind": "md",
+      "title": "汇编语言入门：CPU 在想什么",
+      "summary": "寄存器、内存寻址、栈与函数调用——读懂 CPU 视角的世界，看清高级语言之下的机器。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "入门",
+      "minutes": 13,
+      "tags": [
+        "汇编",
+        "CPU",
+        "寄存器",
+        "计算机组成"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x20_assembly"
+    },
+    {
+      "id": "x-x35_compiler_intro",
+      "kind": "md",
+      "title": "编译原理入门：从源码到可执行",
+      "summary": "词法→语法→语义→中间代码→优化的完整旅程——看懂编译器的同时看懂 Babel/V8/SQL 引擎。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "入门",
+      "minutes": 13,
+      "tags": [
+        "编译原理",
+        "词法分析",
+        "语法分析",
+        "LLVM"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x35_compiler_intro"
+    },
+    {
       "id": "x-x13_software_testing",
       "kind": "md",
       "title": "软件测试入门：从手工到自动化",
@@ -809,77 +825,6 @@
       ],
       "prereqs": [],
       "href": "/post/x-x13_software_testing"
-    },
-    {
-      "id": "w01_git_install",
-      "kind": "post",
-      "title": "Git 安装与基础配置",
-      "summary": "Windows/macOS/Linux 三平台安装、首次配置与最小可用工作流。",
-      "domain": "basics",
-      "category": "方法与工具",
-      "difficulty": "入门",
-      "minutes": 10,
-      "tags": [
-        "Git",
-        "版本控制"
-      ],
-      "prereqs": [],
-      "href": "/post/w01_git_install"
-    },
-    {
-      "id": "x-x08_os_concepts",
-      "kind": "md",
-      "title": "操作系统核心概念",
-      "summary": "进程与线程、虚拟内存、调度算法、系统调用——OS 核心概念速览。",
-      "domain": "basics",
-      "category": "计算机组成",
-      "difficulty": "进阶",
-      "minutes": 10,
-      "tags": [
-        "操作系统",
-        "进程",
-        "内存",
-        "调度"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x08_os_concepts"
-    },
-    {
-      "id": "w83_hardware",
-      "kind": "post",
-      "title": "计算机组成：硬件架构与各种处理单元",
-      "summary": "冯诺依曼架构、主板连接图、CPU/GPU/APU/NPU/DSP 各种 PU 详解。",
-      "domain": "basics",
-      "category": "计算机组成",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "硬件",
-        "CPU",
-        "GPU",
-        "APU",
-        "NPU",
-        "冯诺依曼"
-      ],
-      "prereqs": [],
-      "href": "/post/w83_hardware"
-    },
-    {
-      "id": "w04_search_skills",
-      "kind": "post",
-      "title": "信息检索：搜索引擎的正确用法",
-      "summary": "URL 结构、搜索运算符与信息甄别——从\"搜不到\"到\"精准命中\"。",
-      "domain": "basics",
-      "category": "方法与工具",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "信息检索",
-        "搜索技巧",
-        "效率"
-      ],
-      "prereqs": [],
-      "href": "/post/w04_search_skills"
     },
     {
       "id": "t01_cs_roadmap",
@@ -950,6 +895,61 @@
       ],
       "prereqs": [],
       "href": "/post/w03_macos_guide"
+    },
+    {
+      "id": "w04_search_skills",
+      "kind": "post",
+      "title": "信息检索：搜索引擎的正确用法",
+      "summary": "URL 结构、搜索运算符与信息甄别——从\"搜不到\"到\"精准命中\"。",
+      "domain": "basics",
+      "category": "方法与工具",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "信息检索",
+        "搜索技巧",
+        "效率"
+      ],
+      "prereqs": [],
+      "href": "/post/w04_search_skills"
+    },
+    {
+      "id": "x-x08_os_concepts",
+      "kind": "md",
+      "title": "操作系统核心概念",
+      "summary": "进程与线程、虚拟内存、调度算法、系统调用——OS 核心概念速览。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "操作系统",
+        "进程",
+        "内存",
+        "调度"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x08_os_concepts"
+    },
+    {
+      "id": "w83_hardware",
+      "kind": "post",
+      "title": "计算机组成：硬件架构与各种处理单元",
+      "summary": "冯诺依曼架构、主板连接图、CPU/GPU/APU/NPU/DSP 各种 PU 详解。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "硬件",
+        "CPU",
+        "GPU",
+        "APU",
+        "NPU",
+        "冯诺依曼"
+      ],
+      "prereqs": [],
+      "href": "/post/w83_hardware"
     },
     {
       "id": "s05_hadoop_yarn",
@@ -1023,80 +1023,6 @@
       "href": "/post/w28_sql_basics"
     },
     {
-      "id": "w60_bigdata_intro",
-      "kind": "post",
-      "title": "大数据导论",
-      "summary": "数据是什么、大数据的 4V 特征、技术生态全景与学习路线。",
-      "domain": "data",
-      "category": "大数据",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "大数据",
-        "概念",
-        "生态"
-      ],
-      "prereqs": [],
-      "href": "/post/w60_bigdata_intro"
-    },
-    {
-      "id": "w98_hadoop_data",
-      "kind": "post",
-      "title": "大数据与 Hadoop 合集：导论、Hive 与网络配置",
-      "summary": "大数据书架导读：数据定义、Hive 入门与 Hadoop 集群网络配置三合一。",
-      "domain": "data",
-      "category": "大数据",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "大数据",
-        "Hive",
-        "网络配置",
-        "合集"
-      ],
-      "prereqs": [],
-      "href": "/post/w98_hadoop_data"
-    },
-    {
-      "id": "x-x11_sql_advanced",
-      "kind": "md",
-      "title": "事务与隔离级别",
-      "summary": "ACID 四特性、隔离级别与并发问题、MVCC 原理——数据库事务全景。",
-      "domain": "data",
-      "category": "数据库",
-      "difficulty": "进阶",
-      "minutes": 8,
-      "tags": [
-        "事务",
-        "ACID",
-        "隔离级别",
-        "MVCC"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x11_sql_advanced"
-    },
-    {
-      "id": "t08_database",
-      "kind": "post",
-      "title": "数据库系统导论",
-      "summary": "关系模型、SQL、索引与事务的核心心智模型——衔接站内 MySQL 快速入门，通往 CMU 15-445 体系课。",
-      "domain": "data",
-      "category": "数据库",
-      "difficulty": "进阶",
-      "minutes": 8,
-      "tags": [
-        "数据库",
-        "SQL",
-        "事务",
-        "索引",
-        "AI 补充"
-      ],
-      "prereqs": [
-        "t02_algorithms"
-      ],
-      "href": "/post/t08_database"
-    },
-    {
       "id": "w61_hadoop_cluster",
       "kind": "post",
       "title": "Apache Hadoop：概述与集群搭建",
@@ -1130,6 +1056,80 @@
       ],
       "prereqs": [],
       "href": "/post/w32_hdfs_rw"
+    },
+    {
+      "id": "x-x11_sql_advanced",
+      "kind": "md",
+      "title": "事务与隔离级别",
+      "summary": "ACID 四特性、隔离级别与并发问题、MVCC 原理——数据库事务全景。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "事务",
+        "ACID",
+        "隔离级别",
+        "MVCC"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x11_sql_advanced"
+    },
+    {
+      "id": "w98_hadoop_data",
+      "kind": "post",
+      "title": "大数据与 Hadoop 合集：导论、Hive 与网络配置",
+      "summary": "大数据书架导读：数据定义、Hive 入门与 Hadoop 集群网络配置三合一。",
+      "domain": "data",
+      "category": "大数据",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "大数据",
+        "Hive",
+        "网络配置",
+        "合集"
+      ],
+      "prereqs": [],
+      "href": "/post/w98_hadoop_data"
+    },
+    {
+      "id": "w60_bigdata_intro",
+      "kind": "post",
+      "title": "大数据导论",
+      "summary": "数据是什么、大数据的 4V 特征、技术生态全景与学习路线。",
+      "domain": "data",
+      "category": "大数据",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "大数据",
+        "概念",
+        "生态"
+      ],
+      "prereqs": [],
+      "href": "/post/w60_bigdata_intro"
+    },
+    {
+      "id": "t08_database",
+      "kind": "post",
+      "title": "数据库系统导论",
+      "summary": "关系模型、SQL、索引与事务的核心心智模型——衔接站内 MySQL 快速入门，通往 CMU 15-445 体系课。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "数据库",
+        "SQL",
+        "事务",
+        "索引",
+        "AI 补充"
+      ],
+      "prereqs": [
+        "t02_algorithms"
+      ],
+      "href": "/post/t08_database"
     },
     {
       "id": "w31_hdfs_shell",
@@ -1183,27 +1183,6 @@
       ],
       "prereqs": [],
       "href": "/post/x-x19_redis_practice"
-    },
-    {
-      "id": "t04_frontend_eng",
-      "kind": "post",
-      "title": "前端工程化入门：npm、Vite 与构建部署",
-      "summary": "从\"一个 HTML 文件\"到现代前端工程——包管理、模块化、构建工具与部署的全链路认知。",
-      "domain": "frontend",
-      "category": "Web 前端",
-      "difficulty": "入门",
-      "minutes": 13,
-      "tags": [
-        "前端工程化",
-        "npm",
-        "Vite",
-        "构建",
-        "AI 补充"
-      ],
-      "prereqs": [
-        "s08_ts_generics"
-      ],
-      "href": "/post/t04_frontend_eng"
     },
     {
       "id": "w45_css_basics",
@@ -1293,55 +1272,25 @@
       "href": "/post/w55_vue2"
     },
     {
-      "id": "w54_ui_libs",
+      "id": "t04_frontend_eng",
       "kind": "post",
-      "title": "常用组件库：MUI 与 Element UI",
-      "summary": "两个常用组件库的入门用法——用现成组件替代手写，开发效率翻倍。",
+      "title": "前端工程化入门：npm、Vite 与构建部署",
+      "summary": "从\"一个 HTML 文件\"到现代前端工程——包管理、模块化、构建工具与部署的全链路认知。",
       "domain": "frontend",
       "category": "Web 前端",
-      "difficulty": "进阶",
-      "minutes": 8,
+      "difficulty": "入门",
+      "minutes": 13,
       "tags": [
-        "MUI",
-        "Element UI",
-        "组件库"
+        "前端工程化",
+        "npm",
+        "Vite",
+        "构建",
+        "AI 补充"
       ],
-      "prereqs": [],
-      "href": "/post/w54_ui_libs"
-    },
-    {
-      "id": "w52_echarts",
-      "kind": "post",
-      "title": "数据可视化：ECharts 与 Axure 集成",
-      "summary": "ECharts 五步上手、常用配置项与 AxureRP 中加载 ECharts 图表的方法。",
-      "domain": "frontend",
-      "category": "Web 前端",
-      "difficulty": "进阶",
-      "minutes": 7,
-      "tags": [
-        "ECharts",
-        "可视化",
-        "图表"
+      "prereqs": [
+        "s08_ts_generics"
       ],
-      "prereqs": [],
-      "href": "/post/w52_echarts"
-    },
-    {
-      "id": "w49_proxy",
-      "kind": "post",
-      "title": "一文懂 Proxy",
-      "summary": "Proxy 拦截操作的语法与 13 种拦截点，Vue3 响应式的底层原理。",
-      "domain": "frontend",
-      "category": "Web 前端",
-      "difficulty": "进阶",
-      "minutes": 9,
-      "tags": [
-        "Proxy",
-        "元编程",
-        "响应式"
-      ],
-      "prereqs": [],
-      "href": "/post/w49_proxy"
+      "href": "/post/t04_frontend_eng"
     },
     {
       "id": "w50_ajax_axios",
@@ -1434,22 +1383,55 @@
       "href": "/post/w51_websocket"
     },
     {
-      "id": "w47_render_eventloop",
+      "id": "w49_proxy",
       "kind": "post",
-      "title": "浏览器渲染原理与事件循环",
-      "summary": "从 HTML 字符串到像素的渲染流水线，事件循环的任务调度规则——前端性能优化的原理层。",
+      "title": "一文懂 Proxy",
+      "summary": "Proxy 拦截操作的语法与 13 种拦截点，Vue3 响应式的底层原理。",
       "domain": "frontend",
       "category": "Web 前端",
-      "difficulty": "高级",
-      "minutes": 6,
+      "difficulty": "进阶",
+      "minutes": 9,
       "tags": [
-        "渲染",
-        "事件循环",
-        "性能",
-        "理论"
+        "Proxy",
+        "元编程",
+        "响应式"
       ],
       "prereqs": [],
-      "href": "/post/w47_render_eventloop"
+      "href": "/post/w49_proxy"
+    },
+    {
+      "id": "w54_ui_libs",
+      "kind": "post",
+      "title": "常用组件库：MUI 与 Element UI",
+      "summary": "两个常用组件库的入门用法——用现成组件替代手写，开发效率翻倍。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "MUI",
+        "Element UI",
+        "组件库"
+      ],
+      "prereqs": [],
+      "href": "/post/w54_ui_libs"
+    },
+    {
+      "id": "w52_echarts",
+      "kind": "post",
+      "title": "数据可视化：ECharts 与 Axure 集成",
+      "summary": "ECharts 五步上手、常用配置项与 AxureRP 中加载 ECharts 图表的方法。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "ECharts",
+        "可视化",
+        "图表"
+      ],
+      "prereqs": [],
+      "href": "/post/w52_echarts"
     },
     {
       "id": "s07_js_async",
@@ -1471,40 +1453,22 @@
       "href": "/post/s07_js_async"
     },
     {
-      "id": "x-x21_graphics_basics",
-      "kind": "md",
-      "title": "图形学基础入门：从像素到管线",
-      "summary": "像素、三角形与光栅化——GPU 渲染管线的全景地图，看懂屏幕上每一帧是怎么画出来的。",
-      "domain": "games",
-      "category": "游戏与图形",
-      "difficulty": "入门",
-      "minutes": 9,
+      "id": "w47_render_eventloop",
+      "kind": "post",
+      "title": "浏览器渲染原理与事件循环",
+      "summary": "从 HTML 字符串到像素的渲染流水线，事件循环的任务调度规则——前端性能优化的原理层。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 6,
       "tags": [
-        "图形学",
-        "GPU",
-        "渲染管线",
-        "WebGL"
+        "渲染",
+        "事件循环",
+        "性能",
+        "理论"
       ],
       "prereqs": [],
-      "href": "/post/x-x21_graphics_basics"
-    },
-    {
-      "id": "x-x22_game_physics",
-      "kind": "md",
-      "title": "游戏物理入门：碰撞、重力与轨迹",
-      "summary": "欧拉积分、AABB 与圆形碰撞、斜面反弹与惯性——用初等数学实现可信的游戏物理。",
-      "domain": "games",
-      "category": "游戏与图形",
-      "difficulty": "入门",
-      "minutes": 12,
-      "tags": [
-        "游戏物理",
-        "碰撞检测",
-        "重力",
-        "游戏开发"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x22_game_physics"
+      "href": "/post/w47_render_eventloop"
     },
     {
       "id": "x-x32_cocos_creator",
@@ -1543,6 +1507,42 @@
       "href": "/post/x-x15_unity_intro"
     },
     {
+      "id": "x-x21_graphics_basics",
+      "kind": "md",
+      "title": "图形学基础入门：从像素到管线",
+      "summary": "像素、三角形与光栅化——GPU 渲染管线的全景地图，看懂屏幕上每一帧是怎么画出来的。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "入门",
+      "minutes": 9,
+      "tags": [
+        "图形学",
+        "GPU",
+        "渲染管线",
+        "WebGL"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x21_graphics_basics"
+    },
+    {
+      "id": "x-x22_game_physics",
+      "kind": "md",
+      "title": "游戏物理入门：碰撞、重力与轨迹",
+      "summary": "欧拉积分、AABB 与圆形碰撞、斜面反弹与惯性——用初等数学实现可信的游戏物理。",
+      "domain": "games",
+      "category": "游戏与图形",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "游戏物理",
+        "碰撞检测",
+        "重力",
+        "游戏开发"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x22_game_physics"
+    },
+    {
       "id": "x-x14_gamedev_overview",
       "kind": "md",
       "title": "游戏开发概论：循环、实体与玩法",
@@ -1579,39 +1579,21 @@
       "href": "/post/x-x23_unity_platformer"
     },
     {
-      "id": "s01_java_collections_concurrency",
+      "id": "w08_java_awt",
       "kind": "post",
-      "title": "Java 核心进阶：集合框架与并发编程入门",
-      "summary": "HashMap 体系、ArrayList/LinkedList 选型、ConcurrentHashMap 与线程池——补齐 Java 基础笔记之后的进阶主线。",
+      "title": "Java 图形界面入门（AWT）",
+      "summary": "Frame 窗口、组件布局与事件监听——Java 桌面图形界面的最小骨架。",
       "domain": "langs",
       "category": "编程语言",
       "difficulty": "入门",
-      "minutes": 11,
+      "minutes": 6,
       "tags": [
         "Java",
-        "集合",
-        "并发",
-        "补充教程"
+        "AWT",
+        "GUI"
       ],
       "prereqs": [],
-      "href": "/post/s01_java_collections_concurrency"
-    },
-    {
-      "id": "w05_java_basics",
-      "kind": "post",
-      "title": "Java 基础：语法、程序结构与数组",
-      "summary": "main 方法、JavaBean 约定、数组静态/动态初始化——Java 程序的最小骨架。",
-      "domain": "langs",
-      "category": "编程语言",
-      "difficulty": "入门",
-      "minutes": 8,
-      "tags": [
-        "Java",
-        "基础语法",
-        "数组"
-      ],
-      "prereqs": [],
-      "href": "/post/w05_java_basics"
+      "href": "/post/w08_java_awt"
     },
     {
       "id": "x-x01_java_syntax",
@@ -1631,21 +1613,39 @@
       "href": "/post/x-x01_java_syntax"
     },
     {
-      "id": "w08_java_awt",
+      "id": "w05_java_basics",
       "kind": "post",
-      "title": "Java 图形界面入门（AWT）",
-      "summary": "Frame 窗口、组件布局与事件监听——Java 桌面图形界面的最小骨架。",
+      "title": "Java 基础：语法、程序结构与数组",
+      "summary": "main 方法、JavaBean 约定、数组静态/动态初始化——Java 程序的最小骨架。",
       "domain": "langs",
       "category": "编程语言",
       "difficulty": "入门",
-      "minutes": 6,
+      "minutes": 8,
       "tags": [
         "Java",
-        "AWT",
-        "GUI"
+        "基础语法",
+        "数组"
       ],
       "prereqs": [],
-      "href": "/post/w08_java_awt"
+      "href": "/post/w05_java_basics"
+    },
+    {
+      "id": "s01_java_collections_concurrency",
+      "kind": "post",
+      "title": "Java 核心进阶：集合框架与并发编程入门",
+      "summary": "HashMap 体系、ArrayList/LinkedList 选型、ConcurrentHashMap 与线程池——补齐 Java 基础笔记之后的进阶主线。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "Java",
+        "集合",
+        "并发",
+        "补充教程"
+      ],
+      "prereqs": [],
+      "href": "/post/s01_java_collections_concurrency"
     },
     {
       "id": "t03_python_basics",
@@ -1663,23 +1663,6 @@
       ],
       "prereqs": [],
       "href": "/post/t03_python_basics"
-    },
-    {
-      "id": "w11_rust_basics",
-      "kind": "post",
-      "title": "Rust 基础语法：变量、类型与流程控制",
-      "summary": "不可变默认、shadowing、标量与复合类型、if 是表达式、loop 返回值——Rust 语法的地基。",
-      "domain": "langs",
-      "category": "编程语言",
-      "difficulty": "入门",
-      "minutes": 11,
-      "tags": [
-        "Rust",
-        "语法",
-        "入门"
-      ],
-      "prereqs": [],
-      "href": "/post/w11_rust_basics"
     },
     {
       "id": "w10_rust_toolchain",
@@ -1700,22 +1683,38 @@
       "href": "/post/w10_rust_toolchain"
     },
     {
-      "id": "w07_concepts_concurrency",
+      "id": "w11_rust_basics",
       "kind": "post",
-      "title": "并发、并行与异步编程概念",
-      "summary": "并发/并行/同步/异步/阻塞非阻塞——一组最容易被混用的词，一次分清（语言无关）。",
+      "title": "Rust 基础语法：变量、类型与流程控制",
+      "summary": "不可变默认、shadowing、标量与复合类型、if 是表达式、loop 返回值——Rust 语法的地基。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "入门",
+      "minutes": 11,
+      "tags": [
+        "Rust",
+        "语法",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/w11_rust_basics"
+    },
+    {
+      "id": "x-x03_java_arrays",
+      "kind": "md",
+      "title": "Java 数组与字符串",
+      "summary": "数组声明与操作、多维数组、String 常用方法与 StringBuilder。",
       "domain": "langs",
       "category": "编程语言",
       "difficulty": "进阶",
-      "minutes": 4,
+      "minutes": 8,
       "tags": [
-        "并发",
-        "异步",
-        "概念",
-        "多语言通用"
+        "Java",
+        "数组",
+        "字符串"
       ],
       "prereqs": [],
-      "href": "/post/w07_concepts_concurrency"
+      "href": "/post/x-x03_java_arrays"
     },
     {
       "id": "w06_java_oop",
@@ -1751,23 +1750,6 @@
       ],
       "prereqs": [],
       "href": "/post/x-x02_java_oop"
-    },
-    {
-      "id": "x-x03_java_arrays",
-      "kind": "md",
-      "title": "Java 数组与字符串",
-      "summary": "数组声明与操作、多维数组、String 常用方法与 StringBuilder。",
-      "domain": "langs",
-      "category": "编程语言",
-      "difficulty": "进阶",
-      "minutes": 8,
-      "tags": [
-        "Java",
-        "数组",
-        "字符串"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x03_java_arrays"
     },
     {
       "id": "x-x12_python_automation",
@@ -1806,6 +1788,24 @@
       "href": "/post/s03_rust_ownership"
     },
     {
+      "id": "w07_concepts_concurrency",
+      "kind": "post",
+      "title": "并发、并行与异步编程概念",
+      "summary": "并发/并行/同步/异步/阻塞非阻塞——一组最容易被混用的词，一次分清（语言无关）。",
+      "domain": "langs",
+      "category": "编程语言",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "并发",
+        "异步",
+        "概念",
+        "多语言通用"
+      ],
+      "prereqs": [],
+      "href": "/post/w07_concepts_concurrency"
+    },
+    {
       "id": "w12_rust_structs_generics",
       "kind": "post",
       "title": "Rust 进阶：结构体、方法与泛型",
@@ -1842,23 +1842,6 @@
       "href": "/post/w42_android_intro"
     },
     {
-      "id": "w102_flutter",
-      "kind": "post",
-      "title": "Flutter 入门：环境搭建与第一个应用",
-      "summary": "Flutter SDK 安装、flutter doctor 体检、Widget 与 setState——一套代码多端运行的 Google 方案。",
-      "domain": "mobile",
-      "category": "移动与跨端",
-      "difficulty": "入门",
-      "minutes": 5,
-      "tags": [
-        "Flutter",
-        "Dart",
-        "跨端"
-      ],
-      "prereqs": [],
-      "href": "/post/w102_flutter"
-    },
-    {
       "id": "w90_flutter_uniapp",
       "kind": "post",
       "title": "Flutter 与 uni-app：跨端开发入门",
@@ -1874,6 +1857,23 @@
       ],
       "prereqs": [],
       "href": "/post/w90_flutter_uniapp"
+    },
+    {
+      "id": "w102_flutter",
+      "kind": "post",
+      "title": "Flutter 入门：环境搭建与第一个应用",
+      "summary": "Flutter SDK 安装、flutter doctor 体检、Widget 与 setState——一套代码多端运行的 Google 方案。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "入门",
+      "minutes": 5,
+      "tags": [
+        "Flutter",
+        "Dart",
+        "跨端"
+      ],
+      "prereqs": [],
+      "href": "/post/w102_flutter"
     },
     {
       "id": "x-x29_jetpack_compose",
@@ -1929,22 +1929,22 @@
       "href": "/post/x-x30_react_native"
     },
     {
-      "id": "w43_android_ui",
+      "id": "s13_android_components",
       "kind": "post",
-      "title": "Android 界面：布局与控件",
-      "summary": "常用布局的通用属性、TextView/Button 等控件要点、StateListDrawable 状态样式与沉浸式设置。",
+      "title": "Android 四大组件与生命周期",
+      "summary": "你已有布局控件、Kotlin 入门与零散组件笔记，本篇补上 Android 应用骨架的系统性一篇。",
       "domain": "mobile",
       "category": "移动与跨端",
       "difficulty": "进阶",
-      "minutes": 9,
+      "minutes": 14,
       "tags": [
         "Android",
-        "布局",
-        "控件",
-        "StateListDrawable"
+        "四大组件",
+        "生命周期",
+        "补充教程"
       ],
       "prereqs": [],
-      "href": "/post/w43_android_ui"
+      "href": "/post/s13_android_components"
     },
     {
       "id": "w44_android_practical",
@@ -1966,22 +1966,22 @@
       "href": "/post/w44_android_practical"
     },
     {
-      "id": "s13_android_components",
+      "id": "w43_android_ui",
       "kind": "post",
-      "title": "Android 四大组件与生命周期",
-      "summary": "你已有布局控件、Kotlin 入门与零散组件笔记，本篇补上 Android 应用骨架的系统性一篇。",
+      "title": "Android 界面：布局与控件",
+      "summary": "常用布局的通用属性、TextView/Button 等控件要点、StateListDrawable 状态样式与沉浸式设置。",
       "domain": "mobile",
       "category": "移动与跨端",
       "difficulty": "进阶",
-      "minutes": 14,
+      "minutes": 9,
       "tags": [
         "Android",
-        "四大组件",
-        "生命周期",
-        "补充教程"
+        "布局",
+        "控件",
+        "StateListDrawable"
       ],
       "prereqs": [],
-      "href": "/post/s13_android_components"
+      "href": "/post/w43_android_ui"
     },
     {
       "id": "w39_android_network_perm",
@@ -2053,23 +2053,6 @@
       "href": "/post/w91_uniapp_project"
     },
     {
-      "id": "w68_sec_ctf_intro",
-      "kind": "post",
-      "title": "信息安全概述与 CTF 入门",
-      "summary": "信息安全的 ISO 定义、CTF 的由来与分类、备战思路三合一。",
-      "domain": "security",
-      "category": "信息安全",
-      "difficulty": "入门",
-      "minutes": 3,
-      "tags": [
-        "信息安全",
-        "CTF",
-        "入门"
-      ],
-      "prereqs": [],
-      "href": "/post/w68_sec_ctf_intro"
-    },
-    {
       "id": "w73_msf_basics",
       "kind": "post",
       "title": "MSF 基础与流程",
@@ -2122,90 +2105,21 @@
       "href": "/post/w92_sec_xss_sqli"
     },
     {
-      "id": "w69_sec_env",
+      "id": "w68_sec_ctf_intro",
       "kind": "post",
-      "title": "安全实验环境搭建",
-      "summary": "虚拟机隔离原则、KALI 安装与靶场工具链——安全实验环境的三合一搭建指南。",
+      "title": "信息安全概述与 CTF 入门",
+      "summary": "信息安全的 ISO 定义、CTF 的由来与分类、备战思路三合一。",
       "domain": "security",
       "category": "信息安全",
-      "difficulty": "进阶",
+      "difficulty": "入门",
       "minutes": 3,
       "tags": [
-        "KALI",
-        "VMware",
-        "环境搭建"
+        "信息安全",
+        "CTF",
+        "入门"
       ],
       "prereqs": [],
-      "href": "/post/w69_sec_env"
-    },
-    {
-      "id": "w35_vuln_methodology",
-      "kind": "post",
-      "title": "漏洞检测方法论",
-      "summary": "四个层次的信息→扫描→验证→报告流程与工具链。",
-      "domain": "security",
-      "category": "信息安全",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "漏洞扫描",
-        "Nmap",
-        "方法论"
-      ],
-      "prereqs": [],
-      "href": "/post/w35_vuln_methodology"
-    },
-    {
-      "id": "w76_defense",
-      "kind": "post",
-      "title": "网络攻击步骤与防御技术",
-      "summary": "攻击的一般步骤拆解 + 每个阶段的对应防御手段——知己知彼的防守指南。",
-      "domain": "security",
-      "category": "信息安全",
-      "difficulty": "进阶",
-      "minutes": 4,
-      "tags": [
-        "防御",
-        "攻防",
-        "纵深防御"
-      ],
-      "prereqs": [],
-      "href": "/post/w76_defense"
-    },
-    {
-      "id": "w34_file_inclusion",
-      "kind": "post",
-      "title": "文件包含漏洞（LFI / RFI）",
-      "summary": "php://filter 读源码、日志包含与防御白名单——LFI/RFI 全解。",
-      "domain": "security",
-      "category": "信息安全",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "文件包含",
-        "LFI",
-        "RFI"
-      ],
-      "prereqs": [],
-      "href": "/post/w34_file_inclusion"
-    },
-    {
-      "id": "w70_recon",
-      "kind": "post",
-      "title": "信息搜集与攻击侦察",
-      "summary": "网络攻击的一般步骤、信息搜集的技术手段与侦察阶段的工具链。",
-      "domain": "security",
-      "category": "信息安全",
-      "difficulty": "进阶",
-      "minutes": 8,
-      "tags": [
-        "信息搜集",
-        "侦察",
-        "攻防",
-        "Nmap"
-      ],
-      "prereqs": [],
-      "href": "/post/w70_recon"
+      "href": "/post/w68_sec_ctf_intro"
     },
     {
       "id": "w81_aircrack",
@@ -2281,38 +2195,90 @@
       "href": "/post/w72_xss"
     },
     {
-      "id": "w33_file_upload",
+      "id": "w70_recon",
       "kind": "post",
-      "title": "文件上传漏洞原理、利用与防御",
-      "summary": "校验绕过、解析漏洞与防御清单——Web 危害等级最高的漏洞类型。",
+      "title": "信息搜集与攻击侦察",
+      "summary": "网络攻击的一般步骤、信息搜集的技术手段与侦察阶段的工具链。",
       "domain": "security",
       "category": "信息安全",
-      "difficulty": "高级",
-      "minutes": 3,
+      "difficulty": "进阶",
+      "minutes": 8,
       "tags": [
-        "文件上传",
-        "Web 安全"
+        "信息搜集",
+        "侦察",
+        "攻防",
+        "Nmap"
       ],
       "prereqs": [],
-      "href": "/post/w33_file_upload"
+      "href": "/post/w70_recon"
     },
     {
-      "id": "w85_ms17_010",
+      "id": "w69_sec_env",
       "kind": "post",
-      "title": "ms17-010 永恒之蓝实战",
-      "summary": "经典漏洞 ms17-010 的探测、利用与防御全流程（仅限授权靶场）。",
+      "title": "安全实验环境搭建",
+      "summary": "虚拟机隔离原则、KALI 安装与靶场工具链——安全实验环境的三合一搭建指南。",
       "domain": "security",
       "category": "信息安全",
-      "difficulty": "高级",
-      "minutes": 5,
+      "difficulty": "进阶",
+      "minutes": 3,
       "tags": [
-        "永恒之蓝",
-        "ms17-010",
-        "SMB",
-        "靶场"
+        "KALI",
+        "VMware",
+        "环境搭建"
       ],
       "prereqs": [],
-      "href": "/post/w85_ms17_010"
+      "href": "/post/w69_sec_env"
+    },
+    {
+      "id": "w34_file_inclusion",
+      "kind": "post",
+      "title": "文件包含漏洞（LFI / RFI）",
+      "summary": "php://filter 读源码、日志包含与防御白名单——LFI/RFI 全解。",
+      "domain": "security",
+      "category": "信息安全",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "文件包含",
+        "LFI",
+        "RFI"
+      ],
+      "prereqs": [],
+      "href": "/post/w34_file_inclusion"
+    },
+    {
+      "id": "w35_vuln_methodology",
+      "kind": "post",
+      "title": "漏洞检测方法论",
+      "summary": "四个层次的信息→扫描→验证→报告流程与工具链。",
+      "domain": "security",
+      "category": "信息安全",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "漏洞扫描",
+        "Nmap",
+        "方法论"
+      ],
+      "prereqs": [],
+      "href": "/post/w35_vuln_methodology"
+    },
+    {
+      "id": "w76_defense",
+      "kind": "post",
+      "title": "网络攻击步骤与防御技术",
+      "summary": "攻击的一般步骤拆解 + 每个阶段的对应防御手段——知己知彼的防守指南。",
+      "domain": "security",
+      "category": "信息安全",
+      "difficulty": "进阶",
+      "minutes": 4,
+      "tags": [
+        "防御",
+        "攻防",
+        "纵深防御"
+      ],
+      "prereqs": [],
+      "href": "/post/w76_defense"
     },
     {
       "id": "w75_msf_practice",
@@ -2371,22 +2337,38 @@
       "href": "/post/s11_sqli_advanced"
     },
     {
-      "id": "w19_network_basics",
+      "id": "w85_ms17_010",
       "kind": "post",
-      "title": "网络基础：IP 地址与访问流程",
-      "summary": "IPv4/IPv6、公网私网、DNS 解析与一次完整的网页访问流程。",
-      "domain": "system",
-      "category": "计算机网络",
-      "difficulty": "入门",
-      "minutes": 6,
+      "title": "ms17-010 永恒之蓝实战",
+      "summary": "经典漏洞 ms17-010 的探测、利用与防御全流程（仅限授权靶场）。",
+      "domain": "security",
+      "category": "信息安全",
+      "difficulty": "高级",
+      "minutes": 5,
       "tags": [
-        "网络",
-        "IP",
-        "DNS",
-        "入门"
+        "永恒之蓝",
+        "ms17-010",
+        "SMB",
+        "靶场"
       ],
       "prereqs": [],
-      "href": "/post/w19_network_basics"
+      "href": "/post/w85_ms17_010"
+    },
+    {
+      "id": "w33_file_upload",
+      "kind": "post",
+      "title": "文件上传漏洞原理、利用与防御",
+      "summary": "校验绕过、解析漏洞与防御清单——Web 危害等级最高的漏洞类型。",
+      "domain": "security",
+      "category": "信息安全",
+      "difficulty": "高级",
+      "minutes": 3,
+      "tags": [
+        "文件上传",
+        "Web 安全"
+      ],
+      "prereqs": [],
+      "href": "/post/w33_file_upload"
     },
     {
       "id": "w22_linux_basics",
@@ -2441,38 +2423,22 @@
       "href": "/post/w24_vim"
     },
     {
-      "id": "w41_hosts_hostname",
+      "id": "w19_network_basics",
       "kind": "post",
-      "title": "主机名与 hosts 解析配置",
-      "summary": "hostname 修改、hosts 映射与集群场景一致性。",
+      "title": "网络基础：IP 地址与访问流程",
+      "summary": "IPv4/IPv6、公网私网、DNS 解析与一次完整的网页访问流程。",
       "domain": "system",
-      "category": "操作系统与运维",
-      "difficulty": "进阶",
-      "minutes": 5,
+      "category": "计算机网络",
+      "difficulty": "入门",
+      "minutes": 6,
       "tags": [
-        "hosts",
-        "hostname",
-        "网络"
+        "网络",
+        "IP",
+        "DNS",
+        "入门"
       ],
       "prereqs": [],
-      "href": "/post/w41_hosts_hostname"
-    },
-    {
-      "id": "w40_apt_fix",
-      "kind": "post",
-      "title": "apt 常见故障修复手册",
-      "summary": "锁占用、GPG、404、依赖地狱与磁盘清理十大高频故障。",
-      "domain": "system",
-      "category": "操作系统与运维",
-      "difficulty": "进阶",
-      "minutes": 11,
-      "tags": [
-        "apt",
-        "Linux",
-        "排障"
-      ],
-      "prereqs": [],
-      "href": "/post/w40_apt_fix"
+      "href": "/post/w19_network_basics"
     },
     {
       "id": "w21_cdn",
@@ -2567,6 +2533,25 @@
       "href": "/post/w23_linux_commands"
     },
     {
+      "id": "x-x09_grep_awk",
+      "kind": "md",
+      "title": "Linux 文本三剑客：grep/sed/awk",
+      "summary": "三剑客的组合拳——grep 搜索、sed 替换、awk 分析，日志处理的完整工具链。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "Linux",
+        "grep",
+        "sed",
+        "awk",
+        "文本处理"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x09_grep_awk"
+    },
+    {
       "id": "s14_linux_ops",
       "kind": "post",
       "title": "Linux 服务器运维清单：Nginx、防火墙与日常巡检",
@@ -2586,25 +2571,6 @@
         "s06_docker_compose"
       ],
       "href": "/post/s14_linux_ops"
-    },
-    {
-      "id": "x-x09_grep_awk",
-      "kind": "md",
-      "title": "Linux 文本三剑客：grep/sed/awk",
-      "summary": "三剑客的组合拳——grep 搜索、sed 替换、awk 分析，日志处理的完整工具链。",
-      "domain": "system",
-      "category": "操作系统与运维",
-      "difficulty": "进阶",
-      "minutes": 8,
-      "tags": [
-        "Linux",
-        "grep",
-        "sed",
-        "awk",
-        "文本处理"
-      ],
-      "prereqs": [],
-      "href": "/post/x-x09_grep_awk"
     },
     {
       "id": "w20_nat",
@@ -2659,6 +2625,23 @@
       "href": "/post/w26_vmware"
     },
     {
+      "id": "w82_windows_cmds",
+      "kind": "post",
+      "title": "Windows 与系统杂项命令",
+      "summary": "Windows 常用命令速查——目录文件、网络、进程与系统信息（补充篇）。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "Windows",
+        "cmd",
+        "系统命令"
+      ],
+      "prereqs": [],
+      "href": "/post/w82_windows_cmds"
+    },
+    {
       "id": "w27_windows_cmds",
       "kind": "post",
       "title": "Windows 常用命令",
@@ -2676,21 +2659,38 @@
       "href": "/post/w27_windows_cmds"
     },
     {
-      "id": "w82_windows_cmds",
+      "id": "w40_apt_fix",
       "kind": "post",
-      "title": "Windows 与系统杂项命令",
-      "summary": "Windows 常用命令速查——目录文件、网络、进程与系统信息（补充篇）。",
+      "title": "apt 常见故障修复手册",
+      "summary": "锁占用、GPG、404、依赖地狱与磁盘清理十大高频故障。",
       "domain": "system",
       "category": "操作系统与运维",
       "difficulty": "进阶",
-      "minutes": 8,
+      "minutes": 11,
       "tags": [
-        "Windows",
-        "cmd",
-        "系统命令"
+        "apt",
+        "Linux",
+        "排障"
       ],
       "prereqs": [],
-      "href": "/post/w82_windows_cmds"
+      "href": "/post/w40_apt_fix"
+    },
+    {
+      "id": "w41_hosts_hostname",
+      "kind": "post",
+      "title": "主机名与 hosts 解析配置",
+      "summary": "hostname 修改、hosts 映射与集群场景一致性。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "hosts",
+        "hostname",
+        "网络"
+      ],
+      "prereqs": [],
+      "href": "/post/w41_hosts_hostname"
     },
     {
       "id": "s06_docker_compose",
