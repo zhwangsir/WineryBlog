@@ -72,5 +72,5 @@ alias myip='curl -s ifconfig.me'
 ## 延伸阅读
 
 - 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 进阶》《Linux 服务器运维清单》
-- [GNU sed 手册](https://www.gnu.org/software/sed/manual/sed.html)
-- [GNU awk 手册](https://www.gnu.org/software/gawk/manual/gawk.html)
+- [GNU sed 手册](/post/ref-gnu-org-software-sed-manual-sed-html)
+- [GNU awk 手册](/post/ref-gnu-org-software-gawk-manual-gawk-html)

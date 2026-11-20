@@ -92,5 +92,5 @@ String formatted = String.format("%.2f", 3.14159);   // "3.14"
 
 ## 延伸阅读
 
-- [Oracle String 文档](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+- [Oracle String 文档](/post/ref-docs-oracle-com-javase-8-docs-api-java-lang-string-html)
 - 站内相关：《JAVA 程序基础》《面向对象编程》《算法入门》

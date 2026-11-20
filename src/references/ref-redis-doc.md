@@ -1,11 +1,11 @@
 ---
 title: Redis data types
 category: 参考资料
-source: https://redis.io/docs/latest/develop/data-types/
+source: `https://redis.io/docs/latest/develop/data-types/`
 summary: 本地镜像：Redis data types（原文 redis.io）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://redis.io/docs/latest/develop/data-types/
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://redis.io/docs/latest/develop/data-types/`
 
 ### Strings
 

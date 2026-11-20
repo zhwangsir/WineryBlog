@@ -1,11 +1,11 @@
 ---
 title: 概述
 category: 参考资料
-source: https://kubernetes.io/zh-cn/docs/concepts/overview/
+source: `https://kubernetes.io/zh-cn/docs/concepts/overview/`
 summary: 本地镜像：概述（原文 kubernetes.io）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://kubernetes.io/zh-cn/docs/concepts/overview/
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://kubernetes.io/zh-cn/docs/concepts/overview/`
 
 # 概述
 
@@ -1240,7 +1240,7 @@ Kubernetes：
 是 否
 感谢反馈。如果你有一个关于如何使用 Kubernetes 的具体问题需要答案，可以访问 Stack Overflow. 如果需要，请在 GitHub 仓库 上登记新的问题 报告问题 或者 提出改进建议.
 
-最后修改 June 18, 2026 at 11:33 AM PST: [[zh-cn]sync overview/_index components (2ef2f60d15)](https://github.com/kubernetes/website/commit/2ef2f60d15e353070ecabb2c558261fbae9d8437)
+最后修改 June 18, 2026 at 11:33 AM PST: sync overview/_index components (2ef2f60d15)
 
 © 2026 The Kubernetes 作者 | 文档发布基于 CC BY 4.0 授权许可
 

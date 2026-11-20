@@ -1,11 +1,11 @@
 ---
 title: HTTP 概述 - HTTP
 category: 参考资料
-source: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview
+source: `https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview`
 summary: 本地镜像：HTTP 概述 - HTTP（原文 developer.mozilla.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview`
 
 # HTTP 概述
 

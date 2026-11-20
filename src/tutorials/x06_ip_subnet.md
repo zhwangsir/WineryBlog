@@ -88,5 +88,5 @@ ip route show
 
 ## 延伸阅读
 
-- [Subnet Cheat Sheet](https://www.freecodecamp.org/news/subnet-cheat-sheet/)
+- [Subnet Cheat Sheet](/post/ref-freecodecamp-org-news-subnet-cheat-sheet)
 - 站内相关：《网络基础：IP 地址与访问流程》《NAT 网络地址转换》

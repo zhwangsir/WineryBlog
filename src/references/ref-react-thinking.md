@@ -1,11 +1,11 @@
 ---
 title: Thinking in React – React
 category: 参考资料
-source: https://react.dev/learn/thinking-in-react
+source: `https://react.dev/learn/thinking-in-react`
 summary: 本地镜像：Thinking in React – React（原文 react.dev）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://react.dev/learn/thinking-in-react
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://react.dev/learn/thinking-in-react`
 
 # Thinking in React
 

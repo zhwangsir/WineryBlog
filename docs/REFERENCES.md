@@ -20,3 +20,17 @@
 - [x] ref-docker-getstarted | Docker 官方入门 Part 1-2 | https://docs.docker.com/get-started/
 - [x] ref-k8s-basics | Kubernetes 基础概念 | https://kubernetes.io/zh-cn/docs/concepts/overview/
 - [x] ref-mdn-cors | MDN CORS 跨源资源共享 | https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
+
+## Auto-added（延伸阅读本地化）
+- [x] ref-docs-oracle-com-javase-tutorial | Java 官方教程 | https://docs.oracle.com/javase/tutorial/
+- [x] ref-docs-oracle-com-javase-tutorial-java-concepts | Oracle Java 教程 · OOP | https://docs.oracle.com/javase/tutorial/java/concepts/
+- [x] ref-docs-oracle-com-javase-8-docs-api-java-lang-string-html | Oracle String 文档 | https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+- [x] ref-leetcode-cn-tag-graph | LeetCode 图论题单 | https://leetcode.cn/tag/graph/
+- [x] ref-freecodecamp-org-news-subnet-cheat-sheet | Subnet Cheat Sheet | https://www.freecodecamp.org/news/subnet-cheat-sheet/
+- [x] ref-gnu-org-software-sed-manual-sed-html | GNU sed 手册 | https://www.gnu.org/software/sed/manual/sed.html
+- [x] ref-gnu-org-software-gawk-manual-gawk-html | GNU awk 手册 | https://www.gnu.org/software/gawk/manual/gawk.html
+- [x] ref-google-github-io-styleguide-shellguide-html | Google Shell 风格指南 | https://google.github.io/styleguide/shellguide.html
+- [x] ref-kotlinlang-org-docs-coroutines-guide-html | Kotlin 协程官方指南 | https://kotlinlang.org/docs/coroutines-guide.html
+- [x] ref-selenium-dev-documentation | Selenium 官方文档 | https://www.selenium.dev/documentation/
+- [x] ref-pyautogui-readthedocs-io | pyautogui 官方文档 | https://pyautogui.readthedocs.io/
+- [x] ref-github-com-hiyouga-llama-factory | LLaMA-Factory | https://github.com/hiyouga/LLaMA-Factory

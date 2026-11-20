@@ -122,4 +122,4 @@ public static double add(double a, double b) { return a + b; }
 ## 延伸阅读
 
 - 站内相关：《Java 核心进阶：集合框架与并发编程入门》《Spring Boot 快速上手》
-- [Java 官方教程](https://docs.oracle.com/javase/tutorial/)
+- [Java 官方教程](/post/ref-docs-oracle-com-javase-tutorial)

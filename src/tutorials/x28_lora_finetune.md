@@ -52,7 +52,7 @@ LoRA 需要**指令数据集**——JSONL 格式的对话样本：
 
 ## 4. 实战：LLaMA-Factory 全流程
 
-推荐 [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)——零代码微调框架（也支持 YAML 配置）。
+推荐 [LLaMA-Factory](/post/ref-github-com-hiyouga-llama-factory)——零代码微调框架（也支持 YAML 配置）。
 
 **① 数据注册**：把 JSONL 放 `data/my_data.json`，在 `data/dataset_info.json` 登记：
 

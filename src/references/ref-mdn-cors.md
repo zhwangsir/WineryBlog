@@ -1,11 +1,11 @@
 ---
 title: 跨源资源共享（CORS） - HTTP
 category: 参考资料
-source: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
+source: `https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS`
 summary: 本地镜像：跨源资源共享（CORS） - HTTP（原文 developer.mozilla.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS`
 
 ## 什么情况下需要 CORS？
 
@@ -113,7 +113,7 @@ CORS 请求失败会产生错误，但是为了安全，在 JavaScript 代码层
 
 并不是所有浏览器都支持预检请求的重定向。如果一个预检请求发生了重定向，一部分浏览器将报告错误：
 
-> The request was redirected to 'https://example.com/foo', which is disallowed for cross-origin requests that require preflight. Request requires preflight, which is disallowed to follow cross-origin redirects.
+> The request was redirected to '`https://example.com/foo',` which is disallowed for cross-origin requests that require preflight. Request requires preflight, which is disallowed to follow cross-origin redirects.
 
 CORS 最初要求浏览器具有该行为，不过在后续的修订中废弃了这一要求。但并非所有浏览器都实现了这一变更，而仍然表现出最初要求的行为。
 

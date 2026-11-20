@@ -1,11 +1,11 @@
 ---
 title: Documentation - Everyday Types
 category: 参考资料
-source: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+source: `https://www.typescriptlang.org/docs/handbook/2/everyday-types.html`
 summary: 本地镜像：Documentation - Everyday Types（原文 www.typescriptlang.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://www.typescriptlang.org/docs/handbook/2/everyday-types.html`
 
 In this chapter, we’ll cover some of the most common types of values you’ll find in JavaScript code, and explain the corresponding ways to describe those types in TypeScript. This isn’t an exhaustive list, and future chapters will describe more ways to name and use other types.
 

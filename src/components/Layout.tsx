@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
@@ -9,6 +9,8 @@ import { Footer } from './Footer';
 import { MusicPlayer } from './MusicPlayer';
 import { Sakura } from './Sakura';
 import { Mascot } from './Mascot';
+import { PetMascot } from './PetMascot';
+import { PetChatPanel } from './PetChatPanel';
 import { cn } from '../utils/cn';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -18,6 +20,12 @@ export const Layout: React.FC = () => {
   const { config, loading } = useData();
   const configRef = useRef(config);
   configRef.current = config;
+  const [petChatOpen, setPetChatOpen] = useState(false);
+
+  const pet = (config as any)?.theme?.pet as
+    | { enabled?: boolean; model?: string; voiceEnabled?: boolean; autoDodge?: boolean }
+    | undefined;
+  const petOn = pet ? pet.enabled !== false : true; // 默认启用胡桃桌宠
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -72,11 +80,23 @@ export const Layout: React.FC = () => {
         speed={theme?.sakuraSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
       />
 
-      <Mascot 
-        enabled={theme?.mascotEnabled !== false}
-        avatar={config?.profile?.avatar}
-        name={config?.profile?.name}
-      />
+      {petOn ? (
+        <PetMascot
+          voiceEnabled={pet?.voiceEnabled === true}
+          autoDodge={pet?.autoDodge !== false}
+          model={pet?.model || 'hutao'}
+          fallbackAvatar={config?.profile?.avatar}
+          name={config?.profile?.name}
+          onOpenChat={() => setPetChatOpen(true)}
+        />
+      ) : (
+        <Mascot
+          enabled={theme?.mascotEnabled !== false}
+          avatar={config?.profile?.avatar}
+          name={config?.profile?.name}
+        />
+      )}
+      <PetChatPanel open={petOn && petChatOpen} onClose={() => setPetChatOpen(false)} />
 
       <Navbar />
       

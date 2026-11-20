@@ -123,6 +123,6 @@ driver = webdriver.Chrome(options=options)
 
 ## 延伸阅读
 
-- [Selenium 官方文档](https://www.selenium.dev/documentation/)
-- [pyautogui 官方文档](https://pyautogui.readthedocs.io/)
+- [Selenium 官方文档](/post/ref-selenium-dev-documentation)
+- [pyautogui 官方文档](/post/ref-pyautogui-readthedocs-io)
 - 站内相关：《Python 基础入门》《gui 自动化操作》《Web 安全学习路线总纲》

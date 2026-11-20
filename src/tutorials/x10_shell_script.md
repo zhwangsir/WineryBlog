@@ -136,4 +136,4 @@ echo "备份完成: $BACKUP_DIR"
 ## 延伸阅读
 
 - 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 服务器运维清单》
-- [Google Shell 风格指南](https://google.github.io/styleguide/shellguide.html)
+- [Google Shell 风格指南](/post/ref-google-github-io-styleguide-shellguide-html)

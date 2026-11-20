@@ -1,11 +1,11 @@
 ---
 title: A Tour of Go
 category: 参考资料
-source: https://go.dev/tour/concurrency
+source: `https://go.dev/tour/concurrency`
 summary: 本地镜像：A Tour of Go（原文 go.dev）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://go.dev/tour/concurrency
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://go.dev/tour/concurrency`
 
 （图：Image 1）
 A Tour of Go

@@ -1,0 +1,30 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "HuTao.moc3",
+    "Textures": [
+      "textures/texture_00.png"
+    ],
+    "Physics": "HuTao.physics3.json"
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ],
+  "HitAreas": [
+    {
+      "Id": "Head",
+      "Name": "head"
+    },
+    {
+      "Id": "Body",
+      "Name": "body"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 ---
 title: Docker Learn
 category: 参考资料
-source: https://docs.docker.com/get-started/
+source: `https://docs.docker.com/get-started/`
 summary: 本地镜像：Docker Learn（原文 docs.docker.com）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://docs.docker.com/get-started/
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://docs.docker.com/get-started/`
 
 Docker Learn
 

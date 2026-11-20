@@ -1,11 +1,11 @@
 ---
 title: JavaScript 执行模型 - JavaScript
 category: 参考资料
-source: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop
+source: `https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop`
 summary: 本地镜像：JavaScript 执行模型 - JavaScript（原文 developer.mozilla.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop`
 
 ## 引擎和宿主
 

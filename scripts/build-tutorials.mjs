@@ -127,7 +127,7 @@ function difficultyOf(title) {
 }
 
 // ---- inject md tutorials into posts -------------------------------------
-const posts = JSON.parse(fs.readFileSync(POSTS_FILE, 'utf-8'));
+let posts = JSON.parse(fs.readFileSync(POSTS_FILE, 'utf-8'));
 const mdFiles = fs.readdirSync(MD_DIR).filter(f => f.endsWith('.md'));
 const today = new Date().toISOString().slice(0, 10);
 const injected = [];
@@ -154,11 +154,13 @@ for (const file of mdFiles) {
 }
 
 // ---- inject local reference mirrors into posts --------------------------
+// purge stale reference posts first so id changes never leave duplicates
+posts = posts.filter(p => p.category !== '参考资料');
 const refFiles = fs.existsSync(REF_DIR) ? fs.readdirSync(REF_DIR).filter(f => f.endsWith('.md')) : [];
 const refInjected = [];
 for (const file of refFiles) {
   const slug = file.replace(/\.md$/, '');
-  const id = 'ref-' + slug;
+  const id = slug.startsWith('ref-') ? slug : 'ref-' + slug;
   const raw = fs.readFileSync(path.join(REF_DIR, file), 'utf-8');
   const { meta, body } = parseFrontmatter(raw);
   const post = {

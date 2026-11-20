@@ -138,4 +138,4 @@ class UnionFind:
 ## 延伸阅读
 
 - 站内相关：《数据结构与算法入门》《排序与搜索算法全解》
-- [LeetCode 图论题单](https://leetcode.cn/tag/graph/)
+- [LeetCode 图论题单](/post/ref-leetcode-cn-tag-graph)

@@ -123,5 +123,5 @@ obj instanceof Type  // 类型检查
 
 ## 延伸阅读
 
-- [Oracle Java 教程 · OOP](https://docs.oracle.com/javase/tutorial/java/concepts/)
+- [Oracle Java 教程 · OOP](/post/ref-docs-oracle-com-javase-tutorial-java-concepts)
 - 《Head First Java》——入门最佳

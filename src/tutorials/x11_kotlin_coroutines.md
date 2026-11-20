@@ -138,5 +138,5 @@ class MyViewModel : ViewModel() {
 
 ## 延伸阅读
 
-- [Kotlin 协程官方指南](https://kotlinlang.org/docs/coroutines-guide.html)
+- [Kotlin 协程官方指南](/post/ref-kotlinlang-org-docs-coroutines-guide-html)
 - 站内相关：《2.Kotlin 必知必会》《Android 四大组件与生命周期》《OkHttp 使用指南》

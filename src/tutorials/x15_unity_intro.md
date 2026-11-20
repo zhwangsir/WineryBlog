@@ -8,7 +8,7 @@ summary: 从安装到发布：认识 Unity 编辑器、GameObject-Component 心�
 
 ## 1. 安装与工程创建
 
-1. 下载 [Unity Hub](https://unity.com/download)，登录免费个人版
+1. 下载 Unity Hub，登录免费个人版
 2. 安装 LTS 长期支持版（勾选 **Windows Build Support** 和 IDE）
 3. Hub → New Project → 选 **2D (Built-in)** 模板 → 命名 `Pong`
 

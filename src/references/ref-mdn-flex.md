@@ -1,11 +1,11 @@
 ---
 title: flex 布局的基本概念 - CSS：层叠样式表
 category: 参考资料
-source: https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+source: `https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox`
 summary: 本地镜像：flex 布局的基本概念 - CSS：层叠样式表（原文 developer.mozilla.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox`
 
 # flex 布局的基本概念
 

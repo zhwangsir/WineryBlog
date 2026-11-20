@@ -1,11 +1,11 @@
 ---
 title: 网格布局的基本概念 - CSS：层叠样式表
 category: 参考资料
-source: https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
+source: `https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout`
 summary: 本地镜像：网格布局的基本概念 - CSS：层叠样式表（原文 developer.mozilla.org）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout`
 
 # 网格布局的基本概念
 
