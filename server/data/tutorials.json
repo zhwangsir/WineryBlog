@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:45:55.565Z",
+  "generatedAt": "2026-11-20T12:47:16.612Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 17
+      "count": 18
     },
     {
       "id": "backend",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 18
+      "count": 20
     },
     {
       "id": "security",
@@ -101,6 +101,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x28_lora_finetune"
+    },
+    {
+      "id": "x-x48_nlp_intro",
+      "kind": "md",
+      "title": "NLP 入门：从分词到大模型",
+      "summary": "文本如何变成机器能算的向量：分词、TF-IDF、词向量、注意力——NLP 半个世纪的演进主线。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 12,
+      "tags": [
+        "NLP",
+        "分词",
+        "词向量",
+        "Transformer"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x48_nlp_intro"
     },
     {
       "id": "x-x16_prompt_engineering",
@@ -156,6 +174,24 @@
         "t03_python_basics"
       ],
       "href": "/post/t05_pytorch_dl"
+    },
+    {
+      "id": "x-x50_cv_intro",
+      "kind": "md",
+      "title": "计算机视觉入门：从像素到识别",
+      "summary": "卷积的直觉、CNN 经典架构演进、一个完整的图像分类项目——机器如何\"看见\"。",
+      "domain": "ai",
+      "category": "人工智能",
+      "difficulty": "入门",
+      "minutes": 6,
+      "tags": [
+        "计算机视觉",
+        "CNN",
+        "目标检测",
+        "PyTorch"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x50_cv_intro"
     },
     {
       "id": "x-x39_ai_agent",
@@ -1559,6 +1595,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x43_react_perf"
+    },
+    {
+      "id": "x-x49_web_perf",
+      "kind": "md",
+      "title": "Web 性能优化实战",
+      "summary": "加载瀑布图解读、Core Web Vitals 三指标、缓存与 CDN 策略——从 3 秒到 1 秒的完整手段库。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 10,
+      "tags": [
+        "性能优化",
+        "Core Web Vitals",
+        "CDN",
+        "首屏"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x49_web_perf"
     },
     {
       "id": "w47_render_eventloop",

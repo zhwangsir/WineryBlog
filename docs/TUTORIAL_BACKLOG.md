@@ -50,7 +50,7 @@
 - x46_nginx_deep | 操作系统与运维 | Nginx 深入：反向代理与负载均衡
 - x47_weapp | 移动与跨端 | 微信小程序开发入门
 
-## Batch 11 — AI 与 Web 性能 — status: pending
+## Batch 11 — AI 与 Web 性能 — status: done
 - x48_nlp_intro | 人工智能 | NLP 入门：从分词到大模型
 - x49_web_perf | Web 前端 | Web 性能优化实战
 - x50_cv_intro | 人工智能 | 计算机视觉入门：从像素到识别
