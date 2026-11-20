@@ -107,7 +107,7 @@
 - x70_virtual_memory | 操作系统与运维 | 虚拟内存与分页：MMU、页表与缺页处理
 - x71_filesystem | 操作系统与运维 | 文件系统实现：inode、日志与崩溃一致性
 
-## Batch 22 — 计算机体系结构 — status: pending
+## Batch 22 — 计算机体系结构 — status: done
 - x72_pipeline | 计算机组成 | 指令流水线：冒险、转发与分支预测
 - x73_cache | 计算机组成 | Cache 层次结构：局部性原理、映射与替换策略
 - x74_bus_io | 计算机组成 | 总线、中断与 I/O 系统

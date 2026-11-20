@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:13:37.936Z",
+  "generatedAt": "2026-11-20T16:34:51.306Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -10,7 +10,7 @@
       "name": "编程基础与工具",
       "icon": "Wrench",
       "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-      "count": 14
+      "count": 17
     },
     {
       "id": "langs",
@@ -1022,6 +1022,43 @@
       "href": "/post/w04_search_skills"
     },
     {
+      "id": "x-x74_bus_io",
+      "kind": "md",
+      "title": "总线、中断与 I/O 系统",
+      "summary": "CPU 如何与外部设备对话：轮询到中断到 DMA、内存映射 I/O、PCIe 与 NVMe——I/O 系统的完整演进。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "总线",
+        "中断",
+        "DMA",
+        "PCIe",
+        "计算机组成"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x74_bus_io"
+    },
+    {
+      "id": "x-x72_pipeline",
+      "kind": "md",
+      "title": "指令流水线：冒险、转发与分支预测",
+      "summary": "五级流水线、三类冒险、转发旁路与分支预测——CPU 把\"串行工序\"变成\"并行工厂\"的全部机制。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "流水线",
+        "CPU",
+        "分支预测",
+        "计算机组成"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x72_pipeline"
+    },
+    {
       "id": "x-x08_os_concepts",
       "kind": "md",
       "title": "操作系统核心概念",
@@ -1075,6 +1112,24 @@
       ],
       "prereqs": [],
       "href": "/post/w83_hardware"
+    },
+    {
+      "id": "x-x73_cache",
+      "kind": "md",
+      "title": "Cache 层次结构：局部性原理、映射与替换策略",
+      "summary": "为什么需要多级缓存、三种映射方式、写策略与 3C miss 模型——让\"内存墙\"从 100 倍缩到 2 倍。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "高级",
+      "minutes": 8,
+      "tags": [
+        "Cache",
+        "局部性",
+        "缓存",
+        "计算机组成"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x73_cache"
     },
     {
       "id": "x-x52_git_advanced",
