@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:22:57.501Z",
+  "generatedAt": "2026-11-20T12:24:19.471Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -10,7 +10,7 @@
       "name": "编程基础与工具",
       "icon": "Wrench",
       "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-      "count": 11
+      "count": 12
     },
     {
       "id": "langs",
@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 7
+      "count": 8
     },
     {
       "id": "system",
@@ -52,7 +52,7 @@
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 12
+      "count": 13
     },
     {
       "id": "ai",
@@ -455,6 +455,24 @@
       "href": "/post/x-x31_hash_string"
     },
     {
+      "id": "x-x34_backtracking",
+      "kind": "md",
+      "title": "回溯与剪枝：排列组合的系统化搜索",
+      "summary": "回溯三要素模板、排列/组合/子集三大题型、剪枝四板斧——暴力搜索的艺术。",
+      "domain": "algo",
+      "category": "数据结构与算法",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "回溯",
+        "剪枝",
+        "DFS",
+        "算法"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x34_backtracking"
+    },
+    {
       "id": "x-x05_bitwise_algorithms",
       "kind": "md",
       "title": "贪心与二分答案专题",
@@ -719,6 +737,24 @@
       ],
       "prereqs": [],
       "href": "/post/w17_php_project"
+    },
+    {
+      "id": "x-x35_compiler_intro",
+      "kind": "md",
+      "title": "编译原理入门：从源码到可执行",
+      "summary": "词法→语法→语义→中间代码→优化的完整旅程——看懂编译器的同时看懂 Babel/V8/SQL 引擎。",
+      "domain": "basics",
+      "category": "计算机组成",
+      "difficulty": "入门",
+      "minutes": 13,
+      "tags": [
+        "编译原理",
+        "词法分析",
+        "语法分析",
+        "LLVM"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x35_compiler_intro"
     },
     {
       "id": "x-x20_assembly",
@@ -1111,6 +1147,24 @@
       ],
       "prereqs": [],
       "href": "/post/w31_hdfs_shell"
+    },
+    {
+      "id": "x-x33_mysql_index",
+      "kind": "md",
+      "title": "MySQL 索引与查询优化实战",
+      "summary": "B+ 树为什么快、最左前缀与覆盖索引、EXPLAIN 全字段解读——让慢查询从 3 秒到 30 毫秒。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "高级",
+      "minutes": 10,
+      "tags": [
+        "MySQL",
+        "索引",
+        "查询优化",
+        "EXPLAIN"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x33_mysql_index"
     },
     {
       "id": "x-x19_redis_practice",

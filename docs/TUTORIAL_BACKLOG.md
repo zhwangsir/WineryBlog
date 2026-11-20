@@ -25,7 +25,7 @@
 - x31_hash_string | 数据结构与算法 | 哈希与字符串算法：从 Map 到 KMP
 - x32_cocos_creator | 游戏与图形 | Cocos Creator 入门：国产引擎做 2D 游戏
 
-## Batch 6 — 原理深挖 — status: pending
+## Batch 6 — 原理深挖 — status: done
 - x33_mysql_index | 数据库 | MySQL 索引与查询优化实战
 - x34_backtracking | 数据结构与算法 | 回溯与剪枝：排列组合的系统化搜索
 - x35_compiler_intro | 计算机组成 | 编译原理入门：从源码到可执行
