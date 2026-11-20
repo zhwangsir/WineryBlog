@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:34:51.306Z",
+  "generatedAt": "2026-11-20T16:49:43.574Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -81,6 +81,13 @@
       "icon": "Gamepad2",
       "blurb": "游戏循环、物理与碰撞、Unity 引擎、图形编程",
       "count": 8
+    },
+    {
+      "id": "dist",
+      "name": "分布式与并行",
+      "icon": "Boxes",
+      "blurb": "CAP、共识算法、并行编程与云原生（CS2023 PDC）",
+      "count": 3
     }
   ],
   "tutorials": [
@@ -1417,6 +1424,60 @@
       ],
       "prereqs": [],
       "href": "/post/x-x65_redis_internals"
+    },
+    {
+      "id": "x-x75_dist_basics",
+      "kind": "md",
+      "title": "分布式系统基础：CAP 定理与一致性模型",
+      "summary": "单机三堵墙、CAP 与 PACELC、一致性模型谱系、复制策略与分布式事务——分布式的世界观总纲。",
+      "domain": "dist",
+      "category": "分布式与并行",
+      "difficulty": "入门",
+      "minutes": 8,
+      "tags": [
+        "分布式系统",
+        "CAP",
+        "一致性",
+        "复制"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x75_dist_basics"
+    },
+    {
+      "id": "x-x77_parallel_prog",
+      "kind": "md",
+      "title": "并行编程入门：OpenMP、CUDA 与并行模式",
+      "summary": "并行与并发的辨析、Amdahl 定律、OpenMP 与 CUDA 编程模型——榨干多核与 GPU 的第一课。",
+      "domain": "dist",
+      "category": "分布式与并行",
+      "difficulty": "入门",
+      "minutes": 13,
+      "tags": [
+        "并行编程",
+        "OpenMP",
+        "CUDA",
+        "高性能计算"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x77_parallel_prog"
+    },
+    {
+      "id": "x-x76_consensus",
+      "kind": "md",
+      "title": "共识算法：Paxos 与 Raft",
+      "summary": "多数派 quorum 的力量、Paxos 两阶段、Raft 的三大子系统——故障下让集群意见一致的完整机制。",
+      "domain": "dist",
+      "category": "分布式与并行",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "共识算法",
+        "Paxos",
+        "Raft",
+        "分布式"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x76_consensus"
     },
     {
       "id": "w45_css_basics",

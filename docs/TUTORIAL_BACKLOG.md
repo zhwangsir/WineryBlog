@@ -112,7 +112,7 @@
 - x73_cache | 计算机组成 | Cache 层次结构：局部性原理、映射与替换策略
 - x74_bus_io | 计算机组成 | 总线、中断与 I/O 系统
 
-## Batch 23 — 分布式与并行（CS2023 PDC） — status: pending
+## Batch 23 — 分布式与并行（CS2023 PDC） — status: done
 - x75_dist_basics | 分布式与并行 | 分布式系统基础：CAP 定理与一致性模型
 - x76_consensus | 分布式与并行 | 共识算法：Paxos 与 Raft
 - x77_parallel_prog | 分布式与并行 | 并行编程入门：OpenMP、CUDA 与并行模式
