@@ -45,7 +45,7 @@
 - x43_react_perf | Web 前端 | React 性能优化实战
 - x44_tree_heap | 数据结构与算法 | 树与堆：优先队列的艺术
 
-## Batch 10 — 数据与运维 — status: pending
+## Batch 10 — 数据与运维 — status: done
 - x45_redis_ha | 数据库 | Redis 高可用：哨兵与集群
 - x46_nginx_deep | 操作系统与运维 | Nginx 深入：反向代理与负载均衡
 - x47_weapp | 移动与跨端 | 微信小程序开发入门

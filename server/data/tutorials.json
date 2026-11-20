@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T12:44:32.707Z",
+  "generatedAt": "2026-11-20T12:45:55.565Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -31,7 +31,7 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 21
+      "count": 22
     },
     {
       "id": "frontend",
@@ -52,7 +52,7 @@
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 13
+      "count": 14
     },
     {
       "id": "ai",
@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 14
+      "count": 15
     },
     {
       "id": "games",
@@ -1130,6 +1130,24 @@
       "href": "/post/w32_hdfs_rw"
     },
     {
+      "id": "x-x45_redis_ha",
+      "kind": "md",
+      "title": "Redis 高可用：哨兵与集群",
+      "summary": "主从复制原理、哨兵自动故障转移、Cluster 分片——缓存服务不宕机的完整方案。",
+      "domain": "data",
+      "category": "数据库",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "Redis",
+        "高可用",
+        "哨兵",
+        "Cluster"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x45_redis_ha"
+    },
+    {
       "id": "x-x11_sql_advanced",
       "kind": "md",
       "title": "事务与隔离级别",
@@ -2091,6 +2109,24 @@
       "href": "/post/x-x42_swiftui"
     },
     {
+      "id": "x-x47_weapp",
+      "kind": "md",
+      "title": "微信小程序开发入门",
+      "summary": "小程序架构与双线程模型、WXML/WXSS 语法、登录支付流程、云开发免运维——国民级 App 里的 App。",
+      "domain": "mobile",
+      "category": "移动与跨端",
+      "difficulty": "入门",
+      "minutes": 16,
+      "tags": [
+        "微信小程序",
+        "WXML",
+        "云开发",
+        "跨端"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x47_weapp"
+    },
+    {
       "id": "s13_android_components",
       "kind": "post",
       "title": "Android 四大组件与生命周期",
@@ -2872,6 +2908,24 @@
       ],
       "prereqs": [],
       "href": "/post/s06_docker_compose"
+    },
+    {
+      "id": "x-x46_nginx_deep",
+      "kind": "md",
+      "title": "Nginx 深入：反向代理与负载均衡",
+      "summary": "反代原理、upstream 五种策略、限流与 HTTPS——一台 Nginx 撑起整站流量的完整配置手册。",
+      "domain": "system",
+      "category": "操作系统与运维",
+      "difficulty": "高级",
+      "minutes": 13,
+      "tags": [
+        "Nginx",
+        "反向代理",
+        "负载均衡",
+        "运维"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x46_nginx_deep"
     },
     {
       "id": "w30_nginx",
