@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T13:35:49.939Z",
+  "generatedAt": "2026-11-20T14:07:18.387Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 21
+      "count": 24
     },
     {
       "id": "backend",
@@ -1615,6 +1615,24 @@
       "href": "/post/w49_proxy"
     },
     {
+      "id": "x-x58_event_loop",
+      "kind": "md",
+      "title": "事件循环深度剖析：宏任务微任务与调度",
+      "summary": "调用栈、任务队列、微任务清空规则、Node 阶段模型——从规范层面解释所有输出顺序题。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "事件循环",
+        "微任务",
+        "宏任务",
+        "JavaScript"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x58_event_loop"
+    },
+    {
       "id": "w54_ui_libs",
       "kind": "post",
       "title": "常用组件库：MUI 与 Element UI",
@@ -1630,6 +1648,24 @@
       ],
       "prereqs": [],
       "href": "/post/w54_ui_libs"
+    },
+    {
+      "id": "x-x57_promise_impl",
+      "kind": "md",
+      "title": "手写 Promise：从规范到实现",
+      "summary": "按 Promises/A+ 规范逐条实现 Promise：三态机、then 链、值穿透、微任务与静态方法。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "Promise",
+        "异步编程",
+        "源码实现",
+        "JavaScript"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x57_promise_impl"
     },
     {
       "id": "w52_echarts",
@@ -1702,6 +1738,24 @@
       ],
       "prereqs": [],
       "href": "/post/x-x49_web_perf"
+    },
+    {
+      "id": "x-x59_async_await",
+      "kind": "md",
+      "title": "async/await 原理：生成器与协程",
+      "summary": "从生成器到自动执行器到 async 函数——JavaScript 协程演进的完整链条与 await 的全部行为细节。",
+      "domain": "frontend",
+      "category": "Web 前端",
+      "difficulty": "高级",
+      "minutes": 20,
+      "tags": [
+        "async",
+        "await",
+        "生成器",
+        "协程"
+      ],
+      "prereqs": [],
+      "href": "/post/x-x59_async_await"
     },
     {
       "id": "w47_render_eventloop",

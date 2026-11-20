@@ -172,5 +172,5 @@ gap 取代了历史遗留的 `margin` 技巧（`.item + .item { margin-left: 16p
 ## 延伸阅读
 
 - 站内相关：《Flexbox 子项属性详解》（姊妹篇：grow/shrink/basis 三兄弟）、《CSS Grid 容器全属性指南》《CSS 基础与弹性布局》
-- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-ref-mdn-flex）
+- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-mdn-flex）
 - Flexbox Froggy（游戏化练习，24 关通关即入门）

@@ -204,5 +204,5 @@ Grid 的 gap 语义比 Flex 更强（天然多行多列的间距系统）。轨�
 ## 延伸阅读
 
 - 站内相关：《Flexbox 容器属性逐个击破》《Flexbox 子项属性详解》《CSS Grid 与响应式布局》（上一代的总览篇）
-- 站内参考资料：《MDN Grid 布局核心概念》（本地镜像 /post/ref-ref-mdn-grid）
+- 站内参考资料：《MDN Grid 布局核心概念》（本地镜像 /post/ref-mdn-grid）
 - Grid Garden（游戏化练习）

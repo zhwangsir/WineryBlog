@@ -96,6 +96,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     if (model === 'fallback') { setLive2dFailed(true); return; }   // 明确选择静态模式
 
     let disposed = false;
+    let onPointerMove: ((e: PointerEvent) => void) | null = null;
     (async () => {
       try {
         const PIXI = await import('pixi.js');
@@ -119,11 +120,18 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         pixiHostRef.current?.appendChild(app.view as HTMLCanvasElement);
 
         const model = await Live2DModel.from('/live2d/hutao/HuTao.model3.json', {
-          autoInteract: false,   // 交互由外层统一处理（拖动/点击）
+          autoInteract: false,   // 点击/拖动由外层命中层处理
           autoUpdate: true,
         });
         if (disposed) { model.destroy(); return; }
         modelRef.current = model;
+        (window as any).__petModel = model;   // 调试钩子：读取视线参数
+
+        // 眼神跟随鼠标：全局监听（canvas 指针穿透不影响 window 级监听）
+        onPointerMove = (e: PointerEvent) => {
+          try { modelRef.current?.focus(e.clientX, e.clientY); } catch { /* 模型销毁窗口期 */ }
+        };
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
 
         // 缩放到 260px 高，锚定底部居中
         const scale = (PET_SIZE.h - 30) / model.internalModel.height;
@@ -149,6 +157,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
     return () => {
       disposed = true;
+      if (onPointerMove) window.removeEventListener('pointermove', onPointerMove);
       try {
         modelRef.current?.destroy();
         appRef.current?.destroy(false, { children: true });

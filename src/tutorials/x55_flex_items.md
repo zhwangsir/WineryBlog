@@ -144,5 +144,5 @@ flex: 1 1 auto     = 默认（可伸可缩，以内容为基准）              
 ## 延伸阅读
 
 - 站内相关：《Flexbox 容器属性逐个击破》《CSS Grid 容器全属性指南》《CSS 基础与弹性布局》
-- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-ref-mdn-flex）
+- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-mdn-flex）
 - Flexbox Zombies（游戏化深入课程）
