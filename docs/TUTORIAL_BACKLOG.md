@@ -95,7 +95,7 @@
 - x73_docker_image | 操作系统与运维 | Docker 镜像原理：分层与优化
 - x74_shell_params | 操作系统与运维 | Shell 参数扩展完整语法
 
-## Batch 20 — 参考资料（本地化外链内容） — status: pending
+## Batch 20 — 参考资料（本地化外链内容） — status: done
 > 用 scripts/fetch-references.mjs 抓取下方清单 → src/references/*.md
 - [ ] ref-mdn-flex | MDN Flexbox 基本概念 | https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
 - [ ] ref-mdn-grid | MDN Grid 布局核心概念 | https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
