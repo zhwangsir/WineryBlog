@@ -6,6 +6,7 @@ import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as Vi
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { TutorPanel } from '../components/TutorPanel';
+import { CodeBlock } from '../components/CodeBlock';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -251,7 +252,7 @@ export const PostDetail: React.FC = () => {
         <p className="text-xl text-text-muted italic border-l-4 border-accent pl-4 mb-8">
           {post.excerpt}
         </p>
-        <Markdown remarkPlugins={[remarkGfm]}>
+        <Markdown remarkPlugins={[remarkGfm]} components={{ pre: CodeBlock }}>
           {post.content}
         </Markdown>
       </div>

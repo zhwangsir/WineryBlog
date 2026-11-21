@@ -1,10 +1,1011 @@
 ---
-title: LLaMA-Factory
+title: LLaMA-Factory README
 category: 参考资料
-source: `https://github.com/hiyouga/LLaMA-Factory`
-summary: 本地镜像：LLaMA-Factory（原文 github.com）
+source: `https://raw.githubusercontent.com/hiyouga/LLaMA-Factory/main/README.md`
+summary: 本地镜像：LLaMA-Factory 项目 README（原文 GitHub）
 ---
 
-> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://github.com/hiyouga/LLaMA-Factory`
+> 本文档为站内参考资料，抓取自原文并整理，供离线学习。原文：`https://raw.githubusercontent.com/hiyouga/LLaMA-Factory/main/README.md`
 
-{"data":null,"code":403,"name":"AbuseAlleviationError","status":40305,"message":"Anonymous access to domain github.com blocked until Fri Nov 20 2026 13:48:35 GMT+0000 (Coordinated Universal Time) due to previous abuse found on `https://github.com/jupyter/docker-stacks/wiki/aarch64-default-all-spark-notebook-22d92ea8f1a2:` DDoS attack suspected: Too many requests","readableMessage":"AbuseAlleviationError: Anonymous access to domain github.com blocked until Fri Nov 20 2026 13:48:35 GMT+0000 (Coordinated Universal Time) due to previous abuse found on `https://github.com/jupyter/docker-stacks/wiki/aarch64-default-all-spark-notebook-22d92ea8f1a2:` DDoS attack suspected: Too many requests"}
+![# LlamaFactory](assets/logo.png)
+
+![GitHub Repo stars](`https://img.shields.io/github/stars/hiyouga/LlamaFactory?style=social`)
+![GitHub last commit](`https://img.shields.io/github/last-commit/hiyouga/LlamaFactory`)
+![GitHub contributors](`https://img.shields.io/github/contributors/hiyouga/LlamaFactory?color=orange`)
+![GitHub workflow](`https://github.com/hiyouga/LlamaFactory/actions/workflows/tests.yml/badge.svg`)
+![PyPI](`https://img.shields.io/pypi/v/llamafactory`)
+![Citation](`https://img.shields.io/badge/citation-1000+-green`)
+![Docker Pulls](`https://img.shields.io/docker/pulls/hiyouga/llamafactory`)
+
+![Twitter](`https://img.shields.io/twitter/follow/llamafactory_ai`)
+![Discord](assets/thirdparty/discord.svg)
+![WeChat](`https://img.shields.io/badge/WeChat-User%20Group-blue?logo=wechat`)
+![Blog](`https://img.shields.io/badge/Hugo-Official%20Blog-blue?logo=hugo`)
+![GitCode](`https://gitcode.com/hiyouga/LlamaFactory/star/badge.svg`)
+
+![Open in Colab](assets/thirdparty/colab.svg)
+![Open in DSW](assets/thirdparty/dsw.svg)
+![Open in Spaces](`https://img.shields.io/badge/🤗-Open%20in%20Spaces-blue`)
+![Open in Studios](`https://img.shields.io/badge/ModelScope-Open%20in%20Studios-blue`)
+![Open in Novita](`https://img.shields.io/badge/Novita-Deploy%20Template-blue`)
+
+### Used by Amazon, NVIDIA, Aliyun, etc.
+
+----
+
+<div align="center" markdown="1">
+
+### Check our new open-source project —<br>🐧 PenguinHarness: Local-first multi-agent app development platform - create, fine-tune, deploy AI apps automatically!
+
+Follow us and give us a star ⭐: `https://github.com/Prism-Shadow/penguin-harness`
+
+</div>
+
+`https://github.com/user-attachments/assets/9b7033e8-f08a-4c3f-bd33-547896664e6e`
+
+----
+
+<div align="center" markdown="1">
+
+### Supporters ❤️
+
+| <div style="text-align: center;"><a href="`https://warp.dev/llama-factory"`><img alt="Warp sponsorship" width="400" src="assets/sponsors/warp.jpg"></a><br><a href="`https://warp.dev/llama-factory"` style="font-size:larger;">Warp, the agentic terminal for developers</a><br><a href="`https://warp.dev/llama-factory"`>Available for MacOS, Linux, & Windows</a> | <a href="`https://serpapi.com"`><img alt="SerpAPI sponsorship" width="250" src="assets/sponsors/serpapi.svg"> </a> |
+| ---- | ---- |
+
+----
+
+### Easily fine-tune 100+ large language models with zero-code [CLI](#quickstart) and [Web UI](#fine-tuning-with-llama-board-gui-powered-by-gradio)
+
+!GitHub Trend
+
+</div>
+
+👋 Join our WeChat and NPU user groups.
+
+\[ English | [中文](README_zh.md) \]
+
+**Fine-tuning a large language model can be easy as...**
+
+`https://github.com/user-attachments/assets/3991a3a8-4276-4d30-9cab-4cb0c4b9b99e`
+
+Start local training:
+- Please refer to [usage](#getting-started)
+
+Start cloud training:
+- **Colab (free)**: `https://colab.research.google.com/drive/1eRTPn37ltBbYsISy9Aw2NuI2Aq5CQrD9?usp=sharing`
+- **PAI-DSW (free trial)**: `https://gallery.pai-ml.com/#/preview/deepLearning/nlp/llama_factory`
+- **AMD GPU Cloud (free credits)**: `https://github.com/AMD-AIM/AMD_Developers_Notebooks/blob/main/en/AMD_developer_LLaMAFactory_note_en.md`
+
+Read technical notes:
+- **Documentation (WIP)**: `https://llamafactory.readthedocs.io/en/latest/`
+- **Documentation (AMD GPU)**: `https://rocm.docs.amd.com/projects/ai-developer-hub/en/latest/notebooks/fine_tune/llama_factory_llama3.html`
+- **Documentation (ASCEND NPU)**: `https://llamafactory.readthedocs.io/en/latest/multibackend/npu/index.html`
+- **Official Blog**: `https://blog.llamafactory.net/en/`
+
+> [!NOTE]
+> Except for the above links, all other websites are unauthorized third-party websites. Please carefully use them.
+
+## Table of Contents
+
+- [Features](#features)
+- [Blogs](#blogs)
+- [Changelog](#changelog)
+- [Supported Models](#supported-models)
+- [Supported Training Approaches](#supported-training-approaches)
+- [Provided Datasets](#provided-datasets)
+- [Requirement](#requirement)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Data Preparation](#data-preparation)
+  - [Quickstart](#quickstart)
+  - [Fine-Tuning with LLaMA Board GUI](#fine-tuning-with-llama-board-gui-powered-by-gradio)
+  - [Build Docker](#build-docker)
+  - [Deploy with OpenAI-style API and vLLM](#deploy-with-openai-style-api-and-vllm)
+  - [Download from ModelScope Hub](#download-from-modelscope-hub)
+  - [Download from Modelers Hub](#download-from-modelers-hub)
+  - [Use W&B Logger](#use-wb-logger)
+  - [Use SwanLab Logger](#use-swanlab-logger)
+- [Projects using LlamaFactory](#projects-using-llamafactory)
+- [License](#license)
+- [Citation](#citation)
+- [Acknowledgement](#acknowledgement)
+
+## Features
+
+- **Various models**: LLaMA, LLaVA, Mistral, Mixtral-MoE, Qwen3, Qwen3-VL, DeepSeek, Gemma, GLM, Phi, etc.
+- **Integrated methods**: (Continuous) pre-training, (multimodal) supervised fine-tuning, reward modeling, PPO, DPO, KTO, ORPO, etc.
+- **Scalable resources**: 16-bit full-tuning, freeze-tuning, LoRA and 2/3/4/5/6/8-bit QLoRA via AQLM/AWQ/GPTQ/LLM.int8/HQQ/EETQ.
+- **Advanced algorithms**: GaLore, BAdam, APOLLO, Adam-mini, Muon, OFT, DoRA, LongLoRA, LLaMA Pro, Mixture-of-Depths, LoRA+, LoftQ and PiSSA.
+- **Practical tricks**: FlashAttention-2, Unsloth, Liger Kernel, KTransformers, RoPE scaling, NEFTune and rsLoRA.
+- **Wide tasks**: Multi-turn dialogue, tool using, image understanding, visual grounding, video recognition, audio understanding, etc.
+- **Experiment monitors**: LlamaBoard, TensorBoard, Wandb, MLflow, SwanLab, etc.
+- **Faster inference**: OpenAI-style API, Gradio UI and CLI with vLLM worker or SGLang worker.
+
+### Day-N Support for Fine-Tuning Cutting-Edge Models
+
+| Support Date | Model Name                                                           |
+| ------------ | -------------------------------------------------------------------- |
+| Day 0        | Qwen3 / Qwen2.5-VL / Gemma 3 / GLM-4.1V / InternLM 3 / MiniCPM-o-2.6 |
+| Day 1        | Llama 3 / GLM-4 / Mistral Small / PaliGemma2 / Llama 4               |
+
+## Blogs
+
+> [!TIP]
+> Now we have a dedicated blog for LlamaFactory!
+>
+> Website: `https://blog.llamafactory.net/en/`
+
+- 💡 KTransformers Fine-Tuning × LlamaFactory: Fine-tuning 1000 Billion models with 2 4090-GPU + CPU (English)
+- 💡 Easy Dataset × LlamaFactory: Enabling LLMs to Efficiently Learn Domain Knowledge (English)
+- 💡 DataFlow × LlamaFactory: Producing High-Quality Data for LLM Training with a Data Preparation Pipeline (English) | 中文
+- 💡 DataFlex × LlamaFactory: A Data-Centric Dynamic Training System Built on LlamaFactory (English) | 中文
+- A One-Stop Code-Free Model Reinforcement Learning and Deployment Platform based on LlamaFactory and EasyR1 (Chinese)
+- How Apoidea Group enhances visual information extraction from banking documents with multimodal models using LlamaFactory on Amazon SageMaker HyperPod (English)
+
+<details><summary>All Blogs</summary>
+
+- LlamaFactory: Fine-tuning the DeepSeek-R1-Distill-Qwen-7B Model for News Classifier (Chinese)
+- A One-Stop Code-Free Model Fine-Tuning \& Deployment Platform based on SageMaker and LlamaFactory (Chinese)
+- LlamaFactory Multi-Modal Fine-Tuning Practice: Fine-Tuning Qwen2-VL for Personal Tourist Guide (Chinese)
+- LlamaFactory: Fine-tuning Llama3 for Role-Playing (Chinese)
+
+</details>
+
+## Changelog
+
+[25/10/26] We support Megatron-core training backend with **mcore_adapter**. See PR #9237 to get started.
+
+[25/08/22] We supported **OFT** and **OFTv2**. See [examples](examples/README.md) for usage.
+
+[25/08/20] We supported fine-tuning the **Intern-S1-mini** models. See PR #8976 to get started.
+
+[25/08/06] We supported fine-tuning the **GPT-OSS** models. See PR #8826 to get started.
+
+<details><summary>Full Changelog</summary>
+
+[25/07/02] We supported fine-tuning the **GLM-4.1V-9B-Thinking** model.
+
+[25/04/28] We supported fine-tuning the **Qwen3** model family.
+
+[25/04/21] We supported the **Muon** optimizer. See [examples](examples/README.md) for usage. Thank @tianshijing's PR.
+
+[25/04/16] We supported fine-tuning the **InternVL3** model. See PR #7258 to get started.
+
+[25/04/14] We supported fine-tuning the **GLM-Z1** and **Kimi-VL** models.
+
+[25/04/06] We supported fine-tuning the **Llama 4** model. See PR #7611 to get started.
+
+[25/03/31] We supported fine-tuning the **Qwen2.5 Omni** model. See PR #7537 to get started.
+
+[25/03/15] We supported **SGLang** as inference backend. Try `infer_backend: sglang` to accelerate inference.
+
+[25/03/12] We supported fine-tuning the **Gemma 3** model.
+
+[25/02/24] Announcing **EasyR1**, an efficient, scalable and multi-modality RL training framework for efficient GRPO training.
+
+[25/02/11] We supported saving the **Ollama** modelfile when exporting the model checkpoints. See [examples](examples/README.md) for usage.
+
+[25/02/05] We supported fine-tuning the **Qwen2-Audio** and **MiniCPM-o-2.6** on audio understanding tasks.
+
+[25/01/31] We supported fine-tuning the **DeepSeek-R1** and **Qwen2.5-VL** models.
+
+[25/01/15] We supported **APOLLO** optimizer. See [examples](examples/README.md) for usage.
+
+[25/01/14] We supported fine-tuning the **MiniCPM-o-2.6** and **MiniCPM-V-2.6** models. Thank @BUAADreamer's PR.
+
+[25/01/14] We supported fine-tuning the **InternLM 3** models. Thank @hhaAndroid's PR.
+
+[25/01/10] We supported fine-tuning the **Phi-4** model.
+
+[24/12/21] We supported using **SwanLab** for experiment tracking and visualization. See [this section](#use-swanlab-logger) for details.
+
+[24/11/27] We supported fine-tuning the **Skywork-o1** model and the **OpenO1** dataset.
+
+[24/10/09] We supported downloading pre-trained models and datasets from the **Modelers Hub**. See [this tutorial](#download-from-modelers-hub) for usage.
+
+[24/09/19] We supported fine-tuning the **Qwen2.5** models.
+
+[24/08/30] We supported fine-tuning the **Qwen2-VL** models. Thank @simonJJJ's PR.
+
+[24/08/27] We supported **Liger Kernel**. Try `enable_liger_kernel: true` for efficient training.
+
+[24/08/09] We supported **Adam-mini** optimizer. See [examples](examples/README.md) for usage. Thank @relic-yuexi's PR.
+
+[24/07/04] We supported contamination-free packed training. Use `neat_packing: true` to activate it. Thank @chuan298's PR.
+
+[24/06/16] We supported **PiSSA** algorithm. See [examples](examples/README.md) for usage.
+
+[24/06/07] We supported fine-tuning the **Qwen2** and **GLM-4** models.
+
+[24/05/26] We supported **SimPO** algorithm for preference learning. See [examples](examples/README.md) for usage.
+
+[24/05/20] We supported fine-tuning the **PaliGemma** series models. Note that the PaliGemma models are pre-trained models, you need to fine-tune them with `paligemma` template for chat completion.
+
+[24/05/18] We supported **KTO** algorithm for preference learning. See [examples](examples/README.md) for usage.
+
+[24/05/14] We supported training and inference on the Ascend NPU devices. Check [installation](#installation) section for details.
+
+[24/04/26] We supported fine-tuning the **LLaVA-1.5** multimodal LLMs. See [examples](examples/README.md) for usage.
+
+[24/04/22] We provided a **Colab notebook** for fine-tuning the Llama-3 model on a free T4 GPU. Two Llama-3-derived models fine-tuned using LlamaFactory are available at Hugging Face, check Llama3-8B-Chinese-Chat and Llama3-Chinese for details.
+
+[24/04/21] We supported **Mixture-of-Depths** according to AstraMindAI's implementation. See [examples](examples/README.md) for usage.
+
+[24/04/16] We supported **BAdam** optimizer. See [examples](examples/README.md) for usage.
+
+[24/04/16] We supported **unsloth**'s long-sequence training (Llama-2-7B-56k within 24GB). It achieves **117%** speed and **50%** memory compared with FlashAttention-2, more benchmarks can be found in this page.
+
+[24/03/31] We supported **ORPO**. See [examples](examples/README.md) for usage.
+
+[24/03/21] Our paper "LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models" is available at arXiv!
+
+[24/03/20] We supported **FSDP+QLoRA** that fine-tunes a 70B model on 2x24GB GPUs. See [examples](examples/README.md) for usage.
+
+[24/03/13] We supported **LoRA+**. See [examples](examples/README.md) for usage.
+
+[24/03/07] We supported **GaLore** optimizer. See [examples](examples/README.md) for usage.
+
+[24/03/07] We integrated **vLLM** for faster and concurrent inference. Try `infer_backend: vllm` to enjoy **270%** inference speed.
+
+[24/02/28] We supported weight-decomposed LoRA (**DoRA**). Try `use_dora: true` to activate DoRA training.
+
+[24/02/15] We supported **block expansion** proposed by LLaMA Pro. See [examples](examples/README.md) for usage.
+
+[24/02/05] Qwen1.5 (Qwen2 beta version) series models are supported in LlamaFactory. Check this blog post for details.
+
+[24/01/18] We supported **agent tuning** for most models, equipping model with tool using abilities by fine-tuning with `dataset: glaive_toolcall_en`.
+
+[23/12/23] We supported **unsloth**'s implementation to boost LoRA tuning for the LLaMA, Mistral and Yi models. Try `use_unsloth: true` argument to activate unsloth patch. It achieves **170%** speed in our benchmark, check this page for details.
+
+[23/12/12] We supported fine-tuning the latest MoE model **Mixtral 8x7B** in our framework. See hardware requirement [here](#hardware-requirement).
+
+[23/12/01] We supported downloading pre-trained models and datasets from the **ModelScope Hub**. See [this tutorial](#download-from-modelscope-hub) for usage.
+
+[23/10/21] We supported **NEFTune** trick for fine-tuning. Try `neftune_noise_alpha: 5` argument to activate NEFTune.
+
+[23/09/27] We supported **$S^2$-Attn** proposed by LongLoRA for the LLaMA models. Try `shift_attn: true` argument to enable shift short attention.
+
+[23/09/23] We integrated MMLU, C-Eval and CMMLU benchmarks in this repo. See [examples](examples/README.md) for usage.
+
+[23/09/10] We supported **FlashAttention-2**. Try `flash_attn: fa2` argument to enable FlashAttention-2 if you are using RTX4090, A100 or H100 GPUs.
+
+[23/08/12] We supported **RoPE scaling** to extend the context length of the LLaMA models. Try `rope_scaling: linear` argument in training and `rope_scaling: dynamic` argument at inference to extrapolate the position embeddings.
+
+[23/08/11] We supported **DPO training** for instruction-tuned models. See [examples](examples/README.md) for usage.
+
+[23/07/31] We supported **dataset streaming**. Try `streaming: true` and `max_steps: 10000` arguments to load your dataset in streaming mode.
+
+[23/07/29] We released two instruction-tuned 13B models at Hugging Face. See these Hugging Face Repos (LLaMA-2 / Baichuan) for details.
+
+[23/07/18] We developed an **all-in-one Web UI** for training, evaluation and inference. Try `train_web.py` to fine-tune models in your Web browser. Thank @KanadeSiina and @codemayq for their efforts in the development.
+
+[23/07/09] We released **FastEdit** ⚡🩹, an easy-to-use package for editing the factual knowledge of large language models efficiently. Please follow FastEdit if you are interested.
+
+[23/06/29] We provided a **reproducible example** of training a chat model using instruction-following datasets, see Baichuan-7B-sft for details.
+
+[23/06/22] We aligned the [demo API](src/api.py) with the OpenAI's format where you can insert the fine-tuned model in **arbitrary ChatGPT-based applications**.
+
+[23/06/03] We supported quantized training and inference (aka **QLoRA**). See [examples](examples/README.md) for usage.
+
+</details>
+
+> [!TIP]
+> If you cannot use the latest feature, please pull the latest code and install LlamaFactory again.
+
+## Supported Models
+
+| Model                                                             | Model size                       | Template             |
+| ----------------------------------------------------------------- | -------------------------------- | -------------------- |
+| BLOOM/BLOOMZ                 | 560M/1.1B/1.7B/3B/7.1B/176B      | -                    |
+| DeepSeek (LLM/Code/MoE)     | 7B/16B/67B/236B                  | deepseek             |
+| DeepSeek 3-3.2              | 236B/671B                        | deepseek3            |
+| DeepSeek R1 (Distill)       | 1.5B/7B/8B/14B/32B/70B/671B      | deepseekr1           |
+| ERNIE-4.5                         | 0.3B/21B/300B                    | ernie_nothink        |
+| Falcon/Falcon H1                 | 0.5B/1.5B/3B/7B/11B/34B/40B/180B | falcon/falcon_h1     |
+| Gemma/Gemma 2/CodeGemma          | 2B/7B/9B/27B                     | gemma/gemma2         |
+| Gemma 3/Gemma 3n                 | 270M/1B/4B/6B/8B/12B/27B         | gemma3/gemma3n       |
+| GLM-4/GLM-4-0414/GLM-Z1         | 9B/32B                           | glm4/glmz1           |
+| GLM-4.5/GLM-4.5(6)V             | 9B/106B/355B                     | glm4_moe/glm4_5v     |
+| GPT-2                  | 0.1B/0.4B/0.8B/1.5B              | -                    |
+| GPT-OSS                          | 20B/120B                         | gpt_oss              |
+| Granite 3-4                 | 1B/2B/3B/7B/8B                   | granite3/granite4    |
+| Hunyuan/Hunyuan1.5 (MT)        | 0.5B/1.8B/4B/7B/13B              | hunyuan/hunyuan_small|
+| InternLM 2-3                   | 7B/8B/20B                        | intern2              |
+| InternVL 2.5-3.5              | 1B/2B/4B/8B/14B/30B/38B/78B/241B | intern_vl            |
+| Intern-S1-mini                | 8B                               | intern_s1            |
+| Kimi-VL                      | 16B                              | kimi_vl              |
+| Ling 2.0 (mini/flash)       | 16B/100B                         | bailing_v2           |
+| LFM 2.5 (VL)                   | 1.2B/1.6B                        | lfm2/lfm2_vl         |
+| Llama                | 7B/13B/33B/65B                   | -                    |
+| Llama 2                      | 7B/13B/70B                       | llama2               |
+| Llama 3-3.3                  | 1B/3B/8B/70B                     | llama3               |
+| Llama 4                      | 109B/402B                        | llama4               |
+| Llama 3.2 Vision             | 11B/90B                          | mllama               |
+| LLaVA-1.5                      | 7B/13B                           | llava                |
+| LLaVA-NeXT                     | 7B/8B/13B/34B/72B/110B           | llava_next           |
+| LLaVA-NeXT-Video               | 7B/34B                           | llava_next_video     |
+| MiMo                         | 7B/309B                          | mimo/mimo_v2         |
+| MiniCPM 4/5                     | 0.5B/1B/8B                       | cpm4/minicpm5        |
+| MiniCPM-o/MiniCPM-V 4.5         | 8B/9B                            | minicpm_o/minicpm_v  |
+| MiniCPM-V 4.6                   | 3B/8B                            | minicpm_v_4_6        |
+| MiniMax-M1/MiniMax-M2  | 229B/456B                        | minimax1/minimax2    |
+| Ministral 3                   | 3B/8B/14B                        | ministral3           |
+| Mistral/Mixtral               | 7B/8x7B/8x22B                    | mistral              |
+| PaliGemma/PaliGemma2             | 3B/10B/28B                       | paligemma            |
+| Phi-3/Phi-3.5                 | 4B/14B                           | phi                  |
+| Phi-3-small                   | 7B                               | phi_small            |
+| Phi-4-mini/Phi-4              | 3.8B/14B                         | phi4_mini/phi4       |
+| Pixtral                       | 12B                              | pixtral              |
+| Qwen2 (Code/Math/MoE/QwQ)          | 0.5B/1.5B/3B/7B/14B/32B/72B/110B | qwen                 |
+| Qwen3 (MoE/Instruct/Thinking/Next) | 0.6B/1.7B/4B/8B/14B/32B/80B/235B | qwen3/qwen3_nothink  |
+| Qwen3.5                            | 0.8B/2B/4B/9B/27B/35B/122B/397B  | qwen3_5/qwen3_5_nothink              |
+| Qwen3.6                            | 27B/35B                          | qwen3_6              |
+| Qwen3.8                            | 27B/2.4T                         | qwen3_8              |
+| Qwen2-Audio                        | 7B                               | qwen2_audio          |
+| Qwen2.5-Omni                       | 3B/7B                            | qwen2_omni           |
+| Qwen3-Omni                         | 30B                              | qwen3_omni           |
+| Qwen2-VL/Qwen2.5-VL/QVQ            | 2B/3B/7B/32B/72B                 | qwen2_vl             |
+| Qwen3-VL                           | 2B/4B/8B/30B/32B/235B            | qwen3_vl             |
+| Seed (OSS/Coder)         | 8B/36B                           | seed_oss/seed_coder  |
+| StarCoder 2                     | 3B/7B/15B                        | -                    |
+| TeleChat 2-2.5                  | 3B/7B/35B/115B                   | telechat2            |
+| Xing4.0-29B-A4B            | 29B-A4B                          | xing4_0              |
+| Yuan 2                         | 2B/51B/102B                      | yuan                 |
+
+> [!NOTE]
+> For the "base" models, the `template` argument can be chosen from `default`, `alpaca`, `vicuna` etc. But make sure to use the **corresponding template** for the "instruct/chat" models.
+>
+> If the model has both reasoning and non-reasoning versions, please use the `_nothink` suffix to distinguish between them. For example, `qwen3` and `qwen3_nothink`.
+>
+> Remember to use the **SAME** template in training and inference.
+>
+> \*: You should install the `transformers` from main branch and use `DISABLE_VERSION_CHECK=1` to skip version check.
+>
+> \*\*: You need to install a specific version of `transformers` to use the corresponding model.
+
+Please refer to [constants.py](src/llamafactory/extras/constants.py) for a full list of models we supported.
+
+You also can add a custom chat template to [template.py](src/llamafactory/data/template.py).
+
+## Supported Training Approaches
+
+| Approach               |     Full-tuning    |    Freeze-tuning   |       LoRA         |       QLoRA        |        OFT         |        QOFT        |
+| ---------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| Pre-Training           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supervised Fine-Tuning | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Reward Modeling        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| PPO Training           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| DPO Training           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| KTO Training           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| ORPO Training          | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| SimPO Training         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+
+> [!TIP]
+> The implementation details of PPO can be found in this blog.
+
+## Provided Datasets
+
+<details><summary>Pre-training datasets</summary>
+
+- [Wiki Demo (en)](data/wiki_demo.txt)
+- RefinedWeb (en)
+- RedPajama V2 (en)
+- Wikipedia (en)
+- Wikipedia (zh)
+- Pile (en)
+- SkyPile (zh)
+- FineWeb (en)
+- FineWeb-Edu (en)
+- CCI3-HQ (zh)
+- CCI3-Data (zh)
+- CCI4.0-M2-Base-v1 (en&zh)
+- CCI4.0-M2-CoT-v1 (en&zh)
+- CCI4.0-M2-Extra-v1 (en&zh)
+- The Stack (en)
+- StarCoder (en)
+
+</details>
+
+<details><summary>Supervised fine-tuning datasets</summary>
+
+- [Identity (en&zh)](data/identity.json)
+- Stanford Alpaca (en)
+- Stanford Alpaca (zh)
+- Alpaca GPT4 (en&zh)
+- Glaive Function Calling V2 (en&zh)
+- LIMA (en)
+- Guanaco Dataset (multilingual)
+- BELLE 2M (zh)
+- BELLE 1M (zh)
+- BELLE 0.5M (zh)
+- BELLE Dialogue 0.4M (zh)
+- BELLE School Math 0.25M (zh)
+- BELLE Multiturn Chat 0.8M (zh)
+- UltraChat (en)
+- OpenPlatypus (en)
+- CodeAlpaca 20k (en)
+- Alpaca CoT (multilingual)
+- OpenOrca (en)
+- SlimOrca (en)
+- MathInstruct (en)
+- Firefly 1.1M (zh)
+- Wiki QA (en)
+- Web QA (zh)
+- WebNovel (zh)
+- Nectar (en)
+- deepctrl (en&zh)
+- Advertise Generating (zh)
+- ShareGPT Hyperfiltered (en)
+- ShareGPT4 (en&zh)
+- UltraChat 200k (en)
+- Infinity Instruct (zh)
+- AgentInstruct (en)
+- LMSYS Chat 1M (en)
+- Evol Instruct V2 (en)
+- Cosmopedia (en)
+- STEM (zh)
+- Ruozhiba (zh)
+- Neo-sft (zh)
+- Magpie-Pro-300K-Filtered (en)
+- Magpie-ultra-v0.1 (en)
+- WebInstructSub (en)
+- OpenO1-SFT (en&zh)
+- Open-Thoughts (en)
+- Open-R1-Math (en)
+- Chinese-DeepSeek-R1-Distill (zh)
+- LLaVA mixed (en&zh)
+- Pokemon-gpt4o-captions (en&zh)
+- DLR-Web (en)
+- Open Assistant (de)
+- Dolly 15k (de)
+- Alpaca GPT4 (de)
+- OpenSchnabeltier (de)
+- Evol Instruct (de)
+- Dolphin (de)
+- Booksum (de)
+- Airoboros (de)
+- Ultrachat (de)
+
+</details>
+
+<details><summary>Preference datasets</summary>
+
+- DPO mixed (en&zh)
+- UltraFeedback (en)
+- COIG-P (zh)
+- RLHF-V (en)
+- VLFeedback (en)
+- RLAIF-V (en)
+- Orca DPO Pairs (en)
+- HH-RLHF (en)
+- Nectar (en)
+- Orca DPO (de)
+- KTO mixed (en)
+
+</details>
+
+Some datasets require confirmation before using them, so we recommend logging in with your Hugging Face account using these commands.
+
+```bash
+pip install "huggingface_hub<1.0.0"
+huggingface-cli login
+```
+
+## Requirement
+
+| Mandatory    | Minimum | Recommend |
+| ------------ | ------- | --------- |
+| python       | 3.11     | >=3.11   |
+| torch        | 2.0.0   | 2.6.0     |
+| torchvision  | 0.15.0  | 0.21.0    |
+| transformers | 4.49.0  | 4.50.0    |
+| datasets     | 2.16.0  | 3.2.0     |
+| accelerate   | 0.34.0  | 1.2.1     |
+| peft         | 0.14.0  | 0.15.1    |
+| trl          | 0.8.6   | 0.9.6     |
+
+| Optional     | Minimum | Recommend |
+| ------------ | ------- | --------- |
+| CUDA         | 11.6    | 12.2      |
+| deepspeed    | 0.10.0  | 0.16.4    |
+| bitsandbytes | 0.39.0  | 0.43.1    |
+| vllm         | 0.4.3   | 0.8.2     |
+| flash-attn   | 2.5.6   | 2.7.2     |
+
+### Hardware Requirement
+
+\* *estimated*
+
+| Method                              | Bits |   7B  |  14B  |  30B  |   70B  |   `x`B  |
+| ----------------------------------- | ---- | ----- | ----- | ----- | ------ | ------- |
+| Full (`bf16` or `fp16`)             |  32  | 120GB | 240GB | 600GB | 1200GB | `18x`GB |
+| Full (`pure_bf16`)                  |  16  |  60GB | 120GB | 300GB |  600GB |  `8x`GB |
+| Freeze/LoRA/GaLore/APOLLO/BAdam/OFT |  16  |  16GB |  32GB |  64GB |  160GB |  `2x`GB |
+| QLoRA / QOFT                        |   8  |  10GB |  20GB |  40GB |   80GB |   `x`GB |
+| QLoRA / QOFT                        |   4  |   6GB |  12GB |  24GB |   48GB | `x/2`GB |
+| QLoRA / QOFT                        |   2  |   4GB |   8GB |  16GB |   24GB | `x/4`GB |
+
+## Getting Started
+
+### Installation
+
+> [!IMPORTANT]
+> Installation is mandatory.
+
+#### Install from Source
+
+```bash
+git clone --depth 1 https://github.com/hiyouga/LlamaFactory.git
+cd LlamaFactory
+pip install -e .
+pip install -r requirements/metrics.txt
+```
+
+Optional dependencies available: `metrics`, `deepspeed`. Install with: `pip install -e . && pip install -r requirements/metrics.txt -r requirements/deepspeed.txt`
+
+Additional dependencies for specific features are available in `requirements/`.
+
+#### Install from Docker Image
+
+```bash
+docker run -it --rm --gpus=all --ipc=host hiyouga/llamafactory:latest
+```
+
+This image is built on Ubuntu 22.04 (x86\_64), CUDA 12.4, Python 3.11, PyTorch 2.6.0, and Flash-attn 2.7.4.
+
+Find the pre-built images: `https://hub.docker.com/r/hiyouga/llamafactory/tags`
+
+Please refer to [build docker](#build-docker) to build the image yourself.
+
+<details><summary>Setting up a virtual environment with <b>uv</b></summary>
+
+Create an isolated Python environment with uv:
+
+```bash
+uv run llamafactory-cli webui
+```
+
+</details>
+
+<details><summary>For Windows users</summary>
+
+#### Install PyTorch
+
+You need to manually install the GPU version of PyTorch on the Windows platform. Please refer to the official website and the following command to install PyTorch with CUDA support:
+
+```bash
+pip uninstall torch torchvision torchaudio
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+If you see `True` then you have successfully installed PyTorch with CUDA support.
+
+Try `dataloader_num_workers: 0` if you encounter `Can't pickle local object` error.
+
+#### Install BitsAndBytes
+
+To enable Quantized LoRA (QLoRA) on Windows, you need to install bitsandbytes.
+
+For most users, it is recommended to install the latest official release:
+
+```bash
+pip install bitsandbytes
+```
+
+If you are using uv to manage your virtual environment, it is recommended to install bitsandbytes after installing the GPU-enabled version of PyTorch:
+
+```bash
+uv pip install bitsandbytes --no-deps
+```
+
+[!IMPORTANT]
+Pay attention to the CUDA Toolkit version when installing bitsandbytes. Official bitsandbytes releases are built for specific CUDA Toolkit versions. On Windows x86-64, separate builds are currently provided for CUDA 11.8–12.6 and CUDA 12.8–12.9. Support for NVIDIA RTX 50 Series GPUs (e.g., RTX 5060 Ti, sm_120) requires the CUDA 12.8–12.9 builds.
+
+If your environment uses an older CUDA version, or you need compatibility with older Windows / PyTorch combinations, you can install the third-party precompiled Windows wheel:
+
+```bash
+pip install https://github.com/jllllll/bitsandbytes-windows-webui/releases/download/wheels/bitsandbytes-0.41.2.post2-py3-none-win_amd64.whl
+```
+
+#### Install Flash Attention-2
+
+To enable FlashAttention-2 on the Windows platform, please use the script from flash-attention-windows-wheel to compile and install it by yourself.
+
+</details>
+
+<details><summary>For Ascend NPU users</summary>
+
+To install LlamaFactory on Ascend NPU devices, please use Python 3.12 and install the extra dependencies with `pip install -r requirements/npu.txt`. Additionally, you need to install the **Ascend CANN Toolkit and Kernels**. Please follow the installation tutorial.
+
+
+You can also download the pre-built Docker images:
+
+```bash
+# Docker Hub
+docker pull hiyouga/llamafactory:latest-910b-ubuntu
+docker pull hiyouga/llamafactory:latest-a3-ubuntu
+docker pull hiyouga/llamafactory:latest-950-ubuntu
+docker pull hiyouga/llamafactory:latest-910b-openeuler
+docker pull hiyouga/llamafactory:latest-a3-openeuler
+docker pull hiyouga/llamafactory:latest-950-openeuler
+
+# quay.io
+docker pull quay.io/ascend/llamafactory:latest-910b-ubuntu
+docker pull quay.io/ascend/llamafactory:latest-a3-ubuntu
+docker pull quay.io/ascend/llamafactory:latest-950-ubuntu
+docker pull quay.io/ascend/llamafactory:latest-910b-openeuler
+docker pull quay.io/ascend/llamafactory:latest-a3-openeuler
+docker pull quay.io/ascend/llamafactory:latest-950-openeuler
+```
+
+#### Install BitsAndBytes
+
+To use QLoRA based on bitsandbytes on Ascend NPU, please follow these 3 steps:
+
+1. Manually compile bitsandbytes: Refer to the installation documentation for the NPU version of bitsandbytes to complete the compilation and installation. The compilation requires a cmake version of at least 3.22.1 and a g++ version of at least 12.x.
+
+```bash
+# Install bitsandbytes from source
+# Clone bitsandbytes repo, Ascend NPU backend is currently enabled on multi-backend-refactor branch
+git clone -b multi-backend-refactor https://github.com/bitsandbytes-foundation/bitsandbytes.git
+cd bitsandbytes/
+
+# Install dependencies
+pip install -r requirements-dev.txt
+
+# Install the dependencies for the compilation tools. Note that the commands for this step may vary depending on the operating system. The following are provided for reference
+apt-get install -y build-essential cmake
+
+# Compile & install  
+cmake -DCOMPUTE_BACKEND=npu -S .
+make
+pip install .
+```
+
+2. Install transformers from the main branch.
+
+```bash
+git clone -b main https://github.com/huggingface/transformers.git
+cd transformers
+pip install .
+```
+
+3. Set `double_quantization: false` in the configuration. You can refer to the [example](examples/train_qlora/qwen3_lora_sft_bnb_npu.yaml).
+
+</details>
+
+### Data Preparation
+
+Please refer to [data/README.md](data/README.md) for checking the details about the format of dataset files. You can use datasets on HuggingFace / ModelScope / Modelers hub, load the dataset in local disk, or specify a path to s3/gcs cloud storage.
+
+> [!NOTE]
+> Please update `data/dataset_info.json` to use your custom dataset.
+
+You can also use **Easy Dataset**, **DataFlow** and **GraphGen** to create synthetic data for fine-tuning.
+
+### Quickstart
+
+Use the following 3 commands to run LoRA **fine-tuning**, **inference** and **merging** of the Qwen3-4B-Instruct model, respectively.
+
+```bash
+llamafactory-cli train examples/train_lora/qwen3_lora_sft.yaml
+llamafactory-cli chat examples/inference/qwen3_lora_sft.yaml
+llamafactory-cli export examples/merge_lora/qwen3_lora_sft.yaml
+```
+
+See [examples/README.md](examples/README.md) for advanced usage (including distributed training).
+
+> [!TIP]
+> Use `llamafactory-cli help` to show help information.
+>
+> Read FAQs first if you encounter any problems.
+
+### Fine-Tuning with LLaMA Board GUI (powered by Gradio)
+
+```bash
+llamafactory-cli webui
+```
+
+### Build Docker
+
+For CUDA users:
+
+```bash
+cd docker/docker-cuda/
+docker compose up -d
+docker compose exec llamafactory bash
+```
+
+For Ascend NPU users:
+
+```bash
+cd docker/docker-npu/
+
+# A2 with Ubuntu
+docker compose --profile a2-ubuntu up -d
+docker compose --profile a2-ubuntu exec llamafactory-a2-ubuntu bash
+
+# A3 with Ubuntu
+docker compose --profile a3-ubuntu up -d
+docker compose --profile a3-ubuntu exec llamafactory-a3-ubuntu bash
+
+# A2 with openEuler
+docker compose --profile a2-openeuler up -d
+docker compose --profile a2-openeuler exec llamafactory-a2-openeuler bash
+
+# A3 with openEuler
+docker compose --profile a3-openeuler up -d
+docker compose --profile a3-openeuler exec llamafactory-a3-openeuler bash
+```
+
+For AMD ROCm users:
+
+```bash
+cd docker/docker-rocm/
+docker compose up -d
+docker compose exec llamafactory bash
+```
+
+<details><summary>Build without Docker Compose</summary>
+
+For CUDA users:
+
+```bash
+docker build -f ./docker/docker-cuda/Dockerfile \
+    --build-arg PIP_INDEX=https://pypi.org/simple \
+    -t llamafactory:latest .
+
+docker run -dit --ipc=host --gpus=all \
+    -p 7860:7860 \
+    -p 8000:8000 \
+    --name llamafactory \
+    llamafactory:latest
+
+docker exec -it llamafactory bash
+```
+
+For Ascend NPU users:
+
+```bash
+docker build -f ./docker/docker-npu/Dockerfile \
+    --build-arg PIP_INDEX=https://pypi.org/simple \
+    -t llamafactory:latest .
+
+docker run -dit --ipc=host \
+    -v /usr/local/dcmi:/usr/local/dcmi \
+    -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
+    -v /usr/local/Ascend/driver:/usr/local/Ascend/driver \
+    -v /etc/ascend_install.info:/etc/ascend_install.info \
+    -p 7860:7860 \
+    -p 8000:8000 \
+    --device /dev/davinci0 \
+    --device /dev/davinci_manager \
+    --device /dev/devmm_svm \
+    --device /dev/hisi_hdc \
+    --name llamafactory \
+    llamafactory:latest
+
+docker exec -it llamafactory bash
+```
+
+For AMD ROCm users:
+
+```bash
+docker build -f ./docker/docker-rocm/Dockerfile \
+    --build-arg PIP_INDEX=https://pypi.org/simple \
+    -t llamafactory:latest .
+
+docker run -dit --ipc=host \
+    -p 7860:7860 \
+    -p 8000:8000 \
+    --device /dev/kfd \
+    --device /dev/dri \
+    --name llamafactory \
+    llamafactory:latest
+
+docker exec -it llamafactory bash
+```
+
+</details>
+
+<details><summary>Use Docker volumes</summary>
+
+You can uncomment `VOLUME [ "/root/.cache/huggingface", "/app/shared_data", "/app/output" ]` in the Dockerfile to use data volumes.
+
+When building the Docker image, use `-v ./hf_cache:/root/.cache/huggingface` argument to mount the local directory to the container. The following data volumes are available.
+
+- `hf_cache`: Utilize Hugging Face cache on the host machine.
+- `shared_data`: The directionary to store datasets on the host machine.
+- `output`: Set export dir to this location so that the merged result can be accessed directly on the host machine.
+
+</details>
+
+### Deploy with OpenAI-style API and vLLM
+
+```bash
+API_PORT=8000 llamafactory-cli api examples/inference/qwen3.yaml infer_backend=vllm vllm_enforce_eager=true
+```
+
+> [!TIP]
+> Visit this page for API document.
+>
+> Examples: [Image understanding](scripts/api_example/test_image.py) | [Function calling](scripts/api_example/test_toolcall.py)
+
+### Download from ModelScope Hub
+
+If you have trouble with downloading models and datasets from Hugging Face, you can use ModelScope.
+
+```bash
+export USE_MODELSCOPE_HUB=1 # `set USE_MODELSCOPE_HUB=1` for Windows
+```
+
+Train the model by specifying a model ID of the ModelScope Hub as the `model_name_or_path`. You can find a full list of model IDs at ModelScope Hub, e.g., `LLM-Research/Meta-Llama-3-8B-Instruct`.
+
+### Download from Modelers Hub
+
+You can also use Modelers Hub to download models and datasets.
+
+```bash
+export USE_OPENMIND_HUB=1 # `set USE_OPENMIND_HUB=1` for Windows
+```
+
+Train the model by specifying a model ID of the Modelers Hub as the `model_name_or_path`. You can find a full list of model IDs at Modelers Hub, e.g., `TeleAI/TeleChat-7B-pt`.
+
+### Use W&B Logger
+
+To use Weights & Biases for logging experimental results, you need to add the following arguments to yaml files.
+
+```yaml
+report_to: wandb
+run_name: test_run # optional
+```
+
+Set `WANDB_API_KEY` to your key when launching training tasks to log in with your W&B account.
+
+### Use SwanLab Logger
+
+To use SwanLab for logging experimental results, you need to add the following arguments to yaml files.
+
+```yaml
+use_swanlab: true
+swanlab_run_name: test_run # optional
+```
+
+When launching training tasks, you can log in to SwanLab in three ways:
+
+1. Add `swanlab_api_key=<your_api_key>` to the yaml file, and set it to your API key.
+2. Set the environment variable `SWANLAB_API_KEY` to your API key.
+3. Use the `swanlab login` command to complete the login.
+
+## Projects using LlamaFactory
+
+If you have a project that should be incorporated, please contact via email or create a pull request.
+
+<details><summary>Click to show</summary>
+
+1. Wang et al. ESRL: Efficient Sampling-based Reinforcement Learning for Sequence Generation. 2023. [arxiv]
+1. Yu et al. Open, Closed, or Small Language Models for Text Classification? 2023. [arxiv]
+1. Wang et al. UbiPhysio: Support Daily Functioning, Fitness, and Rehabilitation with Action Understanding and Feedback in Natural Language. 2023. [arxiv]
+1. Luceri et al. Leveraging Large Language Models to Detect Influence Campaigns in Social Media. 2023. [arxiv]
+1. Zhang et al. Alleviating Hallucinations of Large Language Models through Induced Hallucinations. 2023. [arxiv]
+1. Wang et al. Know Your Needs Better: Towards Structured Understanding of Marketer Demands with Analogical Reasoning Augmented LLMs. KDD 2024. [arxiv]
+1. Wang et al. CANDLE: Iterative Conceptualization and Instantiation Distillation from Large Language Models for Commonsense Reasoning. ACL 2024. [arxiv]
+1. Choi et al. FACT-GPT: Fact-Checking Augmentation via Claim Matching with LLMs. 2024. [arxiv]
+1. Zhang et al. AutoMathText: Autonomous Data Selection with Language Models for Mathematical Texts. 2024. [arxiv]
+1. Lyu et al. KnowTuning: Knowledge-aware Fine-tuning for Large Language Models. 2024. [arxiv]
+1. Yang et al. LaCo: Large Language Model Pruning via Layer Collapse. 2024. [arxiv]
+1. Bhardwaj et al. Language Models are Homer Simpson! Safety Re-Alignment of Fine-tuned Language Models through Task Arithmetic. 2024. [arxiv]
+1. Yang et al. Enhancing Empathetic Response Generation by Augmenting LLMs with Small-scale Empathetic Models. 2024. [arxiv]
+1. Yi et al. Generation Meets Verification: Accelerating Large Language Model Inference with Smart Parallel Auto-Correct Decoding. ACL 2024 Findings. [arxiv]
+1. Cao et al. Head-wise Shareable Attention for Large Language Models. 2024. [arxiv]
+1. Zhang et al. Enhancing Multilingual Capabilities of Large Language Models through Self-Distillation from Resource-Rich Languages. 2024. [arxiv]
+1. Kim et al. Efficient and Effective Vocabulary Expansion Towards Multilingual Large Language Models. 2024. [arxiv]
+1. Yu et al. KIEval: A Knowledge-grounded Interactive Evaluation Framework for Large Language Models. ACL 2024. [arxiv]
+1. Huang et al. Key-Point-Driven Data Synthesis with its Enhancement on Mathematical Reasoning. 2024. [arxiv]
+1. Duan et al. Negating Negatives: Alignment without Human Positive Samples via Distributional Dispreference Optimization. 2024. [arxiv]
+1. Xie and Schwertfeger. Empowering Robotics with Large Language Models: osmAG Map Comprehension with LLMs. 2024. [arxiv]
+1. Wu et al. Large Language Models are Parallel Multilingual Learners. 2024. [arxiv]
+1. Zhang et al. EDT: Improving Large Language Models' Generation by Entropy-based Dynamic Temperature Sampling. 2024. [arxiv]
+1. Weller et al. FollowIR: Evaluating and Teaching Information Retrieval Models to Follow Instructions. 2024. [arxiv]
+1. Hongbin Na. CBT-LLM: A Chinese Large Language Model for Cognitive Behavioral Therapy-based Mental Health Question Answering. COLING 2024. [arxiv]
+1. Zan et al. CodeS: Natural Language to Code Repository via Multi-Layer Sketch. 2024. [arxiv]
+1. Liu et al. Extensive Self-Contrast Enables Feedback-Free Language Model Alignment. 2024. [arxiv]
+1. Luo et al. BAdam: A Memory Efficient Full Parameter Training Method for Large Language Models. 2024. [arxiv]
+1. Du et al. Chinese Tiny LLM: Pretraining a Chinese-Centric Large Language Model. 2024. [arxiv]
+1. Ma et al. Parameter Efficient Quasi-Orthogonal Fine-Tuning via Givens Rotation. ICML 2024. [arxiv]
+1. Liu et al. Dynamic Generation of Personalities with Large Language Models. 2024. [arxiv]
+1. Shang et al. How Far Have We Gone in Stripped Binary Code Understanding Using Large Language Models. 2024. [arxiv]
+1. Huang et al. LLMTune: Accelerate Database Knob Tuning with Large Language Models. 2024. [arxiv]
+1. Deng et al. Text-Tuple-Table: Towards Information Integration in Text-to-Table Generation via Global Tuple Extraction. 2024. [arxiv]
+1. Acikgoz et al. Hippocrates: An Open-Source Framework for Advancing Large Language Models in Healthcare. 2024. [arxiv]
+1. Zhang et al. Small Language Models Need Strong Verifiers to Self-Correct Reasoning. ACL 2024 Findings. [arxiv]
+1. Zhou et al. FREB-TQA: A Fine-Grained Robustness Evaluation Benchmark for Table Question Answering. NAACL 2024. [arxiv]
+1. Xu et al. Large Language Models for Cyber Security: A Systematic Literature Review. 2024. [arxiv]
+1. Dammu et al. "They are uncultured": Unveiling Covert Harms and Social Threats in LLM Generated Conversations. 2024. [arxiv]
+1. Yi et al. A safety realignment framework via subspace-oriented model fusion for large language models. 2024. [arxiv]
+1. Lou et al. SPO: Multi-Dimensional Preference Sequential Alignment With Implicit Reward Modeling. 2024. [arxiv]
+1. Zhang et al. Getting More from Less: Large Language Models are Good Spontaneous Multilingual Learners. 2024. [arxiv]
+1. Zhang et al. TS-Align: A Teacher-Student Collaborative Framework for Scalable Iterative Finetuning of Large Language Models. 2024. [arxiv]
+1. Zihong Chen. Sentence Segmentation and Sentence Punctuation Based on XunziALLM. 2024. [paper]
+1. Gao et al. The Best of Both Worlds: Toward an Honest and Helpful Large Language Model. 2024. [arxiv]
+1. Wang and Song. MARS: Benchmarking the Metaphysical Reasoning Abilities of Language Models with a Multi-task Evaluation Dataset. 2024. [arxiv]
+1. Hu et al. Computational Limits of Low-Rank Adaptation (LoRA) for Transformer-Based Models. 2024. [arxiv]
+1. Ge et al. Time Sensitive Knowledge Editing through Efficient Finetuning. ACL 2024. [arxiv]
+1. Tan et al. Peer Review as A Multi-Turn and Long-Context Dialogue with Role-Based Interactions. 2024. [arxiv]
+1. Song et al. Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters. 2024. [arxiv]
+1. Gu et al. RWKV-CLIP: A Robust Vision-Language Representation Learner. 2024. [arxiv]
+1. Chen et al. Advancing Tool-Augmented Large Language Models: Integrating Insights from Errors in Inference Trees. 2024. [arxiv]
+1. Zhu et al. Are Large Language Models Good Statisticians?. 2024. [arxiv]
+1. Li et al. Know the Unknown: An Uncertainty-Sensitive Method for LLM Instruction Tuning. 2024. [arxiv]
+1. Ding et al. IntentionQA: A Benchmark for Evaluating Purchase Intention Comprehension Abilities of Language Models in E-commerce. 2024. [arxiv]
+1. He et al. COMMUNITY-CROSS-INSTRUCT: Unsupervised Instruction Generation for Aligning Large Language Models to Online Communities. 2024. [arxiv]
+1. Lin et al. FVEL: Interactive Formal Verification Environment with Large Language Models via Theorem Proving. 2024. [arxiv]
+1. Treutlein et al. Connecting the Dots: LLMs can Infer and Verbalize Latent Structure from Disparate Training Data. 2024. [arxiv]
+1. Feng et al. SS-Bench: A Benchmark for Social Story Generation and Evaluation. 2024. [arxiv]
+1. Feng et al. Self-Constructed Context Decompilation with Fined-grained Alignment Enhancement. 2024. [arxiv]
+1. Liu et al. Large Language Models for Cuffless Blood Pressure Measurement From Wearable Biosignals. 2024. [arxiv]
+1. Iyer et al. Exploring Very Low-Resource Translation with LLMs: The University of Edinburgh's Submission to AmericasNLP 2024 Translation Task. AmericasNLP 2024. [paper]
+1. Li et al. Calibrating LLMs with Preference Optimization on Thought Trees for Generating Rationale in Science Question Scoring. 2024. [arxiv]
+1. Yang et al. Financial Knowledge Large Language Model. 2024. [arxiv]
+1. Lin et al. DogeRM: Equipping Reward Models with Domain Knowledge through Model Merging. 2024. [arxiv]
+1. Bako et al. Evaluating the Semantic Profiling Abilities of LLMs for Natural Language Utterances in Data Visualization. 2024. [arxiv]
+1. Huang et al. RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization. 2024. [arxiv]
+1. Jiang et al. LLM-Collaboration on Automatic Science Journalism for the General Audience. 2024. [arxiv]
+1. Inouye et al. Applied Auto-tuning on LoRA Hyperparameters. 2024. [paper]
+1. Qi et al. Research on Tibetan Tourism Viewpoints information generation system based on LLM. 2024. [arxiv]
+1. Xu et al. Course-Correction: Safety Alignment Using Synthetic Preferences. 2024. [arxiv]
+1. Sun et al. LAMBDA: A Large Model Based Data Agent. 2024. [arxiv]
+1. Zhu et al. CollectiveSFT: Scaling Large Language Models for Chinese Medical Benchmark with Collective Instructions in Healthcare. 2024. [arxiv]
+1. Yu et al. Correcting Negative Bias in Large Language Models through Negative Attention Score Alignment. 2024. [arxiv]
+1. Xie et al. The Power of Personalized Datasets: Advancing Chinese Composition Writing for Elementary School through Targeted Model Fine-Tuning. IALP 2024. [paper]
+1. Liu et al. Instruct-Code-Llama: Improving Capabilities of Language Model in Competition Level Code Generation by Online Judge Feedback. ICIC 2024. [paper]
+1. Wang et al. Cybernetic Sentinels: Unveiling the Impact of Safety Data Selection on Model Security in Supervised Fine-Tuning. ICIC 2024. [paper]
+1. Xia et al. Understanding the Performance and Estimating the Cost of LLM Fine-Tuning. 2024. [arxiv]
+1. Zeng et al. Perceive, Reflect, and Plan: Designing LLM Agent for Goal-Directed City Navigation without Instructions. 2024. [arxiv]
+1. Xia et al. Using Pre-trained Language Model for Accurate ESG Prediction. FinNLP 2024. [paper]
+1. Liang et al. I-SHEEP: Self-Alignment of LLM from Scratch through an Iterative Self-Enhancement Paradigm. 2024. [arxiv]
+1. Bai et al. Aligning Large Language Model with Direct Multi-Preference Optimization for Recommendation. CIKM 2024. [paper]
+1. Zhang et al. CPsyCoun: A Report-based Multi-turn Dialogue Reconstruction and Evaluation Framework for Chinese Psychological Counseling. ACL 2024. [paper]
+1. **StarWhisper**: A large language model for Astronomy, based on ChatGLM2-6B and Qwen-14B.
+1. **DISC-LawLLM**: A large language model specialized in Chinese legal domain, based on Baichuan-13B, is capable of retrieving and reasoning on legal knowledge.
+1. **Sunsimiao**: A large language model specialized in Chinese medical domain, based on Baichuan-7B and ChatGLM-6B.
+1. **CareGPT**: A series of large language models for Chinese medical domain, based on LLaMA2-7B and Baichuan-13B.
+1. **MachineMindset**: A series of MBTI Personality large language models, capable of giving any LLM 16 different personality types based on different datasets and training methods.
+1. **Luminia-13B-v3**: A large language model specialized in generate metadata for stable diffusion. [demo]
+1. **Chinese-LLaVA-Med**: A multimodal large language model specialized in Chinese medical domain, based on LLaVA-1.5-7B.
+1. **AutoRE**: A document-level relation extraction system based on large language models.
+1. **NVIDIA RTX AI Toolkit**: SDKs for fine-tuning LLMs on Windows PC for NVIDIA RTX.
+1. **LazyLLM**: An easy and lazy way for building multi-agent LLMs applications and supports model fine-tuning via LlamaFactory.
+1. **RAG-Retrieval**: A full pipeline for RAG retrieval model fine-tuning, inference, and distillation. [blog]
+1. **360-LLaMA-Factory**: A modified library that supports long sequence SFT & DPO using ring attention.
+1. **Sky-T1**: An o1-like model fine-tuned by NovaSky AI with very small cost.
+1. **WeClone**: One-stop solution for creating your digital avatar from chat logs.
+1. **EmoLLM**: A project about large language models (LLMs) and mental health.
+</details>
+
+## License
+
+This repository is licensed under the [Apache-2.0 License](LICENSE).
+
+Please follow the model licenses to use the corresponding model weights: BLOOM / DeepSeek / Falcon / Gemma / GLM-4 / GPT-2 / [Granite](LICENSE) / InternLM / Llama / Llama 2 / Llama 3 / Llama 4 / MiniCPM / [Mistral/Mixtral/Pixtral](LICENSE) / Phi-3/Phi-4 / Qwen / StarCoder 2 / TeleChat2 / Yuan 2
+
+## Citation
+
+If this work is helpful, please kindly cite as:
+
+```bibtex
+@inproceedings{zheng2024llamafactory,
+  title={LlamaFactory: Unified Efficient Fine-Tuning of 100+ Language Models},
+  author={Yaowei Zheng and Richong Zhang and Junhao Zhang and Yanhan Ye and Zheyan Luo and Zhangchi Feng and Yongqiang Ma},
+  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},
+  address={Bangkok, Thailand},
+  publisher={Association for Computational Linguistics},
+  year={2024},
+  url={http://arxiv.org/abs/2403.13372}
+}
+```
+
+## Acknowledgement
+
+This repo benefits from PEFT, TRL, QLoRA and FastChat. Thanks for their wonderful works.
