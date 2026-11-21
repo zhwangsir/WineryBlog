@@ -4,9 +4,10 @@ import { motion } from 'motion/react';
 import {
   Monitor, ServerCog, Terminal, Layers, BrainCircuit, Sigma, HardDrive,
   Shield, Smartphone, Bug, Gamepad2, Settings, Wrench, Code2, GitBranch,
-  Server, ArrowRight, BookOpen, Clock, GraduationCap, Route,
+  Server, ArrowRight, BookOpen, Clock, GraduationCap, Route, Play, CheckCircle2,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { fetchProgress, type ProgressData } from '../lib/progress';
 
 interface Tutorial {
   id: string; title: string; summary: string; domain: string;
@@ -36,10 +37,12 @@ export const Tutorials: React.FC = () => {
   const [data, setData] = useState<{ domains: Domain[]; tutorials: Tutorial[] } | null>(null);
   const [careers, setCareers] = useState<Career[]>([]);
   const [activeDomain, setActiveDomain] = useState<string | null>(null);
+  const [progress, setProgress] = useState<ProgressData | null>(null);
 
   useEffect(() => {
     fetch('/api/tutorials').then(r => r.json()).then(setData).catch(() => {});
     fetch('/api/careers').then(r => r.json()).then(j => setCareers(j.careers || [])).catch(() => {});
+    fetchProgress().then(setProgress).catch(() => {});
   }, []);
 
   if (!data) {
@@ -59,9 +62,29 @@ export const Tutorials: React.FC = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col gap-10">
         {/* hero */}
         <header className="flex flex-col gap-4 border-b border-border pb-8">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary flex items-center gap-3">
-            <GraduationCap className="w-9 h-9 text-accent" /> 教程中心
-          </h1>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary flex items-center gap-3">
+              <GraduationCap className="w-9 h-9 text-accent" /> 教程中心
+            </h1>
+            {progress && Object.keys(progress.read).length > 0 && (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/30">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  <span className="text-sm font-medium text-green-500">
+                    已学 {Object.keys(progress.read).length} / {data.tutorials.length}
+                  </span>
+                </div>
+                {progress.lastRead && (
+                  <Link
+                    to={`/post/${progress.lastRead}`}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
+                  >
+                    <Play className="w-3.5 h-3.5" /> 继续学习
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
           <p className="text-lg text-text-secondary max-w-3xl">
             {data.tutorials.length} 篇系统教程 · {data.domains.length} 大知识域 · 约 {Math.round(totalMinutes / 60)} 小时阅读量。
             每篇教程都配有 <span className="text-accent font-medium">AI 助教</span>：引导式提问、讲解、检验、实操四种模式陪你学。

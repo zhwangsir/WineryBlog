@@ -453,6 +453,52 @@ async function startServer() {
     }
   });
 
+  // ===== 学习进度（匿名访客维度，X-Visitor-Id 头） =====
+  const PROGRESS_FILE = path.join(DATA_DIR, "progress.json");
+  const VIS_ID_RE = /^[a-f0-9-]{36}$/;
+
+  async function loadProgress(): Promise<Record<string, any>> {
+    try { return JSON.parse(await fs.readFile(PROGRESS_FILE, "utf-8")); }
+    catch { return {}; }
+  }
+
+  function getVid(req: express.Request): string | null {
+    const vid = String(req.headers["x-visitor-id"] || "");
+    return VIS_ID_RE.test(vid) ? vid : null;
+  }
+
+  app.get("/api/progress", async (req, res) => {
+    const vid = getVid(req);
+    if (!vid) return res.status(400).json({ error: "bad visitor id" });
+    const all = await loadProgress();
+    res.json(all[vid] || { read: {}, lastRead: null });
+  });
+
+  app.post("/api/progress/read", async (req, res) => {
+    const vid = getVid(req);
+    if (!vid) return res.status(400).json({ error: "bad visitor id" });
+    const { tutorialId, read } = req.body || {};
+    if (typeof tutorialId !== "string" || !tutorialId || typeof read !== "boolean") {
+      return res.status(400).json({ error: "bad payload" });
+    }
+    const all = await loadProgress();
+    const p = all[vid] || { read: {}, lastRead: null };
+    if (read) {
+      p.read[tutorialId] = new Date().toISOString();
+      p.lastRead = tutorialId;
+    } else {
+      delete p.read[tutorialId];
+      if (p.lastRead === tutorialId) {
+        const keys = Object.keys(p.read);
+        p.lastRead = keys.length ? keys[keys.length - 1] : null;
+      }
+    }
+    all[vid] = p;
+    await fs.writeFile(PROGRESS_FILE, JSON.stringify(all, null, 1));
+    res.json(p);
+  });
+
+
   // ===== 胡桃人设（AI 馆员与助教共用） =====
   // 往生堂七十七代堂主：古灵精怪、活泼爱捉弄；教学/知识内容必须保持严谨，
   // 人设表演优先级低于事实准确性。

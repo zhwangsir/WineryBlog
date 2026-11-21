@@ -7,6 +7,8 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { TutorPanel } from '../components/TutorPanel';
 import { CodeBlock } from '../components/CodeBlock';
+import { fetchProgress, markRead } from '../lib/progress';
+import { CheckCircle2, Circle } from 'lucide-react';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -31,10 +33,17 @@ export const PostDetail: React.FC = () => {
   const [verifying, setVerifying] = useState(false);
   const [tutorOpen, setTutorOpen] = useState(false);
   const [tutCatalog, setTutCatalog] = useState<{ id: string; domain: string; title: string; href: string }[]>([]);
+  const [isRead, setIsRead] = useState(false);
   const viewCounted = useRef(false);
 
   // tutorial content gets the AI tutor; blog posts don't
   const isTutorial = !!post && post.category !== '随笔';
+
+  // load read status for this tutorial
+  useEffect(() => {
+    if (!post) return;
+    fetchProgress().then(p => setIsRead(!!p.read[post.id])).catch(() => {});
+  }, [post?.id]);
 
   // load catalog once for prev/next + related tutorials
   useEffect(() => {
@@ -229,10 +238,29 @@ export const PostDetail: React.FC = () => {
             </Link>
           </div>
           {post.views !== undefined && post.views > 0 && (
-            <div className="flex items-center gap-2 text-text-muted">
+            <div className="flex items-center gap-1.5 text-text-muted">
               <ViewIcon className="w-4 h-4" />
               <span>{post.views} 次阅读</span>
             </div>
+          )}
+          {isTutorial && (
+            <button
+              type="button"
+              onClick={async () => {
+                const next = !isRead;
+                setIsRead(next);
+                await markRead(post.id, next);
+              }}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                isRead
+                  ? 'bg-green-500/15 text-green-500 border border-green-500/30'
+                  : 'bg-bg-base text-text-secondary border border-border hover:border-green-500/50 hover:text-green-500'
+              }`}
+              title={isRead ? '点击取消已学标记' : '标记为已学'}
+            >
+              {isRead ? <CheckCircle2 className="w-4 h-4" /> : <Circle className="w-4 h-4" />}
+              {isRead ? '已学' : '标记已学'}
+            </button>
           )}
           <div className="flex items-center gap-2 flex-wrap">
             <Tag className="w-4 h-4 text-accent" />
