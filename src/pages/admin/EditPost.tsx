@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
-import { ArrowLeft, Save, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, Save, Eye, EyeOff, Image } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { apiFetch } from '../../utils/api';
+import { GalleryPicker } from '../../components/admin/GalleryPicker';
 
 export const EditPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,6 +26,26 @@ export const EditPost: React.FC = () => {
   });
 
   const [showPreview, setShowPreview] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+
+  /** 在正文光标处插入文本（图床选图后注入 Markdown 图片语法） */
+  const insertToContent = (text: string) => {
+    const ta = contentRef.current;
+    if (!ta) {
+      setFormData(prev => ({ ...prev, content: prev.content + text }));
+      return;
+    }
+    const start = ta.selectionStart ?? ta.value.length;
+    const end = ta.selectionEnd ?? start;
+    const next = ta.value.slice(0, start) + text + ta.value.slice(end);
+    setFormData(prev => ({ ...prev, content: next }));
+    requestAnimationFrame(() => {
+      ta.focus();
+      const pos = start + text.length;
+      ta.setSelectionRange(pos, pos);
+    });
+  };
 
   useEffect(() => {
     if (!isNew && posts.length > 0) {
@@ -98,7 +119,15 @@ export const EditPost: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button 
+          <button
+            type="button"
+            onClick={() => setPickerOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 text-text-secondary bg-bg-base border border-border rounded-xl hover:text-accent hover:border-accent transition-colors font-medium"
+          >
+            <Image className="w-5 h-5" />
+            图床插图
+          </button>
+          <button
             type="button"
             onClick={() => setShowPreview(!showPreview)}
             className="flex items-center gap-2 px-4 py-2.5 text-text-secondary bg-bg-base border border-border rounded-xl hover:text-accent hover:border-accent transition-colors font-medium"
@@ -239,7 +268,8 @@ export const EditPost: React.FC = () => {
           <div className="flex flex-col gap-2 flex-1">
             <label className="text-sm font-medium text-text-primary">Content (Markdown Supported)</label>
             <div className="border border-border rounded-xl overflow-hidden">
-              <textarea 
+              <textarea
+                ref={contentRef}
                 name="content"
                 value={formData.content}
                 onChange={handleChange}
@@ -269,6 +299,13 @@ export const EditPost: React.FC = () => {
           </div>
         </form>
       )}
+
+      {/* 图床选图：插入 Markdown 图片到正文光标处 */}
+      <GalleryPicker
+        open={pickerOpen}
+        onClose={() => setPickerOpen(false)}
+        onSelect={url => insertToContent(`\n![图片](${url})\n`)}
+      />
     </div>
   );
 };

@@ -36,3 +36,6 @@ public/audio/
 
 # user uploads (avatar/background settings)
 server/data/uploads/
+
+# self-hosted gallery images (local disk only, served at /images/)
+server/data/gallery/

@@ -284,8 +284,163 @@ async function startServer() {
     }
   });
 
-  // ===== Admin: 统计 / 安全 / 备份 / 门禁 / 壁纸池 =====
-  const WALLPAPER_DIR = path.join(process.cwd(), "public", "wallpapers");
+  // ===== Admin: 统计 / 安全 / 备份 / 门禁 / 图床 =====
+  // 自有图床：server/data/gallery/<分类>/ 存图片本体（.gitignore 不入库），
+  // /images/<分类>/<hash>.<ext> 静态服务；meta.json 记录来源/去重，manifest.json 为前台壁纸池
+  const GALLERY_DIR = path.join(process.cwd(), "server", "data", "gallery");
+  const GALLERY_META = path.join(GALLERY_DIR, "meta.json");
+  const GALLERY_MANIFEST = path.join(GALLERY_DIR, "manifest.json");
+  const LEGACY_WALLPAPER_DIR = path.join(process.cwd(), "public", "wallpapers");
+  const GALLERY_FETCH_CATS: Record<string, string> = { acg: "二次元", scenery: "风景", wallpaper: "综合壁纸" };
+
+  await fs.mkdir(path.join(GALLERY_DIR, "wallpaper"), { recursive: true });
+  app.use("/images", express.static(GALLERY_DIR, { maxAge: "1d" }));
+
+  // 公开 manifest：前台随机壁纸背景池（图床全分类；回落旧壁纸池）
+  app.get("/api/gallery/manifest", async (_req, res) => {
+    try {
+      const m = JSON.parse(await fs.readFile(GALLERY_MANIFEST, "utf-8"));
+      res.json(m);
+    } catch {
+      try {
+        const legacy = JSON.parse(await fs.readFile(path.join(LEGACY_WALLPAPER_DIR, "manifest.json"), "utf-8"));
+        res.json(legacy);
+      } catch {
+        res.json({ updatedAt: null, wallpapers: [] });
+      }
+    }
+  });
+
+  const readGalleryMeta = async (): Promise<any> => {
+    try {
+      return JSON.parse(await fs.readFile(GALLERY_META, "utf-8"));
+    } catch {
+      return { images: {} };
+    }
+  };
+
+  // 图床列表：gallery 三类（meta 驱动）+ uploads（目录扫描）合并，含分类统计
+  app.get("/api/admin/gallery", authMiddleware, async (_req, res) => {
+    try {
+      const meta = await readGalleryMeta();
+      const images: any[] = [];
+      const catStats: Record<string, { count: number; bytes: number }> = {};
+      const bump = (cat: string, bytes: number) => {
+        const c = (catStats[cat] ||= { count: 0, bytes: 0 });
+        c.count++;
+        c.bytes += bytes || 0;
+      };
+      for (const [hash, info] of Object.entries(meta.images || {}) as any[]) {
+        images.push({
+          name: `${hash}${info.ext}`,
+          category: info.category,
+          url: `/images/${info.category}/${hash}${info.ext}`,
+          bytes: info.bytes || 0,
+          time: info.fetchedAt || "",
+          source: info.source || "",
+        });
+        bump(info.category, info.bytes || 0);
+      }
+      const uploadFiles = await fs.readdir(UPLOAD_DIR).catch(() => [] as string[]);
+      for (const f of uploadFiles) {
+        if (f.startsWith(".")) continue;
+        try {
+          const st = await fs.stat(path.join(UPLOAD_DIR, f));
+          images.push({
+            name: f,
+            category: "uploads",
+            url: `/uploads/${f}`,
+            bytes: st.size,
+            time: st.mtime.toISOString(),
+            source: "upload",
+          });
+          bump("uploads", st.size);
+        } catch { /* 并发删除窗口 */ }
+      }
+      images.sort((a, b) => String(b.time).localeCompare(String(a.time)));
+      const totalBytes = Object.values(catStats).reduce((s, c) => s + c.bytes, 0);
+      const totalCount = images.length;
+      const categories = [
+        { id: "all", label: "全部", count: totalCount, bytes: totalBytes },
+        { id: "acg", label: "二次元", ...(catStats.acg || { count: 0, bytes: 0 }) },
+        { id: "scenery", label: "风景", ...(catStats.scenery || { count: 0, bytes: 0 }) },
+        { id: "wallpaper", label: "综合壁纸", ...(catStats.wallpaper || { count: 0, bytes: 0 }) },
+        { id: "uploads", label: "上传媒体", ...(catStats.uploads || { count: 0, bytes: 0 }) },
+      ];
+      res.json({
+        categories,
+        images,
+        fetchable: GALLERY_FETCH_CATS,
+        manifestUpdatedAt: await fs.readFile(GALLERY_MANIFEST, "utf-8").then(JSON.parse).then((m: any) => m.updatedAt).catch(() => null),
+      });
+    } catch (e: any) {
+      res.status(500).json({ error: "Failed to list gallery", detail: e.message });
+    }
+  });
+
+  // 抓取入库：后台异步执行 fetch-gallery.mjs（分类白名单，uploads 不可抓）
+  app.post("/api/admin/gallery/fetch", authMiddleware, async (req, res) => {
+    try {
+      const { category, count } = req.body || {};
+      const cat = String(category || "");
+      if (!GALLERY_FETCH_CATS[cat]) {
+        res.status(400).json({ error: `未知分类：${cat || "(空)"}` });
+        return;
+      }
+      const n = Math.min(30, Math.max(1, parseInt(String(count || 10), 10) || 10));
+      const { spawn } = await import("child_process");
+      const child = spawn(process.execPath, ["scripts/fetch-gallery.mjs", cat, String(n)], {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: "ignore",
+      });
+      child.unref();
+      res.json({ started: true, category: cat, count: n });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // 删除图床图片（gallery 分类删文件+meta+manifest；uploads 分类删上传目录）
+  app.delete("/api/admin/gallery/:category/:name", authMiddleware, async (req, res) => {
+    try {
+      const category = String(req.params.category || "");
+      const name = path.basename(String(req.params.name || ""));
+      if (!name || name.startsWith(".")) {
+        res.status(400).json({ error: "Invalid filename" });
+        return;
+      }
+      if (category === "uploads") {
+        await fs.unlink(path.join(UPLOAD_DIR, name));
+        res.json({ success: true });
+        return;
+      }
+      if (!GALLERY_FETCH_CATS[category]) {
+        res.status(400).json({ error: "未知分类" });
+        return;
+      }
+      const meta = await readGalleryMeta();
+      const hash = name.replace(/\.[^.]+$/, "");
+      const info = meta.images?.[hash];
+      if (!info || info.category !== category) {
+        res.status(404).json({ error: "Image not found" });
+        return;
+      }
+      await fs.unlink(path.join(GALLERY_DIR, category, name)).catch(() => {});
+      delete meta.images[hash];
+      await fs.mkdir(GALLERY_DIR, { recursive: true });
+      await fs.writeFile(GALLERY_META, JSON.stringify(meta, null, 1));
+      // manifest 重建（与脚本同逻辑：全分类扁平列表）
+      const wallpapers = Object.entries(meta.images)
+        .map(([h, i]: any) => ({ url: `/images/${i.category}/${h}${i.ext}`, mtime: i.fetchedAt }))
+        .sort((a: any, b: any) => String(b.mtime).localeCompare(String(a.mtime)))
+        .map((w: any) => w.url);
+      await fs.writeFile(GALLERY_MANIFEST, JSON.stringify({ updatedAt: new Date().toISOString(), wallpapers }, null, 1));
+      res.json({ success: true });
+    } catch {
+      res.status(404).json({ error: "Image not found" });
+    }
+  });
 
   // 仪表盘统计：内容量 / 互动 / 上传占用 / 系统 / 门禁最近结果
   app.get("/api/admin/stats", authMiddleware, async (_req, res) => {
@@ -330,14 +485,10 @@ async function startServer() {
 
       let wallpaperCount = 0;
       let wallpaperBytes = 0;
-      const wpFiles = await fs.readdir(WALLPAPER_DIR).catch(() => [] as string[]);
-      for (const f of wpFiles) {
-        if (!/\.(jpe?g|png|webp)$/i.test(f)) continue;
-        try {
-          const st = await fs.stat(path.join(WALLPAPER_DIR, f));
-          wallpaperCount++;
-          wallpaperBytes += st.size;
-        } catch { /* 并发删除窗口 */ }
+      const meta = await readGalleryMeta();
+      for (const info of Object.values(meta.images || {}) as any[]) {
+        wallpaperCount++;
+        wallpaperBytes += info.bytes || 0;
       }
 
       let gate: any = null;
@@ -457,45 +608,6 @@ async function startServer() {
         res.json({ ...gateCache, cached: false });
       }
     );
-  });
-
-  // 壁纸池管理：清单 + 文件列表
-  app.get("/api/admin/wallpapers", authMiddleware, async (_req, res) => {
-    try {
-      const files = await fs.readdir(WALLPAPER_DIR).catch(() => [] as string[]);
-      const items: any[] = [];
-      for (const f of files) {
-        if (!/\.(jpe?g|png|webp)$/i.test(f)) continue;
-        try {
-          const st = await fs.stat(path.join(WALLPAPER_DIR, f));
-          items.push({ name: f, url: `/wallpapers/${f}`, bytes: st.size, mtime: st.mtimeMs });
-        } catch { /* 并发删除窗口 */ }
-      }
-      items.sort((a, b) => b.mtime - a.mtime);
-      let manifest: any = null;
-      try {
-        manifest = JSON.parse(await fs.readFile(path.join(WALLPAPER_DIR, "manifest.json"), "utf-8"));
-      } catch { /* 无清单 */ }
-      res.json({ items, manifest });
-    } catch {
-      res.status(500).json({ error: "Failed to list wallpapers" });
-    }
-  });
-
-  // 壁纸池刷新：后台异步抓取 10 张（写入 manifest，前台日种子自动轮换）
-  app.post("/api/admin/wallpapers/refresh", authMiddleware, async (_req, res) => {
-    try {
-      const { spawn } = await import("child_process");
-      const child = spawn(process.execPath, ["scripts/fetch-wallpapers.mjs", "10"], {
-        cwd: process.cwd(),
-        detached: true,
-        stdio: "ignore",
-      });
-      child.unref();
-      res.json({ started: true, count: 10 });
-    } catch (e: any) {
-      res.status(500).json({ error: e.message });
-    }
   });
 
   // RSS Feed endpoint

@@ -66,9 +66,17 @@ export const Dashboard: React.FC = () => {
   const refreshWallpapers = async () => {
     setBusy('wallpaper');
     try {
-      await apiFetch('/api/admin/wallpapers/refresh', { method: 'POST' });
-      flash('🖼️ 壁纸池刷新已启动（后台抓取 10 张，约 1-2 分钟后生效）');
-    } catch { flash('刷新任务启动失败'); }
+      // 图床抓取：二次元 + 风景各 5 张（后台异步，完成后图床页可见）
+      await apiFetch('/api/admin/gallery/fetch', {
+        method: 'POST',
+        body: JSON.stringify({ category: 'acg', count: 5 }),
+      });
+      await apiFetch('/api/admin/gallery/fetch', {
+        method: 'POST',
+        body: JSON.stringify({ category: 'scenery', count: 5 }),
+      });
+      flash('🖼️ 图床抓取已启动（二次元 + 风景各 5 张，约 1-2 分钟后到「图床」页查看）');
+    } catch { flash('抓取任务启动失败'); }
     setBusy(null);
   };
 
@@ -98,7 +106,7 @@ export const Dashboard: React.FC = () => {
   const sysCards = stats ? [
     { label: '访客进度', value: `${stats.progress.visitors} 位`, sub: `${stats.progress.readEntries} 条已读 · ${stats.progress.labEntries} 次实验记录`, icon: Users },
     { label: '媒体上传', value: `${stats.uploads.count} 个`, sub: fmtBytes(stats.uploads.bytes), icon: HardDrive },
-    { label: '壁纸池', value: `${stats.wallpapers.count} 张`, sub: fmtBytes(stats.wallpapers.bytes), icon: Image },
+    { label: '图床', value: `${stats.wallpapers.count} 张`, sub: fmtBytes(stats.wallpapers.bytes), icon: Image },
     { label: '服务运行', value: fmtUptime(stats.system.uptimeSec), sub: `Node ${stats.system.node} · 内存 ${stats.system.rssMB} MB`, icon: Clock },
   ] : [];
 
@@ -185,8 +193,8 @@ export const Dashboard: React.FC = () => {
           >
             {busy === 'wallpaper' ? <Loader2 className="w-5 h-5 text-accent animate-spin" /> : <RefreshCw className="w-5 h-5 text-blue-500" />}
             <div>
-              <p className="font-medium text-text-primary text-sm">刷新壁纸池</p>
-              <p className="text-xs text-text-muted mt-0.5">后台抓取 10 张随机壁纸</p>
+              <p className="font-medium text-text-primary text-sm">抓取图床图片</p>
+              <p className="text-xs text-text-muted mt-0.5">二次元 + 风景各 5 张，自动分类去重入库</p>
             </div>
           </button>
           <button

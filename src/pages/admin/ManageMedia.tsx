@@ -1,59 +1,74 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Upload, Copy, Trash2, RefreshCw, Image, Loader2, Check, HardDrive } from 'lucide-react';
+import { Upload, Copy, Trash2, RefreshCw, Image, Loader2, Check, HardDrive, X, Camera, Sparkles, Mountain, LayoutGrid, ExternalLink } from 'lucide-react';
 import { apiFetch } from '../../utils/api';
 
-interface UploadItem {
-  url: string;
+interface GalleryImage {
   name: string;
-  size: number;
-  mtime: number;
-}
-interface WpItem {
-  name: string;
+  category: string;
   url: string;
   bytes: number;
-  mtime: number;
+  time: string;
+  source: string;
+}
+interface GalleryCategory {
+  id: string;
+  label: string;
+  count: number;
+  bytes: number;
+}
+interface GalleryData {
+  categories: GalleryCategory[];
+  images: GalleryImage[];
+  fetchable: Record<string, string>;
+  manifestUpdatedAt: string | null;
 }
 
+const CAT_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
+  acg: Sparkles,
+  scenery: Mountain,
+  wallpaper: LayoutGrid,
+  uploads: HardDrive,
+};
+
 function fmtBytes(b: number): string {
+  if (b >= 1073741824) return `${(b / 1073741824).toFixed(2)} GB`;
   if (b >= 1048576) return `${(b / 1048576).toFixed(1)} MB`;
   if (b >= 1024) return `${(b / 1024).toFixed(0)} KB`;
   return `${b} B`;
 }
 
-function fmtDate(ms: number): string {
-  const d = new Date(ms);
+function fmtDate(iso: string): string {
+  if (!iso) return '—';
+  const d = new Date(iso);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
 export const ManageMedia: React.FC = () => {
-  const [items, setItems] = useState<UploadItem[]>([]);
-  const [wallpapers, setWallpapers] = useState<WpItem[]>([]);
-  const [wpUpdatedAt, setWpUpdatedAt] = useState<string | null>(null);
+  const [data, setData] = useState<GalleryData | null>(null);
+  const [active, setActive] = useState('all');
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
+  const [fetching, setFetching] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [preview, setPreview] = useState<GalleryImage | null>(null);
+  const [note, setNote] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const load = useCallback(async () => {
     try {
-      const [upRes, wpRes] = await Promise.all([
-        apiFetch('/api/uploads'),
-        apiFetch('/api/admin/wallpapers'),
-      ]);
-      if (upRes.ok) setItems(await upRes.json());
-      if (wpRes.ok) {
-        const data = await wpRes.json();
-        setWallpapers(data.items || []);
-        setWpUpdatedAt(data.manifest?.updatedAt || null);
-      }
+      const res = await apiFetch('/api/admin/gallery');
+      if (res.ok) setData(await res.json());
     } catch { /* 静默 */ }
     setLoading(false);
   }, []);
 
   useEffect(() => { load(); }, [load]);
+
+  const flash = (msg: string) => {
+    setNote(msg);
+    window.setTimeout(() => setNote(null), 4000);
+  };
 
   const handleUpload = async (files: FileList | null) => {
     if (!files?.length) return;
@@ -72,16 +87,31 @@ export const ManageMedia: React.FC = () => {
         });
         if (!res.ok) {
           const err = await res.json().catch(() => ({}));
-          alert(`上传失败：${(err as any).error || res.status}`);
+          flash(`上传失败：${(err as any).error || res.status}`);
         }
       }
       await load();
+      flash('✅ 上传完成，已入「上传媒体」分类');
     } catch (e) {
       console.error(e);
-      alert('上传失败');
+      flash('上传失败');
     }
     setUploading(false);
     if (fileRef.current) fileRef.current.value = '';
+  };
+
+  const handleFetch = async (category: string) => {
+    if (fetching) return;
+    setFetching(category);
+    try {
+      await apiFetch('/api/admin/gallery/fetch', {
+        method: 'POST',
+        body: JSON.stringify({ category, count: 10 }),
+      });
+      flash(`🖼️ 正在抓取 10 张「${data?.fetchable[category] || category}」图片入库（约 1-2 分钟），完成后自动刷新`);
+      window.setTimeout(load, 90000);
+    } catch { flash('抓取任务启动失败'); }
+    setFetching(null);
   };
 
   const copyUrl = async (url: string) => {
@@ -92,31 +122,27 @@ export const ManageMedia: React.FC = () => {
     } catch { /* 剪贴板不可用 */ }
   };
 
-  const handleDelete = async (name: string) => {
-    if (confirmDelete !== name) { setConfirmDelete(name); return; }
+  const handleDelete = async (img: GalleryImage) => {
+    const key = `${img.category}/${img.name}`;
+    if (confirmDelete !== key) { setConfirmDelete(key); return; }
     setConfirmDelete(null);
+    setPreview(null);
     try {
-      await apiFetch(`/api/uploads/${encodeURIComponent(name)}`, { method: 'DELETE' });
+      await apiFetch(`/api/admin/gallery/${img.category}/${encodeURIComponent(img.name)}`, { method: 'DELETE' });
       await load();
-    } catch { alert('删除失败'); }
+    } catch { flash('删除失败'); }
   };
 
-  const refreshWallpapers = async () => {
-    setRefreshing(true);
-    try {
-      await apiFetch('/api/admin/wallpapers/refresh', { method: 'POST' });
-      window.setTimeout(load, 90000);   // 抓取约 1-2 分钟后自动刷新列表
-    } catch { /* 静默 */ }
-    setRefreshing(false);
-  };
+  const shown = data?.images.filter(i => active === 'all' || i.category === active) || [];
+  const activeCat = data?.categories.find(c => c.id === active);
 
   return (
     <div className="flex flex-col gap-6">
       <header className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">媒体库</h1>
+          <h1 className="text-3xl font-bold text-text-primary mb-2">图床</h1>
           <p className="text-text-secondary">
-            {items.length} 个上传文件 · {wallpapers.length} 张壁纸
+            {data ? `${data.categories[0].count} 张图片 · 占用 ${fmtBytes(data.categories[0].bytes)} · 全部本地存储，站内引用零外跳` : '加载中…'}
           </p>
         </div>
         <div>
@@ -134,50 +160,113 @@ export const ManageMedia: React.FC = () => {
             className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl hover:bg-accent-hover transition-colors font-medium shadow-sm disabled:opacity-50"
           >
             {uploading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Upload className="w-5 h-5" />}
-            {uploading ? '上传中…' : '上传媒体'}
+            {uploading ? '上传中…' : '上传图片'}
           </button>
         </div>
       </header>
+
+      {note && (
+        <div className="px-4 py-3 rounded-xl bg-accent/10 border border-accent/30 text-accent text-sm font-medium">
+          {note}
+        </div>
+      )}
+
+      {/* 分类 tabs + 抓取 */}
+      <div className="flex flex-wrap items-center gap-2">
+        {(data?.categories || []).map(c => {
+          const Icon = CAT_ICON[c.id] || Image;
+          return (
+            <button
+              key={c.id}
+              onClick={() => setActive(c.id)}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors border ${active === c.id ? 'bg-accent/10 border-accent/40 text-accent' : 'bg-bg-card border-border text-text-secondary hover:border-accent/40'}`}
+            >
+              <Icon className="w-4 h-4" />
+              {c.label} ({c.count})
+            </button>
+          );
+        })}
+        <div className="flex-1" />
+        {/* 抓取按钮：壁纸三类 */}
+        {data && active !== 'uploads' && (
+          <div className="flex items-center gap-2">
+            {(active === 'all' ? ['acg', 'scenery', 'wallpaper'] : [active]).map(cat => (
+              <button
+                key={cat}
+                onClick={() => handleFetch(cat)}
+                disabled={!!fetching}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-border text-xs text-text-secondary hover:border-accent hover:text-accent transition-colors disabled:opacity-50"
+              >
+                {fetching === cat ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Camera className="w-3.5 h-3.5" />}
+                抓取 10 张{data.fetchable[cat] ? `「${data.fetchable[cat]}」` : ''}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {loading ? (
         <div className="py-16 flex justify-center">
           <Loader2 className="w-8 h-8 text-accent animate-spin" />
         </div>
-      ) : items.length === 0 ? (
+      ) : shown.length === 0 ? (
         <div className="bg-bg-card border border-border rounded-2xl p-12 text-center">
-          <HardDrive className="w-10 h-10 text-text-muted mx-auto mb-3" />
-          <p className="text-text-secondary mb-1">还没有上传任何媒体文件</p>
-          <p className="text-xs text-text-muted">上传的图片 / 音频可在文章封面、头像、背景等设置中引用（/uploads/…）</p>
+          <Image className="w-10 h-10 text-text-muted mx-auto mb-3" />
+          <p className="text-text-secondary mb-1">
+            {activeCat?.id === 'uploads' ? '还没有上传任何图片' : '该分类暂无图片'}
+          </p>
+          <p className="text-xs text-text-muted">
+            {activeCat?.id === 'uploads'
+              ? '上传的图片可在文章封面、头像、背景等设置中引用，也可在写文章时从图床插入'
+              : '点击上方「抓取」按钮，从图源抓取 10 张图片自动入库去重'}
+          </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {items.map(item => {
-            const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(item.name);
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {shown.map(img => {
+            const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(img.name);
+            const CatIcon = CAT_ICON[img.category] || Image;
             return (
-              <div key={item.name} className="bg-bg-card border border-border rounded-2xl overflow-hidden group">
-                <div className="h-36 bg-bg-base flex items-center justify-center overflow-hidden">
+              <div key={img.url} className="bg-bg-card border border-border rounded-2xl overflow-hidden group">
+                <button
+                  className="block w-full h-36 bg-bg-base cursor-zoom-in overflow-hidden"
+                  onClick={() => setPreview(img)}
+                  title="点击放大预览"
+                >
                   {isImage ? (
-                    <img src={item.url} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={img.url} alt={img.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
                   ) : (
-                    <HardDrive className="w-8 h-8 text-text-muted" />
+                    <span className="w-full h-full flex items-center justify-center"><HardDrive className="w-8 h-8 text-text-muted" /></span>
                   )}
-                </div>
+                </button>
                 <div className="p-3">
-                  <p className="text-xs font-medium text-text-primary truncate" title={item.name}>{item.name}</p>
-                  <p className="text-[10px] text-text-muted mt-0.5">{fmtBytes(item.size)} · {fmtDate(item.mtime)}</p>
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="px-1.5 py-0.5 bg-accent/10 text-accent rounded text-[10px] font-bold shrink-0">
+                      {data?.categories.find(c => c.id === img.category)?.label || img.category}
+                    </span>
+                    <span className="text-[10px] text-text-muted truncate">{fmtBytes(img.bytes)} · {fmtDate(img.time)}</span>
+                  </div>
+                  <p className="text-xs font-medium text-text-primary truncate" title={img.name}>{img.name}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <button
-                      onClick={() => copyUrl(item.url)}
-                      title="复制链接"
+                      onClick={() => copyUrl(img.url)}
+                      title="复制站内链接"
                       className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-bg-base border border-border text-[11px] text-text-secondary hover:border-accent hover:text-accent transition-colors"
                     >
-                      {copied === item.url ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
-                      {copied === item.url ? '已复制' : '复制链接'}
+                      {copied === img.url ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
+                      {copied === img.url ? '已复制' : '复制链接'}
                     </button>
                     <button
-                      onClick={() => handleDelete(item.name)}
-                      title={confirmDelete === item.name ? '再次点击确认删除' : '删除'}
-                      className={`p-1.5 rounded-lg border transition-colors ${confirmDelete === item.name ? 'border-red-400 text-red-500 bg-red-500/10' : 'border-border text-text-secondary hover:border-red-400 hover:text-red-500'}`}
+                      onClick={() => setPreview(img)}
+                      title="预览"
+                      className="p-1.5 rounded-lg border border-border text-text-secondary hover:border-accent hover:text-accent transition-colors"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(img)}
+                      title={confirmDelete === `${img.category}/${img.name}` ? '再次点击确认删除' : '删除'}
+                      className={`p-1.5 rounded-lg border transition-colors ${confirmDelete === `${img.category}/${img.name}` ? 'border-red-400 text-red-500 bg-red-500/10' : 'border-border text-text-secondary hover:border-red-400 hover:text-red-500'}`}
                     >
                       <Trash2 className="w-3 h-3" />
                     </button>
@@ -189,40 +278,54 @@ export const ManageMedia: React.FC = () => {
         </div>
       )}
 
-      {/* 壁纸池 */}
-      <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
-              <Image className="w-5 h-5 text-blue-500" />
-              随机壁纸池
-            </h2>
-            <p className="text-xs text-text-muted mt-1">
-              {wpUpdatedAt ? `更新于 ${fmtDate(new Date(wpUpdatedAt).getTime())} · 每日按日种子轮换一张，文字遮罩自适应壁纸亮度` : '暂无壁纸'}
-            </p>
-          </div>
-          <button
-            onClick={refreshWallpapers}
-            disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-sm text-text-secondary hover:border-accent hover:text-accent transition-colors disabled:opacity-50"
-          >
-            <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
-            抓取 10 张新壁纸
-          </button>
-        </div>
-        {wallpapers.length > 0 && (
-          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-3">
-            {wallpapers.map(wp => (
-              <div key={wp.name} className="aspect-[3/4] rounded-xl overflow-hidden border border-border bg-bg-base">
-                <img src={wp.url} alt={wp.name} className="w-full h-full object-cover" loading="lazy" title={`${wp.name} · ${fmtBytes(wp.bytes)}`} />
+      <div className="flex items-start gap-2 text-xs text-text-muted px-1">
+        <RefreshCw className="w-4 h-4 shrink-0 mt-0.5" />
+        抓取图片按内容哈希命名并全局去重，存放于本地 server/data/gallery/（不入 git），通过 /images/ 站内路径服务——读者任何加载都不出站。
+      </div>
+
+      {/* 大图预览 lightbox */}
+      {preview && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-8"
+          onClick={() => { setPreview(null); setConfirmDelete(null); }}
+        >
+          <div className="max-w-[90vw] max-h-[88vh] flex flex-col gap-3" onClick={e => e.stopPropagation()}>
+            <img src={preview.url} alt={preview.name} className="max-w-full max-h-[76vh] object-contain rounded-2xl shadow-2xl" />
+            <div className="flex items-center justify-between gap-4 text-sm">
+              <div className="flex items-center gap-2 text-white/80 min-w-0">
+                <span className="px-2 py-0.5 bg-accent/20 text-accent rounded text-xs font-bold shrink-0">
+                  {data?.categories.find(c => c.id === preview.category)?.label}
+                </span>
+                <span className="truncate">{preview.name}</span>
+                <span className="text-white/50 shrink-0">{fmtBytes(preview.bytes)} · {fmtDate(preview.time)}</span>
               </div>
-            ))}
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => copyUrl(preview.url)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-colors"
+                >
+                  {copied === preview.url ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  {copied === preview.url ? '已复制' : '复制站内链接'}
+                </button>
+                <button
+                  onClick={() => handleDelete(preview)}
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-colors ${confirmDelete === `${preview.category}/${preview.name}` ? 'bg-red-500 text-white' : 'bg-white/10 text-white hover:bg-red-500/80'}`}
+                >
+                  <Trash2 className="w-4 h-4" />
+                  {confirmDelete === `${preview.category}/${preview.name}` ? '确认删除？' : '删除'}
+                </button>
+                <button
+                  onClick={() => { setPreview(null); setConfirmDelete(null); }}
+                  className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-colors"
+                  title="关闭"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
-        )}
-        <p className="text-[11px] text-text-muted mt-3">
-          抓取约需 1-2 分钟，完成后清单自动更新；前台「站点设置 → 全局背景」留空时才会启用随机壁纸。
-        </p>
-      </section>
+        </div>
+      )}
     </div>
   );
 };

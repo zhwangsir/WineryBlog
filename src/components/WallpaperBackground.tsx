@@ -9,21 +9,22 @@ interface WpManifest {
  * 随机壁纸背景层：无自定义背景时启用（每日种子——同一天稳定同一张）。
  * 文字保护：canvas 采样壁纸平均亮度 → 自适应暗色遮罩浓度
  * （亮壁纸加重遮罩、暗壁纸轻遮罩，正文永远可读）。
- * 壁纸池由 scripts/fetch-wallpapers.mjs 抓取至 public/wallpapers/。
+ * 壁纸池来自自有图床（server/data/gallery，scripts/fetch-gallery.mjs 抓取），
+ * 服务端 /api/gallery/manifest 公开；旧 public/wallpapers 清单回落兼容。
  */
 export const WallpaperBackground: React.FC = () => {
   const [src, setSrc] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [scrim, setScrim] = useState(0.5);
 
-  // 取清单 + 按日种子选图
+  // 取清单（图床池） + 按日种子选图
   useEffect(() => {
     let dead = false;
-    fetch('/wallpapers/manifest.json')
+    fetch('/api/gallery/manifest')
       .then(r => (r.ok ? r.json() : Promise.reject(new Error('no manifest'))))
       .then((m: WpManifest) => {
         if (dead) return;
-        const list = (m.wallpapers || []).map(f => `/wallpapers/${f}`);
+        const list: string[] = m.wallpapers || [];
         if (!list.length) return;
         // 日种子：同一天稳定同一张
         let h = 2166136261;

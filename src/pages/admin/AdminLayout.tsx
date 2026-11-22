@@ -27,7 +27,7 @@ export const AdminLayout: React.FC = () => {
     { name: '仪表盘', path: '/admin', icon: LayoutDashboard },
     { name: '文章管理', path: '/admin/posts', icon: FileText },
     { name: '教程管理', path: '/admin/tutorials', icon: GraduationCap },
-    { name: '媒体库', path: '/admin/media', icon: ImageIcon },
+    { name: '图床', path: '/admin/media', icon: ImageIcon },
     { name: '站点设置', path: '/admin/settings', icon: Settings },
     { name: '安全与系统', path: '/admin/security', icon: ShieldCheck },
   ];
