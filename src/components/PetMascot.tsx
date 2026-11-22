@@ -82,7 +82,18 @@ export const PetMascot: React.FC<PetMascotProps> = ({
   const [live2dFailed, setLive2dFailed] = useState(false);
   const [bubble, setBubble] = useState<string | null>(null);
   const [hidden, setHidden] = useState(isHidden);
+  // 移动端（< lg / 1024px）不渲染桌宠：窄屏会遮挡正文且无拖拽价值
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia('(max-width: 1023px)').matches
+  );
   const bubbleTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    const onChange = () => setIsMobile(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   const showBubble = useCallback((text: string, scene?: string) => {
     setBubble(text);
@@ -104,7 +115,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
   // ---- 初始化：位置 + PIXI + Live2D 模型 ----
   useEffect(() => {
-    if (!enabled || hidden) return;
+    if (!enabled || hidden || isMobile) return;
     applyPos(clampPos(loadPos(clampedSize), clampedSize));
     if (model === 'fallback') { setLive2dFailed(true); return; }   // 明确选择静态模式
 
@@ -200,11 +211,11 @@ export const PetMascot: React.FC<PetMascotProps> = ({
       } catch { /* ignore */ }
       modelRef.current = null; appRef.current = null;
     };
-  }, [enabled, hidden, model, applyPos]);
+  }, [enabled, hidden, isMobile, model, applyPos]);
 
   // ---- 开场问候 ----
   useEffect(() => {
-    if (!enabled || hidden) return;
+    if (!enabled || hidden || isMobile) return;
     const t = window.setTimeout(() => {
       const hour = new Date().getHours();
       showBubble(pickLine(hour >= 23 || hour < 6 ? 'night' : 'greet'), hour >= 23 || hour < 6 ? 'night' : 'greet');
@@ -215,7 +226,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
 
   // ---- 闲置闲聊 ----
   useEffect(() => {
-    if (!enabled || hidden) return;
+    if (!enabled || hidden || isMobile) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) {
         const hour = new Date().getHours();
@@ -277,7 +288,7 @@ export const PetMascot: React.FC<PetMascotProps> = ({
     setHidden(false);
   };
 
-  if (!enabled) return null;
+  if (!enabled || isMobile) return null;
 
   if (hidden) {
     return (

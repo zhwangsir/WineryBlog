@@ -97,7 +97,8 @@ export const AIChat: React.FC = () => {
                 ? 'mr-auto bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'
                 : 'mr-auto bg-bg-card border border-border/30 text-text-primary rounded-bl-sm'
           }`}>
-            {renderMd(m.content)}
+            {/* renderMd 已 escapeHtml 全部原文，仅注入自产白名单标签（br/code/strong/pre），innerHTML 安全 */}
+            <div dangerouslySetInnerHTML={{ __html: renderMd(m.content) }} />
           </div>
         ))}
         {sending && messages[messages.length - 1]?.content === '思考中…' && (
