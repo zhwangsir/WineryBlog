@@ -8,6 +8,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { dHash, phashAvailable, hamming, SIMILAR_THRESHOLD } from './lib/phash.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GALLERY = path.join(ROOT, 'server', 'data', 'gallery');
@@ -68,6 +69,41 @@ function deleteImage(meta, category, hash) {
   return true;
 }
 
+// ---- 存量图回填感知哈希（--backfill）：只补 phash，不做删除 ----
+if (process.argv[2] === '--backfill') {
+  const meta = loadMeta();
+  if (!phashAvailable()) {
+    console.log('sharp unavailable: cannot backfill perceptual hashes');
+    process.exit(1);
+  }
+  let done = 0;
+  const pairs = [];
+  for (const [hash, info] of Object.entries(meta.images)) {
+    if (info.phash) continue;
+    const file = path.join(GALLERY, info.category, `${hash}${info.ext}`);
+    if (!fs.existsSync(file)) continue;
+    info.phash = await dHash(file);
+    if (info.phash) done++;
+  }
+  // 报告感知相似对（不自动删除，人工在图床页决定）
+  const entries = Object.entries(meta.images);
+  for (let i = 0; i < entries.length; i++) {
+    const [, a] = entries[i];
+    if (!a.phash) continue;
+    for (let j = i + 1; j < entries.length; j++) {
+      const [bh, b] = entries[j];
+      if (!b.phash) continue;
+      if (hamming(a.phash, b.phash) <= SIMILAR_THRESHOLD) {
+        pairs.push(`${a.category}/${entries[i][0]} ↔ ${b.category}/${bh}`);
+      }
+    }
+  }
+  saveMeta(meta);
+  console.log(`backfill: ${done} images hashed; similar pairs: ${pairs.length}`);
+  pairs.slice(0, 20).forEach(p => console.log('  ' + p));
+  process.exit(0);
+}
+
 // ---- 迁移旧壁纸池 ----
 if (process.argv[2] === '--migrate') {
   const meta = loadMeta();
@@ -108,8 +144,6 @@ const OUT_DIR = path.join(GALLERY, category);
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 const meta = loadMeta();
-// 已有内容哈希集合（跨分类全局去重）
-const seen = new Set(Object.keys(meta.images));
 
 const saved = [];
 let attempts = 0;
@@ -123,15 +157,32 @@ while (saved.length < COUNT && attempts < COUNT * 4) {
     const ext = magicExt(buf);
     if (!ext || buf.length < 5000) { console.log(`skip attempt ${attempts}: not an image`); continue; }
     const hash = crypto.createHash('sha256').update(buf).digest('hex').slice(0, 16);
-    if (seen.has(hash)) { console.log(`skip attempt ${attempts}: duplicate`); continue; }
-    seen.add(hash);
-    fs.writeFileSync(path.join(OUT_DIR, `${hash}${ext}`), buf);
+    // 双层查重：字节级（哈希已在库）+ 感知级（dHash 汉明距离，拦同图不同尺寸/压缩变体）
+    if (meta.images[hash]) { console.log(`skip attempt ${attempts}: exact duplicate of ${hash}`); continue; }
+    // 感知查重需要先落盘解码——写入临时名再判定
+    const tmpFile = path.join(OUT_DIR, `._tmp-${hash}${ext}`);
+    fs.writeFileSync(tmpFile, buf);
+    const imgPhash = await dHash(tmpFile);
+    let similarOf = null;
+    if (imgPhash) {
+      for (const [h, info] of Object.entries(meta.images)) {
+        if (!info.phash) continue;
+        if (hamming(imgPhash, info.phash) <= SIMILAR_THRESHOLD) { similarOf = h; break; }
+      }
+    }
+    if (similarOf) {
+      fs.unlinkSync(tmpFile);
+      console.log(`skip attempt ${attempts}: perceptual duplicate of ${similarOf}`);
+      continue;
+    }
+    fs.renameSync(tmpFile, path.join(OUT_DIR, `${hash}${ext}`));
     meta.images[hash] = {
       category,
       ext,
       bytes: buf.length,
       fetchedAt: new Date().toISOString(),
       source: `uapis:${category}`,
+      ...(imgPhash ? { phash: imgPhash } : {}),
     };
     saved.push(hash);
     console.log(`saved ${hash}${ext} (${Math.round(buf.length / 1024)}KB)`);

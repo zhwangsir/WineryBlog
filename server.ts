@@ -71,6 +71,22 @@ async function startServer() {
   const POSTS_FILE = path.join(DATA_DIR, "posts.json");
   const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
 
+  // 自有图床：server/data/gallery/<分类>/ 存图片本体（.gitignore 不入库），
+  // /images/<分类>/<hash>.<ext> 静态服务；meta.json 记录来源/去重/感知哈希
+  const GALLERY_DIR = path.join(process.cwd(), "server", "data", "gallery");
+  const GALLERY_META = path.join(GALLERY_DIR, "meta.json");
+  const GALLERY_MANIFEST = path.join(GALLERY_DIR, "manifest.json");
+  const LEGACY_WALLPAPER_DIR = path.join(process.cwd(), "public", "wallpapers");
+  const GALLERY_FETCH_CATS: Record<string, string> = { acg: "二次元", scenery: "风景", wallpaper: "综合壁纸" };
+
+  const readGalleryMeta = async (): Promise<any> => {
+    try {
+      return JSON.parse(await fs.readFile(GALLERY_META, "utf-8"));
+    } catch {
+      return { images: {} };
+    }
+  };
+
   // ===== Media uploads (avatar / backgrounds / covers) =====
   const IMAGE_EXT: Record<string, string> = {
     "image/png": "png",
@@ -117,11 +133,57 @@ async function startServer() {
         res.status(413).json({ error: "File too large (max 8MB)" });
         return;
       }
-      // Sanitize original name; fall back to "file"
-      const safeBase = (String(name || "file").replace(/\.[^.]+$/, "").replace(/[^\w\u4e00-\u9fa5-]+/g, "_").slice(0, 40)) || "file";
-      const filename = `${Date.now().toString(36)}-${safeBase}.${ext}`;
+      // 双层查重（与图床抓取同一体系）：字节级 SHA-256 + 感知级 dHash
+      const hash16 = crypto.createHash("sha256").update(buf).digest("hex").slice(0, 16);
+      const meta = await readGalleryMeta();
+      const existing = meta.images?.[hash16];
+      let phash: string | null = null;
+      if (ext !== "mp3" && ext !== "wav" && ext !== "ogg" && ext !== "ico") {
+        const tmp = path.join(UPLOAD_DIR, `._dup-probe-${hash16}${ext}`);
+        await fs.writeFile(tmp, buf);
+        try {
+          const { dHash } = await import("./scripts/lib/phash.mjs");
+          phash = await dHash(tmp);
+        } finally {
+          await fs.unlink(tmp).catch(() => {});
+        }
+      }
+      if (!existing && phash) {
+        for (const [h, info] of Object.entries(meta.images || {}) as any[]) {
+          if (!info.phash) continue;
+          const { hamming, SIMILAR_THRESHOLD } = await import("./scripts/lib/phash.mjs");
+          if (hamming(phash, info.phash) <= SIMILAR_THRESHOLD) {
+            // 感知重复：复用已有图片，不再落盘
+            const url = info.category === "uploads"
+              ? `/uploads/${h}${info.ext}`
+              : `/images/${info.category}/${h}${info.ext}`;
+            res.json({ url, size: info.bytes || buf.length, duplicate: true, kind: "similar", of: h });
+            return;
+          }
+        }
+      }
+      if (existing) {
+        // 字节级重复：直接复用
+        const url = existing.category === "uploads"
+          ? `/uploads/${hash16}${existing.ext}`
+          : `/images/${existing.category}/${hash16}${existing.ext}`;
+        res.json({ url, size: existing.bytes || buf.length, duplicate: true, kind: "exact", of: hash16 });
+        return;
+      }
+      // 新图：哈希命名落盘（uploads 分类），写入图床 meta
+      const filename = `${hash16}.${ext}`;
       await fs.writeFile(path.join(UPLOAD_DIR, filename), buf);
-      res.json({ url: `/uploads/${filename}`, size: buf.length });
+      meta.images[hash16] = {
+        category: "uploads",
+        ext: `.${ext}`,
+        bytes: buf.length,
+        fetchedAt: new Date().toISOString(),
+        source: "upload",
+        ...(phash ? { phash } : {}),
+      };
+      await fs.mkdir(GALLERY_DIR, { recursive: true });
+      await fs.writeFile(GALLERY_META, JSON.stringify(meta, null, 1));
+      res.json({ url: `/uploads/${filename}`, size: buf.length, duplicate: false });
     } catch (error: any) {
       res.status(500).json({ error: "Upload failed", detail: error.message });
     }
@@ -285,13 +347,6 @@ async function startServer() {
   });
 
   // ===== Admin: 统计 / 安全 / 备份 / 门禁 / 图床 =====
-  // 自有图床：server/data/gallery/<分类>/ 存图片本体（.gitignore 不入库），
-  // /images/<分类>/<hash>.<ext> 静态服务；meta.json 记录来源/去重，manifest.json 为前台壁纸池
-  const GALLERY_DIR = path.join(process.cwd(), "server", "data", "gallery");
-  const GALLERY_META = path.join(GALLERY_DIR, "meta.json");
-  const GALLERY_MANIFEST = path.join(GALLERY_DIR, "manifest.json");
-  const LEGACY_WALLPAPER_DIR = path.join(process.cwd(), "public", "wallpapers");
-  const GALLERY_FETCH_CATS: Record<string, string> = { acg: "二次元", scenery: "风景", wallpaper: "综合壁纸" };
 
   await fs.mkdir(path.join(GALLERY_DIR, "wallpaper"), { recursive: true });
   app.use("/images", express.static(GALLERY_DIR, { maxAge: "1d" }));
@@ -311,15 +366,7 @@ async function startServer() {
     }
   });
 
-  const readGalleryMeta = async (): Promise<any> => {
-    try {
-      return JSON.parse(await fs.readFile(GALLERY_META, "utf-8"));
-    } catch {
-      return { images: {} };
-    }
-  };
-
-  // 图床列表：gallery 三类（meta 驱动）+ uploads（目录扫描）合并，含分类统计
+  // 图床列表：meta 驱动（含 uploads 新上传）；uploads 目录里的孤儿文件（历史遗留）兜底并入
   app.get("/api/admin/gallery", authMiddleware, async (_req, res) => {
     try {
       const meta = await readGalleryMeta();
@@ -330,20 +377,27 @@ async function startServer() {
         c.count++;
         c.bytes += bytes || 0;
       };
+      const metaUploadNames = new Set<string>();
       for (const [hash, info] of Object.entries(meta.images || {}) as any[]) {
+        const cat = info.category || "wallpaper";
+        const url = cat === "uploads"
+          ? `/uploads/${hash}${info.ext || ""}`
+          : `/images/${cat}/${hash}${info.ext || ""}`;
         images.push({
-          name: `${hash}${info.ext}`,
-          category: info.category,
-          url: `/images/${info.category}/${hash}${info.ext}`,
+          name: `${hash}${info.ext || ""}`,
+          category: cat,
+          url,
           bytes: info.bytes || 0,
           time: info.fetchedAt || "",
           source: info.source || "",
         });
-        bump(info.category, info.bytes || 0);
+        bump(cat, info.bytes || 0);
+        if (cat === "uploads") metaUploadNames.add(`${hash}${info.ext || ""}`);
       }
+      // 孤儿兜底：uploads 目录中不在 meta 的旧文件（时间戳命名时期）
       const uploadFiles = await fs.readdir(UPLOAD_DIR).catch(() => [] as string[]);
       for (const f of uploadFiles) {
-        if (f.startsWith(".")) continue;
+        if (f.startsWith(".") || metaUploadNames.has(f)) continue;
         try {
           const st = await fs.stat(path.join(UPLOAD_DIR, f));
           images.push({
@@ -352,7 +406,7 @@ async function startServer() {
             url: `/uploads/${f}`,
             bytes: st.size,
             time: st.mtime.toISOString(),
-            source: "upload",
+            source: "upload-legacy",
           });
           bump("uploads", st.size);
         } catch { /* 并发删除窗口 */ }
@@ -411,7 +465,14 @@ async function startServer() {
         return;
       }
       if (category === "uploads") {
-        await fs.unlink(path.join(UPLOAD_DIR, name));
+        await fs.unlink(path.join(UPLOAD_DIR, name)).catch(() => {});
+        // 同步清理 meta 条目（哈希命名的新上传有记录；旧孤儿文件无记录，跳过）
+        const hash = name.replace(/\.[^.]+$/, "");
+        const meta = await readGalleryMeta();
+        if (meta.images?.[hash]?.category === "uploads") {
+          delete meta.images[hash];
+          await fs.writeFile(GALLERY_META, JSON.stringify(meta, null, 1));
+        }
         res.json({ success: true });
         return;
       }

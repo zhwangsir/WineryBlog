@@ -74,6 +74,8 @@ export const ManageMedia: React.FC = () => {
     if (!files?.length) return;
     setUploading(true);
     try {
+      let fresh = 0;
+      let dupes = 0;
       for (const file of Array.from(files)) {
         const dataUrl = await new Promise<string>((resolve, reject) => {
           const reader = new FileReader();
@@ -88,10 +90,18 @@ export const ManageMedia: React.FC = () => {
         if (!res.ok) {
           const err = await res.json().catch(() => ({}));
           flash(`上传失败：${(err as any).error || res.status}`);
+          continue;
         }
+        const data = await res.json();
+        if (data.duplicate) dupes++;
+        else fresh++;
       }
       await load();
-      flash('✅ 上传完成，已入「上传媒体」分类');
+      flash(
+        dupes > 0
+          ? `✅ 上传完成：${fresh} 张新图入库，${dupes} 张重复已自动跳过（复用库内已有图片）`
+          : '✅ 上传完成，已入「上传媒体」分类'
+      );
     } catch (e) {
       console.error(e);
       flash('上传失败');
