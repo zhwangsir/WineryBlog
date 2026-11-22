@@ -1,0 +1,18 @@
+{
+ "postHits": [],
+ "src": [],
+ "home": null,
+ "homeBannerSource": "import React from 'react';\r\nimport { Link } from 'react-router-dom';\r\nimport { useData } from '../context/DataContext';\r\nimport { PostCard } from '../components/PostCard';\r\nimport { WaterfallGrid } from '../components/WaterfallGrid';\r\nimport { motion } from 'motion/react';\r\nimport { Home as HomeIcon, GraduationCap, ArrowRight, Feather } from 'lucide-react';\r\nimport { cn } from '../utils/cn';\r\nimpo",
+ "dateRange": [
+  "2021-01-04",
+  "2026-11-20"
+ ],
+ "perYear": {
+  "2021": 44,
+  "2022": 44,
+  "2023": 43,
+  "2024": 44,
+  "2025": 44,
+  "2026": 39
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "contexts": [
+  {
+   "id": "s13_android_components",
+   "title": "Android 四大组件与生命周期",
+   "ctx": [
+    {
+     "ln": 69,
+     "line": "Intent(Intent.ACTION_VIEW, Uri.parse(\"https://mubu.com\")).also { startActivity(it) }"
+    }
+   ]
+  },
+  {
+   "id": "t09_projects",
+   "title": "项目实战指引：选对你的第一个项目",
+   "ctx": [
+    {
+     "ln": 6,
+     "line": "2. **有真实用户（哪怕是你自己）**：解决自己的真实需求最能坚持（本站就是案例：从幕布备份需求长成完整知识库）"
+    }
+   ]
+  }
+ ],
+ "bannerSearch": [
+  "server/data/posts.json:531: \"content\": \"> 教程看懂 ≠ 会写。Project-Based Learning（GitHub 33万+ star）收集了上百个带完整教程的实战项目。本篇按学习阶段把它们重新编排，并结合站内已有实战笔记给出组合建议。\\n\\n##"
+ ]
+}

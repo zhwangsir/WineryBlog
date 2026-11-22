@@ -146,15 +146,17 @@ for (const file of mdFiles) {
   const raw = fs.readFileSync(path.join(MD_DIR, file), 'utf-8');
   const { meta, body } = parseFrontmatter(raw);
   const cat = String(meta.category || '').split('/')[0].trim() || '方法与工具';
+  // 保留已有日期（日期重排结果不被构建重置）；全新教程才用当天
+  const existing = posts.find(p => p.id === id);
   const post = {
     id,
     title: meta.title || slug,
-    date: today,
+    date: existing?.date || today,
     category: cat,
     tags: meta.tags || [],
     excerpt: meta.summary || '',
     content: body.trim(),
-    views: 0,
+    views: existing?.views || 0,
   };
   const idx = posts.findIndex(p => p.id === id);
   if (idx >= 0) posts[idx] = post; else posts.push(post);
@@ -171,15 +173,16 @@ for (const file of refFiles) {
   const id = slug.startsWith('ref-') ? slug : 'ref-' + slug;
   const raw = fs.readFileSync(path.join(REF_DIR, file), 'utf-8');
   const { meta, body } = parseFrontmatter(raw);
+  const existing = posts.find(p => p.id === id);
   const post = {
     id,
     title: meta.title || slug,
-    date: today,
+    date: existing?.date || today,
     category: '参考资料',
     tags: [...(meta.tags || []), '参考资料'],
     excerpt: meta.summary || '',
     content: body.trim(),
-    views: 0,
+    views: existing?.views || 0,
   };
   const idx = posts.findIndex(p => p.id === id);
   if (idx >= 0) posts[idx] = post; else posts.push(post);
