@@ -7,8 +7,9 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { TutorPanel } from '../components/TutorPanel';
 import { CodeBlock } from '../components/CodeBlock';
-import { fetchProgress, markRead } from '../lib/progress';
+import { fetchProgress, markRead, markLab } from '../lib/progress';
 import { CheckCircle2, Circle } from 'lucide-react';
+import { LabPanel, type LabData } from '../components/LabPanel';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -34,10 +35,24 @@ export const PostDetail: React.FC = () => {
   const [tutorOpen, setTutorOpen] = useState(false);
   const [tutCatalog, setTutCatalog] = useState<{ id: string; domain: string; title: string; href: string }[]>([]);
   const [isRead, setIsRead] = useState(false);
+  const [lab, setLab] = useState<LabData | null>(null);
+  const [labDone, setLabDone] = useState(false);
   const viewCounted = useRef(false);
 
   // tutorial content gets the AI tutor; blog posts don't
   const isTutorial = !!post && post.category !== '随笔';
+
+  // load read status + paired lab for this tutorial
+  useEffect(() => {
+    if (!post) return;
+    fetchProgress().then(p => {
+      setIsRead(!!p.read[post.id]);
+      setLabDone(!!p.labs?.[post.id]);
+    }).catch(() => {});
+    fetch('/api/labs').then(r => r.json())
+      .then((labs: Record<string, LabData>) => setLab(labs[post.id] || null))
+      .catch(() => {});
+  }, [post?.id]);
 
   // load read status for this tutorial
   useEffect(() => {
@@ -284,6 +299,16 @@ export const PostDetail: React.FC = () => {
           {post.content}
         </Markdown>
       </div>
+
+      {/* 配套实验（有则渲染） */}
+      {isTutorial && lab && (
+        <LabPanel
+          tutorialId={post.id}
+          lab={lab}
+          labDone={labDone}
+          onLabDone={d => setLabDone(d)}
+        />
+      )}
 
       {/* tutorial navigation: prev/next + related */}
       {neighbors && (

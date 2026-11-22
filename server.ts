@@ -502,6 +502,31 @@ async function startServer() {
   });
 
 
+  // ===== 配套实验（labs）：结构化实验卡 + 前端在线运行器 =====
+  const LABS_FILE = path.join(DATA_DIR, "labs.json");
+
+  app.get("/api/labs", async (req, res) => {
+    try { res.json(JSON.parse(await fs.readFile(LABS_FILE, "utf-8"))); }
+    catch { res.json({}); }
+  });
+
+  app.post("/api/progress/lab", async (req, res) => {
+    const vid = getVid(req);
+    if (!vid) return res.status(400).json({ error: "bad visitor id" });
+    const { tutorialId, done } = req.body || {};
+    if (typeof tutorialId !== "string" || !tutorialId || typeof done !== "boolean") {
+      return res.status(400).json({ error: "bad payload" });
+    }
+    const all = await loadProgress();
+    const p = all[vid] || { read: {}, lastRead: null, labs: {} };
+    p.labs = p.labs || {};
+    if (done) p.labs[tutorialId] = new Date().toISOString();
+    else delete p.labs[tutorialId];
+    all[vid] = p;
+    await fs.writeFile(PROGRESS_FILE, JSON.stringify(all, null, 1));
+    res.json(p);
+  });
+
   // ===== 胡桃人设（AI 馆员与助教共用） =====
   // 往生堂七十七代堂主：古灵精怪、活泼爱捉弄；教学/知识内容必须保持严谨，
   // 人设表演优先级低于事实准确性。
