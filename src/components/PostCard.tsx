@@ -3,66 +3,16 @@ import { Link } from 'react-router-dom';
 import { Post } from '../data/posts';
 import { Calendar, Folder, Lock, Clock, Eye, Pin } from 'lucide-react';
 import { motion } from 'motion/react';
+import { CoverImage } from './CoverImage';
 
 interface PostCardProps {
   post: Post;
   index: number;
 }
 
-// HuTao themed covers for posts without an explicit cover
-// (onError falls back to generated gradient covers, see fallbackCovers)
-const coverImages = [
-  '/images/HuTao/hutao1.png',
-  '/images/HuTao/hutao2.png',
-  '/images/HuTao/hutao3.png',
-  '/images/HuTao/hutao4.png',
-  '/images/HuTao/hutao5.png',
-  '/images/HuTao/hutao6.png',
-  '/images/HuTao/hutao7.png',
-  '/images/HuTao/hutao8.png',
-  '/images/HuTao/hutao9.png',
-  '/images/HuTao/hutao10.png',
-];
-
-// Gradient covers shipped with the repo — used when HuTao assets are absent
-const fallbackCovers = [
-  '/images/covers/cover1.svg',
-  '/images/covers/cover2.svg',
-  '/images/covers/cover3.svg',
-  '/images/covers/cover4.svg',
-  '/images/covers/cover5.svg',
-  '/images/covers/cover6.svg',
-  '/images/covers/cover7.svg',
-  '/images/covers/cover8.svg',
-];
-
-// Get a consistent cover index based on post id
-const coverIndex = (id: string, len: number): number => {
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash = ((hash << 5) - hash) + id.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash) % len;
-};
-
-// Get a consistent cover based on post id
-const getRandomImage = (id: string): string => coverImages[coverIndex(id, coverImages.length)];
-const getFallbackImage = (id: string): string => fallbackCovers[coverIndex(id, fallbackCovers.length)];
-
 export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
   const wordCount = post.content.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-
-  // Use post cover if specified, otherwise use themed image keyed by post id
-  const coverImage = post.cover || getRandomImage(post.id);
-  const fallbackImage = post.cover || getFallbackImage(post.id);
-
-  const handleCoverError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    if (img.src.endsWith(fallbackImage)) return;
-    img.src = fallbackImage;
-  };
 
   return (
     <motion.article
@@ -81,10 +31,9 @@ export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
 
       {/* Cover Image */}
       <Link to={`/post/${post.id}`} className="block relative aspect-[16/9] overflow-hidden">
-        <img
-          src={coverImage}
+        <CoverImage
+          post={post}
           alt={post.title}
-          onError={handleCoverError}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         

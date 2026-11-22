@@ -13,12 +13,14 @@ export const phashAvailable = () => sharpMod !== null;
 
 /**
  * 计算 dHash 64 位指纹，返回 16 字符 hex；解码失败或 sharp 不可用返回 null
+ * 输入可为文件路径或 Buffer（推荐 Buffer：Windows 上路径输入会因 libvips
+ * 句柄延迟释放导致后续 rename/unlink 撞 EBUSY 锁）
  */
-export async function dHash(filePath) {
+export async function dHash(input) {
   if (!sharpMod) return null;
   try {
     // 9x8 灰度：每行 8 个相邻差值 × 8 行 = 64 位
-    const { data, info } = await sharpMod(filePath)
+    const { data, info } = await sharpMod(input)
       .resize(9, 8, { fit: 'fill' })
       .greyscale()
       .raw()

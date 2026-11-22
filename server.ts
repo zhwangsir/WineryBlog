@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import compression from "compression";
+import { ensureSourcesFile } from "./scripts/lib/gallery-sources.mjs";
 
 // JWT Secret (in production, use environment variable)
 const JWT_SECRET = "wineryblog-secret-key-2026";
@@ -139,14 +140,9 @@ async function startServer() {
       const existing = meta.images?.[hash16];
       let phash: string | null = null;
       if (ext !== "mp3" && ext !== "wav" && ext !== "ogg" && ext !== "ico") {
-        const tmp = path.join(UPLOAD_DIR, `._dup-probe-${hash16}${ext}`);
-        await fs.writeFile(tmp, buf);
-        try {
-          const { dHash } = await import("./scripts/lib/phash.mjs");
-          phash = await dHash(tmp);
-        } finally {
-          await fs.unlink(tmp).catch(() => {});
-        }
+        // sharp 直接解码内存 Buffer（不落临时文件——Windows 上 libvips 句柄延迟释放会撞锁）
+        const { dHash } = await import("./scripts/lib/phash.mjs");
+        phash = await dHash(buf as any);
       }
       if (!existing && phash) {
         for (const [h, info] of Object.entries(meta.images || {}) as any[]) {
@@ -432,24 +428,136 @@ async function startServer() {
     }
   });
 
-  // 抓取入库：后台异步执行 fetch-gallery.mjs（分类白名单，uploads 不可抓）
+  // 抓取入库：后台异步执行 fetch-gallery.mjs（按图源；兼容按分类取第一个启用源）
   app.post("/api/admin/gallery/fetch", authMiddleware, async (req, res) => {
     try {
-      const { category, count } = req.body || {};
-      const cat = String(category || "");
-      if (!GALLERY_FETCH_CATS[cat]) {
-        res.status(400).json({ error: `未知分类：${cat || "(空)"}` });
+      const { source, category, count } = req.body || {};
+      const sources = ensureSourcesFile(GALLERY_DIR);
+      let src: any = null;
+      if (source) {
+        src = sources.find((s: any) => s.id === String(source) && s.enabled !== false);
+        if (!src) {
+          res.status(400).json({ error: `图源不存在或已停用：${source}` });
+          return;
+        }
+      } else if (category) {
+        if (!GALLERY_FETCH_CATS[String(category)]) {
+          res.status(400).json({ error: `未知分类：${category}` });
+          return;
+        }
+        src = sources.find((s: any) => s.category === String(category) && s.enabled !== false);
+        if (!src) {
+          res.status(400).json({ error: `分类 ${category} 没有启用的图源` });
+          return;
+        }
+      } else {
+        res.status(400).json({ error: "需要 source 或 category" });
         return;
       }
       const n = Math.min(30, Math.max(1, parseInt(String(count || 10), 10) || 10));
       const { spawn } = await import("child_process");
-      const child = spawn(process.execPath, ["scripts/fetch-gallery.mjs", cat, String(n)], {
+      const child = spawn(process.execPath, ["scripts/fetch-gallery.mjs", "--source", src.id, String(n)], {
         cwd: process.cwd(),
         detached: true,
         stdio: "ignore",
       });
       child.unref();
-      res.json({ started: true, category: cat, count: n });
+      res.json({ started: true, source: src.id, name: src.name, category: src.category, count: n });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // ===== 图源管理：CRUD（sources.json；内置源可启停不可删） =====
+  app.get("/api/admin/gallery/sources", authMiddleware, async (_req, res) => {
+    try {
+      const sources = ensureSourcesFile(GALLERY_DIR);
+      res.json({ sources, categories: GALLERY_FETCH_CATS });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.post("/api/admin/gallery/sources", authMiddleware, async (req, res) => {
+    try {
+      const { name, category, endpoint, type, jsonPath } = req.body || {};
+      if (!name || !endpoint) {
+        res.status(400).json({ error: "名称与接口地址必填" });
+        return;
+      }
+      if (!GALLERY_FETCH_CATS[String(category)]) {
+        res.status(400).json({ error: `分类必须是：${Object.keys(GALLERY_FETCH_CATS).join("/")}` });
+        return;
+      }
+      if (!/^https?:\/\//.test(String(endpoint))) {
+        res.status(400).json({ error: "接口地址需以 http(s):// 开头" });
+        return;
+      }
+      const srcType = type === "json" ? "json" : "binary";
+      const sources = ensureSourcesFile(GALLERY_DIR);
+      const slug = String(name).toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 24) || "src";
+      const id = `custom-${slug}-${Date.now().toString(36)}`;
+      const entry: any = {
+        id,
+        name: String(name).slice(0, 40),
+        category: String(category),
+        endpoint: String(endpoint).slice(0, 500),
+        type: srcType,
+        enabled: true,
+        builtin: false,
+      };
+      if (srcType === "json" && jsonPath) entry.jsonPath = String(jsonPath).slice(0, 60);
+      sources.push(entry);
+      await fs.mkdir(GALLERY_DIR, { recursive: true });
+      await fs.writeFile(path.join(GALLERY_DIR, "sources.json"), JSON.stringify({ updatedAt: new Date().toISOString(), sources }, null, 1));
+      res.json({ success: true, source: entry });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.put("/api/admin/gallery/sources/:id", authMiddleware, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const sources = ensureSourcesFile(GALLERY_DIR);
+      const src = sources.find((s: any) => s.id === id);
+      if (!src) {
+        res.status(404).json({ error: "图源不存在" });
+        return;
+      }
+      const { name, category, endpoint, type, jsonPath, enabled } = req.body || {};
+      if (enabled !== undefined) src.enabled = !!enabled;
+      if (!src.builtin) {
+        // 自定义源可全改；内置源仅允许启停（保护初始配置）
+        if (name) src.name = String(name).slice(0, 40);
+        if (category && GALLERY_FETCH_CATS[String(category)]) src.category = String(category);
+        if (endpoint && /^https?:\/\//.test(String(endpoint))) src.endpoint = String(endpoint).slice(0, 500);
+        if (type) src.type = type === "json" ? "json" : "binary";
+        if (jsonPath !== undefined) src.jsonPath = jsonPath ? String(jsonPath).slice(0, 60) : undefined;
+      }
+      await fs.writeFile(path.join(GALLERY_DIR, "sources.json"), JSON.stringify({ updatedAt: new Date().toISOString(), sources }, null, 1));
+      res.json({ success: true, source: src });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.delete("/api/admin/gallery/sources/:id", authMiddleware, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const sources = ensureSourcesFile(GALLERY_DIR);
+      const idx = sources.findIndex((s: any) => s.id === id);
+      if (idx === -1) {
+        res.status(404).json({ error: "图源不存在" });
+        return;
+      }
+      if (sources[idx].builtin) {
+        res.status(400).json({ error: "内置图源不可删除，可停用" });
+        return;
+      }
+      sources.splice(idx, 1);
+      await fs.writeFile(path.join(GALLERY_DIR, "sources.json"), JSON.stringify({ updatedAt: new Date().toISOString(), sources }, null, 1));
+      res.json({ success: true });
     } catch (e: any) {
       res.status(500).json({ error: e.message });
     }

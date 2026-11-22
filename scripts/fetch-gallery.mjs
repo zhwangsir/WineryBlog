@@ -1,26 +1,22 @@
-// 自有图床抓取：按分类保存到 server/data/gallery/<category>/，内容哈希去重，meta 索引
-// 用法：node scripts/fetch-gallery.mjs <category> [count]
-//   category: acg(二次元) | scenery(风景→uapis landscape) | wallpaper(综合→uapis 随机)
-// 迁移：node scripts/fetch-gallery.mjs --migrate   （旧 public/wallpapers 并入 gallery/wallpaper）
-// 图片本体不入 git（.gitignore），meta/manifest 索引在 server/data/gallery/ 下随目录一起忽略
+// 自有图床抓取：按图源保存到 server/data/gallery/<category>/，双层去重（字节+感知），meta 索引
+// 用法：node scripts/fetch-gallery.mjs --source <sourceId> [count]   （主用法：按图源抓取）
+//       node scripts/fetch-gallery.mjs --category <cat> [count]      （兼容：该分类第一个启用的源）
+//       node scripts/fetch-gallery.mjs --backfill / --migrate
+// 图片本体不入 git（.gitignore），meta/manifest/sources 索引随目录一起忽略
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dHash, phashAvailable, hamming, SIMILAR_THRESHOLD } from './lib/phash.mjs';
+import { ensureSourcesFile } from './lib/gallery-sources.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GALLERY = path.join(ROOT, 'server', 'data', 'gallery');
 const META_FILE = path.join(GALLERY, 'meta.json');
 const MANIFEST_FILE = path.join(GALLERY, 'manifest.json');
 const LEGACY_WP_DIR = path.join(ROOT, 'public', 'wallpapers');
-
-const CATEGORIES = {
-  acg: { label: '二次元', endpoint: 'https://uapis.cn/api/v1/random/image?category=acg' },
-  scenery: { label: '风景', endpoint: 'https://uapis.cn/api/v1/random/image?category=landscape' },
-  wallpaper: { label: '综合壁纸', endpoint: 'https://uapis.cn/api/v1/random/image' },
-};
+const FETCH_INTERVAL_MS = 800;   // yeqing 限流 20次/10s，统一节流防触发
 
 function magicExt(buf) {
   if (buf[0] === 0xff && buf[1] === 0xd8) return '.jpg';
@@ -58,15 +54,6 @@ function rebuildManifest(meta) {
     .map(w => w.url);
   fs.writeFileSync(MANIFEST_FILE, JSON.stringify({ updatedAt: new Date().toISOString(), wallpapers }, null, 1));
   return wallpapers.length;
-}
-
-function deleteImage(meta, category, hash) {
-  const info = meta.images[hash];
-  if (!info || info.category !== category) return false;
-  const file = path.join(GALLERY, category, `${hash}${info.ext}`);
-  try { fs.unlinkSync(file); } catch { /* 已不存在 */ }
-  delete meta.images[hash];
-  return true;
 }
 
 // ---- 存量图回填感知哈希（--backfill）：只补 phash，不做删除 ----
@@ -133,15 +120,50 @@ if (process.argv[2] === '--migrate') {
   process.exit(0);
 }
 
-// ---- 分类抓取 ----
-const category = process.argv[2] || 'acg';
-const COUNT = parseInt(process.argv[3] || '10', 10);
-if (!CATEGORIES[category]) {
-  console.log(`unknown category: ${category} (use: ${Object.keys(CATEGORIES).join('|')})`);
-  process.exit(1);
+// ---- 图源解析与抓取 ----
+const sources = ensureSourcesFile(GALLERY);
+const mode = process.argv[2];
+let source = null;
+let COUNT = 10;
+
+if (mode === '--source') {
+  const id = process.argv[3];
+  COUNT = parseInt(process.argv[4] || '10', 10);
+  source = sources.find(s => s.id === id && s.enabled !== false);
+  if (!source) { console.log(`source not found or disabled: ${id}`); process.exit(1); }
+} else if (mode === '--category') {
+  const cat = process.argv[3];
+  COUNT = parseInt(process.argv[4] || '10', 10);
+  source = sources.find(s => s.category === cat && s.enabled !== false);
+  if (!source) { console.log(`no enabled source for category: ${cat}`); process.exit(1); }
+} else {
+  console.log('usage: node scripts/fetch-gallery.mjs --source <id> [count] | --category <cat> [count] | --backfill | --migrate');
+  process.exit(mode ? 1 : 0);
 }
+
+const category = source.category;
 const OUT_DIR = path.join(GALLERY, category);
 fs.mkdirSync(OUT_DIR, { recursive: true });
+
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+/** 从源取一次图片字节：binary 直出 / JSON 先解析 acgurl 再下载 */
+function fetchOne(source) {
+  if (source.type === 'json') {
+    const raw = execFileSync('curl', ['-sL', '--max-time', '30', '-o', '-', source.endpoint], {
+      maxBuffer: 16 * 1024 * 1024, encoding: 'utf8',
+    });
+    const j = JSON.parse(raw);
+    const url = j[source.jsonPath || 'acgurl'];
+    if (!url) throw new Error('json has no image url field');
+    return execFileSync('curl', ['-sL', '--max-time', '90', '-o', '-', url], {
+      maxBuffer: 64 * 1024 * 1024, encoding: 'buffer',
+    });
+  }
+  return execFileSync('curl', ['-sL', '--max-time', '90', '-o', '-', source.endpoint], {
+    maxBuffer: 64 * 1024 * 1024, encoding: 'buffer',
+  });
+}
 
 const meta = loadMeta();
 
@@ -150,19 +172,14 @@ let attempts = 0;
 while (saved.length < COUNT && attempts < COUNT * 4) {
   attempts++;
   try {
-    const buf = execFileSync('curl', ['-sL', '--max-time', '90', '-o', '-', CATEGORIES[category].endpoint], {
-      maxBuffer: 64 * 1024 * 1024,
-      encoding: 'buffer',
-    });
+    const buf = fetchOne(source);
     const ext = magicExt(buf);
     if (!ext || buf.length < 5000) { console.log(`skip attempt ${attempts}: not an image`); continue; }
     const hash = crypto.createHash('sha256').update(buf).digest('hex').slice(0, 16);
     // 双层查重：字节级（哈希已在库）+ 感知级（dHash 汉明距离，拦同图不同尺寸/压缩变体）
     if (meta.images[hash]) { console.log(`skip attempt ${attempts}: exact duplicate of ${hash}`); continue; }
-    // 感知查重需要先落盘解码——写入临时名再判定
-    const tmpFile = path.join(OUT_DIR, `._tmp-${hash}${ext}`);
-    fs.writeFileSync(tmpFile, buf);
-    const imgPhash = await dHash(tmpFile);
+    // 感知查重：sharp 直接解码内存 Buffer（不落临时文件——Windows 句柄延迟释放会撞 EBUSY）
+    const imgPhash = await dHash(buf);
     let similarOf = null;
     if (imgPhash) {
       for (const [h, info] of Object.entries(meta.images)) {
@@ -171,26 +188,26 @@ while (saved.length < COUNT && attempts < COUNT * 4) {
       }
     }
     if (similarOf) {
-      fs.unlinkSync(tmpFile);
       console.log(`skip attempt ${attempts}: perceptual duplicate of ${similarOf}`);
       continue;
     }
-    fs.renameSync(tmpFile, path.join(OUT_DIR, `${hash}${ext}`));
+    fs.writeFileSync(path.join(OUT_DIR, `${hash}${ext}`), buf);
     meta.images[hash] = {
       category,
       ext,
       bytes: buf.length,
       fetchedAt: new Date().toISOString(),
-      source: `uapis:${category}`,
+      source: source.id,
       ...(imgPhash ? { phash: imgPhash } : {}),
     };
     saved.push(hash);
-    console.log(`saved ${hash}${ext} (${Math.round(buf.length / 1024)}KB)`);
+    console.log(`saved ${hash}${ext} (${Math.round(buf.length / 1024)}KB) from ${source.id}`);
   } catch (e) {
     console.log(`attempt ${attempts} failed: ${e.message.slice(0, 80)}`);
   }
+  await sleep(FETCH_INTERVAL_MS);
 }
 
 saveMeta(meta);
 const total = rebuildManifest(meta);
-console.log(`\ncategory=${category} saved=${saved.length} total-in-gallery=${Object.keys(meta.images).length} manifest=${total}`);
+console.log(`\nsource=${source.id} category=${category} saved=${saved.length} total-in-gallery=${Object.keys(meta.images).length} manifest=${total}`);

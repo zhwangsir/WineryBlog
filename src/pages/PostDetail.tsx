@@ -10,6 +10,7 @@ import { CodeBlock } from '../components/CodeBlock';
 import { fetchProgress, markRead, markLab } from '../lib/progress';
 import { CheckCircle2, Circle } from 'lucide-react';
 import { LabPanel, type LabData } from '../components/LabPanel';
+import { CoverImage } from '../components/CoverImage';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -240,7 +241,7 @@ export const PostDetail: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight">
           {post.title}
         </h1>
-        
+
         <div className="flex flex-wrap items-center gap-6 text-sm text-text-secondary">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-accent" />
@@ -290,6 +291,14 @@ export const PostDetail: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* 封面头图：图床固定分配的封面（coverChain 回落） */}
+      <CoverImage
+        post={post}
+        alt={post.title}
+        loading="eager"
+        className="w-full aspect-[21/9] object-cover rounded-2xl border border-border shadow-sm"
+      />
 
       <div className="prose prose-lg dark:prose-invert max-w-none text-text-secondary leading-relaxed">
         <p className="text-xl text-text-muted italic border-l-4 border-accent pl-4 mb-8">
