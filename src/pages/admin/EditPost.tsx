@@ -20,7 +20,8 @@ export const EditPost: React.FC = () => {
     excerpt: '',
     content: '',
     isLocked: false,
-    password: ''
+    password: '',
+    pinned: false
   });
 
   const [showPreview, setShowPreview] = useState(false);
@@ -37,7 +38,8 @@ export const EditPost: React.FC = () => {
           excerpt: post.excerpt,
           content: post.content,
           isLocked: post.isLocked || false,
-          password: post.password || ''
+          password: post.password || '',
+          pinned: post.pinned || false
         });
       }
     }
@@ -181,8 +183,21 @@ export const EditPost: React.FC = () => {
 
           <div className="flex flex-col gap-4 p-4 bg-bg-base rounded-xl border border-border">
             <div className="flex items-center gap-3">
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
+                id="pinned"
+                name="pinned"
+                checked={formData.pinned}
+                onChange={handleChange}
+                className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+              />
+              <label htmlFor="pinned" className="text-sm font-medium text-text-primary cursor-pointer">
+                置顶文章（列表与首页优先展示）
+              </label>
+            </div>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
                 id="isLocked"
                 name="isLocked"
                 checked={formData.isLocked}

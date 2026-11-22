@@ -197,7 +197,14 @@ async function startServer() {
   app.get("/api/posts", async (req, res) => {
     try {
       const data = await fs.readFile(POSTS_FILE, "utf-8");
-      res.json(JSON.parse(data));
+      const posts = JSON.parse(data);
+      // 置顶优先，其余按日期倒序（前台与后台共用同一顺序）
+      posts.sort(
+        (a: any, b: any) =>
+          (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+          String(b.date || "").localeCompare(String(a.date || ""))
+      );
+      res.json(posts);
     } catch (error) {
       res.status(500).json({ error: "Failed to read posts" });
     }
@@ -274,6 +281,220 @@ async function startServer() {
       }
     } catch (error) {
       res.status(500).json({ error: "Failed to update view count" });
+    }
+  });
+
+  // ===== Admin: 统计 / 安全 / 备份 / 门禁 / 壁纸池 =====
+  const WALLPAPER_DIR = path.join(process.cwd(), "public", "wallpapers");
+
+  // 仪表盘统计：内容量 / 互动 / 上传占用 / 系统 / 门禁最近结果
+  app.get("/api/admin/stats", authMiddleware, async (_req, res) => {
+    try {
+      const countWords = (t: unknown) => {
+        const s = String(t || "");
+        return (s.match(/[\u4e00-\u9fa5]/g) || []).length + (s.match(/[a-zA-Z]+/g) || []).length;
+      };
+      const [postsData, tutData, labData, progData] = await Promise.all([
+        fs.readFile(POSTS_FILE, "utf-8"),
+        fs.readFile(path.join(DATA_DIR, "tutorials.json"), "utf-8").catch(() => "{}"),
+        fs.readFile(path.join(DATA_DIR, "labs.json"), "utf-8").catch(() => "{}"),
+        fs.readFile(path.join(DATA_DIR, "progress.json"), "utf-8").catch(() => "{}"),
+      ]);
+      const posts = JSON.parse(postsData);
+      const words = posts.reduce((s: number, p: any) => s + countWords(p.title) + countWords(p.excerpt) + countWords(p.content), 0);
+      const views = posts.reduce((s: number, p: any) => s + (p.views || 0), 0);
+
+      const tut = JSON.parse(tutData || "{}");
+      const tutorials = Array.isArray(tut.tutorials) ? tut.tutorials : [];
+      const domains = Array.isArray(tut.domains) ? tut.domains : [];
+      const labs = JSON.parse(labData || "{}");
+      const progress = JSON.parse(progData || "{}");
+      let readEntries = 0;
+      let labEntries = 0;
+      for (const v of Object.values(progress as Record<string, any>)) {
+        readEntries += Object.keys(v?.read || {}).length;
+        labEntries += Object.keys(v?.lab || {}).length;
+      }
+
+      let uploadCount = 0;
+      let uploadBytes = 0;
+      const uploadFiles = await fs.readdir(UPLOAD_DIR).catch(() => [] as string[]);
+      for (const f of uploadFiles) {
+        if (f.startsWith(".")) continue;
+        try {
+          const st = await fs.stat(path.join(UPLOAD_DIR, f));
+          uploadCount++;
+          uploadBytes += st.size;
+        } catch { /* 并发删除窗口 */ }
+      }
+
+      let wallpaperCount = 0;
+      let wallpaperBytes = 0;
+      const wpFiles = await fs.readdir(WALLPAPER_DIR).catch(() => [] as string[]);
+      for (const f of wpFiles) {
+        if (!/\.(jpe?g|png|webp)$/i.test(f)) continue;
+        try {
+          const st = await fs.stat(path.join(WALLPAPER_DIR, f));
+          wallpaperCount++;
+          wallpaperBytes += st.size;
+        } catch { /* 并发删除窗口 */ }
+      }
+
+      let gate: any = null;
+      try {
+        gate = JSON.parse(await fs.readFile(path.join(process.cwd(), "docs", "outbound-audit.json"), "utf-8"));
+      } catch { /* 无审计文件 */ }
+
+      res.json({
+        posts: {
+          total: posts.length,
+          words,
+          views,
+          pinned: posts.filter((p: any) => p.pinned).length,
+          categories: new Set(posts.map((p: any) => p.category)).size,
+        },
+        tutorials: {
+          total: tutorials.length,
+          domains: domains.length,
+          domainsList: domains.map((d: any) => ({ id: d.id, name: d.name, count: d.count })),
+        },
+        labs: { total: Object.keys(labs).length },
+        progress: { visitors: Object.keys(progress).length, readEntries, labEntries },
+        uploads: { count: uploadCount, bytes: uploadBytes },
+        wallpapers: { count: wallpaperCount, bytes: wallpaperBytes },
+        system: {
+          uptimeSec: Math.round(process.uptime()),
+          rssMB: +(process.memoryUsage().rss / 1048576).toFixed(1),
+          node: process.version,
+          platform: process.platform,
+        },
+        gate,
+      });
+    } catch (e: any) {
+      res.status(500).json({ error: "Failed to collect stats", detail: e.message });
+    }
+  });
+
+  // 删除上传的媒体文件（basename 防路径穿越）
+  app.delete("/api/uploads/:name", authMiddleware, async (req, res) => {
+    try {
+      const name = path.basename(String(req.params.name));
+      if (!name || name.startsWith(".") || name.includes("/")) {
+        res.status(400).json({ error: "Invalid filename" });
+        return;
+      }
+      await fs.unlink(path.join(UPLOAD_DIR, name));
+      res.json({ success: true });
+    } catch {
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+
+  // 修改管理员密码（需验证当前密码）
+  app.post("/api/auth/change-password", authMiddleware, async (req, res) => {
+    try {
+      const { currentPassword, newPassword } = req.body || {};
+      const data = await fs.readFile(CONFIG_FILE, "utf-8");
+      const config = JSON.parse(data);
+      if (!config.admin || currentPassword !== config.admin.password) {
+        res.status(401).json({ error: "当前密码不正确" });
+        return;
+      }
+      if (typeof newPassword !== "string" || newPassword.length < 6) {
+        res.status(400).json({ error: "新密码至少需要 6 位" });
+        return;
+      }
+      config.admin.password = newPassword;
+      await fs.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2));
+      res.json({ success: true });
+    } catch {
+      res.status(500).json({ error: "Failed to change password" });
+    }
+  });
+
+  // 数据备份：配置 + 全量文章 + 学习进度 + 教程元数据，整包 JSON 下载
+  app.get("/api/admin/backup", authMiddleware, async (_req, res) => {
+    try {
+      const [configData, postsData, progData, tutData] = await Promise.all([
+        fs.readFile(CONFIG_FILE, "utf-8").catch(() => "{}"),
+        fs.readFile(POSTS_FILE, "utf-8").catch(() => "[]"),
+        fs.readFile(path.join(DATA_DIR, "progress.json"), "utf-8").catch(() => "{}"),
+        fs.readFile(path.join(DATA_DIR, "tutorials.json"), "utf-8").catch(() => "{}"),
+      ]);
+      const bundle = {
+        exportedAt: new Date().toISOString(),
+        config: JSON.parse(configData),
+        posts: JSON.parse(postsData),
+        progress: JSON.parse(progData),
+        tutorials: JSON.parse(tutData),
+      };
+      const body = Buffer.from(JSON.stringify(bundle, null, 1), "utf-8");
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename=wineryblog-backup-${new Date().toISOString().slice(0, 10)}.json`);
+      res.send(body);
+    } catch {
+      res.status(500).json({ error: "Backup failed" });
+    }
+  });
+
+  // 零外跳门禁：运行 verify-no-outbound 脚本（结果缓存 5 分钟，?force=1 强制）
+  let gateCache: { at: number; code: number; output: string } | null = null;
+  app.get("/api/admin/gate", authMiddleware, async (req, res) => {
+    const force = req.query.force === "1";
+    if (!force && gateCache && Date.now() - gateCache.at < 5 * 60 * 1000) {
+      res.json({ ...gateCache, cached: true });
+      return;
+    }
+    const { execFile } = await import("child_process");
+    execFile(
+      process.execPath,
+      ["scripts/verify-no-outbound.mjs"],
+      { cwd: process.cwd(), timeout: 60000, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 },
+      (err, stdout, stderr) => {
+        const code = typeof (err as any)?.code === "number" ? (err as any).code : err ? 1 : 0;
+        const output = String(stdout || "") + (stderr ? `\n${stderr}` : "");
+        gateCache = { at: Date.now(), code, output };
+        res.json({ ...gateCache, cached: false });
+      }
+    );
+  });
+
+  // 壁纸池管理：清单 + 文件列表
+  app.get("/api/admin/wallpapers", authMiddleware, async (_req, res) => {
+    try {
+      const files = await fs.readdir(WALLPAPER_DIR).catch(() => [] as string[]);
+      const items: any[] = [];
+      for (const f of files) {
+        if (!/\.(jpe?g|png|webp)$/i.test(f)) continue;
+        try {
+          const st = await fs.stat(path.join(WALLPAPER_DIR, f));
+          items.push({ name: f, url: `/wallpapers/${f}`, bytes: st.size, mtime: st.mtimeMs });
+        } catch { /* 并发删除窗口 */ }
+      }
+      items.sort((a, b) => b.mtime - a.mtime);
+      let manifest: any = null;
+      try {
+        manifest = JSON.parse(await fs.readFile(path.join(WALLPAPER_DIR, "manifest.json"), "utf-8"));
+      } catch { /* 无清单 */ }
+      res.json({ items, manifest });
+    } catch {
+      res.status(500).json({ error: "Failed to list wallpapers" });
+    }
+  });
+
+  // 壁纸池刷新：后台异步抓取 10 张（写入 manifest，前台日种子自动轮换）
+  app.post("/api/admin/wallpapers/refresh", authMiddleware, async (_req, res) => {
+    try {
+      const { spawn } = await import("child_process");
+      const child = spawn(process.execPath, ["scripts/fetch-wallpapers.mjs", "10"], {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: "ignore",
+      });
+      child.unref();
+      res.json({ started: true, count: 10 });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
     }
   });
 

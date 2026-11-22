@@ -355,8 +355,20 @@ export const ManageConfig: React.FC = () => {
                 value={formData.theme?.globalBackground || ''}
                 onChange={url => handleThemeChange('globalBackground', url)}
                 preview="wide"
-                hint="整站固定背景图，会叠加半透明遮罩保证可读性；留空使用纯色背景"
+                hint="整站固定背景图，会叠加半透明遮罩保证可读性；留空时启用下方随机壁纸（如有壁纸池）"
               />
+            </div>
+            <div className="flex items-center gap-3 md:col-span-2">
+              <input
+                type="checkbox"
+                id="wallpaperEnabled"
+                checked={formData.theme?.wallpaperEnabled !== false}
+                onChange={e => handleThemeChange('wallpaperEnabled', e.target.checked)}
+                className="w-4 h-4 text-accent bg-bg-base border-border rounded focus:ring-accent"
+              />
+              <label htmlFor="wallpaperEnabled" className="text-sm font-medium text-text-primary cursor-pointer">
+                随机壁纸背景（未配置全局背景时启用：每日一张，canvas 采样亮度自适应遮罩保文字可读）
+              </label>
             </div>
           </div>
 
@@ -685,17 +697,114 @@ export const ManageConfig: React.FC = () => {
           </div>
         </section>
 
+        {/* Friends Links */}
+        <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-text-primary">友情链接</h2>
+            <button
+              type="button"
+              onClick={() => {
+                setFormData((prev: any) => ({
+                  ...prev,
+                  friends: [...(prev.friends || []), { name: '', url: '', avatar: '', desc: '' }]
+                }));
+              }}
+              className="text-sm text-accent hover:text-accent-hover font-medium"
+            >
+              + 添加友链
+            </button>
+          </div>
+          <div className="flex flex-col gap-4">
+            {(formData.friends || []).map((friend: any, index: number) => (
+              <div key={index} className="flex items-start gap-4 bg-bg-base p-4 rounded-xl border border-border">
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">站点名称</label>
+                    <input
+                      type="text"
+                      value={friend.name || ''}
+                      onChange={(e) => {
+                        const newFriends = [...(formData.friends || [])];
+                        newFriends[index] = { ...newFriends[index], name: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, friends: newFriends }));
+                      }}
+                      placeholder="朋友的博客"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">站点地址</label>
+                    <input
+                      type="text"
+                      value={friend.url || ''}
+                      onChange={(e) => {
+                        const newFriends = [...(formData.friends || [])];
+                        newFriends[index] = { ...newFriends[index], url: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, friends: newFriends }));
+                      }}
+                      placeholder="https://friend.example.com"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">头像图片地址（可选）</label>
+                    <input
+                      type="text"
+                      value={friend.avatar || ''}
+                      onChange={(e) => {
+                        const newFriends = [...(formData.friends || [])];
+                        newFriends[index] = { ...newFriends[index], avatar: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, friends: newFriends }));
+                      }}
+                      placeholder="/uploads/xxx.png 或完整图片地址"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-text-secondary">一句话描述</label>
+                    <input
+                      type="text"
+                      value={friend.desc || ''}
+                      onChange={(e) => {
+                        const newFriends = [...(formData.friends || [])];
+                        newFriends[index] = { ...newFriends[index], desc: e.target.value };
+                        setFormData((prev: any) => ({ ...prev, friends: newFriends }));
+                      }}
+                      placeholder="前端 / 摄影 / 读书笔记…"
+                      className="w-full px-3 py-1.5 bg-bg-card border border-border rounded-lg text-sm text-text-primary focus:outline-none focus:border-accent transition-colors"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newFriends = [...(formData.friends || [])];
+                    newFriends.splice(index, 1);
+                    setFormData((prev: any) => ({ ...prev, friends: newFriends }));
+                  }}
+                  className="p-2 text-text-secondary hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors mt-1"
+                >
+                  移除
+                </button>
+              </div>
+            ))}
+            {(!formData.friends || formData.friends.length === 0) && (
+              <p className="text-sm text-text-secondary text-center py-4">还没有友链，点击「添加友链」开始。</p>
+            )}
+          </div>
+        </section>
+
         {/* About Page Settings */}
         <section className="bg-bg-card border border-border rounded-2xl p-6 shadow-sm">
           <h2 className="text-xl font-bold text-text-primary mb-6">About Page</h2>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-text-primary">About Content (Markdown)</label>
-              <textarea 
+              <textarea
                 value={formData.about?.content || ''}
                 onChange={e => handleAboutChange('content', e.target.value)}
                 rows={10}
-                placeholder="# 关于我\n\n你好！我是...\n\n## 技术栈\n\n- React\n- TypeScript\n- ..."
+                placeholder={"# 关于我\n\n你好！我是...\n\n## 技术栈\n\n- React\n- TypeScript"}
                 className="w-full px-4 py-2 bg-bg-base border border-border rounded-xl text-text-primary focus:outline-none focus:border-accent transition-colors resize-y font-mono text-sm"
               />
               <p className="text-xs text-text-muted">支持 Markdown 格式，将显示在 About 页面</p>

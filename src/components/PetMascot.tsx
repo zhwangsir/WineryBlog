@@ -155,9 +155,12 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         modelRef.current = live2dModel;
         (window as any).__petModel = live2dModel;   // 调试钩子：读取视线参数
 
-        // 眼神跟随鼠标：全局监听（canvas 指针穿透不影响 window 级监听）
-        // focus() 期望画布世界坐标（库内 toModelPosition 换算到模型空间），
-        // 直接传 clientX/Y 会因画布不在视口 (0,0) 而方向错乱
+        // 眼神跟随鼠标：全局监听（canvas 指针穿透不影响 window 级监听）。
+        // 不走 Live2DModel.focus()——它只取方向角（atan2 后投影单位圆），
+        // 丢弃距离导致「多近都全力偏转」，且光标在模型中心时 atan2(0,0) 怪异跳变。
+        // 这里直接驱动 focusController：面部锚点 + 420px 线性衰减，近处轻瞟、远处转头。
+        const FACE_ANCHOR = { rx: 0.5, ry: 0.33 };   // 面部在画布中的比例位置
+        const SATURATION = 420;                       // 光标距离此像素时视线饱和
         onPointerMove = (e: PointerEvent) => {
           try {
             const m = modelRef.current;
@@ -165,7 +168,13 @@ export const PetMascot: React.FC<PetMascotProps> = ({
             if (!m || !view) return;
             const rect = view.getBoundingClientRect();
             if (!rect.width || !rect.height) return;
-            m.focus(e.clientX - rect.left, e.clientY - rect.top);
+            const dx = e.clientX - (rect.left + rect.width * FACE_ANCHOR.rx);
+            const dy = e.clientY - (rect.top + rect.height * FACE_ANCHOR.ry);
+            const fc = m.internalModel.focusController;
+            fc.focus(
+              Math.max(-1, Math.min(1, dx / SATURATION)),
+              Math.max(-1, Math.min(1, -dy / SATURATION)),   // 屏幕向上 = focusY 正（库约定）
+            );
           } catch { /* 模型销毁窗口期 */ }
         };
         window.addEventListener('pointermove', onPointerMove, { passive: true });
@@ -188,6 +197,10 @@ export const PetMascot: React.FC<PetMascotProps> = ({
           const dt = Math.min(t - last, 100);
           last = t;
           try {
+            // 以毫秒驱动焦点插值：库内部对 focusController.update 的调用
+            // 时间单位不符（实测 1.2s 仅走完 35% 路程），视线懒到跟不上鼠标；
+            // 每帧先行推进一次（剩余路程按满速逼近，~0.3s 内到位）
+            live2dModel.internalModel.focusController.update(dt);
             live2dModel.update(dt);
             if (!reducedMotion) {
               live2dModel.rotation = Math.sin(t / 1400) * 0.02;

@@ -24,6 +24,9 @@ import { AdminLayout } from './pages/admin/AdminLayout';
 import { Login } from './pages/admin/Login';
 import { Dashboard } from './pages/admin/Dashboard';
 import { ManagePosts } from './pages/admin/ManagePosts';
+import { ManageTutorials } from './pages/admin/ManageTutorials';
+import { ManageMedia } from './pages/admin/ManageMedia';
+import { Security } from './pages/admin/Security';
 import { EditPost } from './pages/admin/EditPost';
 import { ManageConfig } from './pages/admin/ManageConfig';
 
@@ -53,6 +56,9 @@ const AppContent = () => {
           <Route path="posts" element={<ManagePosts />} />
           <Route path="posts/edit/:id" element={<EditPost />} />
           <Route path="posts/new" element={<EditPost />} />
+          <Route path="tutorials" element={<ManageTutorials />} />
+          <Route path="media" element={<ManageMedia />} />
+          <Route path="security" element={<Security />} />
           <Route path="settings" element={<ManageConfig />} />
         </Route>
       </Routes>
