@@ -11,6 +11,8 @@ import { fetchProgress, markRead, markLab } from '../lib/progress';
 import { CheckCircle2, Circle } from 'lucide-react';
 import { LabPanel, type LabData } from '../components/LabPanel';
 import { CoverImage } from '../components/CoverImage';
+import { CommentSection } from '../components/CommentSection';
+import { ReadingProgress } from '../components/ReadingProgress';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -233,6 +235,8 @@ export const PostDetail: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col gap-8"
     >
+      {/* 顶部阅读进度条 */}
+      <ReadingProgress />
       <header className="flex flex-col gap-6 border-b border-border pb-8">
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-accent transition-colors w-fit">
           <ArrowLeft className="w-4 h-4" />
@@ -353,6 +357,9 @@ export const PostDetail: React.FC = () => {
           )}
         </div>
       )}
+
+      {/* 评论区（先发先显，后台可管理） */}
+      <CommentSection postId={post.id} />
 
       {isTutorial && (
         <>

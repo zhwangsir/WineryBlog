@@ -13,7 +13,7 @@
     "content": "# 欢迎来到 WineryBlog\n\n你好！欢迎来到我的个人博客！\n\n这是一个基于 React + Express + TypeScript 构建的现代化博客系统，参考了Firefly主题模板，\n\n## 关于这个博客\n\n这个博客主要用于：\n\n- 📝 记录学习笔记\n- 💻 分享技术文章\n- 🎮 分享游戏相关内容\n\n## 特色功能\n\n- ✨ 樱花飘落特效\n- 🎵 背景音乐播放器\n- 🔒 文章加密保护\n- 📱 响应式设计\n\n欢迎常来看看！",
     "isLocked": false,
     "password": "",
-    "views": 1376,
+    "views": 1377,
     "cover": "/images/scenery/904ec3e02f95ecf6.jpg"
   },
   {
@@ -431,7 +431,7 @@
     "content": "> 你已掌握 JS/TS 语法与框架使用（见站内 React/Vue/uni-app 教程），本篇补上\"工程化\"这层：真实项目如何组织、构建与上线。\n\n## 1. 为什么需要工程化\n\n裸写 HTML+JS 的问题：无法拆模块（全局变量污染）、无法用 npm 生态、TS/JSX 浏览器不认识、压缩合并全靠手。工程化 = 用工具链解决这四件事。\n\n## 2. npm：包管理\n\n```bash\nnpm init -y                 # 生成 package.json（项目身份证）\nnpm install react           # 装依赖 → node_modules/ + package-lock.json\nnpm install -D vite         # -D 开发依赖（只在构建时用）\nnpm run dev                 # 执行 package.json 里的脚本\n```\n\npackage.json 关键字段：\n\n```json\n{\n  \"dependencies\": { \"react\": \"^18.3.0\" },\n  \"devDependencies\": { \"vite\": \"^5.0.0\" },\n  \"scripts\": { \"dev\": \"vite\", \"build\": \"vite build\" }\n}\n```\n\n- `^18.3.0`：兼容版本范围；lock 文件锁定确切版本，**必须提交到 git**\n- 现代替代品：pnpm（更快、省磁盘）、bun、yarn——思想一致\n\n## 3. 模块化：ESM\n\n```js\n// utils.js\nexport function add(a, b) { return a + b; }\nexport default class Api { /* ... */ }\n\n// main.js\nimport Api, { add } from \"./utils.js\";\n```\n\nESM 是语言标准（`import/export`）；旧的 CommonJS（`require`）仍在 Node 老项目里常见。\n\n## 4. Vite：开发与构建\n\nVite（尤雨溪作品，Vue/React 官方脚手架底层）：\n\n```bash\nnpm create vite@latest my-app -- --template react   # 或 vue / vanilla-ts\ncd my-app && npm install && npm run dev\n```\n\n- **开发时**：原生 ESM 按需加载，启动秒开、热更新（HMR）毫秒级\n- **上线前**：`npm run build` → Rollup 打包 → tree-shaking 摇掉未用代码、压缩、哈希文件名 → `dist/`\n- **预览**：`npm run preview` 本地验证构建产物\n\n对比：Webpack（老牌、配置重）、Rollup（库打包）、esbuild（Go 写的极速压缩器）、Rspack/Turbopack（新世代）。选型建议：应用直接 Vite，别手配 Webpack。\n\n## 5. TypeScript 集成\n\nVite 模板选 `react-ts` 即自带 TS。关键配置在 `tsconfig.json`：\n\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"strict\": true,\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\n注意：TS **只做类型检查，不参与产物**——`vite build` 里 tsc 负责报错，esbuild 负责剥离类型。\n\n## 6. 部署上线\n\n静态产物 `dist/` 可以托管在任何静态服务器：\n\n- **免费托管**：Vercel / Netlify / Cloudflare Pages（连 Git 仓库自动部署）/ GitHub Pages\n- **自己的服务器**：`npm run build` 后把 dist 上传，Nginx 托管（站内《nginx配置》《Linux 服务器运维清单》正好用上）：\n\n```nginx\nserver {\n  listen 80;\n  root /var/www/myapp/dist;\n  location / { try_files $uri /index.html; }   # SPA 路由兜底\n}\n```\n\n## 7. 工程化进阶清单\n\n- **代码规范**：ESLint（错误）+ Prettier（格式）+ husky（提交前检查）\n- **环境变量**：`.env` 文件，Vite 里以 `VITE_` 前缀暴露给前端\n- **请求层**：Axios 封装 + 环境切换 API 地址（站内《Axios》）\n- **路由与状态**：React Router/Zustand、Vue Router/Pinia\n- **测试**：Vitest（单测）+ Playwright（E2E）\n- **包体积分析**：`rollup-plugin-visualizer`，首屏加载优化\n\n## 延伸阅读\n\n- Vite 官方指南（中文）\n- Full Stack Open：赫尔辛基大学全栈课，工程化实战最佳（csdiy Web开发方向首推）\n- MDN · 部署\n- 站内相关：《React 核心补充：Hooks 与状态管理》《Node.js 核心机制》《Linux 服务器运维清单》",
     "isLocked": false,
     "password": "",
-    "views": 0,
+    "views": 1,
     "_words": 1348,
     "_source": "参照 Vite 官方指南与 Full Stack Open 课程结构整理",
     "_shelfPath": "Web 前端/工程化",

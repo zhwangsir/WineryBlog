@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation, Navigate } from 'react-router-dom';
-import { LayoutDashboard, FileText, GraduationCap, ImageIcon, Settings, ShieldCheck, LogOut, Loader2, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, FileText, GraduationCap, ImageIcon, Settings, ShieldCheck, MessageSquare, LogOut, Loader2, ExternalLink } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { useAuth, useRequireAuth } from '../../context/AuthContext';
 
@@ -30,6 +30,7 @@ export const AdminLayout: React.FC = () => {
     { name: '图床', path: '/admin/media', icon: ImageIcon },
     { name: '站点设置', path: '/admin/settings', icon: Settings },
     { name: '安全与系统', path: '/admin/security', icon: ShieldCheck },
+    { name: '评论管理', path: '/admin/comments', icon: MessageSquare },
   ];
 
   return (

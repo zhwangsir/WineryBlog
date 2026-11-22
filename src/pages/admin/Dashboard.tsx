@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, GraduationCap, FlaskConical, Eye, Users, BookOpen, HardDrive, Image, Clock, Cpu, ShieldCheck, Plus, Download, RefreshCw, Loader2 } from 'lucide-react';
+import { FileText, GraduationCap, FlaskConical, Eye, Users, BookOpen, HardDrive, Image, Clock, Cpu, ShieldCheck, MessageSquare, Plus, Download, RefreshCw, Loader2 } from 'lucide-react';
 import { apiFetch } from '../../utils/api';
 import { useData } from '../../context/DataContext';
 
@@ -9,6 +9,7 @@ interface AdminStats {
   tutorials: { total: number; domains: number; domainsList: { id: string; name: string; count: number }[] };
   labs: { total: number };
   progress: { visitors: number; readEntries: number; labEntries: number };
+  comments?: { total: number; hidden: number };
   uploads: { count: number; bytes: number };
   wallpapers: { count: number; bytes: number };
   system: { uptimeSec: number; rssMB: number; node: string; platform: string };
@@ -105,8 +106,8 @@ export const Dashboard: React.FC = () => {
 
   const sysCards = stats ? [
     { label: '访客进度', value: `${stats.progress.visitors} 位`, sub: `${stats.progress.readEntries} 条已读 · ${stats.progress.labEntries} 次实验记录`, icon: Users },
-    { label: '媒体上传', value: `${stats.uploads.count} 个`, sub: fmtBytes(stats.uploads.bytes), icon: HardDrive },
-    { label: '图床', value: `${stats.wallpapers.count} 张`, sub: fmtBytes(stats.wallpapers.bytes), icon: Image },
+    { label: '评论', value: `${stats.comments?.total ?? 0} 条`, sub: `${stats.comments?.hidden ?? 0} 条已隐藏`, icon: MessageSquare },
+    { label: '图床', value: `${stats.wallpapers.count} 张`, sub: `${stats.uploads.count} 个上传媒体 · ${fmtBytes(stats.wallpapers.bytes)}`, icon: Image },
     { label: '服务运行', value: fmtUptime(stats.system.uptimeSec), sub: `Node ${stats.system.node} · 内存 ${stats.system.rssMB} MB`, icon: Clock },
   ] : [];
 

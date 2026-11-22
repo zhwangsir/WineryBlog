@@ -342,6 +342,133 @@ async function startServer() {
     }
   });
 
+  // ===== 评论系统：本地 JSON 存储，先发先显 + 后台可隐藏/删除 =====
+  const COMMENTS_FILE = path.join(DATA_DIR, "comments.json");
+  const readComments = async (): Promise<any> => {
+    try {
+      return JSON.parse(await fs.readFile(COMMENTS_FILE, "utf-8"));
+    } catch {
+      return { byPost: {}, rate: {} };
+    }
+  };
+
+  // 公开：文章评论列表（仅正常状态，倒序，不暴露 ip）
+  app.get("/api/posts/:id/comments", async (req, res) => {
+    try {
+      const data = await readComments();
+      const list = (data.byPost?.[req.params.id] || [])
+        .filter((c: any) => c.status !== "hidden")
+        .sort((a: any, b: any) => String(b.time).localeCompare(String(a.time)))
+        .map(({ ip, status, ...pub }: any) => pub);
+      res.json(list);
+    } catch {
+      res.status(500).json({ error: "Failed to read comments" });
+    }
+  });
+
+  // 公开：发表评论（昵称 1-20 字、内容 2-500 字、同 IP 60 秒限一条）
+  app.post("/api/posts/:id/comments", async (req, res) => {
+    try {
+      const nameS = String(req.body?.name || "").trim();
+      const contentS = String(req.body?.content || "").trim();
+      if (nameS.length < 1 || nameS.length > 20) {
+        res.status(400).json({ error: "昵称需 1-20 个字符" });
+        return;
+      }
+      if (contentS.length < 2 || contentS.length > 500) {
+        res.status(400).json({ error: "内容需 2-500 个字符" });
+        return;
+      }
+      const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket.remoteAddress || "?";
+      const data = await readComments();
+      const now = Date.now();
+      if (data.rate?.[ip] && now - data.rate[ip] < 60_000) {
+        res.status(429).json({ error: "评论太频繁啦，喝口水稍再来" });
+        return;
+      }
+      (data.rate ||= {})[ip] = now;
+      const comment = {
+        id: `${now.toString(36)}-${crypto.randomBytes(3).toString("hex")}`,
+        name: nameS,
+        content: contentS,
+        time: new Date().toISOString(),
+        status: "approved",
+        ip,
+      };
+      (data.byPost ||= {})[req.params.id] = (data.byPost[req.params.id] || []).concat(comment);
+      await fs.mkdir(DATA_DIR, { recursive: true });
+      await fs.writeFile(COMMENTS_FILE, JSON.stringify(data, null, 1));
+      const { ip: _ip, status: _status, ...pub } = comment;
+      res.json({ success: true, comment: pub });
+    } catch {
+      res.status(500).json({ error: "Failed to save comment" });
+    }
+  });
+
+  // 后台：全量评论（附文章标题，按时间倒序）
+  app.get("/api/admin/comments", authMiddleware, async (_req, res) => {
+    try {
+      const [cdata, postsData] = await Promise.all([
+        readComments(),
+        fs.readFile(POSTS_FILE, "utf-8").catch(() => "[]"),
+      ]);
+      const posts = JSON.parse(postsData);
+      const titleMap: Record<string, string> = {};
+      for (const p of posts) titleMap[p.id] = p.title;
+      const rows: any[] = [];
+      for (const [pid, list] of Object.entries(cdata.byPost || {}) as any[]) {
+        for (const c of list) {
+          rows.push({ ...c, postId: pid, postTitle: titleMap[pid] || pid });
+        }
+      }
+      rows.sort((a, b) => String(b.time).localeCompare(String(a.time)));
+      res.json({
+        rows,
+        total: rows.length,
+        hidden: rows.filter((r) => r.status === "hidden").length,
+      });
+    } catch {
+      res.status(500).json({ error: "Failed to read comments" });
+    }
+  });
+
+  // 后台：切换评论状态（approved / hidden）
+  app.put("/api/admin/comments/:postId/:commentId", authMiddleware, async (req, res) => {
+    try {
+      const status = req.body?.status === "hidden" ? "hidden" : "approved";
+      const data = await readComments();
+      const list = data.byPost?.[req.params.postId] || [];
+      const c = list.find((x: any) => x.id === req.params.commentId);
+      if (!c) {
+        res.status(404).json({ error: "Comment not found" });
+        return;
+      }
+      c.status = status;
+      await fs.writeFile(COMMENTS_FILE, JSON.stringify(data, null, 1));
+      res.json({ success: true, status });
+    } catch {
+      res.status(500).json({ error: "Failed to update comment" });
+    }
+  });
+
+  // 后台：删除评论
+  app.delete("/api/admin/comments/:postId/:commentId", authMiddleware, async (req, res) => {
+    try {
+      const data = await readComments();
+      const list = data.byPost?.[req.params.postId] || [];
+      const next = list.filter((x: any) => x.id !== req.params.commentId);
+      if (next.length === list.length) {
+        res.status(404).json({ error: "Comment not found" });
+        return;
+      }
+      data.byPost[req.params.postId] = next;
+      await fs.writeFile(COMMENTS_FILE, JSON.stringify(data, null, 1));
+      res.json({ success: true });
+    } catch {
+      res.status(500).json({ error: "Failed to delete comment" });
+    }
+  });
+
   // ===== Admin: 统计 / 安全 / 备份 / 门禁 / 图床 =====
 
   await fs.mkdir(path.join(GALLERY_DIR, "wallpaper"), { recursive: true });
@@ -639,6 +766,16 @@ async function startServer() {
         readEntries += Object.keys(v?.read || {}).length;
         labEntries += Object.keys(v?.lab || {}).length;
       }
+      // 评论统计
+      let commentTotal = 0;
+      let commentHidden = 0;
+      try {
+        const cdata = JSON.parse(await fs.readFile(path.join(DATA_DIR, "comments.json"), "utf-8"));
+        for (const list of Object.values(cdata.byPost || {}) as any[][]) {
+          commentTotal += list.length;
+          commentHidden += list.filter((c: any) => c.status === "hidden").length;
+        }
+      } catch { /* 无评论文件 */ }
 
       let uploadCount = 0;
       let uploadBytes = 0;
@@ -680,6 +817,7 @@ async function startServer() {
         },
         labs: { total: Object.keys(labs).length },
         progress: { visitors: Object.keys(progress).length, readEntries, labEntries },
+        comments: { total: commentTotal, hidden: commentHidden },
         uploads: { count: uploadCount, bytes: uploadBytes },
         wallpapers: { count: wallpaperCount, bytes: wallpaperBytes },
         system: {

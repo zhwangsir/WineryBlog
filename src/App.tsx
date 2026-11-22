@@ -27,6 +27,7 @@ import { ManagePosts } from './pages/admin/ManagePosts';
 import { ManageTutorials } from './pages/admin/ManageTutorials';
 import { ManageMedia } from './pages/admin/ManageMedia';
 import { Security } from './pages/admin/Security';
+import { ManageComments } from './pages/admin/ManageComments';
 import { EditPost } from './pages/admin/EditPost';
 import { ManageConfig } from './pages/admin/ManageConfig';
 
@@ -59,6 +60,7 @@ const AppContent = () => {
           <Route path="tutorials" element={<ManageTutorials />} />
           <Route path="media" element={<ManageMedia />} />
           <Route path="security" element={<Security />} />
+          <Route path="comments" element={<ManageComments />} />
           <Route path="settings" element={<ManageConfig />} />
         </Route>
       </Routes>

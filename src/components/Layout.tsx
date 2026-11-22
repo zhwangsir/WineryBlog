@@ -12,6 +12,7 @@ import { Mascot } from './Mascot';
 import { PetMascot } from './PetMascot';
 import { PetChatPanel } from './PetChatPanel';
 import { WallpaperBackground } from './WallpaperBackground';
+import { BackToTop } from './BackToTop';
 import { cn } from '../utils/cn';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -149,6 +150,7 @@ export const Layout: React.FC = () => {
 
       <Footer />
       <MusicPlayer />
+      <BackToTop />
     </div>
   );
 };
