@@ -7,7 +7,7 @@
     "title": "胡桃的胡是胡吃海喝的胡，胡桃的桃却不是淘气的淘",
     "subtitle": "逗留采血色，伴君眠花房。",
     "image": "",
-    "credit": "Pixiv - 水菜カステラ"
+    "credit": ""
   },
   "profile": {
     "avatar": "/images/HuTao/hutao68.png",
@@ -15,10 +15,10 @@
     "bio": "永远相信，美好的事情即将发生。"
   },
   "stats": {
-    "articles": 247,
+    "articles": 258,
     "categories": 23,
     "tags": 537,
-    "words": "29.8万字",
+    "words": "32.6万字",
     "runningDays": 0,
     "lastActivity": "刚刚"
   },
@@ -69,7 +69,7 @@
       "enabled": true,
       "model": "hutao",
       "voiceEnabled": false,
-      "size": 0.5,
+      "size": 1,
       "opacity": 1
     }
   },

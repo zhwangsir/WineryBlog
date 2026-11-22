@@ -156,8 +156,17 @@ export const PetMascot: React.FC<PetMascotProps> = ({
         (window as any).__petModel = live2dModel;   // 调试钩子：读取视线参数
 
         // 眼神跟随鼠标：全局监听（canvas 指针穿透不影响 window 级监听）
+        // focus() 期望画布世界坐标（库内 toModelPosition 换算到模型空间），
+        // 直接传 clientX/Y 会因画布不在视口 (0,0) 而方向错乱
         onPointerMove = (e: PointerEvent) => {
-          try { modelRef.current?.focus(e.clientX, e.clientY); } catch { /* 模型销毁窗口期 */ }
+          try {
+            const m = modelRef.current;
+            const view = appRef.current?.view as HTMLCanvasElement | undefined;
+            if (!m || !view) return;
+            const rect = view.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            m.focus(e.clientX - rect.left, e.clientY - rect.top);
+          } catch { /* 模型销毁窗口期 */ }
         };
         window.addEventListener('pointermove', onPointerMove, { passive: true });
 
