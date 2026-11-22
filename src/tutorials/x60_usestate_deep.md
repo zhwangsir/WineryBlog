@@ -204,4 +204,4 @@ React 的不可变模型换来**时间旅行调试、并发渲染安全**（一�
 
 - 站内：《React 核心补充：Hooks 与状态管理》《React 性能优化实战》（重渲染的度量与治理）、《useEffect 完全指南：依赖、清理与时机》
 - 站内参考资料：《React 官方：用 React 思考》（本地镜像 /post/ref-react-thinking）
-- react.dev 官方文档 State as a Snapshot / Queueing a Series of State Updates
+- 《React 官方文档 Learn》（[本地镜像](/post/ref-react-learn)）——State as a Snapshot 等

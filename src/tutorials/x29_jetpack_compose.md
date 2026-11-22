@@ -146,5 +146,5 @@ Compose 与 View 可以共存（`ComposeView` 嵌入、`AndroidView` 反向嵌�
 ## 延伸阅读
 
 - 站内相关：《Kotlin 快速上手》《Kotlin 协程与 Flow》《Android 四大组件与生命周期》
-- 官方 Compose 路径：developer.android.com/courses/jetpack-compose/course
+- 官方 Compose 学习路径（[本地镜像](/post/ref-android-compose-course)）
 - 《Jetpack Compose 从入门到实战》

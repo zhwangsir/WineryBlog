@@ -149,4 +149,4 @@ function updateEnemy(e, dt) {
 
 - 站内相关：《Unity 游戏开发入门：场景、组件与第一个游戏》《Three.js 与 Canvas 2d 入门》《图与遍历算法（BFS/DFS/拓扑）》
 - 《游戏设计艺术》（The Art of Game Design）——玩法设计圣经
-- gameprogrammingpatterns.com ——游戏编程模式（免费在线）
+- 《游戏编程模式》（[本地镜像](/post/ref-game-programming-patterns)）——免费在线全文

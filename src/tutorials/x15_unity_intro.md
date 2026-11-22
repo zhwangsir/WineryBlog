@@ -140,5 +140,5 @@ File → Build Settings → 选 **WebGL** → Build。产出网页版，部署�
 ## 延伸阅读
 
 - 站内相关：《游戏开发概论：循环、实体与玩法》《数据结构与算法入门》
-- Unity 官方 Learn 平台：learn.unity.com（免费路径 Ruby's Adventure）
+- Unity 官方 Learn 平台（[本地镜像](/post/ref-unity-learn)）——免费路径 Ruby's Adventure
 - 《Unity 游戏开发实战》

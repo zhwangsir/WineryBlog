@@ -165,4 +165,4 @@ awk '{print $9}' access.log | sort | uniq -c | sort -rn   # 状态码分布
 
 - 站内相关：《Linux 服务器运维清单：Nginx、防火墙与日常巡检》《HTTP/HTTPS 协议详解》《CDN 内容分发网络》
 - 《深入理解 Nginx》——模块与内核机制
-- nginx.org 官方文档（每个指令的语义都有精确说明）
+- 《Nginx 初学者指南》（[本地镜像](/post/ref-nginx-beginners-guide)）——每个指令语义精确说明

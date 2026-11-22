@@ -114,4 +114,4 @@ OAuth2 是**授权**框架（顺带解决登录）。四大角色：资源拥有
 
 - 站内相关：《Spring Boot 快速上手：从 Hello 到 CRUD》《Node.js 核心机制：事件循环、模块体系与工程实践》《Web 安全实战：XSS 与 SQL 注入基础》
 - 《OAuth2 in Action》
-- jwt.io 官网（解码器 + 调试工具）
+- 《JSON Web Token 介绍》（[本地镜像](/post/ref-jwt-io-introduction)）——含解码器与调试工具

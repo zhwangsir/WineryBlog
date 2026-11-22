@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T03:49:23.425Z",
+  "generatedAt": "2026-11-22T01:39:24.394Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -2093,7 +2093,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "高级",
-      "minutes": 10,
+      "minutes": 11,
       "tags": [
         "性能优化",
         "Core Web Vitals",

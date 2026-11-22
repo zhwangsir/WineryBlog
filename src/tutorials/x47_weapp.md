@@ -145,5 +145,5 @@ wx.cloud.callFunction({ name: 'pay', data: { orderId: 1 } })
 ## 延伸阅读
 
 - 站内相关：《React Native 入门：用 React 写原生 App》《Flutter 与 uni-app：跨端开发入门》《uni-app 项目实战与赛项》
-- 微信官方文档（developers.weixin.qq.com/miniprogram）——质量很高，以它为准
+- 《微信小程序开发文档》（[本地镜像](/post/ref-wechat-miniprogram-docs)）——质量很高，以它为准
 - 《微信小程序开发实战》

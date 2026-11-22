@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
+import compression from "compression";
 
 // JWT Secret (in production, use environment variable)
 const JWT_SECRET = "wineryblog-secret-key-2026";
@@ -60,6 +61,8 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // gzip：/api/posts 约 1.7MB → 传输约 400KB
+  app.use(compression());
   // Large limit: image uploads arrive as base64 JSON
   app.use(express.json({ limit: "20mb" }));
 

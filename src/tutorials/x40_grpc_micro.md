@@ -150,4 +150,4 @@ if st, ok := status.FromError(err); ok && st.Code() == codes.DeadlineExceeded { 
 
 - 站内相关：《消息队列入门：RabbitMQ 与 Kafka》《JWT 与 OAuth2：现代认证鉴权》《Spring Boot 快速上手：从 Hello 到 CRUD》
 - 《gRPC: Up and Running》
-- protobuf.dev 官方语言指南（风格规范 proto3-style）
+- 《Protobuf 语言指南 proto3》（[本地镜像](/post/ref-protobuf-proto3)）——含风格规范

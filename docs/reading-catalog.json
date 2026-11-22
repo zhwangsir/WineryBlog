@@ -91,6 +91,11 @@
    "line": "- 《游戏设计艺术》（The Art of Game Design）——玩法设计圣经"
   },
   {
+   "file": "x14_gamedev_overview.md",
+   "book": "游戏编程模式",
+   "line": "- 《游戏编程模式》（本地镜像 /post/ref-game-programming-patterns）——免费在线全文"
+  },
+  {
    "file": "x15_unity_intro.md",
    "book": "游戏开发概论：循环、实体与玩法",
    "line": "- 站内相关：《游戏开发概论：循环、实体与玩法》《数据结构与算法入门》"
@@ -184,6 +189,11 @@
    "file": "x24_jwt_oauth.md",
    "book": "OAuth2 in Action",
    "line": "- 《OAuth2 in Action》"
+  },
+  {
+   "file": "x24_jwt_oauth.md",
+   "book": "JSON Web Token 介绍",
+   "line": "- 《JSON Web Token 介绍》（本地镜像 /post/ref-jwt-io-introduction）——含解码器与调试工具"
   },
   {
    "file": "x25_message_queue.md",
@@ -311,6 +321,11 @@
    "line": "- 《Go 程序设计语言》（Go 圣经，Donovan & Kernighan）"
   },
   {
+   "file": "x36_go_intro.md",
+   "book": "Go by Example",
+   "line": "- 《Go by Example》（本地镜像 /post/ref-go-by-example）——按例子学标准库"
+  },
+  {
    "file": "x37_sliding_window.md",
    "book": "哈希与字符串算法：从 Map 到 KMP",
    "line": "- 站内相关：《哈希与字符串算法：从 Map 到 KMP》《排序与搜索算法全解》《回溯与剪枝：排列组合的系统化搜索》"
@@ -354,6 +369,11 @@
    "file": "x40_grpc_micro.md",
    "book": "gRPC: Up and Running",
    "line": "- 《gRPC: Up and Running》"
+  },
+  {
+   "file": "x40_grpc_micro.md",
+   "book": "Protobuf 语言指南 proto3",
+   "line": "- 《Protobuf 语言指南 proto3》（本地镜像 /post/ref-protobuf-proto3）——含风格规范"
   },
   {
    "file": "x41_game_audio.md",
@@ -416,9 +436,19 @@
    "line": "- 《深入理解 Nginx》——模块与内核机制"
   },
   {
+   "file": "x46_nginx_deep.md",
+   "book": "Nginx 初学者指南",
+   "line": "- 《Nginx 初学者指南》（本地镜像 /post/ref-nginx-beginners-guide）——每个指令语义精确说明"
+  },
+  {
    "file": "x47_weapp.md",
    "book": "React Native 入门：用 React 写原生 App",
    "line": "- 站内相关：《React Native 入门：用 React 写原生 App》《Flutter 与 uni-app：跨端开发入门》《uni-app 项目实战与"
+  },
+  {
+   "file": "x47_weapp.md",
+   "book": "微信小程序开发文档",
+   "line": "- 《微信小程序开发文档》（本地镜像 /post/ref-wechat-miniprogram-docs）——质量很高，以它为准"
   },
   {
    "file": "x47_weapp.md",
@@ -439,6 +469,11 @@
    "file": "x49_web_perf.md",
    "book": "浏览器渲染原理与事件循环",
    "line": "- 站内相关：《浏览器渲染原理与事件循环》《React 性能优化实战》《Nginx 深入：反向代理与负载均衡》"
+  },
+  {
+   "file": "x49_web_perf.md",
+   "book": "Web.dev Learn Performance",
+   "line": "- 《Web.dev Learn Performance》（本地镜像 /post/ref-webdev-learn-performance）——Core Web"
   },
   {
    "file": "x49_web_perf.md",
@@ -479,6 +514,11 @@
    "file": "x53_flutter_state.md",
    "book": "Flutter 入门：环境搭建与第一个应用",
    "line": "- 站内相关：《Flutter 入门：环境搭建与第一个应用》《Flutter 与 uni-app：跨端开发入门》《Jetpack Compose 入门：声明式 "
+  },
+  {
+   "file": "x53_flutter_state.md",
+   "book": "Riverpod 官方文档",
+   "line": "- 《Riverpod 官方文档》（本地镜像 /post/ref-riverpod-docs）——质量极高"
   },
   {
    "file": "x53_flutter_state.md",
@@ -564,6 +604,11 @@
    "file": "x60_usestate_deep.md",
    "book": "React 官方：用 React 思考",
    "line": "- 站内参考资料：《React 官方：用 React 思考》（本地镜像 /post/ref-react-thinking）"
+  },
+  {
+   "file": "x60_usestate_deep.md",
+   "book": "React 官方文档 Learn",
+   "line": "- 《React 官方文档 Learn》（本地镜像 /post/ref-react-learn）——State as a Snapshot 等"
   },
   {
    "file": "x61_useeffect_deep.md",
@@ -1068,39 +1113,9 @@
  ],
  "sites": [
   {
-   "file": "x14_gamedev_overview.md",
-   "host": "gameprogrammingpatterns.com",
-   "line": "- gameprogrammingpatterns.com ——游戏编程模式（免费在线）"
-  },
-  {
-   "file": "x15_unity_intro.md",
-   "host": "learn.unity.com",
-   "line": "- Unity 官方 Learn 平台：learn.unity.com（免费路径 Ruby's Adventure）"
-  },
-  {
    "file": "x21_graphics_basics.md",
    "host": "shadertoy.com",
    "line": "- Shadertoy.com ——片元着色器创意社区"
-  },
-  {
-   "file": "x24_jwt_oauth.md",
-   "host": "jwt.io",
-   "line": "- jwt.io 官网（解码器 + 调试工具）"
-  },
-  {
-   "file": "x29_jetpack_compose.md",
-   "host": "developer.android.com",
-   "line": "- 官方 Compose 路径：developer.android.com/courses/jetpack-compose/course"
-  },
-  {
-   "file": "x36_go_intro.md",
-   "host": "gobyexample.com",
-   "line": "- Go by Example（gobyexample.com）——按例子学标准库"
-  },
-  {
-   "file": "x40_grpc_micro.md",
-   "host": "protobuf.dev",
-   "line": "- protobuf.dev 官方语言指南（风格规范 proto3-style）"
   },
   {
    "file": "x44_tree_heap.md",
@@ -1108,34 +1123,9 @@
    "line": "- visualgo.net——树与堆的可视化动画（直观理解上浮下沉）"
   },
   {
-   "file": "x46_nginx_deep.md",
-   "host": "nginx.org",
-   "line": "- nginx.org 官方文档（每个指令的语义都有精确说明）"
-  },
-  {
-   "file": "x47_weapp.md",
-   "host": "developers.weixin.qq.com",
-   "line": "- 微信官方文档（developers.weixin.qq.com/miniprogram）——质量很高，以它为准"
-  },
-  {
-   "file": "x49_web_perf.md",
-   "host": "web.dev",
-   "line": "- web.dev（Google 官方性能文档，Core Web Vitals 出处）"
-  },
-  {
    "file": "x51_regex.md",
    "host": "regex101.com",
    "line": "- regex101.com / regexlearn.com（交互式学习）"
-  },
-  {
-   "file": "x53_flutter_state.md",
-   "host": "riverpod.dev",
-   "line": "- Riverpod 官方文档（riverpod.dev，质量极高）"
-  },
-  {
-   "file": "x60_usestate_deep.md",
-   "host": "react.dev",
-   "line": "- react.dev 官方文档 State as a Snapshot / Queueing a Series of State Updates"
   }
  ],
  "tools": [
@@ -1184,6 +1174,10 @@
    "line": "- [pyautogui 官方文档](/post/ref-pyautogui-readthedocs-io)"
   },
   {
+   "file": "x15_unity_intro.md",
+   "line": "- Unity 官方 Learn 平台（本地镜像 /post/ref-unity-learn）——免费路径 Ruby's Adventure"
+  },
+  {
    "file": "x16_prompt_engineering.md",
    "line": "- OpenAI Prompt Engineering Guide / Anthropic 文档（各家官方最佳实践）"
   },
@@ -1230,6 +1224,10 @@
   {
    "file": "x28_lora_finetune.md",
    "line": "- LLaMA-Factory 官方文档"
+  },
+  {
+   "file": "x29_jetpack_compose.md",
+   "line": "- 官方 Compose 学习路径（本地镜像 /post/ref-android-compose-course）"
   },
   {
    "file": "x30_react_native.md",
@@ -1336,19 +1334,8 @@
  "tutorials": [],
  "uncategorized": [],
  "uniqueHosts": [
-  "developer.android.com",
-  "developers.weixin.qq.com",
-  "gameprogrammingpatterns.com",
-  "gobyexample.com",
-  "jwt.io",
-  "learn.unity.com",
-  "nginx.org",
-  "protobuf.dev",
-  "react.dev",
   "regex101.com",
-  "riverpod.dev",
   "shadertoy.com",
-  "visualgo.net",
-  "web.dev"
+  "visualgo.net"
  ]
 }

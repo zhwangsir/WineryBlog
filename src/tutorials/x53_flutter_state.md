@@ -152,5 +152,5 @@ context.read<CartBloc>().add(CartItemAdded(product));
 ## 延伸阅读
 
 - 站内相关：《Flutter 入门：环境搭建与第一个应用》《Flutter 与 uni-app：跨端开发入门》《Jetpack Compose 入门：声明式 Android UI》
-- Riverpod 官方文档（riverpod.dev，质量极高）
+- 《Riverpod 官方文档》（[本地镜像](/post/ref-riverpod-docs)）——质量极高
 - 《Flutter 实战·第二版》（免费在线电子书）

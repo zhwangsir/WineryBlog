@@ -47,3 +47,16 @@
 - [x] ref-seeing-theory | Seeing Theory 概率可视化 | https://seeing-theory.brown.edu/
 - [x] ref-3b1b-linalg | 3Blue1Brown 线性代数本质 | https://www.3blue1brown.com/topics/linear-algebra
 - [x] ref-mit-ocw-6006 | MIT OCW 6.006 算法导论 | https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/
+
+## Batch 28 — 延伸阅读站点全覆盖（11 站）
+- [x] ref-game-programming-patterns | 游戏编程模式（免费在线全书） | https://gameprogrammingpatterns.com/
+- [x] ref-unity-learn | Unity 官方 Learn 平台 | https://learn.unity.com/
+- [x] ref-android-compose-course | Android 官方 Jetpack Compose 路径 | https://developer.android.com/courses/jetpack-compose/course
+- [x] ref-go-by-example | Go by Example | https://gobyexample.com/
+- [x] ref-jwt-io-introduction | JWT.io 介绍 | https://jwt.io/introduction
+- [x] ref-protobuf-proto3 | Protobuf proto3 语言指南 | https://protobuf.dev/programming-guides/proto3/
+- [x] ref-nginx-beginners-guide | Nginx 初学者指南 | https://nginx.org/en/docs/beginners_guide.html
+- [x] ref-wechat-miniprogram-docs | 微信小程序开发文档 | https://developers.weixin.qq.com/miniprogram/dev/framework/
+- [x] ref-webdev-learn-performance | web.dev Learn Performance | https://web.dev/learn/performance
+- [x] ref-riverpod-docs | Riverpod 官方文档 | https://riverpod.dev/docs/introduction/getting_started
+- [x] ref-react-learn | React 官方文档 Learn | https://react.dev/learn

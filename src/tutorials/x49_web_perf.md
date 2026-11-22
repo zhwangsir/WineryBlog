@@ -106,5 +106,5 @@ HTTP/2 下"合并文件/雪碧图"已过时——现在追求**多路复用下�
 ## 延伸阅读
 
 - 站内相关：《浏览器渲染原理与事件循环》《React 性能优化实战》《Nginx 深入：反向代理与负载均衡》
-- web.dev（Google 官方性能文档，Core Web Vitals 出处）
+- 《Web.dev Learn Performance》（[本地镜像](/post/ref-webdev-learn-performance)）——Core Web Vitals 出处
 - 《High Performance Browser Networking》——网络层原理（免费在线）

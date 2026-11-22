@@ -176,4 +176,4 @@ func makeSound(s Speaker) { fmt.Println(s.Speak()) }
 
 - 站内相关：《并发、并行与异步编程概念》《FastAPI：用 Python 写现代后端接口》《Docker 常用命令与 Compose 实战》
 - 《Go 程序设计语言》（Go 圣经，Donovan & Kernighan）
-- Go by Example（gobyexample.com）——按例子学标准库
+- 《Go by Example》（[本地镜像](/post/ref-go-by-example)）——按例子学标准库
