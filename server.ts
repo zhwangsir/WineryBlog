@@ -607,8 +607,27 @@ async function startServer() {
   let tutCache: { tutorials: any[]; domains: any[] } | null = null;
   async function loadTutCatalog() {
     if (!tutCache) {
-      try { tutCache = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8")); }
-      catch { tutCache = { tutorials: [], domains: [] }; }
+      try {
+        tutCache = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8"));
+      } catch { tutCache = { tutorials: [], domains: [] }; }
+      // 参考镜像并入检索池：馆员能推荐本地镜像（如 MDN 文档），保持零外跳
+      try {
+        const posts = JSON.parse(await fs.readFile(POSTS_FILE, "utf-8"));
+        const refs = (posts as any[])
+          .filter((p: any) => p.category === "参考资料")
+          .map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            summary: p.excerpt || "",
+            domain: "references",
+            difficulty: "参考",
+            category: "参考资料",
+            tags: p.tags || [],
+            minutes: 0,
+            href: `/post/${p.id}`,
+          }));
+        tutCache.tutorials = [...tutCache.tutorials, ...refs];
+      } catch { /* 镜像并入失败不阻塞 */ }
     }
     return tutCache;
   }
@@ -662,11 +681,11 @@ async function startServer() {
           if (ranked.length) {
             librarianSystem.push(
               "",
-              "馆内相关藏书（按与客官问题的相关度排序，均为真实存在的站内教程，推荐时可引用）：",
+              "馆内相关藏书（按与客官问题的相关度排序，均为真实存在的站内内容，推荐时可引用；标〔参考〕的是本地镜像页）：",
               ...ranked.map(({ t }) =>
-                `- 《${t.title}》〔${t.difficulty} · ${t.category} · 约${t.minutes} 分钟〕${t.summary}（站内路径 ${t.href}）`
+                `- 《${t.title}》〔${t.difficulty || "参考"} · ${t.category}${t.minutes ? ` · 约${t.minutes} 分钟` : ""}〕${t.summary}（站内路径 ${t.href}）`
               ),
-              "回答时优先基于以上真实教程作答/推荐；严禁虚构站内不存在的教程标题。"
+              "回答时优先基于以上真实站内内容作答/推荐；严禁虚构站内不存在的教程标题，也不要给站外链接。"
             );
           }
         }

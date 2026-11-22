@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, BookOpenCheck, Compass, ClipboardCheck, Hammer, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -138,7 +139,31 @@ export const TutorPanel: React.FC<TutorPanelProps> = ({ open, onClose, title, co
                     </div>
                   ) : (
                     <div className="max-w-[92%] px-4 py-3 rounded-2xl rounded-tl-sm bg-bg-base text-sm text-text-primary leading-relaxed prose prose-sm dark:prose-invert max-w-none prose-pre:bg-black/40">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                      {/* 铁律：AI 生成的外链一律降级为纯文本，站内路径升级为路由链接 */}
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ href, children }) => {
+                            const h = href || '';
+                            if (/^https?:\/\//i.test(h)) {
+                              return (
+                                <span
+                                  className="text-text-muted"
+                                  title="站内不提供外部链接"
+                                >
+                                  {children}
+                                </span>
+                              );
+                            }
+                            if (h.startsWith('/')) {
+                              return <Link to={h} className="text-accent hover:underline">{children}</Link>;
+                            }
+                            return <span>{children}</span>;
+                          },
+                        }}
+                      >
+                        {m.content}
+                      </ReactMarkdown>
                     </div>
                   )}
                 </div>
