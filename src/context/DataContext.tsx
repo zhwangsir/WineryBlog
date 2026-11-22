@@ -43,6 +43,7 @@ interface SiteConfig {
     sakuraDensity?: number;
     sakuraSpeed?: 'slow' | 'normal' | 'fast';
     mascotEnabled?: boolean;
+    wallpaperEnabled?: boolean;
   };
   music?: {
     enabled: boolean;

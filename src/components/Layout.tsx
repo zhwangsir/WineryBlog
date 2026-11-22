@@ -11,6 +11,7 @@ import { Sakura } from './Sakura';
 import { Mascot } from './Mascot';
 import { PetMascot } from './PetMascot';
 import { PetChatPanel } from './PetChatPanel';
+import { WallpaperBackground } from './WallpaperBackground';
 import { cn } from '../utils/cn';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -75,6 +76,11 @@ export const Layout: React.FC = () => {
     >
       {theme?.globalBackground && (
         <div className="fixed inset-0 bg-bg-base/80 backdrop-blur-[2px] z-[-1]" />
+      )}
+
+      {/* 随机壁纸背景：未配置自定义背景时启用（图片池本地化，自适应遮罩保文字可读） */}
+      {!theme?.globalBackground && theme?.wallpaperEnabled !== false && (
+        <WallpaperBackground />
       )}
 
       <Sakura 
