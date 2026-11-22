@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Route as RouteIcon, Flag, CheckCircle2, Clock, ArrowLeft, Sparkles, BookOpen } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { cn } from '../utils/cn';
+import { fetchProgress, markRead } from '../lib/progress';
 
 interface Tutorial {
   id: string; title: string; summary: string; domain: string;
@@ -27,16 +28,16 @@ export const CareerRoute: React.FC = () => {
   const { career } = useParams();
   const [data, setData] = useState<{ c: Career; tuts: Tutorial[] } | null>(null);
   const [notFound, setNotFound] = useState(false);
-  // learning progress persists across visits, keyed per career route
-  const [done, setDone] = useState<Record<string, boolean>>(() => {
-    try {
-      return JSON.parse(localStorage.getItem(`route-progress:${career}`) || '{}');
-    } catch { return {}; }
-  });
+  // learning progress: server-side, unified with tutorial page 已学 marks
+  const [done, setDone] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    localStorage.setItem(`route-progress:${career}`, JSON.stringify(done));
-  }, [done, career]);
+    fetchProgress().then(p => {
+      const d: Record<string, boolean> = {};
+      for (const k of Object.keys(p.read)) d[k] = true;
+      setDone(d);
+    }).catch(() => {});
+  }, [career]);
 
   useEffect(() => {
     Promise.all([
@@ -131,7 +132,11 @@ export const CareerRoute: React.FC = () => {
                       <div key={ii} className="group bg-bg-card border border-border/60 rounded-xl p-4 hover:border-accent/50 transition-all">
                         <div className="flex items-start gap-3">
                           <button
-                            onClick={() => setDone(prev => ({ ...prev, [t.id]: !prev[t.id] }))}
+                            onClick={async () => {
+                              const next = !done[t.id];
+                              setDone(prev => ({ ...prev, [t.id]: next }));
+                              await markRead(t.id, next);
+                            }}
                             className={cn(
                               'mt-0.5 shrink-0 flex items-center justify-center w-5 h-5 rounded-md border-2 transition-colors',
                               done[t.id] ? 'bg-accent border-accent text-white' : 'border-border hover:border-accent'

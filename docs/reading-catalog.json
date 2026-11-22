@@ -1,0 +1,1354 @@
+{
+ "books": [
+  {
+   "file": "x01_java_syntax.md",
+   "book": "Java 核心进阶：集合框架与并发编程入门",
+   "line": "- 站内相关：《Java 核心进阶：集合框架与并发编程入门》《Spring Boot 快速上手》"
+  },
+  {
+   "file": "x02_java_oop.md",
+   "book": "Head First Java",
+   "line": "- 《Head First Java》——入门最佳"
+  },
+  {
+   "file": "x03_java_arrays.md",
+   "book": "JAVA 程序基础",
+   "line": "- 站内相关：《JAVA 程序基础》《面向对象编程》《算法入门》"
+  },
+  {
+   "file": "x04_graph_algorithms.md",
+   "book": "数据结构与算法入门",
+   "line": "- 站内相关：《数据结构与算法入门》《排序与搜索算法全解》"
+  },
+  {
+   "file": "x06_ip_subnet.md",
+   "book": "网络基础：IP 地址与访问流程",
+   "line": "- 站内相关：《网络基础：IP 地址与访问流程》《NAT 网络地址转换》"
+  },
+  {
+   "file": "x07_dns_flow.md",
+   "book": "网络基础：IP 地址与访问流程",
+   "line": "- 站内相关：《网络基础：IP 地址与访问流程》《HTTP/HTTPS 协议详解》《NAT 网络地址转换》《主机名与 hosts 解析配置》"
+  },
+  {
+   "file": "x08_os_concepts.md",
+   "book": "Linux 入门与文件系统",
+   "line": "- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 进阶》"
+  },
+  {
+   "file": "x08_os_concepts.md",
+   "book": "深入理解计算机系统（CSAPP）",
+   "line": "- 《深入理解计算机系统（CSAPP）》第 8-9 章——进程与虚拟内存"
+  },
+  {
+   "file": "x09_grep_awk.md",
+   "book": "Linux 入门与文件系统",
+   "line": "- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 进阶》《Linux 服务器运维清单》"
+  },
+  {
+   "file": "x10_shell_script.md",
+   "book": "Linux 入门与文件系统",
+   "line": "- 站内相关：《Linux 入门与文件系统》《Linux 常用命令与文本处理》《Linux 服务器运维清单》"
+  },
+  {
+   "file": "x11_kotlin_coroutines.md",
+   "book": "2.Kotlin 必知必会",
+   "line": "- 站内相关：《2.Kotlin 必知必会》《Android 四大组件与生命周期》《OkHttp 使用指南》"
+  },
+  {
+   "file": "x11_sql_advanced.md",
+   "book": "数据库系统导论",
+   "line": "- 站内相关：《数据库系统导论》《SQL 快速入门》《SQL 进阶：JOIN、聚合与索引》《Redis 入门》"
+  },
+  {
+   "file": "x11_sql_advanced.md",
+   "book": "高性能 MySQL",
+   "line": "- 《高性能 MySQL》——进阶必读"
+  },
+  {
+   "file": "x12_python_automation.md",
+   "book": "Python 基础入门",
+   "line": "- 站内相关：《Python 基础入门》《gui 自动化操作》《Web 安全学习路线总纲》"
+  },
+  {
+   "file": "x13_software_testing.md",
+   "book": "Python 自动化：Selenium 与 pyautogui",
+   "line": "- 站内相关：《Python 自动化：Selenium 与 pyautogui》《SQL 快速入门》《HTTP/HTTPS 协议详解》"
+  },
+  {
+   "file": "x13_software_testing.md",
+   "book": "Google 软件测试之道",
+   "line": "- 《Google 软件测试之道》——测试金字塔的出处"
+  },
+  {
+   "file": "x14_gamedev_overview.md",
+   "book": "Unity 游戏开发入门：场景、组件与第一个游戏",
+   "line": "- 站内相关：《Unity 游戏开发入门：场景、组件与第一个游戏》《Three.js 与 Canvas 2d 入门》《图与遍历算法（BFS/DFS/拓扑）》"
+  },
+  {
+   "file": "x14_gamedev_overview.md",
+   "book": "游戏设计艺术",
+   "line": "- 《游戏设计艺术》（The Art of Game Design）——玩法设计圣经"
+  },
+  {
+   "file": "x15_unity_intro.md",
+   "book": "游戏开发概论：循环、实体与玩法",
+   "line": "- 站内相关：《游戏开发概论：循环、实体与玩法》《数据结构与算法入门》"
+  },
+  {
+   "file": "x15_unity_intro.md",
+   "book": "Unity 游戏开发实战",
+   "line": "- 《Unity 游戏开发实战》"
+  },
+  {
+   "file": "x16_prompt_engineering.md",
+   "book": "大语言模型自学路线",
+   "line": "- 站内相关：《大语言模型自学路线》《本地知识库与 RAG 实战》《深度学习与 PyTorch 入门》"
+  },
+  {
+   "file": "x17_transformer.md",
+   "book": "深度学习与 PyTorch 入门",
+   "line": "- 站内相关：《深度学习与 PyTorch 入门》《大语言模型自学路线》《本地大模型部署实战：Ollama 与 SGLang》"
+  },
+  {
+   "file": "x17_transformer.md",
+   "book": "Attention Is All You Need",
+   "line": "- 《Attention Is All You Need》原始论文"
+  },
+  {
+   "file": "x18_css_grid.md",
+   "book": "CSS 基础与弹性布局",
+   "line": "- 站内相关：《CSS 基础与弹性布局》《前端工程化入门：npm、Vite 与构建部署》"
+  },
+  {
+   "file": "x19_redis_practice.md",
+   "book": "Redis 入门",
+   "line": "- 站内相关：《Redis 入门》《事务与隔离级别》《MySQL 入门：从建库到查询》"
+  },
+  {
+   "file": "x19_redis_practice.md",
+   "book": "Redis 设计与实现",
+   "line": "- 《Redis 设计与实现》——数据结构内部实现"
+  },
+  {
+   "file": "x20_assembly.md",
+   "book": "计算机组成：硬件架构与各种处理单元",
+   "line": "- 站内相关：《计算机组成：硬件架构与各种处理单元》《操作系统核心概念》《文件上传漏洞原理、利用与防御》"
+  },
+  {
+   "file": "x20_assembly.md",
+   "book": "CSAPP 深入理解计算机系统",
+   "line": "- 《CSAPP 深入理解计算机系统》第 3 章——机器级程序"
+  },
+  {
+   "file": "x21_graphics_basics.md",
+   "book": "Three.js 与 Canvas 2d 入门",
+   "line": "- 站内相关：《Three.js 与 Canvas 2d 入门》《游戏开发概论：循环、实体与玩法》《Unity 2D 平台跳跃实战》"
+  },
+  {
+   "file": "x21_graphics_basics.md",
+   "book": "Real-Time Rendering",
+   "line": "- 《Real-Time Rendering》——渲染管线圣经"
+  },
+  {
+   "file": "x22_game_physics.md",
+   "book": "游戏开发概论：循环、实体与玩法",
+   "line": "- 站内相关：《游戏开发概论：循环、实体与玩法》《Unity 2D 平台跳跃实战》《图形学基础入门：从像素到管线》"
+  },
+  {
+   "file": "x22_game_physics.md",
+   "book": "Game Physics Engine Design",
+   "line": "- 《Game Physics Engine Design》——物理引擎架构"
+  },
+  {
+   "file": "x22_game_physics.md",
+   "book": "The Nature of Code",
+   "line": "- 《The Nature of Code》——用 p5.js 讲物理模拟（免费在线）"
+  },
+  {
+   "file": "x23_unity_platformer.md",
+   "book": "Unity 游戏开发入门：场景、组件与第一个游戏",
+   "line": "- 站内相关：《Unity 游戏开发入门：场景、组件与第一个游戏》《游戏物理入门：碰撞、重力与轨迹》《游戏开发概论：循环、实体与玩法》"
+  },
+  {
+   "file": "x23_unity_platformer.md",
+   "book": "蔚蓝",
+   "line": "- 《蔚蓝》（Celeste）开发者 GDC 演讲——手感设计的巅峰案例"
+  },
+  {
+   "file": "x24_jwt_oauth.md",
+   "book": "Spring Boot 快速上手：从 Hello 到 CRUD",
+   "line": "- 站内相关：《Spring Boot 快速上手：从 Hello 到 CRUD》《Node.js 核心机制：事件循环、模块体系与工程实践》《Web 安全实战：X"
+  },
+  {
+   "file": "x24_jwt_oauth.md",
+   "book": "OAuth2 in Action",
+   "line": "- 《OAuth2 in Action》"
+  },
+  {
+   "file": "x25_message_queue.md",
+   "book": "Spring Boot 快速上手：从 Hello 到 CRUD",
+   "line": "- 站内相关：《Spring Boot 快速上手：从 Hello 到 CRUD》《FastAPI：用 Python 写现代后端接口》《HDFS 读写流程详解》"
+  },
+  {
+   "file": "x25_message_queue.md",
+   "book": "Kafka 权威指南",
+   "line": "- 《Kafka 权威指南》"
+  },
+  {
+   "file": "x26_mongodb.md",
+   "book": "SQL 快速入门",
+   "line": "- 站内相关：《SQL 快速入门》《数据库系统导论》《Redis 入门》"
+  },
+  {
+   "file": "x26_mongodb.md",
+   "book": "MongoDB 实战（第 2 版）",
+   "line": "- 《MongoDB 实战（第 2 版）》"
+  },
+  {
+   "file": "x27_vector_db.md",
+   "book": "本地知识库与 RAG 实战",
+   "line": "- 站内相关：《本地知识库与 RAG 实战》《大语言模型自学路线》《LoRA 微调入门：让开源模型学会你的领域》"
+  },
+  {
+   "file": "x27_vector_db.md",
+   "book": "向量数据库实战",
+   "line": "- 《向量数据库实战》专栏 / Milvus 官方文档"
+  },
+  {
+   "file": "x28_lora_finetune.md",
+   "book": "本地大模型部署实战：Ollama 与 SGLang",
+   "line": "- 站内相关：《本地大模型部署实战：Ollama 与 SGLang》《向量数据库实战：语义检索的基石》《大语言模型自学路线》"
+  },
+  {
+   "file": "x29_jetpack_compose.md",
+   "book": "Kotlin 快速上手",
+   "line": "- 站内相关：《Kotlin 快速上手》《Kotlin 协程与 Flow》《Android 四大组件与生命周期》"
+  },
+  {
+   "file": "x29_jetpack_compose.md",
+   "book": "Jetpack Compose 从入门到实战",
+   "line": "- 《Jetpack Compose 从入门到实战》"
+  },
+  {
+   "file": "x30_react_native.md",
+   "book": "React 核心补充：Hooks 与状态管理",
+   "line": "- 站内相关：《React 核心补充：Hooks 与状态管理》《Flutter 入门：环境搭建与第一个应用》《Flutter 与 uni-app：跨端开发入门》"
+  },
+  {
+   "file": "x30_react_native.md",
+   "book": "React Native 移动开发实战",
+   "line": "- 《React Native 移动开发实战》"
+  },
+  {
+   "file": "x31_hash_string.md",
+   "book": "排序与搜索算法全解",
+   "line": "- 站内相关：《排序与搜索算法全解》《数据结构与算法入门》《动态规划入门：从递推到刷题套路》"
+  },
+  {
+   "file": "x31_hash_string.md",
+   "book": "算法（第 4 版）",
+   "line": "- 《算法（第 4 版）》第 3、5 章——哈希与字符串"
+  },
+  {
+   "file": "x32_cocos_creator.md",
+   "book": "Unity 游戏开发入门：场景、组件与第一个游戏",
+   "line": "- 站内相关：《Unity 游戏开发入门：场景、组件与第一个游戏》《游戏开发概论：循环、实体与玩法》《WebSocket 即时通讯》"
+  },
+  {
+   "file": "x32_cocos_creator.md",
+   "book": "Cocos Creator 游戏开发实战",
+   "line": "- 《Cocos Creator 游戏开发实战》"
+  },
+  {
+   "file": "x33_mysql_index.md",
+   "book": "事务与隔离级别",
+   "line": "- 站内相关：《事务与隔离级别》《数据库系统导论》《SQL 快速入门》"
+  },
+  {
+   "file": "x33_mysql_index.md",
+   "book": "高性能 MySQL（第 4 版）",
+   "line": "- 《高性能 MySQL（第 4 版）》——必读"
+  },
+  {
+   "file": "x33_mysql_index.md",
+   "book": "Java 开发手册",
+   "line": "- 阿里巴巴《Java 开发手册》MySQL 索引规约"
+  },
+  {
+   "file": "x34_backtracking.md",
+   "book": "图与遍历算法（BFS/DFS/拓扑）",
+   "line": "- 站内相关：《图与遍历算法（BFS/DFS/拓扑）》《动态规划入门：从递推到刷题套路》《哈希与字符串算法：从 Map 到 KMP》"
+  },
+  {
+   "file": "x34_backtracking.md",
+   "book": "算法（第 4 版）",
+   "line": "- 《算法（第 4 版）》2.x 回溯章节"
+  },
+  {
+   "file": "x35_compiler_intro.md",
+   "book": "汇编语言入门：CPU 在想什么",
+   "line": "- 站内相关：《汇编语言入门：CPU 在想什么》《计算机组成：硬件架构与各种处理单元》《操作系统核心概念》"
+  },
+  {
+   "file": "x35_compiler_intro.md",
+   "book": " Crafting Interpreters",
+   "line": "- 《 Crafting Interpreters》（craftinginterpreters.com 免费在线）——手把手写两个完整解释器，强烈推荐"
+  },
+  {
+   "file": "x35_compiler_intro.md",
+   "book": "编译原理",
+   "line": "- 《编译原理》（龙书）——理论圣经，配合实践食用"
+  },
+  {
+   "file": "x36_go_intro.md",
+   "book": "并发、并行与异步编程概念",
+   "line": "- 站内相关：《并发、并行与异步编程概念》《FastAPI：用 Python 写现代后端接口》《Docker 常用命令与 Compose 实战》"
+  },
+  {
+   "file": "x36_go_intro.md",
+   "book": "Go 程序设计语言",
+   "line": "- 《Go 程序设计语言》（Go 圣经，Donovan & Kernighan）"
+  },
+  {
+   "file": "x37_sliding_window.md",
+   "book": "哈希与字符串算法：从 Map 到 KMP",
+   "line": "- 站内相关：《哈希与字符串算法：从 Map 到 KMP》《排序与搜索算法全解》《回溯与剪枝：排列组合的系统化搜索》"
+  },
+  {
+   "file": "x37_sliding_window.md",
+   "book": "算法（第 4 版）",
+   "line": "- 《算法（第 4 版）》——双指针与排序章节"
+  },
+  {
+   "file": "x38_unity_animator.md",
+   "book": "Unity 2D 平台跳跃实战",
+   "line": "- 站内相关：《Unity 2D 平台跳跃实战》《Unity 游戏开发入门：场景、组件与第一个游戏》《游戏物理入门：碰撞、重力与轨迹》"
+  },
+  {
+   "file": "x38_unity_animator.md",
+   "book": "Animation Bootcamp",
+   "line": "- GDC 演讲《Animation Bootcamp》系列——状态机之外：程序化动画思想"
+  },
+  {
+   "file": "x39_ai_agent.md",
+   "book": "本地知识库与 RAG 实战",
+   "line": "- 站内相关：《本地知识库与 RAG 实战》《Prompt 工程入门：与大模型高效协作的方法》《本地大模型部署实战：Ollama 与 SGLang》"
+  },
+  {
+   "file": "x39_ai_agent.md",
+   "book": "AI Engineering",
+   "line": "- 《AI Engineering》（Chip Huyen，2025）——Agent 设计章节"
+  },
+  {
+   "file": "x39_ai_agent.md",
+   "book": "Building effective agents",
+   "line": "- Anthropic《Building effective agents》——少抽象、多循环的工程哲学"
+  },
+  {
+   "file": "x40_grpc_micro.md",
+   "book": "消息队列入门：RabbitMQ 与 Kafka",
+   "line": "- 站内相关：《消息队列入门：RabbitMQ 与 Kafka》《JWT 与 OAuth2：现代认证鉴权》《Spring Boot 快速上手：从 Hello 到"
+  },
+  {
+   "file": "x40_grpc_micro.md",
+   "book": "gRPC: Up and Running",
+   "line": "- 《gRPC: Up and Running》"
+  },
+  {
+   "file": "x41_game_audio.md",
+   "book": "Unity 2D 平台跳跃实战",
+   "line": "- 站内相关：《Unity 2D 平台跳跃实战》《游戏开发概论：循环、实体与玩法》《图形学基础入门：从像素到管线》"
+  },
+  {
+   "file": "x41_game_audio.md",
+   "book": "Game Sound Design",
+   "line": "- 《Game Sound Design》/ GameSoundDesign.com"
+  },
+  {
+   "file": "x42_swiftui.md",
+   "book": "Jetpack Compose 入门：声明式 Android UI",
+   "line": "- 站内相关：《Jetpack Compose 入门：声明式 Android UI》《React Native 入门：用 React 写原生 App》《移动与跨"
+  },
+  {
+   "file": "x43_react_perf.md",
+   "book": "React 核心补充：Hooks 与状态管理",
+   "line": "- 站内相关：《React 核心补充：Hooks 与状态管理》《Web 性能优化实战》《浏览器渲染原理与事件循环》"
+  },
+  {
+   "file": "x43_react_perf.md",
+   "book": "Rendering List",
+   "line": "- react.dev 官方文档《Rendering List》《Escape Hatches》章节"
+  },
+  {
+   "file": "x43_react_perf.md",
+   "book": "高性能 React",
+   "line": "- 《高性能 React》（第 2 版）"
+  },
+  {
+   "file": "x44_tree_heap.md",
+   "book": "排序与搜索算法全解",
+   "line": "- 站内相关：《排序与搜索算法全解》《数据结构与算法入门》《滑动窗口与双指针：线性时间的子串艺术》"
+  },
+  {
+   "file": "x44_tree_heap.md",
+   "book": "算法（第 4 版）",
+   "line": "- 《算法（第 4 版）》3.4 堆与优先队列"
+  },
+  {
+   "file": "x45_redis_ha.md",
+   "book": "Redis 实战：缓存三大问题与数据结构选型",
+   "line": "- 站内相关：《Redis 实战：缓存三大问题与数据结构选型》《Redis 入门》《Linux 服务器运维清单：Nginx、防火墙与日常巡检》"
+  },
+  {
+   "file": "x45_redis_ha.md",
+   "book": "Redis 设计与实现",
+   "line": "- 《Redis 设计与实现》——复制与哨兵内部机制"
+  },
+  {
+   "file": "x46_nginx_deep.md",
+   "book": "Linux 服务器运维清单：Nginx、防火墙与日常巡检",
+   "line": "- 站内相关：《Linux 服务器运维清单：Nginx、防火墙与日常巡检》《HTTP/HTTPS 协议详解》《CDN 内容分发网络》"
+  },
+  {
+   "file": "x46_nginx_deep.md",
+   "book": "深入理解 Nginx",
+   "line": "- 《深入理解 Nginx》——模块与内核机制"
+  },
+  {
+   "file": "x47_weapp.md",
+   "book": "React Native 入门：用 React 写原生 App",
+   "line": "- 站内相关：《React Native 入门：用 React 写原生 App》《Flutter 与 uni-app：跨端开发入门》《uni-app 项目实战与"
+  },
+  {
+   "file": "x47_weapp.md",
+   "book": "微信小程序开发实战",
+   "line": "- 《微信小程序开发实战》"
+  },
+  {
+   "file": "x48_nlp_intro.md",
+   "book": "Transformer 原理：从注意力到 GPT",
+   "line": "- 站内相关：《Transformer 原理：从注意力到 GPT》《Prompt 工程入门：与大模型高效协作的方法》《本地知识库与 RAG 实战》"
+  },
+  {
+   "file": "x48_nlp_intro.md",
+   "book": "Speech and Language Processing",
+   "line": "- 《Speech and Language Processing》（Jurafsky & Martin，免费在线）——NLP 圣经"
+  },
+  {
+   "file": "x49_web_perf.md",
+   "book": "浏览器渲染原理与事件循环",
+   "line": "- 站内相关：《浏览器渲染原理与事件循环》《React 性能优化实战》《Nginx 深入：反向代理与负载均衡》"
+  },
+  {
+   "file": "x49_web_perf.md",
+   "book": "High Performance Browser Networking",
+   "line": "- 《High Performance Browser Networking》——网络层原理（免费在线）"
+  },
+  {
+   "file": "x50_cv_intro.md",
+   "book": "深度学习与 PyTorch 入门",
+   "line": "- 站内相关：《深度学习与 PyTorch 入门》《特征工程与模型评估》《Transformer 原理：从注意力到 GPT》"
+  },
+  {
+   "file": "x50_cv_intro.md",
+   "book": "CS231n",
+   "line": "- 《CS231n》（斯坦福公开课，CV 最佳入门）"
+  },
+  {
+   "file": "x51_regex.md",
+   "book": "Linux 文本三剑客：grep/sed/awk",
+   "line": "- 站内相关：《Linux 文本三剑客：grep/sed/awk》《信息检索：搜索引擎的正确用法》《Git 安装与基础配置》"
+  },
+  {
+   "file": "x51_regex.md",
+   "book": "精通正则表达式（第 3 版）",
+   "line": "- 《精通正则表达式（第 3 版）》——回溯原理讲得最深"
+  },
+  {
+   "file": "x52_git_advanced.md",
+   "book": "Git 分支、合并与团队协作工作流",
+   "line": "- 站内相关：《Git 分支、合并与团队协作工作流》《Gitee 与远程仓库协作》《Git 安装与基础配置》"
+  },
+  {
+   "file": "x52_git_advanced.md",
+   "book": "Pro Git",
+   "line": "- 《Pro Git》（git-scm.com/book 免费中文版）——第 7 章讲透 rebase/reflog"
+  },
+  {
+   "file": "x53_flutter_state.md",
+   "book": "Flutter 入门：环境搭建与第一个应用",
+   "line": "- 站内相关：《Flutter 入门：环境搭建与第一个应用》《Flutter 与 uni-app：跨端开发入门》《Jetpack Compose 入门：声明式 "
+  },
+  {
+   "file": "x53_flutter_state.md",
+   "book": "Flutter 实战·第二版",
+   "line": "- 《Flutter 实战·第二版》（免费在线电子书）"
+  },
+  {
+   "file": "x54_flex_container.md",
+   "book": "Flexbox 子项属性详解",
+   "line": "- 站内相关：《Flexbox 子项属性详解》（姊妹篇：grow/shrink/basis 三兄弟）、《CSS Grid 容器全属性指南》《CSS 基础与弹性布"
+  },
+  {
+   "file": "x54_flex_container.md",
+   "book": "MDN Flexbox 基本概念",
+   "line": "- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-mdn-flex）"
+  },
+  {
+   "file": "x55_flex_items.md",
+   "book": "Flexbox 容器属性逐个击破",
+   "line": "- 站内相关：《Flexbox 容器属性逐个击破》《CSS Grid 容器全属性指南》《CSS 基础与弹性布局》"
+  },
+  {
+   "file": "x55_flex_items.md",
+   "book": "MDN Flexbox 基本概念",
+   "line": "- 站内参考资料：《MDN Flexbox 基本概念》（本地镜像 /post/ref-mdn-flex）"
+  },
+  {
+   "file": "x56_grid_container.md",
+   "book": "Flexbox 容器属性逐个击破",
+   "line": "- 站内相关：《Flexbox 容器属性逐个击破》《Flexbox 子项属性详解》《CSS Grid 与响应式布局》（上一代的总览篇）"
+  },
+  {
+   "file": "x56_grid_container.md",
+   "book": "MDN Grid 布局核心概念",
+   "line": "- 站内参考资料：《MDN Grid 布局核心概念》（本地镜像 /post/ref-mdn-grid）"
+  },
+  {
+   "file": "x57_promise_impl.md",
+   "book": "事件循环深度剖析：宏任务微任务与调度",
+   "line": "- 站内：《事件循环深度剖析：宏任务微任务与调度》（姊妹篇：Promise 回调跑在哪个队列）、《async/await 原理：生成器与协程》（await 就是"
+  },
+  {
+   "file": "x57_promise_impl.md",
+   "book": "MDN 并发模型与事件循环",
+   "line": "- 站内参考资料：《MDN 并发模型与事件循环》（本地镜像 /post/ref-mdn-eventloop）"
+  },
+  {
+   "file": "x57_promise_impl.md",
+   "book": "JavaScript 高级程序设计（第 4 版）",
+   "line": "- 《JavaScript 高级程序设计（第 4 版）》第 11 章——Promise 与异步的完整脉络"
+  },
+  {
+   "file": "x58_event_loop.md",
+   "book": "手写 Promise：从规范到实现",
+   "line": "- 站内：《手写 Promise：从规范到实现》（then 回调为什么进微任务）、《async/await 原理：生成器与协程》、《浏览器渲染原理与事件循环》（"
+  },
+  {
+   "file": "x58_event_loop.md",
+   "book": "MDN 并发模型与事件循环",
+   "line": "- 站内参考资料：《MDN 并发模型与事件循环》（本地镜像 /post/ref-mdn-eventloop）"
+  },
+  {
+   "file": "x59_async_await.md",
+   "book": "手写 Promise：从规范到实现",
+   "line": "- 站内：《手写 Promise：从规范到实现》《事件循环深度剖析：宏任务微任务与调度》《JavaScript 异步编程全解：事件循环、Promise 与 as"
+  },
+  {
+   "file": "x59_async_await.md",
+   "book": "MDN 并发模型与事件循环",
+   "line": "- 站内参考资料：《MDN 并发模型与事件循环》（本地镜像 /post/ref-mdn-eventloop）"
+  },
+  {
+   "file": "x59_async_await.md",
+   "book": "深入理解 ES6",
+   "line": "- 《深入理解 ES6》（Nicholas Zakas）第 8 章——生成器与 Promise"
+  },
+  {
+   "file": "x60_usestate_deep.md",
+   "book": "React 核心补充：Hooks 与状态管理",
+   "line": "- 站内：《React 核心补充：Hooks 与状态管理》《React 性能优化实战》（重渲染的度量与治理）、《useEffect 完全指南：依赖、清理与时机》"
+  },
+  {
+   "file": "x60_usestate_deep.md",
+   "book": "React 官方：用 React 思考",
+   "line": "- 站内参考资料：《React 官方：用 React 思考》（本地镜像 /post/ref-react-thinking）"
+  },
+  {
+   "file": "x61_useeffect_deep.md",
+   "book": "useState 深度剖析：闭包陷阱与批处理",
+   "line": "- 站内：《useState 深度剖析：闭包陷阱与批处理》（姊妹篇）、《React Fiber 架构：可中断渲染》（effect 在 commit 阶段的执行位"
+  },
+  {
+   "file": "x61_useeffect_deep.md",
+   "book": "React 官方：用 React 思考",
+   "line": "- 站内参考资料：《React 官方：用 React 思考》（本地镜像 /post/ref-react-thinking）"
+  },
+  {
+   "file": "x61_useeffect_deep.md",
+   "book": "You Might Not Need an Effect",
+   "line": "- react.dev 官方《You Might Not Need an Effect》——本文 §5 的完整手册"
+  },
+  {
+   "file": "x62_react_fiber.md",
+   "book": "useState 深度剖析：闭包陷阱与批处理",
+   "line": "- 站内：《useState 深度剖析：闭包陷阱与批处理》（更新排队与批处理的 Fiber 视角）、《useEffect 完全指南》（commit 阶段两类 e"
+  },
+  {
+   "file": "x62_react_fiber.md",
+   "book": "React 官方：用 React 思考",
+   "line": "- 站内参考资料：《React 官方：用 React 思考》（本地镜像 /post/ref-react-thinking）"
+  },
+  {
+   "file": "x63_ts_typesystem.md",
+   "book": "TypeScript 进阶：泛型与类型体操入门",
+   "line": "- 站内：《TypeScript 进阶：泛型与类型体操入门》《TypeScript 泛型进阶：约束、推断与工具类型实现》《React 核心补充：Hooks 与状"
+  },
+  {
+   "file": "x63_ts_typesystem.md",
+   "book": "TS Handbook：Everyday Types",
+   "line": "- 站内参考资料：《TS Handbook：Everyday Types》（本地镜像 /post/ref-ts-handbook）、《TS Handbook：类"
+  },
+  {
+   "file": "x63_ts_typesystem.md",
+   "book": "Programming TypeScript",
+   "line": "- 《Programming TypeScript》（Boris Cherny）——类型系统设计思想"
+  },
+  {
+   "file": "x64_ts_generics.md",
+   "book": "TypeScript 类型系统基础：结构化类型与收窄",
+   "line": "- 站内：《TypeScript 类型系统基础：结构化类型与收窄》（前置篇）、《TypeScript 进阶：泛型与类型体操入门》、《React 核心补充：Hoo"
+  },
+  {
+   "file": "x64_ts_generics.md",
+   "book": "TS Handbook：泛型",
+   "line": "- 站内参考资料：《TS Handbook：泛型》（本轮抓取 /post/ref-ts-generics）、《TS Handbook：Everyday Type"
+  },
+  {
+   "file": "x64_ts_generics.md",
+   "book": "Effective TypeScript",
+   "line": "- 《Effective TypeScript》（Dan Vanderkam）——类型体操与设计权衡"
+  },
+  {
+   "file": "x65_redis_internals.md",
+   "book": "Redis 实战：缓存三大问题与数据结构选型",
+   "line": "- 站内：《Redis 实战：缓存三大问题与数据结构选型》《Redis 高可用：哨兵与集群》《Redis 入门》"
+  },
+  {
+   "file": "x65_redis_internals.md",
+   "book": "Redis 官方数据类型教程",
+   "line": "- 站内参考资料：《Redis 官方数据类型教程》（本地镜像 /post/ref-redis-doc）"
+  },
+  {
+   "file": "x65_redis_internals.md",
+   "book": "Redis 设计与实现",
+   "line": "- 《Redis 设计与实现》（黄健宏）——本文所有结构的一手详解"
+  },
+  {
+   "file": "x66_python_decorators.md",
+   "book": "Python 基础入门",
+   "line": "- 站内：《Python 基础入门》（函数与作用域前置）、《并发、并行与异步编程概念》（协程思想总览）、《async/await 原理：生成器与协程》（JS 的"
+  },
+  {
+   "file": "x66_python_decorators.md",
+   "book": "Redis 官方数据类型教程",
+   "line": "- 站内参考资料：《Redis 官方数据类型教程》（本地镜像 /post/ref-redis-doc，lru_cache 思想同源）"
+  },
+  {
+   "file": "x66_python_decorators.md",
+   "book": "Fluent Python（第 2 版）",
+   "line": "- 《Fluent Python（第 2 版）》第 7、14 章——装饰器与生成器的权威讲解"
+  },
+  {
+   "file": "x67_jvm_memory.md",
+   "book": "Java 核心进阶：集合框架与并发编程入门",
+   "line": "- 站内：《Java 核心进阶：集合框架与并发编程入门》《Java 面向对象编程》《面向对象编程》"
+  },
+  {
+   "file": "x67_jvm_memory.md",
+   "book": "Java 官方教程",
+   "line": "- 站内参考资料：《Java 官方教程》（本地镜像 /post/ref-docs-oracle-com-javase-tutorial）、《Oracle Jav"
+  },
+  {
+   "file": "x67_jvm_memory.md",
+   "book": "深入理解 Java 虚拟机（第 3 版）",
+   "line": "- 《深入理解 Java 虚拟机（第 3 版）》（周志明）——第 2、3 章即本文范围"
+  },
+  {
+   "file": "x68_java_collections.md",
+   "book": "Java 核心进阶：集合框架与并发编程入门",
+   "line": "- 站内：《Java 核心进阶：集合框架与并发编程入门》《Java 数组与字符串》《JVM 内存模型与垃圾回收》（对象分配与 GC 的底层）"
+  },
+  {
+   "file": "x68_java_collections.md",
+   "book": "Java 官方教程",
+   "line": "- 站内参考资料：《Java 官方教程》（本地镜像 /post/ref-docs-oracle-com-javase-tutorial）、《Oracle Str"
+  },
+  {
+   "file": "x68_java_collections.md",
+   "book": "Effective Java（第 3 版）",
+   "line": "- 《Effective Java（第 3 版）》条目 11（hashCode）与条目 74——集合使用的规范"
+  },
+  {
+   "file": "x69_process_thread.md",
+   "book": "操作系统核心概念",
+   "line": "- 站内：《操作系统核心概念》《虚拟内存与分页》（姊妹篇）、《并发、并行与异步编程概念》《JVM 内存模型与垃圾回收》（应用层的进程/线程视角）"
+  },
+  {
+   "file": "x69_process_thread.md",
+   "book": "OSTEP 操作系统教材",
+   "line": "- 站内参考资料：《OSTEP 操作系统教材》（本轮抓取 /post/ref-ostep）"
+  },
+  {
+   "file": "x69_process_thread.md",
+   "book": "OSTEP",
+   "line": "- 《OSTEP》（Remzi Arpaci-Dusseau）——调度与 IPC 章节的权威免费教材"
+  },
+  {
+   "file": "x69_tcp_deep.md",
+   "book": "TCP 与 UDP 深入对比",
+   "line": "- 站内：《TCP 与 UDP 深入对比》《HTTP/HTTPS 协议详解》《网络基础：IP 地址与访问流程》《DNS 与一次完整的网页访问》"
+  },
+  {
+   "file": "x69_tcp_deep.md",
+   "book": "MDN HTTP 概述",
+   "line": "- 站内参考资料：《MDN HTTP 概述》（本地镜像 /post/ref-http-mdn）"
+  },
+  {
+   "file": "x69_tcp_deep.md",
+   "book": "TCP/IP 详解 卷 1",
+   "line": "- 《TCP/IP 详解 卷 1》（W. Richard Stevens）——第 17-21 章即本文展开"
+  },
+  {
+   "file": "x70_http_cache.md",
+   "book": "Web 性能优化实战",
+   "line": "- 站内：《Web 性能优化实战》（缓存在优化体系中的位置）、《Nginx 深入：反向代理与负载均衡》（服务端缓存头配置）、《CDN 内容分发网络》《HTTP/"
+  },
+  {
+   "file": "x70_http_cache.md",
+   "book": "MDN HTTP 概述",
+   "line": "- 站内参考资料：《MDN HTTP 概述》（本地镜像 /post/ref-http-mdn）"
+  },
+  {
+   "file": "x70_virtual_memory.md",
+   "book": "进程与线程",
+   "line": "- 站内：《进程与线程》（姊妹篇）、《操作系统核心概念》《JVM 内存模型与垃圾回收》（用户态的内存视角对照）、《Cache 层次结构》（硬件缓存视角）"
+  },
+  {
+   "file": "x70_virtual_memory.md",
+   "book": "OSTEP 操作系统教材",
+   "line": "- 站内参考资料：《OSTEP 操作系统教材》（本轮抓取 /post/ref-ostep）"
+  },
+  {
+   "file": "x70_virtual_memory.md",
+   "book": "OSTEP",
+   "line": "- 《OSTEP》第 20-26 章——虚拟内存的完整推导"
+  },
+  {
+   "file": "x71_filesystem.md",
+   "book": "Linux 入门与文件系统",
+   "line": "- 站内：《Linux 入门与文件系统》（用户态视角前置）、《进程与线程》《虚拟内存与分页》（姊妹篇）、《事务与隔离级别》（数据库层的持久性对照）"
+  },
+  {
+   "file": "x71_filesystem.md",
+   "book": "OSTEP 操作系统教材",
+   "line": "- 站内参考资料：《OSTEP 操作系统教材》（本轮抓取 /post/ref-ostep）、《CSAPP 深入理解计算机系统资源站》（本轮抓取 /post/re"
+  },
+  {
+   "file": "x71_filesystem.md",
+   "book": "Linux 文件系统实现",
+   "line": "- 《Linux 文件系统实现》（ext 系列源码剖析）"
+  },
+  {
+   "file": "x71_tls_handshake.md",
+   "book": "HTTP/HTTPS 协议详解",
+   "line": "- 站内：《HTTP/HTTPS 协议详解》（HTTPS 在 HTTP 语义中的位置）、《TCP 深入：三次握手、四次挥手与状态机》（TLS 跑在 TCP 之上"
+  },
+  {
+   "file": "x71_tls_handshake.md",
+   "book": "MDN HTTP 概述",
+   "line": "- 站内参考资料：《MDN HTTP 概述》（本地镜像 /post/ref-http-mdn）"
+  },
+  {
+   "file": "x71_tls_handshake.md",
+   "book": "HTTPS 权威指南",
+   "line": "- 《HTTPS 权威指南》（系统化覆盖部署与调优）"
+  },
+  {
+   "file": "x72_pipeline.md",
+   "book": "汇编语言入门：CPU 在想什么",
+   "line": "- 站内：《汇编语言入门：CPU 在想什么》《计算机组成：硬件架构与各种处理单元》《Cache 层次结构：局部性原理、映射与替换策略》（姊妹篇）"
+  },
+  {
+   "file": "x72_pipeline.md",
+   "book": "CSAPP 深入理解计算机系统资源站",
+   "line": "- 站内参考资料：《CSAPP 深入理解计算机系统资源站》（本地镜像 /post/ref-csapp）"
+  },
+  {
+   "file": "x72_pipeline.md",
+   "book": "计算机组成与设计：硬件/软件接口",
+   "line": "- 《计算机组成与设计：硬件/软件接口》（Patterson & Hennessy）第 4 章——流水线的完整推导"
+  },
+  {
+   "file": "x72_vue_reactivity.md",
+   "book": "React Fiber 架构：可中断渲染",
+   "line": "- 站内：《React Fiber 架构：可中断渲染》（响应式 vs 快照模型的另一半）、《一文懂 Proxy》《React 核心补充：Hooks 与状态管理》"
+  },
+  {
+   "file": "x72_vue_reactivity.md",
+   "book": "深入响应式系统",
+   "line": "- Vue 官方文档《深入响应式系统》（源码级讲解）"
+  },
+  {
+   "file": "x72_vue_reactivity.md",
+   "book": "Vue.js 设计与实现",
+   "line": "- 《Vue.js 设计与实现》（霍春阳）——本文的完整展开版"
+  },
+  {
+   "file": "x73_cache.md",
+   "book": "指令流水线：冒险、转发与分支预测",
+   "line": "- 站内：《指令流水线：冒险、转发与分支预测》（姊妹篇）、《虚拟内存与分页》（TLB 是地址翻译的缓存——同构思想）、《Cache 层次结构》（本文）"
+  },
+  {
+   "file": "x73_cache.md",
+   "book": "CSAPP 深入理解计算机系统资源站",
+   "line": "- 站内参考资料：《CSAPP 深入理解计算机系统资源站》（本地镜像 /post/ref-csapp）——第 6 章存储器层次结构"
+  },
+  {
+   "file": "x73_cache.md",
+   "book": "计算机体系结构：量化研究方法",
+   "line": "- 《计算机体系结构：量化研究方法》（Hennessy & Patterson）第 2 章"
+  },
+  {
+   "file": "x73_docker_image.md",
+   "book": "docker的安装",
+   "line": "- 站内：《docker的安装》《Docker 常用命令与 Compose 实战》《Linux 入门与文件系统》（overlay 的底层是文件系统）、《Ngin"
+  },
+  {
+   "file": "x73_docker_image.md",
+   "book": "Docker——容器与容器云",
+   "line": "- 《Docker——容器与容器云》——镜像与运行时详解"
+  },
+  {
+   "file": "x74_bus_io.md",
+   "book": "汇编语言入门：CPU 在想什么",
+   "line": "- 站内：《汇编语言入门：CPU 在想什么》《Linux 服务器运维清单：Nginx、防火墙与日常巡检》（I/O 性能的运维视角）、《Docker 常用命令与 "
+  },
+  {
+   "file": "x74_bus_io.md",
+   "book": "CSAPP 深入理解计算机系统资源站",
+   "line": "- 站内参考资料：《CSAPP 深入理解计算机系统资源站》（本地镜像 /post/ref-csapp）——第 6 章 I/O 部分"
+  },
+  {
+   "file": "x74_bus_io.md",
+   "book": "PC Architecture",
+   "line": "- 《PC Architecture》/ PCIe 官方规范——lane 拓扑与带宽速查"
+  },
+  {
+   "file": "x74_shell_params.md",
+   "book": "Shell 脚本入门",
+   "line": "- 站内：《Shell 脚本入门》《Linux 文本三剑客：grep/sed/awk》《Linux 常用命令与文本处理》《Shell 参数扩展完整语法》（本文）"
+  },
+  {
+   "file": "x74_shell_params.md",
+   "book": "Bash Pocket Reference",
+   "line": "- 《Bash Pocket Reference》——参数扩展章节速查"
+  },
+  {
+   "file": "x75_dist_basics.md",
+   "book": "共识算法：Paxos 与 Raft",
+   "line": "- 站内：《共识算法：Paxos 与 Raft》（姊妹篇：故障下如何达成一致）、《消息队列入门：RabbitMQ 与 Kafka》《Redis 高可用：哨兵与集"
+  },
+  {
+   "file": "x75_dist_basics.md",
+   "book": "Raft 共识算法可视化",
+   "line": "- 站内参考资料：《Raft 共识算法可视化》（本地镜像 /post/ref-raft）"
+  },
+  {
+   "file": "x75_dist_basics.md",
+   "book": "数据密集型应用系统设计",
+   "line": "- 《数据密集型应用系统设计》（DDIA，Martin Kleppmann）——第 5/9 章，本文的完整展开"
+  },
+  {
+   "file": "x76_consensus.md",
+   "book": "分布式系统基础：CAP 定理与一致性模型",
+   "line": "- 站内：《分布式系统基础：CAP 定理与一致性模型》（前置世界观）、《Redis 高可用：哨兵与集群》（多数派投票的实例）、《消息队列入门》（日志思想对照）"
+  },
+  {
+   "file": "x76_consensus.md",
+   "book": "Raft 共识算法可视化",
+   "line": "- 站内参考资料：《Raft 共识算法可视化》（本地镜像 /post/ref-raft——动画演示选举与日志复制）"
+  },
+  {
+   "file": "x76_consensus.md",
+   "book": "In Search of an Understandable Consensus Algorithm",
+   "line": "- 《In Search of an Understandable Consensus Algorithm》（Raft 原论文）/ 《Designing Dat"
+  },
+  {
+   "file": "x77_parallel_prog.md",
+   "book": "进程与线程",
+   "line": "- 站内：《进程与线程》（OS 层的并行底座）、《指令流水线》（ILP 硬件层）、《Cache 层次结构》（伪共享根源）、《Redis 实战》（reductio"
+  },
+  {
+   "file": "x77_parallel_prog.md",
+   "book": "MIT OCW 6.006 算法导论",
+   "line": "- 站内参考资料：《MIT OCW 6.006 算法导论》（本地镜像 /post/ref-mit-ocw-6006）"
+  },
+  {
+   "file": "x77_parallel_prog.md",
+   "book": "CUDA by Example",
+   "line": "- 《CUDA by Example》/ NVIDIA CUDA C Programming Guide、OpenMP 官方规范"
+  },
+  {
+   "file": "x78_design_patterns.md",
+   "book": "软件架构风格：分层、六边形与事件驱动",
+   "line": "- 站内：《软件架构风格：分层、六边形与事件驱动》（架构层的模式）、《重构：代码坏味道与安全手法》《Python 装饰器与生成器》（装饰器模式的 Python "
+  },
+  {
+   "file": "x78_design_patterns.md",
+   "book": "Refactoring Guru 设计模式",
+   "line": "- 站内参考资料：《Refactoring Guru 设计模式》（本轮抓取 /post/ref-refactoring-guru——图解 23 式的最佳在线资源"
+  },
+  {
+   "file": "x78_design_patterns.md",
+   "book": "设计模式：可复用面向对象软件的基础",
+   "line": "- 《设计模式：可复用面向对象软件的基础》（GoF 原典）、《Head First 设计模式》（入门友好）"
+  },
+  {
+   "file": "x79_refactoring.md",
+   "book": "设计模式：场景化精选与权衡",
+   "line": "- 站内：《设计模式：场景化精选与权衡》《软件架构风格：分层、六边形与事件驱动》《软件测试入门：从手工到自动化》（安全网的建造）"
+  },
+  {
+   "file": "x79_refactoring.md",
+   "book": "Refactoring Guru 设计模式",
+   "line": "- 站内参考资料：《Refactoring Guru 设计模式》（本地镜像 /post/ref-refactoring-guru）"
+  },
+  {
+   "file": "x79_refactoring.md",
+   "book": "重构：改善既有代码的设计（第 2 版）",
+   "line": "- 《重构：改善既有代码的设计（第 2 版）》（Fowler）——本文的完整手册；《修改代码的艺术》（Feathers）——遗留代码专题"
+  },
+  {
+   "file": "x80_arch_styles.md",
+   "book": "设计模式：场景化精选与权衡",
+   "line": "- 站内：《设计模式：场景化精选与权衡》《重构：代码坏味道与安全手法》《消息队列入门：RabbitMQ 与 Kafka》《分布式系统基础：CAP 定理与一致性模"
+  },
+  {
+   "file": "x80_arch_styles.md",
+   "book": "Refactoring Guru 设计模式",
+   "line": "- 站内参考资料：《Refactoring Guru 设计模式》（本地镜像 /post/ref-refactoring-guru）"
+  },
+  {
+   "file": "x80_arch_styles.md",
+   "book": "软件架构：实践者的研究方法",
+   "line": "- 《软件架构：实践者的研究方法》/ 《Patterns of Enterprise Application Architecture》（Fowler）——分层"
+  },
+  {
+   "file": "x81_discrete_math.md",
+   "book": "图与遍历算法（BFS/DFS/拓扑）",
+   "line": "- 站内：《图与遍历算法（BFS/DFS/拓扑）》《哈希与字符串算法：从 Map 到 KMP》《贪心与二分答案专题》《计算理论：自动机、可计算性与 NP 完全》"
+  },
+  {
+   "file": "x81_discrete_math.md",
+   "book": "离散数学及其应用",
+   "line": "- 《离散数学及其应用》（Rosen）——CS 离散数学标准教材"
+  },
+  {
+   "file": "x82_computation_theory.md",
+   "book": "离散数学：集合、逻辑、数论与图论",
+   "line": "- 站内：《离散数学：集合、逻辑、数论与图论》（前置）、《正则表达式精通》（ReDoS 与自动机）、《贪心与二分答案专题》（近似思想）"
+  },
+  {
+   "file": "x82_computation_theory.md",
+   "book": "计算理论导引",
+   "line": "- 《计算理论导引》（Sipser）——自动机/可计算性/复杂度三部分的标准教材"
+  },
+  {
+   "file": "x82_computation_theory.md",
+   "book": "Computers and Intractability",
+   "line": "- 《Computers and Intractability》（Garey & Johnson）——NP 完全问题的百科全书"
+  },
+  {
+   "file": "x83_probability.md",
+   "book": "特征工程与模型评估",
+   "line": "- 站内：《特征工程与模型评估》（假设检验的应用场景）、《离散数学：集合、逻辑、数论与图论》（概率的组合计数基础）、《深度学习与 PyTorch 入门》（交叉熵"
+  },
+  {
+   "file": "x83_probability.md",
+   "book": "Seeing Theory 概率可视化",
+   "line": "- 站内参考资料：《Seeing Theory 概率可视化》（本轮抓取 /post/ref-seeing-theory——交互式可视化最佳入门）"
+  },
+  {
+   "file": "x83_probability.md",
+   "book": "Statistical Rethinking",
+   "line": "- 《Statistical Rethinking》（McElreath）——贝叶斯统计的现代入门"
+  },
+  {
+   "file": "x84_hci.md",
+   "book": "概率统计与信息论：贝叶斯、假设检验与信息论",
+   "line": "- 站内：《概率统计与信息论：贝叶斯、假设检验与信息论》（A/B 定量验证的数学）、《Web 性能优化实战》（性能也是可用性维度）、《Web 前端》域其他教程"
+  },
+  {
+   "file": "x84_hci.md",
+   "book": "设计心理学",
+   "line": "- 《设计心理学》（Don Norman）——原则的原始出处"
+  },
+  {
+   "file": "x84_hci.md",
+   "book": "Don't Make Me Think",
+   "line": "- 《Don't Make Me Think》（Steve Krug）——可用性测试实操手册"
+  },
+  {
+   "file": "x85_knowledge_graph.md",
+   "book": "本地知识库与 RAG 实战",
+   "line": "- 站内：《本地知识库与 RAG 实战》《向量数据库实战：语义检索的基石》《自然语言处理（NLP）入门》（NER 与关系抽取的模型侧）"
+  },
+  {
+   "file": "x85_knowledge_graph.md",
+   "book": "知识图谱：方法、实践与应用",
+   "line": "- 《知识图谱：方法、实践与应用》（王昊文等）"
+  },
+  {
+   "file": "x86_reinforcement.md",
+   "book": "深度学习与 PyTorch 入门",
+   "line": "- 站内：《深度学习与 PyTorch 入门》（神经网络基础）、《LoRA 微调入门：让开源模型学会你的领域》（RLHF/DPO 的工程落地）、《概率统计与信息"
+  },
+  {
+   "file": "x86_reinforcement.md",
+   "book": "Reinforcement Learning: An Introduction",
+   "line": "- 《Reinforcement Learning: An Introduction》（Sutton & Barto）——RL 圣经（免费在线）"
+  },
+  {
+   "file": "x87_cloud_native.md",
+   "book": "Docker 镜像原理：分层、UnionFS 与 Dockerfile 优化",
+   "line": "- 站内：《Docker 镜像原理：分层、UnionFS 与 Dockerfile 优化》（容器前置）、《分布式系统基础：CAP 定理与一致性模型》《云原生基础"
+  },
+  {
+   "file": "x87_cloud_native.md",
+   "book": "Kubernetes in Action",
+   "line": "- 《Kubernetes in Action》（Marko Lukša）"
+  },
+  {
+   "file": "x88_func_programming.md",
+   "book": "Python 装饰器与生成器：闭包的两种应用",
+   "line": "- 站内：《Python 装饰器与生成器：闭包的两种应用》（闭包与惰性对照）、《TS 类型系统基础：结构化类型与收窄》《React 核心补充：Hooks 与状态"
+  },
+  {
+   "file": "x88_func_programming.md",
+   "book": "Learn You a Haskell for Great Good!",
+   "line": "- 《Learn You a Haskell for Great Good!》（免费在线）——入门友好"
+  },
+  {
+   "file": "x88_func_programming.md",
+   "book": "Functional Programming in Scala",
+   "line": "- 《Functional Programming in Scala》红皮书——深度版"
+  },
+  {
+   "file": "x89_digital_logic.md",
+   "book": "汇编语言入门：CPU 在想什么",
+   "line": "- 站内：《汇编语言入门：CPU 在想什么》《计算机组成：硬件架构与各种处理单元》《指令流水线》（CPU 层承接）、《嵌入式入门：CC2530 与 Zigbee"
+  },
+  {
+   "file": "x89_digital_logic.md",
+   "book": "CSAPP 深入理解计算机系统资源站",
+   "line": "- 站内参考资料：《CSAPP 深入理解计算机系统资源站》（本地镜像 /post/ref-csapp）"
+  },
+  {
+   "file": "x89_digital_logic.md",
+   "book": "数字逻辑",
+   "line": "- Nand to Tetris（从与非门到俄罗斯方块的完整课程）/ 《数字逻辑》（白中英）"
+  },
+  {
+   "file": "x90_java_basics.md",
+   "book": "Java 基础：语法、程序结构与数组",
+   "line": "- 站内：《Java 基础：语法、程序结构与数组》（语法主线，本篇的下一段旅程）、《Java 基础语法与程序结构》（对照补漏）、《Java 面向对象编程》（OO"
+  },
+  {
+   "file": "x90_java_basics.md",
+   "book": "Java 官方教程",
+   "line": "- 站内参考资料：《Java 官方教程》（本地镜像 /post/ref-docs-oracle-com-javase-tutorial）"
+  },
+  {
+   "file": "x90_java_basics.md",
+   "book": "Java 核心技术·卷 1",
+   "line": "- 《Java 核心技术·卷 1》（Core Java）——入门到进阶的标准教材"
+  }
+ ],
+ "sites": [
+  {
+   "file": "x14_gamedev_overview.md",
+   "host": "gameprogrammingpatterns.com",
+   "line": "- gameprogrammingpatterns.com ——游戏编程模式（免费在线）"
+  },
+  {
+   "file": "x15_unity_intro.md",
+   "host": "learn.unity.com",
+   "line": "- Unity 官方 Learn 平台：learn.unity.com（免费路径 Ruby's Adventure）"
+  },
+  {
+   "file": "x21_graphics_basics.md",
+   "host": "shadertoy.com",
+   "line": "- Shadertoy.com ——片元着色器创意社区"
+  },
+  {
+   "file": "x24_jwt_oauth.md",
+   "host": "jwt.io",
+   "line": "- jwt.io 官网（解码器 + 调试工具）"
+  },
+  {
+   "file": "x29_jetpack_compose.md",
+   "host": "developer.android.com",
+   "line": "- 官方 Compose 路径：developer.android.com/courses/jetpack-compose/course"
+  },
+  {
+   "file": "x36_go_intro.md",
+   "host": "gobyexample.com",
+   "line": "- Go by Example（gobyexample.com）——按例子学标准库"
+  },
+  {
+   "file": "x40_grpc_micro.md",
+   "host": "protobuf.dev",
+   "line": "- protobuf.dev 官方语言指南（风格规范 proto3-style）"
+  },
+  {
+   "file": "x44_tree_heap.md",
+   "host": "visualgo.net",
+   "line": "- visualgo.net——树与堆的可视化动画（直观理解上浮下沉）"
+  },
+  {
+   "file": "x46_nginx_deep.md",
+   "host": "nginx.org",
+   "line": "- nginx.org 官方文档（每个指令的语义都有精确说明）"
+  },
+  {
+   "file": "x47_weapp.md",
+   "host": "developers.weixin.qq.com",
+   "line": "- 微信官方文档（developers.weixin.qq.com/miniprogram）——质量很高，以它为准"
+  },
+  {
+   "file": "x49_web_perf.md",
+   "host": "web.dev",
+   "line": "- web.dev（Google 官方性能文档，Core Web Vitals 出处）"
+  },
+  {
+   "file": "x51_regex.md",
+   "host": "regex101.com",
+   "line": "- regex101.com / regexlearn.com（交互式学习）"
+  },
+  {
+   "file": "x53_flutter_state.md",
+   "host": "riverpod.dev",
+   "line": "- Riverpod 官方文档（riverpod.dev，质量极高）"
+  },
+  {
+   "file": "x60_usestate_deep.md",
+   "host": "react.dev",
+   "line": "- react.dev 官方文档 State as a Snapshot / Queueing a Series of State Updates"
+  }
+ ],
+ "tools": [
+  {
+   "file": "x01_java_syntax.md",
+   "line": "- [Java 官方教程](/post/ref-docs-oracle-com-javase-tutorial)"
+  },
+  {
+   "file": "x02_java_oop.md",
+   "line": "- [Oracle Java 教程 · OOP](/post/ref-docs-oracle-com-javase-tutorial-java-concepts"
+  },
+  {
+   "file": "x03_java_arrays.md",
+   "line": "- [Oracle String 文档](/post/ref-docs-oracle-com-javase-8-docs-api-java-lang-strin"
+  },
+  {
+   "file": "x04_graph_algorithms.md",
+   "line": "- [LeetCode 图论题单](/post/ref-leetcode-cn-tag-graph)"
+  },
+  {
+   "file": "x06_ip_subnet.md",
+   "line": "- [Subnet Cheat Sheet](/post/ref-freecodecamp-org-news-subnet-cheat-sheet)"
+  },
+  {
+   "file": "x09_grep_awk.md",
+   "line": "- [GNU sed 手册](/post/ref-gnu-org-software-sed-manual-sed-html)"
+  },
+  {
+   "file": "x09_grep_awk.md",
+   "line": "- [GNU awk 手册](/post/ref-gnu-org-software-gawk-manual-gawk-html)"
+  },
+  {
+   "file": "x10_shell_script.md",
+   "line": "- [Google Shell 风格指南](/post/ref-google-github-io-styleguide-shellguide-html)"
+  },
+  {
+   "file": "x11_kotlin_coroutines.md",
+   "line": "- [Kotlin 协程官方指南](/post/ref-kotlinlang-org-docs-coroutines-guide-html)"
+  },
+  {
+   "file": "x12_python_automation.md",
+   "line": "- [Selenium 官方文档](/post/ref-selenium-dev-documentation)"
+  },
+  {
+   "file": "x12_python_automation.md",
+   "line": "- [pyautogui 官方文档](/post/ref-pyautogui-readthedocs-io)"
+  },
+  {
+   "file": "x16_prompt_engineering.md",
+   "line": "- OpenAI Prompt Engineering Guide / Anthropic 文档（各家官方最佳实践）"
+  },
+  {
+   "file": "x17_transformer.md",
+   "line": "- The Illustrated Transformer（Jay Alammar 图解系列）"
+  },
+  {
+   "file": "x18_css_grid.md",
+   "line": "- Grid Garden（游戏化学 Grid）"
+  },
+  {
+   "file": "x18_css_grid.md",
+   "line": "- MDN CSS Grid 完整指南"
+  },
+  {
+   "file": "x20_assembly.md",
+   "line": "- Intel 汇编语法速查（vs AT&T：操作数方向相反）"
+  },
+  {
+   "file": "x21_graphics_basics.md",
+   "line": "- LearnOpenGL（中文版）：WebGL/OpenGL 最佳实践教程"
+  },
+  {
+   "file": "x23_unity_platformer.md",
+   "line": "- Unity 官方教程 2D Platformer Microgame"
+  },
+  {
+   "file": "x25_message_queue.md",
+   "line": "- RabbitMQ 官方教程（六种交换机演练）"
+  },
+  {
+   "file": "x26_mongodb.md",
+   "line": "- MongoDB 官方 University 免费课程（M001）"
+  },
+  {
+   "file": "x27_vector_db.md",
+   "line": "- pgvector GitHub（README 即教程）"
+  },
+  {
+   "file": "x28_lora_finetune.md",
+   "line": "- LoRA 原论文（Edward Hu et al. 2021）"
+  },
+  {
+   "file": "x28_lora_finetune.md",
+   "line": "- LLaMA-Factory 官方文档"
+  },
+  {
+   "file": "x30_react_native.md",
+   "line": "- React Native 官方文档 / Expo 文档"
+  },
+  {
+   "file": "x31_hash_string.md",
+   "line": "- OI Wiki 字符串篇（KMP/Z 函数/AC 自动机进阶）"
+  },
+  {
+   "file": "x32_cocos_creator.md",
+   "line": "- Cocos Creator 官方文档（中文一手资料，质量高）"
+  },
+  {
+   "file": "x34_backtracking.md",
+   "line": "- LeetCode 回溯专题（按 46 → 78 → 39 → 51 顺序刷）"
+  },
+  {
+   "file": "x37_sliding_window.md",
+   "line": "- labuladong 的算法小抄（滑动窗口章节，模板同源）"
+  },
+  {
+   "file": "x38_unity_animator.md",
+   "line": "- Unity 官方文档 Animator Controller"
+  },
+  {
+   "file": "x41_game_audio.md",
+   "line": "- Unity 官方文档 Addressables（现代资源管线的标准答案）"
+  },
+  {
+   "file": "x42_swiftui.md",
+   "line": "- Hacking with Swift — 100 Days of SwiftUI（免费，公认最佳入门）"
+  },
+  {
+   "file": "x42_swiftui.md",
+   "line": "- Apple 官方 SwiftUI Tutorials"
+  },
+  {
+   "file": "x45_redis_ha.md",
+   "line": "- Redis 官网 Replication/Sentinel/Cluster 三篇文档"
+  },
+  {
+   "file": "x48_nlp_intro.md",
+   "line": "- HuggingFace NLP Course（免费）"
+  },
+  {
+   "file": "x50_cv_intro.md",
+   "line": "- ultralytics 官方文档（YOLOv8）"
+  },
+  {
+   "file": "x52_git_advanced.md",
+   "line": "- Oh Shit, Git!?!（git 排错场景合集，诙谐实用）"
+  },
+  {
+   "file": "x54_flex_container.md",
+   "line": "- Flexbox Froggy（游戏化练习，24 关通关即入门）"
+  },
+  {
+   "file": "x55_flex_items.md",
+   "line": "- Flexbox Zombies（游戏化深入课程）"
+  },
+  {
+   "file": "x56_grid_container.md",
+   "line": "- Grid Garden（游戏化练习）"
+  },
+  {
+   "file": "x58_event_loop.md",
+   "line": "- Node 官方文档 The Event Loop, Timers, and process.nextTick()"
+  },
+  {
+   "file": "x62_react_fiber.md",
+   "line": "- React 源码 ReactFiberWorkLoop.js / ReactFiberBeginWork.js（配官方 fiber 论文）"
+  },
+  {
+   "file": "x70_http_cache.md",
+   "line": "- MDN HTTP Caching 指南（站内后续可镜像收录）"
+  },
+  {
+   "file": "x73_docker_image.md",
+   "line": "- Docker 官方文档 Best practices for writing Dockerfiles"
+  },
+  {
+   "file": "x74_shell_params.md",
+   "line": "- Bash 官方手册 Parameter Expansion 章节"
+  },
+  {
+   "file": "x81_discrete_math.md",
+   "line": "- MIT 6.042J Mathematics for Computer Science（免费公开课，OSSU Core Math 指定教材）"
+  },
+  {
+   "file": "x85_knowledge_graph.md",
+   "line": "- Neo4j 官方文档 Cypher 章节"
+  },
+  {
+   "file": "x86_reinforcement.md",
+   "line": "- Spinning Up in Deep RL（OpenAI）——策略梯度与 DQN 实现教程"
+  },
+  {
+   "file": "x87_cloud_native.md",
+   "line": "- Kubernetes 官方文档（ Concepts 章节）、CNCF Landscape 全景图"
+  }
+ ],
+ "alreadyMirrored": [],
+ "tutorials": [],
+ "uncategorized": [],
+ "uniqueHosts": [
+  "developer.android.com",
+  "developers.weixin.qq.com",
+  "gameprogrammingpatterns.com",
+  "gobyexample.com",
+  "jwt.io",
+  "learn.unity.com",
+  "nginx.org",
+  "protobuf.dev",
+  "react.dev",
+  "regex101.com",
+  "riverpod.dev",
+  "shadertoy.com",
+  "visualgo.net",
+  "web.dev"
+ ]
+}

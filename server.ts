@@ -600,20 +600,75 @@ async function startServer() {
   }
 
   // AI 馆员代理：服务端注入胡桃馆员人设（人设收口服务端，前端只发消息）
+  // + 馆藏 RAG：按用户问题检索相关教程注入上下文，馆员「认识」全馆藏书
+  let tutCache: { tutorials: any[]; domains: any[] } | null = null;
+  async function loadTutCatalog() {
+    if (!tutCache) {
+      try { tutCache = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8")); }
+      catch { tutCache = { tutorials: [], domains: [] }; }
+    }
+    return tutCache;
+  }
+
+  function extractTerms(q: string): string[] {
+    return [...new Set(
+      q.toLowerCase()
+        .split(/[^a-z0-9\u4e00-\u9fa5]+/)
+        .filter(t => t.length >= 2)
+    )];
+  }
+
+  function scoreTutorial(t: any, terms: string[]): number {
+    const title = String(t.title || "").toLowerCase();
+    const tags = (t.tags || []).map((x: string) => String(x).toLowerCase());
+    const hay = `${title} ${t.summary || ""} ${t.category || ""} ${tags.join(" ")}`.toLowerCase();
+    let s = 0;
+    for (const term of terms) {
+      if (title.includes(term)) s += 3;
+      if (tags.some(tag => tag.includes(term))) s += 2;
+      if (hay.includes(term)) s += 1;
+    }
+    return s;
+  }
+
   app.post("/api/ai", async (req, res) => {
     try {
       const body = req.body || {};
       const messages = Array.isArray(body.messages) ? body.messages : [];
       // 客户端旧 system（若有）替换为服务端统一人设，防两头打架
       const rest = messages.filter((m: any) => m.role !== "system");
+      const tut = await loadTutCatalog();
+      const careersCount = (JSON.parse(await fs.readFile(CAREERS_FILE, "utf-8")).careers || []).length;
       const librarianSystem = [
         HUTAO_PERSONA,
-        "你同时是「winery-Library 自学图书馆」的 AI 馆员：站内有 170+ 篇计算机系统教程（11 大知识域）、12 条职业学习路线、知识图谱。",
+        `你同时是「winery-Library 自学图书馆」的 AI 馆员：站内有 ${tut.tutorials.length} 篇计算机系统教程（${tut.domains.length} 大知识域）、${careersCount} 条职业学习路线、知识图谱。`,
         "客官问到学习路线/教程时，可以推荐他们去对应板块逛逛（如「教程中心」「学习路线」页）。",
         "回答保持胡桃的性格与严谨铁律：技术问题给准确答案，闲聊就陪客官愉快地唠。",
         "全程简体中文。",
-      ].join("\n");
-      body.messages = [{ role: "system", content: librarianSystem }, ...rest];
+      ];
+      // 馆藏 RAG：取最后一条用户消息，按关键词相关度检索 top-5 教程
+      const lastUser = [...rest].reverse().find((m: any) => m.role === "user");
+      if (lastUser) {
+        const terms = extractTerms(String(lastUser.content || ""));
+        if (terms.length) {
+          const ranked = tut.tutorials
+            .map(t => ({ t, s: scoreTutorial(t, terms) }))
+            .filter(x => x.s > 0)
+            .sort((a: any, b: any) => b.s - a.s)
+            .slice(0, 5);
+          if (ranked.length) {
+            librarianSystem.push(
+              "",
+              "馆内相关藏书（按与客官问题的相关度排序，均为真实存在的站内教程，推荐时可引用）：",
+              ...ranked.map(({ t }) =>
+                `- 《${t.title}》〔${t.difficulty} · ${t.category} · 约${t.minutes} 分钟〕${t.summary}（站内路径 ${t.href}）`
+              ),
+              "回答时优先基于以上真实教程作答/推荐；严禁虚构站内不存在的教程标题。"
+            );
+          }
+        }
+      }
+      body.messages = [{ role: "system", content: librarianSystem.join("\n") }, ...rest];
 
       const upModel = await getUpstreamModel();
       if (upModel) body.model = upModel;

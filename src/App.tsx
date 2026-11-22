@@ -10,9 +10,9 @@ import { Archive } from './pages/Archive';
 import { About } from './pages/About';
 import { Friends } from './pages/Friends';
 import { PostDetail } from './pages/PostDetail';
-import { LearningPaths } from './pages/LearningPaths';
 import { Tutorials } from './pages/Tutorials';
 import { CareerRoute } from './pages/CareerRoute';
+import { NotFound } from './pages/NotFound';
 import { KnowledgeGraph } from './pages/KnowledgeGraph';
 import { AIChat } from './pages/AIChat';
 import { DataProvider, useData } from './context/DataContext';
@@ -43,6 +43,7 @@ const AppContent = () => {
           <Route path="routes/:career" element={<CareerRoute />} />
           <Route path="graph" element={<KnowledgeGraph />} />
           <Route path="ai" element={<AIChat />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* Admin Routes */}

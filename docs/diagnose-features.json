@@ -1,0 +1,13 @@
+{
+ "aiRag": "NO",
+ "aiHistoryLimit": "有",
+ "aiLength": 5719,
+ "routeLocalStorage": "YES",
+ "routeServerApi": "NO",
+ "learningPathsImported": true,
+ "learningPathsFile": "6348 bytes",
+ "postsJsonKB": 1738,
+ "progressPage": false,
+ "notFoundCatchAll": false,
+ "routeReadApi": "NO（独立 localStorage）"
+}
