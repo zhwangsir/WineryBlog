@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T01:39:24.394Z",
+  "generatedAt": "2026-11-22T02:01:31.105Z",
   "blogCategories": [
     "随笔",
     "项目实战"
@@ -167,7 +167,7 @@
       "domain": "ai",
       "category": "人工智能",
       "difficulty": "入门",
-      "minutes": 4,
+      "minutes": 3,
       "tags": [
         "机器学习",
         "监督学习",
@@ -202,7 +202,7 @@
       "domain": "ai",
       "category": "人工智能",
       "difficulty": "入门",
-      "minutes": 11,
+      "minutes": 10,
       "tags": [
         "深度学习",
         "PyTorch",
@@ -347,7 +347,7 @@
       "domain": "ai",
       "category": "人工智能",
       "difficulty": "进阶",
-      "minutes": 6,
+      "minutes": 5,
       "tags": [
         "大语言模型",
         "LLM",
@@ -475,7 +475,7 @@
       "domain": "ai",
       "category": "人工智能",
       "difficulty": "高级",
-      "minutes": 10,
+      "minutes": 9,
       "tags": [
         "本地大模型",
         "Ollama",
@@ -496,7 +496,7 @@
       "domain": "ai",
       "category": "人工智能",
       "difficulty": "高级",
-      "minutes": 7,
+      "minutes": 6,
       "tags": [
         "RAG",
         "向量检索",
@@ -516,7 +516,7 @@
       "domain": "algo",
       "category": "数据结构与算法",
       "difficulty": "入门",
-      "minutes": 6,
+      "minutes": 5,
       "tags": [
         "算法",
         "动态规划",
@@ -856,7 +856,7 @@
       "domain": "backend",
       "category": "后端开发",
       "difficulty": "进阶",
-      "minutes": 13,
+      "minutes": 12,
       "tags": [
         "Node.js",
         "事件循环",
@@ -911,7 +911,7 @@
       "domain": "basics",
       "category": "方法与工具",
       "difficulty": "入门",
-      "minutes": 10,
+      "minutes": 9,
       "tags": [
         "Git",
         "版本控制"
@@ -999,7 +999,7 @@
       "domain": "basics",
       "category": "方法与工具",
       "difficulty": "进阶",
-      "minutes": 8,
+      "minutes": 6,
       "tags": [
         "自学方法论",
         "路线图",
@@ -1017,7 +1017,7 @@
       "domain": "basics",
       "category": "方法与工具",
       "difficulty": "进阶",
-      "minutes": 12,
+      "minutes": 11,
       "tags": [
         "Git",
         "版本控制",
@@ -1573,7 +1573,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "入门",
-      "minutes": 8,
+      "minutes": 7,
       "tags": [
         "CSS",
         "flex",
@@ -1607,7 +1607,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "入门",
-      "minutes": 8,
+      "minutes": 7,
       "tags": [
         "Three.js",
         "Canvas",
@@ -1643,7 +1643,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "入门",
-      "minutes": 23,
+      "minutes": 22,
       "tags": [
         "TypeScript",
         "泛型",
@@ -1678,7 +1678,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "入门",
-      "minutes": 13,
+      "minutes": 12,
       "tags": [
         "前端工程化",
         "npm",
@@ -2020,7 +2020,7 @@
       "domain": "frontend",
       "category": "Web 前端",
       "difficulty": "高级",
-      "minutes": 16,
+      "minutes": 15,
       "tags": [
         "JavaScript",
         "异步",
@@ -2572,7 +2572,7 @@
       "domain": "langs",
       "category": "编程语言",
       "difficulty": "进阶",
-      "minutes": 17,
+      "minutes": 16,
       "tags": [
         "Rust",
         "所有权",
@@ -2716,7 +2716,7 @@
       "domain": "mobile",
       "category": "移动与跨端",
       "difficulty": "入门",
-      "minutes": 10,
+      "minutes": 9,
       "tags": [
         "Flutter",
         "uni-app",
@@ -2768,7 +2768,7 @@
       "domain": "mobile",
       "category": "移动与跨端",
       "difficulty": "入门",
-      "minutes": 8,
+      "minutes": 7,
       "tags": [
         "Kotlin",
         "Android",
@@ -2839,7 +2839,7 @@
       "domain": "mobile",
       "category": "移动与跨端",
       "difficulty": "进阶",
-      "minutes": 14,
+      "minutes": 13,
       "tags": [
         "Android",
         "四大组件",
@@ -3265,7 +3265,7 @@
       "domain": "security",
       "category": "信息安全",
       "difficulty": "高级",
-      "minutes": 5,
+      "minutes": 4,
       "tags": [
         "永恒之蓝",
         "ms17-010",
@@ -3534,7 +3534,7 @@
       "domain": "system",
       "category": "操作系统与运维",
       "difficulty": "进阶",
-      "minutes": 14,
+      "minutes": 13,
       "tags": [
         "Linux",
         "Nginx",
@@ -3677,7 +3677,7 @@
       "domain": "system",
       "category": "操作系统与运维",
       "difficulty": "进阶",
-      "minutes": 11,
+      "minutes": 10,
       "tags": [
         "apt",
         "Linux",
@@ -3820,7 +3820,7 @@
       "domain": "system",
       "category": "操作系统与运维",
       "difficulty": "高级",
-      "minutes": 11,
+      "minutes": 10,
       "tags": [
         "Nginx",
         "反向代理",

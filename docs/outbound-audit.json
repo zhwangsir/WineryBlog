@@ -1,0 +1,322 @@
+{
+ "scanned": 258,
+ "findings": [
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 3,
+   "type": "odd-rel",
+   "text": "# LlamaFactory",
+   "url": "assets/logo.png"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 14,
+   "type": "odd-rel",
+   "text": "Discord",
+   "url": "assets/thirdparty/discord.svg"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 19,
+   "type": "odd-rel",
+   "text": "Open in Colab",
+   "url": "assets/thirdparty/colab.svg"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 20,
+   "type": "odd-rel",
+   "text": "Open in DSW",
+   "url": "assets/thirdparty/dsw.svg"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 45,
+   "type": "html-a",
+   "url": "><img alt="
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 45,
+   "type": "html-a",
+   "url": " style="
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 45,
+   "type": "html-a",
+   "url": ">Available for MacOS, Linux, & Windows</a> | <a href="
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 58,
+   "type": "odd-rel",
+   "text": " English | [中文",
+   "url": "README_zh.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 151,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 163,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 179,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 185,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 205,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 209,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 213,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 217,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 221,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 225,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 227,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 231,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 235,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 237,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 239,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 245,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 261,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 267,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 279,
+   "type": "odd-rel",
+   "text": "demo API",
+   "url": "src/api.py"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 281,
+   "type": "odd-rel",
+   "text": "examples",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 359,
+   "type": "odd-rel",
+   "text": "constants.py",
+   "url": "src/llamafactory/extras/constants.py"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 361,
+   "type": "odd-rel",
+   "text": "template.py",
+   "url": "src/llamafactory/data/template.py"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 383,
+   "type": "odd-rel",
+   "text": "Wiki Demo (en)",
+   "url": "data/wiki_demo.txt"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 404,
+   "type": "odd-rel",
+   "text": "Identity (en&zh)",
+   "url": "data/identity.json"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 609,
+   "type": "odd-rel",
+   "text": "example",
+   "url": "examples/train_qlora/qwen3_lora_sft_bnb_npu.yaml"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 615,
+   "type": "odd-rel",
+   "text": "data/README.md",
+   "url": "data/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 628,
+   "type": "odd-rel",
+   "text": "examples/README.md",
+   "url": "examples/README.md"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 688,
+   "type": "odd-rel",
+   "text": "Image understanding",
+   "url": "scripts/api_example/test_image.py"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 688,
+   "type": "odd-rel",
+   "text": "Function calling",
+   "url": "scripts/api_example/test_toolcall.py"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 834,
+   "type": "odd-rel",
+   "text": "Apache-2.0 License",
+   "url": "LICENSE"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 836,
+   "type": "odd-rel",
+   "text": "Granite",
+   "url": "LICENSE"
+  },
+  {
+   "id": "ref-github-com-hiyouga-llama-factory",
+   "cat": "参考资料",
+   "ln": 836,
+   "type": "odd-rel",
+   "text": "Mistral/Mixtral/Pixtral",
+   "url": "LICENSE"
+  }
+ ]
+}
