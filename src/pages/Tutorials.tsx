@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
@@ -8,6 +8,8 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { fetchProgress, type ProgressData } from '../lib/progress';
+import { useData } from '../context/DataContext';
+import { CoverImage } from '../components/CoverImage';
 
 interface Tutorial {
   id: string; title: string; summary: string; domain: string;
@@ -38,6 +40,13 @@ export const Tutorials: React.FC = () => {
   const [careers, setCareers] = useState<Career[]>([]);
   const [activeDomain, setActiveDomain] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressData | null>(null);
+  const { posts } = useData();
+  // 教程 id → 图床封面映射（posts.json 已由 assign-covers 稳定分配 cover）
+  const coverMap = useMemo(() => {
+    const m: Record<string, string> = {};
+    for (const p of posts) if (p.cover) m[p.id] = p.cover;
+    return m;
+  }, [posts]);
 
   useEffect(() => {
     fetch('/api/tutorials').then(r => r.json()).then(setData).catch(() => {});
@@ -138,12 +147,20 @@ export const Tutorials: React.FC = () => {
             {shownDomains.map((d, i) => {
               const Icon = ICONS[d.icon] || BookOpen;
               const tuts = data.tutorials.filter(t => t.domain === d.id);
+              // 域封面：取域内第一篇有图床封面的教程（coverMap 以 posts.id 为键）
+              const coverPost = tuts.map(t => coverMap[t.id]).find(Boolean);
               return (
                 <motion.div
                   key={d.id}
                   initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-                  className="bg-bg-card border border-border/60 rounded-2xl p-5 flex flex-col gap-3"
+                  className="bg-bg-card border border-border/60 rounded-2xl flex flex-col overflow-hidden"
                 >
+                  {coverPost && (
+                    <div className="h-28 shrink-0">
+                      <CoverImage post={{ id: d.id, cover: coverPost }} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <div className="p-5 flex flex-col gap-3 flex-1">
                   <button onClick={() => setActiveDomain(d.id === activeDomain ? null : d.id)} className="flex items-center gap-3 text-left group">
                     <span className="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
                       <Icon className="w-5 h-5" />
@@ -169,6 +186,7 @@ export const Tutorials: React.FC = () => {
                         还有 {tuts.length - 4} 篇 → 查看全部
                       </button>
                     )}
+                  </div>
                   </div>
                 </motion.div>
               );
