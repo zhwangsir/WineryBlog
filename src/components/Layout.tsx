@@ -27,6 +27,9 @@ export const Layout: React.FC = () => {
     | undefined;
   const petOn = pet ? pet.enabled !== false : true; // 默认启用胡桃桌宠
 
+  // 阅读专注模式：文章页（教程/博客/镜像）隐藏左右侧栏，正文全宽沉浸
+  const isReading = location.pathname.startsWith('/post/');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -82,7 +85,7 @@ export const Layout: React.FC = () => {
 
       {petOn ? (
         <PetMascot
-          voiceEnabled={pet?.voiceEnabled === true}
+          voiceEnabled={pet?.voiceEnabled === true}
           model={(pet?.model as 'hutao' | 'fallback') || 'hutao'}
           size={pet?.size || 1}
           opacity={pet?.opacity || 1}
@@ -107,12 +110,17 @@ export const Layout: React.FC = () => {
         "flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-8",
         location.pathname !== '/' && "pt-24 md:pt-32"
       )}>
-        <div className="flex gap-6 lg:gap-8">
-          <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
-            <ProfileCard />
-          </aside>
+        <div className={cn("flex gap-6 lg:gap-8", isReading && "justify-center")}>
+          {!isReading && (
+            <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
+              <ProfileCard />
+            </aside>
+          )}
 
-          <div className="flex-1 min-w-0">
+          <div className={cn(
+            "flex-1 min-w-0",
+            isReading && "max-w-[960px] w-full mx-auto"
+          )}>
               <motion.div
                 key={location.pathname}
                 initial={{ opacity: 0, y: 10 }}
@@ -124,10 +132,12 @@ export const Layout: React.FC = () => {
               </motion.div>
           </div>
 
-          <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
-            <StatsCard />
-            <Calendar />
-          </aside>
+          {!isReading && (
+            <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
+              <StatsCard />
+              <Calendar />
+            </aside>
+          )}
         </div>
       </main>
 
