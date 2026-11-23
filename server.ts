@@ -5,6 +5,7 @@ import path from "path";
 import crypto from "crypto";
 import compression from "compression";
 import { ensureSourcesFile } from "./scripts/lib/gallery-sources.mjs";
+import { execFile } from "child_process";
 
 // JWT Secret (in production, use environment variable)
 const JWT_SECRET = "wineryblog-secret-key-2026";
@@ -373,6 +374,59 @@ async function startServer() {
     } catch (e: any) {
       res.status(500).json({ error: e.message });
     }
+  });
+
+  // ===== 网易云官方播放器遥控（ncm-cli 实名授权，JSON 输出）=====
+  const NCM_CLI_JS = path.join(
+    path.dirname(process.execPath), "node_modules", "@music163", "ncm-cli", "dist", "index.js"
+  );
+  const NCM_ENV_PATH = process.env.NCM_MPV_DIR
+    ? `${process.env.NCM_MPV_DIR};${process.env.PATH}`
+    : process.env.PATH;
+  const stateCache: { at: number; data: any } = { at: 0, data: null };
+
+  const ncmRun = (args: string[]): Promise<any> =>
+    new Promise((resolve) => {
+      try {
+        // 直接以 node 执行 CLI 的 dist/index.js（execFile 直跑 .cmd 在 Node 20.11+ 抛 EINVAL）
+        execFile(process.execPath, [NCM_CLI_JS, ...args], {
+          timeout: 15000,
+          encoding: "utf8",
+          env: { ...process.env, PATH: NCM_ENV_PATH },
+        }, (err, stdout) => {
+          if (err && !stdout) { resolve({ success: false, message: err.message }); return; }
+          try { resolve(JSON.parse(stdout)); }
+          catch { resolve({ success: true, raw: stdout }); }
+        });
+      } catch (e: any) {
+        resolve({ success: false, message: e?.message || "spawn failed" });
+      }
+    });
+
+  // 公开：播放器状态（5s 缓存——前台卡片 2.5s 轮询，避免高频 spawn）
+  app.get("/api/netease/state", async (_req, res) => {
+    if (Date.now() - stateCache.at > 5000) {
+      stateCache.data = await ncmRun(["state", "--output", "json"]);
+      stateCache.at = Date.now();
+    }
+    res.json(stateCache.data);
+  });
+
+  // 公开：播放控制（白名单动作，防注入）
+  app.post("/api/netease/control", async (req, res) => {
+    const { action, value } = req.body || {};
+    const map: Record<string, string[]> = {
+      pause: ["pause"],
+      resume: ["resume"],
+      next: ["next"],
+      prev: ["prev"],
+      stop: ["stop"],
+      seek: ["seek", String(Math.max(0, Number(value) || 0))],
+      volume: ["volume", String(Math.min(100, Math.max(0, Number(value) || 0)))],
+    };
+    const args = map[String(action || "")];
+    if (!args) { res.status(400).json({ error: "unknown action" }); return; }
+    res.json(await ncmRun(args));
   });
 
   // ===== 评论系统：本地 JSON 存储，先发先显 + 后台可隐藏/删除 =====

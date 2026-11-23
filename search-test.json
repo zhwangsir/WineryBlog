@@ -1,0 +1,2070 @@
+{
+  "code": 200,
+  "subCode": null,
+  "message": null,
+  "data": {
+    "recordCount": 301,
+    "records": [
+      {
+        "originalId": 2668397359,
+        "id": "E7A7DC64B290E5D30B9610BAA72B0440",
+        "name": "晴天 (原唱 周杰伦)",
+        "jumpUrl": "orpheus://song/2668397359",
+        "duration": 270738,
+        "noCopyrightRcmd": null,
+        "artists": [],
+        "fullArtists": [
+          {
+            "originalId": 0,
+            "id": null,
+            "name": "RyaVocal",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 260499608,
+          "id": "B5979D28FA911FD458DD89703FA33177",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/-NVLOT5vt9I91LRiZV1TCQ==/109951170413587092.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "hires",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 2653714443,
+        "id": "E7DE52BD27E6A12F2442107F49346C8E",
+        "name": "晴天 (女声版))",
+        "jumpUrl": "orpheus://song/2653714443",
+        "duration": 268750,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 50759987,
+            "id": "91710D2D7CE5A0F14EB35679FD75D67F",
+            "name": "GYBeat",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 50759987,
+            "id": "91710D2D7CE5A0F14EB35679FD75D67F",
+            "name": "GYBeat",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 256036533,
+          "id": "D43D33C66A5CE6B843778B8658ED01FE",
+          "name": "晴天 (女声版)"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/umcqPPGdBpDVT8jHzHydJg==/109951173212027336.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 2652820720,
+        "id": "387A230BDBFB032F277C96D8C78628D2",
+        "name": "晴天(深情版)",
+        "jumpUrl": "orpheus://song/2652820720",
+        "duration": 278961,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 96154669,
+            "id": "40D8C7BAE40E36C330FBB777A5490A6D",
+            "name": "Lucky小爱",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 96154669,
+            "id": "40D8C7BAE40E36C330FBB777A5490A6D",
+            "name": "Lucky小爱",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 255723258,
+          "id": "B72D2AB79724E2427040227B901A23DF",
+          "name": "晴天(深情版)"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/F0fTkmBTVykCa2o7Vgu1rQ==/109951173569626660.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3455095614,
+        "id": "CBD74DEFC0DECD856D8A423C53339A56",
+        "name": "晴天 (弦乐版)",
+        "jumpUrl": "orpheus://song/3455095614",
+        "duration": 148816,
+        "noCopyrightRcmd": null,
+        "artists": [],
+        "fullArtists": [
+          {
+            "originalId": 0,
+            "id": null,
+            "name": "球球忘不掉",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 0,
+          "id": "EDDD257ABB1F346E1128A000B396B928",
+          "name": ""
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/rs-5p4tEPrv2ukAyYJgkfQ==/109951174189294089.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 0,
+        "maxBrLevel": "exhigh",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 3,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 0,
+          "vipPackagePayed": 0,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3452155836,
+        "id": "C2D881995378D9764199A57DF28B14AE",
+        "name": "絶対晴天！！",
+        "jumpUrl": "orpheus://song/3452155836",
+        "duration": 140357,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 37609983,
+            "id": "334EC3E183E515D01513897511ACFD42",
+            "name": "P丸様。",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 37609983,
+            "id": "334EC3E183E515D01513897511ACFD42",
+            "name": "P丸様。",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 405260484,
+          "id": "872266B9F1D1F06DDDB8B26BC354967D",
+          "name": "絶対晴天！！"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/RCTsNRBVCetxfjpAr17WwA==/109951174147135591.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3443412579,
+        "id": "CDB308D60783F342A951670F8410C5E9",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3443412579",
+        "duration": 252760,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 95010354,
+            "id": "2E52A2F1B0572AA91850A28A0E95D48C",
+            "name": "舟子",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 95010354,
+            "id": "2E52A2F1B0572AA91850A28A0E95D48C",
+            "name": "舟子",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 401726934,
+          "id": "7A0656648B464C8FF29BA305FB579BAD",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/zaNwH72abhQkMgBhvuawDA==/109951174041028100.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 0,
+        "maxBrLevel": "exhigh",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3439604863,
+        "id": "74248CF3B713F527B681FEAEDC984088",
+        "name": "晴天（史詩版）",
+        "jumpUrl": "orpheus://song/3439604863",
+        "duration": 237600,
+        "noCopyrightRcmd": null,
+        "artists": [],
+        "fullArtists": [
+          {
+            "originalId": 0,
+            "id": null,
+            "name": "EPX Music 4 Life",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 399808326,
+          "id": "D91765EC69372932FF2A70C82493024C",
+          "name": "晴天（史詩版）"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/sAgg4xwr1lACkXmGMZY4ew==/109951173980171513.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3457497087,
+        "id": "6C85B4BE6CF7F60067EBC008C1E8AFBB",
+        "name": "晴天（弦乐版）",
+        "jumpUrl": "orpheus://song/3457497087",
+        "duration": 32158,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 98633364,
+            "id": "E582AC1CAE9D9084C49C87D63DA0F574",
+            "name": "钟兴",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 98633364,
+            "id": "E582AC1CAE9D9084C49C87D63DA0F574",
+            "name": "钟兴",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 407625569,
+          "id": "F92A49FCED47337FE26EE0367ED945DE",
+          "name": "相伴"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/_2q3k3aQKx6mALlWCU5BtQ==/109951174220825288.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 1945894789,
+        "id": "06E71D0C901FDC79F1B0FAC81AC99AC7",
+        "name": "晴天 (钢琴版) [原唱: 周杰伦]",
+        "jumpUrl": "orpheus://song/1945894789",
+        "duration": 238098,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 52587505,
+            "id": "9AD73F6B6876B957F4B4DBFF1E0E1C5B",
+            "name": "纪钧瀚 (Bryan Chi)",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 52587505,
+            "id": "9AD73F6B6876B957F4B4DBFF1E0E1C5B",
+            "name": "纪钧瀚 (Bryan Chi)",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 144681328,
+          "id": "4A143F6B09288EE4E9F46C4A1B91A7A2",
+          "name": "钢琴放松轻听 流行轻音乐 华语经典"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": true,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/1Bvyzvt4qnU_8cf4Gf3xlQ==/109951167394412301.jpg",
+        "vipPlayFlag": true,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "hires",
+        "plLevel": "hires",
+        "dlLevel": "hires",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": true,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 1,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 2730151393,
+        "id": "BD3BDC095A893EB93FEA432B334F78DE",
+        "name": "晴天(DJ版)",
+        "jumpUrl": "orpheus://song/2730151393",
+        "duration": 118047,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 98666443,
+            "id": "55E74DD10961FD2B4E5D911B569D54A2",
+            "name": "DJ阿罗",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 98666443,
+            "id": "55E74DD10961FD2B4E5D911B569D54A2",
+            "name": "DJ阿罗",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 0,
+          "id": "EDDD257ABB1F346E1128A000B396B928",
+          "name": ""
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/hdL7IIrFEURoiy83XU-tVw==/109951171524923600.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 128000,
+        "userMaxBr": 0,
+        "maxBrLevel": "standard",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 128000,
+        "qualities": null,
+        "originCoverType": 3,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 0,
+          "vipPackagePayed": 0,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3356343819,
+        "id": "2C16277C4E7ADABF454A542440A3F773",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3356343819",
+        "duration": 278352,
+        "noCopyrightRcmd": null,
+        "artists": [],
+        "fullArtists": [
+          {
+            "originalId": 0,
+            "id": null,
+            "name": "JustForFun",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 364966023,
+          "id": "6DCBD816FAC64E821EA17383EAC0EC42",
+          "name": "晴天"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/QQI8KcDWaHuCXzzz63zv-Q==/109951172845949928.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 1,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3391116218,
+        "id": "5D76352F8384F73073D32FAFCD5AE450",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3391116218",
+        "duration": 228545,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 123533149,
+            "id": "95396A7037E058598F0E83DF2D8F6583",
+            "name": "梦里啥都有",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 123533149,
+            "id": "95396A7037E058598F0E83DF2D8F6583",
+            "name": "梦里啥都有",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 380541053,
+          "id": "82E69AC7112D0F3B5B3664CC103F7D2B",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/qsx-FdpFhW8veNlse8ecGA==/109951173348863096.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 0,
+        "maxBrLevel": "exhigh",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 2653973874,
+        "id": "6A035B58FD1174EDC520E9EF6D0DDEB8",
+        "name": "晴天 (女生版)",
+        "jumpUrl": "orpheus://song/2653973874",
+        "duration": 252265,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 94028473,
+            "id": "606ACE72C57C6527758F2CBCA72AD504",
+            "name": "余不不",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 94028473,
+            "id": "606ACE72C57C6527758F2CBCA72AD504",
+            "name": "余不不",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 256110540,
+          "id": "0EF52E598F1FDEAC5AB9B333FF03C397",
+          "name": "晴天 (女生版)"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/36j4kcRR1gXbNXe_Fgyn9A==/109951170230833937.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 2163853163,
+        "id": "032D2E443C754C0D4416BA838342BC2F",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/2163853163",
+        "duration": 162925,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 58773072,
+            "id": "AC22F57625CACB6AAD3EDF99618D8C9A",
+            "name": "杨乐",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 58773072,
+            "id": "AC22F57625CACB6AAD3EDF99618D8C9A",
+            "name": "杨乐",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 197481973,
+          "id": "DECF5DC0C0EDC8331781C5A5DAF353E9",
+          "name": "晴天"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/HmwGgQe0g2U_w-r1NviXZQ==/109951169676366415.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 320000,
+        "maxBrLevel": "exhigh",
+        "plLevel": "exhigh",
+        "dlLevel": "exhigh",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 1412022124,
+        "id": "C67EABBA5E7FE31AE042C79225852433",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/1412022124",
+        "duration": 202000,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 30000975,
+            "id": "10C4E4569C1A50F0F31E96639F6E5CF8",
+            "name": "空匪",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 30000975,
+            "id": "10C4E4569C1A50F0F31E96639F6E5CF8",
+            "name": "空匪",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 84358777,
+          "id": "E091584457FED45B6DDA15CDF97EE5B7",
+          "name": "winter"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/DpAuXTXlirLKXawYxJo70g==/109951164579389026.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 1,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3452940888,
+        "id": "C1F001019C2DEB1B5C6BC427DACB147C",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3452940888",
+        "duration": 203160,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 123792047,
+            "id": "A9A219C2F689A2954D298EB9629AB598",
+            "name": "明日兰",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 123792047,
+            "id": "A9A219C2F689A2954D298EB9629AB598",
+            "name": "明日兰",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 398456163,
+          "id": "EA1E12637483194006983AE6F4D0EA75",
+          "name": "我是山海，我是世界"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/xwMTxo-rhP52qlohsjHDWw==/109951173942813468.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 0,
+          "vipPackagePayed": 0,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 2757922584,
+        "id": "CF3C3402A22C132EDE585338AA45C045",
+        "name": "晴天 (吉他版) (原唱：周杰伦)",
+        "jumpUrl": "orpheus://song/2757922584",
+        "duration": 186306,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 96143877,
+            "id": "E0AEFF4AF8DBDDE51BE91F3F9925BD07",
+            "name": "郭衡 (Guo Heng)",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 96143877,
+            "id": "E0AEFF4AF8DBDDE51BE91F3F9925BD07",
+            "name": "郭衡 (Guo Heng)",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 289282739,
+          "id": "9A059CC0709D07F5CC23B5EEEA21EE7E",
+          "name": "轻音乐咖啡 放松治愈的吉他BGM 华语流行与古典的专注纯音乐"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": true,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/kvevWMPhOa7F_KHpHyV-wg==/109951172181929999.jpg",
+        "vipPlayFlag": true,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "hires",
+        "plLevel": "hires",
+        "dlLevel": "hires",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": true,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 1,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 1491228444,
+        "id": "9EA7E5B376E579BBE040007E17620764",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/1491228444",
+        "duration": 126647,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 12730273,
+            "id": "F6501D7562987D0C52BEE336BDD033C6",
+            "name": "TOYOKI",
+            "coverImgUrl": null
+          },
+          {
+            "originalId": 13907045,
+            "id": "3067FED4077FD948C4D7D5C4345413E1",
+            "name": "brokeboiishawty",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 12730273,
+            "id": "F6501D7562987D0C52BEE336BDD033C6",
+            "name": "TOYOKI",
+            "coverImgUrl": null
+          },
+          {
+            "originalId": 13907045,
+            "id": "3067FED4077FD948C4D7D5C4345413E1",
+            "name": "brokeboiishawty",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 97411578,
+          "id": "C825DC6CCA636B4EE76149C6BA668C80",
+          "name": "too emotional"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/UECNBWtGl2-WhxaBSPcpWQ==/109951165424794329.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 1859129601,
+        "id": "43B6E7059E295DBEE0FA655680878BEF",
+        "name": "晴天（滚动的天空-第71关）",
+        "jumpUrl": "orpheus://song/1859129601",
+        "duration": 120059,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 12276318,
+            "id": "16D4B122523D9B1AEF20E0F281C8621D",
+            "name": "猎豹游戏-Cheetah Mobile Games",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 12276318,
+            "id": "16D4B122523D9B1AEF20E0F281C8621D",
+            "name": "猎豹游戏-Cheetah Mobile Games",
+            "coverImgUrl": null
+          },
+          {
+            "originalId": 0,
+            "id": null,
+            "name": "ZHI16",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 129971985,
+          "id": "B89979FE7B2356246E153F5FA24499F1",
+          "name": "滚动的天空-Vol.3"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/86jzrruyo0jhQv4UCaou2w==/109951168852780802.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3387884162,
+        "id": "7C0743CF3254E6E34A8680FA57B678A6",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3387884162",
+        "duration": 289044,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 123843855,
+            "id": "EC2786AB85CD03E634D3DDE62263186C",
+            "name": "DJ阿哲",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 123843855,
+            "id": "EC2786AB85CD03E634D3DDE62263186C",
+            "name": "DJ阿哲",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 379081367,
+          "id": "C6734B98698D752AED1A6411B738C7AE",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/ZaL6d5oKqEn7yWfAqpRRIA==/109951173301745531.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 0,
+        "maxBrLevel": "exhigh",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3457503168,
+        "id": "74AB3A3DD144C59AFCC14498377D79F0",
+        "name": "晴天（弦乐版）",
+        "jumpUrl": "orpheus://song/3457503168",
+        "duration": 32158,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 98633364,
+            "id": "E582AC1CAE9D9084C49C87D63DA0F574",
+            "name": "钟兴",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 98633364,
+            "id": "E582AC1CAE9D9084C49C87D63DA0F574",
+            "name": "钟兴",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 407818713,
+          "id": "E5702C3B38BD744E8E1DEF620678ABBC",
+          "name": "顺"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/34bql5H_35bmVGOl2xmueQ==/109951174225670458.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3324852509,
+        "id": "AC4E892638E06C2B005032358F301C07",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3324852509",
+        "duration": 174706,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 121703530,
+            "id": "A8D8C3884BCDBFFB569D767109A873A6",
+            "name": "B-KLl",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 121703530,
+            "id": "A8D8C3884BCDBFFB569D767109A873A6",
+            "name": "B-KLl",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 353159275,
+          "id": "5F37905B5428EC648DC07921E410E77C",
+          "name": "爱到尽头"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/eImhcnMQz-ZfuhQGiPALdQ==/109951172323546544.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 2072400132,
+        "id": "21C304F3AAF71034F76CDE3706C54D78",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/2072400132",
+        "duration": 144480,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 51251623,
+            "id": "496A8DB78AFAECAB86E633D9082044CD",
+            "name": "惘忆",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 51251623,
+            "id": "496A8DB78AFAECAB86E633D9082044CD",
+            "name": "惘忆",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 139599229,
+          "id": "2D1F63616893518060165A3039240F5A",
+          "name": "Ukulele"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/iibmOcYTwmwU_-1_uOthiA==/109951166991371367.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 320000,
+        "maxBrLevel": "exhigh",
+        "plLevel": "exhigh",
+        "dlLevel": "exhigh",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 0,
+          "vipPackagePayed": 0,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 2694342298,
+        "id": "3C631C28AA713715985285F6C90C3ABB",
+        "name": "独行也出众",
+        "jumpUrl": "orpheus://song/2694342298",
+        "duration": 97466,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 96989167,
+            "id": "7EBB01D949B99A5C39F2676A4B46FBDE",
+            "name": "晴天",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 96989167,
+            "id": "7EBB01D949B99A5C39F2676A4B46FBDE",
+            "name": "晴天",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 268015520,
+          "id": "F938643E8FB80C95870B85352FFA6211",
+          "name": "猖狂二字"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/I0EfQiOxJGFFrhe6t0-TuA==/109951170679878699.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 3,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 2675256635,
+        "id": "794E9C58B199BCBAD0C400AF2F2E138B",
+        "name": "无法抹去的痕迹",
+        "jumpUrl": "orpheus://song/2675256635",
+        "duration": 63048,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 96989167,
+            "id": "7EBB01D949B99A5C39F2676A4B46FBDE",
+            "name": "晴天",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 96989167,
+            "id": "7EBB01D949B99A5C39F2676A4B46FBDE",
+            "name": "晴天",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 262888412,
+          "id": "24A20033F2CD4BD8EC06E03A3C03A47F",
+          "name": "痛且自知"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/oNtbRRdRUPLVYzTYWhpncQ==/109951170485061756.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3440441479,
+        "id": "69D06698659CE49DE9D85804AAAEE359",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3440441479",
+        "duration": 112373,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 122200643,
+            "id": "7D2046F1451200506C265A9F9E8F477F",
+            "name": "Jay",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 122200643,
+            "id": "7D2046F1451200506C265A9F9E8F477F",
+            "name": "Jay",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 400164559,
+          "id": "71B19D77809383BEF69A1365464DB739",
+          "name": "晴天"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/gRjIWVVpJu_ogi5hsqotXw==/109951172952456016.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "hires",
+        "plLevel": "hires",
+        "dlLevel": "hires",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 0,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      },
+      {
+        "originalId": 3443411735,
+        "id": "2EB7E83C4BC154B9FEC19E0123EC4F50",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3443411735",
+        "duration": 231523,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 127614857,
+            "id": "950A76A264473E46EEC8FEA1F29D6003",
+            "name": "清柚",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 127614857,
+            "id": "950A76A264473E46EEC8FEA1F29D6003",
+            "name": "清柚",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 401726937,
+          "id": "38D79038E8B38F8C3AB1405B06F57697",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/Vu2RbzpAXN_eITgE-AYWEg==/109951174041024709.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 320000,
+        "userMaxBr": 0,
+        "maxBrLevel": "exhigh",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature_#globalhqs1",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 320000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 2113790300,
+        "id": "4251F88E037079841A8F2216ED80E608",
+        "name": "晴天（梦田LiveHouse）",
+        "jumpUrl": "orpheus://song/2113790300",
+        "duration": 317657,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 58226795,
+            "id": "2E701E1D3C555AC6C8810C8C4089B1DD",
+            "name": "Nefert",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 58226795,
+            "id": "2E701E1D3C555AC6C8810C8C4089B1DD",
+            "name": "Nefert",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 173498958,
+          "id": "323121D80744371D499CE00A25CA3694",
+          "name": "Wᴇ"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/JXy8D2992Vm_RyAgwXJkbg==/109951169240176224.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 0,
+        "maxBrLevel": "lossless",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 0,
+          "vipPackagePayed": 0,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 3345682628,
+        "id": "94B7A3FE7ADC8256A09692C35A31AA91",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/3345682628",
+        "duration": 125083,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 60109153,
+            "id": "8CE7A0AE87069EDC4616FC6C91A25BCD",
+            "name": "雷米克斯",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 60109153,
+            "id": "8CE7A0AE87069EDC4616FC6C91A25BCD",
+            "name": "雷米克斯",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 360587438,
+          "id": "85229140CCEF1288FB010974E8B24CE1",
+          "name": "晴天"
+        },
+        "playFlag": false,
+        "downloadFlag": false,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/ZAfTy7Lkdlyi4HJFo6ORFA==/109951172682050090.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 96000,
+        "userMaxBr": 0,
+        "maxBrLevel": "standard",
+        "plLevel": "none",
+        "dlLevel": "none",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 0,
+        "playMaxbr": 96000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": false
+      },
+      {
+        "originalId": 1939282012,
+        "id": "911B0F0180945A827E50FFA523A006EB",
+        "name": "晴天",
+        "jumpUrl": "orpheus://song/1939282012",
+        "duration": 198005,
+        "noCopyrightRcmd": null,
+        "artists": [
+          {
+            "originalId": 35517948,
+            "id": "3466856C5A6C3B09901230C69AEA9E4E",
+            "name": "沉淀",
+            "coverImgUrl": null
+          }
+        ],
+        "fullArtists": [
+          {
+            "originalId": 35517948,
+            "id": "3466856C5A6C3B09901230C69AEA9E4E",
+            "name": "沉淀",
+            "coverImgUrl": null
+          }
+        ],
+        "album": {
+          "originalId": 143639415,
+          "id": "0E30D2DF52CEA9E0A556B801904D2231",
+          "name": "晴天"
+        },
+        "playFlag": true,
+        "downloadFlag": true,
+        "payPlayFlag": false,
+        "payDownloadFlag": false,
+        "vipFlag": false,
+        "liked": false,
+        "coverImgUrl": "http://p1.music.126.net/SFfOrQk3tNYAFEL1nEEJiQ==/109951167309711760.jpg",
+        "vipPlayFlag": false,
+        "accompanyFlag": null,
+        "songMaxBr": 999000,
+        "userMaxBr": 999000,
+        "maxBrLevel": "lossless",
+        "plLevel": "lossless",
+        "dlLevel": "lossless",
+        "alg": "alg_search_precision_song_tab_basic_null_TID000001a20818b38a1de80a32b7ce0006_nature",
+        "privateCloudSong": false,
+        "freeTrailFlag": false,
+        "songFtFlag": false,
+        "freeTrialPrivilege": {
+          "cannotListenReason": null,
+          "resConsumable": false,
+          "userConsumable": false,
+          "listenType": null,
+          "freeLimitTagType": null
+        },
+        "songFee": 8,
+        "playMaxbr": 999000,
+        "qualities": null,
+        "originCoverType": 2,
+        "emotionTag": null,
+        "vocalFlag": null,
+        "payed": {
+          "payed": 1,
+          "vipPackagePayed": 1,
+          "singlePayed": 0,
+          "albumPayed": 0
+        },
+        "openApiTraceInfo": null,
+        "dirty": false,
+        "visible": true
+      }
+    ]
+  }
+}

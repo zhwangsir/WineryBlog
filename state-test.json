@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "state": {
+    "status": "stopped",
+    "position": 0,
+    "volume": null,
+    "currentIndex": 0,
+    "queueLength": 0
+  }
+}

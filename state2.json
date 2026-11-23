@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "state": {
+    "status": "playing",
+    "title": "稻香 - Jay",
+    "position": 15.35006,
+    "duration": 198.0135,
+    "progress": "0:15 / 3:18",
+    "volume": null,
+    "currentIndex": 0,
+    "queueLength": 1
+  }
+}
