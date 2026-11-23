@@ -255,9 +255,27 @@ for (const src of sourceList) {
     const chosen = new Set();
     for (const pick of src.picks) {
       const dirPrefix = pick.dir ? (pick.dir + '/') : '';
-      let candidates = allMd
-        .map(t => t.path)
-        .filter(p => p.startsWith(dirPrefix) && !p.endsWith('README.md'));
+      let candidates;
+      if (pick.viaContents) {
+        // viaContents 模式：树 truncated 的大仓库改用 contents API 逐子目录列举
+        candidates = [];
+        try {
+          const subs = JSON.parse(gh(`/repos/${src.repo}/contents/${pick.dir}`))
+            .filter(x => x.type === 'dir' && !/img|image|assets|picture/i.test(x.name));
+          for (const sub of subs) {
+            try {
+              const subFiles = JSON.parse(gh(`/repos/${src.repo}/contents/${sub.path}`));
+              for (const f of subFiles) {
+                if (f.type === 'file' && /\.md$/i.test(f.name)) candidates.push(f.path);
+              }
+            } catch { /* 子目录跳过 */ }
+          }
+        } catch (e) { report.push(`✘ ${src.id} contents list failed: ${e.message.slice(0, 60)}`); }
+      } else {
+        candidates = allMd
+          .map(t => t.path)
+          .filter(p => p.startsWith(dirPrefix) && !p.endsWith('README.md'));
+      }
       if (pick.recursive === false) candidates = candidates.filter(p => path.dirname(p) === (pick.dir || '.'));
       if (pick.files) {
         for (const f of pick.files) {

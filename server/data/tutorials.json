@@ -17,7 +17,7 @@
    "name": "编程语言",
    "icon": "Code2",
    "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-   "count": 27
+   "count": 38
   },
   {
    "id": "algo",
@@ -7914,6 +7914,171 @@
    ],
    "prereqs": [],
    "href": "g-doocsjvm-10"
+  },
+  {
+   "id": "g-cppthings2-1",
+   "kind": "collection",
+   "title": "C++ 纯虚函数与抽象类",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! C++中的纯虚函数(或抽象函数)是",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-1"
+  },
+  {
+   "id": "g-cppthings2-2",
+   "kind": "collection",
+   "title": "C++ assert 断言",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 断言，是宏，而非函数。 asser",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-2"
+  },
+  {
+   "id": "g-cppthings2-3",
+   "kind": "collection",
+   "title": "C++ 位域",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! “ 位域 “ 或 “ 位段 “(B",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-3"
+  },
+  {
+   "id": "g-cppthings2-4",
+   "kind": "collection",
+   "title": "C 语言实现 C++ 多态",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! C++中的多态:在C++中会维护一",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-4"
+  },
+  {
+   "id": "g-cppthings2-5",
+   "kind": "collection",
+   "title": "C++ const 常量与修饰",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 微信公众号： ! 常类型是指使用类型修饰符const",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-5"
+  },
+  {
+   "id": "g-cppthings2-6",
+   "kind": "collection",
+   "title": "C++ decltype 类型推导",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! decltype的语法是: dec",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-6"
+  },
+  {
+   "id": "g-cppthings2-7",
+   "kind": "collection",
+   "title": "C++ enum 枚举类型",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 枚举有如下问题： 作用域不受限,会",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-7"
+  },
+  {
+   "id": "g-cppthings2-9",
+   "kind": "collection",
+   "title": "C++ extern 链接说明",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 在C++中常在头文件见到exter",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-9"
+  },
+  {
+   "id": "g-cppthings2-10",
+   "kind": "collection",
+   "title": "C++ friend 友元",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 友元提供了一种 普通函数或者类成员",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-10"
+  },
+  {
+   "id": "g-cppthings2-11",
+   "kind": "collection",
+   "title": "C++ inline 内联函数",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 头文件中声明方法 c++ clas",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-11"
+  },
+  {
+   "id": "g-cppthings2-12",
+   "kind": "collection",
+   "title": "C++ 宏与条件编译",
+   "summary": "本文档由 C++那些事网站 同步生成，网站版本含多语言与更新排版。 个人公众号： ! 分为几种：，，\\ 在一个宏中的参数",
+   "domain": "langs",
+   "category": "C++ Those Things",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "C++"
+   ],
+   "prereqs": [],
+   "href": "g-cppthings2-12"
   }
  ]
 }
