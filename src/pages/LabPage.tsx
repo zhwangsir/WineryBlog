@@ -218,12 +218,11 @@ const CoachPanel: React.FC<{ labId: string }> = ({ labId }) => {
   );
 };
 
-/** 沙箱运行区：编辑器 + iframe 实时运行 */
+/** 沙箱运行区：编辑器（上）+ 沙箱预览（下），纵向堆叠不挤压 */
 const SandboxView: React.FC<{ labId: string; starter?: string }> = ({ labId, starter }) => {
   const [code, setCode] = useState(starter || '');
   const [doc, setDoc] = useState('');
   const frameRef = useRef<HTMLIFrameElement>(null);
-  const [stepsOpen, setStepsOpen] = useState(true);
 
   const run = useCallback(() => setDoc(buildSandboxDoc(code)), [code]);
 
@@ -234,21 +233,22 @@ const SandboxView: React.FC<{ labId: string; starter?: string }> = ({ labId, sta
 
   return (
     <div className="flex flex-col gap-3 h-full">
-      <div className="flex items-center justify-between">
-        <span className="flex items-center gap-1.5 text-xs text-text-muted">
-          <Code2 className="w-3.5 h-3.5" />
-          编辑代码后点「运行」，输出与画布显示在右侧沙箱
-        </span>
-        <div className="flex items-center gap-2">
-          <button onClick={() => setCode(starter || '')} className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-border text-xs text-text-secondary hover:border-accent hover:text-accent transition-colors">
-            <RotateCcw className="w-3.5 h-3.5" /> 重置
-          </button>
-          <button onClick={run} className="flex items-center gap-1.5 px-3.5 py-1.5 bg-accent text-white rounded-lg text-xs font-medium hover:bg-accent-hover transition-colors">
-            <Play className="w-3.5 h-3.5" /> 运行
-          </button>
+      <div className="rounded-xl overflow-hidden border border-border">
+        {/* 编辑器工具行 */}
+        <div className="flex items-center justify-between px-3 py-2 bg-[#111823] border-b border-border">
+          <span className="flex items-center gap-1.5 text-xs text-text-muted">
+            <Code2 className="w-3.5 h-3.5" />
+            编辑代码 → 运行 → 在下方沙箱查看输出与画布
+          </span>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setCode(starter || '')} className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-border text-xs text-text-secondary hover:border-accent hover:text-accent transition-colors">
+              <RotateCcw className="w-3.5 h-3.5" /> 重置
+            </button>
+            <button onClick={() => setDoc(buildSandboxDoc(code))} className="flex items-center gap-1.5 px-3.5 py-1.5 bg-accent text-white rounded-lg text-xs font-medium hover:bg-accent-hover transition-colors">
+              <Play className="w-3.5 h-3.5" /> 运行
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col lg:flex-row gap-3 flex-1 min-h-0">
         <textarea
           value={code}
           onChange={e => setCode(e.target.value)}
@@ -262,26 +262,24 @@ const SandboxView: React.FC<{ labId: string; starter?: string }> = ({ labId, sta
             }
           }}
           spellCheck={false}
-          className="flex-1 min-h-[300px] lg:min-h-[380px] bg-[#0a0e13] text-[#dfe6ee] font-mono text-[12.5px] leading-relaxed p-3 rounded-xl border border-border focus:outline-none focus:border-accent/60 resize-y"
+          className="w-full h-[220px] bg-[#0a0e13] text-[#dfe6ee] font-mono text-[12.5px] leading-relaxed p-3 focus:outline-none resize-y block"
         />
-        <div className="flex-1 min-h-[300px] lg:min-h-[380px]">
-          {doc ? (
-            <iframe
-              ref={frameRef}
-              title="沙箱预览"
-              sandbox="allow-scripts"
-              srcDoc={doc}
-              className="w-full h-full min-h-[300px] lg:min-h-[380px] rounded-xl border border-border bg-[#0b0f14]"
-            />
-          ) : (
-            <div className="w-full h-full min-h-[300px] lg:min-h-[380px] rounded-xl border border-dashed border-border flex flex-col items-center justify-center gap-2 text-text-muted">
-              <Play className="w-6 h-6" />
-              <span className="text-sm">点「运行」在沙箱中执行代码</span>
-              <span className="text-xs">隔离 iframe · 不影响本页</span>
-            </div>
-          )}
-        </div>
       </div>
+      {doc ? (
+        <iframe
+          ref={frameRef}
+          title="沙箱预览"
+          sandbox="allow-scripts"
+          srcDoc={doc}
+          className="w-full h-[440px] rounded-xl border border-border bg-[#0b0f14]"
+        />
+      ) : (
+        <div className="w-full h-[220px] rounded-xl border border-dashed border-border flex flex-col items-center justify-center gap-2 text-text-muted">
+          <Play className="w-6 h-6" />
+          <span className="text-sm">点「运行」在隔离沙箱中执行代码</span>
+          <span className="text-xs">console 输出与画布都会显示在这里</span>
+        </div>
+      )}
     </div>
   );
 };
@@ -374,7 +372,7 @@ export const LabPage: React.FC = () => {
             })}
             <div className="text-xs text-text-muted px-2 leading-relaxed">
               <Sparkles className="w-3.5 h-3.5 inline mr-1 -mt-0.5" />
-              完成实验会记入「学习周报」的实验统计；进度匿名保存在本站本地。
+              完成实验会记入个人学习进度；进度匿名保存在本站本地。
             </div>
           </aside>
 

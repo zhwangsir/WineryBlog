@@ -34,11 +34,6 @@
       "icon": "GraduationCap"
     },
     {
-      "name": "学习周报",
-      "path": "/report",
-      "icon": "Route"
-    },
-    {
       "name": "实验室",
       "path": "/lab",
       "icon": "FlaskConical"

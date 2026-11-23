@@ -29,8 +29,9 @@ export const Layout: React.FC = () => {
     | undefined;
   const petOn = pet ? pet.enabled !== false : true; // 默认启用胡桃桌宠
 
-  // 阅读专注模式：文章页（教程/博客/镜像）隐藏左右侧栏，正文全宽沉浸
-  const isReading = location.pathname.startsWith('/post/');
+  // 沉浸宽屏模式：文章页 / 知识图谱 / 实验室 隐藏左右侧栏，主区全宽
+  const p = location.pathname;
+  const isImmersive = p.startsWith('/post/') || p.startsWith('/graph') || p.startsWith('/lab');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -117,8 +118,8 @@ export const Layout: React.FC = () => {
         "flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-8",
         location.pathname !== '/' && "pt-24 md:pt-32"
       )}>
-        <div className={cn("flex gap-6 lg:gap-8", isReading && "justify-center")}>
-          {!isReading && (
+        <div className={cn("flex gap-6 lg:gap-8", isImmersive && !p.startsWith('/graph') && "justify-center")}>
+          {!isImmersive && (
             <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
               <ProfileCard />
             </aside>
@@ -126,7 +127,7 @@ export const Layout: React.FC = () => {
 
           <div className={cn(
             "flex-1 min-w-0",
-            isReading && "max-w-[960px] w-full mx-auto"
+            isImmersive && !p.startsWith('/graph') && !p.startsWith('/lab') && "max-w-[960px] w-full mx-auto"
           )}>
               <motion.div
                 key={location.pathname}
@@ -139,7 +140,7 @@ export const Layout: React.FC = () => {
               </motion.div>
           </div>
 
-          {!isReading && (
+          {!isImmersive && (
             <aside className="hidden xl:block w-[280px] shrink-0 space-y-6">
               <StatsCard />
               <Calendar />
