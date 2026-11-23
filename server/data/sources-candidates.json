@@ -212,7 +212,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "advjava2",
@@ -234,7 +234,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "doocsleetcode",
