@@ -256,7 +256,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "qianguyihao",
@@ -295,7 +295,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   }
  ]
 }

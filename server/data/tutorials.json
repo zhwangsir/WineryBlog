@@ -38,7 +38,7 @@
    "name": "Web 前端",
    "icon": "Monitor",
    "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-   "count": 48
+   "count": 51
   },
   {
    "id": "backend",
@@ -10281,6 +10281,57 @@
    ],
    "prereqs": [],
    "href": "g-advjava2-7"
+  },
+  {
+   "id": "g-qianguyihao-1",
+   "kind": "collection",
+   "title": "01-认识Web和Web标准",
+   "summary": "Web（World Wide Web）即全球广域网，也称为万维网。 我们常说的Web端就是网页端。 网页是构成网站的基本",
+   "domain": "frontend",
+   "category": "前端入门手册",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "前端",
+    "CSS",
+    "JavaScript"
+   ],
+   "prereqs": [],
+   "href": "g-qianguyihao-1"
+  },
+  {
+   "id": "g-qianguyihao-2",
+   "kind": "collection",
+   "title": "02-浏览器的介绍",
+   "summary": "浏览器是网页运行的平台，常见的浏览器有谷歌（Chrome）、Safari、火狐（Firefox）、IE、Edge、Ope",
+   "domain": "frontend",
+   "category": "前端入门手册",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "前端",
+    "CSS",
+    "JavaScript"
+   ],
+   "prereqs": [],
+   "href": "g-qianguyihao-2"
+  },
+  {
+   "id": "g-qianguyihao-5",
+   "kind": "collection",
+   "title": "05-HTML标签：字体标签和超链接",
+   "summary": "字体标签： <font、 <b、 <u 、<sup 、<sub 超链接 <a &nbsp;：空格 （nonbreakin",
+   "domain": "frontend",
+   "category": "前端入门手册",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "前端",
+    "CSS",
+    "JavaScript"
+   ],
+   "prereqs": [],
+   "href": "g-qianguyihao-5"
   }
  ]
 }
