@@ -59,7 +59,7 @@
    "name": "人工智能",
    "icon": "BrainCircuit",
    "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-   "count": 41
+   "count": 49
   },
   {
    "id": "security",
@@ -10812,6 +10812,134 @@
    ],
    "prereqs": [],
    "href": "g-coding-interview-8"
+  },
+  {
+   "id": "g-ailearning-1",
+   "kind": "collection",
+   "title": "第1章 机器学习基础",
+   "summary": "!机器学习基础_首页 机器学习(Machine Learning,ML) 是使用计算机来彰显数据背后的真实含义，它为了把",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-1"
+  },
+  {
+   "id": "g-ailearning-2",
+   "kind": "collection",
+   "title": "第 10 章 K-Means（K-均值）聚类算法",
+   "summary": "!KMeans（K均值）聚类算法_首页 聚类，简单来说，就是将一个庞杂数据集中具有相似特征的数据自动归类到一起，称为一个",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-2"
+  },
+  {
+   "id": "g-ailearning-3",
+   "kind": "collection",
+   "title": "第 11 章 使用 Apriori 算法进行关联分析",
+   "summary": "! 关联分析是一种在大规模数据集中寻找有趣关系的任务。 这些关系可以有两种形式: 频繁项集（frequent item ",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-3"
+  },
+  {
+   "id": "g-ailearning-4",
+   "kind": "collection",
+   "title": "第12章 使用FP-growth算法来高效发现频繁项集",
+   "summary": "! 在 第11章 时我们已经介绍了用 Apriori 算法发现 频繁项集 与 关联规则。 本章将继续关注发现 频繁项集 ",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-4"
+  },
+  {
+   "id": "g-ailearning-5",
+   "kind": "collection",
+   "title": "第13章 利用 PCA 来简化数据",
+   "summary": "!利用PCA简化数据_首页 场景 我们正通过电视观看体育比赛，在电视的显示器上有一个球。 显示器大概包含了100万像素点",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-5"
+  },
+  {
+   "id": "g-ailearning-6",
+   "kind": "collection",
+   "title": "第14章 利用SVD简化数据",
+   "summary": "</script !利用SVD简化数据首页 奇异值分解（SVD, Singular Value Decompositio",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-6"
+  },
+  {
+   "id": "g-ailearning-7",
+   "kind": "collection",
+   "title": "第15章 大数据与MapReduce",
+   "summary": "!大数据与MapReduce首页 大数据: 收集到的数据已经远远超出了我们的处理能力。 假如你为一家网络购物商店工作，很",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-7"
+  },
+  {
+   "id": "g-ailearning-8",
+   "kind": "collection",
+   "title": "第16章 推荐系统",
+   "summary": "随着互联网的快速发展，用户很难快速从海量信息中寻找到自己感兴趣的信息。因此诞生了: 搜索引擎+推荐系统 本章节推荐系统:",
+   "domain": "ai",
+   "category": "AiLearning",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "机器学习",
+    "AI 经典"
+   ],
+   "prereqs": [],
+   "href": "g-ailearning-8"
   }
  ]
 }

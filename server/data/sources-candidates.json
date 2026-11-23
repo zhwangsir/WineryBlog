@@ -361,7 +361,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "lcgo",
@@ -384,7 +384,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "dbtutorial",
