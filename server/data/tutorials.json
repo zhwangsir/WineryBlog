@@ -10,7 +10,7 @@
    "name": "编程基础与工具",
    "icon": "Wrench",
    "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-   "count": 29
+   "count": 32
   },
   {
    "id": "langs",
@@ -11323,6 +11323,54 @@
    ],
    "prereqs": [],
    "href": "g-interview-ref-14"
+  },
+  {
+   "id": "g-docstyle-1",
+   "kind": "collection",
+   "title": "标点符号",
+   "summary": "（1）中文语句的标点符号，均应该采取全角符号，这样可以与全角文字保持视觉的一致。 （2）如果整句为英文，则该句使用英文/",
+   "domain": "basics",
+   "category": "中文文档排版指南",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "文档",
+    "写作规范"
+   ],
+   "prereqs": [],
+   "href": "g-docstyle-1"
+  },
+  {
+   "id": "g-docstyle-5",
+   "kind": "collection",
+   "title": "文档体系",
+   "summary": "软件手册是一部完整的书，建议采用下面的结构。 简介（Introduction）：必备 文件 提供对产品和文档本身的总体的",
+   "domain": "basics",
+   "category": "中文文档排版指南",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "文档",
+    "写作规范"
+   ],
+   "prereqs": [],
+   "href": "g-docstyle-5"
+  },
+  {
+   "id": "g-docstyle-6",
+   "kind": "collection",
+   "title": "文本",
+   "summary": "（1）全角中文字符与半角英文字符之间，应有一个半角空格。 错误：本文介绍如何快速启动Windows系统。 正确：本文介绍",
+   "domain": "basics",
+   "category": "中文文档排版指南",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "文档",
+    "写作规范"
+   ],
+   "prereqs": [],
+   "href": "g-docstyle-6"
   }
  ]
 }
