@@ -158,7 +158,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "csnotes2",
@@ -181,7 +181,7 @@
      "skip": 26
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "csbase2",

@@ -24,7 +24,7 @@
    "name": "数据结构与算法",
    "icon": "GitBranch",
    "blurb": "数据组织与算法思维，面试与功底的分水岭",
-   "count": 102
+   "count": 205
   },
   {
    "id": "system",
@@ -8079,6 +8079,1654 @@
    ],
    "prereqs": [],
    "href": "g-cppthings2-12"
+  },
+  {
+   "id": "g-csnotes2-1",
+   "kind": "collection",
+   "title": "10.1 斐波那契数列",
+   "summary": "Leetcode 写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。答案需要取模 1e9+7（1",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-1"
+  },
+  {
+   "id": "g-csnotes2-2",
+   "kind": "collection",
+   "title": "10.2 矩形覆盖",
+   "summary": "可以用 2\\1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2\\1 的小矩形无重叠地覆盖一个 2\\n 的大矩形",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-2"
+  },
+  {
+   "id": "g-csnotes2-3",
+   "kind": "collection",
+   "title": "10.3 跳台阶",
+   "summary": "Leetcode 一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-3"
+  },
+  {
+   "id": "g-csnotes2-4",
+   "kind": "collection",
+   "title": "10.4 变态跳台阶",
+   "summary": "一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级... 它也可以跳上 n 级。求该青蛙跳上一个 n 级的台阶总共有多",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-4"
+  },
+  {
+   "id": "g-csnotes2-5",
+   "kind": "collection",
+   "title": "11. 旋转数组的最小数字",
+   "summary": "Leetcode 把一个数组最开始的若干个元素搬到数组的末尾，称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-5"
+  },
+  {
+   "id": "g-csnotes2-6",
+   "kind": "collection",
+   "title": "12. 矩阵中的路径",
+   "summary": "Leetcode 判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-6"
+  },
+  {
+   "id": "g-csnotes2-7",
+   "kind": "collection",
+   "title": "13. 机器人的运动范围",
+   "summary": "Leetcode 地上有一个 m 行和 n 列的方格。一个机器人从坐标 (0, 0) 的格子开始移动，每一次只能向左右上",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-7"
+  },
+  {
+   "id": "g-csnotes2-8",
+   "kind": "collection",
+   "title": "14. 剪绳子",
+   "summary": "Leetcode 把一根长度为 n 的绳子剪成多段（至少剪一刀，n ≥ 2），每段长度为整数，求各段长度乘积的最大值。 ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-8"
+  },
+  {
+   "id": "g-csnotes2-10",
+   "kind": "collection",
+   "title": "16. 数值的整数次方",
+   "summary": "Leetcode 给定一个 double 类型的浮点数 x 和 int 类型的整数 n，求 x 的 n 次方。 最直观的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-10"
+  },
+  {
+   "id": "g-csnotes2-11",
+   "kind": "collection",
+   "title": "17. 打印从 1 到最大的 n 位数",
+   "summary": "输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数即",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-11"
+  },
+  {
+   "id": "g-csnotes2-12",
+   "kind": "collection",
+   "title": "18.1 在 O(1) 时间内删除链表节点",
+   "summary": "给定单向链表的头节点和其中一个要删除的节点，在 O(1) 时间内删除该节点。 单向链表删除节点通常要先找到它的前一个节点",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-12"
+  },
+  {
+   "id": "g-csnotes2-13",
+   "kind": "collection",
+   "title": "18.2 删除链表中重复的结点",
+   "summary": "Leetcode 在一个排序的链表中，重复出现的结点全部删除，一个都不保留。例如 1 \\ 2 \\ 3 \\ 3 \\ 4 \\",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-13"
+  },
+  {
+   "id": "g-csnotes2-14",
+   "kind": "collection",
+   "title": "19. 正则表达式匹配",
+   "summary": "Leetcode 请实现一个函数用来匹配包括 '.' 和 '\\' 的正则表达式。模式中的字符 '.' 表示任意一个字符，",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-14"
+  },
+  {
+   "id": "g-csnotes2-15",
+   "kind": "collection",
+   "title": "20. 表示数值的字符串",
+   "summary": "Leetcode 判断一个字符串是否表示数值（包括整数和小数）。 text true \"+100\" \"5e2\" \"123",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-15"
+  },
+  {
+   "id": "g-csnotes2-16",
+   "kind": "collection",
+   "title": "21. 调整数组顺序使奇数位于偶数前面",
+   "summary": "Leetcode 将所有奇数调整到偶数之前。LeetCode 原题不要求保证奇数和偶数各自的相对位置不变。 使用首尾双指",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-16"
+  },
+  {
+   "id": "g-csnotes2-17",
+   "kind": "collection",
+   "title": "22. 链表中倒数第 K 个结点",
+   "summary": "Leetcode 输入一个链表，输出该链表中倒数第 K 个结点，最后一个结点是倒数第 1 个。 最直接的做法是先遍历一次",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-17"
+  },
+  {
+   "id": "g-csnotes2-18",
+   "kind": "collection",
+   "title": "23. 链表中环的入口结点",
+   "summary": "Leetcode 给定一个链表，返回环的入口结点，链表中没有环时返回 null。不允许修改链表，进阶要求只用 O(1) ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-18"
+  },
+  {
+   "id": "g-csnotes2-19",
+   "kind": "collection",
+   "title": "24. 反转链表",
+   "summary": "Leetcode 反转一个单链表，例如 1 \\ 2 \\ 3 反转后为 3 \\ 2 \\ 1。 先断开头节点，把后面的链表递",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-19"
+  },
+  {
+   "id": "g-csnotes2-20",
+   "kind": "collection",
+   "title": "25. 合并两个排序的链表",
+   "summary": "Leetcode 比较两个链表的头节点，较小的那个作为合并结果的头节点，它的 next 指向剩余部分合并的结果，剩余部分",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-20"
+  },
+  {
+   "id": "g-csnotes2-21",
+   "kind": "collection",
+   "title": "26. 树的子结构",
+   "summary": "Leetcode 分两步： isSubStructure 遍历 A 的每个节点，把它当作可能的起点，A 的根、左子树、右",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-21"
+  },
+  {
+   "id": "g-csnotes2-24",
+   "kind": "collection",
+   "title": "29. 顺时针打印矩阵",
+   "summary": "Leetcode 按顺时针的方向，从外到里打印矩阵的值。下图的矩阵打印结果为：1, 2, 3, 4, 8, 12, 16",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-24"
+  },
+  {
+   "id": "g-csnotes2-25",
+   "kind": "collection",
+   "title": "3. 数组中重复的数字",
+   "summary": "Leetcode 在一个长度为 n 的数组里的所有数字都在 0 到 n1 的范围内。数组中某些数字是重复的，但不知道有几",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-25"
+  },
+  {
+   "id": "g-csnotes2-26",
+   "kind": "collection",
+   "title": "30. 包含 min 函数的栈",
+   "summary": "Leetcode 实现一个包含 min() 函数的栈，该方法返回当前栈中最小的值。 使用一个额外的 minStack，栈",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-26"
+  },
+  {
+   "id": "g-csnotes2-27",
+   "kind": "collection",
+   "title": "31. 栈的压入、弹出序列",
+   "summary": "Leetcode 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-27"
+  },
+  {
+   "id": "g-csnotes2-28",
+   "kind": "collection",
+   "title": "32.1 从上往下打印二叉树",
+   "summary": "Leetcode 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 例如，以下二叉树层次遍历的结果为：1,2,3,",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-28"
+  },
+  {
+   "id": "g-csnotes2-29",
+   "kind": "collection",
+   "title": "32.2 把二叉树打印成多行",
+   "summary": "Leetcode 从上到下按层打印二叉树，同一层的节点从左到右打印，每一层输出为一行。 与 32.1 一样按层遍历：开始",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-29"
+  },
+  {
+   "id": "g-csnotes2-30",
+   "kind": "collection",
+   "title": "32.3 按之字形顺序打印二叉树",
+   "summary": "Leetcode 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-30"
+  },
+  {
+   "id": "g-csnotes2-31",
+   "kind": "collection",
+   "title": "33. 二叉搜索树的后序遍历序列",
+   "summary": "Leetcode 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-31"
+  },
+  {
+   "id": "g-csnotes2-32",
+   "kind": "collection",
+   "title": "34. 二叉树中和为某一值的路径",
+   "summary": "Leetcode 输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-32"
+  },
+  {
+   "id": "g-csnotes2-33",
+   "kind": "collection",
+   "title": "35. 复杂链表的复制",
+   "summary": "Leetcode 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-33"
+  },
+  {
+   "id": "g-csnotes2-34",
+   "kind": "collection",
+   "title": "36. 二叉搜索树与双向链表",
+   "summary": "Leetcode 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-34"
+  },
+  {
+   "id": "g-csnotes2-35",
+   "kind": "collection",
+   "title": "37. 序列化二叉树",
+   "summary": "Leetcode 请实现两个函数，分别用来序列化和反序列化二叉树。 用前序遍历序列化，空节点写成 ，值之间用空格分隔。例",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-35"
+  },
+  {
+   "id": "g-csnotes2-36",
+   "kind": "collection",
+   "title": "38. 字符串的排列",
+   "summary": "Leetcode 输入一个字符串，按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc，则打印出由字符 a, ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-36"
+  },
+  {
+   "id": "g-csnotes2-37",
+   "kind": "collection",
+   "title": "39. 数组中出现次数超过一半的数字",
+   "summary": "Leetcode 数组中有一个数字出现的次数超过数组长度的一半，找出这个数字。 多数投票问题，可以利用多数投票算法（Bo",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-37"
+  },
+  {
+   "id": "g-csnotes2-38",
+   "kind": "collection",
+   "title": "4. 二维数组中的查找",
+   "summary": "Leetcode 给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-38"
+  },
+  {
+   "id": "g-csnotes2-39",
+   "kind": "collection",
+   "title": "40. 最小的 K 个数",
+   "summary": "Leetcode 复杂度：O(NlogK) + O(K) 特别适合处理海量数据（内存中只保存 K 个数，数据可以边读边处",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-39"
+  },
+  {
+   "id": "g-csnotes2-40",
+   "kind": "collection",
+   "title": "41.1 数据流中的中位数",
+   "summary": "Leetcode 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-40"
+  },
+  {
+   "id": "g-csnotes2-43",
+   "kind": "collection",
+   "title": "43. 从 1 到 n 整数中 1 出现的次数",
+   "summary": "Leetcode 逐位统计：分别算出个位、十位、百位……上出现 1 的数有多少个，再相加。设当前位的权重为 m（个位 m",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-43"
+  },
+  {
+   "id": "g-csnotes2-44",
+   "kind": "collection",
+   "title": "44. 数字序列中的某一位数字",
+   "summary": "Leetcode 数字以 0123456789101112131415... 的格式序列化到一个字符串中，求这个字符串的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-44"
+  },
+  {
+   "id": "g-csnotes2-45",
+   "kind": "collection",
+   "title": "45. 把数组排成最小的数",
+   "summary": "Leetcode 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-45"
+  },
+  {
+   "id": "g-csnotes2-46",
+   "kind": "collection",
+   "title": "46. 把数字翻译成字符串",
+   "summary": "Leetcode 给定一个数字，按照如下规则翻译成字符串：1 翻译成“a”，2 翻译成“b”... 26 翻译成“z”。",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-46"
+  },
+  {
+   "id": "g-csnotes2-47",
+   "kind": "collection",
+   "title": "47. 礼物的最大价值",
+   "summary": "Leetcode 在一个 m\\n 的棋盘的每一个格都放有一个礼物，每个礼物都有一定价值（大于 0）。从左上角开始拿礼物，",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-47"
+  },
+  {
+   "id": "g-csnotes2-48",
+   "kind": "collection",
+   "title": "48. 最长不含重复字符的子字符串",
+   "summary": "Leetcode 输入一个字符串，求其最长不含重复字符的子字符串的长度。例如对于 arabcacfr，最长不含重复字符的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-48"
+  },
+  {
+   "id": "g-csnotes2-49",
+   "kind": "collection",
+   "title": "49. 丑数",
+   "summary": "Leetcode 把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-49"
+  },
+  {
+   "id": "g-csnotes2-50",
+   "kind": "collection",
+   "title": "5. 替换空格",
+   "summary": "Leetcode 将一个字符串中的每个空格替换成 \"%20\"。 text Input: \"A B\" Output: \"A",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-50"
+  },
+  {
+   "id": "g-csnotes2-51",
+   "kind": "collection",
+   "title": "50. 第一个只出现一次的字符位置",
+   "summary": "Leetcode 在一个字符串中找到第一个只出现一次的字符。若不存在则返回单空格。 text Input: abacc ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-51"
+  },
+  {
+   "id": "g-csnotes2-52",
+   "kind": "collection",
+   "title": "51. 数组中的逆序对",
+   "summary": "Leetcode 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-52"
+  },
+  {
+   "id": "g-csnotes2-54",
+   "kind": "collection",
+   "title": "53. 数字在排序数组中出现的次数",
+   "summary": "Leetcode text Input: nums = 1, 2, 3, 3, 3, 3, 4, 6 K = 3 Out",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-54"
+  },
+  {
+   "id": "g-csnotes2-58",
+   "kind": "collection",
+   "title": "56. 数组中只出现一次的数字",
+   "summary": "Leetcode 一个整型数组里除了两个数字之外，其他的数字都出现了两次，找出这两个数。 两个相等的元素异或的结果为 0",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-58"
+  },
+  {
+   "id": "g-csnotes2-59",
+   "kind": "collection",
+   "title": "57.1 和为 S 的两个数字",
+   "summary": "Leetcode 在有序数组中找出两个数，使得和为给定的数 S。如果有多对数字的和等于 S，输出两个数的乘积最小的。 使",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-59"
+  },
+  {
+   "id": "g-csnotes2-60",
+   "kind": "collection",
+   "title": "57.2 和为 S 的连续正数序列",
+   "summary": "Leetcode 输出所有和为 S 的连续正数序列。例如和为 100 的连续序列有： text 9, 10, 11, 1",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-60"
+  },
+  {
+   "id": "g-csnotes2-61",
+   "kind": "collection",
+   "title": "58.1 翻转单词顺序列",
+   "summary": "Leetcode text Input: \"I am a student.\" Output: \"student. a a",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-61"
+  },
+  {
+   "id": "g-csnotes2-62",
+   "kind": "collection",
+   "title": "58.2 左旋转字符串",
+   "summary": "Leetcode 将字符串 S 从第 K 位置分隔成两个子字符串，并交换这两个子字符串的位置。 text Input: ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-62"
+  },
+  {
+   "id": "g-csnotes2-63",
+   "kind": "collection",
+   "title": "59. 滑动窗口的最大值",
+   "summary": "Leetcode 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。 例如，如果输入数组 {2, 3, 4,",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-63"
+  },
+  {
+   "id": "g-csnotes2-64",
+   "kind": "collection",
+   "title": "6. 从尾到头打印链表",
+   "summary": "Leetcode 从尾到头反过来打印出每个结点的值。 要逆序打印链表 1\\2\\3（3，2，1），可以先逆序打印链表 2\\",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-64"
+  },
+  {
+   "id": "g-csnotes2-65",
+   "kind": "collection",
+   "title": "60. n 个骰子的点数",
+   "summary": "Leetcode 把 n 个骰子扔在地上，求点数和为 s 的概率。 使用一个二维数组 dp 存储点数出现的次数，其中 d",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-65"
+  },
+  {
+   "id": "g-csnotes2-66",
+   "kind": "collection",
+   "title": "61. 扑克牌顺子",
+   "summary": "Leetcode 五张牌，其中大小鬼为癞子，牌面为 0。判断这五张牌是否能组成顺子。 先排序，统计大小鬼（0）的个数 c",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-66"
+  },
+  {
+   "id": "g-csnotes2-67",
+   "kind": "collection",
+   "title": "62. 圆圈中最后剩下的数",
+   "summary": "Leetcode 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m1 的那",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-67"
+  },
+  {
+   "id": "g-csnotes2-68",
+   "kind": "collection",
+   "title": "63. 股票的最大利润",
+   "summary": "Leetcode 可以有一次买入和一次卖出，买入必须在前。求最大收益。 使用贪心策略，假设第 i 轮进行卖出操作，买入操",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-68"
+  },
+  {
+   "id": "g-csnotes2-72",
+   "kind": "collection",
+   "title": "67. 把字符串转换成整数",
+   "summary": "Leetcode 实现 atoi，将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数：跳过开头的空格，读入可",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-72"
+  },
+  {
+   "id": "g-csnotes2-73",
+   "kind": "collection",
+   "title": "68. 树中两个节点的最低公共祖先",
+   "summary": "Leetcode : 235. Lowest Common Ancestor of a Binary Search Tr",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-73"
+  },
+  {
+   "id": "g-csnotes2-74",
+   "kind": "collection",
+   "title": "7. 重建二叉树",
+   "summary": "Leetcode 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-74"
+  },
+  {
+   "id": "g-csnotes2-75",
+   "kind": "collection",
+   "title": "8. 二叉树的下一个结点",
+   "summary": "给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-75"
+  },
+  {
+   "id": "g-csnotes2-76",
+   "kind": "collection",
+   "title": "9. 用两个栈实现队列",
+   "summary": "Leetcode 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 in 栈用来处理入栈（push）操作",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-76"
+  },
+  {
+   "id": "g-csnotes2-77",
+   "kind": "collection",
+   "title": "Docker",
+   "summary": "Docker 一、解决的问题 二、与虚拟机的比较 三、优势 四、使用场景 五、实现原理 六、镜像与容器 七、Kubern",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 27,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-77"
+  },
+  {
+   "id": "g-csnotes2-78",
+   "kind": "collection",
+   "title": "Elasticsearch",
+   "summary": "Elasticsearch 一、为什么需要搜索引擎 二、倒排索引 🔥 正排与倒排 为什么快 分词 三、映射与查询 te",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 26,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-78"
+  },
+  {
+   "id": "g-csnotes2-79",
+   "kind": "collection",
+   "title": "Git",
+   "summary": "Git 集中式与分布式 中心服务器 工作流 分支实现 冲突 Fast forward 储藏（Stashing） SSH ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-79"
+  },
+  {
+   "id": "g-csnotes2-81",
+   "kind": "collection",
+   "title": "Java IO",
+   "summary": "Java IO 一、概览 二、磁盘操作 三、字节操作 实现文件复制 装饰者模式 四、字符操作 编码与解码 String ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-81"
+  },
+  {
+   "id": "g-csnotes2-82",
+   "kind": "collection",
+   "title": "Java 基础",
+   "summary": "Java 基础 一、数据类型 基本类型 包装类型 缓存池 二、String 概览 不可变的好处 String, Stri",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 45,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-82"
+  },
+  {
+   "id": "g-csnotes2-83",
+   "kind": "collection",
+   "title": "Java 容器 - 进阶",
+   "summary": "Java 容器 进阶 三、源码分析 ArrayList HashMap ConcurrentHashMap WeakHa",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-83"
+  },
+  {
+   "id": "g-csnotes2-84",
+   "kind": "collection",
+   "title": "Java 容器",
+   "summary": "Java 容器 一、概览 🔥 Collection Map 二、容器中的设计模式 迭代器模式 适配器模式 三、源码分析",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 34,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-84"
+  },
+  {
+   "id": "g-csnotes2-85",
+   "kind": "collection",
+   "title": "Java 并发",
+   "summary": "Java 并发 一、使用线程 🔥 实现 Runnable 接口 实现 Callable 接口 继承 Thread 类 ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 86,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-85"
+  },
+  {
+   "id": "g-csnotes2-86",
+   "kind": "collection",
+   "title": "Java 虚拟机",
+   "summary": "Java 虚拟机 一、运行时数据区域 🔥🔥 程序计数器 Java 虚拟机栈 本地方法栈 堆 方法区 运行时常量池 直",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 68,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-86"
+  },
+  {
+   "id": "g-csnotes2-87",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 二分查找",
+   "summary": "Leetcode 题解 二分查找 正常实现 时间复杂度 m 计算 未成功查找的返回值 变种 1. 求开方 2. 大于给定",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-87"
+  },
+  {
+   "id": "g-csnotes2-88",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 位运算",
+   "summary": "Leetcode 题解 位运算 0. 原理 基本原理 位与运算技巧 移位运算 mask 计算 Java 中的位操作 1.",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-88"
+  },
+  {
+   "id": "g-csnotes2-89",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 分治",
+   "summary": "Leetcode 题解 分治 1. 给表达式加括号 2. 不同的二叉搜索树 参考资料 241\\. Different W",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-89"
+  },
+  {
+   "id": "g-csnotes2-90",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 动态规划",
+   "summary": "Leetcode 题解 动态规划 斐波那契数列 1. 爬楼梯 2. 强盗抢劫 3. 强盗在环形街区抢劫 4. 信件错排 ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 22,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-90"
+  },
+  {
+   "id": "g-csnotes2-91",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 双指针",
+   "summary": "Leetcode 题解 双指针 1. 有序数组的 Two Sum 2. 两数平方和 3. 反转字符串中的元音字符 4. ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-91"
+  },
+  {
+   "id": "g-csnotes2-92",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 哈希表",
+   "summary": "Leetcode 题解 哈希表 1. 数组中两个数的和为给定值 2. 判断数组是否含有重复元素 3. 最长和谐序列 4.",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-92"
+  },
+  {
+   "id": "g-csnotes2-93",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 图",
+   "summary": "Leetcode 题解 图 二分图 1. 判断是否为二分图 拓扑排序 1. 课程安排的合法性 2. 课程安排的顺序 并查",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-93"
+  },
+  {
+   "id": "g-csnotes2-94",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 字符串",
+   "summary": "Leetcode 题解 字符串 1. 字符串循环移位包含 2. 字符串循环移位 3. 字符串中单词的翻转 4. 两个字符",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-94"
+  },
+  {
+   "id": "g-csnotes2-95",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 排序",
+   "summary": "Leetcode 题解 排序 快速选择 堆 1. Kth Element 桶排序 1. 出现频率最多的 k 个元素 2.",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-95"
+  },
+  {
+   "id": "g-csnotes2-96",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 搜索",
+   "summary": "Leetcode 题解 搜索 BFS 1. 计算在网格中从原点到特定点的最短路径长度 2. 组成整数的最小平方数数量 3",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-96"
+  },
+  {
+   "id": "g-csnotes2-97",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 数学",
+   "summary": "Leetcode 题解 数学 素数分解 整除 最大公约数最小公倍数 1. 生成素数序列 2. 最大公约数 3. 使用位操",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-97"
+  },
+  {
+   "id": "g-csnotes2-98",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 数组与矩阵",
+   "summary": "Leetcode 题解 数组与矩阵 1. 把数组中的 0 移到末尾 2. 改变矩阵维度 3. 找出数组中最长的连续 1 ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-98"
+  },
+  {
+   "id": "g-csnotes2-99",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 栈和队列",
+   "summary": "Leetcode 题解 栈和队列 1. 用栈实现队列 2. 用队列实现栈 3. 最小值栈 4. 用栈实现括号匹配 5. ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-99"
+  },
+  {
+   "id": "g-csnotes2-100",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 树",
+   "summary": "Leetcode 题解 树 递归 1. 树的高度 2. 平衡树 3. 两节点的最长路径 4. 翻转树 5. 归并两棵树 ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-100"
+  },
+  {
+   "id": "g-csnotes2-102",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 贪心思想",
+   "summary": "Leetcode 题解 贪心思想 1. 分配饼干 2. 不重叠的区间个数 3. 投飞镖刺破气球 4. 根据身高和序号重组",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-102"
+  },
+  {
+   "id": "g-csnotes2-103",
+   "kind": "collection",
+   "title": "Leetcode 题解 - 链表",
+   "summary": "Leetcode 题解 链表 1. 找出两个链表的交点 2. 链表反转 3. 归并两个有序的链表 4. 从有序链表中删除",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-103"
+  },
+  {
+   "id": "g-csnotes2-105",
+   "kind": "collection",
+   "title": "Linux",
+   "summary": "Linux 前言 一、常用操作以及概念 快捷键 求助 关机 PATH sudo 包管理工具 发行版 VIM 三个模式 G",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 30,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-105"
+  },
+  {
+   "id": "g-csnotes2-106",
+   "kind": "collection",
+   "title": "MySQL",
+   "summary": "MySQL 一、索引 B+ Tree 原理 🔥🔥 MySQL 索引 🔥 索引的优点 索引的使用条件 🔥 索引优化",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 62,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-106"
+  },
+  {
+   "id": "g-csnotes2-107",
+   "kind": "collection",
+   "title": "Redis - 进阶",
+   "summary": "Redis 进阶 四、数据结构 对象编码 字典 十、事件 文件事件 时间事件 事件的调度与执行 附录：实测 A1 SDS",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-107"
+  },
+  {
+   "id": "g-csnotes2-108",
+   "kind": "collection",
+   "title": "Redis",
+   "summary": "Redis 一、概述 与 MySQL 的区别 二、数据类型 🔥🔥 STRING LIST SET HASH ZSET",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 50,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-108"
+  },
+  {
+   "id": "g-csnotes2-109",
+   "kind": "collection",
+   "title": "SQL 练习",
+   "summary": "SQL 练习 595. Big Countries 627. Swap Salary 620. Not Boring M",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-109"
+  },
+  {
+   "id": "g-csnotes2-110",
+   "kind": "collection",
+   "title": "SQL 语法",
+   "summary": "SQL 语法 一、基础 二、创建表 三、修改表 四、插入 五、更新 六、删除 七、查询 DISTINCT LIMIT 八",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-110"
+  },
+  {
+   "id": "g-csnotes2-112",
+   "kind": "collection",
+   "title": "Socket",
+   "summary": "Socket 一、I/O 模型 阻塞式 I/O 非阻塞式 I/O I/O 复用 信号驱动 I/O 异步 I/O 五大 I",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-112"
+  },
+  {
+   "id": "g-csnotes2-113",
+   "kind": "collection",
+   "title": "Spring",
+   "summary": "Spring 一、IoC 与 Bean IoC 与依赖注入 🔥 Bean 的生命周期 🔥 Bean 的作用域与线程安",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 48,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-113"
+  },
+  {
+   "id": "g-csnotes2-114",
+   "kind": "collection",
+   "title": "分布式",
+   "summary": "分布式 一、分布式锁 🔥🔥 数据库的唯一索引 Redis 的 SET NX 指令 Redis 的 RedLock 算",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 58,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-114"
+  },
+  {
+   "id": "g-csnotes2-115",
+   "kind": "collection",
+   "title": "剑指 Offer 题解",
+   "summary": "题目来自何海涛的《剑指 Offer：名企面试官精讲典型编程题》。题目链接指向力扣上对应的题目，力扣上的题目背景和函数名与",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-115"
+  },
+  {
+   "id": "g-csnotes2-117",
+   "kind": "collection",
+   "title": "大模型应用 - 进阶",
+   "summary": "大模型应用 进阶 一、大模型基础 注意力机制 自回归生成与 KV Cache 训练过程 微调 量化 附录：实测 A1 多",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-117"
+  },
+  {
+   "id": "g-csnotes2-118",
+   "kind": "collection",
+   "title": "大模型应用",
+   "summary": "大模型应用 一、大模型基础 Token 与分词 Transformer 结构 注意力机制 自回归生成与 KV Cache",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 241,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-118"
+  },
+  {
+   "id": "g-csnotes2-119",
+   "kind": "collection",
+   "title": "学习路线 - Java 后端",
+   "summary": "学习路线 Java 后端 一、说明 二、开始之前 三、每天的安排 四、Java 基础 第 1 天：数据类型与 Strin",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 125,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-119"
+  },
+  {
+   "id": "g-csnotes2-120",
+   "kind": "collection",
+   "title": "学习路线 - 大模型应用开发",
+   "summary": "学习路线 大模型应用开发 一、说明 二、开始之前 三、每天的安排 四、大模型基础 第 1 天：Token 与 Trans",
+   "domain": "algo",
+   "category": "剑指 Offer 题解 II",
+   "difficulty": "进阶",
+   "minutes": 44,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes2-120"
   }
  ]
 }
