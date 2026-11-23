@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
 import { Github, Mail, MessageCircle, Link as LinkIcon } from 'lucide-react';
+import { MusicCard } from './MusicCard';
 
 const DEFAULT_AVATAR = '/images/default-avatar.svg';
 

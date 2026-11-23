@@ -342,6 +342,39 @@ async function startServer() {
     }
   });
 
+  // ===== 音乐歌单卡片：本地 JSON 歌单 + 音频复用 uploads 目录 =====
+  const MUSIC_FILE = path.join(DATA_DIR, "music.json");
+  const readMusic = async (): Promise<any[]> => {
+    try { return JSON.parse(await fs.readFile(MUSIC_FILE, "utf-8")); }
+    catch { return []; }
+  };
+
+  // 公开：歌单（前台播放卡）
+  app.get("/api/music", async (_req, res) => {
+    try { res.json(await readMusic()); }
+    catch { res.json([]); }
+  });
+
+  // 管理：整表保存歌单（管理端编辑器提交完整数组）
+  app.put("/api/music", authMiddleware, async (req, res) => {
+    try {
+      const list = req.body;
+      if (!Array.isArray(list)) { res.status(400).json({ error: "歌单必须是数组" }); return; }
+      const clean = list.slice(0, 100).map((m: any, i: number) => ({
+        id: String(m.id || `m-${Date.now().toString(36)}-${i}`),
+        title: String(m.title || "未命名").slice(0, 60),
+        artist: String(m.artist || "未知歌手").slice(0, 40),
+        cover: String(m.cover || ""),
+        url: String(m.url || ""),
+      })).filter(m => m.url);
+      await fs.mkdir(DATA_DIR, { recursive: true });
+      await fs.writeFile(MUSIC_FILE, JSON.stringify(clean, null, 1));
+      res.json({ success: true, count: clean.length });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   // ===== 评论系统：本地 JSON 存储，先发先显 + 后台可隐藏/删除 =====
   const COMMENTS_FILE = path.join(DATA_DIR, "comments.json");
   const readComments = async (): Promise<any> => {

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Upload, Copy, Trash2, RefreshCw, Image, Loader2, Check, HardDrive, X, Camera, Sparkles, Mountain, LayoutGrid, ExternalLink, Database, Plus, Pencil, Power, ChevronDown, ChevronUp } from 'lucide-react';
 import { apiFetch } from '../../utils/api';
+import { MusicPlaylistSection } from '../../components/admin/MusicPlaylist';
 
 interface GalleryImage {
   name: string;
@@ -397,6 +398,9 @@ export const ManageMedia: React.FC = () => {
           </div>
         )}
       </section>
+
+      {/* 音乐歌单：资料卡音乐卡片数据源 */}
+      <MusicPlaylistSection />
 
       {loading ? (
         <div className="py-16 flex justify-center">

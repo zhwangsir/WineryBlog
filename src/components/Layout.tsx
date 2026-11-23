@@ -13,6 +13,7 @@ import { PetMascot } from './PetMascot';
 import { PetChatPanel } from './PetChatPanel';
 import { WallpaperBackground } from './WallpaperBackground';
 import { BackToTop } from './BackToTop';
+import { MusicCard } from './MusicCard';
 import { cn } from '../utils/cn';
 import { motion } from 'motion/react';
 import { useData } from '../context/DataContext';
@@ -122,6 +123,7 @@ export const Layout: React.FC = () => {
           {!isImmersive && (
             <aside className="hidden lg:block w-[280px] shrink-0 space-y-6">
               <ProfileCard />
+              <MusicCard />
             </aside>
           )}
 
