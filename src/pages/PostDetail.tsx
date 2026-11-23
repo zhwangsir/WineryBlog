@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
-import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon, GraduationCap } from 'lucide-react';
+import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon, GraduationCap, Share2 } from 'lucide-react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { TutorPanel } from '../components/TutorPanel';
@@ -13,6 +13,7 @@ import { LabPanel, type LabData } from '../components/LabPanel';
 import { CoverImage } from '../components/CoverImage';
 import { CommentSection } from '../components/CommentSection';
 import { ReadingProgress } from '../components/ReadingProgress';
+import { SharePoster } from '../components/SharePoster';
 
 function simpleHash(str: string): string {
   let hash = 0;
@@ -36,6 +37,7 @@ export const PostDetail: React.FC = () => {
   const [error, setError] = useState('');
   const [verifying, setVerifying] = useState(false);
   const [tutorOpen, setTutorOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const [tutCatalog, setTutCatalog] = useState<{ id: string; domain: string; title: string; href: string }[]>([]);
   const [isRead, setIsRead] = useState(false);
   const [lab, setLab] = useState<LabData | null>(null);
@@ -242,8 +244,15 @@ export const PostDetail: React.FC = () => {
           <ArrowLeft className="w-4 h-4" />
           返回
         </Link>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight">
-          {post.title}
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight flex items-start gap-3">
+          <span className="flex-1 min-w-0">{post.title}</span>
+          <button
+            onClick={() => setShareOpen(true)}
+            className="shrink-0 p-2.5 rounded-xl border border-border text-text-secondary hover:text-accent hover:border-accent transition-colors mt-2"
+            title="生成分享海报"
+          >
+            <Share2 className="w-5 h-5" />
+          </button>
         </h1>
 
         <div className="flex flex-wrap items-center gap-6 text-sm text-text-secondary">
@@ -383,6 +392,14 @@ export const PostDetail: React.FC = () => {
           />
         </>
       )}
+
+      {/* 分享海报 */}
+      <SharePoster
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        post={{ id: post.id, title: post.title, cover: post.cover, date: post.date }}
+        siteName={config?.title || 'WineryBlog'}
+      />
     </motion.div>
   );
 };

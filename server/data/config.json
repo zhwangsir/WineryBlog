@@ -34,6 +34,11 @@
       "icon": "GraduationCap"
     },
     {
+      "name": "学习周报",
+      "path": "/report",
+      "icon": "Route"
+    },
+    {
       "name": "知识图谱",
       "path": "/graph",
       "icon": "Waypoints"
