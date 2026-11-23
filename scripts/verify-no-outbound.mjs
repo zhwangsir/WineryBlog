@@ -36,6 +36,7 @@ for (const dir of ['src/tutorials', 'src/references']) {
     lines.forEach((l, i) => {
       if (l.trimStart().startsWith('```')) { inFence = !inFence; return; }
       if (inFence) return;
+      if (/^\s{4,}\S/.test(l)) return;   // 4 空格缩进代码块（旧式 md 代码语法）豁免
       const s = l.replace(/`[^`]+`/g, '').replace(/\[[^\]]*\]\([^)]*\)/g, '');
       if (/https?:\/\//.test(s)) violations.push(`posts:${p.id}:${i + 1}: ${s.trim().slice(0, 100)}`);
       for (const m of l.matchAll(/\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/g)) {

@@ -1,0 +1,299 @@
+{
+ "updatedAt": "2026-11-23T00:00:00.000Z",
+ "candidates": [
+  {
+   "id": "labuladong",
+   "repo": "labuladong/fucking-algorithm",
+   "branch": "master",
+   "category": "labuladong 算法小抄",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 12,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "doocsjvm",
+   "repo": "doocs/jvm",
+   "branch": "main",
+   "category": "JVM 核心知识",
+   "domain": "backend",
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "dlbook",
+   "repo": "fengdu78/deeplearning_ai_book",
+   "branch": "main",
+   "category": "深度学习笔记",
+   "domain": "ai",
+   "tags": [
+    "深度学习",
+    "吴恩达"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "cppthings2",
+   "repo": "Light-City/CPlusPlusThings",
+   "branch": "master",
+   "category": "C++ Those Things",
+   "domain": "langs",
+   "tags": [
+    "C++"
+   ],
+   "picks": [
+    {
+     "dir": "basic_content",
+     "keywords": [
+      ".md"
+     ],
+     "max": 12,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "golang2",
+   "repo": "draveness/golang",
+   "branch": "master",
+   "category": "Go 语言设计",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "底层原理"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      "goroutine",
+      "channel",
+      "map",
+      "slice",
+      "string",
+      "garbage"
+     ],
+     "max": 8,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "py100",
+   "repo": "jackfrued/Python-100-Days",
+   "branch": "master",
+   "category": "Python 100 天",
+   "domain": "langs",
+   "tags": [
+    "Python"
+   ],
+   "picks": [
+    {
+     "dir": "Day01-15",
+     "keywords": [
+      ".md"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "wsql",
+   "repo": "datawhalechina/wonderful-sql",
+   "branch": "main",
+   "category": "SQL 奇技指南",
+   "domain": "data",
+   "tags": [
+    "SQL",
+    "数据库"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      "chapter"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "csnotes2",
+   "repo": "CyC2018/CS-Notes",
+   "branch": "master",
+   "category": "剑指 Offer 题解 II",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "picks": [
+    {
+     "dir": "notes",
+     "keywords": [
+      ".md"
+     ],
+     "max": 120,
+     "sortNumeric": true,
+     "skip": 26
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "csbase2",
+   "repo": "xiaolincoder/CS-Base",
+   "branch": "main",
+   "category": "图解网络与OS",
+   "domain": "system",
+   "tags": [
+    "网络",
+    "操作系统",
+    "图解"
+   ],
+   "picks": [
+    {
+     "dir": "network",
+     "keywords": [
+      ".md"
+     ],
+     "max": 14,
+     "recursive": true
+    },
+    {
+     "dir": "os",
+     "keywords": [
+      ".md"
+     ],
+     "max": 12,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "advjava2",
+   "repo": "doocs/advanced-java",
+   "branch": "main",
+   "category": "后端进阶 II",
+   "domain": "backend",
+   "tags": [
+    "Dubbo",
+    "微服务"
+   ],
+   "picks": [
+    {
+     "dir": "docs/distributed-system",
+     "keywords": [
+      "dubbo"
+     ],
+     "max": 7,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "doocsleetcode",
+   "repo": "doocs/leetcode",
+   "branch": "main",
+   "category": "LeetCode 题解",
+   "domain": "algo",
+   "tags": [
+    "LeetCode",
+    "算法"
+   ],
+   "picks": [
+    {
+     "dir": "solution",
+     "keywords": [
+      "README.md"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "qianguyihao",
+   "repo": "qianguyihao/Web",
+   "branch": "master",
+   "category": "前端入门手册",
+   "domain": "frontend",
+   "tags": [
+    "前端",
+    "CSS",
+    "JavaScript"
+   ],
+   "picks": [
+    {
+     "dir": "01-HTML",
+     "keywords": [
+      ".md"
+     ],
+     "max": 5,
+     "recursive": true
+    },
+    {
+     "dir": "02-CSS",
+     "keywords": [
+      ".md"
+     ],
+     "max": 6,
+     "recursive": true
+    },
+    {
+     "dir": "04-JavaScript",
+     "keywords": [
+      ".md"
+     ],
+     "max": 6,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  }
+ ]
+}

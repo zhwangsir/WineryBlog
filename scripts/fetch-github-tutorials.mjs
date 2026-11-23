@@ -16,6 +16,8 @@ const TOKEN = process.env.GITHUB_TOKEN || '';   // 凭据走环境变量，不�
 const argv = process.argv.slice(2);
 const only = argv.includes('--only') ? argv[argv.indexOf('--only') + 1].split(',') : null;
 const DRY = argv.includes('--dry');
+const POOL_N = argv.includes('--pool') ? parseInt(argv[argv.indexOf('--pool') + 1] || '2', 10) : null;
+const POOL_FILE = path.join(DATA, 'sources-candidates.json');
 
 function gh(path, accept = 'application/vnd.github+json') {
   return execFileSync('curl', ['-sL', '--max-time', '60',
@@ -57,7 +59,7 @@ const SOURCES = [
     id: 'csnotes', repo: 'CyC2018/CS-Notes', branch: 'master',
     category: '剑指 Offer 题解', domain: 'algo', tags: ['算法', '题解', '面试'],
     picks: [
-      { dir: 'notes', max: 26, sortNumeric: true },
+      { dir: 'notes', max: 60, sortNumeric: true },
     ],
   },
   {
@@ -77,6 +79,7 @@ const SOURCES = [
       { dir: 'docs/distributed-system', keywords: ['cap', 'transaction', 'lock', 'idempotency', 'session'], max: 5 },
       { dir: 'docs/high-availability', keywords: ['hystrix'], max: 3 },
       { dir: 'docs/high-concurrency', keywords: ['cache', 'current-limit', 'message-queue'], max: 4 },
+      { dir: 'docs/big-data', keywords: ['.md'], max: 11 },
     ],
   },
   {
@@ -88,8 +91,14 @@ const SOURCES = [
       { dir: 'docs/chapter3', files: ['chapter3.md'] },
       { dir: 'docs/chapter4', files: ['chapter4.md'] },
       { dir: 'docs/chapter5', files: ['chapter5.md'] },
+      { dir: 'docs/chapter6', files: ['chapter6.md'] },
+      { dir: 'docs/chapter7', files: ['chapter7.md'] },
+      { dir: 'docs/chapter8', files: ['chapter8.md'] },
       { dir: 'docs/chapter9', files: ['chapter9.md'] },
+      { dir: 'docs/chapter10', files: ['chapter10.md'] },
+      { dir: 'docs/chapter11', files: ['chapter11.md'] },
       { dir: 'docs/chapter12', files: ['chapter12.md'] },
+      { dir: 'docs/chapter13', files: ['chapter13.md'] },
       { dir: 'docs/chapter16', files: ['chapter16.md'] },
     ],
   },
@@ -161,6 +170,40 @@ const SOURCES = [
       { dir: 'docs/tutorial', keywords: ['index.md'], max: 8, recursive: true },
     ],
   },
+  {
+    id: 'csbase', repo: 'xiaolincoder/CS-Base', branch: 'main',
+    category: '图解系统', domain: 'system', tags: ['MySQL', '操作系统', '网络', '图解'],
+    picks: [
+      { dir: 'mysql', keywords: ['index', 'transaction', 'buffer', 'log', 'lock'], max: 6, recursive: true },
+      { dir: 'network', keywords: [], max: 5, recursive: true },
+      { dir: 'os', keywords: [], max: 5, recursive: true },
+    ],
+  },
+  {
+    id: 'happyllm', repo: 'datawhalechina/happy-llm', branch: 'main',
+    category: 'Happy-LLM', domain: 'ai', tags: ['LLM', '大模型', 'NLP'],
+    picks: [
+      { dir: 'docs/chapter1', files: ['第一章 NLP基础概念.md'] },
+      { dir: 'docs/chapter2', files: ['第二章 Transformer架构.md'] },
+      { dir: 'docs/chapter3', files: ['第三章 预训练语言模型.md'] },
+      { dir: 'docs/chapter4', files: ['第四章 大语言模型.md'] },
+      { dir: 'Extra-Chapter/transformer-architecture', files: ['readme.md'] },
+    ],
+  },
+  {
+    id: 'k8s', repo: 'guangzhengli/k8s-tutorials', branch: 'main',
+    category: 'Kubernetes 入门', domain: 'system', tags: ['Kubernetes', '云原生', '部署'],
+    picks: [
+      { dir: 'docs', files: ['pod.md', 'deployment.md', 'service.md', 'ingress.md', 'configmap.md', 'secret.md', 'helm.md', 'namespace.md', 'job.md', 'container.md'] },
+    ],
+  },
+  {
+    id: 'ctfwiki', repo: 'ctf-wiki/ctf-wiki', branch: 'master',
+    category: 'CTF Wiki', domain: 'security', tags: ['CTF', '安全', '渗透'],
+    picks: [
+      { dir: 'docs/zh/docs', keywords: ['pwn/', 'reverse/', 'crypto/', 'web/', 'misc/'], max: 12, recursive: true },
+    ],
+  },
 ];
 
 // ─── 数据加载 ───
@@ -180,7 +223,24 @@ function words(text) {
 let addedTotal = 0, failedRepos = [];
 const report = [];
 
-for (const src of SOURCES) {
+// --pool 模式：从候选池取前 N 个 pending 仓库（定时任务每轮消耗，池空则无操作）
+let sourceList = SOURCES;
+let poolEntries = null;
+if (POOL_N !== null) {
+  try {
+    poolEntries = JSON.parse(fs.readFileSync(POOL_FILE, 'utf8'));
+  } catch { poolEntries = { candidates: [] }; }
+  const pending = (poolEntries.candidates || []).filter(c => c.status === 'pending');
+  if (!pending.length) {
+    console.log('pool: no pending candidates');
+    process.exit(0);
+  }
+  const batch = pending.slice(0, POOL_N);
+  sourceList = batch.map(c => ({ ...c, picks: c.picks || [{ dir: c.dir || '', keywords: c.keywords || ['.md'], max: c.max || 8, recursive: c.recursive !== false }] }));
+  console.log(`pool batch: ${sourceList.map(s => s.id).join(', ')}`);
+}
+
+for (const src of sourceList) {
   if (only && !only.includes(src.id)) continue;
   try {
     // 全树一次拿
@@ -276,6 +336,16 @@ for (const src of SOURCES) {
 if (!DRY) {
   fs.writeFileSync(postsPath, JSON.stringify(posts, null, 1));
   fs.writeFileSync(tutPath, JSON.stringify(tut, null, 1));
+}
+
+// --pool：回写候选状态
+if (poolEntries && !DRY) {
+  for (const src of sourceList) {
+    const failed = failedRepos.includes(src.id);
+    const ent = (poolEntries.candidates || []).find(c => c.id === src.id);
+    if (ent) ent.status = failed ? 'failed' : 'done';
+  }
+  fs.writeFileSync(POOL_FILE, JSON.stringify(poolEntries, null, 1));
 }
 
 console.log(`\n=== 收录报告（${DRY ? 'DRY' : '写入'}）===`);

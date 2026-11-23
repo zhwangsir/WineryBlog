@@ -24,14 +24,14 @@
    "name": "数据结构与算法",
    "icon": "GitBranch",
    "blurb": "数据组织与算法思维，面试与功底的分水岭",
-   "count": 61
+   "count": 102
   },
   {
    "id": "system",
    "name": "计算机系统与网络",
    "icon": "Server",
    "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-   "count": 55
+   "count": 81
   },
   {
    "id": "frontend",
@@ -45,7 +45,7 @@
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 32
+   "count": 53
   },
   {
    "id": "data",
@@ -59,14 +59,14 @@
    "name": "人工智能",
    "icon": "BrainCircuit",
    "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-   "count": 30
+   "count": 41
   },
   {
    "id": "security",
    "name": "信息安全",
    "icon": "Shield",
    "blurb": "Web 安全、渗透测试、CTF、密码学",
-   "count": 18
+   "count": 28
   },
   {
    "id": "mobile",
@@ -6073,6 +6073,1847 @@
    ],
    "prereqs": [],
    "href": "g-dockeroff-8"
+  },
+  {
+   "id": "g-csnotes-27",
+   "kind": "collection",
+   "title": "31. 栈的压入、弹出序列",
+   "summary": "Leetcode 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-27"
+  },
+  {
+   "id": "g-csnotes-28",
+   "kind": "collection",
+   "title": "32.1 从上往下打印二叉树",
+   "summary": "Leetcode 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 例如，以下二叉树层次遍历的结果为：1,2,3,",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-28"
+  },
+  {
+   "id": "g-csnotes-29",
+   "kind": "collection",
+   "title": "32.2 把二叉树打印成多行",
+   "summary": "Leetcode 从上到下按层打印二叉树，同一层的节点从左到右打印，每一层输出为一行。 与 32.1 一样按层遍历：开始",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-29"
+  },
+  {
+   "id": "g-csnotes-30",
+   "kind": "collection",
+   "title": "32.3 按之字形顺序打印二叉树",
+   "summary": "Leetcode 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-30"
+  },
+  {
+   "id": "g-csnotes-31",
+   "kind": "collection",
+   "title": "33. 二叉搜索树的后序遍历序列",
+   "summary": "Leetcode 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-31"
+  },
+  {
+   "id": "g-csnotes-32",
+   "kind": "collection",
+   "title": "34. 二叉树中和为某一值的路径",
+   "summary": "Leetcode 输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-32"
+  },
+  {
+   "id": "g-csnotes-33",
+   "kind": "collection",
+   "title": "35. 复杂链表的复制",
+   "summary": "Leetcode 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-33"
+  },
+  {
+   "id": "g-csnotes-34",
+   "kind": "collection",
+   "title": "36. 二叉搜索树与双向链表",
+   "summary": "Leetcode 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-34"
+  },
+  {
+   "id": "g-csnotes-35",
+   "kind": "collection",
+   "title": "37. 序列化二叉树",
+   "summary": "Leetcode 请实现两个函数，分别用来序列化和反序列化二叉树。 用前序遍历序列化，空节点写成 ，值之间用空格分隔。例",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-35"
+  },
+  {
+   "id": "g-csnotes-36",
+   "kind": "collection",
+   "title": "38. 字符串的排列",
+   "summary": "Leetcode 输入一个字符串，按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc，则打印出由字符 a, ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-36"
+  },
+  {
+   "id": "g-csnotes-37",
+   "kind": "collection",
+   "title": "39. 数组中出现次数超过一半的数字",
+   "summary": "Leetcode 数组中有一个数字出现的次数超过数组长度的一半，找出这个数字。 多数投票问题，可以利用多数投票算法（Bo",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-37"
+  },
+  {
+   "id": "g-csnotes-38",
+   "kind": "collection",
+   "title": "4. 二维数组中的查找",
+   "summary": "Leetcode 给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-38"
+  },
+  {
+   "id": "g-csnotes-39",
+   "kind": "collection",
+   "title": "40. 最小的 K 个数",
+   "summary": "Leetcode 复杂度：O(NlogK) + O(K) 特别适合处理海量数据（内存中只保存 K 个数，数据可以边读边处",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-39"
+  },
+  {
+   "id": "g-csnotes-40",
+   "kind": "collection",
+   "title": "41.1 数据流中的中位数",
+   "summary": "Leetcode 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-40"
+  },
+  {
+   "id": "g-csnotes-43",
+   "kind": "collection",
+   "title": "43. 从 1 到 n 整数中 1 出现的次数",
+   "summary": "Leetcode 逐位统计：分别算出个位、十位、百位……上出现 1 的数有多少个，再相加。设当前位的权重为 m（个位 m",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-43"
+  },
+  {
+   "id": "g-csnotes-44",
+   "kind": "collection",
+   "title": "44. 数字序列中的某一位数字",
+   "summary": "Leetcode 数字以 0123456789101112131415... 的格式序列化到一个字符串中，求这个字符串的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-44"
+  },
+  {
+   "id": "g-csnotes-45",
+   "kind": "collection",
+   "title": "45. 把数组排成最小的数",
+   "summary": "Leetcode 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-45"
+  },
+  {
+   "id": "g-csnotes-46",
+   "kind": "collection",
+   "title": "46. 把数字翻译成字符串",
+   "summary": "Leetcode 给定一个数字，按照如下规则翻译成字符串：1 翻译成“a”，2 翻译成“b”... 26 翻译成“z”。",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-46"
+  },
+  {
+   "id": "g-csnotes-47",
+   "kind": "collection",
+   "title": "47. 礼物的最大价值",
+   "summary": "Leetcode 在一个 m\\n 的棋盘的每一个格都放有一个礼物，每个礼物都有一定价值（大于 0）。从左上角开始拿礼物，",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-47"
+  },
+  {
+   "id": "g-csnotes-48",
+   "kind": "collection",
+   "title": "48. 最长不含重复字符的子字符串",
+   "summary": "Leetcode 输入一个字符串，求其最长不含重复字符的子字符串的长度。例如对于 arabcacfr，最长不含重复字符的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-48"
+  },
+  {
+   "id": "g-csnotes-49",
+   "kind": "collection",
+   "title": "49. 丑数",
+   "summary": "Leetcode 把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-49"
+  },
+  {
+   "id": "g-csnotes-50",
+   "kind": "collection",
+   "title": "5. 替换空格",
+   "summary": "Leetcode 将一个字符串中的每个空格替换成 \"%20\"。 text Input: \"A B\" Output: \"A",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-50"
+  },
+  {
+   "id": "g-csnotes-51",
+   "kind": "collection",
+   "title": "50. 第一个只出现一次的字符位置",
+   "summary": "Leetcode 在一个字符串中找到第一个只出现一次的字符。若不存在则返回单空格。 text Input: abacc ",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-51"
+  },
+  {
+   "id": "g-csnotes-52",
+   "kind": "collection",
+   "title": "51. 数组中的逆序对",
+   "summary": "Leetcode 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-52"
+  },
+  {
+   "id": "g-csnotes-54",
+   "kind": "collection",
+   "title": "53. 数字在排序数组中出现的次数",
+   "summary": "Leetcode text Input: nums = 1, 2, 3, 3, 3, 3, 4, 6 K = 3 Out",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-54"
+  },
+  {
+   "id": "g-csnotes-57",
+   "kind": "collection",
+   "title": "6. 从尾到头打印链表",
+   "summary": "Leetcode 从尾到头反过来打印出每个结点的值。 要逆序打印链表 1\\2\\3（3，2，1），可以先逆序打印链表 2\\",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-57"
+  },
+  {
+   "id": "g-csnotes-58",
+   "kind": "collection",
+   "title": "7. 重建二叉树",
+   "summary": "Leetcode 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-58"
+  },
+  {
+   "id": "g-csnotes-59",
+   "kind": "collection",
+   "title": "8. 二叉树的下一个结点",
+   "summary": "给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-59"
+  },
+  {
+   "id": "g-csnotes-60",
+   "kind": "collection",
+   "title": "9. 用两个栈实现队列",
+   "summary": "Leetcode 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 in 栈用来处理入栈（push）操作",
+   "domain": "algo",
+   "category": "剑指 Offer 题解",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "题解",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-csnotes-60"
+  },
+  {
+   "id": "g-advjava-11",
+   "kind": "collection",
+   "title": "大数据中 TopK 问题的常用套路",
+   "summary": "对于海量数据到处理经常会涉及到 topK 问题。在设计数据结构和算法的时候，主要需要考虑的应该是当前算法（包括数据结构）",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-11"
+  },
+  {
+   "id": "g-advjava-12",
+   "kind": "collection",
+   "title": "Redis vs Zookeeper 实现分布式锁",
+   "summary": "一般实现分布式锁都有哪些方式？使用 Redis 如何设计分布式锁？使用 zk 来设计分布式锁可以吗？这两种分布式锁的实现",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-12"
+  },
+  {
+   "id": "g-advjava-13",
+   "kind": "collection",
+   "title": "如何实现分布式 Session？",
+   "summary": "集群部署时的分布式 Session 如何实现？ 面试官问了你一堆 Dubbo 是怎么玩儿的，你会玩儿 Dubbo 就可以",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-13"
+  },
+  {
+   "id": "g-advjava-14",
+   "kind": "collection",
+   "title": "分布式系统中的 CAP 定理",
+   "summary": "作者之前在看 CAP 定理时抱有很大的疑惑，CAP 定理的定义是指在分布式系统中三者只能满足其二，也就是存在分布式 CA",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-14"
+  },
+  {
+   "id": "g-advjava-15",
+   "kind": "collection",
+   "title": "分布式服务接口的幂等性如何设计？",
+   "summary": "分布式服务接口的幂等性如何设计（比如不能重复扣款）？ 从这个问题开始，面试官就已经进入了实际的生产问题的面试了。 一个分",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-15"
+  },
+  {
+   "id": "g-advjava-16",
+   "kind": "collection",
+   "title": "分布式事务原理",
+   "summary": "分布式事务了解吗？你们是如何解决分布式事务问题的？ 只要聊到你做了分布式系统，必问分布式事务，你对分布式事务一无所知的话",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-16"
+  },
+  {
+   "id": "g-advjava-17",
+   "kind": "collection",
+   "title": "深入 Hystrix 断路器执行原理",
+   "summary": "Hystrix 断路器有三种状态，分别是关闭（Closed）、打开（Open）与半开（HalfOpen），三种状态转化关",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-17"
+  },
+  {
+   "id": "g-advjava-18",
+   "kind": "collection",
+   "title": "Hystrix 隔离策略细粒度控制",
+   "summary": "Hystrix 实现资源隔离，有两种策略： 线程池隔离 信号量隔离 对资源隔离这一块东西，其实可以做一定细粒度的一些控制",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-18"
+  },
+  {
+   "id": "g-advjava-19",
+   "kind": "collection",
+   "title": "基于本地缓存的 fallback 降级机制",
+   "summary": "Hystrix 出现以下四种情况，都会去调用 fallback 降级机制： 断路器处于打开的状态。 资源池已满（线程池+",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-19"
+  },
+  {
+   "id": "g-advjava-20",
+   "kind": "collection",
+   "title": "如何保证消息队列的高可用？",
+   "summary": "如何保证消息队列的高可用？ 如果有人问到你 MQ 的知识，高可用是必问的。上一讲提到，MQ 会导致系统可用性降低。所以只",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-20"
+  },
+  {
+   "id": "g-advjava-21",
+   "kind": "collection",
+   "title": "缓存的使用方式",
+   "summary": "项目中缓存是如何使用的？为什么要用缓存？缓存使用不当会造成什么后果？ 这个问题，互联网公司必问，要是一个人连缓存都不太清",
+   "domain": "backend",
+   "category": "后端进阶",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "高并发",
+    "分布式",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-advjava-21"
+  },
+  {
+   "id": "g-easyrl-9",
+   "kind": "collection",
+   "title": "第 4 章 策略梯度",
+   "summary": "如图 4.1 所示，强化学习有 3 个组成部分：演员（actor）、环境和奖励函数。智能体玩视频游戏时，演员负责操控游戏",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 24,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-9"
+  },
+  {
+   "id": "g-easyrl-10",
+   "kind": "collection",
+   "title": "第5章 PPO 算法",
+   "summary": "在介绍近端策略优化（proximal policy optimization，PPO） 之前，我们先回顾同策略和异策略这",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 19,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-10"
+  },
+  {
+   "id": "g-easyrl-11",
+   "kind": "collection",
+   "title": "第6章 深度Q网络",
+   "summary": "传统的强化学习算法会使用表格的形式存储状态价值函数 $V(s)$ 或动作价值函数 $Q(s,a)$，但是这样的方法存在很",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 26,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-11"
+  },
+  {
+   "id": "g-easyrl-12",
+   "kind": "collection",
+   "title": "第7章 深度Q网络进阶技巧",
+   "summary": "本章我们介绍训练深度Q网络的一些技巧。第一个技巧是双深度Q网络（double DQN，DDQN）。为什么要有DDQN呢？",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-12"
+  },
+  {
+   "id": "g-easyrl-13",
+   "kind": "collection",
+   "title": "第8章 针对连续动作的深度Q网络",
+   "summary": "与基于策略梯度的方法相比，深度Q网络比较稳定，策略梯度比较不稳定，玩大部分游戏不能使用策略梯度。 在没有近端策略优化之前",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-13"
+  },
+  {
+   "id": "g-easyrl-14",
+   "kind": "collection",
+   "title": "第9章演员-评论员算法",
+   "summary": "在REINFORCE算法中，每次需要根据一个策略采集一条完整的轨迹，并计算这条轨迹上的回报。这种采样方式的方差比较大，学",
+   "domain": "ai",
+   "category": "强化学习教程",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "强化学习",
+    "机器学习"
+   ],
+   "prereqs": [],
+   "href": "g-easyrl-14"
+  },
+  {
+   "id": "g-csbase-1",
+   "kind": "collection",
+   "title": "揭开 Buffer Pool  的面纱",
+   "summary": "大家好，我是小林。 今天就聊 MySQL 的 Buffer Pool，发车！ 虽然说 MySQL 的数据是存储在磁盘里的",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-1"
+  },
+  {
+   "id": "g-csbase-2",
+   "kind": "collection",
+   "title": "MySQL 单表不要超过 2000W 行，靠谱吗？",
+   "summary": "作为在后端圈开车的多年老司机，是不是经常听到过： “MySQL 单表最好不要超过 2000W” “单表超过 2000W ",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-2"
+  },
+  {
+   "id": "g-csbase-3",
+   "kind": "collection",
+   "title": "count() 和 count(1) 有什么区别？哪个性能最好？",
+   "summary": "大家好，我是小林。 当我们对一张数据表中的记录进行统计的时候，习惯都会使用 count 函数来统计，但是 count 函",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-3"
+  },
+  {
+   "id": "g-csbase-4",
+   "kind": "collection",
+   "title": "索引常见面试题",
+   "summary": "大家好，我是小林。 面试中，MySQL 索引相关的问题基本都是一系列问题，都是先从索引的基本原理，再到索引的使用场景，比",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 27,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-4"
+  },
+  {
+   "id": "g-csbase-5",
+   "kind": "collection",
+   "title": "MySQL 使用 like“%x“，索引一定会失效吗？",
+   "summary": "大家好，我是小林。 昨天发了一篇关于索引失效的文章：谁还没碰过索引失效呢 我在文末留了一个有点意思的思考题： 图示：图片",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-5"
+  },
+  {
+   "id": "g-csbase-6",
+   "kind": "collection",
+   "title": "索引失效有哪些？",
+   "summary": "大家好，我是小林。 在工作中，如果我们想提高一条语句查询速度，通常都会想对字段建立索引。 但是索引并不是万能的。建立了索",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-6"
+  },
+  {
+   "id": "g-csbase-7",
+   "kind": "collection",
+   "title": "2.3 Linux 系统是如何收发网络包的？",
+   "summary": "这次，就围绕一个问题来说。 Linux 系统是如何收发网络包的？ 为了使得多种设备能通过网络相互通信，和为了解决各种不同",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-7"
+  },
+  {
+   "id": "g-csbase-8",
+   "kind": "collection",
+   "title": "2.1 TCP/IP 网络模型有哪几层？",
+   "summary": "问大家，为什么要有 TCP/IP 网络模型？ 对于同一台设备上的进程间通信，有很多种方式，比如有管道、消息队列、共享内存",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-8"
+  },
+  {
+   "id": "g-csbase-9",
+   "kind": "collection",
+   "title": "2.2 键入网址到网页显示，期间发生了什么？",
+   "summary": "想必不少小伙伴面试过程中，会遇到「当键入网址后，到网页显示，其间发生了什么」的面试题。 还别说，这问题真挺常问的，前几天",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 21,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-9"
+  },
+  {
+   "id": "g-csbase-10",
+   "kind": "collection",
+   "title": "3.6 HTTP/2 牛逼在哪？",
+   "summary": "不多 BB 了，直接发车！ 一起来看看 HTTP/2 牛逼在哪？ 我们得先要了解下 HTTP/1.1 协议存在的性能问题",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-10"
+  },
+  {
+   "id": "g-csbase-11",
+   "kind": "collection",
+   "title": "3.7 HTTP/3 强势来袭",
+   "summary": "HTTP/3 现在（2022 年 5 月）还没正式推出，不过自 2017 年起，HTTP/3 已经更新到 34 个草案了",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-11"
+  },
+  {
+   "id": "g-csbase-12",
+   "kind": "collection",
+   "title": "11.2 画图经验分享",
+   "summary": "小林写这么多篇图解文章，你们猜我收到的最多的读者问题是什么？没错，就是问我是使用什么画图工具，看来对这一点大家都相当好奇",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-12"
+  },
+  {
+   "id": "g-csbase-13",
+   "kind": "collection",
+   "title": "11.1 操作系统怎么学？",
+   "summary": "操作系统真的可以说是 Super Man，它为了我们做了非常厉害的事情，以至于我们根本察觉不到，只有通过学习它，我们才能",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-13"
+  },
+  {
+   "id": "g-csbase-14",
+   "kind": "collection",
+   "title": "2.4 CPU 缓存一致性",
+   "summary": "直接上，不多 BB 了。 随着时间的推移，CPU 和内存的访问性能相差越来越大，于是就在 CPU 内部嵌入了 CPU C",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-14"
+  },
+  {
+   "id": "g-csbase-15",
+   "kind": "collection",
+   "title": "2.7  为什么 0.1 + 0.2 不等于 0.3？",
+   "summary": "我们来思考几个问题： 为什么负数要用补码表示？ 十进制小数怎么转成二进制？ 计算机是怎么存小数的？ 0.1 + 0.2 ",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-15"
+  },
+  {
+   "id": "g-csbase-16",
+   "kind": "collection",
+   "title": "2.5 CPU 是如何执行任务的？",
+   "summary": "你清楚下面这几个问题吗？ 有了内存，为什么还需要 CPU Cache？ CPU 是怎么读写数据的？ 如何让 CPU 能读",
+   "domain": "system",
+   "category": "图解系统",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "MySQL",
+    "操作系统",
+    "网络",
+    "图解"
+   ],
+   "prereqs": [],
+   "href": "g-csbase-16"
+  },
+  {
+   "id": "g-happyllm-1",
+   "kind": "collection",
+   "title": "transformer-architecture",
+   "summary": "当本节内容作为第二章 Transformer架构中2.2章节EncoderDecoder的补充，结合Pytorch的AP",
+   "domain": "ai",
+   "category": "Happy-LLM",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "LLM",
+    "大模型",
+    "NLP"
+   ],
+   "prereqs": [],
+   "href": "g-happyllm-1"
+  },
+  {
+   "id": "g-happyllm-2",
+   "kind": "collection",
+   "title": "第一章 NLP 基础概念",
+   "summary": "自然语言处理（Natural Language Processing，NLP）作为人工智能领域的一个重要分支，旨在使计算",
+   "domain": "ai",
+   "category": "Happy-LLM",
+   "difficulty": "进阶",
+   "minutes": 18,
+   "tags": [
+    "LLM",
+    "大模型",
+    "NLP"
+   ],
+   "prereqs": [],
+   "href": "g-happyllm-2"
+  },
+  {
+   "id": "g-happyllm-3",
+   "kind": "collection",
+   "title": "第二章 Transformer 架构",
+   "summary": "随着 NLP 从统计机器学习向深度学习迈进，作为 NLP 核心问题的文本表示方法也逐渐从统计学习向深度学习迈进。正如我们",
+   "domain": "ai",
+   "category": "Happy-LLM",
+   "difficulty": "进阶",
+   "minutes": 30,
+   "tags": [
+    "LLM",
+    "大模型",
+    "NLP"
+   ],
+   "prereqs": [],
+   "href": "g-happyllm-3"
+  },
+  {
+   "id": "g-happyllm-4",
+   "kind": "collection",
+   "title": "第三章 预训练语言模型",
+   "summary": "在上一章，我们详细讲解了给 NLP 领域带来巨大变革注意力机制以及使用注意力机制搭建的模型 Transformer，NL",
+   "domain": "ai",
+   "category": "Happy-LLM",
+   "difficulty": "进阶",
+   "minutes": 43,
+   "tags": [
+    "LLM",
+    "大模型",
+    "NLP"
+   ],
+   "prereqs": [],
+   "href": "g-happyllm-4"
+  },
+  {
+   "id": "g-happyllm-5",
+   "kind": "collection",
+   "title": "第四章 大语言模型",
+   "summary": "在前三章，我们从 NLP 的定义与主要任务出发，介绍了引发 NLP 领域重大变革的核心思想——注意力机制与 Transf",
+   "domain": "ai",
+   "category": "Happy-LLM",
+   "difficulty": "进阶",
+   "minutes": 30,
+   "tags": [
+    "LLM",
+    "大模型",
+    "NLP"
+   ],
+   "prereqs": [],
+   "href": "g-happyllm-5"
+  },
+  {
+   "id": "g-k8s-1",
+   "kind": "collection",
+   "title": "ConfigMap",
+   "summary": "上面的教程提到，我们在不同环境 dev test uat prod 中区分资源，可以让其资源独立互相不受影响，但是随之而",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-1"
+  },
+  {
+   "id": "g-k8s-2",
+   "kind": "collection",
+   "title": "Container",
+   "summary": "我们的旅程从一段代码开始。新建一个 main.go 文件，复制下面的代码到文件中。 go package main im",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-2"
+  },
+  {
+   "id": "g-k8s-3",
+   "kind": "collection",
+   "title": "Deployment",
+   "summary": "在生产环境中，我们基本上不会直接管理 pod，我们需要 kubernetes 来帮助我们来完成一些自动化操作，例如自动扩",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-3"
+  },
+  {
+   "id": "g-k8s-4",
+   "kind": "collection",
+   "title": "Helm",
+   "summary": "经过前面的教程，想必你已经对 kubernetes 的使用有了一定的理解。但是不知道你是否想过这样一个问题，就是我们前面",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-4"
+  },
+  {
+   "id": "g-k8s-5",
+   "kind": "collection",
+   "title": "Ingress",
+   "summary": "Ingress 公开从集群外部到集群内服务的 HTTP 和 HTTPS 路由。 流量路由由 Ingress 资源上定义的",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-5"
+  },
+  {
+   "id": "g-k8s-6",
+   "kind": "collection",
+   "title": "Job",
+   "summary": "在实际的开发过程中，还有一类任务是之前的资源不能满足的，即一次性任务。例如常见的计算任务，只需要拿到相关数据计算后得出结",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-6"
+  },
+  {
+   "id": "g-k8s-7",
+   "kind": "collection",
+   "title": "Namespace",
+   "summary": "在实际的开发当中，有时候我们需要不同的环境来做开发和测试，例如 dev 环境给开发使用，test 环境给 QA 使用，那",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-7"
+  },
+  {
+   "id": "g-k8s-8",
+   "kind": "collection",
+   "title": "Pod",
+   "summary": "如果在生产环境中运行的都是独立的单体服务，那么 Container (容器) 也就够用了，但是在实际的生产环境中，维护着",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-8"
+  },
+  {
+   "id": "g-k8s-9",
+   "kind": "collection",
+   "title": "Secret",
+   "summary": "上面提到，我们会选择以 configmap 的方式挂载配置信息，但是当我们的配置信息需要加密的时候， configmap",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-9"
+  },
+  {
+   "id": "g-k8s-10",
+   "kind": "collection",
+   "title": "Service",
+   "summary": "经过前面几节的练习，可能你会有一些疑惑： 为什么 pod 不就绪 (Ready) 的话，kubernetes 不会将流量",
+   "domain": "system",
+   "category": "Kubernetes 入门",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Kubernetes",
+    "云原生",
+    "部署"
+   ],
+   "prereqs": [],
+   "href": "g-k8s-10"
+  },
+  {
+   "id": "g-ctfwiki-2",
+   "kind": "collection",
+   "title": "AI Agent",
+   "summary": "人工智能代理 （AI agent，又称 智能体 ）是指以 AI 作为决策核心，并通过调用外部工具（如信息检索、代码执行等",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-2"
+  },
+  {
+   "id": "g-ctfwiki-5",
+   "kind": "collection",
+   "title": "简介",
+   "summary": "知识共享（Knowledge Sharing）是多智能体系统（MultiAgent System）中的一种协作机制，用于",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-5"
+  },
+  {
+   "id": "g-ctfwiki-1",
+   "kind": "collection",
+   "title": "Android 关键代码定位",
+   "summary": "AndroidManifest.xml文件 软件包名 apk主活动，隐藏程序没有主Activity Applicatio",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-1"
+  },
+  {
+   "id": "g-ctfwiki-3",
+   "kind": "collection",
+   "title": "IDA 动态调试原生层程序",
+   "summary": "这里我们会介绍如何调试以下种类的程序 基本的原生层程序，即简单的 C/C++ 程序。 原生 so 程序 已经root的手",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-3"
+  },
+  {
+   "id": "g-ctfwiki-6",
+   "kind": "collection",
+   "title": "静态分析综合题目",
+   "summary": "利用 jadx 进行反编译，可以得到程序的基本逻辑如下 对用户输入的内容进行 base64 编码，然后在指定长度位置处插",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-6"
+  },
+  {
+   "id": "g-ctfwiki-7",
+   "kind": "collection",
+   "title": "静态分析 java 层例子",
+   "summary": "通过linux的file命令可以看出该文件是一个压缩包，解压打开发现它其实是一个apk文件。 安装文件之后，查看一下 可",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-7"
+  },
+  {
+   "id": "g-ctfwiki-8",
+   "kind": "collection",
+   "title": "静态分析原生层程序",
+   "summary": "静态分析原生层程序基本的过程如下 1. 提取 so 文件 2. ida 反编译 so 文件阅读 so 代码 3. 根据 ",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-8"
+  },
+  {
+   "id": "g-ctfwiki-9",
+   "kind": "collection",
+   "title": "离散对数",
+   "summary": "在了解离散对数时，我们先来了解几个基本定义。 定义1 在群 G 中，g 为 G 的生成元，也就是说群 G 中每一个元素都",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-9"
+  },
+  {
+   "id": "g-ctfwiki-10",
+   "kind": "collection",
+   "title": "ECC",
+   "summary": "ECC 全称为椭圆曲线加密，EllipseCurve Cryptography，是一种基于椭圆曲线数学的公钥密码。与传统",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-10"
+  },
+  {
+   "id": "g-ctfwiki-11",
+   "kind": "collection",
+   "title": "ElGamal",
+   "summary": "ElGamal算法的安全性是基于求解离散对数问题的困难性，于1984年提出，也是一种双钥密码体制，既可以用于加密又可用于",
+   "domain": "security",
+   "category": "CTF Wiki",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全",
+    "渗透"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki-11"
+  },
+  {
+   "id": "g-labuladong-1",
+   "kind": "collection",
+   "title": "经典动态规划：最长公共子序列",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-1"
+  },
+  {
+   "id": "g-labuladong-2",
+   "kind": "collection",
+   "title": "动态规划之KMP字符匹配算法",
+   "summary": "! 通知：新版网站会员 即将涨价；已支持老用户续费~另外，建议你在我的 网站 学习文章，体验更好。 读完本文，你不仅学会",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-2"
+  },
+  {
+   "id": "g-labuladong-3",
+   "kind": "collection",
+   "title": "经典动态规划：博弈问题",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-3"
+  },
+  {
+   "id": "g-labuladong-4",
+   "kind": "collection",
+   "title": "动态规划之四键键盘",
+   "summary": "! 通知：新版网站会员 即将涨价；已支持老用户续费~另外，建议你在我的 网站 学习文章，体验更好。 读完本文，你不仅学会",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-4"
+  },
+  {
+   "id": "g-labuladong-5",
+   "kind": "collection",
+   "title": "经典动态规划：正则表达式",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-5"
+  },
+  {
+   "id": "g-labuladong-6",
+   "kind": "collection",
+   "title": "动态规划设计：最长递增子序列",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-6"
+  },
+  {
+   "id": "g-labuladong-7",
+   "kind": "collection",
+   "title": "动态规划解题套路框架",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 18,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-7"
+  },
+  {
+   "id": "g-labuladong-8",
+   "kind": "collection",
+   "title": "动态规划和回溯算法的思维转换",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-8"
+  },
+  {
+   "id": "g-labuladong-9",
+   "kind": "collection",
+   "title": "一个方法团灭 LeetCode 股票买卖问题",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-9"
+  },
+  {
+   "id": "g-labuladong-10",
+   "kind": "collection",
+   "title": "动态规划之子序列问题解题模板",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-10"
+  },
+  {
+   "id": "g-labuladong-11",
+   "kind": "collection",
+   "title": "一个方法团灭 LeetCode 打家劫舍问题",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-11"
+  },
+  {
+   "id": "g-labuladong-12",
+   "kind": "collection",
+   "title": "最优子结构原理和 dp 数组遍历方向",
+   "summary": "! 通知：为满足广大读者的需求，网站上架 速成目录，如有需要可以看下，谢谢大家的支持~另外，建议你在我的 网站 学习文章",
+   "domain": "algo",
+   "category": "labuladong 算法小抄",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "算法",
+    "题解"
+   ],
+   "prereqs": [],
+   "href": "g-labuladong-12"
+  },
+  {
+   "id": "g-doocsjvm-1",
+   "kind": "collection",
+   "title": "开始学习",
+   "summary": "这里仅仅记录了一些笔者认为需要重点掌握的 JVM 知识点，如果你想更加全面地了解 JVM 底层原理，可以阅读周志明老师《",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-1"
+  },
+  {
+   "id": "g-doocsjvm-2",
+   "kind": "collection",
+   "title": "JVM 内存结构",
+   "summary": "Java 虚拟机的内存空间分为 5 个部分： 程序计数器 Java 虚拟机栈 本地方法栈 堆 方法区 !jvmmemor",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-2"
+  },
+  {
+   "id": "g-doocsjvm-3",
+   "kind": "collection",
+   "title": "HotSpot 虚拟机对象探秘",
+   "summary": "在 HotSpot 虚拟机中，对象的内存布局分为以下 3 块区域： 对象头（Header） 实例数据（Instance ",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-3"
+  },
+  {
+   "id": "g-doocsjvm-4",
+   "kind": "collection",
+   "title": "垃圾收集策略与算法",
+   "summary": "程序计数器、虚拟机栈、本地方法栈随线程而生，也随线程而灭；栈帧随着方法的开始而入栈，随着方法的结束而出栈。这几个区域的内",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-4"
+  },
+  {
+   "id": "g-doocsjvm-5",
+   "kind": "collection",
+   "title": "HotSpot 垃圾收集器",
+   "summary": "HotSpot 虚拟机提供了多种垃圾收集器，每种收集器都有各自的特点，虽然我们要对各个收集器进行比较，但并非为了挑选出一",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-5"
+  },
+  {
+   "id": "g-doocsjvm-6",
+   "kind": "collection",
+   "title": "内存分配与回收策略",
+   "summary": "对象的内存分配，就是在堆上分配（也可能经过 JIT 编译后被拆散为标量类型并间接在栈上分配），对象主要分配在新生代的 E",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-6"
+  },
+  {
+   "id": "g-doocsjvm-7",
+   "kind": "collection",
+   "title": "JVM 性能调优",
+   "summary": "在高性能硬件上部署程序，目前主要有两种方式： 通过 64 位 JDK 来使用大内存； 使用若干个 32 位虚拟机建立逻辑",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-7"
+  },
+  {
+   "id": "g-doocsjvm-8",
+   "kind": "collection",
+   "title": "类文件结构",
+   "summary": "谈论 JVM 的无关性，主要有以下两个： 平台无关性：任何操作系统都能运行 Java 代码 语言无关性： JVM 能运行",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-8"
+  },
+  {
+   "id": "g-doocsjvm-9",
+   "kind": "collection",
+   "title": "类加载的时机",
+   "summary": "类从被加载到虚拟机内存开始，到卸载出内存为止，它的整个生命周期包括以下 7 个阶段： 加载 验证 准备 解析 初始化 使",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-9"
+  },
+  {
+   "id": "g-doocsjvm-10",
+   "kind": "collection",
+   "title": "类加载的过程",
+   "summary": "类加载过程包括 5 个阶段：加载、验证、准备、解析和初始化。 “加载”是“类加载”过程的一个阶段，不能混淆这两个名词。在",
+   "domain": "backend",
+   "category": "JVM 核心知识",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-doocsjvm-10"
   }
  ]
 }
