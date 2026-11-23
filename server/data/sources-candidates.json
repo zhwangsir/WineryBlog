@@ -700,6 +700,115 @@
     }
    ],
    "status": "done"
+  },
+  {
+   "id": "vuezh2",
+   "repo": "vuejs-translations/zh-docs",
+   "category": "Vue 3 官方中文文档",
+   "domain": "frontend",
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "picks": [
+    {
+     "dir": "src/guide",
+     "keywords": [
+      ".md"
+     ],
+     "max": 14,
+     "recursive": true
+    }
+   ],
+   "status": "failed"
+  },
+  {
+   "id": "dunwublog2",
+   "repo": "dunwu/blog",
+   "branch": "master",
+   "category": "极客时间笔记 II",
+   "domain": "backend",
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "picks": [
+    {
+     "dir": "source/_posts",
+     "keywords": [
+      "分布式",
+      "中间件",
+      "微服务",
+      "Docker",
+      "Kubernetes",
+      "设计模式"
+     ],
+     "max": 16,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "advjava3",
+   "repo": "doocs/advanced-java",
+   "branch": "main",
+   "category": "后端进阶 III",
+   "domain": "backend",
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "picks": [
+    {
+     "dir": "docs/distributed-system",
+     "keywords": [
+      "zookeeper",
+      "dubbo-operating",
+      "why-dubbo",
+      "rpc-design"
+     ],
+     "max": 7,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "javaguide2",
+   "repo": "Snailclimb/JavaGuide",
+   "branch": "main",
+   "category": "JavaGuide II",
+   "domain": "backend",
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "picks": [
+    {
+     "dir": "docs/java/collection",
+     "keywords": [
+      "source-code"
+     ],
+     "max": 5,
+     "recursive": true
+    },
+    {
+     "dir": "docs/java/basis",
+     "keywords": [
+      "proxy",
+      "reflection",
+      "serialization",
+      "spi",
+      "unsafe"
+     ],
+     "max": 5,
+     "recursive": true
+    }
+   ],
+   "status": "done"
   }
  ]
 }

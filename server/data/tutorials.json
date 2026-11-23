@@ -45,7 +45,7 @@
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 92
+   "count": 123
   },
   {
    "id": "data",
@@ -12142,6 +12142,518 @@
    ],
    "prereqs": [],
    "href": "g-dunwublog-8"
+  },
+  {
+   "id": "g-dunwublog2-1",
+   "kind": "collection",
+   "title": "《极客时间教程 - 从 0 开始学微服务》笔记",
+   "summary": "微服务定义 微服务是由单一应用程序构成的小服务，拥有自己的进程与轻量化处理，服务依业务功能设计，以全自动的方式部署，与其",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-1"
+  },
+  {
+   "id": "g-dunwublog2-2",
+   "kind": "collection",
+   "title": "《极客时间教程 - 微服务架构核心 20 讲》笔记",
+   "summary": "微服务是一种架构模式。 微服务的六个特点： 一组小的服务 独立的进程 独立部署 轻量级通信 基于业务能力 无集中式管理—",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-2"
+  },
+  {
+   "id": "g-dunwublog2-3",
+   "kind": "collection",
+   "title": "《数据密集型应用系统设计》笔记一——数据系统基础",
+   "summary": "单一工具难以满足复杂应用系统的需求，因此整体工作被拆解为一系列能被单个工具高效完成的任务，并通过应用代码将它们缝合起来。",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-3"
+  },
+  {
+   "id": "g-dunwublog2-4",
+   "kind": "collection",
+   "title": "《数据密集型应用系统设计》笔记二",
+   "summary": "复制主要指通过网络在多台机器上保存相同数据的副本。通过复制，可以达到以下目的： 使数据在地理位置上更接近用户，从而降低访",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 35,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-4"
+  },
+  {
+   "id": "g-dunwublog2-5",
+   "kind": "collection",
+   "title": "《极客时间教程 - 分布式协议与算法实战》笔记",
+   "summary": "拜占庭将军问题是由莱斯利·兰波特在其同名论文中提出的分布式对等网络通信容错问题。其实是借拜占庭将军的例子，抛出了分布式共",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 29,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-5"
+  },
+  {
+   "id": "g-dunwublog2-6",
+   "kind": "collection",
+   "title": "《极客时间教程 - 分布式技术原理与算法解析》笔记",
+   "summary": "定义：单体调度是指，一个集群中只有一个节点运行调度进程，该节点对集群中的其他节点具有访问权限，可以搜集其他节点的资源信息",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-6"
+  },
+  {
+   "id": "g-dunwublog2-7",
+   "kind": "collection",
+   "title": "《极客时间教程 - 深入浅出分布式技术原理》笔记",
+   "summary": "首先，分布式系统解决了单机性能瓶颈导致的成本问题。——水平扩展 然后，解决了用户量和数据量爆炸性地增大导致的成本问题。—",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-7"
+  },
+  {
+   "id": "g-dunwublog2-8",
+   "kind": "collection",
+   "title": "《深入理解 Sentinel》笔记",
+   "summary": "什么是服务雪崩 服务雪崩是指：在微服务项目中指由于突发流量导致某个服务不可用，从而导致上游服务不可用，并产生级联效应，最",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-8"
+  },
+  {
+   "id": "g-dunwublog2-9",
+   "kind": "collection",
+   "title": "《Dubbo 源码解读与实战》笔记",
+   "summary": "Apache Dubbo是一款高性能、轻量级的开源 Java RPC 框架，它提供了三大核心能力： 面向接口的远程方法调",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-9"
+  },
+  {
+   "id": "g-dunwublog2-10",
+   "kind": "collection",
+   "title": "《RocketMQ 技术内幕》笔记",
+   "summary": "broker：broker 模块（broker 启动进程） 。 client：消息客户端，包含生产者、消息消费者相关类。",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-10"
+  },
+  {
+   "id": "g-dunwublog2-11",
+   "kind": "collection",
+   "title": "《Kafka 核心技术与实战》笔记",
+   "summary": "! 消息引擎系统的作用： 消息引擎传输的对象是消息； 如何传输消息属于消息引擎设计机制的一部分。 设计消息引擎系统的关键",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 24,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-11"
+  },
+  {
+   "id": "g-dunwublog2-12",
+   "kind": "collection",
+   "title": "《Kafka 核心源码解读》笔记",
+   "summary": "! 从功能上讲，Kafka 源码分为四大模块。 服务器端源码：实现 Kafka 架构和各类优秀特性的基础。 Java 客",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-12"
+  },
+  {
+   "id": "g-dunwublog2-13",
+   "kind": "collection",
+   "title": "《RPC 实战与核心原理》笔记",
+   "summary": "为什么要学习 RPC RPC 不仅是微服务的架构基础，实际上，只要涉及网络通信，就可能用到 RPC。 例 1：大型分布式",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 32,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-13"
+  },
+  {
+   "id": "g-dunwublog2-14",
+   "kind": "collection",
+   "title": "《消息队列高手课》笔记",
+   "summary": "消息队列的应用 异步处理 系统解耦 流量削峰 系统间通信 数据缓冲 数据一致性 是否开源：这决定了能否商用，所以最为重要",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 28,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-14"
+  },
+  {
+   "id": "g-dunwublog2-15",
+   "kind": "collection",
+   "title": "《24 讲吃透分布式数据库》笔记",
+   "summary": "略 数据分片 水平分片：按行进行数据分割，数据被切割为一个个数据组，分散到不同节点上。 垂直分片：按列进行数据切割，一个",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-15"
+  },
+  {
+   "id": "g-dunwublog2-16",
+   "kind": "collection",
+   "title": "《HBase: A NoSQL database》笔记",
+   "summary": "HBase 是一种 NoSQL 数据库，它是Java版本的 Google’s Big Table 实现，它原本是 Had",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "分布式",
+    "中间件",
+    "架构"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog2-16"
+  },
+  {
+   "id": "g-advjava3-1",
+   "kind": "collection",
+   "title": "Redis vs Zookeeper 实现分布式锁",
+   "summary": "一般实现分布式锁都有哪些方式？使用 Redis 如何设计分布式锁？使用 zk 来设计分布式锁可以吗？这两种分布式锁的实现",
+   "domain": "backend",
+   "category": "后端进阶 III",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "prereqs": [],
+   "href": "g-advjava3-1"
+  },
+  {
+   "id": "g-advjava3-2",
+   "kind": "collection",
+   "title": "Dubbo 的工作原理",
+   "summary": "说一下的 dubbo 的工作原理？注册中心挂了可以继续通信吗？说说一次 rpc 请求的流程？ MQ、ES、Redis、D",
+   "domain": "backend",
+   "category": "后端进阶 III",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "prereqs": [],
+   "href": "g-advjava3-2"
+  },
+  {
+   "id": "g-advjava3-3",
+   "kind": "collection",
+   "title": "设计一个类似 Dubbo 的 RPC 框架",
+   "summary": "如何自己设计一个类似 Dubbo 的 RPC 框架？ 说实话，就这问题，其实就跟问你如何自己设计一个 MQ 一样的道理，",
+   "domain": "backend",
+   "category": "后端进阶 III",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "prereqs": [],
+   "href": "g-advjava3-3"
+  },
+  {
+   "id": "g-advjava3-4",
+   "kind": "collection",
+   "title": "为什么要拆分系统？",
+   "summary": "为什么要进行系统拆分？如何进行系统拆分？拆分后不用 dubbo 可以吗？ 从这个问题开始就进行分布式系统环节了，现在出去",
+   "domain": "backend",
+   "category": "后端进阶 III",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "prereqs": [],
+   "href": "g-advjava3-4"
+  },
+  {
+   "id": "g-advjava3-5",
+   "kind": "collection",
+   "title": "Zookeeper 的使用场景",
+   "summary": "zookeeper 都有哪些使用场景？ 现在聊的 topic 是分布式系统，面试官跟你聊完了 dubbo 相关的一些问题",
+   "domain": "backend",
+   "category": "后端进阶 III",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Zookeeper",
+    "高并发"
+   ],
+   "prereqs": [],
+   "href": "g-advjava3-5"
+  },
+  {
+   "id": "g-javaguide2-1",
+   "kind": "collection",
+   "title": "proxy",
+   "summary": "代理模式是一种比较好理解的设计模式。简单来说就是 我们使用代理对象来代替对真实对象(real object)的访问，这样",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-1"
+  },
+  {
+   "id": "g-javaguide2-2",
+   "kind": "collection",
+   "title": "reflection",
+   "summary": "如果说大家研究过框架的底层原理或者咱们自己写过框架的话，一定对反射这个概念不陌生。 反射之所以被称为框架的灵魂，主要是因",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-2"
+  },
+  {
+   "id": "g-javaguide2-3",
+   "kind": "collection",
+   "title": "serialization",
+   "summary": "如果我们需要持久化 Java 对象比如将 Java 对象保存在文件中，或者在网络传输 Java 对象，这些场景都需要用到",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-3"
+  },
+  {
+   "id": "g-javaguide2-4",
+   "kind": "collection",
+   "title": "spi",
+   "summary": "本文来自 Kingshion 投稿。欢迎更多朋友参与到 JavaGuide 的维护工作，这是一件非常有意义的事情。详细信",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-4"
+  },
+  {
+   "id": "g-javaguide2-5",
+   "kind": "collection",
+   "title": "unsafe",
+   "summary": "本文整理完善自下面这两篇优秀的文章： Java 魔法类：Unsafe 应用解析 美团技术团队 2019 Java 双刃剑",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 20,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-5"
+  },
+  {
+   "id": "g-javaguide2-6",
+   "kind": "collection",
+   "title": "arrayblockingqueue-source-code",
+   "summary": "Java 阻塞队列的历史可以追溯到 JDK1.5 版本，当时 Java 平台增加了 java.util.concurre",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 19,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-6"
+  },
+  {
+   "id": "g-javaguide2-7",
+   "kind": "collection",
+   "title": "arraylist-source-code",
+   "summary": "ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-7"
+  },
+  {
+   "id": "g-javaguide2-8",
+   "kind": "collection",
+   "title": "concurrent-hash-map-source-code",
+   "summary": "本文来自末读代码投稿：https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-8"
+  },
+  {
+   "id": "g-javaguide2-9",
+   "kind": "collection",
+   "title": "copyonwritearraylist-source-code",
+   "summary": "在 JDK1.5 之前，如果想要使用并发安全的 List，可以选择 Vector 或 Collections.synch",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-9"
+  },
+  {
+   "id": "g-javaguide2-10",
+   "kind": "collection",
+   "title": "delayqueue-source-code",
+   "summary": "DelayQueue 是 JUC 包(java.util.concurrent) 为我们提供的延迟队列，用于实现延时任务",
+   "domain": "backend",
+   "category": "JavaGuide II",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Java",
+    "集合源码"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide2-10"
   }
  ]
 }
