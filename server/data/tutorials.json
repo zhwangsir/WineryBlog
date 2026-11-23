@@ -17,7 +17,7 @@
    "name": "编程语言",
    "icon": "Code2",
    "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-   "count": 41
+   "count": 48
   },
   {
    "id": "algo",
@@ -66,7 +66,7 @@
    "name": "信息安全",
    "icon": "Shield",
    "blurb": "Web 安全、渗透测试、CTF、密码学",
-   "count": 28
+   "count": 40
   },
   {
    "id": "mobile",
@@ -11371,6 +11371,310 @@
    ],
    "prereqs": [],
    "href": "g-docstyle-6"
+  },
+  {
+   "id": "g-rustadv-1",
+   "kind": "collection",
+   "title": "async/await 和 Stream 流处理",
+   "summary": "在入门章节中，我们简单学习了该如何使用 async/.await， 同时在后面也了解了一些底层原理，现在是时候继续深入了",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-1"
+  },
+  {
+   "id": "g-rustadv-2",
+   "kind": "collection",
+   "title": "底层探秘: Future 执行器与任务调度",
+   "summary": "异步编程背后到底藏有什么秘密？究竟是哪只幕后之手在操纵这一切？如果你对这些感兴趣，就继续看下去，否则可以直接跳过，因为本",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-2"
+  },
+  {
+   "id": "g-rustadv-3",
+   "kind": "collection",
+   "title": "Async 编程简介",
+   "summary": "众所周知，Rust 可以让我们写出性能高且安全的软件，那么异步编程这块儿呢？是否依然在高性能的同时保证了安全？ 我们先通",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-3"
+  },
+  {
+   "id": "g-rustadv-5",
+   "kind": "collection",
+   "title": "使用 join! 和 select! 同时运行多个 Future",
+   "summary": "招数单一，杀伤力惊人，说的就是 .await ，但是光用它，还真做不到一招鲜吃遍天。比如我们该如何同时运行多个任务，而不",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-5"
+  },
+  {
+   "id": "g-rustadv-6",
+   "kind": "collection",
+   "title": "一些疑难问题的解决办法",
+   "summary": "async 在 Rust 依然比较新，疑难杂症少不了，而它们往往还处于活跃开发状态，短时间内无法被解决，因此才有了本文。",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-6"
+  },
+  {
+   "id": "g-rustadv-7",
+   "kind": "collection",
+   "title": "定海神针 Pin 和 Unpin",
+   "summary": "在 Rust 异步编程中，有一个定海神针般的存在，它就是 Pin，作用说简单也简单，说复杂也非常复杂，当初刚出来时就连一",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-7"
+  },
+  {
+   "id": "g-rustadv-9",
+   "kind": "collection",
+   "title": "Weak 与循环引用",
+   "summary": "Rust 的安全性是众所周知的，但是不代表它不会内存泄漏。一个典型的例子就是同时使用 Rc<T 和 RefCell<T ",
+   "domain": "langs",
+   "category": "Rust 进阶篇",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "prereqs": [],
+   "href": "g-rustadv-9"
+  },
+  {
+   "id": "g-ctfwiki2-1",
+   "kind": "collection",
+   "title": "离散对数",
+   "summary": "在了解离散对数时，我们先来了解几个基本定义。 定义1 在群 G 中，g 为 G 的生成元，也就是说群 G 中每一个元素都",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-1"
+  },
+  {
+   "id": "g-ctfwiki2-2",
+   "kind": "collection",
+   "title": "ECC",
+   "summary": "ECC 全称为椭圆曲线加密，EllipseCurve Cryptography，是一种基于椭圆曲线数学的公钥密码。与传统",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-2"
+  },
+  {
+   "id": "g-ctfwiki2-3",
+   "kind": "collection",
+   "title": "ElGamal",
+   "summary": "ElGamal算法的安全性是基于求解离散对数问题的困难性，于1984年提出，也是一种双钥密码体制，既可以用于加密又可用于",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-3"
+  },
+  {
+   "id": "g-ctfwiki2-5",
+   "kind": "collection",
+   "title": "背包加密",
+   "summary": "首先，我们先来介绍一下背包问题，假定一个背包可以称重 W，现在有 n 个物品，其重量分别为 $a_1, a_2,...,",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-5"
+  },
+  {
+   "id": "g-ctfwiki2-6",
+   "kind": "collection",
+   "title": "CVP",
+   "summary": "CVP是Latticebased cryptography中尤为重要的一个问题。 问题的基本定义如下：给定格$L$的一组",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-6"
+  },
+  {
+   "id": "g-ctfwiki2-7",
+   "kind": "collection",
+   "title": "基本介绍",
+   "summary": "格是 m 维欧式空间 $R^m$ 的 n ($m\\geq n$) 个线性无关向量$b_i(1\\leq i \\leq n)",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-7"
+  },
+  {
+   "id": "g-ctfwiki2-8",
+   "kind": "collection",
+   "title": "格基规约算法",
+   "summary": "LLL 算法就是在格上找到一组基，满足如下效果 !image20180717213241784 而且，这种方法生成的基所",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-8"
+  },
+  {
+   "id": "g-ctfwiki2-10",
+   "kind": "collection",
+   "title": "私钥 d 相关攻击",
+   "summary": "首先当 $d$ 泄露之后，我们自然可以解密所有加密的消息。我们甚至还可以对模数 N 进行分解。其基本原理如下 我们知道 ",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-10"
+  },
+  {
+   "id": "g-ctfwiki2-11",
+   "kind": "collection",
+   "title": "扩展维纳攻击",
+   "summary": "扩展维纳攻击来自《Extending Wiener's Attack in the Presence of Many D",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-11"
+  },
+  {
+   "id": "g-ctfwiki2-12",
+   "kind": "collection",
+   "title": "RSA 选择明密文攻击",
+   "summary": "这里给出一个例子，假如我们有一个加密 oracle ，但是我们不知道 n 和 e，那 1. 我们可以通过加密 oracl",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-12"
+  },
+  {
+   "id": "g-ctfwiki2-13",
+   "kind": "collection",
+   "title": "RSA 复杂题目",
+   "summary": "题目给的信息如下所示： 每次交互可以维持的时间长度约为 5 分钟 每次交互中中n是确定的 1024 bit，但是未知， ",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-13"
+  },
+  {
+   "id": "g-ctfwiki2-14",
+   "kind": "collection",
+   "title": "Coppersmith 相关攻击",
+   "summary": "Coppersmith 相关攻击与Don Coppersmith 紧密相关，他提出了一种针对于模多项式（单变量，二元变量",
+   "domain": "security",
+   "category": "CTF Wiki 深层",
+   "difficulty": "进阶",
+   "minutes": 19,
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "prereqs": [],
+   "href": "g-ctfwiki2-14"
   }
  ]
 }

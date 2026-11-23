@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-23T08:16:25.582Z",
+ "updatedAt": "2026-11-23T09:15:14.905Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -540,6 +540,83 @@
       ".md"
      ],
      "max": 8,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "rustadv",
+   "repo": "sunface/rust-course",
+   "branch": "main",
+   "category": "Rust 进阶篇",
+   "domain": "langs",
+   "tags": [
+    "Rust",
+    "进阶"
+   ],
+   "picks": [
+    {
+     "dir": "src/advance",
+     "keywords": [
+      "async",
+      "box",
+      "rc",
+      "arc",
+      "deref",
+      "channel",
+      "mutex",
+      "move",
+      "smart"
+     ],
+     "max": 10,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "lcgo2",
+   "repo": "halfrost/LeetCode-Go",
+   "branch": "master",
+   "category": "LeetCode-Go 精选",
+   "domain": "algo",
+   "tags": [
+    "LeetCode",
+    "Go"
+   ],
+   "picks": [
+    {
+     "dir": "LeetCode",
+     "keywords": [
+      "README.md"
+     ],
+     "max": 14,
+     "recursive": true
+    }
+   ],
+   "status": "done"
+  },
+  {
+   "id": "ctfwiki2",
+   "repo": "ctf-wiki/ctf-wiki",
+   "branch": "master",
+   "category": "CTF Wiki 深层",
+   "domain": "security",
+   "tags": [
+    "CTF",
+    "安全"
+   ],
+   "picks": [
+    {
+     "dir": "docs/zh/docs",
+     "keywords": [
+      "crypto/",
+      "pwn/",
+      "web/",
+      "misc/"
+     ],
+     "max": 14,
      "recursive": true
     }
    ],
