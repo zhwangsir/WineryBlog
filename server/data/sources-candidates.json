@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-23T06:56:16.127Z",
+ "updatedAt": "2026-11-23T08:16:25.582Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -431,6 +431,95 @@
     }
    ],
    "status": "done"
+  },
+  {
+   "id": "interviewguide",
+   "repo": "forthespada/InterviewGuide",
+   "branch": "main",
+   "category": "阿秀面试笔记",
+   "domain": "basics",
+   "tags": [
+    "面试",
+    "C++",
+    "计算机基础"
+   ],
+   "picks": [
+    {
+     "dir": "doc/basics",
+     "keywords": [
+      ".md"
+     ],
+     "max": 14,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "huihut-interview",
+   "repo": "huihut/interview",
+   "branch": "master",
+   "category": "C/C++ 面试基础",
+   "domain": "langs",
+   "tags": [
+    "C++",
+    "面试"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 16,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "interview-ref",
+   "repo": "0voice/interview_internal_reference",
+   "branch": "master",
+   "category": "大厂面试内部参考",
+   "domain": "basics",
+   "tags": [
+    "面试",
+    "大厂"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
+  },
+  {
+   "id": "docstyle",
+   "repo": "ruanyf/document-style-guide",
+   "branch": "master",
+   "category": "中文文档排版指南",
+   "domain": "basics",
+   "tags": [
+    "文档",
+    "写作规范"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 8,
+     "recursive": true
+    }
+   ],
+   "status": "pending"
   }
  ]
 }
