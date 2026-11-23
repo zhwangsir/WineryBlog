@@ -11,6 +11,83 @@ import { fetchProgress, type ProgressData } from '../lib/progress';
 import { useData } from '../context/DataContext';
 import { CoverImage } from '../components/CoverImage';
 
+/** 专题系列：按源仓库分组收录的教程目录（类似分册电子书） */
+const SeriesSection: React.FC<{ posts: any[] }> = ({ posts }) => {
+  const groups = useMemo(() => {
+    const m = new Map<string, any[]>();
+    for (const p of posts) {
+      if (!p.source || !p.category) continue;
+      const arr = m.get(p.category) || [];
+      arr.push(p);
+      m.set(p.category, arr);
+    }
+    return [...m.entries()]
+      .map(([category, list]) => ({
+        category,
+        repo: list[0].source || '',
+        list: list.sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id.localeCompare(b.id)),
+      }))
+      .sort((a, b) => b.list.length - a.list.length);
+  }, [posts]);
+
+  if (groups.length === 0) return null;
+  return (
+    <section className="flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
+          <BookOpen className="w-6 h-6 text-accent" />
+          专题系列
+        </h2>
+        <span className="text-sm text-text-muted">GitHub 高质量教程仓库收录 · 目录化整理 · 全文本地化零外跳</span>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {groups.map(g => {
+          const cover = g.list.map(p => p.cover).find(Boolean);
+          return (
+            <motion.div
+              key={g.category}
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              className="bg-bg-card border border-border/60 rounded-2xl overflow-hidden flex flex-col"
+            >
+              {cover && (
+                <div className="h-24 shrink-0">
+                  <CoverImage post={{ id: g.list[0].id, cover }} className="w-full h-full object-cover" />
+                </div>
+              )}
+              <div className="p-4 flex flex-col gap-2.5 flex-1">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-text-primary">{g.category}</h3>
+                  <span className="px-2 py-0.5 bg-accent/10 text-accent rounded text-xs font-medium">{g.list.length} 篇</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  {g.list.slice(0, 6).map(p => (
+                    <Link key={p.id} to={`/post/${p.id}`} className="text-sm text-text-secondary hover:text-accent transition-colors truncate">
+                      · {p.title}
+                    </Link>
+                  ))}
+                </div>
+                {g.list.length > 6 && (
+                  <details className="text-sm">
+                    <summary className="text-accent cursor-pointer select-none text-xs">展开全部 {g.list.length} 篇</summary>
+                    <div className="flex flex-col gap-1 mt-1.5">
+                      {g.list.slice(6).map(p => (
+                        <Link key={p.id} to={`/post/${p.id}`} className="text-sm text-text-secondary hover:text-accent transition-colors truncate">
+                          · {p.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </details>
+                )}
+                <p className="text-[10px] text-text-muted mt-auto pt-1">来源：{g.repo}</p>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
 interface Tutorial {
   id: string; title: string; summary: string; domain: string;
   difficulty: '入门' | '进阶' | '高级'; minutes: number; href: string;
@@ -132,6 +209,9 @@ export const Tutorials: React.FC = () => {
             })}
           </div>
         </section>
+
+        {/* 专题系列：GitHub 教程仓库收录（目录化） */}
+        <SeriesSection posts={posts} />
 
         {/* domains */}
         <section className="flex flex-col gap-5">
