@@ -24,7 +24,7 @@
    "name": "数据结构与算法",
    "icon": "GitBranch",
    "blurb": "数据组织与算法思维，面试与功底的分水岭",
-   "count": 205
+   "count": 212
   },
   {
    "id": "system",
@@ -45,7 +45,7 @@
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 60
+   "count": 83
   },
   {
    "id": "data",
@@ -10332,6 +10332,486 @@
    ],
    "prereqs": [],
    "href": "g-qianguyihao-5"
+  },
+  {
+   "id": "g-jg-interview-3",
+   "kind": "collection",
+   "title": "发送4个PING请求数据包到 www.baidu.com",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： 计算机网络常见面试题总结（上）（网络分层模型、常见网路协议总",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 39,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-3"
+  },
+  {
+   "id": "g-jg-interview-4",
+   "kind": "collection",
+   "title": "operating-system",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： 操作系统常见面试题总结(上)（操作系统基础、进程和线程、死锁",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 48,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-4"
+  },
+  {
+   "id": "g-jg-interview-5",
+   "kind": "collection",
+   "title": "前言",
+   "summary": "由于很多读者都有突击面试的需求，所以我在几年前就弄了 JavaGuide 面试突击版本（JavaGuide 内容精简版，",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 89,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-5"
+  },
+  {
+   "id": "g-jg-interview-6",
+   "kind": "collection",
+   "title": "可以命中索引",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： 1. MySQL 常见面试题总结（MySQL 基础、存储引擎",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 41,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-6"
+  },
+  {
+   "id": "g-jg-interview-7",
+   "kind": "collection",
+   "title": "生产者生产消息",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： Redis 常见面试题总结（上）（Redis 基础、应用、数",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 64,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-7"
+  },
+  {
+   "id": "g-jg-interview-8",
+   "kind": "collection",
+   "title": "加锁",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章的重点： 分布式理论&算法&协议： CAP 理论和 BASE 理论解读 ",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 29,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-8"
+  },
+  {
+   "id": "g-jg-interview-9",
+   "kind": "collection",
+   "title": "home",
+   "summary": "这是 JavaGuide 面试突击版本，适合突击面试的小伙伴。 并且，提供了 PDF 下载，方便大家离线阅读/打印，阅读",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-9"
+  },
+  {
+   "id": "g-jg-interview-10",
+   "kind": "collection",
+   "title": "how-to-handle-interview-nerves",
+   "summary": "很多小伙伴在第一次技术面试时都会感到紧张甚至害怕，面试结束后还会有种“懵懵的”感觉。我也经历过类似的状况，可以说是深有体",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-10"
+  },
+  {
+   "id": "g-jg-interview-11",
+   "kind": "collection",
+   "title": "internship-experience",
+   "summary": "由于目前的面试太卷，对于犹豫是否要找实习的同学来说，个人建议不论是本科生还是研究生都应该在参加校招面试之前，争取一下不错",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-11"
+  },
+  {
+   "id": "g-jg-interview-13",
+   "kind": "collection",
+   "title": "java-roadmap",
+   "summary": "本学习路线保持年度系统性修订，严格同步 Java 技术生态与招聘市场的最新动态，确保内容时效性与前瞻性。 历时一个月精心",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-13"
+  },
+  {
+   "id": "g-jg-interview-14",
+   "kind": "collection",
+   "title": "key-points-of-interview",
+   "summary": "本文节选自 《Java 面试指北》。这是一份教你如何更高效地准备面试的专栏，内容和 JavaGuide 互补，涵盖常见八",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-14"
+  },
+  {
+   "id": "g-jg-interview-15",
+   "kind": "collection",
+   "title": "project-experience-guide",
+   "summary": "本文节选自 《Java 面试指北》。这是一份教你如何更高效地准备面试的专栏，内容和 JavaGuide 互补，涵盖常见八",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-15"
+  },
+  {
+   "id": "g-jg-interview-16",
+   "kind": "collection",
+   "title": "resume-guide",
+   "summary": "本文节选自 《Java 面试指北》。这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-16"
+  },
+  {
+   "id": "g-jg-interview-18",
+   "kind": "collection",
+   "title": "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+   "summary": "本文节选自 《Java 面试指北》。这是一份教你如何更高效地准备面试的专栏，内容和 JavaGuide 互补，涵盖常见八",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-18"
+  },
+  {
+   "id": "g-jg-interview-19",
+   "kind": "collection",
+   "title": "faq",
+   "summary": "JavaGuide 已经有了在线阅读版本（地址：javaguide.cn ），阅读体验也很不错，为什么我还要再花这么多时",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-19"
+  },
+  {
+   "id": "g-jg-interview-20",
+   "kind": "collection",
+   "title": "java-basis",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： Java 基础常见面试题总结(上)（Java 语言的基本概念",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 66,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-20"
+  },
+  {
+   "id": "g-jg-interview-21",
+   "kind": "collection",
+   "title": "java-collection",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： Java 集合常见面试题总结（上）（Java 集合基础、Ar",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 34,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-21"
+  },
+  {
+   "id": "g-jg-interview-22",
+   "kind": "collection",
+   "title": "java-concurrent",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： Java并发常见面试题总结（上）（多线程基础知识，例如线程和",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 83,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-22"
+  },
+  {
+   "id": "g-jg-interview-23",
+   "kind": "collection",
+   "title": "列出所有进程，然后通过 grep 过滤出包含 \"java\" 关键字的进程",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： 1. Java 内存区域详解 2. JVM 垃圾回收详解 3",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 33,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-23"
+  },
+  {
+   "id": "g-jg-interview-24",
+   "kind": "collection",
+   "title": "test-development",
+   "summary": "很多读者选择了测开方向来冲一波中大厂。在国内当前的测开面试中，面试官不仅会考察测试领域的基础知识和实践能力，往往也会考察",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 27,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-24"
+  },
+  {
+   "id": "g-jg-interview-25",
+   "kind": "collection",
+   "title": "2025-alibaba-taotian-1",
+   "summary": "过去两年，阿里的招聘策略正在悄悄发生结构性变化。 一方面，阿里整体调整组织架构，形成淘天、阿里云、夸克等多个相对独立的业",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-25"
+  },
+  {
+   "id": "g-jg-interview-29",
+   "kind": "collection",
+   "title": "design-pattern",
+   "summary": "在软件开发中，我们遵循一系列面向对象设计原则来提升代码的可维护性、可复用性和可扩展性，从而构建出更加健壮和灵活的系统。这",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 44,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-29"
+  },
+  {
+   "id": "g-jg-interview-30",
+   "kind": "collection",
+   "title": "spring",
+   "summary": "这部分内容摘自 JavaGuide 下面几篇文章中的重点： Spring 常见面试题总结（Spring 基础、IoC、A",
+   "domain": "backend",
+   "category": "JavaGuide 面试突击",
+   "difficulty": "进阶",
+   "minutes": 35,
+   "tags": [
+    "Java",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-jg-interview-30"
+  },
+  {
+   "id": "g-coding-interview-1",
+   "kind": "collection",
+   "title": "《枕边算法书》",
+   "summary": "这里仅挑一些有意思的故事或知识点做个记录。 “红色眼睛与褐色眼睛”谜题 找出剩下的一个数 说出 2199 年 7 月 2",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-1"
+  },
+  {
+   "id": "g-coding-interview-2",
+   "kind": "collection",
+   "title": "《代码整洁之道》",
+   "summary": "1. 我们就像一群代码猴子，上蹿下跳，自以为领略了编程的真谛。可惜，当我们抓着几个酸桃子，得意洋洋坐到树枝上，却对自己造",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-2"
+  },
+  {
+   "id": "g-coding-interview-3",
+   "kind": "collection",
+   "title": "《剑指 Offer》",
+   "summary": "来源：AcWing 给定一个长度为 n 的整数数组 nums，数组中所有的数字都在 0∼n−1 的范围内。 数组中某些数",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 53,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-3"
+  },
+  {
+   "id": "g-coding-interview-4",
+   "kind": "collection",
+   "title": "《Effective Coding——阿里巴巴 Java 开发手册》",
+   "summary": "1. 包名统一采用单数形式，但是类名如果有复数含义，则类名可以使用复数形式。e.g. com.alibaba.ai.ut",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-4"
+  },
+  {
+   "id": "g-coding-interview-5",
+   "kind": "collection",
+   "title": "《Effective Java》",
+   "summary": "静态工厂方法相比构造器，优势有以下几个： 1. 静态工厂方法有名称，能更确切地描述正被返回的对象，更易于阅读。构造器方法",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 42,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-5"
+  },
+  {
+   "id": "g-coding-interview-6",
+   "kind": "collection",
+   "title": "互联网公司 IT 技术面试题集",
+   "summary": "图示：license 图示：stars 图示：issues 图示：forks 图示：PRs Welcome 本仓库用于记",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-6"
+  },
+  {
+   "id": "g-coding-interview-8",
+   "kind": "collection",
+   "title": "《编程之美》",
+   "summary": "中国象棋里，“将”、“帅”不能照面。现假设棋盘上只有“将” A和“帅” B二子。 A、B 二子被限制在己方 33 的格子",
+   "domain": "algo",
+   "category": "大厂算法面试",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "算法",
+    "面试"
+   ],
+   "prereqs": [],
+   "href": "g-coding-interview-8"
   }
  ]
 }

@@ -1,0 +1,7 @@
+{"repo":"Snailclimb/JavaGuide-Interview","branch":"master","stars":2682,"mds":33,"truncated":false}
+{"repo":"doocs/coding-interview","branch":"main","stars":2372,"mds":10,"truncated":false}
+{"repo":"datawhalechina/dop-tutorial","err":"Not Found"}
+{"repo":"apachecn/AiLearning","branch":"master","stars":42638,"mds":299,"truncated":false}
+{"repo":"halfrost/LeetCode-Go","branch":"master","stars":33804,"mds":2554,"truncated":false}
+{"repo":"dunwu/db-tutorial","branch":"master","stars":5387,"mds":98,"truncated":false}
+{"repo":"AobingJava/JavaFamily","branch":"master","stars":36967,"mds":102,"truncated":false}
