@@ -45,14 +45,14 @@
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 83
+   "count": 84
   },
   {
    "id": "data",
    "name": "数据库与大数据",
    "icon": "HardDrive",
    "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-   "count": 15
+   "count": 29
   },
   {
    "id": "ai",
@@ -10940,6 +10940,261 @@
    ],
    "prereqs": [],
    "href": "g-ailearning-8"
+  },
+  {
+   "id": "g-dbtutorial-1",
+   "kind": "collection",
+   "title": "Nosql 技术选型",
+   "summary": "!img 传统的关系型数据库存在以下缺点： 大数据场景下 I/O 较高 因为数据是按行存储，即使只针对其中某一列进行运算",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-1"
+  },
+  {
+   "id": "g-dbtutorial-2",
+   "kind": "collection",
+   "title": "数据结构与数据库索引",
+   "summary": "关键词：链表、数组、散列表、红黑树、B+ 树、LSM 树、跳表 数据库是“按照 数据结构 来组织、存储和管理数据的仓库”",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-2"
+  },
+  {
+   "id": "g-dbtutorial-3",
+   "kind": "collection",
+   "title": "ShardingSphere 简介",
+   "summary": "ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 ShardingJDBC、Sha",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-3"
+  },
+  {
+   "id": "g-dbtutorial-4",
+   "kind": "collection",
+   "title": "ShardingSphere Jdbc",
+   "summary": "shardingspherejdbc 定位为轻量级 Java 框架，在 Java 的 JDBC 层提供的额外服务。 它使",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-4"
+  },
+  {
+   "id": "g-dbtutorial-5",
+   "kind": "collection",
+   "title": "版本管理中间件 Flyway",
+   "summary": "Flyway 是一个数据迁移工具。 Flyway 是一个开源的数据库迁移工具。 为了说明数据迁移的作用，我们来举一个示例",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-5"
+  },
+  {
+   "id": "g-dbtutorial-6",
+   "kind": "collection",
+   "title": "关系型数据库面试",
+   "summary": "索引是对数据库表中一或多个列的值进行排序的结构，是帮助数据库高效查询数据的数据结构。 ✔ 索引的优点： 索引大大减少了服",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 36,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-6"
+  },
+  {
+   "id": "g-dbtutorial-7",
+   "kind": "collection",
+   "title": "SQL 语法基础特性",
+   "summary": "本文针对关系型数据库的基本语法。限于篇幅，本文侧重说明用法，不会展开讲解特性、原理。 本文语法主要针对 Mysql，但大",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-7"
+  },
+  {
+   "id": "g-dbtutorial-8",
+   "kind": "collection",
+   "title": "SQL 语法高级特性",
+   "summary": "本文针对关系型数据库的基本语法。限于篇幅，本文侧重说明用法，不会展开讲解特性、原理。 本文语法主要针对 Mysql，但大",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-8"
+  },
+  {
+   "id": "g-dbtutorial-9",
+   "kind": "collection",
+   "title": "扩展 SQL",
+   "summary": "sql SELECT FROM information_schema.tables WHERE table_schema",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-9"
+  },
+  {
+   "id": "g-dbtutorial-10",
+   "kind": "collection",
+   "title": "SQL Cheat Sheet",
+   "summary": "SELECT \\ FROM table_name; SELECT DISTINCT column_name; SELEC",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-10"
+  },
+  {
+   "id": "g-dbtutorial-11",
+   "kind": "collection",
+   "title": "Mysql 应用指南",
+   "summary": "学习 Mysql，最好是先从宏观上了解 Mysql 工作原理。 参考：Mysql 工作流 在文件系统中，Mysql 将每",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-11"
+  },
+  {
+   "id": "g-dbtutorial-12",
+   "kind": "collection",
+   "title": "MySQL 工作流",
+   "summary": "大体来说，MySQL 可以分为 Server 层和存储引擎层两部分。 Server 层包括连接器、查询缓存、分析器、优化",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-12"
+  },
+  {
+   "id": "g-dbtutorial-13",
+   "kind": "collection",
+   "title": "Mysql 事务",
+   "summary": "不是所有的 Mysql 存储引擎都实现了事务处理。支持事务的存储引擎有：InnoDB 和 NDB Cluster。不支持",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-13"
+  },
+  {
+   "id": "g-dbtutorial-14",
+   "kind": "collection",
+   "title": "Mysql 锁",
+   "summary": "!img 确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性，乐观锁和悲观锁是并发控制",
+   "domain": "data",
+   "category": "数据库教程",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "MySQL",
+    "Redis",
+    "数据库"
+   ],
+   "prereqs": [],
+   "href": "g-dbtutorial-14"
+  },
+  {
+   "id": "g-javafamily-16",
+   "kind": "collection",
+   "title": "重复消费、顺序消费、分布式事务",
+   "summary": "你知道的越多，你不知道的越多 点赞再看，养成习惯 GitHub上已经开源 https://github.com/Java",
+   "domain": "backend",
+   "category": "JavaFamily 图解",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "Java",
+    "网络",
+    "MySQL"
+   ],
+   "prereqs": [],
+   "href": "g-javafamily-16"
   }
  ]
 }

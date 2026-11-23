@@ -399,23 +399,15 @@
    ],
    "picks": [
     {
-     "dir": "docs/mysql",
+     "dir": "docs/12.数据库",
      "keywords": [
       ".md"
      ],
-     "max": 8,
-     "recursive": true
-    },
-    {
-     "dir": "docs/redis",
-     "keywords": [
-      ".md"
-     ],
-     "max": 6,
+     "max": 14,
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "javafamily",
@@ -430,39 +422,15 @@
    ],
    "picks": [
     {
-     "dir": "docs/.netty",
+     "dir": "docs/all",
      "keywords": [
       ".md"
      ],
-     "max": 4,
-     "recursive": true
-    },
-    {
-     "dir": "docs/mysql",
-     "keywords": [
-      ".md"
-     ],
-     "max": 4,
-     "recursive": true
-    },
-    {
-     "dir": "docs/jvm",
-     "keywords": [
-      ".md"
-     ],
-     "max": 3,
-     "recursive": true
-    },
-    {
-     "dir": "docs/concurrent",
-     "keywords": [
-      ".md"
-     ],
-     "max": 3,
+     "max": 16,
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   }
  ]
 }
