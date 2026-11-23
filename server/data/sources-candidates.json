@@ -445,15 +445,39 @@
    ],
    "picks": [
     {
-     "dir": "doc/basics",
+     "dir": "docs/cs-basics",
      "keywords": [
       ".md"
      ],
      "max": 14,
      "recursive": true
+    },
+    {
+     "dir": "docs/database",
+     "keywords": [
+      ".md"
+     ],
+     "max": 4,
+     "recursive": true
+    },
+    {
+     "dir": "docs/network",
+     "keywords": [
+      ".md"
+     ],
+     "max": 4,
+     "recursive": true
+    },
+    {
+     "dir": "docs/linux",
+     "keywords": [
+      ".md"
+     ],
+     "max": 3,
+     "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "huihut-interview",
@@ -475,7 +499,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "interview-ref",
@@ -497,7 +521,7 @@
      "recursive": true
     }
    ],
-   "status": "pending"
+   "status": "done"
   },
   {
    "id": "docstyle",
