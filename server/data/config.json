@@ -39,6 +39,11 @@
       "icon": "Route"
     },
     {
+      "name": "实验室",
+      "path": "/lab",
+      "icon": "FlaskConical"
+    },
+    {
       "name": "知识图谱",
       "path": "/graph",
       "icon": "Waypoints"

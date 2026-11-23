@@ -16,6 +16,7 @@ import { NotFound } from './pages/NotFound';
 import { KnowledgeGraph } from './pages/KnowledgeGraph';
 import { AIChat } from './pages/AIChat';
 import { Report } from './pages/Report';
+import { LabPage } from './pages/LabPage';
 import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -49,6 +50,7 @@ const AppContent = () => {
           <Route path="graph" element={<KnowledgeGraph />} />
           <Route path="ai" element={<AIChat />} />
           <Route path="report" element={<Report />} />
+          <Route path="lab" element={<LabPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 

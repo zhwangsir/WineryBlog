@@ -31,7 +31,9 @@
    "Step 3 交集结果为 [三体]",
    "能口头回答：为什么统计用 HashMap 而排行要先转 List？"
   ],
-  "solution": "import java.util.*;\n\npublic class BorrowStats {\n    public static void main(String[] args) {\n        String[] records = { \"三体\", \"三体\", \"红楼梦\", \"三体\", \"红楼梦\", \"活着\" };\n        Map<String, Integer> count = new HashMap<>();\n        for (String book : records) count.merge(book, 1, Integer::sum);\n\n        count.entrySet().stream()\n            .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())\n            .limit(2)\n            .forEach(e -> System.out.println(e.getKey() + \" × \" + e.getValue()));\n\n        Set<String> alice = new HashSet<>(List.of(\"三体\", \"活着\"));\n        Set<String> bob = new HashSet<>(List.of(\"三体\", \"红楼梦\"));\n        alice.retainAll(bob);\n        System.out.println(alice);\n    }\n}"
+  "solution": "import java.util.*;\n\npublic class BorrowStats {\n    public static void main(String[] args) {\n        String[] records = { \"三体\", \"三体\", \"红楼梦\", \"三体\", \"红楼梦\", \"活着\" };\n        Map<String, Integer> count = new HashMap<>();\n        for (String book : records) count.merge(book, 1, Integer::sum);\n\n        count.entrySet().stream()\n            .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())\n            .limit(2)\n            .forEach(e -> System.out.println(e.getKey() + \" × \" + e.getValue()));\n\n        Set<String> alice = new HashSet<>(List.of(\"三体\", \"活着\"));\n        Set<String> bob = new HashSet<>(List.of(\"三体\", \"红楼梦\"));\n        alice.retainAll(bob);\n        System.out.println(alice);\n    }\n}",
+  "kind": "sim",
+  "simEnv": "Java REPL（jshell，Map/Set/Stream 操作与真实输出格式）"
  },
  "x-x57_promise_impl": {
   "title": "实验：手写 Promise.all 并验证",
@@ -63,7 +65,9 @@
    "withTimeout 包裹慢任务能按预期超时"
   ],
   "solution": "function myAll(promises) {\n  return new Promise((resolve, reject) => {\n    const list = Array.from(promises);\n    const results = new Array(list.length);\n    let done = 0;\n    if (list.length === 0) return resolve([]);\n    list.forEach((p, i) => {\n      Promise.resolve(p).then(v => {\n        results[i] = v;\n        if (++done === list.length) resolve(results);\n      }, reject);\n    });\n  });\n}\n\nfunction withTimeout(p, ms) {\n  return Promise.race([\n    p,\n    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))\n  ]);\n}\n\n// 验证用例①\nmyAll([\n  new Promise(r => setTimeout(() => r('A'), 300)),\n  new Promise(r => setTimeout(() => r('B'), 100)),\n]).then(console.log);\n// 用例②\nmyAll([1, Promise.resolve(2), 3]).then(console.log);\n// 用例③\nmyAll([Promise.reject(new Error('boom')), 1])\n  .catch(e => console.log('caught:', e.message));\n// 用例④ 超时\nwithTimeout(new Promise(r => setTimeout(() => r('ok'), 500)), 200)\n  .catch(e => console.log('timeout caught:', e.message));",
-  "runnerStarter": "// 在下面实现 myAll 并运行验证\nfunction myAll(promises) {\n  return new Promise((resolve, reject) => {\n    const list = Array.from(promises);\n    const results = new Array(list.length);\n    let done = 0;\n    if (list.length === 0) return resolve([]);\n    list.forEach((p, i) => {\n      Promise.resolve(p).then(v => {\n        results[i] = v;\n        if (++done === list.length) resolve(results);\n      }, reject);\n    });\n  });\n}\n\nconsole.log('①', await myAll([\n  new Promise(r => setTimeout(() => r('A'), 300)),\n  new Promise(r => setTimeout(() => r('B'), 100)),\n]));\nconsole.log('②', await myAll([1, Promise.resolve(2), 3]));\nawait myAll([Promise.reject(new Error('boom')), 1])\n  .catch(e => console.log('③ caught:', e.message));"
+  "runnerStarter": "// 在下面实现 myAll 并运行验证\nfunction myAll(promises) {\n  return new Promise((resolve, reject) => {\n    const list = Array.from(promises);\n    const results = new Array(list.length);\n    let done = 0;\n    if (list.length === 0) return resolve([]);\n    list.forEach((p, i) => {\n      Promise.resolve(p).then(v => {\n        results[i] = v;\n        if (++done === list.length) resolve(results);\n      }, reject);\n    });\n  });\n}\n\nconsole.log('①', await myAll([\n  new Promise(r => setTimeout(() => r('A'), 300)),\n  new Promise(r => setTimeout(() => r('B'), 100)),\n]));\nconsole.log('②', await myAll([1, Promise.resolve(2), 3]));\nawait myAll([Promise.reject(new Error('boom')), 1])\n  .catch(e => console.log('③ caught:', e.message));",
+  "kind": "web",
+  "starter": "// 最小 Promise 骨架：实现 then 与 resolve 的同步/异步两种路径\nclass MyPromise {\n  constructor(executor) {\n    this.state = 'pending';\n    this.value = undefined;\n    this.cbs = [];\n    const resolve = (v) => {\n      if (this.state !== 'pending') return;\n      this.state = 'fulfilled';\n      this.value = v;\n      this.cbs.forEach((cb) => cb(v));\n    };\n    executor(resolve);\n  }\n  then(onFulfilled) {\n    // TODO：pending 时把回调存入 this.cbs；fulfilled 时立即调用\n    if (this.state === 'fulfilled') onFulfilled(this.value);\n    else this.cbs.push(onFulfilled);\n    return this;\n  }\n}\n\n// 验收：同步与异步 resolve 都能触发 then\nnew MyPromise((r) => r(1)).then((v) => console.log('同步:', v));\nsetTimeout(() => {\n  new MyPromise((r) => setTimeout(() => r(2), 100)).then((v) => console.log('异步:', v));\n}, 0);"
  },
  "x-x54_flex_container": {
   "title": "实验：Flex 三栏布局挑战（迷你 Froggy）",
@@ -100,7 +104,9 @@
   "webStarter": {
    "html": "<div class=\"stage\">\n  <span class=\"star\">★</span>\n</div>\n<div class=\"stage2\">\n  <div class=\"nav\">首页</div>\n  <div class=\"nav\">教程</div>\n  <div class=\"nav\">关于</div>\n</div>\n<div class=\"stage3\">\n  <div class=\"aside\">侧栏</div>\n  <div class=\"main\">主区</div>\n</div>",
    "css": ".stage {\n  display: flex;\n  height: 120px;\n  background: #1a1f2b;\n  /* TODO: 补两行实现居中 */\n}\n.star { color: #F27D26; font-size: 28px; }\n.stage2 {\n  display: flex;\n  height: 60px;\n  gap: 8px;\n  margin-top: 12px;\n}\n.nav {\n  background: #2a3550;\n  border-radius: 6px;\n  display: flex; align-items: center; justify-content: center;\n  color: #cfd8e3;\n}\n.stage3 {\n  display: flex;\n  height: 90px;\n  margin-top: 12px;\n}\n.aside { background: #3d2f4f; width: 80px; }\n.main  { background: #24404f; flex: 1; }"
-  }
+  },
+  "kind": "web",
+  "starter": "<div class=\"toolbar\">\n  <span class=\"logo\">LOGO</span>\n  <nav><a>首页</a><a>教程</a><a>关于</a></nav>\n  <button class=\"cta\">登录</button>\n</div>\n<style>\n  .toolbar { display:flex; gap:16px; align-items:center; padding:12px; background:#1a2230; border-radius:8px; }\n  .logo { color:#f27d26; font-weight:bold; }\n  nav { display:flex; gap:12px; }\n  /* TODO: 让 nav 居中、CTA 靠右 —— margin-left:auto 是关键 */\n  .cta { background:#f27d26; color:#fff; border:none; padding:6px 14px; border-radius:6px; }\n</style>"
  },
  "x-x16_prompt_engineering": {
   "title": "实验：结构化 Prompt 改造（Prompt 工程）",
@@ -133,7 +139,9 @@
    "能用一句话解释五要素各自的作用",
    "为下一个真实任务写出一条结构化提示词"
   ],
-  "solution": "参考结论：A 得到通用模板；B 得到贴合岗位、带量化句式的条目；C 条数失控或写虚。\n五要素作用：角色定语气与视角；上下文给信息边界；任务划定产出范围；约束防止跑偏与冗长；输出格式让结果可直接使用。"
+  "solution": "参考结论：A 得到通用模板；B 得到贴合岗位、带量化句式的条目；C 条数失控或写虚。\n五要素作用：角色定语气与视角；上下文给信息边界；任务划定产出范围；约束防止跑偏与冗长；输出格式让结果可直接使用。",
+  "kind": "sim",
+  "simEnv": "对话模型（右下角 AI 教练同时扮演「被提示的模型」，输入提示词 A/B/C 观察输出差异）"
  },
  "t11_dp_intro": {
   "title": "实验：爬楼梯的三种写法（动态规划）",
@@ -166,7 +174,9 @@
    "说出暴力递归慢的原因：重叠子问题被重复计算",
    "能写出递推三要素：初始状态、转移方程、计算顺序"
   ],
-  "solution": "完整代码见各 Step。关键结论：记忆化与递推等价，都是每个子问题只算一次；\n空间优化：递推只依赖前两项，滚动变量即可。状态转移方程：f(n) = f(n-1) + f(n-2)，f(1)=1, f(2)=2。"
+  "solution": "完整代码见各 Step。关键结论：记忆化与递推等价，都是每个子问题只算一次；\n空间优化：递推只依赖前两项，滚动变量即可。状态转移方程：f(n) = f(n-1) + f(n-2)，f(1)=1, f(2)=2。",
+  "kind": "web",
+  "starter": "let calls = 0;\nfunction f(n) {\n  calls++;\n  if (n <= 2) return n;\n  return f(n - 1) + f(n - 2);\n}\nconsole.log('f(30) =', f(30));\nconsole.log('暴力递归调用次数 =', calls);\n\n// TODO Step 2：加 memo 缓存，对比调用次数\n// TODO Step 3：改成递推 DP，空间 O(1)"
  },
  "w15_express": {
   "title": "实验：15 分钟搭一个待办事项 REST API（Express）",
@@ -199,7 +209,9 @@
    "说出 express.json() 去掉后会坏掉哪个接口",
    "能解释 :id 路由参数如何进入 req.params"
   ],
-  "solution": "完整服务端代码见 Step 1+2 拼接。常见坑：忘记 express.json() 导致 req.body undefined；\nreq.params.id 是字符串，与数字 id 比较必须用 == 或先 Number() 转换。扩展方向：把数组换成 JSON 文件持久化。"
+  "solution": "完整服务端代码见 Step 1+2 拼接。常见坑：忘记 express.json() 导致 req.body undefined；\nreq.params.id 是字符串，与数字 id 比较必须用 == 或先 Number() 转换。扩展方向：把数组换成 JSON 文件持久化。",
+  "kind": "sim",
+  "simEnv": "Node.js + HTTP 服务终端（curl 请求与响应状态码均由仿真环境给出）"
  },
  "w01_git_install": {
   "title": "实验：分支与合并的完整生命周期（Git）",
@@ -232,7 +244,9 @@
    "冲突标记的三行各代表什么",
    "git switch -c 与 git switch 的区别"
   ],
-  "solution": "分支 = 指向 commit 的可移动指针，建分支只是写了一个 41 字节的文件，所以「秒级」。\n冲突标记：<<<<<<< 到 ======= 是当前分支（HEAD），======= 到 >>>>>>> 是被合并分支。解决 = 编辑成期望内容 + add + commit。"
+  "solution": "分支 = 指向 commit 的可移动指针，建分支只是写了一个 41 字节的文件，所以「秒级」。\n冲突标记：<<<<<<< 到 ======= 是当前分支（HEAD），======= 到 >>>>>>> 是被合并分支。解决 = 编辑成期望内容 + add + commit。",
+  "kind": "sim",
+  "simEnv": "Git Bash（Linux 风格终端，含完整 git 命令与冲突标记输出）"
  },
  "w29_redis_intro": {
   "title": "实验：用 Redis 做页面浏览计数器（三大结构初见）",
@@ -265,7 +279,9 @@
    "HASH 与多个 STRING key 的取舍",
    "「最近 N 条」还有别的实现吗？（ZSET 按时间戳排序）"
   ],
-  "solution": "三步均为标准 redis-cli 操作。核心体会：Redis 快在内存 + 单线程免锁 + 数据结构直指场景；\n选型口诀——计数 INCR、对象 HASH、时间线 LIST/ZSET、去重 SET。"
+  "solution": "三步均为标准 redis-cli 操作。核心体会：Redis 快在内存 + 单线程免锁 + 数据结构直指场景；\n选型口诀——计数 INCR、对象 HASH、时间线 LIST/ZSET、去重 SET。",
+  "kind": "sim",
+  "simEnv": "redis-cli（交互式，支持 string/hash/list 指令与真实返回格式）"
  },
  "x-x75_dist_basics": {
   "title": "实验：两副本数据漂移——亲手制造 CAP 教科书场景",
@@ -298,7 +314,9 @@
    "说出 CAP 在「分区发生时」才需要取舍",
    "给自己的业务举出 CP 与 AP 各一例"
   ],
-  "solution": "运行输出顺序：100 → undefined → (600ms 后) 100。\n要点：异步复制的窗口期就是不一致窗口；强一致读主、最终一致读副本是工程上的标准取舍；\nCAP 中 P 是网络分区的客观存在，取舍发生在 C 与 A 之间。"
+  "solution": "运行输出顺序：100 → undefined → (600ms 后) 100。\n要点：异步复制的窗口期就是不一致窗口；强一致读主、最终一致读副本是工程上的标准取舍；\nCAP 中 P 是网络分区的客观存在，取舍发生在 C 与 A 之间。",
+  "kind": "sim",
+  "simEnv": "Node.js REPL（含 Map 副本模拟脚本，可直接粘贴实验代码）"
  },
  "w53_threejs_canvas": {
   "title": "实验：Canvas 逐像素绘图——粒子弹幕的最小原型",
@@ -331,7 +349,9 @@
    "60fps 意味着 update 每秒被调用约 60 次",
    "粒子数提到 5000 时帧率下降的原因（每帧绘制调用过多）"
   ],
-  "solution": "完整代码 = Step 2 骨架 + Step 3 的重力两行。性能延伸：5000 粒子改用 ctx.putImageData 逐像素写\nImageBitmap 或 WebGL instancing 才能回到 60fps——这也是图形学「为什么要有管线」的第一课。"
+  "solution": "完整代码 = Step 2 骨架 + Step 3 的重力两行。性能延伸：5000 粒子改用 ctx.putImageData 逐像素写\nImageBitmap 或 WebGL instancing 才能回到 60fps——这也是图形学「为什么要有管线」的第一课。",
+  "kind": "web",
+  "starter": "// 在下方沙箱预览区直接看效果；改代码后点「运行」\nconst ps = Array.from({ length: 200 }, () => ({\n  x: Math.random() * 480, y: Math.random() * 160,\n  vx: Math.random() * 2 + 0.5, vy: 0,\n}));\nlet frame = 0;\nsetInterval(() => {\n  frame++;\n  ctx.clearRect(0, 0, 480, 160);\n  for (const p of ps) {\n    p.vy += 0.05;                    // 重力\n    p.x = (p.x + p.vx) % 480;\n    p.y += p.vy;\n    if (p.y > 160) { p.y = 0; p.vy = 0; }\n    ctx.fillRect(p.x, p.y, 3, 3);\n  }\n  console.log('frame', frame);\n}, 33);"
  },
  "x-x83_probability": {
   "title": "实验：亲手算一次「信息熵」（概率统计）",
@@ -364,7 +384,9 @@
    "说出「熵越高越难压缩」的原因",
    "给出一句话版本：熵 = 平均惊讶程度"
   ],
-  "solution": "熵 = -Σp·log₂p，单位 bit。均匀分布熵最大（最不确定），确定事件熵为 0（无信息）。\n压缩下限 = 熵：哈夫曼/算术编码都在逼近它。文本实验中重复字符分布尖锐 → 低熵 → 可压。"
+  "solution": "熵 = -Σp·log₂p，单位 bit。均匀分布熵最大（最不确定），确定事件熵为 0（无信息）。\n压缩下限 = 熵：哈夫曼/算术编码都在逼近它。文本实验中重复字符分布尖锐 → 低熵 → 可压。",
+  "kind": "web",
+  "starter": "function entropy(ps) {\n  // TODO: 实现 H = -Σ p·log2(p)，p=0 时贡献按 0 处理\n  return 0;\n}\nconsole.log('均匀分布 [0.5,0.5] →', entropy([0.5, 0.5]));   // 期望 1\nconsole.log('一边倒 [0.9,0.1] →', entropy([0.9, 0.1]));     // 期望 ≈0.469\nconsole.log('确定事件 [1,0] →', entropy([1, 0]));           // 期望 0\n\nfunction textEntropy(text) {\n  // TODO: 统计字符频率 → 归一化 → entropy\n  return 0;\n}\nconsole.log('重复文本熵:', textEntropy('哈哈哈哈哈哈'));\nconsole.log('多样文本熵:', textEntropy('信息熵度量不确定性'));"
  },
  "w42_android_intro": {
   "title": "实验：Kotlin 五大语法速览（Android 移动开发）",
@@ -397,7 +419,9 @@
    "数据类自动生成了哪些方法",
    "扩展函数并不真的修改类，而是编译成静态方法"
   ],
-  "solution": "五语法小结：空安全（类型层面消灭 NPE）、数据类（样板代码归零）、扩展函数（无侵入加方法）、\n集合操作符（map/filter 链）、Elvis ?:（默认值兜底）。对照 Java：Kotlin 把「运行时崩溃」大量前移成「编译期错误」。"
+  "solution": "五语法小结：空安全（类型层面消灭 NPE）、数据类（样板代码归零）、扩展函数（无侵入加方法）、\n集合操作符（map/filter 链）、Elvis ?:（默认值兜底）。对照 Java：Kotlin 把「运行时崩溃」大量前移成「编译期错误」。",
+  "kind": "sim",
+  "simEnv": "Kotlin Playground（Kotlin 代码即时求值，输出 println 结果）"
  },
  "w92_sec_xss_sqli": {
   "title": "实验：亲手打出并修复一次 XSS（Web 安全）",
@@ -430,7 +454,9 @@
    "用 textContent 修复并解释原理",
    "说出三种 XSS 类型（存储/反射/DOM）各一句"
   ],
-  "solution": "漏洞根因：数据被当作代码执行。修复优先级：textContent（纯文本）> DOMPurify（富文本白名单）> 输出转义；\n再配合 CSP（Content-Security-Policy）作为最后一道护栏。本实验只在自己本地页面进行，禁止对任何真实站点尝试。"
+  "solution": "漏洞根因：数据被当作代码执行。修复优先级：textContent（纯文本）> DOMPurify（富文本白名单）> 输出转义；\n再配合 CSP（Content-Security-Policy）作为最后一道护栏。本实验只在自己本地页面进行，禁止对任何真实站点尝试。",
+  "kind": "web",
+  "starter": "<div id=\"box\" style=\"border:1px solid #333;padding:8px\">评论区</div>\n<script>\n  // Step 1：模拟「直接 innerHTML 渲染用户评论」的漏洞写法\n  const userInput = '<img src=x onerror=\"document.getElementById(\\'box\\').innerHTML += \\'<p style=color:#f27d26>XSS 触发！脚本执行了</p>\\'\">';\n  // TODO：取消下一行注释，观察 XSS 发生（本沙箱内完全安全）\n  // document.getElementById('box').innerHTML = userInput;\n\n  // Step 2：改用 textContent 修复——用户输入变纯文本\n  // document.getElementById('box').textContent = userInput;\n</script>"
  },
  "x-x78_design_patterns": {
   "title": "实验：用策略模式消灭 if-else（设计模式）",
@@ -463,7 +489,9 @@
    "if-else 与策略表各自的适用规模（分支少而稳定时 if-else 反而更直白）",
    "举一个自己项目里可以表驱动的分支逻辑"
   ],
-  "solution": "重构核心：把「分支判断」换成「查表分发」。策略模式不是银弹——两三个稳定分支用 if-else 更好读；\n分支会持续增长或每支逻辑较重时才值得上策略表。这也正是设计模式的正确打开方式：先有坏味道，再上模式。"
+  "solution": "重构核心：把「分支判断」换成「查表分发」。策略模式不是银弹——两三个稳定分支用 if-else 更好读；\n分支会持续增长或每支逻辑较重时才值得上策略表。这也正是设计模式的正确打开方式：先有坏味道，再上模式。",
+  "kind": "web",
+  "starter": "// Step 1：会腐烂的 if-else 原版\nfunction finalPrice(type, price) {\n  if (type === 'full') return price >= 100 ? price - 20 : price;\n  if (type === 'percent') return price * 0.85;\n  if (type === 'vip') return price * 0.8 - 5;\n  return price;\n}\nconsole.log(finalPrice('full', 120), finalPrice('percent', 100));\n\n// TODO Step 2：重构为策略表 strategies = { full: p => ..., ... }\n// TODO Step 3：新增 full200 促销，验证 finalPrice 零改动"
  },
  "x-x10_shell_script": {
   "title": "实验：写一个自动备份脚本（Shell 脚本）",
@@ -496,6 +524,8 @@
    "为什么变量引用要加双引号（路径含空格）",
    "把脚本加进 crontab 每天凌晨自动跑一行命令怎么写"
   ],
-  "solution": "完整脚本 = Step1 + Step2（放最前）+ Step3（放最后）。\ncrontab 示例：0 2 * * * /path/to/backup.sh /home/me/docs >> /path/to/backup.log 2>&1。\n要点：引号包裹变量、set -e 快速失败、退出码可测——把这三件事养成习惯，Shell 就从「命令堆」变成「可靠工具」。"
+  "solution": "完整脚本 = Step1 + Step2（放最前）+ Step3（放最后）。\ncrontab 示例：0 2 * * * /path/to/backup.sh /home/me/docs >> /path/to/backup.log 2>&1。\n要点：引号包裹变量、set -e 快速失败、退出码可测——把这三件事养成习惯，Shell 就从「命令堆」变成「可靠工具」。",
+  "kind": "sim",
+  "simEnv": "Linux Bash（Ubuntu 22.04，date/tar/ls/xargs 等命令真实行为）"
  }
 }

@@ -1245,6 +1245,89 @@ async function startServer() {
     }
   });
 
+  // ===== 实验室 AI Agent：双角色（环境仿真 terminal / 实验教练 coach） =====
+  // terminal：扮演实验指定的运行环境（bash/redis-cli/node 等），按环境真实行为返回输出
+  // coach：实验教练，引导完成 steps/验收，卡住两轮才阶梯提示，绝不主动泄漏参考答案
+  app.post("/api/lab-agent", async (req, res) => {
+    try {
+      const { labId, history = [], message = "", context = "coach" } = req.body || {};
+      const labs = JSON.parse(await fs.readFile(LABS_FILE, "utf-8"));
+      const lab = labs[labId];
+      if (!lab) {
+        res.status(404).json({ error: "Lab not found" });
+        return;
+      }
+      const labBrief = [
+        `实验标题：${lab.title}`,
+        `目标：${lab.goal}`,
+        `环境：${lab.env}`,
+        `步骤：`,
+        ...(lab.steps || []).map((s: any, i: number) => `  Step ${i + 1}：${s.title}\n    ${s.detail}\n    验收：${s.check}`),
+        `总验收清单：`,
+        ...(lab.verify || []).map((v: string) => `  - ${v}`),
+      ].join("\n");
+
+      let system: string;
+      if (context === "terminal") {
+        system = [
+          `你是「WineryBlog 实验室」的仿真终端，当前实验是《${lab.title}》。`,
+          `你扮演的运行环境：${lab.env}。用户会输入命令或粘贴代码，你必须严格按该环境的真实行为返回输出。`,
+          "铁律：",
+          "1. 你只是环境，不是老师——回复只包含环境的真实输出（放在代码块中），外加一行不超过 20 字的状态说明；不讲解知识点、不给建议；",
+          "2. 命令不存在/语法错误/权限不足时，返回该环境真实的报错格式与退出码；",
+          "3. 对文件系统/数据库/进程状态要有连续记忆：上一条命令改变了状态，下一条命令的输出必须与之一致；",
+          "4. 用户操作达到某个 Step 的验收标准时，在该环境输出之后追加一行「✔ Step N 验收通过：<验收点>」；",
+          "5. 以下实验材料仅供你判断用户操作是否符合环境逻辑，绝不主动展示给学生：",
+          labBrief,
+        ].join("\n");
+      } else {
+        system = [
+          `你是「WineryBlog 实验室」的实验教练（由胡桃担任），陪客官完成实验《${lab.title}》。`,
+          HUTAO_PERSONA,
+          "教练规则（优先级高于人设表演）：",
+          "1. 一次只聚焦当前 Step：确认用户完成了哪步，引导下一步；",
+          "2. 苏格拉底式引导——用提问帮用户自己想通，不直接给完整代码；",
+          "3. 用户同一问题连续两轮答不上或明确说「不会/直接给」，才阶梯式提示：先思路 → 再关键代码片段 → 最后完整解法；",
+          "4. 参考答案（solution）是最后手段，仅用户三次卡住后明确要求时才给出；",
+          "5. 用户宣称完成时，逐条核对验收清单（verify），全部通过才恭喜并建议点击「标记完成」；",
+          "6. 回复精简（300 字内为佳），用 Markdown 代码块给代码。",
+          "===== 实验材料开始 =====",
+          labBrief,
+          "===== 实验材料结束 =====",
+        ].join("\n");
+      }
+
+      const upModel = await getUpstreamModel();
+      const contextReminder =
+        context === "terminal"
+          ? "\n\n[角色提醒：本回合你是仿真终端，只输出环境真实结果，不做任何讲解。]"
+          : "\n\n[角色提醒：本回合你是实验教练，苏格拉底式引导，最多聚焦一个 Step，不主动给完整答案。]";
+      const wired = (Array.isArray(history) ? history : []).slice(-16).map((m: any, i: number, arr: any[]) =>
+        i === arr.length - 1 && m.role === "user"
+          ? { ...m, content: `${m.content}${contextReminder}` }
+          : m
+      );
+      if (!wired.length || wired[wired.length - 1].role !== "user") {
+        wired.push({ role: "user", content: `开始实验。${contextReminder}` });
+      }
+      const body: any = {
+        messages: [{ role: "system", content: system }, ...wired],
+        temperature: context === "terminal" ? 0.3 : 0.7,
+        max_tokens: context === "terminal" ? 1200 : 1600,
+      };
+      if (upModel) body.model = upModel;
+      const r = await fetch(AI_UPSTREAM, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const text = await r.text();
+      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+    } catch (e: any) {
+      res.status(502).json({ error: "Lab agent failed", detail: e.message });
+    }
+  });
+
   // ===== AI Librarian proxy (engine-adaptive, LAN LLM) =====
   const AI_UPSTREAM = "http://192.168.71.84:8000/v1/chat/completions";
   const AI_MODELS = "http://192.168.71.84:8000/v1/models";

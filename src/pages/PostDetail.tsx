@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { motion } from 'motion/react';
-import { Calendar, Tag, Folder, ArrowLeft, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon, GraduationCap, Share2 } from 'lucide-react';
+import { Calendar, Tag, Folder, ArrowLeft, ArrowRight, Lock, Eye, EyeOff, Loader2, Eye as ViewIcon, GraduationCap, Share2, FlaskConical } from 'lucide-react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { TutorPanel } from '../components/TutorPanel';
 import { CodeBlock } from '../components/CodeBlock';
-import { fetchProgress, markRead, markLab } from '../lib/progress';
+import { fetchProgress, markRead } from '../lib/progress';
 import { CheckCircle2, Circle } from 'lucide-react';
-import { LabPanel, type LabData } from '../components/LabPanel';
 import { CoverImage } from '../components/CoverImage';
 import { CommentSection } from '../components/CommentSection';
 import { ReadingProgress } from '../components/ReadingProgress';
@@ -40,23 +39,15 @@ export const PostDetail: React.FC = () => {
   const [shareOpen, setShareOpen] = useState(false);
   const [tutCatalog, setTutCatalog] = useState<{ id: string; domain: string; title: string; href: string }[]>([]);
   const [isRead, setIsRead] = useState(false);
-  const [lab, setLab] = useState<LabData | null>(null);
-  const [labDone, setLabDone] = useState(false);
   const viewCounted = useRef(false);
 
   // tutorial content gets the AI tutor; blog posts don't
   const isTutorial = !!post && post.category !== '随笔';
 
-  // load read status + paired lab for this tutorial
+  // load read status for this tutorial
   useEffect(() => {
     if (!post) return;
-    fetchProgress().then(p => {
-      setIsRead(!!p.read[post.id]);
-      setLabDone(!!p.labs?.[post.id]);
-    }).catch(() => {});
-    fetch('/api/labs').then(r => r.json())
-      .then((labs: Record<string, LabData>) => setLab(labs[post.id] || null))
-      .catch(() => {});
+    fetchProgress().then(p => setIsRead(!!p.read[post.id])).catch(() => {});
   }, [post?.id]);
 
   // load read status for this tutorial
@@ -322,14 +313,19 @@ export const PostDetail: React.FC = () => {
         </Markdown>
       </div>
 
-      {/* 配套实验（有则渲染） */}
-      {isTutorial && lab && (
-        <LabPanel
-          tutorialId={post.id}
-          lab={lab}
-          labDone={labDone}
-          onLabDone={d => setLabDone(d)}
-        />
+      {/* 实验入口：配套实验已迁移至独立实验室页（AI Agent 陪练 + 沙箱运行） */}
+      {isTutorial && (
+        <Link
+          to="/lab"
+          className="flex items-center gap-3 px-5 py-4 bg-bg-card border border-border rounded-2xl hover:border-accent/50 transition-colors group"
+        >
+          <FlaskConical className="w-5 h-5 text-accent shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-text-primary group-hover:text-accent transition-colors">实验室 · 动手实验 + AI Agent 陪练</p>
+            <p className="text-xs text-text-muted mt-0.5">本教程方向的实操实验已迁入实验室：真沙箱运行 / AI 仿真终端 / 实验教练验收</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-all shrink-0" />
+        </Link>
       )}
 
       {/* tutorial navigation: prev/next + related */}
