@@ -1,11 +1,28 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="zh-CN" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="WineryBlog —— 集系统教程、职业路线、知识图谱、实验室与 AI 馆员于一体的个人自学图书馆。" />
+    <meta name="theme-color" content="#0f1419" />
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#f27d26" />
+    <script>
+      // 首屏防闪烁：渲染前应用访问者上次选择的主题与强调色（与 src/lib/theme.ts 同一组键）
+      (function () {
+        try {
+          var root = document.documentElement;
+          if (localStorage.getItem('winery-theme') === 'light') root.classList.remove('dark');
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', root.classList.contains('dark') ? '#0f1419' : '#f8f9fa');
+          var accent = JSON.parse(localStorage.getItem('winery-accent') || 'null');
+          if (accent && accent.value) {
+            root.style.setProperty('--accent', accent.value);
+            root.style.setProperty('--accent-hover', accent.hover || accent.value);
+          }
+        } catch (e) { /* 隐私模式等：按默认主题渲染 */ }
+      })();
+    </script>
     <script src="/vendor/live2dcubismcore.min.js"></script>
     <script>
       // PWA：注册 Service Worker（可安装 + 离线回退）
@@ -22,4 +39,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

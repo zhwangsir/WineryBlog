@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* 字体走本地打包（@fontsource，随构建产物下发）：不再外链 Google Fonts，
+   中文环境不再被阻塞首屏，读者端零出站 */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -11,9 +12,9 @@
 @source not "server/data";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+
   --color-bg-base: var(--bg-base);
   --color-bg-card: var(--bg-card);
   --color-bg-card-hover: var(--bg-card-hover);
@@ -37,7 +38,7 @@
     --text-secondary: #5a6c7d;
     --text-muted: #95a5a6;
     --border: #e8ecef;
-    
+
     /* 新增 Firefly 风格变量 */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -48,6 +49,26 @@
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
+
+    /* 代码块配色（亮色，GitHub Light 系） */
+    --code-bg: #f6f8fa;
+    --code-text: #24292f;
+    --tok-comment: #6a737d;
+    --tok-keyword: #cf222e;
+    --tok-string: #0a3069;
+    --tok-number: #0550ae;
+    --tok-function: #8250df;
+    --tok-attr: #0550ae;
+    --tok-builtin: #953800;
+    --tok-operator: #cf222e;
+    --tok-punct: #24292f;
+    --tok-tag: #116329;
+    --tok-variable: #953800;
+    --tok-regex: #0a3069;
+    --tok-constant: #0550ae;
+    --tok-selector: #6639ba;
+
+    color-scheme: light;
   }
 
   .dark {
@@ -60,6 +81,55 @@
     --text-secondary: #a0aec0;
     --text-muted: #64748b;
     --border: #2d3748;
+
+    /* 代码块配色（暗色，GitHub Dark 系） */
+    --code-bg: #0d1117;
+    --code-text: #c9d1d9;
+    --tok-comment: #8b949e;
+    --tok-keyword: #ff7b72;
+    --tok-string: #a5d6ff;
+    --tok-number: #79c0ff;
+    --tok-function: #d2a8ff;
+    --tok-attr: #79c0ff;
+    --tok-builtin: #ffa657;
+    --tok-operator: #ff7b72;
+    --tok-punct: #c9d1d9;
+    --tok-tag: #7ee787;
+    --tok-variable: #ffa657;
+    --tok-regex: #a5d6ff;
+    --tok-constant: #79c0ff;
+    --tok-selector: #7ee787;
+
+    color-scheme: dark;
+  }
+
+  html {
+    text-size-adjust: 100%;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--text-muted) 55%, transparent) transparent;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* 全站滚动条跟随主题（默认浅色轨道在暗色页面上很突兀） */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--text-muted) 50%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--text-muted) 80%, transparent);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }
 
@@ -78,7 +148,7 @@
   .custom-scrollbar:hover::-webkit-scrollbar-thumb {
     background: var(--text-muted);
   }
-  
+
   /* Firefly 风格卡片阴影 */
   .card-shadow {
     box-shadow: var(--shadow-md);
@@ -88,7 +158,7 @@
     box-shadow: var(--shadow-xl);
     transform: translateY(-2px);
   }
-  
+
   /* Firefly 风格渐变文字 */
   .gradient-text {
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
@@ -96,7 +166,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Firefly 风格玻璃效果 */
   .glass {
     background: rgba(255, 255, 255, 0.8);
@@ -110,6 +180,173 @@
 
 body {
   @apply bg-bg-base text-text-primary font-sans antialiased transition-colors duration-300;
+}
+
+/* ============================================================
+   正文排版（.prose）与渲染组件
+   ============================================================ */
+
+/* Prism 语法高亮 token 配色：走 CSS 变量，明暗主题各一套 */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+.code-block .token.punctuation {
+  color: var(--tok-punct);
+}
+.code-block .token.namespace,
+.code-block .token.property,
+.code-block .token.tag,
+.code-block .token.symbol,
+.code-block .token.deleted {
+  color: var(--tok-tag);
+}
+.code-block .token.constant,
+.code-block .token.number,
+.code-block .token.boolean {
+  color: var(--tok-constant);
+}
+.code-block .token.keyword,
+.code-block .token.operator,
+.code-block .token.url,
+.code-block .token.entity {
+  color: var(--tok-keyword);
+}
+.code-block .token.string,
+.code-block .token.char,
+.code-block .token.attr-value,
+.code-block .token.regex {
+  color: var(--tok-string);
+}
+.code-block .token.attr-name,
+.code-block .token.atrule .token.rule {
+  color: var(--tok-attr);
+}
+.code-block .token.function,
+.code-block .token.title,
+.code-block .token.class-name {
+  color: var(--tok-function);
+}
+.code-block .token.builtin,
+.code-block .token.variable,
+.code-block .token.inserted {
+  color: var(--tok-variable);
+}
+.code-block .token.selector {
+  color: var(--tok-selector);
+}
+.code-block .token.bold {
+  font-weight: 600;
+}
+.code-block .token.italic {
+  font-style: italic;
+}
+
+@layer components {
+  /* 页面入场：只动透明度（transform 会把 fixed 子元素的定位基准改掉），
+     不设 fill-mode，动画结束后完全恢复文档流常态 */
+  @keyframes page-enter {
+    from { opacity: 0.45; }
+    to { opacity: 1; }
+  }
+  .page-enter {
+    animation: page-enter var(--dur-base) var(--ease-out-quart);
+  }
+}
+
+/* --- 正文细节：覆盖 typography 的默认值，贴合站点主题 ---
+   typography 插件输出的是未分层的嵌套 CSS，分层里的规则压不过它；
+   这里的覆盖规则同样不分层，并用 .prose.prose 把权重抬到它之上 */
+.prose.prose :where(a):not(:where([class~='not-prose'] *)) {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: border-color var(--dur-fast) ease;
+  }
+.prose.prose :where(a):not(:where([class~='not-prose'] *)):hover {
+  border-bottom-color: var(--accent);
+  }
+.prose.prose :where(code):not(:where([class~='not-prose'] *)) {
+  font-weight: 500;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  padding: 0.15em 0.4em;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  }
+.prose.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: none;
+  }
+.prose.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) {
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  }
+.prose.prose :where(h2):not(:where([class~='not-prose'] *)) {
+  margin-top: 2.6em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--border);
+  }
+.prose.prose :where(h3):not(:where([class~='not-prose'] *)) {
+  margin-top: 2em;
+  }
+.prose.prose :where(strong):not(:where([class~='not-prose'] *)) {
+  color: var(--text-primary);
+  }
+.prose.prose :where(blockquote):not(:where([class~='not-prose'] *)) {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text-secondary);
+  border-left-color: var(--accent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  }
+.prose.prose :where(blockquote p:first-of-type):not(:where([class~='not-prose'] *))::before,
+.prose.prose :where(blockquote p:last-of-type):not(:where([class~='not-prose'] *))::after {
+  content: none;
+  }
+.prose.prose :where(img):not(:where([class~='not-prose'] *)) {
+  border-radius: 1rem;
+  }
+.prose.prose :where(table):not(:where([class~='not-prose'] *)) {
+  font-size: 0.9em;
+  width: 100%;
+  }
+.prose.prose :where(thead th):not(:where([class~='not-prose'] *)) {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+.prose.prose :where(td, th):not(:where([class~='not-prose'] *)) {
+  border-color: var(--border);
+  }
+.prose.prose :where(hr):not(:where([class~='not-prose'] *)) {
+  border-color: var(--border);
+  }
+.prose.prose :where(li):not(:where([class~='not-prose'] *))::marker {
+  color: var(--text-muted);
+  }
+/* 提示卡内部：首尾不留多余间距，内容紧凑 */
+.prose .callout-body > :first-child {
+  margin-top: 0;
+}
+.prose .callout-body > :last-child {
+  margin-bottom: 0;
+}
+.prose .callout-body :where(p) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.prose .callout-body :where(h2, h3, h4) {
+  margin-top: 1em;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 1.05em;
 }
 
 /* ============================================================

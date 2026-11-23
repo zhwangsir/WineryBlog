@@ -6,11 +6,6 @@ import { apiFetch } from '../../utils/api';
 
 const PAGE_SIZE = 15;
 
-function countWords(text: string): number {
-  if (!text) return 0;
-  return (text.match(/[\u4e00-\u9fa5]/g) || []).length + (text.match(/[a-zA-Z]+/g) || []).length;
-}
-
 type SortKey = 'date' | 'views' | 'words';
 
 export const ManagePosts: React.FC = () => {
@@ -26,23 +21,18 @@ export const ManagePosts: React.FC = () => {
     [posts]
   );
 
-  const wordCounts = useMemo(() => {
-    const map = new Map<string, number>();
-    posts.forEach(p => map.set(p.id, countWords(p.title) + countWords(p.excerpt) + countWords(p.content)));
-    return map;
-  }, [posts]);
-
   const filtered = useMemo(() => {
     const kw = searchTerm.toLowerCase();
     let list = posts.filter(p =>
       (!kw || p.title.toLowerCase().includes(kw) || p.category.toLowerCase().includes(kw) || p.tags.some(t => t.toLowerCase().includes(kw))) &&
       (!category || p.category === category)
     );
+    // 字数由服务端随摘要下发（列表不再携带正文）
     if (sortKey === 'views') list = [...list].sort((a, b) => (b.views || 0) - (a.views || 0));
-    else if (sortKey === 'words') list = [...list].sort((a, b) => (wordCounts.get(b.id) || 0) - (wordCounts.get(a.id) || 0));
+    else if (sortKey === 'words') list = [...list].sort((a, b) => (b.words || 0) - (a.words || 0));
     // date 排序沿用服务端返回顺序（置顶优先 + 日期倒序）
     return list;
-  }, [posts, searchTerm, category, sortKey, wordCounts]);
+  }, [posts, searchTerm, category, sortKey]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -157,7 +147,7 @@ export const ManagePosts: React.FC = () => {
                     </span>
                   </td>
                   <td className="p-4 text-sm text-text-secondary whitespace-nowrap">{post.date}</td>
-                  <td className="p-4 text-sm text-text-secondary whitespace-nowrap">{((wordCounts.get(post.id) || 0) / 10000).toFixed(1)} 万</td>
+                  <td className="p-4 text-sm text-text-secondary whitespace-nowrap">{((post.words || 0) / 10000).toFixed(1)} 万</td>
                   <td className="p-4 text-sm text-text-secondary">
                     <span className="flex items-center gap-1 whitespace-nowrap"><Eye className="w-3.5 h-3.5" />{post.views || 0}</span>
                   </td>

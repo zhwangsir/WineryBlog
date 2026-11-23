@@ -6,11 +6,12 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { apiFetch } from '../../utils/api';
 import { GalleryPicker } from '../../components/admin/GalleryPicker';
+import { invalidatePost } from '../../lib/postStore';
 
 export const EditPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { posts, refreshData } = useData();
+  const { refreshData } = useData();
   const isNew = id === 'new';
 
   const [formData, setFormData] = useState({
@@ -48,23 +49,28 @@ export const EditPost: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!isNew && posts.length > 0) {
-      const post = posts.find(p => p.id === id);
-      if (post) {
+    if (isNew || !id) return;
+    // 列表接口只带摘要：编辑时单独取这一篇的正文与密码原文（需管理令牌）
+    let dead = false;
+    apiFetch(`/api/posts/${id}`)
+      .then(res => (res.ok ? res.json() : null))
+      .then((post: any) => {
+        if (dead || !post) return;
         setFormData({
           title: post.title,
           date: post.date,
           category: post.category,
           tags: post.tags.join(', '),
           excerpt: post.excerpt,
-          content: post.content,
+          content: post.content || '',
           isLocked: post.isLocked || false,
           password: post.password || '',
           pinned: post.pinned || false
         });
-      }
-    }
-  }, [id, isNew, posts]);
+      })
+      .catch(() => {});
+    return () => { dead = true; };
+  }, [id, isNew]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -90,6 +96,7 @@ export const EditPost: React.FC = () => {
       });
 
       if (res.ok) {
+        invalidatePost(id);
         await refreshData();
         navigate('/admin/posts');
       } else {

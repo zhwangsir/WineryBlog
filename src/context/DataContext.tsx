@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, ReactNode, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode, useState, useCallback, useMemo } from 'react';
 import { Post } from '../data/posts';
 
 interface SiteConfig {
@@ -44,6 +44,13 @@ interface SiteConfig {
     sakuraSpeed?: 'slow' | 'normal' | 'fast';
     mascotEnabled?: boolean;
     wallpaperEnabled?: boolean;
+    pet?: {
+      enabled?: boolean;
+      model?: 'hutao' | 'fallback';
+      voiceEnabled?: boolean;
+      size?: number;
+      opacity?: number;
+    };
   };
   music?: {
     enabled: boolean;
@@ -82,22 +89,18 @@ interface Category {
 
 interface DataContextType {
   config: SiteConfig | null;
+  /** 摘要列表（不含正文，正文经 lib/postStore 按需获取） */
   posts: Post[];
   categories: Category[];
   tags: string[];
   loading: boolean;
+  /** 最近一次加载失败的原因；成功后清空 */
+  error: string | null;
   refreshData: () => Promise<void>;
   totalWordCount: string;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
-
-function countWords(text: string): number {
-  if (!text) return 0;
-  const chineseChars = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
-  const englishWords = (text.match(/[a-zA-Z]+/g) || []).length;
-  return chineseChars + englishWords;
-}
 
 function formatWordCount(count: number): string {
   if (count >= 10000) {
@@ -113,6 +116,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [totalWordCount, setTotalWordCount] = useState<string>('0字');
 
   const fetchData = useCallback(async () => {
@@ -121,40 +125,46 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         fetch('/api/config'),
         fetch('/api/posts')
       ]);
-      
+
+      const failures: string[] = [];
       let newConfig: SiteConfig | null = null;
-      
+      let newPosts: Post[] | null = null;
+
       if (configRes.ok) {
         newConfig = await configRes.json();
+      } else {
+        failures.push('站点配置');
       }
-      
+
       if (postsRes.ok) {
-        const newPosts: Post[] = await postsRes.json();
-        setPosts(newPosts);
-        
+        newPosts = await postsRes.json();
+      } else {
+        failures.push('文章列表');
+      }
+
+      if (newPosts) {
         const catMap = new Map<string, number>();
         const tagSet = new Set<string>();
         let total = 0;
-        
+        // 字数由服务端随摘要下发（列表不再携带正文，前端不再逐篇统计）
         newPosts.forEach(post => {
           catMap.set(post.category, (catMap.get(post.category) || 0) + 1);
-          post.tags.forEach(tag => tagSet.add(tag));
-          total += countWords(post.title);
-          total += countWords(post.excerpt);
-          total += countWords(post.content);
+          (post.tags || []).forEach(tag => tagSet.add(tag));
+          total += post.words || 0;
         });
-        
+
         const computedCategories: Category[] = [
           { name: '归档', count: newPosts.length, isHome: true },
           ...Array.from(catMap.entries()).map(([name, count]) => ({ name, count }))
         ];
-        
+
+        setPosts(newPosts);
         setCategories(computedCategories);
         setTags(Array.from(tagSet));
         setTotalWordCount(formatWordCount(total));
-        
+
         if (newConfig) {
-          const updatedConfig: SiteConfig = {
+          setConfig({
             ...newConfig,
             stats: {
               ...newConfig.stats,
@@ -163,14 +173,16 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               categories: computedCategories.filter(c => !c.isHome).length,
               tags: tagSet.size
             }
-          };
-          setConfig(updatedConfig);
+          });
         }
       } else if (newConfig) {
         setConfig(newConfig);
       }
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
+
+      setError(failures.length ? `${failures.join('、')}加载失败，请检查服务后重试` : null);
+    } catch (err) {
+      console.error('Failed to fetch data:', err);
+      setError('数据加载失败，请检查网络或服务后重试');
     } finally {
       setLoading(false);
     }
@@ -180,15 +192,10 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     fetchData();
   }, [fetchData]);
 
-  const value: DataContextType = {
-    config,
-    posts,
-    categories,
-    tags,
-    loading,
-    refreshData: fetchData,
-    totalWordCount
-  };
+  const value = useMemo<DataContextType>(
+    () => ({ config, posts, categories, tags, loading, error, refreshData: fetchData, totalWordCount }),
+    [config, posts, categories, tags, loading, error, fetchData, totalWordCount]
+  );
 
   return (
     <DataContext.Provider value={value}>
@@ -204,3 +211,5 @@ export const useData = () => {
   }
   return context;
 };
+
+export type { SiteConfig, Category };

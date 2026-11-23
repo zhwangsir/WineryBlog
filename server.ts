@@ -253,19 +253,202 @@ async function startServer() {
     }
   });
 
-  app.get("/api/posts", async (req, res) => {
+  // GET 接口一律 no-cache：浏览器可留存但每次必须带 ETag 回源校验，
+  // 数据未变时 304 复用本地副本（列表 280KB 不再反复传输）
+  app.use("/api", (req, res, next) => {
+    if (req.method === "GET") res.setHeader("Cache-Control", "no-cache");
+    next();
+  });
+
+  // ===== 文章数据层：按文件 (mtime,size) 失效的进程内缓存 =====
+  // 前台列表只下发摘要（正文按需 GET /api/posts/:id），/api/posts 从 ~14MB 降到 ~280KB。
+  // cron 会定期重写 posts.json：读到半截文件时沿用上一份完整数据。
+  type PostRec = Record<string, any>;
+  interface PostsCache {
+    key: string;
+    raw: PostRec[];
+    sorted: PostRec[];
+    summaries: PostRec[];
+    search: null | { post: PostRec; title: string; excerpt: string; tags: string[]; category: string; content: string }[];
+  }
+  // 内部字段不下发：password 仅管理端可见；_words/_shelfPath 等是早期转换遗留
+  const META_FIELDS = ["password", "_words", "_source", "_shelfPath", "shelfPath", "words2"];
+  // 摘要列表 / 搜索结果在此基础上再去掉正文
+  const INTERNAL_FIELDS = [...META_FIELDS, "content"];
+  const stripFields = (src: PostRec, fields: string[]): PostRec => {
+    const out: PostRec = { ...src };
+    for (const f of fields) delete out[f];
+    return out;
+  };
+  const countWords = (text: unknown): number => {
+    if (typeof text !== "string" || !text) return 0;
+    return (text.match(/[\u4e00-\u9fa5]/g) || []).length + (text.match(/[a-zA-Z]+/g) || []).length;
+  };
+  const wordsOf = (p: PostRec) => countWords(p.title) + countWords(p.excerpt) + countWords(p.content);
+  // 摘要是早期收录时从正文截的：HTML 标签被截掉了 > 只剩半个（<u回溯…</u是一种），这里就地清掉
+  const cleanExcerpt = (s: unknown): string => {
+    if (typeof s !== "string" || !s.includes("<")) return String(s ?? "");
+    return s
+      .replace(/<\/?[a-zA-Z][a-zA-Z0-9]*(?:\s[^<>]*)?>/g, "")
+      .replace(/<\/?[a-zA-Z][a-zA-Z0-9]*(?=[\u4e00-\u9fa5a-zA-Z（(“"《])/g, "")
+      .replace(/<[a-zA-Z][a-zA-Z0-9]*\s[^<>]*$/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+  const byOrder = (a: PostRec, b: PostRec) =>
+    (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+    String(b.date || "").localeCompare(String(a.date || ""));
+  let postsCache: PostsCache | null = null;
+  let postsLoading: Promise<PostsCache> | null = null;
+
+  async function loadPosts(): Promise<PostsCache> {
+    let key = "";
     try {
-      const data = await fs.readFile(POSTS_FILE, "utf-8");
-      const posts = JSON.parse(data);
-      // 置顶优先，其余按日期倒序（前台与后台共用同一顺序）
-      posts.sort(
-        (a: any, b: any) =>
-          (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
-          String(b.date || "").localeCompare(String(a.date || ""))
-      );
-      res.json(posts);
+      const st = await fs.stat(POSTS_FILE);
+      key = `${st.mtimeMs}:${st.size}`;
+    } catch { /* 文件暂不可读：尝试沿用缓存 */ }
+    if (postsCache && postsCache.key === key) return postsCache;
+    if (postsLoading) return postsLoading;
+    postsLoading = (async () => {
+      try {
+        const raw = JSON.parse(await fs.readFile(POSTS_FILE, "utf-8")) as PostRec[];
+        if (!Array.isArray(raw)) throw new Error("posts.json is not an array");
+        const sorted = [...raw].sort(byOrder);
+        const summaries = sorted.map((p) => ({ ...stripFields(p, INTERNAL_FIELDS), excerpt: cleanExcerpt(p.excerpt), words: wordsOf(p) }));
+        postsCache = { key, raw, sorted, summaries, search: null };
+        return postsCache;
+      } catch (e) {
+        if (postsCache) return postsCache;
+        throw e;
+      } finally {
+        postsLoading = null;
+      }
+    })();
+    return postsLoading;
+  }
+
+  // 携带有效管理令牌的请求（不强制）：管理端取单篇时需要正文与密码原文
+  const hasAdmin = (req: express.Request) => {
+    const token = req.headers.authorization?.replace("Bearer ", "") || req.cookies?.token;
+    return !!token && verifyToken(token).valid;
+  };
+
+  // 加密文章的解锁令牌：HMAC(id:过期时间)，12 小时有效，服务端不再把密码与正文发给未解锁的访客
+  const UNLOCK_TTL = 12 * 60 * 60 * 1000;
+  const signUnlock = (id: string) => {
+    const exp = Date.now() + UNLOCK_TTL;
+    return `${exp}.${crypto.createHmac("sha256", JWT_SECRET).update(`${id}:${exp}`).digest("base64url")}`;
+  };
+  const verifyUnlock = (id: string, token: string) => {
+    const [exp, sig] = String(token || "").split(".");
+    if (!exp || !sig || !(Number(exp) > Date.now())) return false;
+    const expect = crypto.createHmac("sha256", JWT_SECRET).update(`${id}:${exp}`).digest();
+    const got = Buffer.from(sig, "base64url");
+    return got.length === expect.length && crypto.timingSafeEqual(got, expect);
+  };
+
+  app.get("/api/posts", async (_req, res) => {
+    try {
+      // 摘要列表：置顶优先，其余按日期倒序（前台与后台共用同一顺序）
+      res.json((await loadPosts()).summaries);
     } catch (error) {
       res.status(500).json({ error: "Failed to read posts" });
+    }
+  });
+
+  // 单篇：正文按需获取。加密文章在校验密码前不下发正文（?unlock= 为 /unlock 签发的令牌）
+  app.get("/api/posts/:id", async (req, res) => {
+    try {
+      const post = (await loadPosts()).sorted.find((p) => p.id === req.params.id);
+      if (!post) {
+        res.status(404).json({ error: "Post not found" });
+        return;
+      }
+      if (hasAdmin(req)) { res.json(post); return; }
+      const pub: PostRec = { ...stripFields(post, META_FIELDS), excerpt: cleanExcerpt(post.excerpt), words: wordsOf(post) };
+      if (post.isLocked && !verifyUnlock(post.id, String(req.query.unlock || ""))) {
+        pub.content = "";
+        pub.locked = true;
+      }
+      res.json(pub);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to read post" });
+    }
+  });
+
+  // 加密文章解锁：服务端比对密码，成功签发限时令牌
+  app.post("/api/posts/:id/unlock", async (req, res) => {
+    try {
+      const post = (await loadPosts()).sorted.find((p) => p.id === req.params.id);
+      if (!post) {
+        res.status(404).json({ error: "Post not found" });
+        return;
+      }
+      if (!post.isLocked) { res.json({ token: "" }); return; }
+      const stored = String(post.password || "");
+      const given = String(req.body?.password || "");
+      const ok = stored.length > 0 && given.length === stored.length &&
+        crypto.timingSafeEqual(Buffer.from(given), Buffer.from(stored));
+      if (!ok) {
+        res.status(401).json({ error: "密码错误" });
+        return;
+      }
+      res.json({ token: signUnlock(post.id) });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to unlock post" });
+    }
+  });
+
+  // ===== 全文搜索：列表不再携带正文，标题/正文/标签/分类的检索改在服务端缓存上完成 =====
+  const makeSnippet = (content: string, word: string) => {
+    const idx = content.toLowerCase().indexOf(word);
+    if (idx < 0) return "";
+    const start = Math.max(0, idx - 46);
+    const raw = content.slice(start, Math.min(content.length, idx + word.length + 70));
+    const plain = raw
+      .replace(/```[a-z0-9]*|`+/gi, "")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/^[ \t>#*-]+/gm, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    return (start > 0 ? "…" : "") + plain + (start + raw.length < content.length ? "…" : "");
+  };
+
+  app.get("/api/search", async (req, res) => {
+    try {
+      const q = String(req.query.q || "").trim().slice(0, 80);
+      const limit = Math.min(50, Math.max(1, Number(req.query.limit) || 20));
+      if (!q) { res.json({ results: [], total: 0 }); return; }
+      const cache = await loadPosts();
+      if (!cache.search) {
+        const lower = (s: unknown) => String(s ?? "").toLowerCase();
+        cache.search = cache.sorted.map((p) => ({
+          post: p, title: lower(p.title), excerpt: lower(p.excerpt),
+          tags: (Array.isArray(p.tags) ? p.tags : []).map(lower), category: lower(p.category), content: lower(p.content),
+        }));
+      }
+      const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+      const results = [];
+      for (const row of cache.search) {
+        let score = 0;
+        const matches = { title: false, excerpt: false, content: false, tags: false, category: false };
+        for (const w of words) {
+          if (row.title.includes(w)) { score += 100; matches.title = true; if (row.title === w) score += 50; }
+          if (row.category.includes(w)) { score += 80; matches.category = true; }
+          if (row.tags.some((t) => t.includes(w))) { score += 60; matches.tags = true; }
+          if (row.excerpt.includes(w)) { score += 40; matches.excerpt = true; }
+          if (row.content.includes(w)) { score += 20; matches.content = true; }
+        }
+        if (score <= 0) continue;
+        const post = { ...stripFields(row.post, INTERNAL_FIELDS), excerpt: cleanExcerpt(row.post.excerpt) };
+        const snippetWord = words.find((w) => row.content.includes(w)) || words[0];
+        results.push({ post: { ...post, words: wordsOf(row.post) }, score, matches, snippet: makeSnippet(row.post.content || "", snippetWord) });
+      }
+      results.sort((a, b) => b.score - a.score);
+      res.json({ results: results.slice(0, limit), total: results.length });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to search" });
     }
   });
 
@@ -1007,13 +1190,13 @@ async function startServer() {
   // RSS Feed endpoint
   app.get("/rss.xml", async (req, res) => {
     try {
-      const [configData, postsData] = await Promise.all([
+      const [configData, postsRaw] = await Promise.all([
         fs.readFile(CONFIG_FILE, "utf-8"),
-        fs.readFile(POSTS_FILE, "utf-8")
+        loadPosts().then((c) => c.raw)
       ]);
       
       const config = JSON.parse(configData);
-      const posts = JSON.parse(postsData);
+      const posts = [...postsRaw];
       
       const siteUrl = `https://${config.domain || 'blog.wineryz.top'}`;
       const siteTitle = config.title || 'WineryBlog';
@@ -1059,8 +1242,7 @@ async function startServer() {
   // ===== Knowledge Graph (built from posts) =====
   app.get("/api/graph", async (req, res) => {
     try {
-      const data = await fs.readFile(POSTS_FILE, "utf-8");
-      const posts = JSON.parse(data);
+      const posts = (await loadPosts()).raw;
 
       const PREREQ_PAIRS: [string, string][] = [
         ["CS 自学总纲", "数据结构与算法入门"],
@@ -1439,30 +1621,29 @@ async function startServer() {
 
   // AI 馆员代理：服务端注入胡桃馆员人设（人设收口服务端，前端只发消息）
   // + 馆藏 RAG：按用户问题检索相关教程注入上下文，馆员「认识」全馆藏书
-  let tutCache: { tutorials: any[]; domains: any[] } | null = null;
+  let tutCache: { key: string; tutorials: any[]; domains: any[] } | null = null;
   async function loadTutCatalog() {
-    if (!tutCache) {
+    const postsCacheNow = await loadPosts();
+    if (!tutCache || tutCache.key !== postsCacheNow.key) {
       try {
-        tutCache = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8"));
-      } catch { tutCache = { tutorials: [], domains: [] }; }
-      // 参考镜像并入检索池：馆员能推荐本地镜像（如 MDN 文档），保持零外跳
-      try {
-        const posts = JSON.parse(await fs.readFile(POSTS_FILE, "utf-8"));
-        const refs = (posts as any[])
-          .filter((p: any) => p.category === "参考资料")
+        const base = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8"));
+        // 检索池 = 自研教程目录 + 全部文章：参考镜像与 GitHub 收录教程一并入池，馆员认识的是全馆藏书
+        const have = new Set((base.tutorials || []).map((t: any) => t.id));
+        const extra = (postsCacheNow.raw as any[])
+          .filter((p: any) => !have.has(p.id))
           .map((p: any) => ({
             id: p.id,
             title: p.title,
             summary: p.excerpt || "",
-            domain: "references",
-            difficulty: "参考",
-            category: "参考资料",
+            domain: p.category === "参考资料" ? "references" : "collected",
+            difficulty: p.category === "参考资料" ? "参考" : (p.source ? "收录" : "文章"),
+            category: p.category,
             tags: p.tags || [],
             minutes: 0,
             href: `/post/${p.id}`,
           }));
-        tutCache.tutorials = [...tutCache.tutorials, ...refs];
-      } catch { /* 镜像并入失败不阻塞 */ }
+        tutCache = { key: postsCacheNow.key, domains: base.domains || [], tutorials: [...(base.tutorials || []), ...extra] };
+      } catch { tutCache = { key: postsCacheNow.key, tutorials: [], domains: [] }; }
     }
     return tutCache;
   }

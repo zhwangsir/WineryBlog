@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Post } from '../data/posts';
+import { readingMinutes, type Post } from '../data/posts';
 import { Calendar, Folder, Lock, Clock, Eye, Pin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CoverImage } from './CoverImage';
@@ -11,8 +11,7 @@ interface PostCardProps {
 }
 
 export const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
-  const wordCount = post.content.split(/\s+/).length;
-  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+  const readingTime = readingMinutes(post);
 
   return (
     <motion.article

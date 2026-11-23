@@ -20,6 +20,38 @@ interface SearchResult {
     tags: boolean;
     category: boolean;
   };
+  /** 正文命中片段（服务端全文检索返回） */
+  snippet?: string;
+}
+
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/** 标题/分类/标签/摘要打分（摘要列表即可完成，输入后立刻出结果；正文检索由服务端补上） */
+function scoreSummaries(posts: Post[], query: string): SearchResult[] {
+  const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+  if (!queryWords.length) return [];
+  return posts
+    .map(post => {
+      const titleLower = post.title.toLowerCase();
+      const excerptLower = post.excerpt.toLowerCase();
+      const tagsLower = post.tags.map(t => t.toLowerCase());
+      const categoryLower = post.category.toLowerCase();
+      let score = 0;
+      const matches = { title: false, excerpt: false, content: false, tags: false, category: false };
+      for (const word of queryWords) {
+        if (titleLower.includes(word)) {
+          score += 100;
+          matches.title = true;
+          if (titleLower === word) score += 50;
+        }
+        if (categoryLower.includes(word)) { score += 80; matches.category = true; }
+        if (tagsLower.some(t => t.includes(word))) { score += 60; matches.tags = true; }
+        if (excerptLower.includes(word)) { score += 40; matches.excerpt = true; }
+      }
+      return { post, score, matches };
+    })
+    .filter(result => result.score > 0)
+    .sort((a, b) => b.score - a.score);
 }
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -36,7 +68,7 @@ function useDebounce<T>(value: T, delay: number): T {
 const HighlightText: React.FC<{ text: string; query: string }> = ({ text, query }) => {
   if (!query.trim()) return <>{text}</>;
   
-  const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
+  const parts = text.split(new RegExp(`(${escapeRegExp(query)})`, 'gi'));
   
   return (
     <>
@@ -53,73 +85,42 @@ const HighlightText: React.FC<{ text: string; query: string }> = ({ text, query 
   );
 };
 
+interface RemoteSearch { q: string; results: SearchResult[]; total: number }
+
 export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   const { posts } = useData();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [remote, setRemote] = useState<RemoteSearch | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   
-  const debouncedQuery = useDebounce(query, 300);
+  const debouncedQuery = useDebounce(query, 200);
 
-  // Search algorithm with scoring - must be defined before useEffect
-  const searchResults = useMemo<SearchResult[]>(() => {
-    if (!debouncedQuery.trim()) return [];
-    
-    const queryLower = debouncedQuery.toLowerCase();
-    const queryWords = queryLower.split(/\s+/).filter(w => w.length > 0);
-    
-    return posts
-      .map(post => {
-        const titleLower = post.title.toLowerCase();
-        const excerptLower = post.excerpt.toLowerCase();
-        const contentLower = post.content.toLowerCase();
-        const tagsLower = post.tags.map(t => t.toLowerCase());
-        const categoryLower = post.category.toLowerCase();
-        
-        let score = 0;
-        const matches = {
-          title: false,
-          excerpt: false,
-          content: false,
-          tags: false,
-          category: false
-        };
-        
-        for (const word of queryWords) {
-          if (titleLower.includes(word)) {
-            score += 100;
-            matches.title = true;
-            if (titleLower === word) score += 50;
-          }
-          
-          if (categoryLower.includes(word)) {
-            score += 80;
-            matches.category = true;
-          }
-          
-          if (tagsLower.some(t => t.includes(word))) {
-            score += 60;
-            matches.tags = true;
-          }
-          
-          if (excerptLower.includes(word)) {
-            score += 40;
-            matches.excerpt = true;
-          }
-          
-          if (contentLower.includes(word)) {
-            score += 20;
-            matches.content = true;
-          }
-        }
-        
-        return { post, score, matches };
+  // 即时结果：摘要列表上的标题/分类/标签/摘要匹配
+  const localResults = useMemo<SearchResult[]>(
+    () => scoreSummaries(posts, debouncedQuery),
+    [debouncedQuery, posts]
+  );
+
+  // 全文结果：列表不携带正文，正文检索走服务端（/api/search），返回后替换即时结果
+  useEffect(() => {
+    const q = debouncedQuery.trim();
+    if (!q) { setRemote(null); return; }
+    const ctrl = new AbortController();
+    fetch(`/api/search?q=${encodeURIComponent(q)}&limit=30`, { signal: ctrl.signal })
+      .then(r => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((j: { results?: SearchResult[]; total?: number }) => {
+        setRemote({ q, results: j.results || [], total: j.total || 0 });
       })
-      .filter(result => result.score > 0)
-      .sort((a, b) => b.score - a.score);
-  }, [debouncedQuery, posts]);
+      .catch(() => { /* 中断或服务异常：保留即时结果 */ });
+    return () => ctrl.abort();
+  }, [debouncedQuery]);
+
+  // 服务端结果已覆盖当前关键词时采用全文结果，否则先用即时结果
+  const full = remote && remote.q === debouncedQuery.trim() ? remote : null;
+  const searchResults = full ? full.results : localResults;
 
   // Focus input when modal opens
   useEffect(() => {
@@ -196,23 +197,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
     navigate(`/post/${id}`);
   }, [onClose, navigate]);
 
-  const getContentSnippet = (post: Post, query: string): string => {
-    if (!query.trim()) return post.excerpt;
-    
-    const queryLower = query.toLowerCase();
-    const contentLower = post.content.toLowerCase();
-    const index = contentLower.indexOf(queryLower);
-    
-    if (index === -1) return post.excerpt;
-    
-    const start = Math.max(0, index - 50);
-    const end = Math.min(post.content.length, index + query.length + 50);
-    let snippet = post.content.slice(start, end);
-    
-    if (start > 0) snippet = '...' + snippet;
-    if (end < post.content.length) snippet = snippet + '...';
-    
-    return snippet;
+  const getResultSnippet = (result: SearchResult, query: string): string => {
+    if (result.matches.content && result.snippet) return result.snippet;
+    return result.post.excerpt;
   };
 
   return (
@@ -324,14 +311,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                         </div>
                         
                         <p className="text-sm text-text-secondary line-clamp-2">
-                          {result.matches.content ? (
-                            <HighlightText 
-                              text={getContentSnippet(result.post, debouncedQuery)} 
-                              query={debouncedQuery} 
-                            />
-                          ) : (
-                            <HighlightText text={result.post.excerpt} query={debouncedQuery} />
-                          )}
+                          <HighlightText 
+                            text={getResultSnippet(result, debouncedQuery)} 
+                            query={debouncedQuery} 
+                          />
                         </p>
                       </button>
                     ))}
@@ -342,7 +325,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
               <div className="p-3 border-t border-border bg-bg-base/50 text-xs text-text-muted flex justify-between items-center">
                 <span>
                   {searchResults.length > 0 ? (
-                    <>找到 <strong className="text-text-primary">{searchResults.length}</strong> 篇文章</>
+                    <>找到 <strong className="text-text-primary">{full ? full.total : searchResults.length}</strong> 篇文章{full && full.total > full.results.length ? `，显示前 ${full.results.length} 篇` : ''}</>
                   ) : (
                     '开始输入以搜索'
                   )}

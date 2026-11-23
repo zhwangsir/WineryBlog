@@ -1,122 +1,109 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { motion } from 'motion/react';
-
-interface TocItem {
-  id: string;
-  text: string;
-  level: number;
-}
+import React, { useEffect, useMemo, useState } from 'react';
+import { ChevronDown, ListTree } from 'lucide-react';
+import { cn } from '../utils/cn';
+import type { TocItem } from '../lib/markdown';
 
 interface TableOfContentsProps {
-  content: string;
+  items: TocItem[];
+  /** 折叠面板形态（窄屏，放在正文上方）；默认是侧栏卡片 */
+  collapsible?: boolean;
 }
 
-export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
-  const [activeId, setActiveId] = useState<string>('');
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  // Parse headings from content - memoized to prevent re-parsing
-  const headings = useMemo<TocItem[]>(() => {
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-    const items: TocItem[] = [];
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const text = match[2].trim();
-      const id = text.toLowerCase().replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g, '-');
-      items.push({ id, text, level });
-    }
-
-    return items;
-  }, [content]);
-
-  // Setup IntersectionObserver
+/** 滚动高亮：取最后一个已经滚过阅读线（顶部 140px）的标题 */
+function useActiveHeading(items: TocItem[]): string {
+  const [activeId, setActiveId] = useState('');
   useEffect(() => {
-    if (headings.length === 0) return;
-
-    // Disconnect previous observer if exists
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-80px 0px -80% 0px' }
-    );
-
-    observerRef.current = observer;
-
-    // Observe all heading elements
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.id);
-      if (element) {
-        observer.observe(element);
+    if (!items.length) return;
+    let timer = 0;
+    const update = () => {
+      timer = 0;
+      let current = '';
+      for (const item of items) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 140) current = item.id;
+        else break;
       }
-    });
-
-    return () => {
-      observer.disconnect();
+      setActiveId(current);
     };
-  }, [headings]);
+    // 用定时器节流而不是 requestAnimationFrame：被遮挡 / 后台窗口里渲染帧会暂停
+    const schedule = () => {
+      if (!timer) timer = window.setTimeout(update, 80);
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+    return () => {
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, [items]);
+  return activeId;
+}
 
-  const scrollToHeading = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+const jumpTo = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.history.replaceState(null, '', `#${id}`);
+};
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
+/** 文章目录：h2–h4，窄屏折叠；标题很多（>48）时只列最高一级 */
+export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, collapsible }) => {
+  const activeId = useActiveHeading(items);
+  const visible = useMemo(() => {
+    if (items.length <= 48) return items;
+    const top = Math.min(...items.map((i) => i.depth));
+    return items.filter((i) => i.depth === top);
+  }, [items]);
 
-  if (headings.length === 0) {
-    return null;
+  if (!items.length) return null;
+  const indentBase = Math.min(...visible.map((i) => i.depth));
+
+  const list = (
+    <nav aria-label="目录" className="flex flex-col gap-0.5">
+      {visible.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          onClick={() => jumpTo(item.id)}
+          title={item.text}
+          className={cn(
+            'truncate border-l-2 py-1.5 pr-2 text-left text-[13px] leading-snug transition-colors',
+            activeId === item.id
+              ? 'border-accent bg-accent/[0.07] font-medium text-accent'
+              : 'border-border text-text-secondary hover:border-text-muted hover:text-text-primary'
+          )}
+          style={{ paddingLeft: 12 + (item.depth - indentBase) * 12 }}
+        >
+          {item.text}
+        </button>
+      ))}
+    </nav>
+  );
+
+  if (collapsible) {
+    return (
+      <details className="group/toc rounded-xl border border-border/60 bg-bg-card">
+        <summary className="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-sm font-medium text-text-primary select-none [&::-webkit-details-marker]:hidden">
+          <ListTree className="h-4 w-4 text-accent" />
+          目录
+          <span className="text-xs text-text-muted">{items.length} 节</span>
+          <ChevronDown className="ml-auto h-4 w-4 text-text-muted transition-transform duration-200 group-open/toc:rotate-180" />
+        </summary>
+        <div className="max-h-[50vh] overflow-y-auto border-t border-border/60 px-3 py-2 custom-scrollbar">{list}</div>
+      </details>
+    );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-bg-card rounded-xl p-5 border border-border/50 sticky top-24"
-    >
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-1 h-5 bg-accent rounded-full" />
-        <h3 className="font-bold text-text-primary">目录</h3>
-      </div>
-
-      <nav className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto custom-scrollbar">
-        {headings.map((heading) => (
-          <button
-            key={heading.id}
-            onClick={() => scrollToHeading(heading.id)}
-            className={`
-              text-left text-sm py-1.5 px-2 rounded-lg transition-all duration-200
-              ${heading.level === 2 
-                ? 'font-medium' 
-                : 'pl-6 text-text-muted'
-              }
-              ${activeId === heading.id 
-                ? 'bg-accent/10 text-accent border-l-2 border-accent' 
-                : 'text-text-secondary hover:bg-bg-base hover:text-text-primary'
-              }
-            `}
-          >
-            {heading.text}
-          </button>
-        ))}
-      </nav>
-    </motion.div>
+    <div className="rounded-xl border border-border/60 bg-bg-card p-4">
+      <p className="mb-2 flex items-center gap-2 text-sm font-bold text-text-primary">
+        <span className="h-4 w-1 rounded-full bg-accent" />
+        目录
+      </p>
+      <div className="custom-scrollbar max-h-[calc(100vh-11rem)] overflow-y-auto">{list}</div>
+    </div>
   );
 };
