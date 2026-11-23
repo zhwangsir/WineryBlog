@@ -38,14 +38,14 @@
    "name": "Web 前端",
    "icon": "Monitor",
    "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-   "count": 70
+   "count": 90
   },
   {
    "id": "backend",
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 144
+   "count": 198
   },
   {
    "id": "data",
@@ -13644,6 +13644,1250 @@
    ],
    "prereqs": [],
    "href": "g-javaguide3-7"
+  },
+  {
+   "id": "g-vuezhcn-1",
+   "kind": "collection",
+   "title": "应用实例 API {#application-api}",
+   "summary": "创建一个应用实例。 类型 ts function createApp(rootComponent: Component,",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-1"
+  },
+  {
+   "id": "g-vuezhcn-2",
+   "kind": "collection",
+   "title": "内置组件 {#built-in-components}",
+   "summary": "内置组件无需注册便可以直接在模板中使用。它们也支持 treeshake：仅在使用时才会包含在构建中。 在渲染函数中使用它",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-2"
+  },
+  {
+   "id": "g-vuezhcn-3",
+   "kind": "collection",
+   "title": "内置指令 {#built-in-directives}",
+   "summary": "更新元素的文本内容。 期望的绑定值类型：string 详细信息 vtext 通过设置元素的 textContent 属性",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-3"
+  },
+  {
+   "id": "g-vuezhcn-4",
+   "kind": "collection",
+   "title": "内置的特殊 Attributes {#built-in-special-attributes}",
+   "summary": "key 这个特殊的 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vno",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-4"
+  },
+  {
+   "id": "g-vuezhcn-5",
+   "kind": "collection",
+   "title": "内置特殊元素 {#built-in-special-elements}",
+   "summary": "<component、<slot 和 <template 具有类似组件的特性，也是模板语法的一部分。但它们并非真正的组件",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-5"
+  },
+  {
+   "id": "g-vuezhcn-6",
+   "kind": "collection",
+   "title": "编译时标志 {#compile-time-flags}",
+   "summary": "编译时标志仅在使用 Vue 的 esmbundler 构建版本时生效 (即 vue/dist/vue.esmbundle",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-6"
+  },
+  {
+   "id": "g-vuezhcn-7",
+   "kind": "collection",
+   "title": "组件实例 {#component-instance}",
+   "summary": "本页文档描述了组件公共实例 (即 this) 上暴露的内置属性和方法。 本页罗列的所有属性，除了 $data 下的嵌套属",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-7"
+  },
+  {
+   "id": "g-vuezhcn-8",
+   "kind": "collection",
+   "title": "组合式 API：依赖注入 {#composition-api-dependency-injection}",
+   "summary": "提供一个值，可以被后代组件注入。 类型 ts function provide<T(key: InjectionKey<",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-8"
+  },
+  {
+   "id": "g-vuezhcn-9",
+   "kind": "collection",
+   "title": "无障碍访问 {#accessibility}",
+   "summary": "Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站的做法——无论是身患某种障碍、通过慢速的网络连接访",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-9"
+  },
+  {
+   "id": "g-vuezhcn-10",
+   "kind": "collection",
+   "title": "性能优化 {#performance}",
+   "summary": "Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动优化。然而，总会有一些具有挑战性的场景需要进行针对性的微调。在",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-10"
+  },
+  {
+   "id": "g-vuezhcn-11",
+   "kind": "collection",
+   "title": "生产部署 {#production-deployment}",
+   "summary": "在开发过程中，Vue 提供了许多功能来提升开发体验： 对常见错误和隐患的警告 对组件 props / 自定义事件的校验 ",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-11"
+  },
+  {
+   "id": "g-vuezhcn-12",
+   "kind": "collection",
+   "title": "安全 {#security}",
+   "summary": "当一个漏洞被上报时，它会立刻成为我们最关心的问题，会有全职的贡献者暂时搁置其他所有任务来解决这个问题。如需报告漏洞，请发",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-12"
+  },
+  {
+   "id": "g-vuezhcn-13",
+   "kind": "collection",
+   "title": "KeepAlive {#keepalive}",
+   "summary": "import SwitchComponent from './keepalivedemos/SwitchComponen",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-13"
+  },
+  {
+   "id": "g-vuezhcn-14",
+   "kind": "collection",
+   "title": "Suspense {#suspense}",
+   "summary": "<Suspense 是一项实验性功能。它不一定会最终成为稳定功能，并且在稳定之前相关 API 也可能会发生变化。 <Su",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-14"
+  },
+  {
+   "id": "g-vuezhcn-15",
+   "kind": "collection",
+   "title": "Teleport {#teleport}",
+   "summary": "<Teleport 是一个内置组件，它可以将一个组件内部的一部分模板“传送”到该组件的 DOM 结构外层的位置去。 有时",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-15"
+  },
+  {
+   "id": "g-vuezhcn-16",
+   "kind": "collection",
+   "title": "TransitionGroup {#transitiongroup}",
+   "summary": "import ListBasic from './transitiondemos/ListBasic.vue' impo",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-16"
+  },
+  {
+   "id": "g-vuezhcn-17",
+   "kind": "collection",
+   "title": "Transition {#transition}",
+   "summary": "import Basic from './transitiondemos/Basic.vue' import Slide",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-17"
+  },
+  {
+   "id": "g-vuezhcn-18",
+   "kind": "collection",
+   "title": "异步组件 {#async-components}",
+   "summary": "在大型项目中，我们可能需要拆分应用为更小的块，并仅在需要时再从服务器加载相关组件。Vue 提供了 defineAsync",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-18"
+  },
+  {
+   "id": "g-vuezhcn-19",
+   "kind": "collection",
+   "title": "透传 Attributes {#fallthrough-attributes}",
+   "summary": "此章节假设你已经看过了组件基础。若你还不了解组件是什么，请先阅读该章节。 “透传 attribute”指的是传递给一个组",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-19"
+  },
+  {
+   "id": "g-vuezhcn-20",
+   "kind": "collection",
+   "title": "组件事件 {#component-events}",
+   "summary": "import { onMounted } from 'vue' if (typeof window !== 'undef",
+   "domain": "frontend",
+   "category": "Vue 3 官方中文文档",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Vue",
+    "前端",
+    "官方文档"
+   ],
+   "prereqs": [],
+   "href": "g-vuezhcn-20"
+  },
+  {
+   "id": "g-dunwujava-1",
+   "kind": "collection",
+   "title": "深入理解 Java String 类型",
+   "summary": "String 类型可能是 Java 中应用最频繁的引用类型，但它的性能问题却常常被忽略。高效的使用字符串，可以提升系统的",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-1"
+  },
+  {
+   "id": "g-dunwujava-2",
+   "kind": "collection",
+   "title": "深入理解 Java 反射和动态代理",
+   "summary": "!img 反射(Reflection)是 Java 程序开发语言的特征之一，它允许运行中的 Java 程序获取自身的信息",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 18,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-2"
+  },
+  {
+   "id": "g-dunwujava-3",
+   "kind": "collection",
+   "title": "Java 基础语法特性",
+   "summary": "空白行，或者注释的内容，都会被 Java 编译器忽略掉。 Java 支持多种注释方式，下面的示例展示了各种注释的使用方式",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-3"
+  },
+  {
+   "id": "g-dunwujava-4",
+   "kind": "collection",
+   "title": "深入理解 Java 异常",
+   "summary": "!img Throwable 是 Java 语言中所有错误（Error）和异常（Exception）的超类。在 Java",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-4"
+  },
+  {
+   "id": "g-dunwujava-5",
+   "kind": "collection",
+   "title": "Java 控制语句",
+   "summary": "Java 控制语句大致可分为三大类： 选择语句 if, elseif, else switch 循环语句 while d",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-5"
+  },
+  {
+   "id": "g-dunwujava-6",
+   "kind": "collection",
+   "title": "深入理解 Java 基本数据类型",
+   "summary": "!img Java 中的数据类型有两类： 值类型（又叫内置数据类型，基本数据类型） 引用类型（除值类型以外，都是引用类型",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-6"
+  },
+  {
+   "id": "g-dunwujava-7",
+   "kind": "collection",
+   "title": "深入理解 Java 数组",
+   "summary": "数组对于每一门编程语言来说都是重要的数据结构之一，当然不同语言对数组的实现及处理也不尽相同。几乎所有程序设计语言都支持数",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-7"
+  },
+  {
+   "id": "g-dunwujava-8",
+   "kind": "collection",
+   "title": "深入理解 Java 方法",
+   "summary": "方法（有的人喜欢叫函数）是一段可重用的代码段。 方法定义语法格式： 修饰符 返回值类型 方法名(参数类型 参数名){ .",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-8"
+  },
+  {
+   "id": "g-dunwujava-9",
+   "kind": "collection",
+   "title": "深入理解 Java 枚举",
+   "summary": "enum 的全称为 enumeration， 是 JDK5 中引入的特性。 在 Java 中，被 enum 关键字修饰的",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-9"
+  },
+  {
+   "id": "g-dunwujava-10",
+   "kind": "collection",
+   "title": "深入理解 Java 泛型",
+   "summary": "Java 泛型（generics）是 JDK 5 中引入的特性。 为什么要引入泛型机制呢？ 回答这个问题前，先让我们来看",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-10"
+  },
+  {
+   "id": "g-dunwujava-11",
+   "kind": "collection",
+   "title": "深入理解 Java 注解",
+   "summary": "本文内容基于 JDK8。注解是 JDK5 引入的，后续 JDK 版本扩展了一些内容，本文中没有明确指明版本的注解都是 J",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-11"
+  },
+  {
+   "id": "g-dunwujava-12",
+   "kind": "collection",
+   "title": "Java 面向对象",
+   "summary": "在Java 基本数据类型 中我们了解 Java 中支持的基本数据类型（值类型）。本文开始讲解 Java 中重要的引用类型",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-12"
+  },
+  {
+   "id": "g-dunwujava-13",
+   "kind": "collection",
+   "title": "JavaAgent",
+   "summary": "Javaagent 是什么？ Javaagent 是 java 命令的一个参数。参数 javaagent 可以用于指定一",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-13"
+  },
+  {
+   "id": "g-dunwujava-14",
+   "kind": "collection",
+   "title": "JDK8 入门指南",
+   "summary": "JDK8 升级常见问题章节是我个人的经验整理。其他内容基本翻译自 java8tutorial 📦 本文以及示例源码已归",
+   "domain": "backend",
+   "category": "Java 核心笔记",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "Java",
+    "基础"
+   ],
+   "prereqs": [],
+   "href": "g-dunwujava-14"
+  },
+  {
+   "id": "g-dunwunotes2-1",
+   "kind": "collection",
+   "title": "《极客时间教程 - 从 0 开始学微服务》笔记",
+   "summary": "微服务定义 微服务是由单一应用程序构成的小服务，拥有自己的进程与轻量化处理，服务依业务功能设计，以全自动的方式部署，与其",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-1"
+  },
+  {
+   "id": "g-dunwunotes2-4",
+   "kind": "collection",
+   "title": "《极客时间教程 - 微服务架构核心 20 讲》笔记",
+   "summary": "微服务是一种架构模式。 微服务的六个特点： 一组小的服务 独立的进程 独立部署 轻量级通信 基于业务能力 无集中式管理—",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-4"
+  },
+  {
+   "id": "g-dunwunotes2-5",
+   "kind": "collection",
+   "title": "《极客时间教程 - 架构实战案例解析》笔记",
+   "summary": "架构的本质：通过合理的内部编排，保证系统高度有序，能够不断扩展，满足业务和技术的变化。 首先，架构的出发点是业务和技术在",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-5"
+  },
+  {
+   "id": "g-dunwunotes2-6",
+   "kind": "collection",
+   "title": "《极客时间教程 - 秒杀系统》笔记",
+   "summary": "秒杀的整体架构可以概括为“稳、准、快”几个关键字 稳高可用 服务需要考虑各种容错场景，保证服务可用 准一致性 高并发下的",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 12,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-6"
+  },
+  {
+   "id": "g-dunwunotes2-7",
+   "kind": "collection",
+   "title": "《极客时间教程 - 高并发系统设计 40 问》笔记",
+   "summary": "并发、异步、缓存 分层架构典型代表： MVC（ModelViewController） 表现层、逻辑层和数据访问层 OS",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-7"
+  },
+  {
+   "id": "g-dunwunotes2-8",
+   "kind": "collection",
+   "title": "《Elasticsearch 实战》笔记",
+   "summary": "《Elasticsearch 实战》 学习笔记 Elasticsearch 是构建在 Apache Lucene 基础之",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-8"
+  },
+  {
+   "id": "g-dunwunotes2-9",
+   "kind": "collection",
+   "title": "《MongoDB 权威指南》笔记一",
+   "summary": "《MongoDB 权威指南》 学习笔记 MongoDB 是一个分布式文档数据库，由 C++ 语言编写。 面向文档的数据库",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-9"
+  },
+  {
+   "id": "g-dunwunotes2-10",
+   "kind": "collection",
+   "title": "《MongoDB 权威指南》笔记二",
+   "summary": "《MongoDB 权威指南》 学习笔记 索引是用于提升查询效率的一种存储结构。 在 MongoDB 中，不使用索引的查询",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-10"
+  },
+  {
+   "id": "g-dunwunotes2-11",
+   "kind": "collection",
+   "title": "《SQL 必知必会》笔记",
+   "summary": "数据库（database） 保存有组织的数据的容器（通常是一个文件或一组文件）。 表（table） 某种特定类型数据的结",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-11"
+  },
+  {
+   "id": "g-dunwunotes2-12",
+   "kind": "collection",
+   "title": "《姜承尧的 MySQL 实战宝典》笔记",
+   "summary": "拉勾教育教程 姜承尧的 MySQL 实战宝典 学习笔记 课程设计： 模块一、表结构设计：字段类型的选型、表结构设计、访问",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-12"
+  },
+  {
+   "id": "g-dunwunotes2-13",
+   "kind": "collection",
+   "title": "《极客时间教程 - Elasticsearch 核心技术与实战》笔记一",
+   "summary": "极客时间教程 Elasticsearch 核心技术与实战 学习笔记 Elasticsearch 是一款基于 Lucene",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 13,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-13"
+  },
+  {
+   "id": "g-dunwunotes2-14",
+   "kind": "collection",
+   "title": "《极客时间教程 - Elasticsearch 核心技术与实战》笔记二",
+   "summary": "极客时间教程 Elasticsearch 核心技术与实战 学习笔记 Term 是表达语意的最小单位。搜索和利用统计语言模",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-14"
+  },
+  {
+   "id": "g-dunwunotes2-15",
+   "kind": "collection",
+   "title": "《极客时间教程 - MongoDB 高手课》笔记一",
+   "summary": "极客时间教程 MongoDB 高手课 学习笔记 什么是 MongoDB？ 一个以 JSON 为数据模型的文档数据库。 为",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 18,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-15"
+  },
+  {
+   "id": "g-dunwunotes2-16",
+   "kind": "collection",
+   "title": "《极客时间教程 - MongoDB 高手课》笔记二",
+   "summary": "极客时间教程 MongoDB 高手课 学习笔记 TODO: 补图 为什么要使用分片集群？ ——分而治之 分片如何解决？ ",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-16"
+  },
+  {
+   "id": "g-dunwunotes2-17",
+   "kind": "collection",
+   "title": "《MySQL 实战 45 讲》笔记",
+   "summary": "极客时间教程 MySQL 实战 45 讲 学习笔记 大体来说，MySQL 可以分为 Server 层和存储引擎层两部分。",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 25,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-17"
+  },
+  {
+   "id": "g-dunwunotes2-18",
+   "kind": "collection",
+   "title": "《MySQL 实战 45 讲》笔记三",
+   "summary": "极客时间教程 MySQL 实战 45 讲 学习笔记 误删数据的分类： 误删行：使用 delete 语句误删数据行。 误删",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 20,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-18"
+  },
+  {
+   "id": "g-dunwunotes2-19",
+   "kind": "collection",
+   "title": "《MySQL 实战 45 讲》笔记二",
+   "summary": "极客时间教程 MySQL 实战 45 讲 学习笔记 用 explain 命令查看执行计划时，Extra 这个字段中的“U",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 22,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-19"
+  },
+  {
+   "id": "g-dunwunotes2-20",
+   "kind": "collection",
+   "title": "《极客时间教程 - SQL 必知必会》笔记",
+   "summary": "SQL 语言按照功能划分成以下的 4 个部分： DDL 是 Data Definition Language 的缩写，即",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 23,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-20"
+  },
+  {
+   "id": "g-dunwunotes2-21",
+   "kind": "collection",
+   "title": "《后端存储实战课》笔记",
+   "summary": "! ! ! ! ! 分布式事务常见解决方案： 2PC 3PC TCC Saga 本地消息表 个人以前总结：分布式事务 搜",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-21"
+  },
+  {
+   "id": "g-dunwunotes2-22",
+   "kind": "collection",
+   "title": "《检索技术核心 20 讲》笔记",
+   "summary": "伸缩性架构是指不需要改变系统的软硬件设计，仅通过改变部署服务器数量就可以扩大或缩小系统的服务处理能力。 检索的核心思想：",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-22"
+  },
+  {
+   "id": "g-dunwunotes2-23",
+   "kind": "collection",
+   "title": "《高性能 MySQL》笔记",
+   "summary": "部分章节内容更偏向于 DBA 的工作，在实际的开发工作中相关性较少，直接略过。 MySQL 逻辑架构分为三层： 连接层 ",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 21,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-23"
+  },
+  {
+   "id": "g-dunwunotes2-24",
+   "kind": "collection",
+   "title": "《数据密集型应用系统设计》笔记一——数据系统基础",
+   "summary": "单一工具难以满足复杂应用系统的需求，因此整体工作被拆解为一系列能被单个工具高效完成的任务，并通过应用代码将它们缝合起来。",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-24"
+  },
+  {
+   "id": "g-dunwunotes2-25",
+   "kind": "collection",
+   "title": "《数据密集型应用系统设计》笔记二",
+   "summary": "复制主要指通过网络在多台机器上保存相同数据的副本。通过复制，可以达到以下目的： 使数据在地理位置上更接近用户，从而降低访",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 35,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-25"
+  },
+  {
+   "id": "g-dunwunotes2-26",
+   "kind": "collection",
+   "title": "《极客时间教程 - 分布式协议与算法实战》笔记",
+   "summary": "拜占庭将军问题是由莱斯利·兰波特在其同名论文中提出的分布式对等网络通信容错问题。其实是借拜占庭将军的例子，抛出了分布式共",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 29,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-26"
+  },
+  {
+   "id": "g-dunwunotes2-27",
+   "kind": "collection",
+   "title": "《极客时间教程 - 分布式技术原理与算法解析》笔记",
+   "summary": "定义：单体调度是指，一个集群中只有一个节点运行调度进程，该节点对集群中的其他节点具有访问权限，可以搜集其他节点的资源信息",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-27"
+  },
+  {
+   "id": "g-dunwunotes2-28",
+   "kind": "collection",
+   "title": "《极客时间教程 - 深入浅出分布式技术原理》笔记",
+   "summary": "首先，分布式系统解决了单机性能瓶颈导致的成本问题。——水平扩展 然后，解决了用户量和数据量爆炸性地增大导致的成本问题。—",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-28"
+  },
+  {
+   "id": "g-dunwunotes2-29",
+   "kind": "collection",
+   "title": "《深入理解 Sentinel》笔记",
+   "summary": "什么是服务雪崩 服务雪崩是指：在微服务项目中指由于突发流量导致某个服务不可用，从而导致上游服务不可用，并产生级联效应，最",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-29"
+  },
+  {
+   "id": "g-dunwunotes2-30",
+   "kind": "collection",
+   "title": "《Dubbo 源码解读与实战》笔记",
+   "summary": "Apache Dubbo是一款高性能、轻量级的开源 Java RPC 框架，它提供了三大核心能力： 面向接口的远程方法调",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-30"
+  },
+  {
+   "id": "g-dunwunotes2-31",
+   "kind": "collection",
+   "title": "《RocketMQ 技术内幕》笔记",
+   "summary": "broker：broker 模块（broker 启动进程） 。 client：消息客户端，包含生产者、消息消费者相关类。",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-31"
+  },
+  {
+   "id": "g-dunwunotes2-32",
+   "kind": "collection",
+   "title": "《Kafka 核心技术与实战》笔记",
+   "summary": "! 消息引擎系统的作用： 消息引擎传输的对象是消息； 如何传输消息属于消息引擎设计机制的一部分。 设计消息引擎系统的关键",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 24,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-32"
+  },
+  {
+   "id": "g-dunwunotes2-33",
+   "kind": "collection",
+   "title": "《Kafka 核心源码解读》笔记",
+   "summary": "! 从功能上讲，Kafka 源码分为四大模块。 服务器端源码：实现 Kafka 架构和各类优秀特性的基础。 Java 客",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-33"
+  },
+  {
+   "id": "g-dunwunotes2-34",
+   "kind": "collection",
+   "title": "《RPC 实战与核心原理》笔记",
+   "summary": "为什么要学习 RPC RPC 不仅是微服务的架构基础，实际上，只要涉及网络通信，就可能用到 RPC。 例 1：大型分布式",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 32,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-34"
+  },
+  {
+   "id": "g-dunwunotes2-35",
+   "kind": "collection",
+   "title": "《消息队列高手课》笔记",
+   "summary": "消息队列的应用 异步处理 系统解耦 流量削峰 系统间通信 数据缓冲 数据一致性 是否开源：这决定了能否商用，所以最为重要",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 28,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-35"
+  },
+  {
+   "id": "g-dunwunotes2-36",
+   "kind": "collection",
+   "title": "《24 讲吃透分布式数据库》笔记",
+   "summary": "略 数据分片 水平分片：按行进行数据分割，数据被切割为一个个数据组，分散到不同节点上。 垂直分片：按列进行数据切割，一个",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-36"
+  },
+  {
+   "id": "g-dunwunotes2-37",
+   "kind": "collection",
+   "title": "《HBase: A NoSQL database》笔记",
+   "summary": "HBase 是一种 NoSQL 数据库，它是Java版本的 Google’s Big Table 实现，它原本是 Had",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-37"
+  },
+  {
+   "id": "g-dunwunotes2-39",
+   "kind": "collection",
+   "title": "《极客时间教程 - 从 0 开始学大数据》笔记",
+   "summary": "大数据技术，起源于 Google 在 2004 年前后发表的三篇论文： The Google File System B",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 21,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-39"
+  },
+  {
+   "id": "g-dunwunotes2-40",
+   "kind": "collection",
+   "title": "《极客时间教程 - 大规模数据处理实战》笔记",
+   "summary": "高昂的维护成本 时间性能“达不到”用户的期待 不同量级 TOP K 算法的解决方案不同： 小规模：Hash 即可 大规模",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-40"
+  },
+  {
+   "id": "g-dunwunotes2-41",
+   "kind": "collection",
+   "title": "《极客时间教程 - 机器学习 40 讲》笔记",
+   "summary": "“机器学习”分为 3 个模块 机器学习概观：介绍机器学习中超脱于具体模型和方法之上的一些共性问题 统计学习（频率学派）：",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-41"
+  },
+  {
+   "id": "g-dunwunotes2-42",
+   "kind": "collection",
+   "title": "《极客时间教程 - 软件工程之美》笔记",
+   "summary": "软件产品危机：软件产品质量低劣、软件维护工作量大、成本不断上升、进度不可控、程序人员无限度地增加。 软件工程，它是为研究",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-42"
+  },
+  {
+   "id": "g-dunwunotes2-43",
+   "kind": "collection",
+   "title": "《极客时间教程 - 职场求生攻略》笔记",
+   "summary": "以利益为视角，以换位思考为手段。 ! 工作可以划分为： 业务拓展：需求分析、设计、开发都属于这范畴。 安全问题：安全无小",
+   "domain": "backend",
+   "category": "极客时间笔记 II",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "架构",
+    "运维",
+    "Java"
+   ],
+   "prereqs": [],
+   "href": "g-dunwunotes2-43"
   }
  ]
 }
