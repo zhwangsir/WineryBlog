@@ -31,7 +31,7 @@
    "name": "计算机系统与网络",
    "icon": "Server",
    "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-   "count": 107
+   "count": 127
   },
   {
    "id": "frontend",
@@ -45,14 +45,14 @@
    "name": "后端开发",
    "icon": "ServerCog",
    "blurb": "API 设计、框架、微服务、消息队列",
-   "count": 123
+   "count": 144
   },
   {
    "id": "data",
    "name": "数据库与大数据",
    "icon": "HardDrive",
    "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-   "count": 29
+   "count": 49
   },
   {
    "id": "ai",
@@ -12654,6 +12654,996 @@
    ],
    "prereqs": [],
    "href": "g-javaguide2-10"
+  },
+  {
+   "id": "g-dunwublog3-1",
+   "kind": "collection",
+   "title": "计算机网络面试总结",
+   "summary": "如果你不是从事于通信领域，面试时问及计算机网络的知识，一般也就限定在：HTTP（含 HTTPS、Cookie、Sessi",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-1"
+  },
+  {
+   "id": "g-dunwublog3-2",
+   "kind": "collection",
+   "title": "计算机网络指南",
+   "summary": "计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-2"
+  },
+  {
+   "id": "g-dunwublog3-3",
+   "kind": "collection",
+   "title": "计算机网络之物理层",
+   "summary": "摘要 物理层（Physical Layer） 物理层只接收和发送一串比特(bit)流，不考虑信息的意义和信息结构。 数据",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-3"
+  },
+  {
+   "id": "g-dunwublog3-4",
+   "kind": "collection",
+   "title": "计算机网络之数据链路层",
+   "summary": "数据链路层（Data Link Layer） 网络层针对的还是主机之间的数据传输服务，而主机之间可以有很多链路，链路层协",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-4"
+  },
+  {
+   "id": "g-dunwublog3-5",
+   "kind": "collection",
+   "title": "计算机网络之网络层",
+   "summary": "网络层（network layer） 为分组交换网上的不同主机提供通信服务。在发送数据时，网络层把运输层产生的报文段或用",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-5"
+  },
+  {
+   "id": "g-dunwublog3-6",
+   "kind": "collection",
+   "title": "计算机网络之传输层",
+   "summary": "网络层只把分组发送到目的主机，但是真正通信的并不是主机而是主机中的进程。传输层提供了进程间的逻辑通信，传输层向高层用户屏",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-6"
+  },
+  {
+   "id": "g-dunwublog3-7",
+   "kind": "collection",
+   "title": "计算机网络之应用层",
+   "summary": "!img 超文本传输协议（英语：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-7"
+  },
+  {
+   "id": "g-dunwublog3-8",
+   "kind": "collection",
+   "title": "超文本传输协议 HTTP",
+   "summary": "超文本传输协议（HTTP）是一个用于传输超媒体文档（例如 HTML）的应用层协议。 超文本传输协议（HTTP）是一个用于",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-8"
+  },
+  {
+   "id": "g-dunwublog3-9",
+   "kind": "collection",
+   "title": "域名解析协议 DNS",
+   "summary": "域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和 IP 地址相互映",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-9"
+  },
+  {
+   "id": "g-dunwublog3-10",
+   "kind": "collection",
+   "title": "传输控制协议 TCP",
+   "summary": "TCP（Transmission Control Protocol），即传输控制协议，它是一种面向连接的、可靠的、基于字",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-10"
+  },
+  {
+   "id": "g-dunwublog3-11",
+   "kind": "collection",
+   "title": "Windows 常用技巧总结",
+   "summary": "扩展阅读： Awesome Windows bestwindowsapps Musicbee 类似 iTunes，但比 ",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-11"
+  },
+  {
+   "id": "g-dunwublog3-12",
+   "kind": "collection",
+   "title": "02.Mac实用技巧",
+   "summary": "dmg 格式：双击安装包，然后拖到 applications 文件夹下即可。 选择“偏好设置\\搜索\\搜索引擎\\Googl",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-12"
+  },
+  {
+   "id": "g-dunwublog3-13",
+   "kind": "collection",
+   "title": "Linux 命令 Cheat Sheet",
+   "summary": "查看 Linux 命令帮助信息 关键词：help, whatis, info, which, whereis, man ",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 21,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-13"
+  },
+  {
+   "id": "g-dunwublog3-14",
+   "kind": "collection",
+   "title": "Linux 典型运维应用",
+   "summary": "💡 如果没有特殊说明，本文的案例都是针对 Centos 发行版本。 （1）在 hosts 中添加本机实际 IP 和本机",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-14"
+  },
+  {
+   "id": "g-dunwublog3-15",
+   "kind": "collection",
+   "title": "Samba 应用",
+   "summary": "samba 是在 Linux 和 UNIX 系统上实现 SMB 协议的一个免费软件。 samba 提供了在不同计算机（即",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-15"
+  },
+  {
+   "id": "g-dunwublog3-16",
+   "kind": "collection",
+   "title": "时间服务器 - NTP",
+   "summary": "网络时间协议（英语：Network Time Protocol，缩写：NTP）是在数据网络潜伏时间可变的计算机系统之间通",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-16"
+  },
+  {
+   "id": "g-dunwublog3-17",
+   "kind": "collection",
+   "title": "防火墙 - Firewalld",
+   "summary": "shell systemctl enable firewalld.service 开启服务（开机自动启动服务） syst",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-17"
+  },
+  {
+   "id": "g-dunwublog3-18",
+   "kind": "collection",
+   "title": "Iptables 应用",
+   "summary": "_iptables_ 是一个配置 Linux 内核 防火墙 的命令行工具，是 netfilter 项目的一部分。 可以直",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-18"
+  },
+  {
+   "id": "g-dunwublog3-19",
+   "kind": "collection",
+   "title": "定时任务 - crontab",
+   "summary": "环境：CentOS 通过 crontab 命令，我们可以在固定的间隔时间执行指定的系统指令或 shell script ",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-19"
+  },
+  {
+   "id": "g-dunwublog3-20",
+   "kind": "collection",
+   "title": "Systemd 应用",
+   "summary": "搬运自：Systemd 入门教程：命令篇、Systemd 入门教程：实战篇 Systemd 是 Linux 系统工具，用",
+   "domain": "system",
+   "category": "极客时间笔记 III（网络与系统）",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "网络",
+    "操作系统"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog3-20"
+  },
+  {
+   "id": "g-dunwublog4-1",
+   "kind": "collection",
+   "title": "B+树",
+   "summary": "B+树是在二叉查找树的基础上进行了改造：树中的节点并不存储数据本身，而是只是作为索引。每个叶子节点串在一条链表上，链表中",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-1"
+  },
+  {
+   "id": "g-dunwublog4-2",
+   "kind": "collection",
+   "title": "LSM 树",
+   "summary": "LSM 树具有以下 3 个特点： 1. 将索引分为内存和磁盘两部分，并在内存达到阈值时启动树合并（Merge Trees",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-2"
+  },
+  {
+   "id": "g-dunwublog4-3",
+   "kind": "collection",
+   "title": "刷题",
+   "summary": "| 题目 | 难度 | 状态 | | | | | | 1. 两数之和 | 简单 | 通过 | | 167. 两数之和 I",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-3"
+  },
+  {
+   "id": "g-dunwublog4-4",
+   "kind": "collection",
+   "title": "哈希表",
+   "summary": "哈希表 是一种使用 哈希函数 组织数据，以支持快速插入和搜索的数据结构。 有两种不同类型的哈希表：哈希集合 和 哈希映射",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-4"
+  },
+  {
+   "id": "g-dunwublog4-5",
+   "kind": "collection",
+   "title": "图",
+   "summary": "在计算机科学中，一个图就是一些顶点的集合，这些顶点通过一系列边结对（连接）。顶点用圆圈表示，边就是这些圆圈之间的连线。顶",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-5"
+  },
+  {
+   "id": "g-dunwublog4-6",
+   "kind": "collection",
+   "title": "堆",
+   "summary": "堆（Heap）是一个可以被看成近似完全二叉树的数组。 堆是一个完全二叉树。完全二叉树要求，除了最后一层，其他层的节点个数",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-6"
+  },
+  {
+   "id": "g-dunwublog4-7",
+   "kind": "collection",
+   "title": "Nosql 技术选型",
+   "summary": "!img 传统的关系型数据库存在以下缺点： 大数据场景下 I/O 较高 因为数据是按行存储，即使只针对其中某一列进行运算",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-7"
+  },
+  {
+   "id": "g-dunwublog4-8",
+   "kind": "collection",
+   "title": "主流数据库对比",
+   "summary": "Elasticsearch 数据类型 MongoDB 数据类型 | 类型 | Elasticsearch | Mongo",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 16,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-8"
+  },
+  {
+   "id": "g-dunwublog4-9",
+   "kind": "collection",
+   "title": "数据结构与数据库索引",
+   "summary": "关键词：链表、数组、散列表、红黑树、B+ 树、LSM 树、跳表 数据库是“按照 数据结构 来组织、存储和管理数据的仓库”",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-9"
+  },
+  {
+   "id": "g-dunwublog4-10",
+   "kind": "collection",
+   "title": "版本管理中间件 Flyway",
+   "summary": "Flyway 是一个数据迁移工具。 Flyway 是一个开源的数据库迁移工具。 为了说明数据迁移的作用，我们来举一个示例",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 6,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-10"
+  },
+  {
+   "id": "g-dunwublog4-11",
+   "kind": "collection",
+   "title": "ShardingSphere 简介",
+   "summary": "shardingspherejdbc 定位为轻量级 Java 框架，在 Java 的 JDBC 层提供的额外服务。 它使",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-11"
+  },
+  {
+   "id": "g-dunwublog4-12",
+   "kind": "collection",
+   "title": "H2",
+   "summary": "H2 是一个开源的嵌入式数据库引擎，采用 java 语言编写，不受平台的限制。同时 H2 提供了一个十分方便的 web ",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-12"
+  },
+  {
+   "id": "g-dunwublog4-13",
+   "kind": "collection",
+   "title": "PostgreSQL",
+   "summary": "PostgreSQL 是一个关系型数据库（RDBM）。 关键词：Database, RDBM, psql !img 本文",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-13"
+  },
+  {
+   "id": "g-dunwublog4-14",
+   "kind": "collection",
+   "title": "SQL",
+   "summary": "SQL（Structured Query Language，结构化查询语言） 是一种高级的非过程化编程语言，用于管理 R",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 28,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-14"
+  },
+  {
+   "id": "g-dunwublog4-15",
+   "kind": "collection",
+   "title": "Flume",
+   "summary": "Apache Flume 是一个分布式，高可用的数据收集系统。它可以从不同的数据源收集数据，经过聚合后发送到存储系统中，",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-15"
+  },
+  {
+   "id": "g-dunwublog4-16",
+   "kind": "collection",
+   "title": "Spark",
+   "summary": "大规模分布式通用计算引擎 Spark Core：核心计算框架 Spark SQL：结构化数据查询 Spark Strea",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-16"
+  },
+  {
+   "id": "g-dunwublog4-17",
+   "kind": "collection",
+   "title": "Sqoop",
+   "summary": "Sqoop 是一种工具，旨在在 Hadoop 和关系数据库之间进行批量数据迁移的工具。 Sqoop 是一个常用的数据迁移",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-17"
+  },
+  {
+   "id": "g-dunwublog4-18",
+   "kind": "collection",
+   "title": "Flink API",
+   "summary": "Flink 为流式/批式处理应用程序的开发提供了不同级别的抽象。 !Programming levels of abst",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-18"
+  },
+  {
+   "id": "g-dunwublog4-19",
+   "kind": "collection",
+   "title": "Flink ETL",
+   "summary": "Apache Flink 的一种常见应用场景是 ETL（抽取、转换、加载）管道任务。从一个或多个数据源获取数据，进行一些",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-19"
+  },
+  {
+   "id": "g-dunwublog4-20",
+   "kind": "collection",
+   "title": "Flink Table API & SQL",
+   "summary": "Apache Flink 有两种关系型 API 来做流批统一处理：Table API 和 SQL。Table API 是",
+   "domain": "data",
+   "category": "极客时间笔记 IV（数据库与算法）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "数据库",
+    "算法"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog4-20"
+  },
+  {
+   "id": "g-dunwublog5-1",
+   "kind": "collection",
+   "title": "如何设计系统",
+   "summary": "对于任何系统设计，第一件应该做的事是：阐明系统的约束并确定系统需要满足哪些用例。 永远不要假设没有明确说明的事情。一定要",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-1"
+  },
+  {
+   "id": "g-dunwublog5-2",
+   "kind": "collection",
+   "title": "系统架构面试",
+   "summary": "秒杀的核心问题就是极高并发处理，由于系统要在瞬时承受平时数十倍甚至上百倍的流量，这往往超出系统上限，因此处理秒杀的核心思",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-2"
+  },
+  {
+   "id": "g-dunwublog5-3",
+   "kind": "collection",
+   "title": "系统架构概述",
+   "summary": "一个大型系统的架构是一个渐进的演化过程。罗马不是一天建成的，同理，微信、淘宝等大型系统绝不是一蹴而就的。随着业务的不断发",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 19,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-3"
+  },
+  {
+   "id": "g-dunwublog5-4",
+   "kind": "collection",
+   "title": "系统高性能架构",
+   "summary": "要设计高性能的系统架构，应该有以下的思维步骤： 首先，要明确影响性能的因素有哪些？性能的指标有哪些？——做到有的放矢。 ",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 14,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-4"
+  },
+  {
+   "id": "g-dunwublog5-5",
+   "kind": "collection",
+   "title": "系统高可用架构",
+   "summary": "系统不可用也被称作系统故障，业界通常用多个 9 来衡量系统的可用性。如 QQ 的可用性为 4 个 9，即 99.99% ",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-5"
+  },
+  {
+   "id": "g-dunwublog5-6",
+   "kind": "collection",
+   "title": "系统伸缩性架构",
+   "summary": "伸缩性架构是指不需要改变系统的软硬件设计，仅通过改变部署服务器数量就可以扩大或缩小系统的服务处理能力。 纵向分离（分层后",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-6"
+  },
+  {
+   "id": "g-dunwublog5-7",
+   "kind": "collection",
+   "title": "系统扩展性架构",
+   "summary": "扩展性和伸缩性是不同的概念： 扩展性（Extensibility） 指对现有系统影响最小的情况下，系统功能可持续扩展或提",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-7"
+  },
+  {
+   "id": "g-dunwublog5-8",
+   "kind": "collection",
+   "title": "系统安全性架构",
+   "summary": "关键词：XSS、CSRF、SQL 注入、DoS、消息摘要、加密算法、证书 SSO(Single Sign On)，即单点",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 28,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-8"
+  },
+  {
+   "id": "g-dunwublog5-9",
+   "kind": "collection",
+   "title": "DevOps 简介",
+   "summary": "什么是 DevOps？DevOps 集文化理念、实践和工具于一身，它强调团队授权、跨团队沟通和协作以及技术自动化，其最终",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 5,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-9"
+  },
+  {
+   "id": "g-dunwublog5-10",
+   "kind": "collection",
+   "title": "如何建设监控体系",
+   "summary": "当服务消费者与服务提供者之间建立了通信，作为管理者需要通过监控手段来观察服务是否正常，调用是否成功。服务监控是很复杂的，",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 7,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-10"
+  },
+  {
+   "id": "g-dunwublog5-11",
+   "kind": "collection",
+   "title": "链路追踪",
+   "summary": "链路追踪系统广义的概念是：由数据采集、数据处理和数据展示三个相对独立的模块所构成的分布式追踪系统；链路追踪系统狭义的概念",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 10,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-11"
+  },
+  {
+   "id": "g-dunwublog5-12",
+   "kind": "collection",
+   "title": "如何优雅的玩转 Git",
+   "summary": "Git 是一个开源的分布式版本控制系统。 Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 17,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-12"
+  },
+  {
+   "id": "g-dunwublog5-13",
+   "kind": "collection",
+   "title": "Git 帮助手册",
+   "summary": "国外网友制作了一张 Git Cheat Sheet，总结很精炼，各位不妨收藏一下。 本节选择性介绍 git 中比较常用的",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 20,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-13"
+  },
+  {
+   "id": "g-dunwublog5-14",
+   "kind": "collection",
+   "title": "软件工程入门指南",
+   "summary": "软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件开发工具、系",
+   "domain": "backend",
+   "category": "极客时间笔记 V（设计与工程）",
+   "difficulty": "进阶",
+   "minutes": 9,
+   "tags": [
+    "设计",
+    "DevOps",
+    "软件工程"
+   ],
+   "prereqs": [],
+   "href": "g-dunwublog5-14"
+  },
+  {
+   "id": "g-javaguide3-1",
+   "kind": "collection",
+   "title": "jdk-monitoring-and-troubleshooting-tools",
+   "summary": "这些命令在 JDK 安装目录下的 bin 目录下： jps (JVM Process Status）: 类似 UNIX ",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-1"
+  },
+  {
+   "id": "g-javaguide3-2",
+   "kind": "collection",
+   "title": "jvm-garbage-collection",
+   "summary": "如果没有特殊说明，都是针对的是 HotSpot 虚拟机。 本文基于《深入理解 Java 虚拟机：JVM 高级特性与最佳实",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 24,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-2"
+  },
+  {
+   "id": "g-javaguide3-3",
+   "kind": "collection",
+   "title": "找到 Java 进程",
+   "summary": "告警刚响，排查很容易被监控页面上最显眼的那条曲线带着走。看到 CPU 高就抓线程栈，看到 Full GC 就查堆，发布刚",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 15,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-3"
+  },
+  {
+   "id": "g-javaguide3-4",
+   "kind": "collection",
+   "title": "jvm-interview-questions",
+   "summary": "JVM 面试很少停在“堆和栈有什么区别”。回答完内存区域，面试官通常会继续问对象怎样分配、哪些对象可以回收、一次 GC ",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 8,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-4"
+  },
+  {
+   "id": "g-javaguide3-5",
+   "kind": "collection",
+   "title": "jvm-intro",
+   "summary": "来自说出你的愿望吧丷投稿，原文地址：https://juejin.im/post/5e1505d0f265da5d5d7",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 21,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-5"
+  },
+  {
+   "id": "g-javaguide3-6",
+   "kind": "collection",
+   "title": "--- 推荐的基础配置 ---",
+   "summary": "本文由 JavaGuide 翻译自 https://www.baeldung.com/jvmparameters，并对文",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 11,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-6"
+  },
+  {
+   "id": "g-javaguide3-7",
+   "kind": "collection",
+   "title": "memory-area",
+   "summary": "如果没有特殊说明，都是针对的是 HotSpot 虚拟机。 本文基于《深入理解 Java 虚拟机：JVM 高级特性与最佳实",
+   "domain": "backend",
+   "category": "JavaGuide III（JVM 深度）",
+   "difficulty": "进阶",
+   "minutes": 20,
+   "tags": [
+    "Java",
+    "JVM"
+   ],
+   "prereqs": [],
+   "href": "g-javaguide3-7"
   }
  ]
 }

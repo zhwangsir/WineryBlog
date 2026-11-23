@@ -287,14 +287,15 @@ for (const src of sourceList) {
       if (pick.keywords && pick.keywords.length) {
         candidates = candidates.filter(p => pick.keywords.some(k => p.toLowerCase().includes(k.toLowerCase())));
       }
-      // 排序取前 max（路径稳定排序；sortNumeric 按文件名前导数字排序，如剑指题解编号）
+      // 排序取前 max（路径稳定排序；sortNumeric 按文件名前导数字排序，如剑指题解编号；skip 跳过已收前缀）
       if (pick.sortNumeric) {
         const num = (p) => parseFloat(path.basename(p).match(/^(\d+)/)?.[1] ?? '9999');
         candidates.sort((a, b) => num(a) - num(b));
       } else {
         candidates.sort();
       }
-      for (const p of candidates.slice(0, pick.max || 5)) chosen.add(p);
+      const skipN = pick.skip || 0;
+      for (const p of candidates.slice(skipN, skipN + (pick.max || 5))) chosen.add(p);
     }
 
     let addedRepo = 0, idx = 0;
