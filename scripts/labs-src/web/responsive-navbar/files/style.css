@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  background: #12181f;
+  color: #dfe6ee;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+/* ═══════ 导航栏（第 1 步：宽屏样式，大部分要你自己写）═══════ */
+.navbar {
+  /* TODO（第 1 步）：让 Logo 和菜单各靠一边、垂直居中
+         display: flex; justify-content: space-between; align-items: center; */
+  /* TODO（第 1 步）：高度 56px，左右内边距 16px，深色背景 #1a2230，底部 1px 的分隔线 #2a3550
+         再加上 position: relative —— 给后面「展开的菜单」当定位参照 */
+  padding: 8px 16px;      /* 占位：先让没写样式时也不至于挤在一起 */
+}
+.logo {
+  color: #f27d26;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.menu {
+  /* TODO（第 1 步）：display: flex; gap: 4px; 让链接横着排 */
+}
+.menu a {
+  /* TODO（第 1 步）：去掉下划线（text-decoration: none），文字颜色 #cfd8e3，
+         内边距 8px 12px，圆角 8px */
+}
+.menu a:hover {
+  /* TODO（第 1 步）：文字变成橙色 #f27d26，并加一层很淡的橙色底色 background: rgba(242, 125, 38, 0.1) */
+}
+
+/* 宽屏用不到汉堡按钮（窄屏的规则在第 2 步的媒体查询里写） */
+.toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toggle span {
+  width: 18px;
+  height: 2px;
+  background: #dfe6ee;
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+/* JS 给按钮加上 active 之后，三条横线变成 ×：第 1 条顺时针转 45°，第 3 条逆时针转 45°，中间那条淡出 */
+.toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.toggle.active span:nth-child(2) { opacity: 0; }
+.toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* TODO（第 2 步）：在下面写媒体查询 @media (max-width: 480px) { ... }，里面做三件事：
+     1. .toggle 改成 display: inline-flex（显示汉堡按钮）
+     2. .menu 改成 display: none（先把菜单藏起来）
+     3. 写出展开后的样式 .menu.open：display: flex; flex-direction: column; position: absolute;
+        top: 100%; left: 0; right: 0;  再加上下内边距 8px、深色背景 #1a2230 和底部分隔线
+*/
+
+
+/* ═══════ 页面正文（不用改）═══════ */
+.page { padding: 28px 16px; }
+.hero h1 { margin: 0 0 6px; font-size: 24px; }
+.hero p { margin: 0 0 8px; color: #8b98ab; }
+.width-tip b { color: #3ecf8e; font-family: ui-monospace, Consolas, monospace; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.block { padding: 16px; background: #1a2230; border: 1px solid #2a3550; border-radius: 12px; }
+.block h2 { margin: 0 0 6px; font-size: 15px; color: #f27d26; }
+.block p { margin: 0; color: #8b98ab; font-size: 13px; line-height: 1.6; }

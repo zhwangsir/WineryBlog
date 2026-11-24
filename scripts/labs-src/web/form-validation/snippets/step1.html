@@ -1,0 +1,11 @@
+<!-- required：必填；minlength：最少字符数。两个都是写给浏览器看的校验规则，不需要写 JS -->
+<div class="field">
+  <label for="nickname">昵称</label>
+  <input id="nickname" name="nickname" type="text" placeholder="至少 2 个字" autocomplete="off" required minlength="2">
+</div>
+
+<div class="field">
+  <label for="pwd1">密码</label>
+  <input id="pwd1" name="password" type="password" placeholder="至少 8 位" required minlength="8">
+  <p class="msg" id="pwd1-msg"></p>
+</div>

@@ -1,0 +1,39 @@
+{
+  "id": "w53_threejs_canvas",
+  "post": "w53_threejs_canvas",
+  "title": "Canvas 逐像素绘图——粒子弹幕的最小原型",
+  "summary": "不用任何库，手写一个 60fps 的粒子动画。",
+  "goal": "不用任何库，用 requestAnimationFrame + fillRect 手写一个 60fps 的粒子动画，理解游戏循环三件套：update → render → 下一帧。",
+  "minutes": 15,
+  "level": "进阶",
+  "tags": [
+    "Canvas",
+    "动画"
+  ],
+  "order": 40,
+  "steps": [
+    {
+      "title": "Step 1 · 画布 + 一个会动的方块",
+      "detail": "游戏循环的骨架：clear → update（改状态）→ draw（画出来）。先让一个方块从左向右移动。",
+      "check": "橙色方块匀速移动并循环",
+      "snippet": "snippets/step1.txt"
+    },
+    {
+      "title": "Step 2 · 从一个方块到 200 个粒子",
+      "detail": "把单个变量升级为粒子数组：每个粒子有位置与速度，update 时逐个推进——这就是弹幕/烟花/下雪的最小内核。",
+      "check": "200 个粒子各自速度向右流动",
+      "snippet": "snippets/step2.txt"
+    },
+    {
+      "title": "Step 3 · 加一点重力与生命周期",
+      "detail": "vy += 0.05 模拟重力，粒子落地后重生到顶部——烟雾、雨、烟花系统都是这一行的变体。",
+      "check": "粒子呈「下雨下坠」效果循环",
+      "snippet": "snippets/step3.txt"
+    }
+  ],
+  "verify": [
+    "说出游戏循环三步骤",
+    "60fps 意味着 update 每秒被调用约 60 次",
+    "粒子数提到 5000 时帧率下降的原因（每帧绘制调用过多）"
+  ]
+}

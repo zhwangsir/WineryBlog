@@ -1,0 +1,6 @@
+function finalPrice(type, price) {
+  if (type === "full") return price >= 100 ? price - 20 : price;
+  if (type === "percent") return price * 0.85;
+  if (type === "vip") return price * 0.8 - 5;
+  return price;
+}

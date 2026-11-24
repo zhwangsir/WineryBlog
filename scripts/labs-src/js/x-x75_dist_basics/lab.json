@@ -1,0 +1,39 @@
+{
+  "id": "x-x75_dist_basics",
+  "post": "x-x75_dist_basics",
+  "title": "两副本数据漂移——亲手制造 CAP 教科书场景",
+  "summary": "模拟两副本异步复制，亲手制造一次数据漂移。",
+  "goal": "用 30 行 JS 模拟「一主一从两副本 + 异步复制」：正常时读主读从一致，模拟网络分区后立刻读到旧值——CP 与 AP 的取舍从概念变成手感。",
+  "minutes": 15,
+  "level": "挑战",
+  "tags": [
+    "分布式",
+    "CAP"
+  ],
+  "order": 60,
+  "steps": [
+    {
+      "title": "Step 1 · 实现主库与异步复制的从库",
+      "detail": "主库直接写；从库通过 500ms 延迟的 setTimeout 模拟「复制延迟」——这就是异步复制的真实形态。",
+      "check": "代码可运行，无语法错误",
+      "snippet": "snippets/step1.txt"
+    },
+    {
+      "title": "Step 2 · 写入后立刻读从库——读到了什么？",
+      "detail": "write 之后马上读从库：undefined！这就是「读到旧值/读不到」——如果业务对此不可容忍，就必须牺牲可用性去读主库（CP），容忍则换来高性能（AP）。",
+      "check": "复现 undefined → 600ms 后变 100 的完整过程",
+      "snippet": "snippets/step2.txt"
+    },
+    {
+      "title": "Step 3 · 思考并回答：你的业务选 CP 还是 AP？",
+      "detail": "库存扣减/账户余额这类「错一点就出事」的读主库（CP 倾向）；浏览量/点赞数这类「晚几秒无感」的可读副本（AP 倾向）。把自己的业务各举一例写进注释。",
+      "check": "写出自己业务的两个例子与一句话结论",
+      "snippet": "snippets/step3.txt"
+    }
+  ],
+  "verify": [
+    "能复现复制延迟导致的旧读",
+    "说出 CAP 在「分区发生时」才需要取舍",
+    "给自己的业务举出 CP 与 AP 各一例"
+  ]
+}

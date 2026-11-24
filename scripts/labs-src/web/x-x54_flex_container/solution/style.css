@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 16px;
+  background: #12181f;
+}
+
+/* 第 1 关：主轴与交叉轴都居中 */
+.stage {
+  display: flex;
+  height: 120px;
+  background: #1a1f2b;
+  border-radius: 8px;
+  justify-content: center;   /* 主轴（水平）居中 */
+  align-items: center;       /* 交叉轴（垂直）居中 */
+}
+.star {
+  color: #f27d26;
+  font-size: 28px;
+}
+
+/* 第 2 关：flex: 1 = 平分剩余空间（flex-grow: 1 的简写） */
+.stage2 {
+  display: flex;
+  height: 60px;
+  gap: 8px;
+  margin-top: 12px;
+}
+.nav {
+  background: #2a3550;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfd8e3;
+  flex: 1;
+}
+
+/* 第 3 关：侧栏不伸缩、宽度固定；主区吃掉全部剩余空间 */
+.stage3 {
+  display: flex;
+  height: 90px;
+  margin-top: 12px;
+}
+.aside {
+  background: #3d2f4f;
+  width: 80px;
+  flex: none;                /* 不伸不缩 */
+  color: #cfd8e3;
+}
+.main {
+  background: #24404f;
+  flex: 1;
+  color: #cfd8e3;
+}

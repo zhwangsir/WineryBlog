@@ -22,5 +22,9 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "exclude": [
+    // 实验内容里的 snippets/ 是给人看的代码片段，可以不是完整语句（由 scripts/build-labs.mjs 单独校验）
+    "scripts/labs-src"
+  ]
 }

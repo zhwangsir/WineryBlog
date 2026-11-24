@@ -1,0 +1,37 @@
+{
+  "id": "js-array-methods",
+  "title": "数组方法：用 map / filter / reduce 处理订单",
+  "summary": "用三个数组方法算清一组订单：明细、筛选、总额。",
+  "goal": "用一组订单数据练熟三个最常用的数组方法：map 把每一项变成新东西，filter 筛出符合条件的项，reduce 把一整组数据汇总成一个值（求和、分组统计）。最后把三个方法串成一条链，体会「数据一路流下去」的写法。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": ["数组", "函数式"],
+  "order": 14,
+  "steps": [
+    {
+      "title": "Step 1 · map：把订单变成一行摘要",
+      "detail": "for 循环写多了会发现，大部分时候只是在做三件事：把每一项变个样、挑出想要的、汇总成一个数。数组方法把这三种意图直接写在了方法名上。map 会遍历数组，把回调函数的返回值按顺序收集成一个新数组，原来的数组不变。现在 lines 只取了每笔订单的编号和商品，补全回调，让每一项变成「编号 商品 ×数量 = 金额」这样的一行；金额 = 单价 × 数量，已经备好 amountOf(o)。拼字符串用模板字符串（反引号）会更清楚。",
+      "check": "输出 6 行摘要：第一行是「A101 赤霞珠干红 ×2 = 256」，第二行是「A102 霞多丽 ×1 = 98」，最后一行是「A106 梅洛 ×4 = 396」。",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · filter：筛出符合条件的订单",
+      "detail": "filter 的回调返回 true 或 false：true 的留下，false 的丢掉，结果是一个新数组。回调里不需要写 if...else 再 return，直接写一个判断表达式就够了，例如 (o) => o.paid。先筛出已付款的订单（paid 为 true），存进 paidOrders；再筛出金额超过 300 元的订单（amountOf(o) > 300），存进 bigOrders。打印语句已经写好，只改 filter 的回调。",
+      "check": "输出「已付款：A101, A103, A104, A106」和「超过 300 元：A103, A106」。",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · reduce：求总额与分组统计",
+      "detail": "reduce 把数组「压缩」成一个值：回调收到上一次累计的结果和当前项，返回新的累计值；reduce 的第二个参数是初始值，求和时千万别漏写 0。先对已付款的订单求总额（累计 amountOf(o)）。分组统计也是 reduce：让 acc 是一个对象，每遇到一笔订单就给 acc[o.category] 加上件数——acc[o.category] || 0 处理了这个品类第一次出现时还不存在的情况；回调最后必须 return acc。统计结果会按品类逐行打印。最后看一眼选做的链式写法，结果应当和分步计算的一样。",
+      "check": "输出「已付款总额：1332」；按品类统计输出三行：「红酒：9 件」「白酒：2 件」「起泡酒：2 件」。补上选做的链式写法后，最后还会输出「链式写法：1332」。",
+      "hint": "reduce 的回调里忘了写 return acc，下一轮的 acc 就会变成 undefined，报「Cannot set properties of undefined」。",
+      "snippet": "snippets/step3.js"
+    }
+  ],
+  "verify": [
+    "map 输出 6 行订单摘要，金额等于单价 × 数量",
+    "filter 正确筛出 4 笔已付款订单和 2 笔超过 300 元的订单",
+    "reduce 算出已付款总额 1332，并按品类统计出红酒 9 件、白酒 2 件、起泡酒 2 件",
+    "能说出 map / filter / reduce 各自返回什么，以及 reduce 初始值的作用"
+  ]
+}

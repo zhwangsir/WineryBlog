@@ -1,0 +1,44 @@
+{
+  "id": "node-http-basics",
+  "title": "Node.js 原生 HTTP：不用框架写一个带路由的服务",
+  "summary": "原生 http 模块写路由：文本、JSON、404。",
+  "goal": "不借助任何框架，用 Node.js 自带的 http 模块写一个小服务：/ 返回纯文本、/api/time 返回 JSON、其余请求统一 404——搞懂「请求回调、方法与路径、状态码与响应头」这些所有 Web 框架底层共有的概念。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Node.js",
+    "HTTP",
+    "路由"
+  ],
+  "order": 10,
+  "sim": {
+    "setup": "本实验不使用任何第三方依赖，只用 Node.js 内置的 http 模块。服务启动后在后台持续运行，可以继续输入 curl 发请求；点「运行」会让服务用新的代码重启。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · createServer：接上路由表，让首页响应",
+      "detail": "http.createServer 接收一个回调：每来一个请求就调用一次，参数 req 是请求、res 用来写响应。req.method 是请求方法，req.url 是路径。在回调里用模板字符串拼出「方法 路径」（例如 GET /），拿它当 key 去路由表 routes 里查处理函数，查到就调用。改完点右上角的「运行」（相当于 node server.js），再在右侧终端里用 curl 请求首页。",
+      "check": "终端先出现「服务已启动：localhost:3000」；curl -i localhost:3000/ 的状态行是 HTTP/1.1 200 OK，Content-Type 是 text/plain，响应体是「欢迎来到 WineryLab」",
+      "hint": "模板字符串用反引号包起来：`${req.method} ${req.url}`；查到处理函数后写 handler(req, res)",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · JSON 接口：/api/time",
+      "detail": "接口返回 JSON 要做三件事：把对象用 JSON.stringify 变成字符串、把 Content-Type 设为 application/json（客户端据此决定怎么解析）、再用 res.end 发出去。在路由表里加一条 GET /api/time，返回服务器当前时间（new Date().toISOString()）。点「运行」让服务用新代码重启，再用 curl 验证。",
+      "check": "终端输出里，curl -i localhost:3000/api/time 的状态行是 HTTP/1.1 200 OK，响应头里有 Content-Type: application/json，响应体是一个含 now 字段的 JSON 对象",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · 404 兜底：其余的路径与方法",
+      "detail": "路由表里没有的请求不能一直回占位文案。把占位响应换成 404：状态码 404，响应体是一个说明错误的 JSON 对象。因为 key 里带着方法，POST / 同样会落到兜底——这就是「路由 = 方法 + 路径」。顺手处理查询串：req.url 里可能带着 ? 后面的参数，用 split('?')[0] 只取纯路径再拼 key，这样 /api/time?tz=8 也能命中。",
+      "check": "终端输出里，curl -i localhost:3000/nope 的状态行是 HTTP/1.1 404 Not Found，响应体是含 error 字段的 JSON；curl -i -X POST localhost:3000/ 同样是 404",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "首页返回 200 与纯文本，/api/time 返回 200 与 JSON（Content-Type 为 application/json）",
+    "未定义的路径和不匹配的方法都得到 404",
+    "能说出 res.writeHead 和 res.end 各自的作用（写状态码与响应头 / 写响应体并结束响应）",
+    "能解释 curl -i 'localhost:3000/api/time?tz=8' 得到的结果，以及查询串是不是 req.url 的一部分"
+  ]
+}

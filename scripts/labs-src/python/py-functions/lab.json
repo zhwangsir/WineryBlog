@@ -1,0 +1,39 @@
+{
+  "id": "py-functions",
+  "title": "Python 函数：默认参数、*args、**kwargs 与 lambda",
+  "summary": "把重复的代码包成函数，灵活地传参，再用 lambda 排序。",
+  "goal": "学会定义函数并用默认参数、关键字参数调用它；理解 *args 和 **kwargs 如何收集多余的参数；会用 lambda 配合 sorted() 的 key 自定义排序。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": ["Python", "函数"],
+  "order": 40,
+  "steps": [
+    {
+      "title": "Step 1 · 默认参数与关键字参数",
+      "detail": "def 定义函数，return 把结果交还给调用者。greet 的第二个参数 greeting 有默认值「你好」。请补全两处 TODO：① 让 greet 返回「{greeting}，{name}！」；② append_good 是 append_bad 的正确写法——target 为 None 时先新建一个空列表。先运行一下，看看 append_bad 那个经典的坑：可变的默认值只会被创建一次，多次调用共用同一个列表。",
+      "check": "greet 的四次调用依次输出 你好，林小满！/ 早上好，林小满！/ 晚上好，陈大文！/ 欢迎，周小雨！；append_good 输出 [1] [2]",
+      "hint": "判断「是不是 None」要写 is None，而不是 == None。",
+      "snippet": "snippets/step1.py"
+    },
+    {
+      "title": "Step 2 · *args 与 **kwargs",
+      "detail": "*args 把多出来的位置参数收成一个元组，**kwargs 把关键字参数收成一个字典。请补全两处 TODO：① 让 total 返回所有参数的和；② report 返回「【标题】N 个数，合计 X；键=值, 键=值」这样的报告。调用时的 * 和 ** 则正好相反：把列表、字典「拆开」传进去。",
+      "check": "total(1, 2, 3) 输出 6；两次 report 都输出【季度销量】3 个数，合计 353；unit=件, region=华东",
+      "hint": "report 里可以用 len(args) 数个数、sum(args) 求和，再把 describe(**kwargs) 的结果拼在后面。",
+      "snippet": "snippets/step2.py"
+    },
+    {
+      "title": "Step 3 · lambda 与 sorted 的 key",
+      "detail": "lambda 是一行的小函数，常用来当「只用一次」的函数。sorted 的 key 决定「按什么排」：每个元素交给这个函数，用它的返回值比较大小。请补全三处 TODO：按分数升序、按分数降序、用 max() 找出分数最高的学生。",
+      "check": "升序结果第一个是 ('赵铁柱', 78)、最后一个是 ('周小雨', 96)；max 输出 ('周小雨', 96)",
+      "hint": "每个学生是 (姓名, 分数) 的元组，分数是 s[1]，所以 key 写 lambda s: s[1]。",
+      "snippet": "snippets/step3.py"
+    }
+  ],
+  "verify": [
+    "greet 的四次输出与预期一致",
+    "能解释 append_bad 为什么第二次调用输出 [1, 2]",
+    "total 与 report 的输出与预期一致",
+    "sorted 的三种用法输出与预期一致"
+  ]
+}

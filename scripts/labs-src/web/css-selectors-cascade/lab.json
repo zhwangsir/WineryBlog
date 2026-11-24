@@ -1,0 +1,37 @@
+{
+  "id": "css-selectors-cascade",
+  "title": "CSS：选择器、优先级与盒模型",
+  "summary": "用色块看清优先级、伪类、继承和盒模型。",
+  "goal": "在一个「调色实验室」页面里过三关，每改一行 CSS 都能立刻看到色块的变化：① 优先级擂台——三条规则抢同一个方块，学会用 (id, class, 标签) 的个数比较优先级；② 类与伪类——用 class、:hover、:first-child 给同一批卡片做出不同的样式；③ 继承与盒模型——看清颜色怎样从父元素传给子元素、width 到底包不包括 padding 和 border。",
+  "minutes": 20,
+  "level": "入门",
+  "tags": ["CSS", "选择器", "盒模型"],
+  "order": 15,
+  "steps": [
+    {
+      "title": "Step 1 · 优先级擂台",
+      "detail": "经常有多条 CSS 规则同时选中同一个元素，谁说了算由两件事决定：先比优先级，优先级相同再比书写顺序（后写的赢）。优先级可以记成一个分数：(id 的个数，class / 伪类的个数，标签的个数)，从左往右逐位比较。第 1 关里 #champion 是 (1,0,0)，.panel .box 是 (0,2,0)，.box 是 (0,1,0)——所以哪怕 #champion 写在最前面，蓝色也会胜出。先对照页面上三个色块确认这一点，然后在中间编辑器 style.css 的 TODO 处新写一条规则，让方块变成绿色 #3ecf8e，要求：不许改已有的三条规则，也不许用行内样式。写完做个小实验：把你那条规则的选择器改成 .box，看看谁赢了，再改回去。",
+      "check": "没加规则时方块是蓝色，和第一个色块一致。写下你的规则后方块变成绿色。把选择器改成 .box 后，方块立刻变回蓝色；改回去又是绿色。",
+      "hint": "想赢过 (1,0,0)，你的选择器至少也要带一个 id：写成 #champion（优先级打平，但你写在后面所以赢），或者 #champion.box（优先级更高，写在哪都赢）。",
+      "snippet": "snippets/step1.css"
+    },
+    {
+      "title": "Step 2 · 类与伪类",
+      "detail": "同一批卡片靠同一个 class 共享样式，差异交给「更多的 class」和「伪类」。伪类是冒号开头的选择器，描述元素的状态或位置：:hover 是鼠标悬停时，:first-child / :last-child 是「作为父元素的第一个 / 最后一个孩子」。选择器里的空格表示「里面的」，.card strong 选的是卡片里面的 <strong>。按 style.css 里的四个 TODO 写四条规则：a. 用后代选择器让所有品种名变成白色；b. 用 .card.featured（两个 class 连着写，中间没有空格）让赤霞珠的边框变橙色；c. 用 :hover 让任意卡片在悬停时边框变绿、上移 2px；d. 第一张卡片里的品种名是绿色，最后一张是黄色。d 的选择器 .card:first-child strong 优先级是 (0,2,1)，高于 a 的 (0,1,1)，所以能盖过白色。",
+      "check": "四个品种名都变成白色，其中「黑皮诺」是绿色、「霞多丽」是黄色；「赤霞珠」那张卡片有橙色边框。鼠标移到任意一张卡片上，它的边框变绿并轻轻上浮，移开又恢复。",
+      "snippet": "snippets/step2.css"
+    },
+    {
+      "title": "Step 3 · 继承与盒模型",
+      "detail": "继承：文字颜色这类属性会从父元素自动传给子元素——给外层盒子设 color，内层盒子什么都不写也会跟着变；但子元素自己写了 color，就用自己的。盒模型：每个元素都是一个矩形，从里到外是 content（内容）→ padding（内边距）→ border（边框）→ margin（外边距，透明）。默认 box-sizing: content-box 下 width 只是内容的宽度，所以内层盒子写着 width: 240px，实际却占 240 + 16×2 + 4×2 = 280px，比上面的刻度条宽出一截。接下来：① 给 .outer 加 color: #f2c14e，看内外两层文字是否一起变黄；② 给 .inner 加 color: #3ecf8e，只有内层变绿；③ 给 .inner 加 box-sizing: border-box，让 width 把 padding 和 border 也算进去。",
+      "check": "给 .outer 设成 #f2c14e 后，外层和内层的文字都是黄色；给 .inner 设成 #3ecf8e 后只有内层文字是绿色。内层盒子原本比上方的刻度条宽出一截，加上 box-sizing: border-box 后，它的左右边缘与刻度条正好对齐。",
+      "snippet": "snippets/step3.css"
+    }
+  ],
+  "verify": [
+    "第 1 关：能说出 #champion 胜过 .panel .box 和 .box 的理由，并写出一条让方块变绿的规则",
+    "第 2 关：品种名按规则显示白 / 绿 / 黄，赤霞珠卡片有橙色边框，悬停有反馈",
+    "第 3 关：外层设 color 后内层跟着变，内层自己设 color 后只变自己",
+    "能画出 content、padding、border、margin 四层，并解释 box-sizing: border-box 改变了什么"
+  ]
+}

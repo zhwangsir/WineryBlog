@@ -1,0 +1,45 @@
+{
+  "id": "node-express-middleware",
+  "title": "Express 中间件：请求日志、token 校验与统一错误处理",
+  "summary": "三个中间件串起日志、鉴权、错误处理。",
+  "goal": "用三个中间件给一个笔记 API 加上「与业务无关的通用能力」：请求日志记录每一次访问、token 校验拦住没有凭证的请求（401）、统一的错误处理把异常变成规范的 JSON 响应——理解 Express 中间件链的执行顺序与 next 的作用。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": [
+    "Express",
+    "中间件",
+    "Node.js"
+  ],
+  "order": 30,
+  "sim": {
+    "setup": "本实验不引入新的依赖，只使用已经装好的 express。接口约定：请求头 x-token 的值必须等于代码里的 TOKEN 常量（lab-token）才能访问 /api 下的接口。服务启动后在后台持续运行，可以继续输入 curl；每次 curl 之后，服务里的 console.log 与 console.error 输出会作为服务日志出现在终端里。点「运行」会让服务用新的代码重启，内存里的 notes 恢复为代码里的初始值。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · 请求日志中间件：每个请求都先路过它",
+      "detail": "中间件就是一个 (req, res, next) 函数：app.use 把它挂进处理链，每个请求到达路由之前都会先经过它；调用 next() 把请求交给下一环，不调用则请求就停在这里。写一个日志中间件，用 console.log 打印「ISO 格式的当前时间 请求方法 路径」。注意要挂在所有路由之前——Express 按注册顺序匹配。改完点右上角的「运行」，在终端里多请求几次。",
+      "check": "每次 curl 之后，终端里应多出一行日志，形如 2026-11-24T08:00:00.000Z GET /api/notes（时间戳是你的运行时间）",
+      "hint": "中间件放在文件顶部的 app.use(express.json()) 之后、路由之前；打印完别忘了一句 next()，否则请求会一直挂起",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · token 校验：没有凭证就 401",
+      "detail": "接口不能谁都能调。约定客户端在请求头里带 x-token，中间件检查 req.headers['x-token'] 是否等于 TOKEN：不相等就用 res.status(401).json(...) 直接回绝（注意 return，不再往下走）；相等才 next()。把中间件挂在 /api 路径上，首页不受影响。请求头在 req.headers 里的键统一是小写。",
+      "check": "终端输出里，curl -i localhost:3000/api/notes 的状态行是 HTTP/1.1 401 Unauthorized；加上 -H \"x-token: lab-token\" 后变成 HTTP/1.1 200 OK 并返回笔记数组；curl -i localhost:3000/ 仍然是 200",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · 统一错误处理：next(err) 与四参数中间件",
+      "detail": "路由里发现请求不合法时，不要各自写一遍响应：把错误对象交给 next(err)，Express 会跳过后面所有普通中间件和路由，直接找到「四个参数」的错误处理中间件，在那里统一记录日志并返回 JSON。在 POST /api/notes 里加上「缺 text 就 next(err)」的判断（给错误对象设 status = 400），再在所有路由之后注册错误处理中间件。",
+      "check": "终端输出里，不带 text 的 POST 的状态行是 HTTP/1.1 400 Bad Request，响应体是含「缺少 text 字段」的 JSON；服务没有崩溃，能看到一行错误日志，之后的请求照常",
+      "hint": "错误处理中间件必须写全四个参数（err, req, res, next），哪怕后三个用不上——Express 靠参数个数识别它",
+      "snippet": "snippets/step3.js"
+    }
+  ],
+  "verify": [
+    "每个请求都先打印一行日志，再进入路由",
+    "不带 token（或 token 错误）访问 /api/notes 得到 401，带对 token 得到 200；首页不需要 token",
+    "POST 缺少 text 字段得到 400 的 JSON 错误响应，服务不崩溃",
+    "能说出中间件的注册顺序为什么重要，以及 next() 与 next(err) 的区别"
+  ]
+}

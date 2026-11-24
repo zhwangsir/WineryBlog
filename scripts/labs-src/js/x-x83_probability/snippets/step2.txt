@@ -1,0 +1,8 @@
+function textEntropy(text) {
+  const freq = {};
+  for (const ch of text) freq[ch] = (freq[ch] || 0) + 1;
+  const ps = Object.values(freq).map(c => c / text.length);
+  return entropy(ps);
+}
+console.log(textEntropy("哈哈哈哈哈哈"));        // 低
+console.log(textEntropy("信息熵度量不确定性"));   // 高

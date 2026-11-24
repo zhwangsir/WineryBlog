@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  background: #12181f;
+  color: #dfe6ee;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+/* ═══════ 导航栏：宽屏样式（第 1 步）═══════ */
+.navbar {
+  position: relative;                 /* 给「展开的菜单」当定位参照 */
+  display: flex;
+  justify-content: space-between;     /* Logo 靠左，菜单靠右 */
+  align-items: center;                /* 垂直居中 */
+  height: 56px;
+  padding: 0 16px;
+  background: #1a2230;
+  border-bottom: 1px solid #2a3550;
+}
+.logo {
+  color: #f27d26;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.menu {
+  display: flex;
+  gap: 4px;
+}
+.menu a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #cfd8e3;
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+.menu a:hover {
+  color: #f27d26;
+  background: rgba(242, 125, 38, 0.1);
+}
+
+/* 汉堡按钮：三条横线 */
+.toggle {
+  display: none;                      /* 宽屏用不到它 */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toggle span {
+  width: 18px;
+  height: 2px;
+  background: #dfe6ee;
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+/* JS 给按钮加上 active 之后，三条横线变成 ×：第 1 条顺时针转 45°，第 3 条逆时针转 45°，中间那条淡出 */
+.toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.toggle.active span:nth-child(2) { opacity: 0; }
+.toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ═══════ 窄屏（宽度不超过 480px）：折叠成汉堡（第 2 步）═══════ */
+@media (max-width: 480px) {
+  .toggle { display: inline-flex; }   /* 显示汉堡按钮（方向、对齐等沿用上面写好的） */
+
+  .menu { display: none; }            /* 先把菜单藏起来 */
+
+  /* 展开后的样式：JS 点按钮时会给菜单加上 open 这个 class */
+  .menu.open {
+    display: flex;
+    flex-direction: column;           /* 竖着排 */
+    gap: 2px;
+    position: absolute;               /* 脱离文档流，贴在导航栏正下方，盖在正文上面 */
+    top: 100%;                        /* 紧贴导航栏下沿 */
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background: #1a2230;
+    border-bottom: 1px solid #2a3550;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+
+/* ═══════ 页面正文（不用改）═══════ */
+.page { padding: 28px 16px; }
+.hero h1 { margin: 0 0 6px; font-size: 24px; }
+.hero p { margin: 0 0 8px; color: #8b98ab; }
+.width-tip b { color: #3ecf8e; font-family: ui-monospace, Consolas, monospace; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.block { padding: 16px; background: #1a2230; border: 1px solid #2a3550; border-radius: 12px; }
+.block h2 { margin: 0 0 6px; font-size: 15px; color: #f27d26; }
+.block p { margin: 0; color: #8b98ab; font-size: 13px; line-height: 1.6; }

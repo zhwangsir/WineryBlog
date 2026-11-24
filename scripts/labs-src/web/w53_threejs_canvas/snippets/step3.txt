@@ -1,0 +1,4 @@
+// update 中加：
+p.vy += 0.05;
+p.y += p.vy;
+if (p.y > 160) { p.y = 0; p.vy = 0; }

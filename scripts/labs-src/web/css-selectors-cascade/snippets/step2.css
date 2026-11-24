@@ -1,0 +1,15 @@
+/* a. 后代选择器：空格表示「里面的」——卡片里面的 <strong> */
+.card strong { color: #ffffff; }
+
+/* b. 两个 class 连着写（中间没有空格）= 必须同时具有这两个 class */
+.card.featured { border-color: #f27d26; }
+
+/* c. 伪类：冒号开头，描述元素的状态 */
+.card:hover {
+  border-color: #3ecf8e;
+  transform: translateY(-2px);
+}
+
+/* d. 结构伪类：描述元素在父元素里的位置 */
+.cards .card:first-child strong { color: #3ecf8e; }
+.cards .card:last-child strong { color: #f2c14e; }

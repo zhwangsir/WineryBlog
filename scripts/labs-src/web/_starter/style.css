@@ -1,0 +1,23 @@
+/* 样式写在 style.css 里 */
+body {
+  margin: 0;
+  padding: 24px;
+  background: #12181f;
+  color: #dfe6ee;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+}
+
+h1 {
+  color: #f27d26;
+}
+
+button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #f27d26;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}

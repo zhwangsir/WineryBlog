@@ -1,0 +1,40 @@
+{
+  "id": "s01_java_collections_concurrency",
+  "post": "s01_java_collections_concurrency",
+  "title": "图书借阅统计（集合框架实战）",
+  "summary": "用 HashMap、List、Set 解决一个真实的统计问题。",
+  "goal": "用 HashMap + List + 排序解决一个真实的「图书借阅统计」问题，体会「查询多用 ArrayList、去重用 Set、键值映射用 Map」的选型口诀。",
+  "minutes": 30,
+  "level": "入门",
+  "tags": [
+    "集合",
+    "Stream"
+  ],
+  "order": 20,
+  "steps": [
+    {
+      "title": "Step 1 · 用 HashMap 统计借阅次数",
+      "detail": "给定借阅记录数组（每条为书名），统计每本书被借阅的次数。核心：map.merge(key, 1, Integer::sum) 一行完成计数。",
+      "check": "运行后输出 {三体=3, 红楼梦=2, 活着=1}",
+      "snippet": "snippets/step1.java"
+    },
+    {
+      "title": "Step 2 · 按借阅次数降序排行",
+      "detail": "把 Map 的 entrySet 转成 List，用 Comparator 按值降序排序后输出 TopN。这是「Map 无法直接排序」的经典处理套路。",
+      "check": "输出 Top2 排行，且次数降序",
+      "snippet": "snippets/step2.java"
+    },
+    {
+      "title": "Step 3 · 用 Set 找出「谁两本都借过」",
+      "detail": "再给两个人各自的借阅清单，用 Set 的 retainAll（交集）找出共同借阅的书——体会去重与交界的 O(1) 语义。",
+      "check": "输出交集 [三体]",
+      "snippet": "snippets/step3.java"
+    }
+  ],
+  "verify": [
+    "Step 1 输出与注释中的期望完全一致",
+    "Step 2 能正确输出降序 Top2",
+    "Step 3 交集结果为 [三体]",
+    "能口头回答：为什么统计用 HashMap 而排行要先转 List？"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "w42_android_intro",
+  "post": "w42_android_intro",
+  "title": "Kotlin 五大语法速览（Android 移动开发）",
+  "summary": "五个 Kotlin 代表性语法，建立与 Java 的对照。",
+  "goal": "在右侧的 Kotlin 交互式终端里体验空安全、数据类、扩展函数等五个 Kotlin 代表性语法，建立一张与 Java 的对照表。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Kotlin",
+    "空安全"
+  ],
+  "order": 30,
+  "steps": [
+    {
+      "title": "Step 1 · 空安全：?. 与 ?: 消灭 NPE",
+      "detail": "Java 的 NullPointerException 在 Kotlin 里被类型系统掐死：String 不可为 null，String? 才可以；访问必须用 ?. 或 !!。把这三行写进左侧的 scratch.kts，点「运行」。",
+      "check": "输出 null 与「默认名」，全程没有异常",
+      "snippet": "snippets/step1.kt"
+    },
+    {
+      "title": "Step 2 · 数据类：一行顶 Java 一整个文件",
+      "detail": "data class 自动生成 equals / hashCode / toString / copy——Java 需要手写或借助 Lombok 才能有的方法，Kotlin 一个关键字就搞定。定义一个 User 并打印它。",
+      "check": "toString 直接输出全部字段",
+      "snippet": "snippets/step2.kt"
+    },
+    {
+      "title": "Step 3 · 扩展函数 + 集合操作符",
+      "detail": "给 String「外挂」一个方法而不修改它的类；再配合 map / filter 链式处理集合——这是 Android 日常代码的主要形态。",
+      "check": "两段代码都输出了预期结果",
+      "snippet": "snippets/step3.kt"
+    }
+  ],
+  "verify": [
+    "说出 ?. 与 !! 的区别（安全调用 vs 强制解包，后者可能崩）",
+    "数据类自动生成了哪些方法",
+    "扩展函数并不真的修改类，而是编译成一个静态方法"
+  ]
+}

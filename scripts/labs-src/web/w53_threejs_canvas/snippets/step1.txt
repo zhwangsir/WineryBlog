@@ -1,0 +1,11 @@
+const cv = document.body.appendChild(Object.assign(document.createElement("canvas"), { width: 480, height: 160 }));
+const ctx = cv.getContext("2d");
+let x = 0;
+function loop() {
+  ctx.clearRect(0, 0, 480, 160);
+  x = (x + 2) % 480;            // update
+  ctx.fillStyle = "#f27d26";
+  ctx.fillRect(x, 70, 20, 20);  // draw
+  requestAnimationFrame(loop);  // 下一帧
+}
+loop();

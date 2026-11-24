@@ -1,0 +1,10 @@
+.card.featured {
+  grid-column: span 2;   /* 横跨 2 列 */
+  grid-row: span 2;      /* 纵跨 2 行 */
+}
+.card.tall { grid-row: span 2; }      /* 只纵跨 2 行 */
+.card.wide { grid-column: span 2; }   /* 只横跨 2 列 */
+
+/* 等价写法：直接写网格线的编号（网格线从 1 开始数）
+   .card.featured { grid-column: 1 / 3; grid-row: 1 / 3; }
+   表示从第 1 条线到第 3 条线，也就是前 2 列、前 2 行 */

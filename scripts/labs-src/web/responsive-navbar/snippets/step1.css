@@ -1,0 +1,34 @@
+/* 导航栏：一行两头的布局 */
+.navbar {
+  position: relative;                 /* 给后面「展开的菜单」当定位参照 */
+  display: flex;
+  justify-content: space-between;     /* Logo 靠左，菜单靠右 */
+  align-items: center;                /* 垂直居中 */
+  height: 56px;
+  padding: 0 16px;
+  background: #1a2230;
+  border-bottom: 1px solid #2a3550;
+}
+.logo {
+  color: #f27d26;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* 菜单：本身也是一个 flex 容器，链接之间留一点空隙 */
+.menu {
+  display: flex;
+  gap: 4px;
+}
+.menu a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #cfd8e3;                     /* 去掉浏览器默认的蓝色 */
+  text-decoration: none;              /* 去掉下划线 */
+  transition: color 0.15s, background-color 0.15s;
+}
+.menu a:hover {
+  color: #f27d26;
+  background: rgba(242, 125, 38, 0.1);
+}

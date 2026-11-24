@@ -1,0 +1,125 @@
+[
+  {
+    "id": "web",
+    "name": "前端环境",
+    "runner": "web",
+    "order": 1,
+    "icon": "PanelsTopLeft",
+    "color": "#3ecf8e",
+    "tagline": "HTML / CSS / JavaScript，即写即见",
+    "desc": "左边写 index.html、style.css、script.js，右边实时渲染出页面。页面跑在隔离的沙箱里、不联网，控制台输出同步显示在预览下方。",
+    "files": ["index.html", "style.css", "script.js"],
+    "engine": "浏览器沙箱 · 实时渲染"
+  },
+  {
+    "id": "js",
+    "name": "JavaScript",
+    "runner": "js",
+    "order": 2,
+    "icon": "Braces",
+    "color": "#f2c14e",
+    "tagline": "语言特性、异步、算法、设计模式",
+    "desc": "代码在后台线程里真实执行，支持顶层 await。console 输出原样显示，最后一个表达式的值也会打印出来；死循环会在 8 秒后自动终止。",
+    "files": ["main.js"],
+    "engine": "Web Worker · 真实运行"
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "runner": "python",
+    "order": 3,
+    "icon": "FileCode2",
+    "color": "#4fa3e3",
+    "tagline": "CPython 跑在浏览器里，不用装环境",
+    "desc": "由 Pyodide 提供真正的 CPython 解释器（WebAssembly），print 输出和报错原样显示，最后一个表达式的值会打印出来。首次启动需要加载引擎，约十几秒。",
+    "files": ["main.py"],
+    "engine": "Pyodide · CPython 3.12"
+  },
+  {
+    "id": "sql",
+    "name": "数据库 SQL",
+    "runner": "sql",
+    "order": 4,
+    "icon": "Database",
+    "color": "#2bbfae",
+    "tagline": "真正的 SQLite，带一套练习数据库",
+    "desc": "在浏览器里运行真正的 SQLite，预置一套「公司」练习库（员工、部门、订单）。查询结果以表格显示，改坏了数据可以一键重置。",
+    "files": ["query.sql"],
+    "engine": "SQLite · sql.js"
+  },
+  {
+    "id": "ai",
+    "name": "AI 提示词",
+    "runner": "ai",
+    "order": 5,
+    "icon": "BrainCircuit",
+    "color": "#b07cff",
+    "tagline": "写提示词，立刻看到模型怎么答",
+    "desc": "左边写系统提示词和用户提示词，右边是站内大模型的流式输出。改一改再发一次，前后对比，亲手体会结构化提示词为什么有效。数据不出内网。",
+    "files": ["system.md", "user.md"],
+    "engine": "站内大模型 · 流式输出"
+  },
+  {
+    "id": "shell",
+    "name": "服务器与运维",
+    "runner": "sim",
+    "order": 6,
+    "icon": "Terminal",
+    "color": "#9aa8bd",
+    "tagline": "Shell、Git、Redis、Nginx、Docker",
+    "desc": "浏览器里跑不了真正的 Linux，这里由大模型扮演一台 Ubuntu 服务器：你敲命令，它按真实行为给出输出，并记住之前的操作造成的状态。",
+    "files": [],
+    "engine": "AI 仿真终端",
+    "sim": {
+      "title": "Ubuntu 22.04 · bash",
+      "setup": "你是通过 SSH 刚登录的普通用户 winery，提示符为 winery@lab:~$。已安装：bash 5.1、git 2.39、redis-cli（本机 6379 端口有一个空的 Redis）、nginx 1.18（未启动）、docker 20.10（容器未启动）、curl、jq、grep/awk/sed。家目录 /home/winery 下有一个 demo 项目目录（尚未 git init）。",
+      "rules": [
+        "命令不存在、语法错误、权限不足时，输出该环境真实的报错格式（例如 bash: xxx: command not found）",
+        "文件系统、Git 仓库、Redis 数据、进程状态要有连续记忆：上一条命令改变了状态，下一条命令的输出必须与之一致",
+        "用户在命令里粘贴了一段脚本或代码时，按「保存为文件并执行」的语义处理，输出执行结果"
+      ]
+    }
+  },
+  {
+    "id": "node",
+    "name": "Node.js 后端",
+    "runner": "sim",
+    "order": 7,
+    "icon": "Server",
+    "color": "#8f7bff",
+    "tagline": "HTTP 模块、Express、接口联调",
+    "desc": "由大模型扮演一台装好 Node.js 18 的机器：左边写服务端代码，右边终端里 node 启动、curl 调接口，按真实的状态码和响应体回显。",
+    "files": ["server.js"],
+    "engine": "AI 仿真终端",
+    "sim": {
+      "title": "Node.js 18 · npm 9 · curl",
+      "setup": "用户在 /home/winery/lab 目录下工作，提示符为 winery@lab:~/lab$。已安装 Node.js 18.19、npm 9、curl；package.json 已初始化，node_modules 里已安装 express 4.21。用户的代码保存为工作区里的文件（如 server.js），在终端输入 node server.js 即可启动；服务默认监听 3000 端口。",
+      "rules": [
+        "node 启动后原样输出代码里的 console.log；有语法错误或运行时异常时输出 Node 真实的报错堆栈格式",
+        "curl 请求按代码逻辑给出真实的状态码与响应体；代码里没有的路由返回 404",
+        "内存里的数据（数组、对象）在多次请求之间保持连续"
+      ]
+    }
+  },
+  {
+    "id": "java",
+    "name": "Java / Kotlin",
+    "runner": "sim",
+    "order": 8,
+    "icon": "Coffee",
+    "color": "#ff8a5b",
+    "tagline": "jshell 风格的即时求值",
+    "desc": "由大模型扮演 Java 17 的 jshell（以及 Kotlin 交互式环境）：粘贴语句立刻看到求值结果，System.out.println 的输出原样回显，异常按真实格式报错。",
+    "files": [],
+    "engine": "AI 仿真终端",
+    "sim": {
+      "title": "jshell · Java 17",
+      "setup": "这是 Java 17 的 jshell 交互式环境，提示符为 jshell>。用户粘贴的代码会被逐段求值：表达式显示「变量名 ==> 值」，语句无返回值时不显示，System.out.println 的内容原样输出。",
+      "rules": [
+        "语法错误时输出 jshell 真实的报错格式（|  错误: ... 与 |    符号:   ...）",
+        "运行时异常输出真实的异常类名与消息（例如 Exception java.lang.NullPointerException: Cannot invoke ...）",
+        "之前定义过的变量、方法、类在后续输入中仍然可用"
+      ]
+    }
+  }
+]

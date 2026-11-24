@@ -117,7 +117,7 @@ export const Home: React.FC = () => {
 
   const features = [
     { to: '/tutorials', icon: GraduationCap, name: '教程中心', desc: '按知识域与职业路线组织的系统教程，每篇都配 AI 助教陪学。', stat: catalog ? `${catalog.tutorials.length} 篇 · ${catalog.domains.length} 大知识域` : '加载中…' },
-    { to: '/lab', icon: FlaskConical, name: '实验室', desc: '浏览器里的真沙箱：写完即运行，AI 教练按验收标准陪你把实验做完。', stat: labs ? `${labs.length} 个配套实验` : undefined },
+    { to: '/lab', icon: FlaskConical, name: '实验室', desc: '按方向准备的实验环境：打开就能写代码、看结果，想练什么由你决定，AI 助教随时开关。', stat: labs ? `${labs.length} 个可选示例` : undefined },
     { to: '/graph', icon: Waypoints, name: '知识图谱', desc: '全站内容的关系网络，2D / 3D 自由切换，顺着脉络找下一本。', stat: `${posts.length} 个节点` },
     { to: '/ai', icon: Bot, name: 'AI 馆员', desc: '本地大模型驱动的胡桃馆员，认识全馆藏书，帮你规划路线、答疑解惑。', stat: '数据不出内网' },
   ];

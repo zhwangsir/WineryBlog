@@ -1,0 +1,10 @@
+const primary = new Map();
+const replica = new Map();
+
+function write(key, val) {
+  primary.set(key, val);
+  setTimeout(() => replica.set(key, val), 500);   // 复制延迟
+}
+function readFrom(type, key) {
+  return (type === 'primary' ? primary : replica).get(key);
+}

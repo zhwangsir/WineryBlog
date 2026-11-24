@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 16px;
+  background: #12181f;
+  color: #dfe6ee;
+  font-family: system-ui, sans-serif;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+#box {
+  min-height: 56px;
+  padding: 10px;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  background: #0b0f14;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+}

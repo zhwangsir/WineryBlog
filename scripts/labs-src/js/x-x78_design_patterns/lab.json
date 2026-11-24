@@ -1,0 +1,39 @@
+{
+  "id": "x-x78_design_patterns",
+  "post": "x-x78_design_patterns",
+  "title": "用策略模式消灭 if-else（设计模式）",
+  "summary": "把会腐烂的 if-else 重构成策略表。",
+  "goal": "把一段随促销类型膨胀的 if-else 重构为策略表，体会开闭原则——「新增类型不改老代码」在真实代码里长什么样。",
+  "minutes": 15,
+  "level": "进阶",
+  "tags": [
+    "设计模式",
+    "重构"
+  ],
+  "order": 40,
+  "steps": [
+    {
+      "title": "Step 1 · 写出会腐烂的原版",
+      "detail": "每种促销一个 if 分支。想象明年新增 5 种促销——这个函数要改 5 次，每次都有改坏老逻辑的风险。",
+      "check": "三种促销计算正确（如 full:120→100，percent:100→85）",
+      "snippet": "snippets/step1.txt"
+    },
+    {
+      "title": "Step 2 · 策略表重构",
+      "detail": "每种促销是一个「策略函数」，收进一张表。新增促销 = 表里加一行——老分支一行不动，这就是开闭原则。",
+      "check": "同样输入得到同样输出；新增类型只加一行",
+      "snippet": "snippets/step2.txt"
+    },
+    {
+      "title": "Step 3 · 加一种新促销验证开闭原则",
+      "detail": "新增「满 200 减 50」：只在表里加一行，finalPrice 函数零改动。再对比：if-else 版本要进函数体改代码——风险完全不同。",
+      "check": "新增促销未修改任何已有函数",
+      "snippet": "snippets/step3.txt"
+    }
+  ],
+  "verify": [
+    "说清策略模式两个角色（策略表 + 统一调用入口）",
+    "if-else 与策略表各自的适用规模（分支少而稳定时 if-else 反而更直白）",
+    "举一个自己项目里可以表驱动的分支逻辑"
+  ]
+}

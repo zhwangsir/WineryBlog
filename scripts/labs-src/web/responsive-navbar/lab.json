@@ -1,0 +1,37 @@
+{
+  "id": "responsive-navbar",
+  "title": "挑战：响应式导航栏",
+  "summary": "宽屏横排菜单，窄屏折叠成汉堡按钮。",
+  "goal": "从零写出一个响应式导航栏：宽屏时 Logo 在左、菜单横排在右；窄屏时菜单收起，右上角出现汉堡按钮，点一下展开竖向菜单。要用到 flex 布局、媒体查询、classList 切换、事件委托和 matchMedia。做完用预览区的「平板 · 768px」和「手机 · 390px」两个宽度逐项验收。",
+  "minutes": 25,
+  "level": "挑战",
+  "tags": ["响应式", "CSS 布局", "JavaScript"],
+  "order": 45,
+  "steps": [
+    {
+      "title": "Step 1 · 宽屏：横向导航栏",
+      "detail": "先做宽屏版本（先点预览区的「平板 · 768px」，确保预览足够宽）。导航栏是「一行两头」的布局：Logo 靠左、菜单靠右、垂直居中——这正是 flex 的 justify-content: space-between 和 align-items: center。菜单本身也是一个 flex 容器，链接之间留 gap。链接默认是蓝色带下划线的，要用 text-decoration: none 去掉下划线、color 换成浅色，再给一点内边距和圆角，悬停时变成橙色。style.css 里导航栏相关的属性都留了 TODO，按注释里的提示补全；汉堡按钮和页面正文已经写好，不用改。",
+      "check": "「平板 · 768px」下，Logo「Winery」在最左边，四个链接排成一行靠右，垂直方向上与 Logo 居中对齐；链接没有下划线，是浅灰色的。鼠标悬停时文字变成橙色，并出现一层淡淡的橙色底色。",
+      "snippet": "snippets/step1.css"
+    },
+    {
+      "title": "Step 2 · 窄屏：折叠成汉堡按钮",
+      "detail": "媒体查询 @media (max-width: 480px) 里的规则只在宽度不超过 480px 时生效，所以写法是：宽屏样式放在外面当默认值，窄屏的「例外」写进媒体查询。窄屏下做三件事：显示汉堡按钮（.toggle 改成 display: inline-flex）、藏起菜单（display: none）、写出展开后的样式 .menu.open——JS 点按钮时会给菜单加上 open：用 display: flex 重新显示，改成竖向排列，并用 position: absolute; top: 100% 贴在导航栏正下方（导航栏要先有 position: relative 才能当定位参照）。然后切到 script.js：给 toggle 监听 click，用 menu.classList.toggle('open') 开关菜单（返回值 = 现在是否开着），用 toggle.classList.toggle('active', open) 让三条横线变成 ×，并用 setAttribute('aria-expanded', ...) 把状态告诉读屏软件。",
+      "check": "点「手机 · 390px」：横向菜单不见了，右上角出现一个三条横线的按钮。点一下：导航栏下方展开竖排菜单，按钮变成 ×；再点一下：菜单收起，按钮变回三条横线。点回「平板 · 768px」：恢复成一行横排（页面正文里显示着当前预览宽度，要超过 480px 才会恢复；不够的话把结果区拉宽）。",
+      "snippet": "snippets/step2.css"
+    },
+    {
+      "title": "Step 3 · 收尾：点链接自动收起，跨越断点时复位",
+      "detail": "最后补上真实网站里一定会遇到的两个细节。① 点了菜单里的链接之后菜单应该自动收起，否则用户跳转之后菜单还挡在内容上。不用给每个链接单独绑监听——只给 menu 挂一个 click 监听，点击会从被点的元素一路冒泡上来，用 e.target.matches('a') 判断被点的是不是链接，是就收起（这叫事件委托）。② 用户可能开着菜单时切换宽度，这时菜单应该保持收起：用 window.matchMedia('(max-width: 480px)') 拿到一条媒体查询，给它监听 change 事件，跨越断点时复位状态。建议把「收起菜单」写成一个小函数 closeMenu()，两个地方都调用它。",
+      "check": "在「手机 · 390px」下展开菜单，点其中任意一个链接：菜单自动收起，按钮变回三条横线。展开着菜单直接点「平板 · 768px」：导航恢复成一行横排，没有残留竖排下拉的样式；再点回「手机 · 390px」，菜单是收起状态。",
+      "hint": "matchMedia 的断点要和 CSS 里 @media 的断点写成一样，否则 JS 和样式会在不同的宽度上「打架」。预览不会比结果区更宽：想让宽屏布局出现，可以拖动编辑器和结果区之间的分隔条，或者先关掉右侧的 AI 助教。",
+      "snippet": "snippets/step3.js"
+    }
+  ],
+  "verify": [
+    "平板宽度（768px）：Logo 在左，四个链接横排在右，悬停有橙色反馈",
+    "手机宽度（390px）：菜单收起为汉堡按钮，点击能展开 / 收起，按钮在三条横线和 × 之间切换",
+    "点菜单里的链接后自动收起",
+    "跨越断点（768px 与 390px 来回切换）后导航栏状态正确，不残留展开样式"
+  ]
+}

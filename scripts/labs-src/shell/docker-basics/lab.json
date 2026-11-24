@@ -1,0 +1,45 @@
+{
+  "id": "docker-basics",
+  "title": "Docker 入门：一个 Nginx 容器的完整生命周期",
+  "summary": "起一个 Nginx 容器：端口映射、挂载、进入、清理。",
+  "goal": "用 docker run 启动一个 Nginx 容器并映射端口，用 ps / exec / logs 观察它，用 -v 把宿主机目录挂载进容器，最后 stop / rm 清理干净——理解「镜像与容器」「端口映射」「挂载」这三个最核心的概念。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": [
+    "Docker",
+    "Nginx",
+    "容器"
+  ],
+  "order": 60,
+  "sim": {
+    "setup": "本实验的初始状态：docker 20.10 已安装并且守护进程正在运行；winery 用户在 docker 组里，执行 docker 命令不需要 sudo；当前没有任何容器和挂载（docker ps -a 只有表头）。本地已有镜像 nginx:alpine（基于 Alpine Linux、自带 Nginx 的镜像，不需要联网拉取）：容器里的网页根目录是 /usr/share/nginx/html（有 index.html 和 50x.html 两个默认页面），Nginx 监听容器内的 80 端口，访问日志输出到标准输出。家目录 /home/winery 下有一个 html 目录，里面只有一个 index.html，内容是一行：<h1>挂载成功：我来自宿主机的 ~/html</h1>。宿主机的 8080 端口空闲。docker run -d 成功时输出一长串容器 ID；docker ps 的表格有 CONTAINER ID、IMAGE、COMMAND、CREATED、STATUS、PORTS、NAMES 七列；docker stop 与 docker rm 成功时各输出容器名 web。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · docker run：起一个容器并映射端口",
+      "detail": "镜像是只读的模板（nginx:alpine），容器是它跑起来的实例——同一个镜像可以同时起很多个互不干扰的容器。编辑器里的 commands.sh 已经写好了启动命令：-d 后台运行，--name web 起个名字。容器有自己独立的网络，外面默认访问不到，所以要加 -p 8080:80 把宿主机的 8080 端口映射到容器里的 80 端口。补上端口映射和两条验证命令（docker ps、curl），点右上角的「运行」执行整份脚本。",
+      "check": "终端输出里应出现一长串容器 ID；docker ps 表格里 NAMES 为 web、STATUS 为 Up、PORTS 为 0.0.0.0:8080->80/tcp；curl -i localhost:8080/ 的状态行是 HTTP/1.1 200 OK，响应体里有 Welcome to nginx!",
+      "hint": "-p 的格式是「宿主机端口:容器端口」；只写了 -p 8080 而没写冒号后面的容器端口，映射的就不是容器里的 80 了",
+      "snippet": "snippets/step1.sh"
+    },
+    {
+      "title": "Step 2 · docker exec 与 docker logs：看看容器里面",
+      "detail": "容器是一个隔离的小系统。docker exec web <命令> 在容器里执行一条命令，执行完自动退出——先看看它是什么系统（cat /etc/os-release），再看网页根目录里有哪些文件。想交互式地进去是 docker exec -it web sh（Alpine 里没有 bash，只有 sh）。docker logs web 查看容器主进程的输出：Nginx 把访问日志打到标准输出，所以这里能看到刚才 curl 发出的那条请求。把这三条命令加进脚本再运行一次。",
+      "check": "终端输出里，docker exec web cat /etc/os-release 的结果应出现 Alpine；docker exec web ls /usr/share/nginx/html 列出 index.html 与 50x.html；docker logs web 里应有一条 GET / 的访问记录（状态码 200，末尾是 curl 的 User-Agent）",
+      "snippet": "snippets/step2.sh"
+    },
+    {
+      "title": "Step 3 · -v 挂载宿主机目录，然后清理",
+      "detail": "容器里的改动会随容器一起消失，所以网页文件要放在宿主机上，用 -v 挂载进去：-v ~/html:/usr/share/nginx/html:ro 表示宿主机的 ~/html 就是容器里的网页根目录（:ro 表示容器内只读）。端口和挂载在创建时就定死了，改不了，只能删掉重建。照 TODO 里的命令删旧容器、带 -v 重新运行，用 curl 确认首页换成了挂载目录里的内容（在终端里往 ~/html/index.html 追加一行再 curl，内容会立刻变化）。最后 docker stop 加 docker rm 把容器清理掉。",
+      "check": "终端输出里，重新运行后 curl -s localhost:8080/ 的结果应是「挂载成功：我来自宿主机的 ~/html」；docker stop web 与 docker rm web 各输出一行 web，docker ps -a 只剩表头",
+      "hint": "脚本开头那句 docker rm -f web 2>/dev/null 的作用：同名容器还在时再 docker run --name web 会报 Conflict，先删掉才能重复运行",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "docker run 之后 docker ps 里能看到 web 容器，curl 经 8080 端口拿到 Nginx 欢迎页",
+    "docker exec 能在容器里执行命令，docker logs 里能看到 curl 产生的访问记录",
+    "带 -v 重建后，首页内容换成了宿主机 ~/html/index.html 的内容；最后容器已 stop 并 rm",
+    "能说出镜像与容器的关系，以及 -p 8080:80 与 -v 各解决了什么问题"
+  ]
+}

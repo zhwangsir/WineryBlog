@@ -7,6 +7,7 @@ import {
 import { useData } from '../context/DataContext';
 import { TutorPanel } from '../components/TutorPanel';
 import { fetchProgress, markRead } from '../lib/progress';
+import { useLabsData } from '../lib/labs';
 import { CoverImage } from '../components/CoverImage';
 import { CommentSection } from '../components/CommentSection';
 import { ReadingProgress } from '../components/ReadingProgress';
@@ -70,6 +71,8 @@ export const PostDetail: React.FC = () => {
   const navigate = useNavigate();
   const { hash } = useLocation();
   const { config, posts } = useData();
+  // 这篇文章的配套实验（实验 id 就是文章 id，或实验的 post 字段指向它）
+  const { data: labsData } = useLabsData();
 
   const [state, setState] = useState<LoadState>({ status: 'loading' });
   const [password, setPassword] = useState('');
@@ -87,6 +90,8 @@ export const PostDetail: React.FC = () => {
   const locked = post?.locked === true;
   // 教程（非随笔）才有 AI 助教、已学标记与配套实验
   const isTutorial = !!post && post.category !== '随笔';
+  const labFor = post && labsData ? Object.values(labsData.labs).find((l) => l.id === post.id || l.post === post.id) : undefined;
+  const labEnv = labFor && labsData ? labsData.envs.find((e) => e.id === labFor.env) : undefined;
 
   const body = useMemo(
     () => stripDuplicateTitle(post?.content || '', post?.title || ''),
@@ -434,20 +439,38 @@ export const PostDetail: React.FC = () => {
         </aside>
       </div>
 
-      {/* 实验入口：配套实验在独立实验室页（AI Agent 陪练 + 沙箱运行） */}
-      {isTutorial && (
+      {/* 实验室入口：有配套示例就直接进对应环境并载入它，没有就带去实验室选环境 */}
+      {isTutorial && (labFor ? (
+        <Link
+          to={`/lab?env=${labFor.env}&exp=${labFor.id}`}
+          className="group mt-10 flex items-center gap-4 rounded-2xl border border-border bg-bg-card px-5 py-4 transition-colors hover:border-accent/50"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 transition-colors group-hover:bg-accent/20">
+            <FlaskConical className="h-5 w-5 text-accent" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[11px] font-semibold tracking-widest text-accent uppercase">配套示例 · 可选</p>
+            <p className="text-base font-bold text-text-primary transition-colors group-hover:text-accent">{labFor.title}</p>
+            <p className="mt-0.5 text-xs text-text-muted">
+              {labEnv?.name} · {labFor.level} · 约 {labFor.minutes} 分钟 · {labEnv?.runner === 'sim' ? 'AI 仿真终端' : '浏览器里真实运行'} · 也可以直接在这个环境里自由练习
+            </p>
+          </div>
+          <span className="shrink-0 text-sm font-medium text-accent">打开环境</span>
+          <ArrowRight className="ml-1 h-4 w-4 shrink-0 text-accent transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      ) : (
         <Link
           to="/lab"
-          className="mt-10 flex items-center gap-3 rounded-2xl border border-border bg-bg-card px-5 py-4 transition-colors hover:border-accent/50 group"
+          className="group mt-10 flex items-center gap-3 rounded-2xl border border-border bg-bg-card px-5 py-4 transition-colors hover:border-accent/50"
         >
           <FlaskConical className="h-5 w-5 shrink-0 text-accent" />
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-bold text-text-primary transition-colors group-hover:text-accent">实验室 · 动手实验 + AI Agent 陪练</p>
-            <p className="mt-0.5 text-xs text-text-muted">本教程方向的实操实验已迁入实验室：真沙箱运行 / AI 仿真终端 / 实验教练验收</p>
+            <p className="text-sm font-bold text-text-primary transition-colors group-hover:text-accent">实验室 · 按方向选择的实验环境</p>
+            <p className="mt-0.5 text-xs text-text-muted">前端、JavaScript、Python、SQL、AI 提示词都能在浏览器里直接运行，想练什么由你决定</p>
           </div>
           <ArrowRight className="h-4 w-4 shrink-0 text-text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent" />
         </Link>
-      )}
+      ))}
 
       {neighbors && (
         <div className="mt-10 flex flex-col gap-4 border-t border-border pt-8">

@@ -1,0 +1,8 @@
+const strategies = {
+  full:    p => (p >= 100 ? p - 20 : p),
+  percent: p => p * 0.85,
+  vip:     p => p * 0.8 - 5,
+};
+function finalPrice(type, price) {
+  return (strategies[type] ?? (p => p))(price);
+}

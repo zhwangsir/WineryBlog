@@ -1,0 +1,3 @@
+// 漏洞写法：用户输入被当成 HTML 解析
+const userInput = '<img src=x onerror="...藏在图片加载失败事件里的脚本...">';
+document.getElementById('box').innerHTML = userInput;   // 漏洞行

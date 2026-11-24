@@ -1,0 +1,43 @@
+{
+  "id": "sql-join",
+  "title": "连接查询：INNER JOIN、LEFT JOIN 与多表连接",
+  "summary": "把编号换成人名和部门名：各种 JOIN 的用法。",
+  "goal": "学会把多张表连起来查：用 INNER JOIN 只保留匹配得上的行，用 LEFT JOIN 找出「没有匹配」的行，再把三张、四张表串起来，甚至让一张表和自己连接。",
+  "minutes": 25,
+  "level": "进阶",
+  "tags": [
+    "SQL",
+    "JOIN",
+    "多表"
+  ],
+  "order": 40,
+  "steps": [
+    {
+      "title": "Step 1 · INNER JOIN：只保留匹配得上的行",
+      "detail": "employees 表里只存了 dept_id 这样的编号，想显示部门名称就得把两张表连起来。INNER JOIN … ON 的意思是：ON 的条件成立，两边的行才拼在一起保留。【查询 1】已经写好，可以对照：给表起短别名 e、d，再用「表别名.列名」说明每一列来自哪张表（两张表都有 name 列，不写清楚会报 ambiguous column name）。请补全【查询 2】：连接 departments 和 employees，统计每个部门的人数，按人数从多到少排列。",
+      "check": "【查询 1】是 10 行 · 3 列（在上海办公的员工）；【查询 2】是 5 行：研发部 12、市场部 6、产品部 5、财务部 4、人事部 3",
+      "hint": "连接条件是 employees.dept_id = departments.id。连接之后照样可以 GROUP BY，分组用的列要带上表别名，例如 GROUP BY d.name。",
+      "snippet": "snippets/step1.sql"
+    },
+    {
+      "title": "Step 2 · LEFT JOIN：找出没有匹配的行",
+      "detail": "LEFT JOIN 保留左表的全部行；右表里找不到匹配时，右表的那些列补上 NULL。【查询 3】要看清 NULL 是怎么补的：列出 6、7、8 号项目的分工，已经搁置的 8 号项目一个人也没有，它的员工编号、角色两列是 NULL。请补全两处 TODO：【查询 3】；【查询 4】找出没有参与任何项目的员工——套路是 LEFT JOIN 之后用 IS NULL 过滤。写好的【查询 5】统计每个项目的参与人数：它数的是 a.id 而不是 *，因为没匹配上的那一行会被 COUNT(*) 错数成 1。",
+      "check": "【查询 3】是 9 行 · 4 列，最后一行是 海外市场调研 | 已搁置 | NULL | NULL；【查询 4】是 5 行：王振华、谢雨欣、秦悦、董倩、袁浩然",
+      "hint": "判断「没有匹配」要写 WHERE a.id IS NULL；写成 a.id = NULL 永远不成立。",
+      "snippet": "snippets/step2.sql"
+    },
+    {
+      "title": "Step 3 · 多表连接",
+      "detail": "assignments 表（项目分工）是员工和项目之间的中间表，两头各连一次，就能把编号换成人名和项目名；连接的次数没有上限，可以一直连下去。请补全两处 TODO：【查询 6】连接 assignments、employees、projects 三张表，列出所有「进行中」项目的参与明细；【查询 7】再连上 departments，列出每个项目的名称、归属部门和负责人。最后的【查询 8】是自连接：employees 和它自己连接，一份当员工、一份当上级，查出每个人的直属上级。",
+      "check": "【查询 6】是 19 行 · 4 列；【查询 7】是 8 行 · 4 列（每个项目一行）；【查询 8】是 30 行，5 位总监的「直属上级」是 NULL",
+      "hint": "三表连接就是写两个 INNER JOIN … ON，第二个 ON 接在第一个的后面。",
+      "snippet": "snippets/step3.sql"
+    }
+  ],
+  "verify": [
+    "【查询 2】返回 5 个部门的人数：研发部 12、市场部 6、产品部 5、财务部 4、人事部 3",
+    "【查询 4】返回 5 个没有参与项目的员工；【查询 5】里 8 号项目的参与人数是 0",
+    "【查询 6】返回 19 行；【查询 7】每个项目一行，共 8 行",
+    "能说出 INNER JOIN 和 LEFT JOIN 的区别，以及「找没有匹配的行」为什么要用 IS NULL"
+  ]
+}

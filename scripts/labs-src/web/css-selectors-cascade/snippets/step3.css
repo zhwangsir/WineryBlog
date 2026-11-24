@@ -1,0 +1,14 @@
+.outer {
+  color: #f2c14e;      /* a. 内层盒子没有自己的 color，会继承这个颜色 */
+}
+
+.inner {
+  color: #3ecf8e;          /* b. 自己写了 color，就不再继承外层的 */
+  box-sizing: border-box;  /* c. width 把 padding 和 border 也算进去 */
+}
+
+/* 默认 box-sizing: content-box 时，元素实际占的宽度是：
+     width + 左右 padding + 左右 border = 240 + 16×2 + 4×2 = 280px（比刻度条宽）
+
+   改成 border-box 之后，width 的 240px 把 padding 和 border 都包了进去：
+     240 = 4 + 16 + 内容 192 + 16 + 4 */

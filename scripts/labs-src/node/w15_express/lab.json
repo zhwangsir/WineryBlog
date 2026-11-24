@@ -1,0 +1,39 @@
+{
+  "id": "w15_express",
+  "post": "w15_express",
+  "title": "15 分钟搭一个待办事项 REST API（Express）",
+  "summary": "15 分钟搭一个内存版待办 API。",
+  "goal": "用 Express 搭一个内存版待办 API（增删改查 + 404 处理），理解路由、中间件、JSON 请求体这三件事——所有后端框架的入门都是它们。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Express",
+    "REST"
+  ],
+  "order": 20,
+  "steps": [
+    {
+      "title": "Step 1 · 起服务 + JSON 中间件",
+      "detail": "express.json() 是解析请求体的中间件——没有它 req.body 就是 undefined，这是新手最常见的坑。server.js 里已经搭好了骨架：先取消 app.use(express.json()) 那一行的注释，然后点「运行」，右侧终端里服务就启动了。",
+      "check": "终端打印 API on :3000",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · 四个路由（查全 / 增 / 改状态 / 删）",
+      "detail": "用数组模拟数据库，练习路由参数（req.params）与请求体（req.body）的区别：一个来自 URL 路径、是字符串；一个来自请求体、是解析后的对象。在 server.js 里补全四个路由，再点「运行」——服务会用新的代码重新启动。",
+      "check": "用 curl 完成 增 → 查 → 改 → 删 四连",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · curl 全流程验证",
+      "detail": "在终端里依次调用四个接口，验证状态码与数据变化。注意新增是 201、删除是 204（没有响应体），改一个不存在的 id 会得到 404。",
+      "check": "四个请求的状态码分别为 201 / 200 / 200 / 204",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "POST 缺 text 字段时会发生什么？如何加参数校验？",
+    "说出把 express.json() 去掉后哪个接口会坏、为什么",
+    "能解释 :id 路由参数如何进入 req.params，以及它为什么是字符串"
+  ]
+}

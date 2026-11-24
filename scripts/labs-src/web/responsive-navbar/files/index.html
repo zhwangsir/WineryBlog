@@ -1,0 +1,41 @@
+<header class="navbar">
+  <a href="#" class="logo">Winery</a>
+
+  <!-- 一组导航链接：宽屏横着排，窄屏折进汉堡按钮 -->
+  <nav id="menu" class="menu">
+    <a href="#">首页</a>
+    <a href="#">教程</a>
+    <a href="#">实验室</a>
+    <a href="#">关于</a>
+  </nav>
+
+  <!-- 汉堡按钮：三条横线。宽屏时隐藏，窄屏时显示 -->
+  <button id="toggle" class="toggle" type="button" aria-label="切换菜单" aria-expanded="false" aria-controls="menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <h1>响应式导航栏</h1>
+    <p>拉宽、变窄，导航栏自己知道该怎么办。</p>
+    <p class="width-tip">当前预览宽度：<b id="width">--</b></p>
+  </section>
+
+  <section class="grid">
+    <article class="block">
+      <h2>宽屏</h2>
+      <p>空间充足：菜单横着排，一眼看全。</p>
+    </article>
+    <article class="block">
+      <h2>窄屏</h2>
+      <p>空间紧张：菜单折进汉堡按钮。</p>
+    </article>
+    <article class="block">
+      <h2>断点</h2>
+      <p>断点按内容的需要来定，而不是按设备。</p>
+    </article>
+  </section>
+</main>

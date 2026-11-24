@@ -1,0 +1,39 @@
+{
+  "id": "py-strings-lists",
+  "title": "Python 字符串与列表：常用方法与切片",
+  "summary": "字符串怎么清洗、列表怎么增删改、切片怎么取一段。",
+  "goal": "掌握 Python 里最常用的两种序列：字符串的 strip / split / replace / join，列表的 append / insert / pop / sort，以及用切片取出一部分。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": ["Python", "字符串", "列表"],
+  "order": 20,
+  "steps": [
+    {
+      "title": "Step 1 · 字符串的常用方法",
+      "detail": "字符串不能被修改：每个方法都返回一个「新的字符串」，原来的不变。main.py 里有两段文字 msg 和 sentence，请补全四处 TODO：① 用 strip() 去掉 msg 两端的空白；② 用 split() 把 sentence 按空格拆成列表；③ 用 replace() 把其中的 go 换成 golang；④ 用 - 的 join 把三个词连成 python-java-go。",
+      "check": "输出区依次出现 Hello, Python 世界、['python', 'java', 'go', 'rust']、python java golang rust、python-java-go",
+      "hint": "join 是「连接符」的方法：\"-\".join(列表)。",
+      "snippet": "snippets/step1.py"
+    },
+    {
+      "title": "Step 2 · 列表的增、删、改",
+      "detail": "列表和字符串不同，可以原地修改。fruits 是一个水果列表：① 用 append() 把「葡萄」加到末尾；② 把下标 0 的元素改成「梨」（下标从 0 开始，-1 表示最后一个）；③ scores 是一组分数，用 sort(reverse=True) 把它降序排列——注意 sort() 会修改列表本身，而 sorted() 只返回一个新列表、原来的不变。",
+      "check": "水果列表里出现「葡萄」和「梨」；scores 变成 [98, 92, 92, 88, 75, 60]",
+      "hint": "下面的 print(fruits[0], fruits[-1]) 会立刻反映出你的修改。",
+      "snippet": "snippets/step2.py"
+    },
+    {
+      "title": "Step 3 · 切片与遍历",
+      "detail": "切片 week[起点:终点:步长] 含起点、不含终点，省略就表示从头或到尾。请补全三处 TODO：① week[0:5] 取前 5 个；② week[::2] 隔一个取一个；③ week[::-1] 整个倒过来。",
+      "check": "输出 ['周一', '周二', '周三', '周四', '周五']、['周一', '周三', '周五', '周日']、['周日', '周六', '周五', '周四', '周三', '周二', '周一']",
+      "hint": "步长是 -1 就是从右往左取。",
+      "snippet": "snippets/step3.py"
+    }
+  ],
+  "verify": [
+    "四处字符串方法的输出与预期一致",
+    "append、修改下标、sort 之后的输出与预期一致",
+    "三种切片的输出与预期一致",
+    "能说出 sort() 与 sorted() 的区别"
+  ]
+}

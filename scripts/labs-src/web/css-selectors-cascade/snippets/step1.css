@@ -1,0 +1,12 @@
+/* 优先级 = (id 个数，class / 伪类 / 属性个数，标签个数)，从左往右逐位比较 */
+#champion { background: #4fa3e3; }     /* (1,0,0)  最高——哪怕写在最前面也是它赢 */
+.panel .box { background: #b07cff; }   /* (0,2,0) */
+.box { background: #f2c14e; }          /* (0,1,0)  最低 */
+
+/* 想让方块变绿，下面三种写法任选其一（不要全抄）： */
+
+#champion { background: #3ecf8e; }     /* (1,0,0) 和第一条打平，但写在后面 → 生效 */
+
+#champion.box { background: #3ecf8e; } /* (1,1,0) 优先级更高 → 写在哪都生效 */
+
+.box { background: #3ecf8e; }          /* (0,1,0) 被 #champion 压住 → 无效，方块还是蓝色 */

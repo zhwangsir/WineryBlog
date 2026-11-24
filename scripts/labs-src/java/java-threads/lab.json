@@ -1,0 +1,44 @@
+{
+  "id": "java-threads",
+  "title": "Java 多线程计数：复现竞态条件，再用两种方式修复",
+  "summary": "两个线程各加十万次，结果为什么不是二十万？",
+  "goal": "用两个线程同时对一个计数器各自加 100000 次，亲眼看到「期望 200000、实际总是更少」的竞态条件；再分别用 synchronized（加锁）和 AtomicInteger（原子操作）修复——理解 count++ 为什么不是线程安全的。",
+  "minutes": 20,
+  "level": "挑战",
+  "tags": [
+    "Java",
+    "多线程",
+    "线程安全"
+  ],
+  "order": 40,
+  "sim": {
+    "setup": "本实验从一套已经写好的实验装置开始：Counter 接口、变量 TIMES = 100000、方法 race(Counter)（起两个线程，各自对同一个计数器调用 100000 次 increment，join 之后返回计数）。多线程的竞态结果带有随机性，请按下面的方式表现：UnsafeCounter（普通 int 的 count++）的实际值应是一个明显小于 200000 的数（例如十几万），每次运行都不同；SyncCounter（synchronized 方法）与 AtomicCounter（AtomicInteger）的实际值恒为 200000。只输出 jshell 的求值结果与 println 的内容。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · 复现竞态：期望 200000，实际却更少",
+      "detail": "编辑器里已经写好了实验装置：Counter 接口、每个线程自增的次数 TIMES、以及让两个线程同时开跑并等它们都结束的 race 方法。在 UnsafeCounter 的 increment 里补上最朴素的 count++，点右上角的「运行」，连着运行三四次。count++ 看着是一句话，其实是「读出 count → 加 1 → 写回」三步：线程 A 刚读出 100，线程 B 也读到 100，各自加 1 写回 101——两次自增只涨了 1。这就是竞态条件（race condition）。",
+      "check": "终端输出里「不加保护：期望 200000，实际 X」的 X 小于 200000，而且每次运行都不一样（偶尔恰好等于 200000 也有可能，多运行几次）",
+      "hint": "实现只有一行 count++；如果输出里的实际值一直是 0，说明 increment 还是空的",
+      "snippet": "snippets/step1.java"
+    },
+    {
+      "title": "Step 2 · synchronized：同一时刻只放一个线程进来",
+      "detail": "给 increment 方法加上 synchronized，它就成了互斥区：线程进门要先拿到这把锁（锁的是这个对象自己），拿不到就在外面等着。「读—加—写」三步不会被别的线程插进来，结果自然就对了。照着 UnsafeCounter 写一个 SyncCounter 并打印结果——实验装置一行不用改，只换计数器的实现。",
+      "check": "终端输出里应出现「synchronized：期望 200000，实际 200000」，而上面那行不加保护的结果仍然小于 200000",
+      "snippet": "snippets/step2.java"
+    },
+    {
+      "title": "Step 3 · AtomicInteger：不加锁的原子操作",
+      "detail": "加锁要排队，开销更大，高并发下会变成瓶颈。java.util.concurrent.atomic.AtomicInteger 的 incrementAndGet 直接利用 CPU 的原子指令完成「加 1」，不需要锁。写一个 AtomicCounter：字段换成 AtomicInteger，increment 里调用 incrementAndGet，get 里调用 get。三行结果一起看，对比三种做法。",
+      "check": "终端输出里应出现「AtomicInteger：期望 200000，实际 200000」；三行结果同时可见：第一行偏小，后两行都是 200000",
+      "snippet": "snippets/step3.java"
+    }
+  ],
+  "verify": [
+    "不加保护的计数器结果小于 200000，且多次运行的结果不同",
+    "synchronized 与 AtomicInteger 两种修复后的结果都是稳定的 200000",
+    "能说出 count++ 为什么不是原子操作（读 → 加 → 写，三步之间可能被别的线程插进来）",
+    "能说出 synchronized 与 AtomicInteger 的区别（互斥锁排队 vs CPU 原子指令）"
+  ]
+}

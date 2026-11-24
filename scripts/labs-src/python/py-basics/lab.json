@@ -1,0 +1,39 @@
+{
+  "id": "py-basics",
+  "title": "Python 基础：变量、f-string 与控制流",
+  "summary": "不装环境，在浏览器里写下第一批 Python：变量、分支和循环。",
+  "goal": "学会 Python 最基本的三件事：用变量和 f-string 组织输出、用 if / elif / else 做分支、用 for / while 写循环。代码在浏览器里的 Python 引擎上真实运行，输出显示在右侧。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": ["Python", "基础语法"],
+  "order": 10,
+  "steps": [
+    {
+      "title": "Step 1 · 变量、类型与 f-string",
+      "detail": "Python 的变量不用声明类型，直接赋值。字符串前面加一个 f 就成了 f-string：花括号里可以放变量，也可以放算式，还能用 :.2f 这样的格式说明控制小数位数。main.py 里已经定义了 name、age、height 三个变量并打印了它们，请补全三处 TODO：① 用 f-string 输出「我叫{name}，今年 {age} 岁」；② 输出「身高 {height} 米，明年 {age + 1} 岁」，明年的岁数要在花括号里算出来；③ price 是 9.9、count 是 3，输出「{count} 杯奶茶一共 {金额} 元」，金额保留两位小数。",
+      "check": "输出区多出三行：我叫林小满，今年 24 岁 / 身高 1.68 米，明年 25 岁 / 3 杯奶茶一共 29.70 元",
+      "hint": "花括号里可以直接写算式：{age + 1}、{price * count:.2f}。",
+      "snippet": "snippets/step1.py"
+    },
+    {
+      "title": "Step 2 · if / elif / else",
+      "detail": "分支靠行首缩进区分代码块，同一个代码块的缩进必须一致（习惯用 4 个空格）。条件从上往下依次判断，命中一个就不再看后面的。score 是 86：补全分支，90 分及以上是「优秀」、80 分及以上是「良好」、60 分及以上是「及格」，否则「不及格」。再把 score 改成 55 和 95 各运行一次，看看输出怎么变。",
+      "check": "score 为 86 时输出「86 分：良好」；改成 95 输出「优秀」，改成 55 输出「不及格」",
+      "hint": "因为是从上往下判断，所以先写 score >= 90，再写 score >= 80——顺序反过来就全被第一个分支接走了。",
+      "snippet": "snippets/step2.py"
+    },
+    {
+      "title": "Step 3 · for、while 与 range",
+      "detail": "range(1, 101) 依次产生 1 到 100（含头不含尾），for 把每个数交给变量 i。while 则是「只要条件成立就一直循环」。请补全两处 TODO：① 用 for 把 1 加到 100，结果存进 total；② 模拟「1 分钱每天翻倍，第几天能超过 100 万元（1 亿分）」——只要 money < 100000000 就让 day 加 1、money 翻倍。",
+      "check": "输出「1 加到 100 = 5050」和「第 28 天，一共有 134217728 分」",
+      "hint": "循环体要缩进一层：for i in range(1, 101): 的下一行写 total += i。",
+      "snippet": "snippets/step3.py"
+    }
+  ],
+  "verify": [
+    "三行 f-string 输出与预期一致，金额保留了两位小数",
+    "把 score 改成别的分数，分支结果符合预期",
+    "能说出 range(1, 101) 为什么不包含 101",
+    "知道 while 循环如果条件永远成立会发生什么（右侧会在 20 秒后强制终止）"
+  ]
+}

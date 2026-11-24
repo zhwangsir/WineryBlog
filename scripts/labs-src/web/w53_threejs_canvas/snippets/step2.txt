@@ -1,0 +1,13 @@
+const ps = Array.from({ length: 200 }, () => ({
+  x: Math.random() * 480, y: Math.random() * 160,
+  vx: Math.random() * 2 + 0.5, vy: 0,
+}));
+function loop() {
+  ctx.clearRect(0, 0, 480, 160);
+  for (const p of ps) {
+    p.x = (p.x + p.vx) % 480;
+    ctx.fillRect(p.x, p.y, 3, 3);
+  }
+  requestAnimationFrame(loop);
+}
+loop();

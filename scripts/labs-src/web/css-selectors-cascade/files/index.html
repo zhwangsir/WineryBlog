@@ -1,0 +1,51 @@
+<header class="page-head">
+  <h1>CSS 调色实验室</h1>
+  <p>只改中间编辑器里的 style.css，右边的色块会立刻给出反应。</p>
+</header>
+
+<!-- 第 1 关：下面三个候选规则同时选中了这个方块，到底谁说了算？ -->
+<section class="panel">
+  <h2>第 1 关 · 优先级擂台</h2>
+  <p>三个候选规则都选中了下面这个方块。对照色块猜一猜：它现在是什么颜色？</p>
+  <ul class="candidates">
+    <li><span class="swatch swatch-a"></span><code>#champion</code></li>
+    <li><span class="swatch swatch-b"></span><code>.panel .box</code></li>
+    <li><span class="swatch swatch-c"></span><code>.box</code></li>
+  </ul>
+  <div class="box" id="champion">我听谁的？</div>
+</section>
+
+<!-- 第 2 关：四张卡片用的是同一个 class，区别靠「额外的 class」和「伪类」 -->
+<section class="panel">
+  <h2>第 2 关 · 葡萄品种卡片</h2>
+  <p>把鼠标放到卡片上移一移，再对比每张卡片里的品种名和边框。</p>
+  <div class="cards">
+    <div class="card">
+      <strong>黑皮诺</strong>
+      <span>酒体轻 · 酸度明亮</span>
+    </div>
+    <div class="card featured">
+      <strong>赤霞珠</strong>
+      <span>单宁重 · 黑加仑</span>
+    </div>
+    <div class="card">
+      <strong>梅洛</strong>
+      <span>口感柔和 · 李子</span>
+    </div>
+    <div class="card">
+      <strong>霞多丽</strong>
+      <span>白葡萄 · 柑橘与奶油</span>
+    </div>
+  </div>
+</section>
+
+<!-- 第 3 关：颜色会不会「继承」？宽度到底怎么算？ -->
+<section class="panel">
+  <h2>第 3 关 · 盒子套盒子</h2>
+  <p>外层盒子从外到内依次是：留白 margin → 边框 border → 内边距 padding → 内容 content。</p>
+  <p>里面那条刻度条的宽度是 240px，用来和内层盒子的实际宽度做对比。</p>
+  <div class="outer">
+    <div class="ruler"></div>
+    <div class="inner">内层盒子</div>
+  </div>
+</section>

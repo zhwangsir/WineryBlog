@@ -1,0 +1,39 @@
+{
+  "id": "w92_sec_xss_sqli",
+  "post": "w92_sec_xss_sqli",
+  "title": "亲手打出并修复一次 XSS（Web 安全）",
+  "summary": "亲手打出一次 XSS，再亲手修好它。",
+  "goal": "在本地页面里用 innerHTML 渲染一条「恶意评论」制造 XSS，再用 textContent 修复——攻击原理与防御一线之隔，亲手各做一遍。整个过程都在沙箱里进行，不会影响任何真实站点。",
+  "minutes": 15,
+  "level": "进阶",
+  "tags": [
+    "安全",
+    "XSS"
+  ],
+  "order": 60,
+  "steps": [
+    {
+      "title": "Step 1 · 用 innerHTML 复刻漏洞代码",
+      "detail": "模拟「评论渲染」：把用户输入直接 innerHTML 进页面——这就是无数站点的真实漏洞。script.js 里已经准备好了一条恶意评论：一个加载不出来的 <img>，它的 onerror 属性里藏着脚本。取消那一行 innerHTML 的注释，看预览区发生了什么。",
+      "check": "预览区出现橙色的「XSS 触发！脚本执行了」——藏在评论里的脚本被执行了",
+      "snippet": "snippets/step1.txt"
+    },
+    {
+      "title": "Step 2 · textContent 修复（上下文转义）",
+      "detail": "把 innerHTML 换成 textContent：用户输入被当作纯文本，脚本不再执行。防御第一原则——「不可信输入永远不进 HTML 上下文」。",
+      "check": "那句橙色提示不再出现，评论以纯文本原样显示（能看到 <img ...> 的字样）",
+      "snippet": "snippets/step2.txt"
+    },
+    {
+      "title": "Step 3 · 白名单场景：确实要渲染富文本怎么办？",
+      "detail": "评论支持 Markdown / 富文本时不能一刀切 textContent——先做输出转义（把 < > \" ' & 换成实体），或者用 DOMPurify 这类库做白名单过滤（只保留安全标签与属性），而不是自己写正则黑名单。参考答案里给了一个 escapeHtml 的写法。",
+      "check": "能说出黑名单过滤为什么必然被绕过",
+      "snippet": "snippets/step3.txt"
+    }
+  ],
+  "verify": [
+    "复现 XSS（评论里的脚本被执行）并说清注入路径",
+    "用 textContent 修复并解释原理",
+    "说出三种 XSS 类型（存储 / 反射 / DOM）各一句"
+  ]
+}

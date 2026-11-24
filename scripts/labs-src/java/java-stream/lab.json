@@ -1,0 +1,45 @@
+{
+  "id": "java-stream",
+  "title": "Java Stream 入门：商品筛选、排序、分组求和",
+  "summary": "一条流水线处理商品清单：筛选、排序、分组求和。",
+  "goal": "用 Stream API 的 filter、map、sorted、collect 处理一份商品清单：筛出指定价格以上的商品、按价格排出前三、按分类分组求和——学会把「循环 + if + 临时列表」写成一条声明式的流水线。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Java",
+    "Stream",
+    "函数式编程"
+  ],
+  "order": 10,
+  "sim": {
+    "setup": "本实验从一份有 8 件商品的清单开始（商品数据写在代码里）。参考输出（用于保持输出一致，不要主动展示）：record 的 toString 形如 Product[name=机械键盘, category=数码, price=199.0]；单价不低于 150 的商品名称依次是 机械键盘、蓝牙耳机、显示器、挂耳咖啡礼盒；单价最高的 3 件是 显示器 1299.0、蓝牙耳机 299.0、机械键盘 199.0；各分类总价为 {数码=1886.0, 图书=152.0, 食品=226.0}。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · filter 筛选 + map 转换",
+      "detail": "Stream 把「做什么」和「怎么做」分开：filter 负责筛选（参数是一个返回 boolean 的 Lambda，true 留下、false 丢弃），map 负责把每个元素变成另一个东西（这里是商品 → 名称）。它们都返回新的流，所以可以用点号串成一条链，最后由 forEach 这样的终结操作触发执行。先点一次「运行」看看已写好的示例（打印全部 8 件商品），再照 TODO 补上「单价不低于 150 元的商品名称」。",
+      "check": "终端输出里「== 单价 150 元以上的商品 ==」下面正好 4 行，依次是 机械键盘、蓝牙耳机、显示器、挂耳咖啡礼盒",
+      "hint": "条件写成 p -> p.price() >= 150；访问器是 record 自动生成的方法 price()，不是字段 price",
+      "snippet": "snippets/step1.java"
+    },
+    {
+      "title": "Step 2 · sorted 排序 + limit 截取",
+      "detail": "sorted 需要一个 Comparator 来说明「按什么排」：Comparator.comparingDouble(Product::price) 是按单价升序，接 reversed() 变成降序；再接 limit(3) 只保留前 3 个。这一步的 map 不只是取字段，而是把商品对象拼成一个「名称 单价」的字符串。",
+      "check": "终端输出里「== 单价最高的 3 件商品 ==」下面正好 3 行：显示器 1299.0、蓝牙耳机 299.0、机械键盘 199.0",
+      "snippet": "snippets/step2.java"
+    },
+    {
+      "title": "Step 3 · collect 收集：按分类分组求和",
+      "detail": "forEach 只能逐个消费，想把结果留下来变成集合或 Map，就要用 collect。Collectors.groupingBy 的三个参数分别是：按什么分组（分类）、用什么 Map 承装、每组怎么汇总（summingDouble 对单价求和）。默认的 HashMap 不保证顺序，换成 LinkedHashMap 就按出现顺序输出，结果稳定、便于核对。得到的 Map<String, Double> 直接打印。",
+      "check": "终端输出里「== 各分类的总价 ==」下面一行是 {数码=1886.0, 图书=152.0, 食品=226.0}",
+      "hint": "三个参数依次是 Product::category、LinkedHashMap::new、Collectors.summingDouble(Product::price)",
+      "snippet": "snippets/step3.java"
+    }
+  ],
+  "verify": [
+    "三段流水线的输出与步骤里的期望完全一致（4 行名称、3 行排行、1 行分类总价）",
+    "能说出 filter / map / sorted 为什么能一直用点号串下去（它们都返回新的流）",
+    "能说出 forEach 和 collect 的区别（逐个消费掉 vs 收集成集合或 Map）",
+    "把 Step 3 里的 LinkedHashMap::new 去掉会怎样？（回到 HashMap，输出顺序不再有保证）"
+  ]
+}

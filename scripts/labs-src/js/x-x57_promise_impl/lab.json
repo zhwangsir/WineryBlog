@@ -1,0 +1,40 @@
+{
+  "id": "x-x57_promise_impl",
+  "post": "x-x57_promise_impl",
+  "title": "手写 Promise.all 并验证",
+  "summary": "不借助 Promise.all，手写一个行为兼容的 myAll。",
+  "goal": "不借助 Promise.all，手写一个行为兼容的 myAll：全部成功则按「输入的顺序」返回结果数组；任一失败立即 reject。跑通三组验证用例，再给它加一个超时保护。",
+  "minutes": 25,
+  "level": "进阶",
+  "tags": [
+    "异步",
+    "Promise"
+  ],
+  "order": 20,
+  "steps": [
+    {
+      "title": "Step 1 · 骨架：计数器 + 按下标保序",
+      "detail": "核心难点是「按原顺序返回」：各个 Promise 完成的先后并不确定，所以不能 push，要用 results[i] = v 按下标写入；再用一个计数器判断是否全部落定。main.js 里的 myAll 现在只是占位（直接 resolve([])），所以三个用例的输出都不对——把它改成真正等待所有 Promise。",
+      "check": "点「运行」：用例① 输出 [ 'A', 'B' ]（与输入顺序一致，而不是完成顺序 B、A）；用例② 输出 [ 1, 2, 3 ]",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · 三个验证用例都要对",
+      "detail": "① 全部成功且乱序完成；② 混入了普通值——要用 Promise.resolve 包一层，普通值才能统一按 Promise 处理；③ 任一失败则整体 reject。Promise 的状态只能改变一次，所以 reject 天然只会生效一次。",
+      "check": "三个用例依次输出 [ 'A', 'B' ]、[ 1, 2, 3 ]、③ caught: boom",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · 进阶：加超时保护",
+      "detail": "用 Promise.race 让一个任务与「ms 毫秒后 reject 的 Promise」竞速——超时未完成就整体 reject。这是工程里调用接口时的标配保护。把 main.js 末尾的 withTimeout 补上，再跑用例④。",
+      "check": "用例④ 输出 ④ timeout caught: timeout（一个 500ms 才完成的任务，200ms 就不再等它）",
+      "snippet": "snippets/step3.js"
+    }
+  ],
+  "verify": [
+    "用例① 输出 [ 'A', 'B' ]——顺序与输入一致，而非完成顺序",
+    "用例② 里的普通值被正确地当作结果",
+    "用例③ 的 reject 只触发一次 catch",
+    "withTimeout 包裹慢任务能按预期超时"
+  ]
+}

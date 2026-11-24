@@ -1,0 +1,6 @@
+write('stock', 100);
+console.log('读主库:', readFrom('primary', 'stock'));   // 100
+console.log('读从库:', readFrom('replica', 'stock'));   // undefined（复制未到）
+setTimeout(() => {
+  console.log('500ms 后读从库:', readFrom('replica', 'stock')); // 100
+}, 600);

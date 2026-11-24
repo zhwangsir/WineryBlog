@@ -1176,7 +1176,7 @@ async function startServer() {
           domains: domains.length,
           domainsList: domains.map((d: any) => ({ id: d.id, name: d.name, count: d.count })),
         },
-        labs: { total: Object.keys(labs).length },
+        labs: { total: Object.keys(labs.labs || labs).length },
         progress: { visitors: Object.keys(progress).length, readEntries, labEntries },
         comments: { total: commentTotal, hidden: commentHidden },
         uploads: { count: uploadCount, bytes: uploadBytes },
@@ -1527,29 +1527,45 @@ async function startServer() {
   });
 
 
-  // ===== 配套实验（labs）：结构化实验卡 + 前端在线运行器 =====
+  // ===== 实验室（labs）：环境 + 实验 =====
+  // server/data/labs.json 由 scripts/build-labs.mjs 从 scripts/labs-src/ 汇编，按文件修改时间自动重新加载。
+  // 格式：{ v: 2, defaultSeed, envs: [...], labs: { <实验 id>: {...} } }
   const LABS_FILE = path.join(DATA_DIR, "labs.json");
+  let labsCache: { key: string; data: any } | null = null;
+  async function loadLabs(): Promise<any> {
+    const st = await fs.stat(LABS_FILE).catch(() => null);
+    if (!st) return { v: 2, defaultSeed: "", envs: [], labs: {} };
+    const key = `${st.mtimeMs}:${st.size}`;
+    if (!labsCache || labsCache.key !== key) {
+      const data = JSON.parse(await fs.readFile(LABS_FILE, "utf-8"));
+      if (!data.labs || !Array.isArray(data.envs)) throw new Error("labs.json 不是 v2 格式，请执行 node scripts/build-labs.mjs");
+      labsCache = { key, data };
+    }
+    return labsCache.data;
+  }
 
   app.get("/api/labs", async (req, res) => {
-    try { res.json(JSON.parse(await fs.readFile(LABS_FILE, "utf-8"))); }
-    catch { res.json({}); }
+    try {
+      res.set("Cache-Control", "no-cache");
+      res.json(await loadLabs());
+    } catch (e: any) {
+      res.status(503).json({ error: e.message, envs: [], labs: {} });
+    }
   });
 
-  app.post("/api/progress/lab", async (req, res) => {
-    const vid = getVid(req);
-    if (!vid) return res.status(400).json({ error: "bad visitor id" });
-    const { tutorialId, done } = req.body || {};
-    if (typeof tutorialId !== "string" || !tutorialId || typeof done !== "boolean") {
-      return res.status(400).json({ error: "bad payload" });
+  // 实验室的运行器跑在 Worker 里。Worker 的 CSP 由脚本文件的响应头下发。
+  // 两个运行器都要用 new Function / eval 来执行读者写的代码，所以需要 unsafe-eval；
+  // 「不能联网」由 connect-src 把守：JavaScript 运行器完全不通，Python 运行器只允许读站内的引擎文件
+  //（wasm 编译需要 wasm-unsafe-eval）。
+  app.use((req, res, next) => {
+    if (req.path === "/lab/js-runner.js") {
+      res.setHeader("Content-Security-Policy", "default-src 'none'; script-src 'self' 'unsafe-eval'; connect-src 'none'; worker-src 'none'");
+    } else if (req.path === "/lab/py-runner.js") {
+      res.setHeader("Content-Security-Policy", "default-src 'none'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval'; connect-src 'self'; worker-src 'self' blob:");
+    } else if (req.path.startsWith("/vendor/pyodide/")) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     }
-    const all = await loadProgress();
-    const p = all[vid] || { read: {}, lastRead: null, labs: {} };
-    p.labs = p.labs || {};
-    if (done) p.labs[tutorialId] = new Date().toISOString();
-    else delete p.labs[tutorialId];
-    all[vid] = p;
-    await fs.writeFile(PROGRESS_FILE, JSON.stringify(all, null, 1));
-    res.json(p);
+    next();
   });
 
   // ===== 胡桃人设（AI 馆员与助教共用） =====
@@ -1630,86 +1646,238 @@ async function startServer() {
     }
   });
 
-  // ===== 实验室 AI Agent：双角色（环境仿真 terminal / 实验教练 coach） =====
-  // terminal：扮演实验指定的运行环境（bash/redis-cli/node 等），按环境真实行为返回输出
-  // coach：实验教练，引导完成 steps/验收，卡住两轮才阶梯提示，绝不主动泄漏参考答案
+  // ===== 实验室 AI：AI 助教（coach）与仿真终端（terminal） =====
+  // 把请求转给上游模型：上游支持流式就原样转发 SSE（边生成边显示），否则回 JSON。
+  // /api/ai、/api/lab-agent、/api/lab-ai 共用。
+  async function forwardModel(req: any, res: any, body: any) {
+    const upModel = await getUpstreamModel();
+    if (upModel && (!body.model || body.model === "auto")) body.model = upModel;
+    const r = await fetch(AI_UPSTREAM, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const isStream = body.stream === true &&
+      (r.headers.get("content-type") || "").includes("text/event-stream");
+    if (!r.body || !isStream) {
+      const text = await r.text();
+      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+      return;
+    }
+    res.status(r.status).set({
+      "Content-Type": "text/event-stream; charset=utf-8",
+      "Cache-Control": "no-cache, no-transform",
+      Connection: "keep-alive",
+      "X-Accel-Buffering": "no",
+    });
+    res.flushHeaders();
+    const reader = r.body.getReader();
+    req.on("close", () => { reader.cancel().catch(() => {}); });
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (!res.write(Buffer.from(value))) {
+          // 背压：等客户端把这一段取走再继续读
+          await new Promise<void>((ok) => res.once("drain", ok));
+        }
+        (res as any).flush?.();
+      }
+    } catch {
+      /* 客户端中途断开或上游中断：结束响应 */
+    } finally {
+      res.end();
+    }
+  }
+
+  // 助教按模式工作。每条消息都带着编辑器里的代码和最近的运行输出（载入了示例时还有示例内容），所以回复要具体到这份代码。
+  // 载入了示例：示例只是一份参考，学生可能只借它的起始代码、或只看其中某一步
+  const LAB_COACH_MODES: Record<string, { label: string; rule: string }> = {
+    guide: {
+      label: "引导",
+      rule: "规则：1) 一次只针对学生正在看的那一步问一个具体的小问题，引导学生自己想通，不直接写出完整代码；2) 学生思路正确就先肯定，再推进到这一步的下一个要点；3) 同一处学生连续两轮没有进展、或明确说「不会 / 直接告诉我」，立刻停止追问，改成阶梯提示：先说思路 → 再给关键的几行代码 → 最后才给完整做法。",
+    },
+    explain: {
+      label: "讲解",
+      rule: "规则：把学生正在看的那一步涉及的知识点讲透——先用一句话点破本质，再按「类比 → 原理 → 代码示例」展开；示例尽量沿用学生代码里的变量名和写法；讲完用一句「检验一下：…」给一个自测小问题。",
+    },
+    review: {
+      label: "检查代码",
+      rule: "规则：对照学生正在看的那一步的预期和示例的自查清单，逐条检查学生的代码与运行输出：1) 先列出做对了什么；2) 再指出问题——每个问题说清在哪个文件的哪个位置、为什么会错、往哪个方向改，但除非学生明确要求，不要直接贴出完整的修正版；3) 运行输出里有报错时，先解释这条报错的含义；4) 最后用一份简短清单总结「已符合预期 / 还可以改」。",
+    },
+  };
+
+  // 自由练习（没有载入示例）：学生想练什么由学生决定，助教不布置任务
+  const FREE_COACH_MODES: Record<string, { label: string; rule: string }> = {
+    guide: {
+      label: "引导",
+      rule: "规则：1) 先看懂学生想做什么、现在写到哪一步，再用一个具体的小问题引导学生自己找到下一步；2) 不直接替学生写出整段代码，学生思路正确就先肯定；3) 同一处连续两轮没有进展、或学生明确说「不会 / 直接告诉我」，才改成阶梯提示：先说思路 → 再给关键的几行代码 → 最后才给完整做法。",
+    },
+    explain: {
+      label: "讲解",
+      rule: "规则：讲透学生问到的（或代码里用到的）知识点——先用一句话点破本质，再按「类比 → 原理 → 代码示例」展开；示例尽量沿用学生代码里的变量名和写法；讲完用一句「检验一下：…」给一个自测小问题。",
+    },
+    review: {
+      label: "检查代码",
+      rule: "规则：逐条检查学生的代码与运行输出：1) 先列出做得好的地方；2) 再指出问题——每个问题说清在哪个文件的哪个位置、为什么会错、往哪个方向改，但除非学生明确要求，不要直接贴出完整的修正版；3) 运行输出里有报错时，先解释这条报错的含义；4) 最后给 2–3 条可以继续尝试的方向。",
+    },
+  };
+
+  // terminal：扮演环境（bash / redis-cli / node / jshell …），只输出环境的真实输出
+  // coach：AI 助教，按 mode 工作。实验室只提供环境：envId 必填，labId（载入的示例）可选
   app.post("/api/lab-agent", async (req, res) => {
     try {
-      const { labId, history = [], message = "", context = "coach" } = req.body || {};
-      const labs = JSON.parse(await fs.readFile(LABS_FILE, "utf-8"));
-      const lab = labs[labId];
-      if (!lab) {
+      const { envId, labId, context = "coach", mode = "guide", step = 0, code = "", output = "", file, message = "", history = [] } = req.body || {};
+      const catalog = await loadLabs();
+      const lab = labId ? catalog.labs[labId] : undefined;
+      if (labId && !lab) {
         res.status(404).json({ error: "Lab not found" });
         return;
       }
-      const labBrief = [
-        `实验标题：${lab.title}`,
-        `目标：${lab.goal}`,
-        `环境：${lab.env}`,
-        `步骤：`,
-        ...(lab.steps || []).map((s: any, i: number) => `  Step ${i + 1}：${s.title}\n    ${s.detail}\n    验收：${s.check}`),
-        `总验收清单：`,
-        ...(lab.verify || []).map((v: string) => `  - ${v}`),
-      ].join("\n");
+      const env: any = catalog.envs.find((e: any) => e.id === (lab?.env || envId));
+      if (!env) {
+        res.status(404).json({ error: "Env not found" });
+        return;
+      }
+      const envName = env.name || env.id;
+      const steps: any[] = lab?.steps || [];
+      const idx = Math.max(0, Math.min(steps.length - 1, Math.round(Number(step) || 0)));
+      const cur = steps[idx];
 
       let system: string;
+      let reminder: string;
       if (context === "terminal") {
+        const sim = { ...(env.sim || {}), ...(lab?.sim || {}) };
+        const rules = [...((env.sim?.rules as string[]) || []), ...((lab?.sim?.rules as string[]) || [])];
+        // 仿真只认「读者当前的代码」。示例里关于步骤的描述会被模型当成现状去脑补
+        //（代码里还没有路由，却按步骤说明返回 200），所以只给当前步骤的预期，并且明确它不是现状
         system = [
-          `你是「WineryBlog 实验室」的仿真终端，当前实验是《${lab.title}》。`,
-          `你扮演的运行环境：${lab.env}。用户会输入命令或粘贴代码，你必须严格按该环境的真实行为返回输出。`,
+          `你是「WineryBlog 实验室」的仿真终端${lab ? `，当前载入的示例是《${lab.title}》` : `，当前是「${envName}」的自由练习`}。`,
+          `环境设定：${env.sim?.title || envName}`,
+          sim.setup || "",
           "铁律：",
-          "1. 你只是环境，不是老师——回复只包含环境的真实输出（放在代码块中），外加一行不超过 20 字的状态说明；不讲解知识点、不给建议；",
-          "2. 命令不存在/语法错误/权限不足时，返回该环境真实的报错格式与退出码；",
-          "3. 对文件系统/数据库/进程状态要有连续记忆：上一条命令改变了状态，下一条命令的输出必须与之一致；",
-          "4. 用户操作达到某个 Step 的验收标准时，在该环境输出之后追加一行「✔ Step N 验收通过：<验收点>」；",
-          "5. 以下实验材料仅供你判断用户操作是否符合环境逻辑，绝不主动展示给学生：",
-          labBrief,
-        ].join("\n");
+          "1. 你只是环境，不是老师：回复只包含终端屏幕上会出现的内容，放在一个代码块里；不讲解、不评价、不用标题和列表；",
+          "2. 命令不存在、语法错误、权限不足时，返回该环境真实的报错格式；",
+          ...rules.map((r) => `- ${r}`),
+          "3. 环境的行为只取决于当前的状态和用户实际生效的代码。被注释掉的行、TODO 注释里描述的功能都还不存在，绝不替学生补全。代码没有处理某个请求或命令时，按真实的默认行为报错——例如代码里没有 app.get('/x')，curl /x 就输出「Cannot GET /x」（404）。回答之前先核对：这段代码里到底有没有处理这次输入的逻辑？",
+          ...(lab ? [
+            "4. 用户操作达到当前步骤的预期时，在输出之后另起一行写「✔ Step N 验收通过：<预期>」。预期只是参考目标，不是现状；",
+            `当前步骤：Step ${idx + 1} · ${cur?.title || ""}`,
+            `这一步的预期：${cur?.check || ""}`,
+          ] : [
+            "4. 学生在自由练习，没有指定任务：不评判学生的操作、不给建议，只如实给出环境的输出；",
+          ]),
+          "5. 用户输入的不是命令、而是在向你提问时，只回一句「这是一个终端，请输入命令」，然后给出提示符。",
+          ...(file ? [
+            "===== 用户工作区里的文件（判断行为的唯一依据） =====",
+            `${file.name}:`,
+            "```",
+            String(file.content || "").slice(0, 6000),
+            "```",
+            "===== 文件结束 =====",
+            `用户执行的动作：${file.action}。按文件的真实内容给出执行结果。`,
+          ] : []),
+        ].filter((s) => s !== "").join("\n");
+        reminder = "\n\n[角色提醒：本回合你是仿真终端，只输出环境的真实结果，不做任何讲解；只按用户代码里实际生效的逻辑响应，代码里没有的一律按真实环境的默认行为报错，绝不根据注释或示例的目标脑补。]";
       } else {
+        const modes = lab ? LAB_COACH_MODES : FREE_COACH_MODES;
+        const m = modes[mode] || modes.guide;
         system = [
-          `你是「WineryBlog 实验室」的实验教练（由胡桃担任），陪客官完成实验《${lab.title}》。`,
+          `你是「WineryBlog 实验室」的 AI 助教（由胡桃担任），当前环境是「${envName}」${lab ? `，学生载入了示例《${lab.title}》` : "，学生正在自由练习"}。`,
           HUTAO_PERSONA,
-          "教练规则（优先级高于人设表演）：",
-          "1. 一次只聚焦当前 Step：确认用户完成了哪步，引导下一步；",
-          "2. 苏格拉底式引导——用提问帮用户自己想通，不直接给完整代码；",
-          "3. 用户同一问题连续两轮答不上或明确说「不会/直接给」，才阶梯式提示：先思路 → 再关键代码片段 → 最后完整解法；",
-          "4. 参考答案（solution）是最后手段，仅用户三次卡住后明确要求时才给出；",
-          "5. 用户宣称完成时，逐条核对验收清单（verify），全部通过才恭喜并建议点击「标记完成」；",
-          "6. 回复精简（300 字内为佳），用 Markdown 代码块给代码。",
-          "===== 实验材料开始 =====",
-          labBrief,
-          "===== 实验材料结束 =====",
+          "助教规则（优先级高于人设表演）：",
+          lab
+            ? "1. 示例只是一份参考：学生可能只借它的起始代码、或只看其中某一步，想练别的也完全可以。不要要求学生按顺序完成，不要催促「做完」或「标记完成」；学生问什么就答什么；"
+            : "1. 学生想练什么由学生自己决定：不布置任务、不规定学习顺序、不要求「完成」任何东西。学生问了再答；",
+          "2. 学生的代码和运行结果在下方「学生当前的状态」里，评论要具体到这份代码，不要凭空猜测；",
+          "3. 回复精简（300 字内为佳），代码放在 Markdown 代码块里；全程用简体中文，称呼学生为「客官」；",
+          `4. 本回合的模式是「${m.label}」。${m.rule}`,
+          ...(lab ? [
+            "===== 示例的参考内容 =====",
+            `示例目标：${lab.goal}`,
+            ...steps.map((s, i) => `  Step ${i + 1}：${s.title}\n    ${s.detail}\n    预期看到：${s.check}`),
+            "自查清单：",
+            ...(lab.verify || []).map((v: string) => `  - ${v}`),
+            `学生正在看的步骤：Step ${idx + 1} · ${cur?.title || ""}`,
+            "===== 参考内容结束 =====",
+          ] : []),
+          "===== 学生当前的状态 =====",
+          "编辑器里的代码：",
+          String(code || "").slice(0, 12000) || "（编辑器是空的）",
+          "最近的运行输出：",
+          String(output || "").slice(0, 3000) || "（还没有运行过）",
+          "===== 学生当前的状态结束 =====",
         ].join("\n");
+        reminder = `\n\n[助教提醒：本回合你处于「${m.label}」模式，上面的模式规则优先级最高，请严格按它回复。]`;
       }
 
-      const upModel = await getUpstreamModel();
-      const contextReminder =
-        context === "terminal"
-          ? "\n\n[角色提醒：本回合你是仿真终端，只输出环境真实结果，不做任何讲解。]"
-          : "\n\n[角色提醒：本回合你是实验教练，苏格拉底式引导，最多聚焦一个 Step，不主动给完整答案。]";
+      // 弱指令遵循的模型对「离回答最近」的指令遵循得更好：把模式提醒补在最后一条 user 消息末尾
       const wired = (Array.isArray(history) ? history : []).slice(-16).map((m: any, i: number, arr: any[]) =>
         i === arr.length - 1 && m.role === "user"
-          ? { ...m, content: `${m.content}${contextReminder}` }
-          : m
+          ? { role: "user", content: `${m.content}${reminder}` }
+          : { role: m.role, content: m.content }
       );
       if (!wired.length || wired[wired.length - 1].role !== "user") {
-        wired.push({ role: "user", content: `开始实验。${contextReminder}` });
+        wired.push({ role: "user", content: `开始吧。${reminder}` });
       }
-      const body: any = {
+      await forwardModel(req, res, {
         messages: [{ role: "system", content: system }, ...wired],
-        temperature: context === "terminal" ? 0.3 : 0.7,
+        temperature: context === "terminal" ? 0.2 : 0.7,
         max_tokens: context === "terminal" ? 1200 : 1600,
-      };
-      if (upModel) body.model = upModel;
-      const r = await fetch(AI_UPSTREAM, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        stream: req.body?.stream === true,
       });
-      const text = await r.text();
-      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
     } catch (e: any) {
-      res.status(502).json({ error: "Lab agent failed", detail: e.message });
+      if (!res.headersSent) res.status(502).json({ error: "Lab agent failed", detail: e.message });
+      else res.end();
+    }
+  });
+
+  // ===== 实验室 · AI 提示词环境：把学生写的 system / user 提示词原样交给模型（不注入任何人设） =====
+  // 这是提示词练习用的「空白模型」。按直连 IP 限频，避免被拿去当免费接口刷。
+  const labAiBucket = new Map<string, { n: number; at: number }>();
+  const LAB_AI_PER_MINUTE = 40;
+  function allowLabAi(req: any): boolean {
+    const ip = req.socket?.remoteAddress || "local";
+    const now = Date.now();
+    const b = labAiBucket.get(ip);
+    if (!b || now - b.at > 60000) {
+      if (labAiBucket.size > 500) labAiBucket.clear();
+      labAiBucket.set(ip, { n: 1, at: now });
+      return true;
+    }
+    b.n += 1;
+    return b.n <= LAB_AI_PER_MINUTE;
+  }
+
+  app.post("/api/lab-ai", async (req, res) => {
+    try {
+      const { system = "", user = "", temperature = 0.7 } = req.body || {};
+      if (typeof user !== "string" || !user.trim()) {
+        res.status(400).json({ error: "user prompt is empty" });
+        return;
+      }
+      if (user.length > 8000 || String(system || "").length > 8000) {
+        res.status(413).json({ error: "prompt too long (max 8000 chars)" });
+        return;
+      }
+      if (!allowLabAi(req)) {
+        res.status(429).json({ error: "请求太频繁了，稍等几秒再试" });
+        return;
+      }
+      const sys = String(system || "").trim();
+      const t = Math.max(0, Math.min(1, Number(temperature) || 0));
+      await forwardModel(req, res, {
+        messages: [
+          ...(sys ? [{ role: "system", content: sys.slice(0, 8000) }] : []),
+          { role: "user", content: user.slice(0, 8000) },
+        ],
+        temperature: Number.isFinite(t) ? t : 0.7,
+        max_tokens: 1200,
+        stream: true,
+      });
+    } catch (e: any) {
+      if (!res.headersSent) res.status(502).json({ error: "Lab AI failed", detail: e.message });
+      else res.end();
     }
   });
 
@@ -1824,47 +1992,10 @@ async function startServer() {
       }
       body.messages = [{ role: "system", content: librarianSystem.join("\n") }, ...rest];
 
-      const upModel = await getUpstreamModel();
-      if (upModel) body.model = upModel;
-      const r = await fetch(AI_UPSTREAM, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      const isStream = body.stream === true &&
-        (r.headers.get("content-type") || "").includes("text/event-stream");
-      if (!r.body || !isStream) {
-        const text = await r.text();
-        res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
-        return;
-      }
-      // 流式：把上游的 SSE 原样转发（边生成边显示，长回答不用干等）
-      res.status(r.status).set({
-        "Content-Type": "text/event-stream; charset=utf-8",
-        "Cache-Control": "no-cache, no-transform",
-        Connection: "keep-alive",
-        "X-Accel-Buffering": "no",
-      });
-      res.flushHeaders();
-      const reader = r.body.getReader();
-      req.on("close", () => { reader.cancel().catch(() => {}); });
-      try {
-        for (;;) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          if (!res.write(Buffer.from(value))) {
-            // 背压：等客户端把这一段取走再继续读
-            await new Promise<void>((ok) => res.once("drain", ok));
-          }
-          (res as any).flush?.();
-        }
-      } catch {
-        /* 客户端中途断开或上游中断：结束响应 */
-      } finally {
-        res.end();
-      }
+      await forwardModel(req, res, body);
     } catch (e: any) {
-      res.status(502).json({ error: "AI proxy failed", detail: e.message });
+      if (res.headersSent) res.end();
+      else res.status(502).json({ error: "AI proxy failed", detail: e.message });
     }
   });
 

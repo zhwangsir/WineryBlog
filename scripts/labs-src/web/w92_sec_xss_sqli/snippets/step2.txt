@@ -1,0 +1,2 @@
+// 修复：用户输入只被当成纯文本，标签原样显示、脚本不会执行
+document.getElementById('box').textContent = userInput;

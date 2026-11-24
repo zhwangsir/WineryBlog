@@ -3,6 +3,7 @@ import { Send, Square, Trash2, Copy, Check, ShieldCheck, User, Sparkles } from '
 import { useData } from '../context/DataContext';
 import { SEO } from '../components/SEO';
 import { MarkdownView } from '../components/markdown/MarkdownView';
+import { readModelStream as readStream } from '../lib/sse';
 import { cn } from '../utils/cn';
 
 interface ChatMessage {
@@ -29,36 +30,6 @@ const WELCOME: ChatMessage = {
   role: 'assistant',
   content: '嘿嘿~ 客官好呀！我是往生堂七十七代堂主**胡桃**，兼修 AI 馆员一职。\n\n我读过馆里全部的教程，可以陪你：\n\n- **答疑**：讲解某个知识点（「讲讲 TCP 三次握手」）\n- **找书**：推荐站内教程与专题（「站里有哪些 Rust 教程？」）\n- **规划**：按职业路线安排学习阶段\n\n知识胡桃一定讲准，玩笑胡桃管够！',
 };
-
-/** 读取上游 SSE 流，把增量内容拼进当前这条回复 */
-async function readStream(res: Response, onDelta: (text: string) => void, signal: AbortSignal) {
-  const reader = res.body!.getReader();
-  const decoder = new TextDecoder();
-  let buffer = '';
-  try {
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split('\n');
-      buffer = lines.pop() || '';
-      for (const line of lines) {
-        const data = line.trim();
-        if (!data.startsWith('data:')) continue;
-        const payload = data.slice(5).trim();
-        if (payload === '[DONE]') return;
-        try {
-          const j = JSON.parse(payload);
-          const delta = j.choices?.[0]?.delta?.content ?? j.choices?.[0]?.message?.content ?? '';
-          if (delta) onDelta(delta);
-        } catch { /* 非 JSON 行（心跳等）跳过 */ }
-      }
-    }
-  } finally {
-    reader.releaseLock();
-    if (!signal.aborted) onDelta('');
-  }
-}
 
 const MessageBubble: React.FC<{ msg: ChatMessage }> = ({ msg }) => {
   const [copied, setCopied] = useState(false);

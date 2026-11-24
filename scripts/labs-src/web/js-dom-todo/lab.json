@@ -1,0 +1,38 @@
+{
+  "id": "js-dom-todo",
+  "title": "原生 DOM：待办清单",
+  "summary": "不用任何框架，手写添加、勾选、删除与计数。",
+  "goal": "只用原生 DOM API（createElement、append、addEventListener、classList、remove）做一个待办清单：添加、勾选完成、删除、实时统计剩余数量。做完能独立读懂并写出「用户操作 → 事件监听 → 修改 DOM」这条链路。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": ["JavaScript", "DOM"],
+  "order": 25,
+  "steps": [
+    {
+      "title": "Step 1 · 添加一条待办",
+      "detail": "页面的 HTML 和 CSS 已经写好，这个示例只改中间编辑器里的 script.js。「添加」的数据流是：用户按回车或点按钮 → 表单触发 submit 事件 → 用 document.createElement 造出一个 <li>，再用 append 挂到列表上。submit 的监听已经写好：它先 preventDefault()（真实页面里不拦的话表单会提交、页面刷新），再把输入框的内容去掉首尾空格后交给 addItem(text)。按注释里的 6 步补全 addItem，拼出 <li class=\"item\"><input type=\"checkbox\"><span>文字</span><button class=\"del\" type=\"button\">×</button></li> 并追加到列表；写文字用 textContent 而不是 innerHTML，用户输入只会被当成文字。最后在 submit 监听里清空输入框并让焦点留在里面，就能一条接一条地输入。",
+      "check": "在输入框里打「学完 CSS Grid」再按回车（或点「添加」）：下面出现一条待办，前面有勾选框、后面有 ×；输入框被清空，光标还在里面。只输入几个空格再回车，什么都不会添加。",
+      "hint": "刚创建出来的元素只是「游离」的，append 到页面上之前看不见。item.append(box, label, del) 可以一次挂上好几个孩子。",
+      "snippet": "snippets/step1.js"
+    },
+    {
+      "title": "Step 2 · 勾选完成与剩余数量",
+      "detail": "勾选完成靠的是「状态 → class → 样式」：勾选框触发 change 事件时，用 item.classList.toggle('done', box.checked) 给这一条加上或去掉 done，CSS 里已经写好了 .item.done span 的删除线和灰色。剩余数量由 updateCount() 统一计算：list.querySelectorAll('.item:not(.done)') 选出所有「没有 done」的条目，个数写进 #count；列表里只要有条目，就用 empty.hidden 把「还没有待办」的提示藏起来。把统计单独做成函数的好处是：之后不管是添加、勾选还是删除，只要调用一下它，数字就一定是对的。补全 updateCount 的函数体，并在 addItem 里给勾选框 box 监听 change 事件。",
+      "check": "添加 3 条后底部显示「剩余 3 项」。勾选其中一条：文字出现删除线并变灰，数字变成「剩余 2 项」；取消勾选，数字又变回「剩余 3 项」。",
+      "hint": "不确定自己抓到的是哪个元素时，可以临时写一句 console.log(item)，预览下方的控制台会把它打印出来。",
+      "snippet": "snippets/step2.js"
+    },
+    {
+      "title": "Step 3 · 删除与收尾",
+      "detail": "删除本身很简单：对要删的那一条调用 item.remove()，难点是「知道该删哪一条」。监听器是在 addItem 里给每一个新建的 × 按钮单独绑定的，监听函数里能直接拿到同一层的 item（这其实就是闭包），所以点第几条的 ×，删的就是第几条。别忘了删完调用 updateCount()，否则数字会停在旧值；它同时负责在列表空掉时重新显示「还没有待办」的提示。给删除按钮 del 监听 click 事件，把这条链路接通。想更进一步可以看看示例代码里的事件委托写法。",
+      "check": "点某一条右边的 ×：这一条立刻消失，「剩余 N 项」同步减 1。把列表删空后，中间重新出现「还没有待办」的提示。",
+      "snippet": "snippets/step3.js"
+    }
+  ],
+  "verify": [
+    "输入文字回车能添加一条，空内容不会添加，输入框会清空",
+    "勾选后出现删除线、剩余数量减 1，取消勾选后恢复",
+    "点 × 能删除对应的那一条，剩余数量同步更新",
+    "删空后出现「还没有待办」提示，再添加时提示消失"
+  ]
+}

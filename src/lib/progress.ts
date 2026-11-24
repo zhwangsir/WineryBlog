@@ -4,7 +4,7 @@ const VID_KEY = 'winery-visitor-id';
 export interface ProgressData {
   read: Record<string, string>; // tutorialId -> ISO timestamp
   lastRead: string | null;
-  labs?: Record<string, string>; // tutorialId -> 实验完成时间
+  labs?: Record<string, string>; // 历史数据：早期版本记录过「实验完成」，现在实验室不做完成度追踪，仅为兼容保留字段
 }
 
 export function getVisitorId(): string {
@@ -40,17 +40,6 @@ export async function markRead(tutorialId: string, read: boolean): Promise<Progr
     const r = await api('/api/progress/read', {
       method: 'POST',
       body: JSON.stringify({ tutorialId, read }),
-    });
-    if (r.ok) return await r.json();
-  } catch { /* offline */ }
-  return null;
-}
-
-export async function markLab(tutorialId: string, done: boolean): Promise<ProgressData | null> {
-  try {
-    const r = await api('/api/progress/lab', {
-      method: 'POST',
-      body: JSON.stringify({ tutorialId, done }),
     });
     if (r.ok) return await r.json();
   } catch { /* offline */ }

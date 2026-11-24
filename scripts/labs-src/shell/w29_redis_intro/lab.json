@@ -1,0 +1,38 @@
+{
+  "id": "w29_redis_intro",
+  "post": "w29_redis_intro",
+  "title": "用 Redis 做页面浏览计数器（三大结构初见）",
+  "summary": "INCR、HASH、LIST 三个最有代表性的操作。",
+  "goal": "用 redis-cli 完成「INCR 自增计数 / HASH 存对象 / LIST 存最近记录」三个最有代表性的操作，体会 Redis 为什么快、结构为什么贴场景。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Redis"
+  ],
+  "order": 30,
+  "steps": [
+    {
+      "title": "Step 1 · INCR：原子自增计数器",
+      "detail": "浏览量计数是 INCR 的教科书场景——单命令原子性，天然免并发竞争。GET 回读验证。",
+      "check": "三次 INCR 后 GET 返回 3",
+      "snippet": "snippets/step1.sh"
+    },
+    {
+      "title": "Step 2 · HASH：一个 key 存一篇文章的元信息",
+      "detail": "对比：用多个 string key 存 title/author 会散落一地；HASH 把它们聚合在一个 key 下，还能 HGETALL 一次取全。",
+      "check": "HGETALL 返回完整字段对",
+      "snippet": "snippets/step2.sh"
+    },
+    {
+      "title": "Step 3 · LIST：最近浏览文章列表（LPUSH + LTRIM）",
+      "detail": "「最近 N 条」是 LIST + LTRIM 的组合拳：每次左推新 id，再裁剪保留前 5 条，天然实现固定长度的时间线。",
+      "check": "LRANGE 返回不超过 5 个元素且按最新在前排序",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "说出 INCR 为什么能扛并发（单线程原子命令）",
+    "HASH 与多个 STRING key 的取舍",
+    "「最近 N 条」还有别的实现吗？（ZSET 按时间戳排序）"
+  ]
+}

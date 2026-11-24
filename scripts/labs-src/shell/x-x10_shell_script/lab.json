@@ -1,0 +1,39 @@
+{
+  "id": "x-x10_shell_script",
+  "post": "x-x10_shell_script",
+  "title": "写一个自动备份脚本（Shell 脚本）",
+  "summary": "写一个带时间戳、带日志的目录备份脚本。",
+  "goal": "写一个带时间戳、带参数校验、能自动清理旧备份的目录备份脚本——变量、条件、命令组合成真正的自动化工具，这是 Shell 的正确打开方式。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Shell",
+    "脚本"
+  ],
+  "order": 10,
+  "steps": [
+    {
+      "title": "Step 1 · 时间戳文件名 + tar 打包",
+      "detail": "date 命令格式化出时间戳作为备份文件名，tar 打包源目录——两行就是备份的核心。backup.sh 里已经写好了这部分：点「运行」，再在右侧终端里输入 bash backup.sh demo 试一次。",
+      "check": "生成 backups/backup-<时间戳>.tar.gz，ls backups 能看到它",
+      "snippet": "snippets/step1.sh"
+    },
+    {
+      "title": "Step 2 · 加参数校验与失败退出",
+      "detail": "缺参数直接打印用法并退出；目录不存在也退出，退出码为 1——健壮脚本与玩具脚本的分水岭。把这两段判断加到脚本最前面，再分别用「不带参数」和「一个不存在的目录」各跑一次，用 echo $? 查看退出码。",
+      "check": "无参运行打印用法；路径错误时 echo $? 输出 1",
+      "snippet": "snippets/step2.sh"
+    },
+    {
+      "title": "Step 3 · 只保留最近 3 份（自动清理）",
+      "detail": "ls -t 按时间从新到旧列出备份，跳过前 3 份、其余全部删除——加到脚本末尾，备份从此不会撑爆磁盘。连续跑 4 次试试。",
+      "check": "连续运行 4 次后，backups 目录里始终只有 3 个文件",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "$1 与 $@ 的区别是什么？",
+    "为什么变量引用要加双引号？（提示：路径里有空格会怎样）",
+    "把这个脚本加进 crontab、每天凌晨 2 点自动运行，那一行怎么写？"
+  ]
+}

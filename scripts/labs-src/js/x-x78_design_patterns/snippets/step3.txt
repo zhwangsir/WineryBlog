@@ -1,0 +1,2 @@
+strategies.full200 = p => (p >= 200 ? p - 50 : p);
+console.log(finalPrice("full200", 260));  // 210

@@ -21,8 +21,10 @@ export default defineConfig(({mode}) => {
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: {
         // runtime data files change constantly (cron writes posts/tutorials)
-        // — they are fetched at request time and must NOT trigger full reloads
-        ignored: ['**/server/data/**'],
+        // — they are fetched at request time and must NOT trigger full reloads.
+        // Same for scripts/ (lab sources, build tools): Vite full-reloads the page on
+        // any change to a file outside the module graph, which would interrupt readers.
+        ignored: ['**/server/data/**', '**/scripts/**', '**/public/vendor/**'],
       },
     },
   };

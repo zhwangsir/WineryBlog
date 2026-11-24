@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 16px;
+  background: #12181f;
+}
+
+.stage {
+  display: flex;
+  height: 120px;
+  background: #1a1f2b;
+  border-radius: 8px;
+  /* TODO（第 1 关）：补两行，让 ★ 水平、垂直都居中 */
+}
+.star {
+  color: #f27d26;
+  font-size: 28px;
+}
+
+.stage2 {
+  display: flex;
+  height: 60px;
+  gap: 8px;
+  margin-top: 12px;
+}
+.nav {
+  background: #2a3550;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfd8e3;
+  /* TODO（第 2 关）：补一行，让三个导航项平分宽度 */
+}
+
+.stage3 {
+  display: flex;
+  height: 90px;
+  margin-top: 12px;
+}
+.aside {
+  background: #3d2f4f;
+  width: 80px;
+  color: #cfd8e3;
+}
+.main {
+  background: #24404f;
+  flex: 1;
+  color: #cfd8e3;
+}

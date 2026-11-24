@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: #12181f;
+  color: #dfe6ee;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+.card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  background: #1a2230;
+  border: 1px solid #2a3550;
+  border-radius: 14px;
+}
+h1 { margin: 0; font-size: 20px; }
+.sub { margin: 6px 0 18px; color: #8b98ab; font-size: 13px; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; margin-bottom: 6px; font-size: 13px; color: #cfd8e3; }
+.field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: #0b0f14;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  color: #dfe6ee;
+  font-size: 14px;
+  font-family: inherit;
+}
+.field input::placeholder { color: #66738a; }
+.field input:focus { outline: none; border-color: #4fa3e3; }
+
+/* 每个密码框下面的提示：JS 往里写文字，并用 ok / err 切换颜色 */
+.msg { min-height: 18px; margin: 6px 0 0; font-size: 12px; }
+.msg.ok { color: #3ecf8e; }
+.msg.err { color: #ff6b6b; }
+
+button[type="submit"] {
+  width: 100%;
+  padding: 11px;
+  background: #f27d26;
+  border: none;
+  border-radius: 8px;
+  color: #12181f;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button[type="submit"]:hover { background: #ff924a; }
+
+/* 注册成功后才显示的结果条：JS 会给它加上 show */
+.result {
+  display: none;
+  margin: 16px 0 0;
+  padding: 12px;
+  background: rgba(62, 207, 142, 0.12);
+  border: 1px solid #3ecf8e;
+  border-radius: 8px;
+  color: #3ecf8e;
+  font-size: 14px;
+}
+.result.show { display: block; }

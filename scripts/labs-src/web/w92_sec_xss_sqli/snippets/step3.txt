@@ -1,0 +1,10 @@
+// 确实要渲染富文本：先转义，再交给 innerHTML
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+}
+box.innerHTML = `<p>${escapeHtml(userInput)}</p>`;
+
+// 真实项目（示意）：白名单过滤比手写转义更稳妥
+// import DOMPurify from 'dompurify';
+// box.innerHTML = DOMPurify.sanitize(userInput);
+// 口诀：黑名单防不住变形攻击，白名单才是防线

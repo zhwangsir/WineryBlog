@@ -1,0 +1,38 @@
+{
+  "id": "py-classes",
+  "title": "Python 类与对象：实例方法与 @property",
+  "summary": "用 class 画图纸，造出各自独立的对象。",
+  "goal": "理解类和对象的关系：__init__ 负责初始化、实例方法操作对象自己的数据、@property 把方法包装成属性；并亲手写完一个带存取款和等级判断的银行账户类。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": ["Python", "面向对象"],
+  "order": 50,
+  "steps": [
+    {
+      "title": "Step 1 · 定义类：class、__init__、__repr__",
+      "detail": "main.py 里已经定义好了 BankAccount 的骨架：类属性 bank 所有实例共用一份；__init__ 在创建对象时自动执行，self 指「正在创建的这个对象」；__repr__ 规定 print(对象) 时显示什么。先点「运行」，读懂 Step 1 的五行输出——注意 account 和 other 各有一份 balance，互不影响。",
+      "check": "输出 BankAccount('林小满', 100)、BankAccount('陈大文', 0)，以及三个「星衡银行」",
+      "snippet": "snippets/step1.py"
+    },
+    {
+      "title": "Step 2 · 实例方法",
+      "detail": "方法就是写在类里的函数，第一个参数固定是 self，调用时不用传：account.deposit(50) 等价于 BankAccount.deposit(account, 50)。请补全三个方法：① deposit：金额不合法返回 False，否则加钱并返回 True；② withdraw：金额不合法或余额不足返回 False，否则扣钱并返回 True；③ transfer：先从自己这里扣款，失败就返回 False，成功再存入对方。",
+      "check": "输出依次是 True 150 / False 150 / False 150 / True 90 / True 60 30 / True 80",
+      "hint": "方法里访问自己的余额要写 self.balance，别的对象就写 other.balance。",
+      "snippet": "snippets/step2.py"
+    },
+    {
+      "title": "Step 3 · @property：像属性一样访问的方法",
+      "detail": "@property 把方法包装成属性：vip.level 不用加括号。请补全 TODO：① 余额 ≥ 5000 是金卡、≥ 200 是银卡，否则是普通；② Temperature 类里，celsius 的 getter 返回保存的值，setter 在低于绝对零度时抛出 ValueError；③ fahrenheit 由摄氏度换算而来（× 9 / 5 + 32）。",
+      "check": "输出 金卡 银卡 普通、周小雨 是金卡，余额 5000 元、25 77.0、100 212.0",
+      "hint": "setter 里把值存到 self._celsius（名字前面加一个下划线表示「内部使用」），getter 再把它取出来。",
+      "snippet": "snippets/step3.py"
+    }
+  ],
+  "verify": [
+    "能说清 self 是什么、为什么定义方法时要写它而调用时不用传",
+    "三个方法的返回值与余额变化都正确",
+    "level 属性和 Temperature 的输出与预期一致",
+    "试试 t.celsius = -300，右侧会报出 ValueError（低于绝对零度）"
+  ]
+}

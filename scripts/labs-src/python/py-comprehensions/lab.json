@@ -1,0 +1,39 @@
+{
+  "id": "py-comprehensions",
+  "title": "Python 推导式：一行写出列表与字典",
+  "summary": "把三行循环压缩成一行，顺便学会 enumerate 和 zip。",
+  "goal": "学会用列表推导式和字典推导式代替简单的 for 循环，知道生成器表达式与它们的区别，并会用 enumerate() 和 zip() 同时遍历多个序列。",
+  "minutes": 15,
+  "level": "进阶",
+  "tags": ["Python", "推导式"],
+  "order": 60,
+  "steps": [
+    {
+      "title": "Step 1 · 列表推导式",
+      "detail": "列表推导式的写法是 [表达式 for 变量 in 可迭代对象]，把三行循环压缩成一行。请补全四处 TODO：① 用推导式得到和上面循环相同的平方列表；② 挑出偶数——if 写在 for 的末尾，表示筛选；③ 给每个数贴上「奇数 / 偶数」的标签——if … else 写在 for 的前面，表示转换；④ 算出 words 里每个单词的长度。",
+      "check": "依次输出 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]、[2, 4, 6, 8, 10]、以「奇数」开头共 10 项的标签列表、[6, 4, 2, 4]",
+      "hint": "筛选和转换的位置不同：[n for n in nums if n % 2 == 0] 与 [\"偶数\" if n % 2 == 0 else \"奇数\" for n in nums]。",
+      "snippet": "snippets/step1.py"
+    },
+    {
+      "title": "Step 2 · 字典推导式",
+      "detail": "字典推导式把方括号换成花括号：{键: 值 for …}，常用来从列表造查找表、反转字典。请补全三处 TODO：① words 里每个单词和它的长度；② 把它反转成「长度 → 单词」的字典；③ 只留下 90 分及以上的科目。",
+      "check": "输出 {'python': 6, 'java': 4, 'go': 2, 'rust': 4}、{6: 'python', 4: 'rust', 2: 'go'}、{'语文': 92, '英语': 95}",
+      "hint": "反转时遍历 word_len.items()：{length: w for w, length in word_len.items()}。",
+      "snippet": "snippets/step2.py"
+    },
+    {
+      "title": "Step 3 · 生成器表达式、enumerate 与 zip",
+      "detail": "把方括号换成圆括号就是生成器表达式：不一次性造出整个列表，边算边取，适合只是求个和、求个最值的场合。enumerate() 给出下标，zip() 把多个列表「拉」在一起。请补全两处 TODO。",
+      "check": "输出 385，以及三行「第 N 名：姓名 分数 分」",
+      "hint": "enumerate(zip(names, points), start=1) 每次给出 (名次, (姓名, 分数))。",
+      "snippet": "snippets/step3.py"
+    }
+  ],
+  "verify": [
+    "四处列表推导式的输出与预期一致",
+    "能说清「筛选的 if」和「转换的 if … else」分别写在哪",
+    "三个字典推导式的输出与预期一致",
+    "能说出反转字典时长度相同的两个词为什么只剩下一个"
+  ]
+}

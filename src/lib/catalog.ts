@@ -3,6 +3,7 @@ import {
   Monitor, ServerCog, Terminal, Layers, BrainCircuit, Sigma, HardDrive, Shield, Smartphone, Bug, Gamepad2,
   Settings, Wrench, Code2, GitBranch, Server, Boxes, Blocks, BookOpen, Route as RouteIcon, Cpu, Network,
 } from 'lucide-react';
+import type { Lab } from './labs';
 
 /**
  * 教程目录 / 职业路线 / 实验目录的读取：多个页面共用，进程内缓存 + 并发去重。
@@ -37,15 +38,8 @@ export interface Career {
   domains?: string[];
 }
 
-export interface Lab {
-  id: string;
-  title: string;
-  domain?: string;
-  summary?: string;
-  minutes?: number;
-  difficulty?: string;
-  [k: string]: unknown;
-}
+/** 实验的类型定义在 labs.ts；这里只负责把 /api/labs 的环境 + 实验拍平成实验列表 */
+export type { Lab } from './labs';
 
 /** 知识域 / 路线图标（目录数据里存的是名字） */
 export const CATALOG_ICONS: Record<string, ElementType> = {
@@ -87,8 +81,8 @@ export const fetchCareers = memoize<Career[]>(async () => {
 });
 
 export const fetchLabs = memoize<Lab[]>(async () => {
-  const j = await getJson<Record<string, Lab> | Lab[]>('/api/labs');
-  return Array.isArray(j) ? j : Object.values(j || {});
+  const j = await getJson<{ labs?: Record<string, Lab> }>('/api/labs');
+  return Object.values(j.labs || {});
 });
 
 /** 管理端保存目录后清缓存 */

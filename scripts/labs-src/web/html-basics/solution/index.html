@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>我的品饮笔记</title>
+  <style>
+    /* 这里的样式只是让页面好看一点，本示例不用改。CSS 会在后面的示例里专门讲 */
+    body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      background: #12181f;
+      color: #dfe6ee;
+      font-family: system-ui, "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+    }
+    h1 { margin: 0; font-size: 30px; color: #ffffff; }
+    header p { margin: 2px 0 0; color: #8b98ab; font-size: 14px; }
+    h2 { margin: 32px 0 8px; font-size: 20px; color: #f27d26; }
+    p { margin: 8px 0; }
+    a { color: #f27d26; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #2a3550;
+    }
+    li { margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+    th, td { padding: 8px 12px; border: 1px solid #2a3550; text-align: left; }
+    th { background: #1a2230; color: #3ecf8e; }
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #2a3550;
+      color: #8b98ab;
+      font-size: 13px;
+    }
+    footer p { margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>我的品饮笔记</h1>
+    <p>记录每一杯值得记住的酒</p>
+  </header>
+
+  <nav>
+    <a href="#">首页</a>
+    <a href="#">教程</a>
+    <a href="#">关于</a>
+  </nav>
+
+  <main>
+    <article>
+      <h2>看懂酒标</h2>
+      <p>酒标上最有用的信息是<strong>产区、年份和葡萄品种</strong>。产区告诉你这瓶酒出生在哪里，年份告诉你那一年的天气如何，品种则决定了它大致的口感。</p>
+
+      <p>先认识三个最常见的红葡萄品种：</p>
+      <ul>
+        <li>赤霞珠：单宁重，有黑加仑和青椒的气息。</li>
+        <li>黑皮诺：酒体轻，酸度明亮，常带樱桃香气。</li>
+        <li>梅洛：口感柔和，李子和巧克力的味道。</li>
+      </ul>
+
+      <p>正式开喝之前，按顺序做三件事：</p>
+      <ol>
+        <li>看颜色：倾斜酒杯，观察边缘的色调。</li>
+        <li>闻香气：先轻闻再摇杯，分辨果香和橡木桶的香气。</li>
+        <li>尝味道：小口啜饮，留意酸度、单宁和余味。</li>
+      </ol>
+
+      <h2>我的品饮记录</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>酒名</th>
+            <th>类型</th>
+            <th>评分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>赤霞珠干红</td>
+            <td>红</td>
+            <td>4.5</td>
+          </tr>
+          <tr>
+            <td>霞多丽</td>
+            <td>白</td>
+            <td>4.0</td>
+          </tr>
+          <tr>
+            <td>桃红起泡酒</td>
+            <td>起泡</td>
+            <td>4.2</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 我的品饮笔记 · <a href="#">联系我们</a></p>
+  </footer>
+</body>
+</html>

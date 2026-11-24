@@ -1,0 +1,43 @@
+{
+  "id": "sql-select-basics",
+  "title": "SQL 基础：选列、别名、去重与前几行",
+  "summary": "写出第一批 SELECT：选列、AS 别名、DISTINCT、LIMIT。",
+  "goal": "在浏览器里的真实 SQLite 练习库上写出第一批查询：从表里挑出需要的列、用 AS 给列起中文别名、用 DISTINCT 去掉重复行、用 LIMIT 和 OFFSET 只取前几行。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "SQL",
+    "SELECT",
+    "SQLite"
+  ],
+  "order": 10,
+  "steps": [
+    {
+      "title": "Step 1 · 选列与别名",
+      "detail": "打开这个示例时，工作台会自动把编辑器里的 SQL 运行一遍：【查询 1】用 SELECT * 取出 departments 表（部门）的全部列，右侧结果是 5 行 · 5 列。星号 * 是「所有列」的简写；平时写查询一般只取需要的列，并用 AS 给列起一个别人看得懂的别名。请在中间的编辑器里找到【查询 2】的 TODO，补全这条查询：从 employees 表（员工）取出 name、title、salary 三列，别名分别是 姓名、职位、月薪。写完点右上角的「运行」。",
+      "check": "右侧多出一张 30 行 · 3 列 的表，表头是 姓名 | 职位 | 月薪，第 1 行是 王振华 | 技术总监 | 45000",
+      "hint": "写法是「列名 AS 别名」，多列之间用逗号隔开。中文别名不需要加引号，直接写 name AS 姓名。",
+      "snippet": "snippets/step1.sql"
+    },
+    {
+      "title": "Step 2 · DISTINCT 去重",
+      "detail": "公司有 5 个部门，但只分布在 2 个城市。直接查 location 会得到 5 行，其中「北京」重复了 3 次。在 SELECT 后面加上 DISTINCT，SQLite 就会把完全相同的行合并成一行。请补全【查询 4】：查出 departments 表的 location 一列，用 DISTINCT 去重，并用 AS 把这一列命名为 城市。紧接着的【查询 5】是写好的例子，可以对照着看：DISTINCT 作用于选中的整行，所以「部门编号 + 性别」的组合一共只有 10 种。",
+      "check": "右侧多出一张 2 行 · 1 列 的表，表头是 城市，两行分别是 北京、上海；【查询 5】是 10 行 · 2 列",
+      "hint": "DISTINCT 紧跟在 SELECT 的后面，它管的是整个一行，而不是单独某一列。",
+      "snippet": "snippets/step2.sql"
+    },
+    {
+      "title": "Step 3 · LIMIT 取前几行",
+      "detail": "LIMIT n 让查询只返回前 n 行。但表里的行本来没有固定的先后，单说「前 3 行」没有意义，所以要先 ORDER BY 排好序、再用 LIMIT 截取，得到的才是「月薪最高的 3 人」。请补全【查询 6】：查出月薪最高的 3 名员工的 name 和 salary。最后的【查询 7】演示了 OFFSET：先跳过前 5 行再取 5 行，网页上的「第 2 页」就是这样翻出来的。",
+      "check": "右侧多出一张 3 行 · 2 列 的表：王振华 45000、郑浩 40000、李思远 38000；全部补全后右侧一共 7 个结果集",
+      "hint": "降序是 ORDER BY salary DESC，取前几行是 LIMIT 3。",
+      "snippet": "snippets/step3.sql"
+    }
+  ],
+  "verify": [
+    "【查询 2】返回 30 行 · 3 列，表头是 姓名、职位、月薪",
+    "【查询 4】返回 2 行：北京、上海",
+    "【查询 6】返回 3 行：王振华 45000、郑浩 40000、李思远 38000",
+    "能说出 LIMIT 为什么通常要和 ORDER BY 一起用"
+  ]
+}

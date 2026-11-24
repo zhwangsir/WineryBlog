@@ -1,0 +1,24 @@
+/* 媒体查询里的规则只在「宽度不超过 480px」时生效
+   所以写法是：宽屏样式放在外面当默认值，窄屏的「例外」写进媒体查询 */
+@media (max-width: 480px) {
+  /* 1. 显示汉堡按钮（方向、对齐等沿用 .toggle 里已经写好的） */
+  .toggle { display: inline-flex; }
+
+  /* 2. 先把菜单藏起来 */
+  .menu { display: none; }
+
+  /* 3. 展开后的样式：JS 点按钮时会给菜单加上 open 这个 class */
+  .menu.open {
+    display: flex;
+    flex-direction: column;           /* 竖着排 */
+    gap: 2px;
+    position: absolute;               /* 贴在导航栏正下方，盖在正文上面 */
+    top: 100%;                        /* 紧贴导航栏下沿 */
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background: #1a2230;
+    border-bottom: 1px solid #2a3550;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  }
+}

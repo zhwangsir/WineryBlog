@@ -42,3 +42,7 @@ server/data/gallery/
 
 # admin session signing secret (generated on first boot; never commit)
 server/data/.session-secret
+
+# Pyodide (CPython in the browser) for the lab: ~14 MB of binaries, fetched on demand
+# with `npm run labs:pyodide` and served from /vendor/pyodide/
+public/vendor/pyodide/

@@ -1,0 +1,44 @@
+{
+  "id": "nginx-basics",
+  "title": "Nginx 入门：一个 server 块搞定静态站点与反向代理",
+  "summary": "改一个 server 块：静态站点、单页应用、反向代理。",
+  "goal": "改写一个最简 server 块：换监听端口与 root，用 try_files 支持单页应用的路由，再用 proxy_pass 把 /api/ 转发给后端；每改一次都用 nginx -t 检查、reload 生效、curl 验证——这是修改线上 Nginx 配置的标准流程。",
+  "minutes": 20,
+  "level": "进阶",
+  "tags": [
+    "Nginx",
+    "反向代理",
+    "静态站点"
+  ],
+  "order": 50,
+  "sim": {
+    "setup": "本实验的初始状态：nginx 1.18（Ubuntu 软件包）已安装但还没有启动；用户 winery 可以免密使用 sudo。站点配置文件是 /etc/nginx/sites-available/default（已启用，机器上只有这一个站点），它当前的内容与编辑器里 nginx.conf 的起始内容一致：listen 80 default_server、root /usr/share/nginx/html、没有 location 块。编辑器里的 nginx.conf 就代表这个文件：用户点「运行」、或在终端里执行 sudo cp nginx.conf /etc/nginx/sites-available/default，都表示把编辑器里的当前内容写入该文件；写入不会自动生效，nginx 运行中时要执行 sudo nginx -s reload 才会换成新配置。/var/www/lab/dist 是一个打包好的静态站点，里面有 index.html（内容只有一行 <h1>WineryLab 首页</h1>）、style.css、logo.svg；它是单页应用，/posts/42、/about 这样的路径没有对应的物理文件。127.0.0.1:3000 上运行着一个演示后端：GET /api/time 返回 200 和 JSON {\"now\":\"2026-11-24T08:30:00+08:00\"}，其它路径返回 404。配置正确时 nginx -t 输出 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok 与 nginx: configuration file /etc/nginx/nginx.conf test is successful；配置有误时按真实格式输出错误所在的文件与行号。curl -i 的输出包含状态行（如 HTTP/1.1 200 OK）与 Server: nginx/1.18.0 (Ubuntu) 响应头。"
+  },
+  "steps": [
+    {
+      "title": "Step 1 · 换端口、换 root：先让静态站点跑起来",
+      "detail": "server 块里的每条指令都以分号结尾。先做三处改动：listen 改成 8080（不占用系统的 80 端口）、root 改成 /var/www/lab/dist（打包好的静态站点就在那里），再加一个 location / 块，里面写 try_files $uri $uri/ =404——先按请求路径找文件，找不到再当目录找，都没有就返回 404。改完点右上角的「运行」把配置写回 /etc/nginx/sites-available/default，然后到右侧终端里依次输入 sudo nginx -t 检查语法、sudo nginx 启动、curl -i localhost:8080/ 验证。",
+      "check": "终端输出里，nginx -t 应出现 syntax is ok 与 test is successful；curl -i localhost:8080/ 的状态行是 HTTP/1.1 200 OK，响应体里有「WineryLab 首页」；curl -i localhost:8080/posts/42 是 404",
+      "hint": "nginx -t 报错时会给出文件名和行号，按行号回编辑器里检查：多半是漏了分号，或者大括号没有配对",
+      "snippet": "snippets/step1.conf"
+    },
+    {
+      "title": "Step 2 · try_files 回退到 index.html：支持单页应用",
+      "detail": "单页应用只有一份 index.html：/posts/42、/about 这些路由由前端 JavaScript 接管，磁盘上并没有对应的文件，按 Step 1 的规则它们全是 404。把 try_files 的最后一项 =404 换成 /index.html：找不到文件时改为在服务器内部跳转去取首页，状态码是 200，剩下的事交给前端路由。改完点「运行」，再在终端里输入 sudo nginx -t && sudo nginx -s reload——reload 是平滑重载，不会断开现有连接，线上改配置都这么做。",
+      "check": "终端输出里，reload 之后 curl -i localhost:8080/posts/42 的状态行从 404 变成 HTTP/1.1 200 OK，响应体与首页相同（「WineryLab 首页」）",
+      "snippet": "snippets/step2.conf"
+    },
+    {
+      "title": "Step 3 · 反向代理：把 /api/ 转发给后端",
+      "detail": "前后端同源部署时，由 Nginx 把 /api/ 开头的请求转发给后端：加一个 location /api/ 块，proxy_pass 指向后端地址；proxy_set_header 把客户端的原始信息补进请求头（否则后端看到的来源 IP 全是 Nginx 本机）。Nginx 匹配 location 时选「前缀最长」的那个，所以 /api/time 会走 /api/ 而不是 /。改完点「运行」，同样 nginx -t 加 reload，然后对比经代理与直连后端的结果。做完可以输入 sudo nginx -s stop 停掉服务。",
+      "check": "终端输出里，reload 之后 curl -i localhost:8080/api/time 的状态行是 HTTP/1.1 200 OK，响应头里有 Server: nginx，响应体是含 now 字段的 JSON，与 curl -s 127.0.0.1:3000/api/time 直连后端拿到的内容一致",
+      "snippet": "snippets/step3.conf"
+    }
+  ],
+  "verify": [
+    "nginx -t 输出 syntax is ok 与 test is successful，服务在 8080 端口正常响应",
+    "curl -i localhost:8080/posts/42 返回 200 与首页内容（单页应用回退生效）",
+    "curl -i localhost:8080/api/time 拿到后端的 JSON，且响应头里的 Server 是 nginx（反向代理生效）",
+    "能说出为什么要先 nginx -t 再 reload，以及 try_files 回退方案的副作用（缺失的 css、js 文件也会拿到 200 的 HTML）"
+  ]
+}

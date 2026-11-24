@@ -1,0 +1,19 @@
+<main class="card">
+  <h1>今日待办</h1>
+
+  <!-- 用 <form> 包住输入框和按钮：按回车、点按钮都会触发 submit 事件 -->
+  <form id="todo-form" class="row">
+    <input id="todo-input" type="text" placeholder="写下一件要做的事，回车添加" autocomplete="off">
+    <button type="submit">添加</button>
+  </form>
+
+  <!-- 每一条待办都由 script.js 动态创建，追加到这个列表里 -->
+  <ul id="list"></ul>
+
+  <!-- 列表为空时才显示的提示 -->
+  <p id="empty" class="empty">还没有待办，在上面输入一条试试</p>
+
+  <footer class="foot">
+    <span id="count">剩余 0 项</span>
+  </footer>
+</main>

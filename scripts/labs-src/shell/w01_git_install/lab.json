@@ -1,0 +1,38 @@
+{
+  "id": "w01_git_install",
+  "post": "w01_git_install",
+  "title": "分支与合并的完整生命周期（Git）",
+  "summary": "走完分支、合并、解决冲突的完整流程。",
+  "goal": "在本地仓库走完「建分支 → 开发提交 → 合并 → 解决一次真实冲突」全流程，理解分支只是指向提交的可移动指针。",
+  "minutes": 15,
+  "level": "入门",
+  "tags": [
+    "Git"
+  ],
+  "order": 20,
+  "steps": [
+    {
+      "title": "Step 1 · 建仓 + 建分支开发",
+      "detail": "init 后在 feature 分支改文件提交两次，main 分支也改同一文件的**同一行**一次——为冲突做准备。",
+      "check": "git log --oneline --all 能看到两条分叉历史",
+      "snippet": "snippets/step1.sh"
+    },
+    {
+      "title": "Step 2 · 合并并制造冲突",
+      "detail": "merge feature 时 Git 发现 app.txt 同一处两边都改了，无法自动合并，标记 CONFLICT。",
+      "check": "看到冲突标记 <<<<<<< / ======= / >>>>>>>",
+      "snippet": "snippets/step2.sh"
+    },
+    {
+      "title": "Step 3 · 手工解决冲突并完成合并",
+      "detail": "编辑文件保留想要的内容（练习时可以两行都留），删除冲突标记，git add 标记已解决，commit 完成合并。",
+      "check": "git log --graph 出现菱形合并结构",
+      "snippet": "snippets/step3.sh"
+    }
+  ],
+  "verify": [
+    "说清 HEAD、main、feature 三者关系",
+    "冲突标记的三行各代表什么",
+    "git switch -c 与 git switch 的区别"
+  ]
+}
