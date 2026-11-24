@@ -1136,9 +1136,19 @@
     "Web",
     "beego"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:15:14.184Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "zh",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "codehunter",
@@ -1151,9 +1161,19 @@
     "Netty",
     "源码"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:15:14.716Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "es6tut",
