@@ -34,6 +34,7 @@ export const Layout: React.FC = () => {
   const p = location.pathname;
   // 宽屏专注模式：文章 / 知识图谱 / 实验室 / AI 馆员 隐藏左右侧栏
   const isImmersive = p.startsWith('/post/') || p.startsWith('/graph') || p.startsWith('/lab') || p === '/ai';
+  const fullscreen = p.startsWith('/graph') || p.startsWith('/lab');
 
   // 滚动位置：站内新跳转回顶部；浏览器前进/后退回到离开时的位置
   const navType = useNavigationType();
@@ -111,22 +112,27 @@ export const Layout: React.FC = () => {
         speed={theme?.sakuraSpeed as 'slow' | 'normal' | 'fast' || 'normal'}
       />
 
+      {/* 桌宠在整页工作区（图谱 / 实验室）里会盖住内容和面板，这两类页面不显示 */}
       {petOn ? (
-        <PetMascot
-          voiceEnabled={pet?.voiceEnabled === true}
-          model={(pet?.model as 'hutao' | 'fallback') || 'hutao'}
-          size={pet?.size || 1}
-          opacity={pet?.opacity || 1}
-          fallbackAvatar={config?.profile?.avatar}
-          name={config?.profile?.name}
-          onOpenChat={() => setPetChatOpen(true)}
-        />
+        !fullscreen && (
+          <PetMascot
+            voiceEnabled={pet?.voiceEnabled === true}
+            model={(pet?.model as 'hutao' | 'fallback') || 'hutao'}
+            size={pet?.size || 1}
+            opacity={pet?.opacity || 1}
+            fallbackAvatar={config?.profile?.avatar}
+            name={config?.profile?.name}
+            onOpenChat={() => setPetChatOpen(true)}
+          />
+        )
       ) : (
-        <Mascot
-          enabled={theme?.mascotEnabled !== false}
-          avatar={config?.profile?.avatar}
-          name={config?.profile?.name}
-        />
+        !fullscreen && (
+          <Mascot
+            enabled={theme?.mascotEnabled !== false}
+            avatar={config?.profile?.avatar}
+            name={config?.profile?.name}
+          />
+        )
       )}
       <PetChatPanel open={petOn && petChatOpen} onClose={() => setPetChatOpen(false)} />
 
@@ -142,11 +148,12 @@ export const Layout: React.FC = () => {
         跳到正文
       </a>
 
+      {/* 知识图谱 / 实验室是整页工作区：占满导航栏以下的视口，不留页边距和页脚 */}
       <main
         id="main"
         className={cn(
-          'mx-auto w-full max-w-[1400px] flex-1 px-4 py-8 md:px-6 lg:px-8',
-          p !== '/' && 'pt-24 md:pt-28'
+          'mx-auto w-full flex-1',
+          fullscreen ? 'pt-16' : cn('max-w-[1400px] px-4 py-8 md:px-6 lg:px-8', p !== '/' && 'pt-24 md:pt-28'),
         )}
       >
         <div className={cn('flex gap-6 lg:gap-8', isImmersive && !p.startsWith('/graph') && !p.startsWith('/lab') && 'justify-center')}>
@@ -178,8 +185,8 @@ export const Layout: React.FC = () => {
         </div>
       </main>
 
-      <Footer />
-      <BackToTop />
+      {!fullscreen && <Footer />}
+      {!fullscreen && <BackToTop />}
     </div>
   );
 };
