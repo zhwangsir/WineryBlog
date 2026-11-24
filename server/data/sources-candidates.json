@@ -1086,9 +1086,19 @@
     "入门",
     "教材"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:13:51.694Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "eBook",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "auto-javascript-tutorial-zh-javascript-info",
@@ -1101,9 +1111,19 @@
     "javascript",
     "tutorial"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:13:54.445Z",
-   "note": "auto-discovered"
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      "article.md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "goweb",

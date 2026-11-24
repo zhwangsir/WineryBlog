@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 48
+      "count": 70
     },
     {
       "id": "algo",
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 90
+      "count": 119
     },
     {
       "id": "backend",
@@ -15296,6 +15296,873 @@
       ],
       "prereqs": [],
       "href": "/post/g-dlbookcn-8"
+    },
+    {
+      "id": "g-waytogo-1",
+      "kind": "collection",
+      "title": "1.1 起源与发展",
+      "summary": "Go 语言起源 2007 年，并于 2009 年正式对外发布。它从 2009 年 9 月 21 日开始作为谷歌公司 20",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-1"
+    },
+    {
+      "id": "g-waytogo-2",
+      "kind": "collection",
+      "title": "1.2 语言的主要特性与发展的环境和影响因素",
+      "summary": "正如 “21 世纪的 C 语言” 这句话所说，Go 语言并不是凭空而造的，而是和 C++、Java 和 C 一样属于 C",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-2"
+    },
+    {
+      "id": "g-waytogo-3",
+      "kind": "collection",
+      "title": "2.1 平台与架构",
+      "summary": "Go 语言开发团队开发了适用于以下操作系统的编译器： Linux FreeBSD Mac OS X（也称为 Darwin",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-3"
+    },
+    {
+      "id": "g-waytogo-4",
+      "kind": "collection",
+      "title": "2.2 Go 环境变量",
+      "summary": "Go 开发环境依赖于一些操作系统环境变量，你最好在安装 Go 之前就已经设置好他们。如果你使用的是 Windows 的话",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-4"
+    },
+    {
+      "id": "g-waytogo-5",
+      "kind": "collection",
+      "title": "2.3 在 Linux 上安装 Go",
+      "summary": "如果你能够自己下载并编译 Go 的源代码的话,对你来说是非常有教育意义的，你可以根据这个页面找到安装指南和下载地址：Do",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-5"
+    },
+    {
+      "id": "g-waytogo-7",
+      "kind": "collection",
+      "title": "2.5 在 Windows 上安装 Go",
+      "summary": "你可以在 下载页面 页面下载到 Windows 系统下的一键安装包。 前期的 Windows 移植工作由 Hector ",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-7"
+    },
+    {
+      "id": "g-waytogo-9",
+      "kind": "collection",
+      "title": "2.7 Go 运行时 (runtime)",
+      "summary": "尽管 Go 编译器产生的是本地可执行代码，这些代码仍旧运行在 Go 的 runtime（这部分的代码可以在 runtim",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-9"
+    },
+    {
+      "id": "g-waytogo-12",
+      "kind": "collection",
+      "title": "3.1 Go 开发环境的基本要求",
+      "summary": "这里有一个可以用来开发 Go 的集成开发环境，你期待有以下哪些特性，从而替代你使用文本编辑器写代码和命令行编译与链接程序",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-12"
+    },
+    {
+      "id": "g-waytogo-13",
+      "kind": "collection",
+      "title": "3.2 编辑器和集成开发环境",
+      "summary": "这些编辑器包含了代码高亮和其它与 Go 有关的一些使用工具：Emacs、Vim、Xcode 6、KD Kate、Text",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-13"
+    },
+    {
+      "id": "g-waytogo-16",
+      "kind": "collection",
+      "title": "3.5 格式化代码",
+      "summary": "Go 开发团队不想要 Go 语言像许多其它语言那样总是在为代码风格而引发无休止的争论，浪费大量宝贵的开发时间，因此他们制",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-16"
+    },
+    {
+      "id": "g-waytogo-17",
+      "kind": "collection",
+      "title": "3.6 生成代码文档",
+      "summary": "godoc 工具会从 Go 程序和包文件中提取顶级声明的首行注释以及每个对象的相关注释，并生成相关文档。 它也可以作为一",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-17"
+    },
+    {
+      "id": "g-waytogo-19",
+      "kind": "collection",
+      "title": "3.8 Go 性能说明",
+      "summary": "根据 Go 开发团队和基本的算法测试，Go 语言与 C 语言的性能差距大概在 10% 20% 之间（ 译者注：由于出版时",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-19"
+    },
+    {
+      "id": "g-waytogo-20",
+      "kind": "collection",
+      "title": "3.9 与其它语言进行交互",
+      "summary": "工具 cgo 提供了对 FFI（外部函数接口）的支持，能够使用 Go 代码安全地调用 C 语言库，你可以访问 cgo 文",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-20"
+    },
+    {
+      "id": "g-waytogo-21",
+      "kind": "collection",
+      "title": "4.1 文件名、关键字与标识符",
+      "summary": "Go 的源文件以 .go 为后缀名存储在计算机中，这些文件名均由小写字母组成，如 scanner.go 。如果文件名由多",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-21"
+    },
+    {
+      "id": "g-waytogo-22",
+      "kind": "collection",
+      "title": "4.2 Go 程序的基本结构和要素",
+      "summary": "示例 4.1 hello world.go go package main import \"fmt\" func main",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-22"
+    },
+    {
+      "id": "g-waytogo-23",
+      "kind": "collection",
+      "title": "4.3 常量",
+      "summary": "常量使用关键字 const 定义，用于存储不会改变的数据。 存储在常量中的数据类型只可以是布尔型、数字型（整数型、浮点型",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-23"
+    },
+    {
+      "id": "g-waytogo-24",
+      "kind": "collection",
+      "title": "4.4 变量",
+      "summary": "声明变量的一般形式是使用 var 关键字： var identifier type 。 需要注意的是，Go 和许多编程语",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-24"
+    },
+    {
+      "id": "g-waytogo-25",
+      "kind": "collection",
+      "title": "4.5 基本类型和运算符",
+      "summary": "我们将在这个部分讲解有关布尔型、数字型和字符型的相关知识。 表达式是一种特定的类型的值，它可以由其它的值以及运算符组合而",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-25"
+    },
+    {
+      "id": "g-waytogo-26",
+      "kind": "collection",
+      "title": "4.6 字符串",
+      "summary": "字符串是 UTF 8 字符的一个序列（当字符为 ASCII 码时则占用 1 个字节，其它字符根据需要占用 2 4 个字节",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-26"
+    },
+    {
+      "id": "g-waytogo-27",
+      "kind": "collection",
+      "title": "4.7 strings 和 strconv 包",
+      "summary": "作为一种基本数据结构，每种语言都有一些对于字符串的预定义处理函数。Go 中使用 strings 包来完成对字符串的主要操",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-27"
+    },
+    {
+      "id": "g-waytogo-28",
+      "kind": "collection",
+      "title": "4.8 时间和日期",
+      "summary": "time 包为我们提供了一个数据类型 time.Time （作为值使用）以及显示和测量时间和日期的功能函数。 当前时间可",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-28"
+    },
+    {
+      "id": "g-waytogo-29",
+      "kind": "collection",
+      "title": "4.9 指针",
+      "summary": "不像 Java 和 .NET，Go 语言为程序员提供了控制数据结构的指针的能力；但是，你不能进行指针运算。通过给予程序员",
+      "domain": "langs",
+      "category": "The Way to Go 中文",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门",
+        "教材"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo-29"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-1",
+      "kind": "collection",
+      "title": "JavaScript 简介",
+      "summary": "让我们来看看 JavaScript 有什么特别之处，我们可以用它实现什么，以及哪些其他技术可以与其搭配产生奇妙的效果。 ",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-1"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-2",
+      "kind": "collection",
+      "title": "手册与规范",
+      "summary": "这本书是一个 教程 。它旨在帮助你由浅入深掌握 JavaScript 这门语言。但是，当你已经熟悉了这门语言的基础知识，",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-2"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-3",
+      "kind": "collection",
+      "title": "代码编辑器",
+      "summary": "程序员接触时间最长的就是代码编辑器。 代码编辑器主要分两种：IDE（集成开发环境）和轻量编辑器。很多人喜欢这两种各选一个",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-3"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-4",
+      "kind": "collection",
+      "title": "开发者控制台",
+      "summary": "代码是很容易出现错误的。你也很可能犯错误……哦，我在说什么？只要你是人，你 一定 会犯错误（在写代码的时候），除非你是 ",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-4"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-6",
+      "kind": "collection",
+      "title": "代码结构",
+      "summary": "我们将要学习的第一个内容就是构建代码块。 语句是执行行为（action）的语法结构和命令。 我们已经见过了 alert(",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-6"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-7",
+      "kind": "collection",
+      "title": "现代模式，\"use strict\"",
+      "summary": "长久以来，JavaScript 不断向前发展且并未带来任何兼容性问题。新的特性被加入，旧的功能也没有改变。 这么做有利于",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-7"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-8",
+      "kind": "collection",
+      "title": "变量",
+      "summary": "大多数情况下，JavaScript 应用需要处理信息。这有两个例子： 1. 一个网上商店 —— 这里的信息可能包含正在售",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-8"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-9",
+      "kind": "collection",
+      "title": "数据类型",
+      "summary": "JavaScript 中的值都具有特定的类型。例如，字符串或数字。 在 JavaScript 中有 8 种基本的数据类型",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-9"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-10",
+      "kind": "collection",
+      "title": "交互：alert、prompt 和 confirm",
+      "summary": "由于我们将使用浏览器作为我们的演示环境，让我们看几个与用户交互的函数： alert ， prompt 和 confirm",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-10"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-11",
+      "kind": "collection",
+      "title": "类型转换",
+      "summary": "大多数情况下，运算符和函数会自动将赋予它们的值转换为正确的类型。 比如， alert 会自动将任何值都转换为字符串以进行",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-11"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-12",
+      "kind": "collection",
+      "title": "基础运算符，数学运算",
+      "summary": "我们从学校里了解到过很多运算符，比如说加号 + 、乘号 、减号 等。 在本章中，我们将从简单的运算符开始，然后着重介绍 ",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-12"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-13",
+      "kind": "collection",
+      "title": "值的比较",
+      "summary": "我们知道，在数学中有很多用于比较大小的运算符。 在 JavaScript 中，它们的编写方式如下： 大于 / 小于：a ",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-13"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-14",
+      "kind": "collection",
+      "title": "条件分支：if 和 '?'",
+      "summary": "有时我们需要根据不同条件执行不同的操作。 我们可以使用 if 语句和条件运算符 ? （也称为“问号”运算符）来实现。 i",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-14"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-15",
+      "kind": "collection",
+      "title": "逻辑运算符",
+      "summary": "JavaScript 中有四个逻辑运算符： （或）， && （与）， ! （非）， ?? （空值合并运算符）。本文我们先",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-15"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-16",
+      "kind": "collection",
+      "title": "空值合并运算符 '??'",
+      "summary": "recent browser=\"new\" 空值合并运算符（nullish coalescing operator）的写法",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-16"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-17",
+      "kind": "collection",
+      "title": "循环：while 和 for",
+      "summary": "我们经常需要重复执行一些操作。 例如，我们需要将列表中的商品逐个输出，或者运行相同的代码将数字 1 到 10 逐个输出。",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-17"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-18",
+      "kind": "collection",
+      "title": "\"switch\" 语句",
+      "summary": "switch 语句可以替代多个 if 判断。 switch 语句为多分支选择的情况提供了一个更具描述性的方式。 swit",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-18"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-19",
+      "kind": "collection",
+      "title": "函数",
+      "summary": "我们经常需要在脚本的许多地方执行很相似的操作。 例如，当访问者登录、注销或者在其他地方时，我们需要显示一条好看的信息。 ",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-19"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-20",
+      "kind": "collection",
+      "title": "函数表达式",
+      "summary": "在 JavaScript 中，函数不是“神奇的语言结构”，而是一种特殊的值。 我们在前面章节使用的语法称为 函数声明 ：",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-20"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-21",
+      "kind": "collection",
+      "title": "箭头函数，基础知识",
+      "summary": "创建函数还有另外一种非常简单的语法，并且这种方法通常比函数表达式更好。 它被称为“箭头函数”，因为它看起来像这样： 这里",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-21"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-22",
+      "kind": "collection",
+      "title": "JavaScript 特性",
+      "summary": "本章简要回顾我们到现在为止学到的 JavaScript 特性，并特别注意了一些细节。 语句用分号分隔： js run n",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-22"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-23",
+      "kind": "collection",
+      "title": "在浏览器中调试",
+      "summary": "在编写更复杂的代码前，让我们先来聊聊调试吧。 调试 是指在一个脚本中找出并修复错误的过程。所有的现代浏览器和大多数其他环",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-23"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-24",
+      "kind": "collection",
+      "title": "代码风格",
+      "summary": "我们的代码必须尽可能的清晰和易读。 这实际上是一种编程艺术 —— 以一种正确并且人们易读的方式编码来完成一个复杂的任务。",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-24"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-25",
+      "kind": "collection",
+      "title": "注释",
+      "summary": "正如我们在 一章所了解到的那样，注释可以是以 // 开始的单行注释，也可以是 / ... / 结构的多行注释。 我们通常",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-25"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-26",
+      "kind": "collection",
+      "title": "忍者代码",
+      "summary": "quote author=\"孔子《论语》\" 学而不思则罔，思而不学则殆。 warn header=\"检测到讽刺意味\" 许",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-26"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-27",
+      "kind": "collection",
+      "title": "使用 Mocha 进行自动化测试",
+      "summary": "自动化测试将被用于进一步的任务中，并且还将被广泛应用在实际项目中。 当我们在写一个函数时，我们通常可以想象出它应该做什么",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-27"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-28",
+      "kind": "collection",
+      "title": "Polyfill 和转译器",
+      "summary": "JavaScript 语言在稳步发展。也会定期出现一些对语言的新提议，它们会被分析讨论，如果认为有价值，就会被加入到 h",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-28"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-29",
+      "kind": "collection",
+      "title": "对象",
+      "summary": "正如我们在 一章学到的，JavaScript 中有八种数据类型。有七种原始类型，因为它们的值只包含一种东西（字符串，数字",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-29"
+    },
+    {
+      "id": "g-auto-javascript-tutorial-zh-javascript-info-30",
+      "kind": "collection",
+      "title": "对象引用和复制",
+      "summary": "对象与原始类型的根本区别之一是，对象是“通过引用”存储和复制的，而原始类型：字符串、数字、布尔值等 —— 总是“作为一个",
+      "domain": "frontend",
+      "category": "现代 JavaScript 教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "chinese",
+        "javascript",
+        "tutorial"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-javascript-tutorial-zh-javascript-info-30"
     }
   ]
 }
