@@ -78,20 +78,25 @@ function validateRepo(repo, minStars) {
   if (info.fork) return { ok: false, why: 'fork' };
   if ((info.stargazers_count || 0) < minStars) return { ok: false, why: `stars ${info.stargazers_count} < ${minStars}` };
   // md 贫矿淘汰：仓库里可用的 md 正文不足（如只有 README/勘误表、内容全是 PDF 的补充材料仓库）
+  // trees 查询失败也拒绝（fail-closed）：宁可这轮漏掉下轮重新发现，不让没核过的仓库入池
   const md = usableMdCount(repo, info.default_branch);
-  if (md >= 0 && md < 5) return { ok: false, why: `仅 ${md} 个可用 md` };
+  if (md === -1) return { ok: false, why: 'trees api 失败' };
+  if (md < 5) return { ok: false, why: `仅 ${md} 个可用 md` };
   return { ok: true, info };
 }
 
-/** 仓库里「可用正文」md 数（与收录脚本的 junk 过滤同规则）；API 失败返回 -1（放行，交给收录阶段兜底） */
+/** 仓库里「可用正文」md 数（与收录脚本的 junk 过滤同规则）；失败重试一次，仍失败返回 -1 */
 function usableMdCount(repo, branch) {
-  const { code, body } = ghJson(`/repos/${repo}/git/trees/${encodeURIComponent(branch)}?recursive=1`);
-  if (code !== 200) return -1;
-  try {
-    const tree = JSON.parse(body).tree || [];
-    return tree.filter((t) => t.type === 'blob' && /\.md$/i.test(t.path)
-      && !/node_modules|\.github|CHANGELOG|CODE_OF|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)).length;
-  } catch { return -1; }
+  for (let i = 0; i < 2; i++) {
+    const { code, body } = ghJson(`/repos/${repo}/git/trees/${encodeURIComponent(branch)}?recursive=1`);
+    if (code !== 200) { if (code === 404) return 0; continue; }
+    try {
+      const tree = JSON.parse(body).tree || [];
+      return tree.filter((t) => t.type === 'blob' && /\.md$/i.test(t.path)
+        && !/node_modules|\.github|CHANGELOG|CODE_OF|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)).length;
+    } catch { /* 再试 */ }
+  }
+  return -1;
 }
 
 /** README 是否中文内容：API 取 README（base64），数 CJK 字符 */

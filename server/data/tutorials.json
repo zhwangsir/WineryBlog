@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 93
+      "count": 103
     },
     {
       "id": "algo",
@@ -21841,6 +21841,176 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-aa1143-namigpt-15"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-1",
+      "kind": "collection",
+      "title": "Qt 命名空间",
+      "summary": "QtCore.Qt 命名空间下包含了整个 Qt 库中所使用的各种标识符。 这些标识符大多为枚举（enum）或标志（fla",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-1"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-2",
+      "kind": "collection",
+      "title": "元对象系统",
+      "summary": "翻译信息： 本文翻译自 PySide6 官方文档 The Meta Object System 协议：本翻译遵守原文档使",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-2"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-3",
+      "kind": "collection",
+      "title": "对象模型",
+      "summary": "翻译信息 ： 本文翻译自 Qt6 官方文档 Object Model 协议：本翻译遵守原文档使用的 GFDLv1.3 授",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-3"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-4",
+      "kind": "collection",
+      "title": "对象树与所有状态",
+      "summary": "翻译信息 ： 本文翻译自 Qt6 官方文档 Object Trees & Ownership 协议：本翻译遵守原文档使用",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-4"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-5",
+      "kind": "collection",
+      "title": "QFileDialog-枚举值",
+      "summary": "由于 QFileDialog 类中包含大量的枚举值类型，故单独摘录整理至本文档中。 常量 值 AcceptOpen 0 ",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-5"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-6",
+      "kind": "collection",
+      "title": "QDir.Filters",
+      "summary": "https://doc.qt.io/qt 6/qdir.html Filter enum 常量 值 描述 Dirs 0x",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-6"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-7",
+      "kind": "collection",
+      "title": "QMessageBox-枚举值",
+      "summary": "由于 QMessageBox 类中包含大量的枚举值类型，故单独摘录整理至本文档中。 常量 值 描述 InvalidRol",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-7"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-8",
+      "kind": "collection",
+      "title": "QSS 主题与编辑器",
+      "summary": "本文转载自 使用QSS美化PyQt界面 muzing's QSS 全称 Qt Style Sheets（Qt样式表），用",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-8"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-9",
+      "kind": "collection",
+      "title": "Qt 中的 Model/View 结构",
+      "summary": "本文摘自PyQt中的 Model/View 结构 muzing的杂货铺 Qt 官方文档 Model/View编程 源数据",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-9"
+    },
+    {
+      "id": "g-auto-muziing-pyside6-code-tutorial-10",
+      "kind": "collection",
+      "title": "在PyQt中使用qrc/rcc资源系统",
+      "summary": "本文摘自在PyQt中使用qrc/rcc资源系统 muzing的杂货铺 Qt 资源系统（The Qt Resource S",
+      "domain": "langs",
+      "category": "PySide6 中文教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "pyside6",
+        "python",
+        "qt6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-muziing-pyside6-code-tutorial-10"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T22:15:08.348Z",
+ "updatedAt": "2026-11-24T22:35:07.865Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1511,6 +1511,46 @@
       ".md"
      ],
      "max": 15,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-liyupi-daxigua",
+   "repo": "liyupi/daxigua",
+   "branch": "master",
+   "category": "合成大西瓜（daxigua）开源",
+   "domain": "games",
+   "tags": [
+    "browser-game",
+    "canvas",
+    "casual-game"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-24T22:35:05.662Z",
+   "note": "游戏源码仓库非教程：可用 md 为 0，trees 校验当时失败走了放行通道（已改 fail-closed）"
+  },
+  {
+   "id": "auto-muziing-pyside6-code-tutorial",
+   "repo": "muziing/PySide6-Code-Tutorial",
+   "branch": "main",
+   "category": "PySide6 中文教程",
+   "domain": "langs",
+   "tags": [
+    "pyside6",
+    "python",
+    "qt6"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T22:35:07.865Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 10,
      "recursive": true
     }
    ]
