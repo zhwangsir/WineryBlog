@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 103
+      "count": 132
     },
     {
       "id": "algo",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 216
+      "count": 235
     },
     {
       "id": "security",
@@ -22011,6 +22011,764 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-muziing-pyside6-code-tutorial-10"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-1",
+      "kind": "collection",
+      "title": "1.1 【环境】快速安装 Python 解释器",
+      "summary": "Python 是一门解释性脚本语言，因此要想让你编写的代码得以运行，需要先安装 CPython 解释器。 根据你电脑的系",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-1"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-2",
+      "kind": "collection",
+      "title": "1.2 【环境】Python 开发环境的搭建",
+      "summary": "理论上只需要你安装了 CPython 解释器后，就可以开始写 Python 代码了。为了让你的在写代码时，有一个更加友好",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-2"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-3",
+      "kind": "collection",
+      "title": "1.3 【基础】两种运行 Python 程序方法",
+      "summary": "前两节我们安装好了 CPython 解释器，有了解释器，就可以运行 Python 程序了。 Python 程序的执行分为",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-3"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-4",
+      "kind": "collection",
+      "title": "2.1 【基础】常量与变量",
+      "summary": "变量 ：在程序运行过程中，值会发生变化的量 常量 ：在程序运行过程中，值不会发生变化的量 无论是变量还是常量，在创建时都",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-4"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-5",
+      "kind": "collection",
+      "title": "2.2 【基础】字符串类型",
+      "summary": "字符串是Python中最常用的数据类型之一。 使用单引号或双引号来创建字符串，使用三引号创建多行字符串。字符串要么使用两",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-5"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-6",
+      "kind": "collection",
+      "title": "2.3 【基础】整数与浮点数",
+      "summary": "Python 支持的数字类型有三种：整数、浮点数和复数。 通常被称为整型，是正或负整数，不带小数点。例如：1，100， ",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-6"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-7",
+      "kind": "collection",
+      "title": "2.4 【基础】布尔值：真与假",
+      "summary": "但在Python语言中，布尔类型只有两个值 True ：表示真值 False ：表示假值 请注意，首字母要大写，不能是其",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-7"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-8",
+      "kind": "collection",
+      "title": "2.5 【基础】学会输入与输出",
+      "summary": "无论是从我们一开始的“hello world”，还是前面章节的里各种例子，基本都是些“自说自话”，展示类的代码片段。只有",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-8"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-9",
+      "kind": "collection",
+      "title": "2.6 【基础】字符串格式化",
+      "summary": "格式化输出，主要有三种方式 1. 使用 % 进行格式化 2. 使用 format 函数进行格式化 3. 使用 f str",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-9"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-10",
+      "kind": "collection",
+      "title": "2.7 【基础】运算符（超全整理）",
+      "summary": "本章节主要说明Python的运算符。举个简单的例子 4 +5 = 9 。 例子中，4和5被称为操作数，\"+\"号为运算符。",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-10"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-11",
+      "kind": "collection",
+      "title": "3.1 【基础】列表",
+      "summary": "列表（英文名 list），是由一系列元素按顺序进行排列而成的容器。 这里面有两个重点： 元素 ：没有要求同一类型，所以可",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-11"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-12",
+      "kind": "collection",
+      "title": "3.2 【基础】元组",
+      "summary": "元组（英文名 tuple），和列表非常的相似，它也是由一系列元素按顺序进行排列而成的容器。 不同的是，元组是不可变的，而",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-12"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-13",
+      "kind": "collection",
+      "title": "3.3 【基础】字典",
+      "summary": "字典（英文名 dict），它是由一系列的键值（key value）对组合而成的数据结构。 字典中的每个键都与一个值相关联",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-13"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-14",
+      "kind": "collection",
+      "title": "3.4 【基础】集合",
+      "summary": "集合（英文名 set），它是一个无序的不重复元素序列。 这里面有两个重点： 1. 无序， 2. 不重复 集合的创建有两种",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-14"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-15",
+      "kind": "collection",
+      "title": "3.5 【基础】迭代器",
+      "summary": "可以利用 for 循环的对象，都叫可迭代对象。 譬如我们前面学过的 列表、元组、字典、字符串等都是可迭代对象。 对 Py",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-15"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-16",
+      "kind": "collection",
+      "title": "3.6 【基础】生成器",
+      "summary": "生成器（英文名 Generator ），是一个可以像迭代器那样使用for循环来获取元素的函数。 生成器的出现（Pytho",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-16"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-17",
+      "kind": "collection",
+      "title": "4.1 【基础】条件语句：if",
+      "summary": "如果满足条件 A，则执行代码块 a，否则执行代码块 b。类似这样的控制流程语句，称之为条件语句。 它的基本形式是 举个最",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-17"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-18",
+      "kind": "collection",
+      "title": "4.2 【基础】循环语句：for",
+      "summary": "for 循环可以遍历任何序列的项目，如一个列表或者一个字符串。 它的基本语法是 直接上案例 如果想在循环的时候，把索引也",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-18"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-19",
+      "kind": "collection",
+      "title": "4.3 【基础】循环语句：while",
+      "summary": "while 语句用于循环执行程序，即在某条件下，循环执行某段程序，以处理需要重复处理的相同任务。 其基本形式为： 直接上",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-19"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-20",
+      "kind": "collection",
+      "title": "4.4 【进阶】五种推导式",
+      "summary": "推导式（英文名：comprehensions），也叫解析式，是Python的一种独有特性。 推导式是可以从一个数据序列构",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-20"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-21",
+      "kind": "collection",
+      "title": "5.1 【基础】普通函数创建与调用",
+      "summary": "函数是一种仅在调用时运行的代码块。您可以将数据（称为参数）传递到函数中，然后由函数可以把数据作为结果返回。 如果将函数比",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-21"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-22",
+      "kind": "collection",
+      "title": "5.2. 【基础】11个案例讲解函数参数",
+      "summary": "函数，在定义的时候，可以有参数的，也可以没有参数。 从函数定义的角度来看，参数可以分为两种： 1. 必选参数 ：调用函数",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-22"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-23",
+      "kind": "collection",
+      "title": "5.3 【基础】匿名函数的使用",
+      "summary": "匿名函数（英语：anonymous function）是指一类无需定义标识符（函数名）的函数。通俗来说呢，就是它可以让我",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-23"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-24",
+      "kind": "collection",
+      "title": "5.4 【基础】必学高阶函数",
+      "summary": "map 函数，它接收两个参数，第一个参数是一个函数对象（当然也可以是一个lambda表达式），第二个参数是一个序列。 它",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-24"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-25",
+      "kind": "collection",
+      "title": "5.5 【基础】反射函数的使用",
+      "summary": "自省，在我们日常生活中，通常是自我反省的意思。 但在计算机编程中，自省并不是这个意思，它的英文单词是 introspec",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-25"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-27",
+      "kind": "collection",
+      "title": "5.7 【进阶】泛型函数的使用",
+      "summary": "根据传入参数类型的不同而调用不同的函数逻辑体，这种实现我们称之为泛型。在 Python 中叫做 singledispat",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-27"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-28",
+      "kind": "collection",
+      "title": "5.8 【基础】变量的作用域",
+      "summary": "Python的作用域可以分为四种： L （Local） 局部作用域 E （Enclosing） 闭包函数外的函数中 G ",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-28"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-29",
+      "kind": "collection",
+      "title": "5.9 【进阶】上下文管理器",
+      "summary": "当你准备从一个文件中读取内容时，通常来说，都是这么写的。 上面这种方法，需要你手动关闭文件句柄，但是很多时候，程序员是会",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-29"
+    },
+    {
+      "id": "g-auto-iswbm-python-guide-30",
+      "kind": "collection",
+      "title": "5.10 【进阶】装饰器的六种写法",
+      "summary": "装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函",
+      "domain": "langs",
+      "category": "Python 中文指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-iswbm-python-guide-30"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-1",
+      "kind": "collection",
+      "title": "Day 11：K 近邻分类",
+      "summary": "使用年龄和估计薪资预测是否购买（0/1）。User ID 不作为特征。分层拆分让两部分的类别比例接近；测试集只用于最终评",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-1"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-2",
+      "kind": "collection",
+      "title": "Day 13：线性支持向量机",
+      "summary": "使用年龄和估计薪资预测是否购买（0/1）。User ID 不作为特征。分层拆分让两部分的类别比例接近；测试集只用于最终评",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-2"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-3",
+      "kind": "collection",
+      "title": "Day 14：观察 SVM 间隔与 C",
+      "summary": "目标：把 Day 12/13 的 C 与间隔联系起来。本课是独立的训练/验证实验，不复用测试集调参。先修：Day 13。",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-3"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-4",
+      "kind": "collection",
+      "title": "Day 15：朴素贝叶斯与基线比较",
+      "summary": "目标：理解条件独立假设和贝叶斯分类。GaussianNB 假设给定类别后各数值特征独立且服从高斯分布；文本词频通常采用 ",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-4"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-5",
+      "kind": "collection",
+      "title": "Day 16：非线性核 SVM",
+      "summary": "目标：在月牙形数据上比较线性核与 RBF 核。核函数隐式计算特征空间的内积，不要求显式创建所有高维特征。 运行前请阅读环",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-5"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-6",
+      "kind": "collection",
+      "title": "Day 18：用 NumPy 实现两层神经网络",
+      "summary": "目标：从前向传播、交叉熵到反向传播完成一个可检查的网络。前置：矩阵乘法、链式法则。输入 (n,2) ，隐藏层 (n,8)",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-6"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-7",
+      "kind": "collection",
+      "title": "Day 1：数据预处理",
+      "summary": "目标：区分数值特征与类别特征，理解 fit 如何学习参数、 transform 如何应用参数，并避免测试数据泄漏。前置知",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-7"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-8",
+      "kind": "collection",
+      "title": "Day 21：从 HTML 提取结构化数据",
+      "summary": "目标：用 Beautiful Soup 解析网页结构并保存表格。先在本地示例上理解选择器；本课无需网络，不会访问或采集外",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-8"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-9",
+      "kind": "collection",
+      "title": "Day 25：决策树分类",
+      "summary": "使用年龄和估计薪资预测是否购买（0/1）。User ID 不作为特征。分层拆分让两部分的类别比例接近；测试集只用于最终评",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-9"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-10",
+      "kind": "collection",
+      "title": "Day 2：简单线性回归",
+      "summary": "目标：从学习时长预测分数，理解最小二乘、斜率和残差。使用 studentscores.csv 的全部 28 行；包含偏离",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-10"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-11",
+      "kind": "collection",
+      "title": "Day 34：随机森林",
+      "summary": "使用年龄和估计薪资预测是否购买（0/1）。User ID 不作为特征。分层拆分让两部分的类别比例接近；测试集只用于最终评",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-11"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-12",
+      "kind": "collection",
+      "title": "Day 39：MNIST 与 Keras 3",
+      "summary": "目标：完成本地数据读取、训练/验证/测试、模型保存和加载。前置：Day 18、35～38。使用稳定 TensorFlow",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-12"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-13",
+      "kind": "collection",
+      "title": "Day 3：多元线性回归",
+      "summary": "目标：组合数值支出与州类别预测利润，并解释独热编码的基准类别。50 Startups.csv 有 50 行；零支出是合法",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-13"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-14",
+      "kind": "collection",
+      "title": "Day 40：猫狗数据准备与可复现划分",
+      "summary": "目标：准备不交叉的训练、验证、测试清单，而不是一次把全部图像转为巨大 pickle。请先按数据说明下载并解压 PetIm",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-14"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-15",
+      "kind": "collection",
+      "title": "Day 41：小型卷积神经网络",
+      "summary": "目标：理解卷积、池化、全局平均池化与二分类输出；前置为 Day 40 生成的数据清单。使用小型网络便于 CPU 学习，实",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-15"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-16",
+      "kind": "collection",
+      "title": "Day 42：TensorBoard 与受控实验",
+      "summary": "目标：在同一划分、epoch 上限、优化器和种子下，只改变卷积宽度。Day 41 的结果是先修示例，Day 42 的模型",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-16"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-17",
+      "kind": "collection",
+      "title": "Day 44：K-means 聚类实现",
+      "summary": "目标：在无标签输入上拟合聚类，理解惯性和轮廓系数。簇编号没有语义顺序，不能直接与真实类别数字逐项比较。K means 偏",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-17"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-18",
+      "kind": "collection",
+      "title": "Day 54：层次聚类",
+      "summary": "目标：用树状图理解逐步合并，并比较不同簇间距离。凝聚法从每个样本一个簇开始；切树高度或指定簇数决定最终分组。 运行前请阅",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-18"
+    },
+    {
+      "id": "g-auto-mleveryday-100-days-of-ml-code-19",
+      "kind": "collection",
+      "title": "Day 6：逻辑回归",
+      "summary": "使用年龄和估计薪资预测是否购买（0/1）。User ID 不作为特征。分层拆分让两部分的类别比例接近；测试集只用于最终评",
+      "domain": "ai",
+      "category": "机器学习 100 天",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "100-days-of-ml-code",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-mleveryday-100-days-of-ml-code-19"
     }
   ]
 }

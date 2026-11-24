@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T22:35:07.865Z",
+ "updatedAt": "2026-11-24T22:55:12.292Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1551,6 +1551,54 @@
       ".md"
      ],
      "max": 10,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-iswbm-python-guide",
+   "repo": "iswbm/python-guide",
+   "branch": "master",
+   "category": "Python 中文指南",
+   "domain": "langs",
+   "tags": [
+    "python"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T22:55:10.269Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "source",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-mleveryday-100-days-of-ml-code",
+   "repo": "MLEveryday/100-Days-Of-ML-Code",
+   "branch": "master",
+   "category": "机器学习 100 天",
+   "domain": "ai",
+   "tags": [
+    "100-days-of-ml-code",
+    "chinese-simplified",
+    "deep-learning"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T22:55:12.292Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "Code",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
      "recursive": true
     }
    ]
