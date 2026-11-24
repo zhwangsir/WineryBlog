@@ -5,6 +5,14 @@ import { fileURLToPath } from 'url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const violations = [];
+// 自有图床根目录：正文里引用的 /images/… 必须真实存在，否则前台是破图
+const GALLERY = path.join(ROOT, 'server', 'data', 'gallery') + path.sep;
+const checkLocalImages = (owner, i, l) => {
+  for (const m of l.matchAll(/\]\((\/images\/[^)\s]+)\)/g)) {
+    const file = path.resolve(GALLERY, decodeURIComponent(m[1].slice('/images/'.length)));
+    if (!file.startsWith(GALLERY) || !fs.existsSync(file)) violations.push(`${owner}:${i + 1}: MISSING IMAGE ${m[1]}`);
+  }
+};
 
 for (const dir of ['src/tutorials', 'src/references']) {
   const abs = path.join(ROOT, dir);
@@ -23,6 +31,7 @@ for (const dir of ['src/tutorials', 'src/references']) {
       for (const m of l.matchAll(/\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/g)) {
         violations.push(`${dir}/${f}:${i + 1}: LINK ${m[1]}`);
       }
+      checkLocalImages(`${dir}/${f}`, i, l);
     });
   }
 }
@@ -42,6 +51,7 @@ for (const dir of ['src/tutorials', 'src/references']) {
       for (const m of l.matchAll(/\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/g)) {
         violations.push(`posts:${p.id}:${i + 1}: LINK ${m[1]}`);
       }
+      checkLocalImages(`posts:${p.id}`, i, l);
     });
   }
 }

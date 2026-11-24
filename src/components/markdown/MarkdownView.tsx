@@ -52,7 +52,38 @@ const Heading: React.FC<{ level: number; id?: string; children?: React.ReactNode
   );
 };
 
+/**
+ * 正文配图：图注取 alt；文件缺失或加载失败时回落成「图示：说明」，不留破图。
+ * 白底衬边——教程里的线稿 / 流程图多为黑线透明底，暗色主题下直接放会看不见。
+ */
+const PostImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+  const [failed, setFailed] = useState(false);
+  if (failed || !src) {
+    return alt ? (
+      <p className="my-5 rounded-xl border border-dashed border-border bg-bg-card/60 px-4 py-3 text-center text-sm text-text-muted">
+        图示：{alt}
+      </p>
+    ) : null;
+  }
+  return (
+    <figure className="my-6 flex flex-col items-center">
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onError={() => setFailed(true)}
+        className="max-h-[520px] w-auto max-w-full rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+      />
+      {alt && <figcaption className="mt-2 text-center text-xs leading-relaxed text-text-muted">{alt}</figcaption>}
+    </figure>
+  );
+};
+
 const components: Components = {
+  img: ({ src, alt }) => <PostImage src={String(src || '')} alt={alt || ''} />,
+
   pre: ({ children }) => {
     // react-markdown 把 <pre> 的唯一子元素 <code> 的类名与文本放在这里
     const only = React.Children.toArray(children)[0];

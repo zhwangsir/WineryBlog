@@ -200,6 +200,16 @@ export function normalizeMarkdown(md: string, depth = 0): string {
         i = k;
         continue;
       }
+      // ```snippet <名字>（按名字引用的代码片段）：同样转成说明卡
+      const m2 = /^\s*(`{3,}|~{3,})snippet[ \t]*$/.exec(line);
+      const snippetName = m2 && inner.length === 1 ? inner[0].trim() : '';
+      if (snippetName && /^[A-Za-z0-9_.-]+$/.test(snippetName)) {
+        pushIsolated(out, `${mark}info 代码示例`);
+        out.push(`本节示例代码片段 \`${snippetName}\` 见原书仓库的 codes 目录。收录时只保留了讲解正文，源码请对照原书。`);
+        pushIsolated(out, mark);
+        i = k;
+        continue;
+      }
       fence = m[2];
       out.push(line);
       continue;

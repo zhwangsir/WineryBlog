@@ -4,7 +4,7 @@
 //   - 页面导航 → network-first，断网回落缓存的 SPA 入口
 //   - /api/* → 永远走网络（评论/进度等动态数据不缓存）
 //   - 开发期 vite 模块（/src /@vite /@react-refresh node_modules/.vite）→ 不缓存
-const CACHE = 'wineryblog-v1';
+const CACHE = 'wineryblog-v2';
 const PRECACHE = ['/', '/index.html', '/manifest.webmanifest'];
 const STATIC_PREFIX = ['/assets/', '/images/', '/uploads/', '/wallpapers/', '/vendor/'];
 const SKIP = ['/src/', '/@vite', '/@react-refresh', 'node_modules/.vite', '/live2d/', '/api/'];

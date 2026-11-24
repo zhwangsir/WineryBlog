@@ -28,6 +28,7 @@ function findViolations(posts) {
 
 const posts = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
 let rounds = 0;
+let touched = 0;
 for (let round = 1; round <= 4; round++) {
   const v = findViolations(posts);
   if (!v.length) { console.log(`round ${round}: clean`); break; }
@@ -42,14 +43,17 @@ for (let round = 1; round <= 4; round++) {
   for (const { p, lines } of byPost.values()) {
     const arr = String(p.content).split('\n');
     for (const li of lines) {
-      // 清除行内已有成对反引号包裹（避免嵌套错位），再统一包裹所有 URL
+      // 清除行内已有成对反引号包裹（避免嵌套错位），再统一包裹所有 URL。
+      // `*` 而不是 `+`：协议名本身也可以裸写（「HTTP 使用 http:// 或 https:// 作为前缀」），这类行以前永远修不掉
       let l = arr[li].replace(/`([^`]+)`/g, '$1');
-      l = l.replace(/https?:\/\/[^\s'"`<>\)）]+/g, (m) => '`' + m.replace(/`+$/, '') + '`');
+      l = l.replace(/https?:\/\/[^\s'"`<>\)）]*/g, (m) => '`' + m.replace(/`+$/, '') + '`');
       arr[li] = l;
     }
     p.content = arr.join('\n');
   }
+  touched += byPost.size;
   console.log(`round ${round}: fixed lines in ${byPost.size} posts`);
 }
-fs.writeFileSync(postsPath, JSON.stringify(posts, null, 1));
-console.log(`done (${rounds} rounds)`);
+// 有改动才写回；缩进与服务端一致（2 空格），没有违规时不碰文件
+if (touched) fs.writeFileSync(postsPath, JSON.stringify(posts, null, 2));
+console.log(`done (${rounds} rounds${touched ? '' : ', no changes'})`);

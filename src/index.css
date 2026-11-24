@@ -266,10 +266,10 @@ body {
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   transition: border-color var(--dur-fast) ease;
-  }
+}
 .prose.prose :where(a):not(:where([class~='not-prose'] *)):hover {
   border-bottom-color: var(--accent);
-  }
+}
 .prose.prose :where(code):not(:where([class~='not-prose'] *)) {
   font-weight: 500;
   color: var(--text-primary);
@@ -277,26 +277,26 @@ body {
   padding: 0.15em 0.4em;
   border-radius: 0.375rem;
   font-size: 0.875em;
-  }
+}
 .prose.prose :where(code):not(:where([class~='not-prose'] *))::before,
 .prose.prose :where(code):not(:where([class~='not-prose'] *))::after {
   content: none;
-  }
+}
 .prose.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) {
   color: var(--text-primary);
   letter-spacing: -0.01em;
-  }
+}
 .prose.prose :where(h2):not(:where([class~='not-prose'] *)) {
   margin-top: 2.6em;
   padding-bottom: 0.35em;
   border-bottom: 1px solid var(--border);
-  }
+}
 .prose.prose :where(h3):not(:where([class~='not-prose'] *)) {
   margin-top: 2em;
-  }
+}
 .prose.prose :where(strong):not(:where([class~='not-prose'] *)) {
   color: var(--text-primary);
-  }
+}
 .prose.prose :where(blockquote):not(:where([class~='not-prose'] *)) {
   font-style: normal;
   font-weight: 400;
@@ -306,31 +306,45 @@ body {
   background: color-mix(in srgb, var(--accent) 5%, transparent);
   padding-top: 0.9rem;
   padding-bottom: 0.9rem;
-  }
+}
 .prose.prose :where(blockquote p:first-of-type):not(:where([class~='not-prose'] *))::before,
 .prose.prose :where(blockquote p:last-of-type):not(:where([class~='not-prose'] *))::after {
   content: none;
-  }
+}
 .prose.prose :where(img):not(:where([class~='not-prose'] *)) {
   border-radius: 1rem;
-  }
+}
+/* 配图由 <figure> 负责间距，图片自身不再带 typography 的外边距 */
+.prose.prose :where(figure):not(:where([class~='not-prose'] *)) {
+  margin: 1.75rem 0;
+}
+.prose.prose :where(figure img):not(:where([class~='not-prose'] *)) {
+  margin: 0;
+}
+.prose.prose :where(figcaption):not(:where([class~='not-prose'] *)) {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: center;
+}
 .prose.prose :where(table):not(:where([class~='not-prose'] *)) {
   font-size: 0.9em;
   width: 100%;
-  }
+}
 .prose.prose :where(thead th):not(:where([class~='not-prose'] *)) {
   color: var(--text-primary);
   background: color-mix(in srgb, var(--accent) 7%, transparent);
-  }
+}
 .prose.prose :where(td, th):not(:where([class~='not-prose'] *)) {
   border-color: var(--border);
-  }
+}
 .prose.prose :where(hr):not(:where([class~='not-prose'] *)) {
   border-color: var(--border);
-  }
+}
 .prose.prose :where(li):not(:where([class~='not-prose'] *))::marker {
   color: var(--text-muted);
-  }
+}
 /* 提示卡内部：首尾不留多余间距，内容紧凑 */
 .prose .callout-body > :first-child {
   margin-top: 0;
