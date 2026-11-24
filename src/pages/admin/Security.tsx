@@ -60,8 +60,8 @@ export const Security: React.FC = () => {
   const changePassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setPwdMsg(null);
-    if (newPwd.length < 6) {
-      setPwdMsg({ ok: false, text: '新密码至少需要 6 位' });
+    if (newPwd.length < 8) {
+      setPwdMsg({ ok: false, text: '新密码至少需要 8 位，建议混合字母、数字与符号' });
       return;
     }
     if (newPwd !== confirmPwd) {

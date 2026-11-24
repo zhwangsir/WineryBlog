@@ -471,7 +471,7 @@ export const PostDetail: React.FC = () => {
                 <GraduationCap className="mr-1.5 inline h-4 w-4 text-accent" />
                 同域推荐 · {neighbors.domainName}
               </p>
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {neighbors.related.map((t) => (
                   <Link key={t.id} to={t.href} className="truncate text-sm text-text-secondary transition-colors hover:text-accent">
                     · {t.title}

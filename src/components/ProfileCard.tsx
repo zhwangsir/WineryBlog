@@ -27,7 +27,7 @@ export const ProfileCard: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-bg-card rounded-2xl p-6 card-shadow border border-border/50 flex flex-col items-center gap-4 sticky top-24 group"
+      className="bg-bg-card rounded-2xl p-6 card-shadow border border-border/50 flex flex-col items-center gap-4 group"
     >
       {/* Avatar with Firefly style */}
       <div className="relative">

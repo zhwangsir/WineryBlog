@@ -39,3 +39,6 @@ server/data/uploads/
 
 # self-hosted gallery images (local disk only, served at /images/)
 server/data/gallery/
+
+# admin session signing secret (generated on first boot; never commit)
+server/data/.session-secret

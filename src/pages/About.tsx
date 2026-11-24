@@ -1,10 +1,9 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Mail, Github, MessageCircle, Globe, ExternalLink } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { Mail, Github, MessageCircle, Globe, Link as LinkIcon } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { SEO } from '../components/SEO';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { MarkdownView } from '../components/markdown/MarkdownView';
+import { useCareers, useLabs, useTutorials } from '../lib/catalog';
 
 const iconMap: Record<string, React.ElementType> = {
   mail: Mail,
@@ -14,94 +13,96 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const About: React.FC = () => {
-  const { config } = useData();
-  
-  const aboutContent = config?.about?.content || `
-你好！我是 ${'WineryBlog'} 的作者。
+  const { config, posts } = useData();
+  const { data: catalog } = useTutorials();
+  const { data: careers } = useCareers();
+  const { data: labs } = useLabs();
 
-这是一个基于 React + Express + TypeScript 构建的个人博客系统用以记录我个人的生活。
+  // 未在后台填写「关于」时，默认介绍这座站本身（数字取实时数据）
+  const defaultContent = useMemo(() => `
+你好，我是 **${config?.profile?.name || config?.author || 'Winery'}**。这里是 WineryBlog——一座放在浏览器里的个人自学图书馆。
 
-## 关于这个博客
+## 这里有什么
 
-这个博客主要用于：
+- **教程中心**：${catalog?.tutorials.length ?? '…'} 篇系统教程，按 ${catalog?.domains.length ?? '…'} 个知识域与 ${careers?.length ?? '…'} 条职业路线编排，从编程基础到分布式、从算法到强化学习
+- **实验室**：${labs?.length ?? '…'} 个配套实验，在浏览器里写完即运行，AI 教练按验收标准陪你做完
+- **知识图谱**：全站 ${posts.length} 篇内容的关系网络，2D / 3D 自由切换，顺着脉络找下一本
+- **AI 馆员**：本地大模型驱动的胡桃馆员，认识全馆藏书，帮你答疑、找书、规划路线
 
-- 📝 记录学习笔记
-- 💻 分享技术文章  
-- 🎮 分享游戏相关内容
+## 一些坚持
 
-## 特色功能
+::: tip 全站本地化
+所有教程、图片、字体都在站内，读者的任何一次点击都不会离开这里——安心读，不用担心中途被带走。
+:::
 
-- ✨ 樱花飘落特效
-- 🎵 背景音乐播放器
-- 🔒 文章加密保护
-- 📱 响应式设计
+内容来自两部分：一部分是自己写的系统教程，一部分是收录整理的开源教程专题（GitHub 高质量教程仓库），统一做了目录化与本地化处理，并在文末标注来源。
 
-欢迎常来看看！
-`;
+::: info 想聊聊？
+学习路线、某篇教程的问题，或者想推荐一本好书，都欢迎找 AI 馆员代为转达，或者通过下面的联系方式找我。
+:::
 
+> ${config?.subtitle || '永远相信，美好的事情即将发生。'}
+`.trim(), [config, posts.length, catalog, careers, labs]);
+
+  const aboutContent = config?.about?.content || defaultContent;
   const skills = config?.about?.skills || [
     'React / Vue / TypeScript',
     'Node.js / Python / Go',
     'AI Agent / 深度学习',
     'Linux / DevOps'
   ];
+  const stats = config?.stats;
 
   return (
     <>
-      <SEO 
+      <SEO
         title={`关于我 - ${config?.title || 'WineryBlog'}`}
         description={config?.subtitle || '了解更多关于作者的信息'}
         author={config?.author}
         keywords={['关于', '个人介绍', '技术博客', ...(config?.tags || [])]}
       />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col gap-12"
-      >
+      <div className="flex flex-col gap-10">
         <header className="flex flex-col gap-4 border-b border-border pb-8">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary">
+          <h1 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
             关于我
           </h1>
-          <p className="text-lg text-text-secondary max-w-2xl">
+          <p className="max-w-2xl text-lg text-text-secondary">
             {config?.subtitle || '了解更多关于作者的信息。'}
           </p>
         </header>
 
         {/* Profile Card */}
-        <div className="bg-bg-card rounded-2xl p-8 border border-border">
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-accent/20 shrink-0">
-              <img 
+        <div className="bg-bg-card rounded-2xl p-8 border border-border/60">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start">
+            <div className="w-32 h-32 shrink-0 overflow-hidden rounded-full border-4 border-accent/20">
+              <img
                 src={config?.profile?.avatar || '/images/default-avatar.svg'}
                 alt={config?.profile?.name || 'Avatar'}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
             <div className="text-center md:text-left">
-              <h2 className="text-2xl font-bold text-text-primary mb-2">
+              <h2 className="mb-2 text-2xl font-bold text-text-primary">
                 {config?.profile?.name || config?.author || 'Winery'}
               </h2>
-              <p className="text-text-secondary mb-4">
+              <p className="mb-4 text-text-secondary">
                 {config?.profile?.bio || '永远相信，美好的事情即将发生。'}
               </p>
-              
-              {/* Social Links */}
+
               {config?.social && config.social.length > 0 && (
-                <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                <div className="flex flex-wrap justify-center gap-3 md:justify-start">
                   {config.social.map((item) => {
-                    const Icon = iconMap[item.platform.toLowerCase()] || Globe;
+                    const Icon = iconMap[item.platform.toLowerCase()] || LinkIcon;
                     return (
                       <a
                         key={item.platform}
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-base border border-border hover:border-accent hover:text-accent transition-all"
+                        className="flex items-center gap-2 rounded-lg border border-border bg-bg-base px-4 py-2 text-text-secondary transition-all hover:border-accent hover:text-accent"
                       >
-                        <Icon className="w-4 h-4" />
-                        <span className="text-sm capitalize">{item.platform}</span>
+                        <Icon className="h-4 w-4" />
+                        <span className="text-sm">{item.platform === 'mail' ? '邮件' : item.platform === 'qq' ? 'QQ' : item.platform}</span>
                       </a>
                     );
                   })}
@@ -111,65 +112,54 @@ export const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Content */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Main Content */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="md:col-span-2">
-            <div className="prose prose-lg dark:prose-invert max-w-none text-text-secondary">
-              <Markdown remarkPlugins={[remarkGfm]}>
-                {aboutContent}
-              </Markdown>
+            <div className="prose prose-lg max-w-none text-text-secondary leading-relaxed dark:prose-invert">
+              <MarkdownView content={aboutContent} />
             </div>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-6">
-            {/* Skills */}
-            <div className="bg-bg-card rounded-xl p-6 border border-border">
-              <h3 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-accent rounded-full" />
-                技术栈
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1.5 rounded-lg bg-bg-base text-sm text-text-secondary border border-border"
-                  >
-                    {skill}
-                  </span>
-                ))}
+            {skills.length > 0 && (
+              <div className="bg-bg-card rounded-xl border border-border/60 p-6">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-text-primary">
+                  <span className="h-5 w-1 rounded-full bg-accent" />
+                  技术栈
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span key={skill} className="rounded-lg border border-border bg-bg-base px-3 py-1.5 text-sm text-text-secondary">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Stats */}
-            <div className="bg-bg-card rounded-xl p-6 border border-border">
-              <h3 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-accent rounded-full" />
-                博客统计
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-text-muted">文章数</span>
-                  <span className="font-medium text-text-primary">{config?.stats?.articles || 0}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-text-muted">分类数</span>
-                  <span className="font-medium text-text-primary">{config?.stats?.categories || 0}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-text-muted">标签数</span>
-                  <span className="font-medium text-text-primary">{config?.stats?.tags || 0}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-text-muted">总字数</span>
-                  <span className="font-medium text-text-primary">{config?.stats?.words || '0'}</span>
-                </div>
+            {stats && (
+              <div className="bg-bg-card rounded-xl border border-border/60 p-6">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-text-primary">
+                  <span className="h-5 w-1 rounded-full bg-accent" />
+                  站点统计
+                </h3>
+                <dl className="space-y-3 text-sm">
+                  {[
+                    ['文章', stats.articles],
+                    ['分类', stats.categories],
+                    ['标签', stats.tags],
+                    ['总字数', stats.words],
+                  ].map(([label, value]) => (
+                    <div key={label} className="flex justify-between">
+                      <dt className="text-text-muted">{label}</dt>
+                      <dd className="font-medium text-text-primary">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-            </div>
+            )}
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 };

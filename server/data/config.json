@@ -106,6 +106,6 @@
   },
   "admin": {
     "username": "admin",
-    "password": "admin123"
+    "passwordHash": "scrypt:6ba145504886aaee16d54e52dcc845a3:7b26231051ba722efe07f473775684b709400184be5f57597e7b29cfb6f11c47a306428e2ae436a7a8b5915121c81930cdaa9643a6985679f280b8ca198b0f14"
   }
 }

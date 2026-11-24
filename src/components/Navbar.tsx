@@ -177,14 +177,25 @@ export const Navbar: React.FC = () => {
 
   const navItems = siteConfig?.nav || [];
 
+  // 首页顶部：导航压在头图上，未滚动时文字统一用白色（亮色主题下深色字在图上看不清）；
+  // 没有头图的页面始终用实底导航（黑色渐变压在浅色页面顶部会发灰）
+  const onHero = !scrolled && pathname === '/';
+  const linkIdle = onHero
+    ? 'text-white/90 hover:bg-white/15 hover:text-white'
+    : 'text-text-primary hover:bg-black/5 hover:text-accent dark:hover:bg-white/10';
+  const linkActive = onHero ? 'bg-white/15 text-white' : 'bg-accent/10 text-accent';
+  const iconBtn = onHero
+    ? 'text-white hover:bg-white/15'
+    : 'text-text-primary hover:bg-black/5 hover:text-accent dark:hover:bg-white/10';
+
   return (
     <>
       <nav
         className={cn(
           'fixed top-0 right-0 left-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'border-b border-border/40 bg-bg-base/95 py-2.5 shadow-sm backdrop-blur-xl backdrop-saturate-150'
-            : 'bg-gradient-to-b from-black/30 to-transparent py-5'
+          onHero
+            ? 'bg-gradient-to-b from-black/30 to-transparent py-5'
+            : 'border-b border-border/40 bg-bg-base/95 py-2.5 shadow-sm backdrop-blur-xl backdrop-saturate-150'
         )}
         aria-label="主导航"
       >
@@ -210,7 +221,7 @@ export const Navbar: React.FC = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-text-primary transition-colors hover:bg-black/5 hover:text-accent dark:hover:bg-white/10"
+                    className={cn('flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors', linkIdle)}
                   >
                     {Icon && <Icon className="h-4 w-4" />}
                     {item.name}
@@ -225,9 +236,7 @@ export const Navbar: React.FC = () => {
                   aria-current={isActive ? 'page' : undefined}
                   className={cn(
                     'relative flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-accent/10 text-accent'
-                      : 'text-text-primary hover:bg-black/5 hover:text-accent dark:hover:bg-white/10'
+                    isActive ? linkActive : linkIdle
                   )}
                 >
                   {Icon && <Icon className="h-4 w-4" />}
@@ -243,19 +252,26 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="搜索（快捷键 Ctrl+K）"
-              className="group flex items-center rounded-full border border-black/5 bg-black/5 py-1.5 pr-2 text-text-secondary transition-all hover:bg-black/10 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
+              className={cn(
+                'group flex items-center rounded-full border py-1.5 pr-2 text-text-secondary transition-all',
+                onHero
+                  ? 'border-white/20 bg-white/10 hover:bg-white/20'
+                  : 'border-black/5 bg-black/5 hover:bg-black/10 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20'
+              )}
             >
-              <Search className="ml-2.5 h-4 w-4 text-text-secondary transition-colors group-hover:text-text-primary" />
-              <span className="hidden w-28 text-left text-sm xl:inline">搜索</span>
-              <kbd className="ml-1.5 hidden rounded border border-border bg-bg-card px-1.5 py-0.5 font-mono text-[10px] text-text-muted xl:inline">Ctrl K</kbd>
+              <Search className={cn('ml-2.5 h-4 w-4 transition-colors', onHero ? 'text-white/80' : 'text-text-secondary group-hover:text-text-primary')} />
+              <span className={cn('hidden w-28 text-left text-sm xl:inline', onHero ? 'text-white' : '')}>搜索</span>
+              <kbd className={cn('ml-1.5 hidden rounded border px-1.5 py-0.5 font-mono text-[10px] xl:inline', onHero ? 'border-white/25 bg-white/10 text-white/80' : 'border-border bg-bg-card text-text-muted')}>Ctrl K</kbd>
             </button>
-            <ColorPicker />
+            <div className={cn(onHero && '[&_button]:text-white [&_button:hover]:bg-white/15 [&_button]:hover:text-white')}>
+              <ColorPicker />
+            </div>
             <button
               type="button"
               onClick={toggleTheme}
               aria-label={isDark === 'dark' ? '切换到亮色模式' : '切换到暗色模式'}
               title={isDark === 'dark' ? '切换到亮色模式' : '切换到暗色模式'}
-              className="rounded-lg p-2 text-text-primary transition-colors hover:bg-black/5 hover:text-accent dark:hover:bg-white/10"
+              className={cn('rounded-lg p-2 transition-colors', iconBtn)}
             >
               {isDark === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
@@ -263,7 +279,7 @@ export const Navbar: React.FC = () => {
             {/* Mobile Menu Toggle */}
             <button
               type="button"
-              className="rounded-lg p-2 text-text-primary transition-colors hover:bg-black/5 dark:hover:bg-white/10 lg:hidden"
+              className={cn('rounded-lg p-2 transition-colors lg:hidden', iconBtn)}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? '关闭菜单' : '打开菜单'}
               aria-expanded={mobileMenuOpen}

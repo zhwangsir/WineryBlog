@@ -7,12 +7,58 @@ import compression from "compression";
 import { ensureSourcesFile } from "./scripts/lib/gallery-sources.mjs";
 import { execFile } from "child_process";
 
-// JWT Secret (in production, use environment variable)
-const JWT_SECRET = "wineryblog-secret-key-2026";
+// 会话签名密钥：首次启动随机生成，保存在本地 server/data/.session-secret（已 gitignore）。
+// 不再用写死在代码里的固定值——进了仓库的密钥等于公开。
+let JWT_SECRET = "";
 const SESSION_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
 
 // In-memory session store (in production, use Redis)
 const sessions = new Map<string, { username: string; expiry: number }>();
+
+// ===== 管理员密码：scrypt 加盐哈希存储（兼容迁移前的明文配置，首次登录成功后自动升级）=====
+const hashPassword = (password: string): string => {
+  const salt = crypto.randomBytes(16).toString("hex");
+  return `scrypt:${salt}:${crypto.scryptSync(password, salt, 64).toString("hex")}`;
+};
+const verifyPassword = (password: unknown, stored: unknown): boolean => {
+  if (typeof password !== "string" || typeof stored !== "string" || !stored) return false;
+  if (stored.startsWith("scrypt:")) {
+    const [salt, hex] = stored.slice(7).split(":");
+    const expect = Buffer.from(hex || "", "hex");
+    if (!salt || expect.length === 0) return false;
+    const got = crypto.scryptSync(password, salt, expect.length);
+    return got.length === expect.length && crypto.timingSafeEqual(got, expect);
+  }
+  const a = Buffer.from(password);
+  const b = Buffer.from(stored);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+};
+
+// ===== 登录 / 解锁限频：同一来源在窗口内失败达到上限后暂时拒绝 =====
+const failures = new Map<string, number[]>();
+const pruneFailures = (key: string, windowMs: number): number[] => {
+  const now = Date.now();
+  const list = (failures.get(key) || []).filter((t) => now - t < windowMs);
+  if (list.length) failures.set(key, list);
+  else failures.delete(key);
+  return list;
+};
+const isBlocked = (key: string, max: number, windowMs: number) =>
+  pruneFailures(key, windowMs).length >= max;
+const recordFailure = (key: string) => {
+  failures.set(key, [...(failures.get(key) || []), Date.now()]);
+  // 兜底清理，避免被大量不同来源刷爆内存
+  if (failures.size > 5000) {
+    const now = Date.now();
+    for (const [k, v] of failures) {
+      if (!v.length || now - v[v.length - 1] > 15 * 60 * 1000) failures.delete(k);
+    }
+  }
+};
+const LOGIN_WINDOW = 15 * 60 * 1000;
+const LOGIN_MAX = 8;
+const UNLOCK_WINDOW = 60 * 1000;
+const UNLOCK_MAX = 10;
 
 // Generate simple token
 function generateToken(username: string): string {
@@ -68,10 +114,29 @@ async function startServer() {
   // Large limit: image uploads arrive as base64 JSON
   app.use(express.json({ limit: "20mb" }));
 
+  // 基础安全响应头
+  app.use((_req, res, next) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Referrer-Policy", "same-origin");
+    res.setHeader("X-Frame-Options", "SAMEORIGIN");
+    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    next();
+  });
+
   const DATA_DIR = path.join(process.cwd(), "server", "data");
   const CONFIG_FILE = path.join(DATA_DIR, "config.json");
   const POSTS_FILE = path.join(DATA_DIR, "posts.json");
   const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
+
+  // 会话签名密钥：本地文件里取，没有就生成一份（重启后会话保持；文件丢失则所有登录态失效）
+  const SECRET_FILE = path.join(DATA_DIR, ".session-secret");
+  try {
+    JWT_SECRET = (await fs.readFile(SECRET_FILE, "utf-8")).trim();
+  } catch {
+    JWT_SECRET = crypto.randomBytes(48).toString("hex");
+    await fs.writeFile(SECRET_FILE, JWT_SECRET, { mode: 0o600 });
+  }
+  if (JWT_SECRET.length < 32) throw new Error("session secret is corrupted: server/data/.session-secret");
 
   // 自有图床：server/data/gallery/<分类>/ 存图片本体（.gitignore 不入库），
   // /images/<分类>/<hash>.<ext> 静态服务；meta.json 记录来源/去重/感知哈希
@@ -206,19 +271,34 @@ async function startServer() {
 
   // Auth Routes
   app.post("/api/auth/login", async (req, res) => {
+    // 限频按直连地址算（不信任可伪造的 X-Forwarded-For）
+    const key = `login:${req.socket.remoteAddress || "unknown"}`;
+    if (isBlocked(key, LOGIN_MAX, LOGIN_WINDOW)) {
+      res.status(429).json({ error: "登录尝试过于频繁，请 15 分钟后再试" });
+      return;
+    }
     try {
-      const { username, password } = req.body;
-      const data = await fs.readFile(CONFIG_FILE, "utf-8");
-      const config = JSON.parse(data);
-
-      if (username === config.admin?.username && password === config.admin?.password) {
+      const username = String(req.body?.username ?? "");
+      const password = req.body?.password;
+      const config = JSON.parse(await fs.readFile(CONFIG_FILE, "utf-8"));
+      const admin = config.admin || {};
+      // 无论用户名是否匹配都走一遍哈希校验，避免用响应时间探测用户名
+      const passwordOk = verifyPassword(password, admin.passwordHash ?? admin.password);
+      if (username === admin.username && passwordOk) {
+        // 旧的明文配置：登录成功后升级为哈希存储
+        if (!admin.passwordHash) {
+          admin.passwordHash = hashPassword(String(password));
+          delete admin.password;
+          await fs.writeFile(CONFIG_FILE, JSON.stringify({ ...config, admin }, null, 2));
+        }
         const token = generateToken(username);
         res.json({ success: true, token, username });
       } else {
-        res.status(401).json({ error: "Invalid username or password" });
+        recordFailure(key);
+        res.status(401).json({ error: "用户名或密码不正确" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Login failed" });
+      res.status(500).json({ error: "登录失败" });
     }
   });
 
@@ -378,6 +458,11 @@ async function startServer() {
 
   // 加密文章解锁：服务端比对密码，成功签发限时令牌
   app.post("/api/posts/:id/unlock", async (req, res) => {
+    const key = `unlock:${req.socket.remoteAddress || "unknown"}`;
+    if (isBlocked(key, UNLOCK_MAX, UNLOCK_WINDOW)) {
+      res.status(429).json({ error: "尝试次数过多，请稍后再试" });
+      return;
+    }
     try {
       const post = (await loadPosts()).sorted.find((p) => p.id === req.params.id);
       if (!post) {
@@ -390,6 +475,7 @@ async function startServer() {
       const ok = stored.length > 0 && given.length === stored.length &&
         crypto.timingSafeEqual(Buffer.from(given), Buffer.from(stored));
       if (!ok) {
+        recordFailure(key);
         res.status(401).json({ error: "密码错误" });
         return;
       }
@@ -485,7 +571,12 @@ async function startServer() {
       let posts = JSON.parse(data);
       const index = posts.findIndex((p: any) => p.id === req.params.id);
       if (index !== -1) {
-        posts[index] = { ...posts[index], ...req.body };
+        const next: PostRec = { ...posts[index], ...req.body };
+        // 加密文章提交空密码 = 沿用原密码（避免误清空后永远无法解锁）
+        if (next.isLocked && req.body?.password === "" && posts[index].password) {
+          next.password = posts[index].password;
+        }
+        posts[index] = next;
         await fs.writeFile(POSTS_FILE, JSON.stringify(posts, null, 2));
         res.json(posts[index]);
       } else {
@@ -1118,25 +1209,25 @@ async function startServer() {
     }
   });
 
-  // 修改管理员密码（需验证当前密码）
+  // 修改管理员密码（需验证当前密码；新密码只存哈希）
   app.post("/api/auth/change-password", authMiddleware, async (req, res) => {
     try {
       const { currentPassword, newPassword } = req.body || {};
-      const data = await fs.readFile(CONFIG_FILE, "utf-8");
-      const config = JSON.parse(data);
-      if (!config.admin || currentPassword !== config.admin.password) {
+      const config = JSON.parse(await fs.readFile(CONFIG_FILE, "utf-8"));
+      if (!config.admin || !verifyPassword(currentPassword, config.admin.passwordHash ?? config.admin.password)) {
         res.status(401).json({ error: "当前密码不正确" });
         return;
       }
-      if (typeof newPassword !== "string" || newPassword.length < 6) {
-        res.status(400).json({ error: "新密码至少需要 6 位" });
+      if (typeof newPassword !== "string" || newPassword.length < 8) {
+        res.status(400).json({ error: "新密码至少需要 8 位" });
         return;
       }
-      config.admin.password = newPassword;
+      config.admin = { ...config.admin, passwordHash: hashPassword(newPassword) };
+      delete config.admin.password;
       await fs.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2));
       res.json({ success: true });
     } catch {
-      res.status(500).json({ error: "Failed to change password" });
+      res.status(500).json({ error: "修改密码失败" });
     }
   });
 
@@ -1348,10 +1439,35 @@ async function startServer() {
   // ===== Tutorial catalog & career routes =====
   const TUTORIALS_FILE = path.join(DATA_DIR, "tutorials.json");
   const CAREERS_FILE = path.join(DATA_DIR, "careers.json");
+  let tutFileCache: { key: string; data: any } | null = null;
+
+  // 教程目录：收录批次的 href 是裸 id（缺 /post/ 前缀，文章页上下篇会跳错），这里统一补全；
+  // summary 是早期从正文截的，顺手清掉被截成半个的 HTML 标签
+  async function loadTutorials(): Promise<any> {
+    let key = "";
+    try {
+      const st = await fs.stat(TUTORIALS_FILE);
+      key = `${st.mtimeMs}:${st.size}`;
+    } catch { /* 读不到则回落缓存 */ }
+    if (tutFileCache && tutFileCache.key === key) return tutFileCache.data;
+    try {
+      const data = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8"));
+      data.tutorials = (data.tutorials || []).map((t: any) => ({
+        ...t,
+        href: String(t.href || "").startsWith("/post/") ? t.href : `/post/${t.id}`,
+        summary: cleanExcerpt(t.summary),
+      }));
+      tutFileCache = { key, data };
+      return data;
+    } catch (e) {
+      if (tutFileCache) return tutFileCache.data;
+      throw e;
+    }
+  }
 
   app.get("/api/tutorials", async (req, res) => {
     try {
-      res.json(JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8")));
+      res.json(await loadTutorials());
     } catch (error) {
       res.status(500).json({ error: "Failed to load tutorials" });
     }
@@ -1626,7 +1742,7 @@ async function startServer() {
     const postsCacheNow = await loadPosts();
     if (!tutCache || tutCache.key !== postsCacheNow.key) {
       try {
-        const base = JSON.parse(await fs.readFile(TUTORIALS_FILE, "utf-8"));
+        const base = await loadTutorials();
         // 检索池 = 自研教程目录 + 全部文章：参考镜像与 GitHub 收录教程一并入池，馆员认识的是全馆藏书
         const have = new Set((base.tutorials || []).map((t: any) => t.id));
         const extra = (postsCacheNow.raw as any[])
@@ -1715,8 +1831,38 @@ async function startServer() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      const text = await r.text();
-      res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+      const isStream = body.stream === true &&
+        (r.headers.get("content-type") || "").includes("text/event-stream");
+      if (!r.body || !isStream) {
+        const text = await r.text();
+        res.status(r.status).set("Content-Type", "application/json; charset=utf-8").send(text);
+        return;
+      }
+      // 流式：把上游的 SSE 原样转发（边生成边显示，长回答不用干等）
+      res.status(r.status).set({
+        "Content-Type": "text/event-stream; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        Connection: "keep-alive",
+        "X-Accel-Buffering": "no",
+      });
+      res.flushHeaders();
+      const reader = r.body.getReader();
+      req.on("close", () => { reader.cancel().catch(() => {}); });
+      try {
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          if (!res.write(Buffer.from(value))) {
+            // 背压：等客户端把这一段取走再继续读
+            await new Promise<void>((ok) => res.once("drain", ok));
+          }
+          (res as any).flush?.();
+        }
+      } catch {
+        /* 客户端中途断开或上游中断：结束响应 */
+      } finally {
+        res.end();
+      }
     } catch (e: any) {
       res.status(502).json({ error: "AI proxy failed", detail: e.message });
     }
