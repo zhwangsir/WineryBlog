@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 235
+      "count": 263
     },
     {
       "id": "security",
@@ -22769,6 +22769,482 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-mleveryday-100-days-of-ml-code-19"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-1",
+      "kind": "collection",
+      "title": "C++ 前端中的 Autograd ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-1"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-2",
+      "kind": "collection",
+      "title": "在C++中加载 TorchScript 模型",
+      "summary": "译者：masteryi 0018 项目地址： https://pytorch.apachecn.org/2.0/tuto",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-2"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-3",
+      "kind": "collection",
+      "title": "自定义 C++ 和 CUDA 扩展 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-3"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-4",
+      "kind": "collection",
+      "title": "使用分布式数据并行和管道并行训练 Transformer 模型 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-4"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-5",
+      "kind": "collection",
+      "title": "在 C++ 中注册调度运算符 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-5"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-6",
+      "kind": "collection",
+      "title": "(测试版)LSTM Word 语言模型上的动态量化 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-6"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-7",
+      "kind": "collection",
+      "title": "在 C++ 中扩展新后端的调度程序 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-7"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-8",
+      "kind": "collection",
+      "title": "使用连接上下文管理器进行不均匀输入的分布式训练 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-8"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-9",
+      "kind": "collection",
+      "title": "PyTorch Pendulum：使用 TorchRL 进行物理环境模拟",
+      "summary": "译者：先天亏钱圣体 项目地址： https://pytorch.apachecn.org/2.0/tutorials/a",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-9"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-10",
+      "kind": "collection",
+      "title": "通过 PrivateUse 促进新后端集成1 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-10"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-11",
+      "kind": "collection",
+      "title": "将分布式 DataParallel 与分布式 RPC 框架相结合 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-11"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-12",
+      "kind": "collection",
+      "title": "一步步探索 TorchRec",
+      "summary": "译者：方小生 项目地址： https://pytorch.apachecn.org/2.0/tutorials/adva",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-12"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-13",
+      "kind": "collection",
+      "title": "(beta) PyTorch 中使用 Eager 模式的静态量化 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-13"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-14",
+      "kind": "collection",
+      "title": "(可选)将 PYTORCH 模型导出到 ONNX 并使用 ONNX 运行时运行它",
+      "summary": "译者：masteryi 0018 项目地址： https://pytorch.apachecn.org/2.0/tuto",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-14"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-15",
+      "kind": "collection",
+      "title": "TorchScript 中的动态并行性 ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-15"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-16",
+      "kind": "collection",
+      "title": "使用自定义 C++ 类扩展 TorchScript ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-16"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-17",
+      "kind": "collection",
+      "title": "使用自定义 C++ 运算符扩展 TorchScript ¶",
+      "summary": "译者：片刻小哥哥 项目地址： https://pytorch.apachecn.org/2.0/tutorials/ad",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-17"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-18",
+      "kind": "collection",
+      "title": "TORCHSCRIPT简介",
+      "summary": "译者：masteryi 0018 项目地址： https://pytorch.apachecn.org/2.0/tuto",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-18"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-19",
+      "kind": "collection",
+      "title": "音频数据增强 ¶",
+      "summary": "译者：龙琰 项目地址： https://pytorch.apachecn.org/2.0/tutorials/begin",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-19"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-20",
+      "kind": "collection",
+      "title": "音频数据集 ¶",
+      "summary": "译者：龙琰 项目地址： https://pytorch.apachecn.org/2.0/tutorials/begin",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-20"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-23",
+      "kind": "collection",
+      "title": "音频 I/O ¶",
+      "summary": "译者：龙琰 项目地址： https://pytorch.apachecn.org/2.0/tutorials/begin",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-23"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-24",
+      "kind": "collection",
+      "title": "音频重采样 ¶",
+      "summary": "译者：龙琰 项目地址： https://pytorch.apachecn.org/2.0/tutorials/begin",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-24"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-25",
+      "kind": "collection",
+      "title": "自动微分运算-TORCH.AUTOGRAD",
+      "summary": "译者：runzhi214 项目地址： https://pytorch.apachecn.org/2.0/tutorial",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-25"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-26",
+      "kind": "collection",
+      "title": "构建神经网络模型",
+      "summary": "译者：runzhi214 项目地址： https://pytorch.apachecn.org/2.0/tutorial",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-26"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-27",
+      "kind": "collection",
+      "title": "数据集和数据加载器",
+      "summary": "译者：Daydaylight 项目地址： https://pytorch.apachecn.org/2.0/tutori",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-27"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-28",
+      "kind": "collection",
+      "title": "学习基本知识",
+      "summary": "译者：Daydaylight 项目地址： https://pytorch.apachecn.org/2.0/tutori",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-28"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-29",
+      "kind": "collection",
+      "title": "优化模型参数",
+      "summary": "译者：runzhi214 项目地址： https://pytorch.apachecn.org/2.0/tutorial",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-29"
+    },
+    {
+      "id": "g-auto-apachecn-pytorch-doc-zh-30",
+      "kind": "collection",
+      "title": "快速入门",
+      "summary": "译者：Daydaylight 项目地址： https://pytorch.apachecn.org/2.0/tutori",
+      "domain": "ai",
+      "category": "PyTorch 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "documentation",
+        "python"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-apachecn-pytorch-doc-zh-30"
     }
   ]
 }

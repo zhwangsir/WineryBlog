@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T22:55:12.292Z",
+ "updatedAt": "2026-11-24T23:15:13.523Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1595,6 +1595,46 @@
    "picks": [
     {
      "dir": "Code",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-mleveryday-practicalai-cn",
+   "repo": "MLEveryday/practicalAI-cn",
+   "branch": "master",
+   "category": "AI实战-practicalAI",
+   "domain": "ai",
+   "tags": [
+    "deep-learning",
+    "google-colab-notebook",
+    "jupyter-notebook"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-24T23:15:12.873Z",
+   "note": "课程本体为 notebook，可用 md 为 0（校验时 trees API 两次失败漏过，人工复核拒绝）"
+  },
+  {
+   "id": "auto-apachecn-pytorch-doc-zh",
+   "repo": "apachecn/pytorch-doc-zh",
+   "branch": "master",
+   "category": "PyTorch 中文文档",
+   "domain": "ai",
+   "tags": [
+    "deep-learning",
+    "documentation",
+    "python"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T23:15:13.522Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs/2.0",
      "keywords": [
       ".md"
      ],
