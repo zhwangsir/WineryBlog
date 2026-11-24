@@ -44,13 +44,13 @@ function ghJson(pathname) {
 }
 const CJK = /[\u3400-\u4dbf\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]/g;
 const cjkCount = (s) => (String(s || '').match(CJK) || []).length;
-// 描述截断成分类名时，清掉尾部残缺的半个括号 / 悬空的连接符
+// 描述截断成分类名时，先截断再清掉尾部残缺的半个括号 / 悬空的连接符
 const cleanCategory = (s) => String(s || '')
   .replace(/\s+/g, ' ').trim()
+  .slice(0, 16)
   .replace(/[（(【\[][^\)）\]】]*$/, '')
   .replace(/[\s,，、;；:：·\-—]+$/, '')
-  .trim()
-  .slice(0, 16);
+  .trim();
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
 
 // ── 已知来源：池子全部条目 + 收录脚本内置 SOURCES（按 repo 字符串提取，避免两处清单漂移）──

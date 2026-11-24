@@ -21,7 +21,8 @@ export const CURATED = [
   { id: 'es6tut', repo: 'ruanyf/es6tutorial', category: 'ES6 教程', domain: 'frontend', tags: ['JavaScript', 'ES6', '阮一峰'] },
   { id: 'mqblog', repo: 'mqyqingfeng/Blog', category: '深入 ES 系列', domain: 'frontend', tags: ['JavaScript', 'ES6', '进阶'] },
   // ── 数据库与大数据 ──
-  { id: 'bigdatanotes', repo: 'heibaiying/BigData-Notes', category: '大数据教程笔记', domain: 'data', tags: ['Hadoop', 'Spark', 'Flink'] },
+  { id: 'bigdatanotes', repo: 'heibaiying/BigData-Notes', category: '大数据教程笔记', domain: 'data', tags: ['Hadoop', 'Spark', 'Flink'],
+    picks: [{ dir: 'notes', keywords: ['.md'], max: 30, recursive: true }] },
   // ── 移动与跨端 ──
   { id: 'flutteria', repo: 'flutterchina/flutter-in-action', category: 'Flutter 实战', domain: 'mobile', tags: ['Flutter', 'Dart', '跨端'] },
 ];

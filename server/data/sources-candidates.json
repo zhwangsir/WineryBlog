@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T19:15:18.539Z",
+ "updatedAt": "2026-11-24T20:35:43.530Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1236,9 +1236,19 @@
     "ai-agent",
     "ai-assistant"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:15:18.131Z",
-   "note": "auto-discovered"
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "auto-nndl-nndl-practice",
@@ -1251,8 +1261,78 @@
     "deep-learning",
     "jupyter-notebook"
    ],
-   "status": "pending",
+   "status": "failed",
    "addedAt": "2026-11-24T19:15:18.538Z",
+   "note": "auto-discovered: 正文为 ipynb/PDF，可用 md 为 0（trees API 上次调用失败走了放行通道）"
+  },
+  {
+   "id": "bigdatanotes",
+   "repo": "heibaiying/BigData-Notes",
+   "branch": "master",
+   "category": "大数据教程笔记",
+   "domain": "data",
+   "tags": [
+    "Hadoop",
+    "Spark",
+    "Flink"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T20:35:39.105Z",
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "notes",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "flutteria",
+   "repo": "flutterchina/flutter-in-action",
+   "branch": "master",
+   "category": "Flutter 实战",
+   "domain": "mobile",
+   "tags": [
+    "Flutter",
+    "Dart",
+    "跨端"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T20:35:40.231Z",
+   "note": "curated"
+  },
+  {
+   "id": "auto-fancyboi999-ai-engineering-from-scratch-zh",
+   "repo": "fancyboi999/ai-engineering-from-scratch-zh",
+   "branch": "main",
+   "category": "Agent工程师最全学习路径",
+   "domain": "ai",
+   "tags": [
+    "agents",
+    "ai",
+    "ai-agents"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T20:35:43.005Z",
+   "note": "auto-discovered"
+  },
+  {
+   "id": "auto-modern-cmake-cn-modern-cmake-zh-cn",
+   "repo": "Modern-CMake-CN/Modern-CMake-zh_CN",
+   "branch": "master",
+   "category": "CMake 教程 Modern",
+   "domain": "system",
+   "tags": [
+    "book",
+    "chinese",
+    "chinese-simplified"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T20:35:43.529Z",
    "note": "auto-discovered"
   }
  ]
