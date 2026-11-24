@@ -1186,9 +1186,19 @@
     "ES6",
     "阮一峰"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:15:15.164Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "mqblog",
@@ -1201,9 +1211,19 @@
     "ES6",
     "进阶"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T19:15:15.628Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "articles",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "auto-xianyu110-awesome-openclaw-tutorial",
