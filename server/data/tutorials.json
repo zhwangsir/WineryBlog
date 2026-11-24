@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 288
+      "count": 301
     },
     {
       "id": "security",
@@ -23670,6 +23670,227 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-26"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-1",
+      "kind": "collection",
+      "title": "1. 新手上路",
+      "summary": "1. 新手上路 1.1 自然语言与编程语言的比较 1.2 自然语言处理的层次 1.3 自然语言处理的流派 1.4 机器学",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-1"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-2",
+      "kind": "collection",
+      "title": "10.文本聚类",
+      "summary": "10. 文本聚类 10.1 概述 10.2 文档的特征提取 10.3 k均值算法 10.4 重复二分聚类算法 10.5 ",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-2"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-3",
+      "kind": "collection",
+      "title": "11.文本分类",
+      "summary": "11. 文本分类 11.1 文本分类的概念 11.2 文本分类语料库 11.3 文本分类的特征提取 11.4 朴素贝叶斯",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-3"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-4",
+      "kind": "collection",
+      "title": "12.依存句法分析",
+      "summary": "12. 依存句法分析 12.1 短语结构树 12.2 依存句法树 12.3 依存句法分析 12.4 基于转移的依存句法分",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-4"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-5",
+      "kind": "collection",
+      "title": "13.深度学习与自然语言处理",
+      "summary": "13. 深度学习与自然语言处理 13.1 传统方法的局限 13.2 深度学习与优势 13.3 word2vec 13.4",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-5"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-6",
+      "kind": "collection",
+      "title": "2.词典分词",
+      "summary": "2. 词典分词 2.1 什么是词 2.2 词典 2.3 切分算法 2.4 字典树 2.5 基于字典树的其它算法 2.6 ",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-6"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-7",
+      "kind": "collection",
+      "title": "3.二元语法与中文分词",
+      "summary": "3. 二元语法与中文分词 3.1 语言模型 3.2 中文分词语料库 3.3 训练与预测 3.4 HanLP分词与用户词典",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-7"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-8",
+      "kind": "collection",
+      "title": "4.隐马尔可夫模型与序列标注",
+      "summary": "4. 隐马尔可夫模型与序列标注 4.1 序列标注问题 4.2 隐马尔可夫模型 4.3 隐马尔可夫模型的训练 4.4 隐马",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-8"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-9",
+      "kind": "collection",
+      "title": "5.感知机分类与序列标注",
+      "summary": "5. 感知机分类与序列标注 5.1 分类问题 5.2 线性分类模型 5.3 感知机算法 5.4 基于感知机的人名性别分类",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-9"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-10",
+      "kind": "collection",
+      "title": "6.条件随机场与序列标注",
+      "summary": "6. 条件随机场与序列标注 6.1 机器学习的模型谱系 6.2 条件随机场 6.3 条件随机场工具包 6.4 HanLP",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-10"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-11",
+      "kind": "collection",
+      "title": "7.词性标注",
+      "summary": "7. 词性标注 7.1 词性标注概述 7.2 词性标注语料库与标注集 7.3 基于隐马尔可夫模型的词性标注 7.4 基于",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-11"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-12",
+      "kind": "collection",
+      "title": "8.命名实体识别",
+      "summary": "8. 命名实体识别 8.1 概述 8.2 基于隐马尔可夫模型序列标注的命名实体识别 8.3 基于感知机序列标注的命名实体",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-12"
+    },
+    {
+      "id": "g-auto-nlp-love-introduction-nlp-13",
+      "kind": "collection",
+      "title": "9.信息抽取",
+      "summary": "9. 信息抽取 9.1 新词提取 9.2 关键词提取 9.3 短语提取 9.4 关键句提取 9.5 总结 信息抽取是一个",
+      "domain": "ai",
+      "category": "自然语言处理入门（HanLP）",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "ai",
+        "deep-learning",
+        "mechine-learing"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-nlp-love-introduction-nlp-13"
     }
   ]
 }

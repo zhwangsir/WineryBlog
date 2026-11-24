@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T23:35:11.802Z",
+ "updatedAt": "2026-11-24T23:55:10.744Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1682,6 +1682,46 @@
    "status": "failed",
    "addedAt": "2026-11-24T23:35:11.802Z",
    "note": "顶会论文链接索引清单，非教程内容（单页 100-487KB 的标题列表，链接降级后无阅读价值）"
+  },
+  {
+   "id": "auto-nlp-love-introduction-nlp",
+   "repo": "NLP-LOVE/Introduction-NLP",
+   "branch": "master",
+   "category": "自然语言处理入门（HanLP）",
+   "domain": "ai",
+   "tags": [
+    "ai",
+    "deep-learning",
+    "mechine-learing"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T23:55:10.337Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "chapter",
+     "keywords": [
+      ".md"
+     ],
+     "max": 13,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-we0091234-chinese-license-plate-detection-recogn",
+   "repo": "we0091234/Chinese_license_plate_detection_recognition",
+   "branch": "main",
+   "category": "yolov5 车牌检测 车牌识别",
+   "domain": "ai",
+   "tags": [
+    "deep-learning",
+    "plate-recognition",
+    "pytorch"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-24T23:55:10.743Z",
+   "note": "代码工程仓库非教程：可用 md 为 0"
   }
  ]
 }
