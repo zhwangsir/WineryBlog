@@ -31,7 +31,7 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 127
+      "count": 149
     },
     {
       "id": "frontend",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 93
+      "count": 123
     },
     {
       "id": "security",
@@ -18985,6 +18985,890 @@
       ],
       "prereqs": [],
       "href": "/post/g-flutteria-30"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-1",
+      "kind": "collection",
+      "title": "手册编写契约",
+      "summary": "手册围绕一个主题的固定版本，从用途讲到每次请求与响应。课程讲清一个概念后继续前进；手册则留在同一个系统里，直到读者能预测",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-1"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-2",
+      "kind": "collection",
+      "title": "如何阅读本手册",
+      "summary": "本手册每项论断都有按权威排序的来源，每个请求、响应和流帧都来自可自行运行的采集套件。 本手册通过一个系统讲解 1.0.1",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-2"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-3",
+      "kind": "collection",
+      "title": "A2A 101 research brief: official project documentation (not the normative spec)",
+      "summary": "Pinned source: a2aproject/A2A , tag v1.0.1 , commit 33035925",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 69,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-3"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-4",
+      "kind": "collection",
+      "title": "A2A 101 fact brief: Agent2Agent (A2A) protocol, specification v1.0.1",
+      "summary": "Source of truth brief for the technical manual \"A2A 101\". Bu",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 93,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-4"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-5",
+      "kind": "collection",
+      "title": "Conflict register D1 to D40: what upstream did since v1.0.1",
+      "summary": "Pinned: A2A v1.0.1 , commit 3303592 (2026 05 28). Checked on",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-5"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-6",
+      "kind": "collection",
+      "title": "Conformance and debugging tools for A2A v1.0",
+      "summary": "Surveyed 2026 10 06 against the manual's pinned specificatio",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-6"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-7",
+      "kind": "collection",
+      "title": "Extensions, the gRPC binding, and the tenant field (A2A v1.0.1)",
+      "summary": "Research notes for three new manual sections. Pin: A2A tag v",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-7"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-8",
+      "kind": "collection",
+      "title": "From 0.3 to 1.0 (A2A v1.0.1)",
+      "summary": "Research notes for the manual's migration section. Pin: A2A ",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-8"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-9",
+      "kind": "collection",
+      "title": "A2A SDK splits: 14 behaviors across the official SDKs",
+      "summary": "Specification pinned to A2A v1.0.1 (2026 05 28); prose quote",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-9"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-10",
+      "kind": "collection",
+      "title": "Agent2Agent (A2A) Protocol",
+      "summary": "🌐 Language English 简体中文 繁體中文 日本語 한국어 हिन्दी ไทย Français De",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 43,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-10"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-11",
+      "kind": "collection",
+      "title": "Agent2Agent (A2A) Protocol Specification",
+      "summary": "??? note \" Latest Released Version 1.0.0 \" Previous Versions",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 44,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-11"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-12",
+      "kind": "collection",
+      "title": "Agent2Agent (A2A) Protocol Specification",
+      "summary": "??? note \" Latest Released Version 1.0.0 \" Previous Versions",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 44,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-12"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-13",
+      "kind": "collection",
+      "title": "a2a-tck 1.0.0.alpha2 against the A2A 101 capture kit",
+      "summary": "Run on 2026 10 06. The kit's test runner agent was served fr",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-13"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-14",
+      "kind": "collection",
+      "title": "A2A 标准化了什么",
+      "summary": "A2A 为内部互不可见的 agent 定义数据模型、一组操作和三种绑定，agent 内部的一切则交给实现。 你的 pla",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-14"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-15",
+      "kind": "collection",
+      "title": "逐个请求看一个任务",
+      "summary": "test runner 的一次流式运行按顺序展示协议的每个环节，从读取卡片直到服务器关闭流。 你的 planner 要在",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-15"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-16",
+      "kind": "collection",
+      "title": "AgentCard 字段",
+      "summary": "AgentCard 有 14 个字段，其中八个为 REQUIRED，共同说明 agent 提供什么、如何访问以及有什么要",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-16"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-17",
+      "kind": "collection",
+      "title": "发现与 supportedInterfaces",
+      "summary": "规范只标准化卡片的 well known 路径，客户端先选能使用的首个 supportedInterfaces 条目，再",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-17"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-18",
+      "kind": "collection",
+      "title": "扩展卡片与签名",
+      "summary": "GetExtendedAgentCard 向已认证调用者返回更完整的卡片， signatures 让任何调用者确认卡片确",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-18"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-19",
+      "kind": "collection",
+      "title": "Message",
+      "summary": "Message 是对话中的一轮， role 和三个 ID 说明传输方向以及继续哪个任务。 planner 向 code ",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-19"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-20",
+      "kind": "collection",
+      "title": "Part",
+      "summary": "A2A 中每份内容都是 Part ，恰好包含 text 、 raw 、 url 、 data 中的一项， mediaTy",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-20"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-21",
+      "kind": "collection",
+      "title": "Artifact 与分块",
+      "summary": "任务用产物返回结果，长产物分块到达，按 artifactId 拼接，直到 lastChunk 标记结束。 test ru",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-21"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-22",
+      "kind": "collection",
+      "title": "Task、TaskStatus 和 TaskState",
+      "summary": "Task 包含一个 TaskStatus ，其 state 是九个 TaskState 值之一，规范给出这些值，却没有状",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-22"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-23",
+      "kind": "collection",
+      "title": "contextId",
+      "summary": "contextId 将多个任务归为一个对话， taskId 将多条消息归为一项工作，只有服务器创建任务 ID。 code",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-23"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-24",
+      "kind": "collection",
+      "title": "SendMessage",
+      "summary": "SendMessage 携带一条消息和 SendMessageConfiguration ，agent 返回 Messa",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-24"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-25",
+      "kind": "collection",
+      "title": "中断态：INPUTREQUIRED 和 AUTHREQUIRED",
+      "summary": "任务可以停止等待你，两种等待在不同地方回答：输入发给任务本身，授权通过协议之外的渠道。 planner 向 code r",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-25"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-26",
+      "kind": "collection",
+      "title": "GetTask 与 ListTasks",
+      "summary": "GetTask 和 ListTasks 是恢复途径，两者都严格规定任务的哪些部分省略。 planner 到 deploy",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-26"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-27",
+      "kind": "collection",
+      "title": "CancelTask 与终态",
+      "summary": "四种终态结束任务，agent 选择三种，CancelTask 请求第四种，后续调用不能让任务离开终态。 planner ",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-27"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-28",
+      "kind": "collection",
+      "title": "SendStreamingMessage 与 SubscribeToTask",
+      "summary": "流是单个任务的实时视图，连接断开只让你丢失离线期间发送的帧，不会丢失任务本身。 planner 请 test runne",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-28"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-29",
+      "kind": "collection",
+      "title": "推送通知配置",
+      "summary": "TaskPushNotificationConfig 指定请求返回后 agent 向何处 POST 流中的同类 Stre",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-29"
+    },
+    {
+      "id": "g-auto-fancyboi999-ai-engineering-from-scratch-zh-30",
+      "kind": "collection",
+      "title": "JSON-RPC",
+      "summary": "JSON RPC 将所有操作 POST 到同一 URL，以 method 指定操作、 params 携带请求消息，在 2",
+      "domain": "ai",
+      "category": "Agent工程师最全学习路径",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fancyboi999-ai-engineering-from-scratch-zh-30"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-1",
+      "kind": "collection",
+      "title": "基础知识简介",
+      "summary": "这是每个 CMakeLists.txt 都必须包含的第一行 顺便提一下关于 CMake 的语法。命令 cmake min",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-1"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-2",
+      "kind": "collection",
+      "title": "与你的代码交互",
+      "summary": "CMake 允许你在代码中使用 configure file 来访问 CMake 变量。该命令将一个文件（ 一般以 .i",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-2"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-4",
+      "kind": "collection",
+      "title": "用 CMake 进行编程",
+      "summary": "CMake 有一个 if 语句，尽管经过多次版本迭代它已经变得非常复杂。这里有一些全大写的变量你可以在 if 语句中使用",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-4"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-5",
+      "kind": "collection",
+      "title": "在 CMake 中运行其他的程序",
+      "summary": "在配置时运行一条命令是相对比较容易的。可以使用 execute process execute process 来运行一",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-5"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-6",
+      "kind": "collection",
+      "title": "如何组织你的项目",
+      "summary": "下面的说法可能存在一些偏见，但我认为这是一种好的组织方式。我将会讲解如何组织项目的目录结构，这是基于以往的惯例来写的，这",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-6"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-7",
+      "kind": "collection",
+      "title": "变量与缓存",
+      "summary": "我们首先讨论变量。你可以这样声明一个本地 ( local ) 变量： CMake set(MY VARIABLE \"va",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-7"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-9",
+      "kind": "collection",
+      "title": "C++ 标准",
+      "summary": "CMake 对选择 C++ 标准有着非常出色的支持，最高已覆盖到 C++26。推荐的做法有两种：按目标设置的编译特性（c",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-9"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-10",
+      "kind": "collection",
+      "title": "调试代码",
+      "summary": "你可能需要对你的 CMake 构建过程或你的 C++ 代码进行调试。本文将介绍这两者。 首先，让我们来盘点一下调试 CM",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-10"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-11",
+      "kind": "collection",
+      "title": "CMake 对 IDE 的支持",
+      "summary": "一般来说，IDE 已经被标准的 CMake 的项目支持。不过这里有一些额外的东西可以帮助 IDE 表现得更好： 一些 I",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-11"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-12",
+      "kind": "collection",
+      "title": "CMake 中一些有用的模组",
+      "summary": "在 CMake 的 modules 集合了很多有用的模组，但是有一些模块相比于其他的更有用。以下是一些比较出彩的： 这增",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-12"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-13",
+      "kind": "collection",
+      "title": "为 CMake 项目添加选项",
+      "summary": "CMake 中有许多关于编译器和链接器的设置。当你需要添加一些特殊的需求，你应该首先检查 CMake 是否支持这个需求，",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-13"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-14",
+      "kind": "collection",
+      "title": "CCache 和一些其他的实用工具",
+      "summary": "在过去的一些版本中，一些能够帮助你写好代码的实用工具已经被添加到了 CMake 中。往往是通过为目标指定属性，或是设定形",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-14"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-17",
+      "kind": "collection",
+      "title": "安装",
+      "summary": "进行安装时，比如执行 make install ，安装命令会将文件或目标“安装”到安装树中。不要硬编码 lib 这样的目",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-17"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-18",
+      "kind": "collection",
+      "title": "打包",
+      "summary": "CMake 有两种打包方式：一是使用 CPackConfig.cmake 文件；二是将 CPack 变量放置在 CMak",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-18"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-19",
+      "kind": "collection",
+      "title": "CMake 行为准则(Do's and Don'ts)",
+      "summary": "接下来的两个列表很大程度上基于优秀的 gist Effective Modern CMake . 那个列表更长且更详细，",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-19"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-20",
+      "kind": "collection",
+      "title": "安装 CMake",
+      "summary": "你的 CMake 版本应该比你的编译器要更新，它应该比你使用的所有库都要更新。新版本对任何一个人来说都是有好处的。 如果",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-20"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-21",
+      "kind": "collection",
+      "title": "CMake 各个版本添加的新特性",
+      "summary": "CMake 修改记录的简化版本，这里仅挑了作者认为的重点。这里，每个版本的名称都由作者自行命名，不要太在意。 CMake",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 19,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-21"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-22",
+      "kind": "collection",
+      "title": "运行 CMake",
+      "summary": "在编写 CMake 之前，要确保你已经清楚了如何运行 CMake 来构建文件。 几乎所有 CMake 项目都一样。 除非",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-22"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-24",
+      "kind": "collection",
+      "title": "Boost 库",
+      "summary": "自 Boost 1.70 起，Boost 就自带了 CMake 配置文件 BoostConfig.cmake 。CMak",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-24"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-25",
+      "kind": "collection",
+      "title": "CUDA",
+      "summary": "使用 CUDA 有两种方式：CMake 3.8（Windows为3.9）中引入的新方法，应该比旧的方法更受欢迎 —— 可",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-25"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-27",
+      "kind": "collection",
+      "title": "Minuit2",
+      "summary": "Minuit2 在独立模式下可用，用于 ROOT 不可用或未启用 Minuit2 构建的情况。本节会介绍推荐的用法，以及",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-27"
+    },
+    {
+      "id": "g-auto-modern-cmake-cn-modern-cmake-zh-cn-29",
+      "kind": "collection",
+      "title": "ROOT",
+      "summary": "ROOT 是用于高能物理学的 C++ 工具包，里面东西超级多。CMake 确实有很多使用它的方法，不过其中许多/大多数的",
+      "domain": "system",
+      "category": "CMake 教程 Modern",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "chinese",
+        "chinese-simplified"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-29"
     }
   ]
 }

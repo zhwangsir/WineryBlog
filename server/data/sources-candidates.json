@@ -1326,9 +1326,19 @@
     "ai",
     "ai-agents"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T20:35:43.005Z",
-   "note": "auto-discovered"
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "manuals",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "auto-modern-cmake-cn-modern-cmake-zh-cn",
@@ -1341,9 +1351,19 @@
     "chinese",
     "chinese-simplified"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T20:35:43.529Z",
-   "note": "auto-discovered"
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "chapters",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
