@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 70
+      "count": 93
     },
     {
       "id": "algo",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 171
+      "count": 189
     },
     {
       "id": "security",
@@ -20685,6 +20685,703 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-30"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-1",
+      "kind": "collection",
+      "title": "从零手写Agent[01] - 100 行代码，写出第一个 Agent",
+      "summary": "新系列开篇。前面几个系列，我们从零手写了大模型本身：它怎么推理、怎么训练。这个系列往上走一层： 给模型装上手脚，让它自己",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-1"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-2",
+      "kind": "collection",
+      "title": "从零手写Agent[02] - 工具系统：加工具不再改主循环",
+      "summary": "第 1 课我们用 100 行代码写出了最小 Agent。这一课让它真正好扩展：加工具只需要写一个函数，出错了它自己会修。",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-2"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-3",
+      "kind": "collection",
+      "title": "从零手写Agent[03] - 权限：给 Agent 装上刹车",
+      "summary": "上一课，Agent 有了五个工具，其中 write file 能写任何路径， run shell 能执行任何命令，而且不",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-3"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-4",
+      "kind": "collection",
+      "title": "从零手写Agent[04] - 上下文管理：别让 Agent 被自己的历史撑爆",
+      "summary": "前三课，Agent 有了最小循环、工具系统、权限确认。它能干活，也不会乱干活。 但只要让它连续干十几步，就会撞上第一个真",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-4"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-5",
+      "kind": "collection",
+      "title": "从零手写Agent[05] - Skills：让 Agent 按需加载能力",
+      "summary": "前四课，Agent 有了循环、工具、权限和上下文管理。它能干活、不乱干活，也不会被自己的历史撑爆。 但用上几天，你会想让",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-5"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-6",
+      "kind": "collection",
+      "title": "从零手写Agent[06] - 接入聊天软件：让 Agent 走出终端",
+      "summary": "前五课，Agent 已经有了循环、工具、权限、上下文管理和技能。 但它有一个很朴素的限制： 你得坐在电脑前，开着终端，才",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-6"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-7",
+      "kind": "collection",
+      "title": "从零手写Agent[07] - 定时任务与心跳：让 Agent 主动找你",
+      "summary": "上一课，Agent 住进了聊天软件。但它还是被动的：你不发消息，它就什么都不做。 一个真正的个人助手，应该能做这些事： ",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-7"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-8",
+      "kind": "collection",
+      "title": "从零手写Agent[08] - MCP：接上别人写好的工具",
+      "summary": "第一部分的七课，我们从一个循环出发，搭出了一个能常驻、会主动找你的 Agent。从这一课开始是第二部分：把主流 Agen",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-8"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-9",
+      "kind": "collection",
+      "title": "从零手写Agent[09] - 子 Agent 与多 Agent：把活分出去",
+      "summary": "上一课接上了 MCP，Agent 能用的工具多了，能做的事大了。可任务一大，老问题又回来了：上下文被填满。 第 4 课的",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-9"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-10",
+      "kind": "collection",
+      "title": "从零手写Agent[10] - 计划：先说要做什么，再动手",
+      "summary": "前面九课，Agent 拿到任务就开始干。小任务没问题；任务一大，常见两种失败。 一种是做到一半忘了还剩什么：第 4 课的",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-10"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-11",
+      "kind": "collection",
+      "title": "从零手写Agent[11] - 记忆：跨会话记住该记的",
+      "summary": "第 4 课让会话能保存和恢复，但那只是\"同一段对话接着聊\"。开一个新会话，Agent 还是不知道你喜欢简短的回答、你的项",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-11"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-12",
+      "kind": "collection",
+      "title": "从零手写Agent[12] - 拆解 Claude Code：把每个零件都做成可配置的",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 第三部分开篇。前两部分，我们亲手写了",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-12"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-13",
+      "kind": "collection",
+      "title": "从零手写Agent[13] - 拆解 Codex：开源，并把边界交给操作系统",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 上一课的 Claude Code 把",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-13"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-14",
+      "kind": "collection",
+      "title": "从零手写Agent[14] - 拆解 Pi：故意做小的 Agent",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 前两课的 Claude Code 和",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-14"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-15",
+      "kind": "collection",
+      "title": "从零手写Agent[15] - 拆解 Grok Bot：给 Agent 一台自己的电脑",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 前三课拆的都是编码 Agent：跑在",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-15"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-16",
+      "kind": "collection",
+      "title": "从零手写Agent[16] - 拆解 DeepSeek Harness：一切皆插件",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 前面拆的几个 Agent，各自有一个",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-16"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-17",
+      "kind": "collection",
+      "title": "从零手写Agent[17] - 拆解 OpenClaw 与 Hermes：个人助手这条线",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 前面拆的大多是编码 Agent。这一",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-17"
+    },
+    {
+      "id": "g-auto-aa1143-namiagent-18",
+      "kind": "collection",
+      "title": "从零手写Agent[18] - 总对照表：共识、分歧与全系列回顾",
+      "summary": "本文写于 2026 年 10 月。这些产品更新很快，具体细节请以各自官方文档为准。 最后一课。前十一课我们亲手写了一个 ",
+      "domain": "ai",
+      "category": "NamiAgent 入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namiagent-18"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-1",
+      "kind": "collection",
+      "title": "💻 认识 CLI：AI 的「手脚」，不是天书",
+      "summary": "这个看板里到处在说「装 CLI」「跑命令」「glab / gh / lark cli」，但一直缺一篇 专门把 CLI 讲",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-1"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-2",
+      "kind": "collection",
+      "title": "关于我们",
+      "summary": "我们只做一件事：让普通人不花钱、少踩坑地用上 AI，并且在 AI 时代跑完属于自己的那一圈闭环。 大多数 AI 教程有一",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-2"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-3",
+      "kind": "collection",
+      "title": "🎨 品牌设计 Skill 展示",
+      "summary": "用 logo brand designer 做真实项目的品牌标识。 下面不是宣传图，是 这个站自己的 favicon 的",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-3"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-4",
+      "kind": "collection",
+      "title": "🎯 你的第一个项目：3 分钟让 Agent 帮你做一个网页",
+      "summary": "不需要懂代码。你只说话，Agent 帮你做。3 分钟后你会在浏览器里看到你自己的作品。 你已经有 Agent 了。如果你",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-4"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-5",
+      "kind": "collection",
+      "title": "🚀 从「我不会」到「我的代码上线了」——一条完整的心智链",
+      "summary": "这一篇把七件事串成一条线，一次讲清楚： Agent 到底是什么 → GitLab 和 GitHub 有啥区别 → 代码怎",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-5"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-6",
+      "kind": "collection",
+      "title": "📖 术语大白话词典",
+      "summary": "这篇文章里没有「技术」，只有「人话」。遇到不懂的词，Ctrl+F 搜一下。 一个黑窗口，用来跟电脑「打字交流」。 类比：",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-6"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-7",
+      "kind": "collection",
+      "title": "🗣️ 怎么跟 Agent 说话",
+      "summary": "Agent 不是读心术师。你说得越清楚，它干得越好。这篇教你「万能公式」。 部分 说明 例子 动作 你要它做什么 帮我创",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-7"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-8",
+      "kind": "collection",
+      "title": "📝 怎么把需求讲清楚——写给 Agent 的「需求说明书」模板",
+      "summary": "这是「从零到上线」里第五步的展开。上一篇说 需求说不清 = 做错 ，这一篇专攻这一件事： 怎么把一个想法，说成 Agen",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-8"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-9",
+      "kind": "collection",
+      "title": "🔌 装上 magpie：让 AI 编程不花钱",
+      "summary": "这篇解决一个很现实的问题：AI 编程要花钱吗？ 答案是： 不用。 国内一线模型都有免费额度，配合 magpie 这个本地",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-9"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-10",
+      "kind": "collection",
+      "title": "📮 申请 Agent 邮箱",
+      "summary": "让你的 AI Agent 拥有自己的邮箱，能收发邮件、整理收件箱。 Agent 邮箱是腾讯 QQ 邮箱推出的 Agent",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-10"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-11",
+      "kind": "collection",
+      "title": "🔮 AI 状态球",
+      "summary": "会表态的 AI 助手状态球：在想 / 干活 / 等你回话 / 好了。3.0 新增 8 种生灵与 8 种表情，眼睛跟着光标",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-11"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-13",
+      "kind": "collection",
+      "title": "😀 微信表情包生成",
+      "summary": "一张 IP 正面照出一整套可提交的微信表情素材：出图、切图、透明背景机检、含义词校验全脚本化。· A Claude Co",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-13"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-14",
+      "kind": "collection",
+      "title": "💬 聊天效果图生成",
+      "summary": "仿微信与小红书的聊天氛围图生成器：对话 / 拉人 / 列表 / 朋友圈 / 小红书五模式，语料库管理与批量导出。· Vu",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-14"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-15",
+      "kind": "collection",
+      "title": "📊 Claude 用量状态栏",
+      "summary": "Claude Code 状态栏：会话花费、上下文占用、5h / 7d 限额预警，区分订阅制与按量付费。单文件 Pytho",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-15"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-16",
+      "kind": "collection",
+      "title": "🔌 工具接入 MCP",
+      "summary": "把个人开源工具链接进 AI Agent 的 MCP 服务：按能力分组，装了哪个 CLI 就长出哪组工具。· An MCP",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-16"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-17",
+      "kind": "collection",
+      "title": "🧹 死代码清理",
+      "summary": "扫出并清除「自称已废」的墓碑 skill、AI 幽灵碎片与死代码，统计释放的 Token 与磁盘。· An agent ",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-17"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-19",
+      "kind": "collection",
+      "title": "🪪 设备身份护照",
+      "summary": "Deterministic, self consistent browser/device personas for a",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-19"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-20",
+      "kind": "collection",
+      "title": "🎨 终端主题插件",
+      "summary": "DSH 主题插件：Bloom 莫兰迪中国风配色，OKLCH 调色、明暗双主题、顶栏一键切换，实测达 WCAG AA。 仓",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-20"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-21",
+      "kind": "collection",
+      "title": "⚠️ DSH 环境自检（已弃用）",
+      "summary": "DSH 环境自检与端口运维插件：看清电脑装了什么，一键释放残留占用开发端口的进程。· A DSH plugin that",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-21"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-22",
+      "kind": "collection",
+      "title": "🧠 DSH 模型管理",
+      "summary": "DeepSeek Harness 模型管理插件：网关健康探测、模型目录发现与余额/配额展示。DSH plugin for",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-22"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-23",
+      "kind": "collection",
+      "title": "📦 DSH 素材库插件",
+      "summary": "DeepSeek Harness 素材浏览插件：按工作区查看 MUSE AV 素材与出图记录，复制素材直链。DSH as",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-23"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-27",
+      "kind": "collection",
+      "title": "🧰 harnessweight",
+      "summary": "给网关后面的每个 Agent harness 称重：输入 token、缓存命中、失败率、每轮重发的工具定义体积。已收录 ",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-27"
+    },
+    {
+      "id": "g-auto-supercli-site-xiaobai-kanban-28",
+      "kind": "collection",
+      "title": "📨 飞书企微通知",
+      "summary": "飞书/Lark 与企业微信通知库：校验业务响应，支持重试、超时和去重。Zero dependency notificat",
+      "domain": "langs",
+      "category": "AI 编程助手入门教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-guide",
+        "ai-agent",
+        "ai-coding"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-supercli-site-xiaobai-kanban-28"
     }
   ]
 }

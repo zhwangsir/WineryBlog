@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T21:35:06.166Z",
+ "updatedAt": "2026-11-24T21:55:07.698Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1407,6 +1407,56 @@
    "picks": [
     {
      "dir": "全栈学习路线",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-aa1143-namiagent",
+   "repo": "aa1143/NamiAgent",
+   "branch": "main",
+   "category": "NamiAgent 入门教程",
+   "domain": "ai",
+   "tags": [
+    "agent",
+    "ai-agent",
+    "chinese"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T21:55:06.598Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 18,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-supercli-site-xiaobai-kanban",
+   "repo": "supercli-site/xiaobai-kanban",
+   "branch": "main",
+   "category": "AI 编程助手入门教程",
+   "domain": "langs",
+   "tags": [
+    "agent-guide",
+    "ai-agent",
+    "ai-coding"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T21:55:07.697Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
      "keywords": [
       ".md"
      ],
