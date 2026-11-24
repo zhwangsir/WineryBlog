@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 263
+      "count": 288
     },
     {
       "id": "security",
@@ -23245,6 +23245,431 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-apachecn-pytorch-doc-zh-30"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-2",
+      "kind": "collection",
+      "title": "Pose",
+      "summary": "也有叫video retargeting、video reenactment、human animation等，这些定义",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-2"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-3",
+      "kind": "collection",
+      "title": "CRNN",
+      "summary": "CNN+RNN，End to End Trainable Neural Network 白翔团队将特征提取，序列建模和转",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-3"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-4",
+      "kind": "collection",
+      "title": "CTPN",
+      "summary": "把RNN引入检测问题，使用CNN + RNN 进行文本检测与定位。采用Top down的方式，先用CNN得到深度特征，然",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-4"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-5",
+      "kind": "collection",
+      "title": "TextBoxes++",
+      "summary": "TextBoxes++ 是TextBoxes的拓展，这个算法也是基于SSD来实现的,解决对多方向文字的检测。boundi",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-5"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-6",
+      "kind": "collection",
+      "title": "TextBoxes",
+      "summary": "TextBoxes 这个算法是基于SSD来实现的,解决水平文字检测问题，将原来3×3的kernel改成了更适应文字的lo",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-6"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-7",
+      "kind": "collection",
+      "title": "CascadeCNN",
+      "summary": "这个结构没有去对代码。作为开创意义的代码，准确率不会特别高。主要是思想可以参考 H. Li, Z. Lin, X. Sh",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-7"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-8",
+      "kind": "collection",
+      "title": "DCNN",
+      "summary": "2013 年，Sun 等人 5 首次将 CNN 应用到人脸关键点检测，提出一种级联的 CNN（拥有三个层级）——DCNN",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-8"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-9",
+      "kind": "collection",
+      "title": "FaceNet",
+      "summary": "和物体分类这种分类问题不同，Facenet是构建了一种框架，通过已有的深度模型，结合不同loss，训练一个很棒的人脸特征",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-9"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-10",
+      "kind": "collection",
+      "title": "MTCNN",
+      "summary": "MTCNN 将人脸检测与关键点检测放到了一起来完成。整个任务分解后让三个子网络来完成。每个网络都很浅，使用多个小网络级联",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-10"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-11",
+      "kind": "collection",
+      "title": "AlexNet",
+      "summary": "2012年，Alex Krizhevsky用AlexNet 在当年的ImageNet图像分类竞赛中(ILSVRC 201",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-11"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-12",
+      "kind": "collection",
+      "title": "DPN(Dual Path Networks)",
+      "summary": "之前我们已经了解了ResNet 和 DenseNet，ResNet使用的是相加(element wise adding)",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-12"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-13",
+      "kind": "collection",
+      "title": "DenseNet",
+      "summary": "作者发现（Deep networks with stochastic depth）通过类似Dropout的方法随机扔掉一",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-13"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-14",
+      "kind": "collection",
+      "title": "GoogLeNet",
+      "summary": "GoogLeNet,采用InceptionModule和全局平均池化层，构建了一个22层的深度网络,使得很好地控制计算量",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-14"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-15",
+      "kind": "collection",
+      "title": "Inception Resnet V2",
+      "summary": "Inception Resnet V2是基于Inception V3 和 ResNet结构发展而来的一个网络。在这篇pa",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-15"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-16",
+      "kind": "collection",
+      "title": "Inception V3",
+      "summary": "Inception V3，GoogLeNet的改进版本,采用InceptionModule和全局平均池化层，v3一个最重",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-16"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-17",
+      "kind": "collection",
+      "title": "LeNet",
+      "summary": "LeNet 5( http://yann.lecun.com/exdb/lenet/a35.tml ), 一个手写体数字",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-17"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-18",
+      "kind": "collection",
+      "title": "Network In Network",
+      "summary": "2014年 ICLR 的paper，Network In Network(NIN)，改进了传统的CNN 网络，采用了少量",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-18"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-19",
+      "kind": "collection",
+      "title": "PolyNet",
+      "summary": "PolyNet: A pursuitof structural diversity in very deep netwo",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-19"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-20",
+      "kind": "collection",
+      "title": "ResNet",
+      "summary": "ResNet,深度残差网络，通过shortcut( skip connection )的设计，打破了深度神经网络深度的限",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-20"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-21",
+      "kind": "collection",
+      "title": "SENet( Squeeze-and-Excitation Networks)",
+      "summary": "paper：Squeeze and Excitation Networks pdf Momenta 提出的SENet 获",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-21"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-22",
+      "kind": "collection",
+      "title": "VGG",
+      "summary": "VGG Net是2014年ILSVRC classification第二名(第一名是GoogLeNet)，ILSVRC ",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-22"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-23",
+      "kind": "collection",
+      "title": "The Single Shot Detector（SSD）",
+      "summary": "SSD是一种直接预测bounding box的坐标和类别的object detection算法，没有生成proposal",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-23"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-24",
+      "kind": "collection",
+      "title": "Salient Object Detection 物体显著性检测",
+      "summary": "Salient Object Detection: A Surve ( http://mmcheng.net/zh/pa",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-24"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-25",
+      "kind": "collection",
+      "title": "DeepLab",
+      "summary": "DeepLabv1 DeepLab 是结合了深度卷积神经网络（DCNNs）和概率图模型（DenseCRFs）的方法。 在",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-25"
+    },
+    {
+      "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-26",
+      "kind": "collection",
+      "title": "MobileNet",
+      "summary": "MobileNet 顾名思义，可以用在移动设备上的网络，性能和效率取得了很好平衡。它发展了两个版本，第一个版本基本结构和",
+      "domain": "ai",
+      "category": "图解深度神经网络",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "deep-learning",
+        "image-classification",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-weslynn-alphatree-graphic-deep-neural-network-26"
     }
   ]
 }

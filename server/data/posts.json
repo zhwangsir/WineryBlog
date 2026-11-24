@@ -22966,5 +22966,405 @@
     "source": "apachecn/pytorch-doc-zh",
     "views": 0,
     "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-2",
+    "title": "Pose",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "也有叫video retargeting、video reenactment、human animation等，这些定义不完全等价，是一个比较综合的生成式任务。 早期的研究需要输入",
+    "content": "## Pose 姿态识别\n\n### motion transfer\n\n也有叫video retargeting、video reenactment、human animation等，这些定义不完全等价，是一个比较综合的生成式任务。\n\n早期的研究需要输入一段目标人物的视频，用来学习人物特异的外观encode-decoder，在合成的时候再利用decoder基于目标人体pose来输出整段视频，有点像deepfake的做法（`https://github.com/deepfakes/faceswap`）\n\n早期代表性工作是\n1) Everybody Dance Now\n直接使用关键点condition 进行驱动.\n\n`https://github.com/carolineec/EverybodyDanceNow`\n\nDance Dance Generation: Motion Transfer for Internet Videos\n`https://arxiv.org/abs/1904.00129`\n\n`https://github.com/Kuzphi/EverybodyDanceNow-Temporal-FaceGAN`\n\n2) vid2vid\n\n19年同年相关作品还有：\n![image](/images/figures/auto-weslynn-alphatree-graphic-deep-neural-network/ext_user-images.githubusercontent.com__22336020_192982150-b34cbdd9-e6d8-4b3c-b87a-aa7a33e2cec2.png)\n\n`https://motionretargeting2d.github.io/`\n\n`https://github.com/LONG-9621/Human_motion-Imatation`\n\n后面有一些follow-up基于人体prior进一步改进encode和decode的效果（如TransMoMo）。这类工作由于需要输入目标人物的整段视频（而且需要pose覆盖相对充分），且对于每个目标都需要重新训练，限制了这一类方法的应用场景。\n\nZ. Yang*, W. Zhu*, W. Wu*, C. Qian, Q. Zhou, B. Zhou, C. C. Loy. \"TransMoMo: Invariance-Driven Unsupervised Video Motion Retargeting.\" IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020. (* indicates equal contribution.)\n\n`https://arxiv.org/pdf/2003.14401.pdf`\n​\narxiv.org/pdf/2003.14401.pdf\n\n![image](/images/figures/auto-weslynn-alphatree-graphic-deep-neural-network/ext_user-images.githubusercontent.com__22336020_192982213-2e92aea9-775e-4e1f-985c-47f987b7ad36.png)\n\n`https://github.com/yzhq97/transmomo.pytorch`\n\n知乎 `https://zhuanlan.zhihu.com/p/145135732`\n\n其他lstm实现：\n\n`https://github.com/SuyashSonawane/AI-Dancer`\n\n`https://github.com/keshavoct98/DANCING-AI`\n\n后期的工作开始做基于单图输入的motion transfer，是一种single-shot的setting。由于无法对单个用户直接训练一个模型，这块一般有两个思路（近期关注得比较少，欢迎补充其他思路）：由于单图的外观representation不好学，为了降低合成难度，会基于输入的pose和目标的pose去估计一个warp参数，然后将目标人物的图像warp到目标pose，最后可能再加个网络来refine一下合成的结果。至于如何warp，不同文章用了不同的方式，比如2D flow、3D flow等。\n\n代表性工作有MonkeyNet、Liquid Warping GAN等等。\n\n2. NVIDIA沿着vid2vid也做了一个general的few-shot vid2vid工作。和上一类方法不同，他们基于输入的单图去预测视频decoder的一些网络参数，从而将外观特异的信息用到了合成网络中。这也是他们之前一个叫SPADE的工作的延续。此外，这个领域一般都会用到很多human的prior来强化网络的学习，最简单的是human pose（人体关键点）、human parsing（部件分割），复杂的有dense pose、SMPL、3D pose等。为了让脸部效果更好，很多工作还会单独对脸部进行合成提高质量。\n\n`https://nvlabs.github.io/few-shot-vid2vid/`\n\n![image](/images/figures/auto-weslynn-alphatree-graphic-deep-neural-network/ext_user-images.githubusercontent.com__22336020_192982451-f569ce6f-386f-450e-82e5-35390753c37a.png)\n\n2. First Order Motion Model for Image Animation (FOMM)\n-  github\n- 使用自监督预测移动点+泰勒级数表示稀疏运动预测稠密运动\n\n3 \n CVPR'2021 paper Motion Representations for Articulated Animation by Aliaksandr Siarohin, Oliver Woodford, Jian Ren, Menglei Chai and Sergey Tulyakov.\n \n \n`https://github.com/snap-research/articulated-animation`\n\n4\n\n`https://github.com/FuxiCV/SSMCT`\n\ndatabase\n`https://awesome-wflow.github.io/`\n\n网易虚拟人舞蹈数据库\n`https://github.com/NetEase-GameAI/ChoreoMaster`\n\n## AI编舞\n\n`https://zhuanlan.zhihu.com/p/409493174`\n\n`https://www.remenci.cn/88050`\n\n## demo链接\n`https://github.com/DWCTOD/CVPR2022-Papers-with-Code-Demo`\n\n部分参考：\n`https://www.zhihu.com/question/481811366` 下系列回答\n`https://www.zhihu.com/column/c_1389179244803715072`",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-3",
+    "title": "CRNN",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "CNN+RNN，End to End Trainable Neural Network 白翔团队将特征提取，序列建模和转录整合到统一框架，完成端对端的识别任务 paper： 201",
+    "content": "# CRNN\nCNN+RNN，End-to-End Trainable Neural Network\n白翔团队将特征提取，序列建模和转录整合到统一框架，完成端对端的识别任务\n\npaper：[2015-CoRR] An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition [pdf]\n(`http://arxiv.org/pdf/1507.05717v1.pdf`) \n\nCRNN 原始结构如图\n\n> [图示：CRNN]\n\n细节如图：\n\n> [图示：CRNND]\n\n分为三个部分：\n\n第一个部分为CNN：\n\n卷积网络部分是基于VGG框架设计，分为7个卷积层，4个maxpooling层，其中两个尺寸改成1×2，2个bn层\n\n第二个部分为RNN：\n\n通过feature sequence extraction 将一张图像的特征转换成特征序列，传给两层双向lstm。\n\n> [图示：CRNNFS]\n\n第三部分为transcription，通过CTC(Connectionist Temporal Classification)层得到label序列的概率\n\n任意一个label序列的概率 = 它的不同对齐方式的概率之和\n\n（主要是空格以及重复字母的影响，注意映射的时候是先删除重复的字母，后删除空格）\n\n结果如图\n\n> [图示：CRNNR]\n\n用不同节点表示如图：\n> [图示：crnn]\n\ncode： `http://mclab.eic.hust.edu.cn/~xbai/CRNN/crnn_code.zip`\n\ngithub：`https://github.com/bgshih/crnn` Torch7 官方\n\n`https://github.com/meijieru/crnn.pytorch` pytorch \n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-4",
+    "title": "CTPN",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "把RNN引入检测问题，使用CNN + RNN 进行文本检测与定位。采用Top down的方式，先用CNN得到深度特征，然后用固定宽度的anchor来检测text proposal，",
+    "content": "# CTPN\n把RNN引入检测问题，使用CNN + RNN 进行文本检测与定位。采用Top-down的方式，先用CNN得到深度特征，然后用固定宽度的anchor来检测text proposal，并把同一行anchor对应的特征串成序列，输入到RNN中，最后用全连接层来分类或回归，并将正确的text proposal进行合并成文本线。\n\npaper ：[ECCV2016] Zhi Tian, Weilin Huang, Tong He, Pan He, Yu Qiao，Detecting Text in Natural Image with Connectionist Text Proposal Network pdf \n\nCTPN 原始结构如图\n\n> [图示：CTPN]\n\n分为如下几个部分：\n\n第一个部分为CNN：卷积网络部分是基于VGG框架设计，用VGG16的前5个Conv stage 得到feature map\n\n第二个部分，在Conv5的feature map的每个位置上取3×3的窗口的特征，这些特征将用于预测该位置k个anchor（anchor的定义和Faster RCNN类似）对应的类别信息，位置信息，然后传递给双向LSTM\n\n第三个部分，特征经过FC层，输出到三个输出：vertical coordinate，scores ，side-refinement。2k vertical coordinate表示的是bounding box的高度和中心的y轴坐标（可以决定上下边界），k个side-refinement表示的bounding box的水平平移量，它们是用来回归k个anchor的位置信息，每个anchor的width是16（VGG16的conv5的stride是16）。\n\n之后用文本线构造算法，把分类得到的文字的proposal（图Fig.1（b）中的细长的矩形）合并成文本线\n\npaper中的模型是可以应用到各种水平文本检测。\n\n用不同节点表示如图：\n\n> [图示：cptn]\n\n作者给出的caffe代码模型结构有一点改变，包括输出：\n\n> [图示：cptncaffe]\n\nCaffe 源码：`https://github.com/tianzhi0549/CTPN` 官方\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-5",
+    "title": "TextBoxes++",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "TextBoxes++ 是TextBoxes的拓展，这个算法也是基于SSD来实现的,解决对多方向文字的检测。boundingbox的输出从4维的水平的boundingbox扩展到4",
+    "content": "# TextBoxes++\n\nTextBoxes++ 是TextBoxes的拓展，这个算法也是基于SSD来实现的,解决对多方向文字的检测。boundingbox的输出从4维的水平的boundingbox扩展到4+8=12维的输出。long conv kernels 从 1×5 改成了 3×5。default boxes 也做了修改。\n\npaper ：M. Liao et al. TextBoxes++: Multi-oriented text detection pdf\n\nTextBoxes的原始结构如图：\n> [图示：TextBoxes++]\n\nTextBoxes++将TextBoxes的水平文字检测拓展到多方向，修改了输出的维度，offset从4维，拓展到4+8=12维（也可以是4+5，不过caffe源码中为4+8，5是rotated rectangele bounding box offsets，8是quadrilateral bounding box offsets），caffe源码中输出的12个default boxes拓展到20个，因此输出也从TextBoxes的72维向量拓展到20×（2+12）=280。最后所有的输出通过一个级联的Non-maximum suppression（先选0.5的高阈值，然后选0.2的低阈值）得到最终的输出。\n \n\n用不同节点表示如图（按照作者caffe代码绘制）：\n\n> [图示：textboxes++]\n  大图  \n\n对应Text_box层如图（score 2维， bounding box offset 12维）：\n\n> [图示：textboxes_cal]\n\nCaffe 源码：`https://github.com/MhLiao/TextBoxes_plusplus`  官方\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-6",
+    "title": "TextBoxes",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "TextBoxes 这个算法是基于SSD来实现的,解决水平文字检测问题，将原来3×3的kernel改成了更适应文字的long conv kernels 3×3 1×5。defaul",
+    "content": "# TextBoxes \n\nTextBoxes 这个算法是基于SSD来实现的,解决水平文字检测问题，将原来3×3的kernel改成了更适应文字的long conv kernels 3×3 -> 1×5。default boxes 也做了修改。SSD原来为多类检测问题，现在转为单类检测问题\n\npaper ：M. Liao et al. TextBoxes: A Fast Text Detector with a Single Deep Neural Network. AAAI, 2017. pdf \n\nTextBoxes的原始结构如图：\n> [图示：TextBoxes]\n\nTextBoxes从SSD修改而来，但是SSD中每一个支线上3×3的卷积都被换成了1×5的卷积。在每一个特征位置，有12个default box（12个default box 为1 2 3 5 7 10 不同比率的6个box ，以及增加0.5个vertical offset后的6个box），通过text-box预测72维向量，这是文本出现的得分（text presence scores）（2维）和default box的位置偏移（offsets）（4维） 72 = 12×（2+4）。7×7的图像就预测7×7×12个得分(2)和bounding box (4)。 最后所有的输出通过一个Non-maximum suppression（NMS）得到最终的输出。\n \n\n用不同节点表示如图：\n\n> [图示：textboxes]\n 大图 \n\n对应Text_box层如图（以score输出为例 输出2）：\n\n> [图示：textboxes_cal]\n\n作者caffe中模型结构做了一点小小的修改，如图：\n\n> [图示：textboxes_caffe]\n\n 大图 \n\n对应Text_box层如图（score 2维， bounding box offset 4维 ）：\n\n> [图示：textboxes_caffecal]\n\nCaffe 源码：`https://github.com/MhLiao/TextBoxes_plusplus` 官方\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-7",
+    "title": "CascadeCNN",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "这个结构没有去对代码。作为开创意义的代码，准确率不会特别高。主要是思想可以参考 H. Li, Z. Lin, X. Shen, J. Brandt, and G. Hua, “A ",
+    "content": "# CascadeCNN\n\n这个结构没有去对代码。作为开创意义的代码，准确率不会特别高。主要是思想可以参考\n\nH. Li, Z. Lin, X. Shen, J. Brandt, and G. Hua, “A convolutional neuralnetwork cascade for face detection,” in IEEE Conference on ComputerVision and Pattern Recognition, 2015, pp. 5325-5334.\n这篇文章保留了传统人脸检测方法中Cascade的概念，级联了6个CNN，使用3种输入大小分别为12、24、48的浅层网络，一类为分类网络(12-net,24...)：2分类，判断是不是人脸，同时产生候选框，一类是矫正网络(12-Calibration-net,24...)它们是45分类（当时训练的时候将每一个正样本进行scale、x轴、y轴变换（共45种变换），生成45张图片）对候选框进行位置矫正。在每个分类网络之后接一个矫正网络用于回归人脸框的位置。\n\n> [图示：cascade]\n\n对比传统人脸检测方法，CascadeCNN将Cascade级联结构中每个stage中CNN的分类器代替了传统的分类器；2. 每个分类stage之后应用了一个矫正网络使得人脸框的位置更为精确。该论文是当时基于CNN的人脸检测方法中速度最快的\n\n1.第一级12-net要尽量快，保证召回率的同时，过滤大量非人脸，在每一个尺度，使用NMS，recall达到99% \n2.第二级24-net的输入为第一级检测的样本，首先与gt匹配，标定出正负样本，然后分类，另外，第二级使用了多尺度，即将两个stage的fc进行concate。同样，在每一个尺度，使用NMS，recall达到97% \n3.第三级48-net网格稍微加深，过程同stage2，本次所有的尺度一块使用NMS \n4.回归网络使用bounding box的方式\n\n训练数据AFLW\n作者先从AFLW数据集中的图片中进行裁剪获得人脸图片作为正样本，再从背景中裁剪获得负样本；\n\n> [图示：cascadestruct]\n\nCascadeCNN 训练网络结构如图：\n\n> [图示：cascadestruct]\n\n`https://github.com/anson0910/CNN_face_detection`\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-8",
+    "title": "DCNN",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "2013 年，Sun 等人 5 首次将 CNN 应用到人脸关键点检测，提出一种级联的 CNN（拥有三个层级）——DCNN(Deep Convolutional Network)，此",
+    "content": "# DCNN \n2013 年，Sun 等人 [5] 首次将 CNN 应用到人脸关键点检测，提出一种级联的 CNN（拥有三个层级）——DCNN(Deep Convolutional Network)，此种方法属于级联回归方法。作者通过精心设计拥有三个层级的级联卷积神经网络，不仅改善初始不当导致陷入局部最优的问题，而且借助于 CNN 强大的特征提取能力，获得更为精准的关键点检测。\n\nDeep Convolutional Network Cascade for Facial Point Detection sunyi tangxiaoou\n\n`http://mmlab.ie.cuhk.edu.hk/archive/CNN_FacePoint.htm`\n\n如图所示，DCNN 由三个 Level 构成。Level-1 由 3 个 CNN 组成；Level-2 由 10 个 CNN 组成（每个关键点采用两个 CNN）；Level-3 同样由 10 个 CNN 组成。\n\nLevel-1 分 3 个 CNN，分别是 F1（Face 1）、EN1（Eye，Nose）、NM1（Nose，Mouth）；F1 输入尺寸为 39*39，输出 5 个关键点的坐标；EN1 输入尺寸为 39*31，输出是 3 个关键点的坐标；NM11 输入尺寸为 39x31，输出是 3 个关键点。Level-1 的输出是由三个 CNN 输出取平均得到。\n\nLevel-2，由 10 个 CNN 构成，输入尺寸均为 15x15，每两个组成一对，一对 CNN 对一个关键点进行预测，预测结果同样是采取平均。\n\nLevel-3 与 Level-2 一样，由 10 个 CNN 构成，输入尺寸均为 15x15，每两个组成一对。Level-2 和 Level-3 是对 Level-1 得到的粗定位进行微调，得到精细的关键点定位。\n\nLevel-1 之所以比 Level-2 和 Level-3 的输入要大，是因为作者认为，由于人脸检测器的原因，边界框的相对位置可能会在大范围内变化，再加上面部姿态的变化，最终导致输入图像的多样性，因此在 Level-1 应该需要有足够大的输入尺寸。Level-1 与 Level-2 和 Level-3 还有一点不同之处在于，Level-1 采用的是局部权值共享（Lcally Sharing Weights），作者认为传统的全局权值共享是考虑到，某一特征可能在图像中任何位置出现，所以采用全局权值共享。然而，对于类似人脸这样具有固定空间结构的图像而言，全局权值共享就不奏效了。因为眼睛就是在上面，鼻子就是在中间，嘴巴就是在下面的。所以作者借鉴文献 [28] 中的思想，采用局部权值共享，作者通过实验证明了局部权值共享给网络带来性能提升。\n\nDCNN 采用级联回归的思想，从粗到精的逐步得到精确的关键点位置，不仅设计了三级级联的卷积神经网络，还引入局部权值共享机制，从而提升网络的定位性能。最终在数据集 BioID 和 LFPW 上均获得当时最优结果。速度方面，采用 3.3GHz 的 CPU，每 0.12 秒检测一张图片的 5 个关键点。\n\n Face++版 DCNN\n\n2013 年，Face++在 DCNN 模型上进行改进，提出从粗到精的人脸关键点检测算法 [6]，实现了 68 个人脸关键点的高精度定位。该算法将人脸关键点分为内部关键点和轮廓关键点，内部关键点包含眉毛、眼睛、鼻子、嘴巴共计 51 个关键点，轮廓关键点包含 17 个关键点。\n\n针对内部关键点和外部关键点，该算法并行的采用两个级联的 CNN 进行关键点检测，网络结构如图所示。\n\n针对内部 51 个关键点，采用四个层级的级联网络进行检测。其中，Level-1 主要作用是获得面部器官的边界框；Level-2 的输出是 51 个关键点预测位置，这里起到一个粗定位作用，目的是为了给 Level-3 进行初始化；Level-3 会依据不同器官进行从粗到精的定位；Level-4 的输入是将 Level-3 的输出进行一定的旋转，最终将 51 个关键点的位置进行输出。针对外部 17 个关键点，仅采用两个层级的级联网络进行检测。Level-1 与内部关键点检测的作用一样，主要是获得轮廓的 bounding box；Level-2 直接预测 17 个关键点，没有从粗到精定位的过程，因为轮廓关键点的区域较大，若加上 Level-3 和 Level-4，会比较耗时间。最终面部 68 个关键点由两个级联 CNN 的输出进行叠加得到。\n\n算法主要创新点由以下三点：（1）把人脸的关键点定位问题，划分为内部关键点和轮廓关键点分开预测，有效的避免了 loss 不均衡问题；（2）在内部关键点检测部分，并未像 DCNN 那样每个关键点采用两个 CNN 进行预测，而是每个器官采用一个 CNN 进行预测，从而减少计算量；（3）相比于 DCNN，没有直接采用人脸检测器返回的结果作为输入，而是增加一个边界框检测层（Level-1），可以大大提高关键点粗定位网络的精度。\n\nFace++版 DCNN 首次利用卷积神经网络进行 68 个人脸关键点检测，针对以往人脸关键点检测受人脸检测器影响的问题，作者设计 Level-1 卷积神经网络进一步提取人脸边界框，为人脸关键点检测获得更为准确的人脸位置信息，最终在当年 300-W 挑战赛上获得领先成绩。\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/scenery/d485940aad69b7a6.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-9",
+    "title": "FaceNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "和物体分类这种分类问题不同，Facenet是构建了一种框架，通过已有的深度模型，结合不同loss，训练一个很棒的人脸特征。它直接使用端对端的方法去学习一个人脸图像到欧式空间的编码，",
+    "content": "# FaceNet\n\n和物体分类这种分类问题不同，Facenet是构建了一种框架，通过已有的深度模型，结合不同loss，训练一个很棒的人脸特征。它直接使用端对端的方法去学习一个人脸图像到欧式空间的编码，这样构建的映射空间里的距离就代表了人脸图像的相似性。然后基于这个映射空间，就可以轻松完成人脸识别，人脸验证和人脸聚类。\n\n在LFW数据集上，准确率为99.63%，在YouTube Faces DB数据集上，准确率为95.12%，比以往准确度提升了将近 30%。 \n\npaper ：[CVPR2015] Schroff F, Kalenichenko D, Philbin J. Facenet: A unified embedding for face recognition and clustering[J]. arXiv preprint arXiv:1503.03832, 2015.pdf \n\n先验知识：相同个体的人脸的距离，总是小于不同个体的人脸\n\n> [图示：facenet_struct]\n\n它使用现有的模型结构，然后将卷积神经网络去掉sofmax后，经过L2的归一化，然后得到特征表示，之后基于这个特征表示计算Loss。文章中使用的结构是ZFNet，GoogLeNet，tf代码是改用了Inception_resnet_v1。\n\n文中使用的Loss 是 triplet loss。后来相应的改进有ECCV2016的 center loss，SphereFace，2018年的AMSoftmax和ArchFace（InsightFace），现在效果最好的是ArchFace（InsightFace）。\n之前的工作有人使用的是二元损失函数，二元损失函数的目标是把相同个体的人脸特征映射到空间中的相同区域，而三元损失函数目标是相同个体的人脸特征映射到相同的区域，而且每个人的特征和其他人的特征能够分开，类内距离小于类间距离。 \n\n> [图示：triplet_loss]\n\n我们可以看到loss公式如下：\n\n> [图示：triplet_loss1]\n\n## center Loss \n\nA Discriminative Feature Learning Approach for Deep Face Recognition  ECCV:2016 pdf\n\n通过softmax+center loss 让简单的softmax 能够训练出更有内聚性的特征。\n\n损失采用softmax loss，那么最后各个类别学出来的特征（MNIST）分布大概如下图\n\n> [图示：softmax]\n\n损失采用softmax loss+center loss的损失，那么最后各个类别的特征分布大概如下图，类间距离变大了，类内距离减少了\n\n> [图示：centerloss]\n\n公式如下：\n\n> [图示：centerloss1]\n\n## SphereFace:A-softmax\nSphereFace: Deep Hypersphere Embedding for Face Recognition 2017cvpr\npdf\n\n提出了归一化权值（normalize weights and zero biases）和角度间距（angular margin），基于这2个点，对softmax，L-softmax （Large-Margin Softmax Loss for Convolutional Neural Networks ）进行了改进，提出了一种新的损失函数，叫做angular softmax(A-Softmax),从而实现了在超球面上做到特征分布高内聚、低耦合,最大类内距离小于最小类间距离的识别标准。\n\n一般都是想在欧式空间中学习到有判别力的特征，作者提出了一个问题：欧式空间的间隔总是适合于表示学习到了有判别力的特征吗？ \n\n> [图示：sphereface]\n\n在上图中，对于一个二分类的softmax，决策边界是(W1−W2)x+b1−b2=0，假如定义||W1||=||W2||=1,b1=b2=0，那么决策边界的形式变换为||x||(cos(θ1)−cos(θ2))=0，这样设计的损失函数直接关注的是特征的角度可分性，使得训练出的CNN学习到具有角度判别力的特征。\n\n作者在修改的softmax的基础上进一步加强了限制条件设计了A-Softmax，引入了一个整数m加大角度间隔。决策边界变形为||x||(cos(mθ1)−cos(θ2))=0和||x||(cos(θ1)−cos(mθ2))=0。通过最优化A-Softmax，决策区域更加可分，在增大类间间隔的同时压缩了类内的角度分布。\n\n公式如下：\n\n> [图示：sphereface1]\n\n最优化A-Softmax损失本质上是使得学习到的特征在超球面上更加具有可区分性。\n\n> [图示：sphereface2]\n\n## CosFace :AM-softmax\n\n关于 margin 刚刚只讲了一个，就是 Asoftmax ，其实还有其他的几种形式，第一个是AMSoftmax，还有一个叫 CosFace，这两个是同样的想法，内容也基本是一模一样的。Margin 是指的类似于 SVM 里面的那种分类面之间要有一个间隔，通过最大化这个间隔把两个类分得更开。在 AMSoftmax 里面本来 xi 和类中心的距离是 cosθ，不管是 ASoftmax 还是 AMSoftmax，都是想把这个数字变小一点，它本来相似度已经 0.99 了，我希望让它更小一点，使得它不要那么快达到我想要的值，对它做更强的限制，对它有更高的要求，所以它减 m 就相当于这个东西变得更小了，xi 属于应该在那个类的概率就更难达到 99% 或者 1，这个 θ 角必须要更小，这个概率才能更接近 1，才能达到我们想要的标准。右边也是一样的，这两个公式几乎完全一模一样，同时大家都在要求 W 的 norm 要是固定的，x 的 Norm 要是固定的，我们只关心 cos 距离\n\nCosFace: Large Margin Cosine Loss for Deep Face Recognition\n\npdf\n\nAM-Softmax：Additive Margin Softmax for Face Verification\n\npdf\n\n> [图示：cosface]\n\n## ArcFace deepinsight\n\nArcFace: Additive Angular Margin Loss for Deep Face Recognition\nInsightFace: 2D and 3D Face Analysis Projectpdf \n\nAMSoftmax对sphereface的A-Softmax进行修改，将Cos(mθ)修改为一个新函数，Asoftmax是用m乘以θ，而AMSoftmax是用cosθ减去m，这样做的好处在于ASoftmax的倍角计算是要通过倍角公式，反向传播时不方便求导，而只减m反向传播时导数不用变化\n。\n\nArcFace在AMSoftmax的基础上进行了改进：\n\n> [图示：insightface1]\n\n> [图示：insightface0]\n\n不同loss对比：\n\n> [图示：insightface]\n\n> [图示：insightface2]\n\n## 其他loss\n\ncoco loss\nRethinking Feature Discrimination and Polymerization for Large-scale Recognition\n\n## code\n tensorflow 源码 :`https://github.com/davidsandberg/facenet`\n\n caffe center loss:`https://github.com/kpzhang93/caffe-face`\n mxnet center loss :`https://github.com/pangyupo/mxnet_center_loss`\n \n caffe sphereface:  `https://github.com/wy1iu/sphereface`\n\n deepinsight： `https://github.com/deepinsight/insightface`\n AMSoftmax ：`https://github.com/happynear/AMSoftmax`\n             https://github.com/Joker316701882/Additive-Margin-Softmax\n\n coco loss ：`https://github.com/sciencefans/coco_loss`\n\n参考文献 `https://blog.csdn.net/cdknight_happy/article/details/79268613`\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-10",
+    "title": "MTCNN",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "MTCNN 将人脸检测与关键点检测放到了一起来完成。整个任务分解后让三个子网络来完成。每个网络都很浅，使用多个小网络级联，较好的完成任务。 训练数据来源于wider和celeba ",
+    "content": "# MTCNN\n\nMTCNN 将人脸检测与关键点检测放到了一起来完成。整个任务分解后让三个子网络来完成。每个网络都很浅，使用多个小网络级联，较好的完成任务。\n\n训练数据来源于wider和celeba \n\tWider_face包含人脸边框groundtruth标注数据，大概人脸在20万\n\tCelebA包含边框标注数据和5个点的关键点信息\n\n根据参与任务的不同，将训练数据分为四类：人脸正样本（positives）、非人脸负样本（negatives）、部分脸（partfaces）、关键点（landmark）。\n三个网络，提取过程类似，但是图像尺寸不同．\n\n\t在每个batchSize中的样本比例如下，positives：negatives：partfaces：landmark = 1 ： 3 ： 1 ： 2。\n\n\tnegative，IOU<0.3; positive,IOU>0.65; part face,0.4\n\nOnline Hard sample mining在线困难样本选择：在一个batch中只选择loss占前70%的样本进行BP;\n\npaper ：[ECCV2016] Zhi Tian, Weilin Huang, Tong He, Pan He, Yu Qiao，Detecting Text in Natural Image with Connectionist Text Proposal Network pdf \n\nMTCNN 每个网络功能如图：\n\n> [图示：MTCNN]\n\n分为P-Net，R-Net，O-Net：\n\nProposal Network (P-Net)：该网络结构主要获得了人脸区域的候选窗口和边界框的回归向量。并用该边界框做回归，对候选窗口进行校准，然后通过非极大值抑制（NMS）来合并高度重叠的候选框。\n\nRefine Network (R-Net)：该网络结构还是通过边界框回归和NMS来去掉那些false-positive区域。\n只是由于该网络结构和P-Net网络结构有差异，多了全连接层，所以会取得更好的抑制false-positive的作用。\n\nOutput Network (O-Net)：该层比R-Net层又多了一层卷基层，所以处理的结果会更加精细。作用和R-Net层作用一样。但是该层对人脸区域进行了更多的监督，同时还会输出5个landmark。\n\n返回值：人脸的10个点，以caffe代码为例是[left_eye_x,right_eye_x,nose_x,left_mouth_x,right_mouth_x,left_eye_y,right_eye_y,nose_y,left_mouth_y,right_mouth_y]\n\nMTCNN 详细网络结构如图：\n\n> [图示：MTCNNS]\n\n用不同节点表示如图：\n\n> [图示：mtcnn]\n\n Caffe 源码：`https://github.com/kpzhang93/MTCNN_face_detection_alignment` 官方\n\n tensorflow 源码 : `https://github.com/davidsandberg/facenet/tree/master/src/align` \n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-11",
+    "title": "AlexNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "2012年，Alex Krizhevsky用AlexNet 在当年的ImageNet图像分类竞赛中(ILSVRC 2012)，以top 5错误率15.3%拿下第一。 他的top 5",
+    "content": "# AlexNet\n2012年，Alex Krizhevsky用AlexNet 在当年的ImageNet图像分类竞赛中(ILSVRC 2012)，以top-5错误率15.3%拿下第一。 他的top-5错误率比上一年的冠军下降了十个百分点，而且远远超过当年的第二名。它使用ReLU代替了传统的激活函数，而且网络针对多GPU训练进行了优化设计，用于提升速度。不过随着硬件发展，现在我们训练AlexNet都可以直接用简化后的代码来实现了。\n\n1 ReLU函数作为激活函数\n2 dropout\n3 max-pooling\n4 利用双GPU NVIDIA GTX 580训练\n\npaper ：Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. \"Imagenet classification with deep convolutional neural networks.\" Advances in neural information processing systems. 2012. pdf\n\nslides: `http://www.image-net.org/challenges/LSVRC/2012/supervision.pdf`\n\nAlexNet原始结构如图\n\n> [图示：alexnet org model]\n\nZF Net(2013)\n\nVisualizing and Understanding Convolutional Neural Networks `http://arxiv.org/pdf/1311.2901v3.pdf`\n\nAlexNet在2012年大出风头之后，2013年随即出现了大量的CNN模型。当年的的ILSVRC比赛胜者是来自纽约大学NYU的Matthew Zeiler以及Rob Fergus设计的模型，叫做ZF Net。它达到了11.2%的错误率。本文的主要贡献是一个改进型AlexNet的细节及其可视化特征图层feature map的表现方式。这种卷积网络可视化技术命名为“解卷积网络”deconvnet是因为它把特征投影为可见的像素点，有助于检查不同激活特征以及它们与输入空间的关系。这跟卷积层把像素投影为特征的过程是刚好相反的。\n\n> [图示：zfnet]\n\n可以将模型结构表示如图：\n\n> [图示：alexnet other model]\n\n模型结构如下\n\n一层卷积层： 11×11的卷积核，96个，步长位4 （stride = 4）\n\n一层maxpooling\n\n一层LRN\n\n一层卷积层：5×5的卷积核，256个，pad=2\n\n一层maxpooling\n\n一层LRN\n\n一层卷积层：3×3的卷积核，384个，pad=1\n\n一层卷积层：3×3的卷积核，384个，pad=1\n\n一层卷积层：3×3的卷积核，256个\n\n一层maxpooling\n\n一层全连接层：4096个隐含节点，激活函数为ReLU\n\n一层全连接层：4096个隐含节点，激活函数为ReLU\n\n最后通过softmax分类输出1000类\n\n模型下方的柱状图，表示一张图片的尺寸，因为图片输入目前绝大部分都是正方形，因此简化成柱状图，表示图片的边长，可以看到对应网络结构中，图片大小的变化。\n\n> [图示：alexnet model]\n\n但是tf官方后来给出的代码，进行了修改，将初始化选择用xavier_initializer的方法，将LRN层移除了。\n\n> [图示：alexnet model]\n\n将卷积层和maxpooling层画在一起\n\n  \n\n简化成\n\n> [图示：alexnet model]\n\n数据变化为\n\n> [图示：alexnet data]\n\n源码：\ntensorflow 源码 `https://github.com/tensorflow/models/tree/master/research/slim/nets/alexnet.py`\n\ncaffe `https://github.com/BVLC/caffe/blob/master/models/bvlc_alexnet/train_val.prototxt`\n\n作者源码\n\ncode: `https://code.google.com/p/cuda-convnet/`\n\ngithub: `https://github.com/dnouri/cuda-convnet`\n\ncode: `https://code.google.com/p/cuda-convnet2/`\n\ngithub: `https://github.com/akrizhevsky/cuda-convnet2`\n\n# 返回首页 \n\n \n    <tr>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/AlphaTree-graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/LeNet.md\">LeNet</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/AlphaTree-graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/AlexNet.md\">AlexNet</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/GoogLeNet.md\">GoogLeNet</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/InceptionV3.md\">Inception V3</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/VGG.md\">VGG</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/ResNet.md\">ResNet and ResNeXt</a></td>\n    </tr>    \n    <tr>      \n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/InceptionResnetV2.md\">Inception-Resnet-V2</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/DenseNet.md\">DenseNet</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/DPN.md\">DPN</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/PolyNet.md\">PolyNet</a></td>\n      <td align=\"center\"><a href=\"https://github.com/weslynn/graphic-deep-neural-network/blob/master/DNN%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/object%20classification%20%E7%89%A9%E4%BD%93%E5%88%86%E7%B1%BB/SENet.md\">SENet</a></td>\n      <td align=\"center\"><a href=\"\">NasNet</a></td>      \n    </tr>",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-12",
+    "title": "DPN(Dual Path Networks)",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "之前我们已经了解了ResNet 和 DenseNet，ResNet使用的是相加(element wise adding),DenseNet则使用的是拼接(concatenate)。",
+    "content": "# DPN(Dual Path Networks) \n\n之前我们已经了解了ResNet 和 DenseNet，ResNet使用的是相加(element-wise adding),DenseNet则使用的是拼接(concatenate)。\n\n作者用High Order RNN结构（HORNN）把DenseNet和ResNet联系到了一起，证明了DenseNet能从靠前的层级中提取到新的特征，即能探索新的特征，而ResNet本质上是对之前层级中已提取特征的复用，即会重复利用特征，这两种方法都对如何学会一种优秀的特征表征方式很重要。为了获得两种路径拓扑的长处，作者提出了双路径网络（DPN），该神经网络能共享公共特征，并且通过双路径架构保留灵活性以探索新的特征。\n\n在设计上，采用了和ResNeXt一样的group操作。由于ResNet和ResNext思想本质一致，这里要介绍的更多是DPN设计结构，而不讨论group。因此统一称为ResNet的设计\n\n \n1、模型复杂度：The DPN-92 costs about 15% fewer parameters than ResNeXt-101 (32 4d), while the DPN-98 costs about 26% fewer parameters than ResNeXt-101 (64 4d). \n2、计算复杂度，：DPN-92 consumes about 19% less FLOPs than ResNeXt-101(32 4d), and the DPN-98 consumes about 25% less FLOPs than ResNeXt-101(64 4d).\n\nDPN 网络如图：\n\n> [图示：dpn]\n其实DPN和ResNeXt（ResNet），DenseNet的结构都很相似。\n\n然后来看 DPN是怎么结合这两种网络的\n\n> [图示：dpn_org]\n\n> [图示：dpn_org1]\n\ndpn将数据分成两个部分，一部分做ResNet结构，一部分做DenseNet结构\n\n用不同节点表示如图：\n\n> [图示：dpnpic]\n\n 大图 \n\nCaffe里面实现还有一点不同。\n\n> [图示：dpncaffepic]\n\n 大图 \n\n第一次看到这个网络的时候，感受就是肯定很复杂吧，但实际上 ResNet 系列发展而来的网络，都简单而易于理解，而且它在在图像分类、目标检测还是语义分割领域都有极大的优势。适合大家好好掌握\n\n源码：\n\nMxNet `https://github.com/cypw/DPNs`  (官方)\n\ncaffe:`https://github.com/soeaver/caffe-model`\n\n参考：\n`https://zhuanlan.zhihu.com/p/32702293`\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-13",
+    "title": "DenseNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "作者发现（Deep networks with stochastic depth）通过类似Dropout的方法随机扔掉一些层，能够提高ResNet的泛化能力。于是设计了DenseN",
+    "content": "# DenseNet\n\n作者发现（Deep networks with stochastic depth）通过类似Dropout的方法随机扔掉一些层，能够提高ResNet的泛化能力。于是设计了DenseNet。\n\nDenseNet 将ResNet的residual connection 发挥到了极致，它做了两个重要的设计，一是网络的每一层都直接与其前面层相连，实现特征的重复利用，第二是网络的每一层都很窄，达到降低冗余性的目的。\n\nDenseNet很容易训练,但是它有很多数据需要重复使用，因此显存占用很大。不过现在的更新版本，已经通过用时间换空间的方法，将DenseLayer(Contact-BN-Relu_Conv)中部分数据使用完就释放，而在需要的时候重新计算。这样增加少部分计算量，节约大量内存空间。，\n\npaper： Gao Huang,Zhuang Liu, et al. DenseNet：2016，Densely Connected Convolutional Networks arXiv preprint arXiv:1608.06993 . pdf  CVPR 2017 Best Paper\n\nDenseNet 网络如图：\n\n> [图示：densenet]\n上图是dense block ，下图是DenseNet结构图，其中包含了3个dense block。每个dense block内的feature map的size是一致的。\n> [图示：densenet1]\n\nDenseNet的公式。[x0,x1,…,xl-1]表示将0到l-1层的输出feature map做concatenation。Hl包括BN-ReLU-Conv。\n\n> [图示：densenet]\n\ndensenet网络结构如下表：\n\n> [图示：densenetstruct]\n\n用不同节点表示如图：\n\n> [图示：densenetpic]\n\n 大图 \n\n很多人看了上面论文中的图，自然会觉得网络结构一定实现很复杂，再看节点表示图，会不会觉得有种画错了的感觉。 看上去怎么就像ResNet一样简单。\n\n是的，它的代码很简单，但是每一层和之前层的连接，ResNet是sum 而 DenseNet 是contact。\n\n好好思考一下吧。\n\n源码：\n\n  torch `https://github.com/liuzhuang13/DenseNet`\n\n  pytorch `https://github.com/gpleiss/efficient_densenet_pytorch`\n\n  caffe `https://github.com/liuzhuang13/DenseNetCaffe`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG\n# ResNet",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/7b0bcad5da7748c0.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-14",
+    "title": "GoogLeNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "GoogLeNet,采用InceptionModule和全局平均池化层，构建了一个22层的深度网络,使得很好地控制计算量和参数量的同时（ AlexNet 参数量的1/12），获得了",
+    "content": "# GoogLeNet\n\nGoogLeNet,采用InceptionModule和全局平均池化层，构建了一个22层的深度网络,使得很好地控制计算量和参数量的同时（ AlexNet 参数量的1/12），获得了非常好的分类性能.\n它获得2014年ILSVRC挑战赛冠军，将Top5 的错误率降低到6.67%.\n\nGoogLeNet这个名字也是挺有意思的，将L大写，为了向开山鼻祖的LeNet网络致敬\n\npaper：Szegedy, Christian, et al. \"Going deeper with convolutions.\" Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2015.pdf\n\nGoogLeNet 原始结构如图\n\n> [图示：googlenet]\n\n大图参见link\n\nGoogLeNet的网络结构设计很大程度上借鉴了2014年 ICLR 的paper：Network In Network(NIN)。\n\n它打破了常规的卷积层串联的模式，精心设计了InceptionModule，提高了参数的利用效率。此外，它去除了最后的全连接层，用全局平均池化层来取代。\n\n> [图示：inceptionmodule]\n\n> [图示：googlenet model]\n\n用不同节点表示如图，在这里，我们将重复的结构进行了合并，而将不同的参数列在每个inception module下面。\n\n另外在GoogLeNet inception v1中的结构，除了最终输出分类结果之外，层中间的地方还有两个地方输出了分类结果，而在后来发展的inception v3中发现这个在新结构中对结果提升作用不大。由于模型示意图只为了帮助大家快速理解，为此就在这里省去中间结果的节点。\n\n> [图示：googlenet]\n\n 大图 \n\n源码：\n\ntensorflow 源码 `https://github.com/tensorflow/models/tree/master/research/slim/nets/inception_v1.py`\n\ncaffe `https://github.com/BVLC/caffe/blob/master/models/bvlc_googlenet/train_val.prototxt`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-15",
+    "title": "Inception Resnet V2",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "Inception Resnet V2是基于Inception V3 和 ResNet结构发展而来的一个网络。在这篇paper中，还同期给出了Inception V4. 准确率和模",
+    "content": "# Inception Resnet V2\n\nInception Resnet V2是基于Inception V3 和 ResNet结构发展而来的一个网络。在这篇paper中，还同期给出了Inception V4.\n\n准确率和模型对比如下图：\n> [图示：inceptionresult]\n\npaper：“Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning” arXiv preprint arXiv:1602.07261 (2015). pdf\n\nInception ResNet V2 抽象结构如图（来自googleblog）\n\n> [图示：inceptionresnetv2]\n\nInception ResNet V2 原始结构如图 大图来源:\n\n> [图示：Inception ResNet V2 model]\n\n对比Inception V4 ，V4结构如下：\n\n> [图示：InceptionV4 model]\n\n用不同节点表示如图(按照tensorflow代码重画)\n\n> [图示：inceptionresnetv2tf]\n\n 大图 \n\n源码：\n\ntensorflow 源码 `https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_resnet_v2.py`\n\n缩放Residuals\n当卷积核个数超过1000时，训练将会变得不稳定，这时候缩小Residuals有助于稳定训练，缩小因子介于0.1到0.3。\n\n作者提出了“two phase”训练。首先“warm up”，使用较小的学习率。接着再使用较大的学习率。\n\n训练方法\n使用Momentum + SGM，momentum=0.9。使用RMSProp，decay为0.9，ϵ=1.0。\n\n学习率为0.045，每2个epoch缩小为原理的0.94。\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-16",
+    "title": "Inception V3",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "Inception V3，GoogLeNet的改进版本,采用InceptionModule和全局平均池化层，v3一个最重要的改进是分解（Factorization），将7x7分解成",
+    "content": "# Inception V3\n\nInception V3，GoogLeNet的改进版本,采用InceptionModule和全局平均池化层，v3一个最重要的改进是分解（Factorization），将7x7分解成两个一维的卷积（1x7,7x1），3x3也是一样（1x3,3x1），这样的好处，既可以加速计算（多余的计算能力可以用来加深网络），又可以将1个conv拆成2个conv，使得网络深度进一步增加，增加了网络的非线性，还有值得注意的地方是网络输入从224x224变为了299x299，更加精细设计了35x35/17x17/8x8的模块；ILSVRC 2012 Top-5错误率降到3.58% test error \n\npaper：Szegedy, Christian, et al. “Rethinking the inception architecture for computer vision.” arXiv preprint arXiv:1512.00567 (2015). pdf\n\nInception V3 抽象结构如图（来自googleblog）\n\n> [图示：inceptionv3]\n\nFactorization 如图：\n\n> [图示：factorization]\n\nInception V3 原始结构如图:\n\n> [图示：inceptionv3 model]\n\n用不同节点表示如图，在这里，我们是按照tensorflow中代码进行重画，由于bn的配置关系，因此没有特别将bn层进行绘制，而是着重帮助理解所有的inception module。\n\n> [图示：inceptionv3]\n\n 大图 \n\n源码：\n\ntensorflow 源码 `https://github.com/tensorflow/models/tree/master/research/slim/nets/inception_v3.py`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-17",
+    "title": "LeNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "LeNet 5( http://yann.lecun.com/exdb/lenet/a35.tml ), 一个手写体数字识别模型，是一个广为人知的商用的卷积神经网络， 当年美国大多",
+    "content": "# LeNet\n![lenet](/images/figures/auto-weslynn-alphatree-graphic-deep-neural-network/ext_yann.lecun.com__exdb_lenet_gifs_a35.gif)\n\nLeNet-5(`http://yann.lecun.com/exdb/lenet/a35.tml`), 一个手写体数字识别模型，是一个广为人知的商用的卷积神经网络，\n当年美国大多数银行用它来识别支票上面的手写数字。\n\npaper ：LeCun, Yann; Léon Bottou; Yoshua Bengio; Patrick Haffner (1998). \"Gradient-based learning applied to document recognition\"\n`http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf`\n\nLenet5 原始结构如，包括卷积层，降采样，卷积层，降采样，卷积层（实现全连接），全连接层，高斯连接层（进行分类）\n\n> [图示：lenet org model]\n\n其中降采样层在后期发展中被maxpooling所取代，分类也被softmax所替代，因此在看tensorflow 或者其他框架下网络实现的时候，可以将模型结构表示如图：\n\n一层卷积层： 5×5的卷积核，6个\n\n一层maxpooling\n\n一层卷积层：5×5的卷积核，16个\n\n一层maxpooling\n\n一层卷积层：5×5的卷积核，120个\n\n一层全连接层：84个隐含节点，激活函数为ReLU（paper中激活函数为sigmoid）\n\n最后通过softmax分类输出（paper之前为一个高斯连接层，由Euclidean Radial Basis Function单元组成）\n\n模型下方的柱状图，表示一张图片的尺寸，因为图片输入目前绝大部分都是正方形，因此简化成柱状图，表示图片的边长，可以看到对应网络结构中，图片大小的变化。\n\n> [图示：lenet model]\n\n将卷积层和maxpooling层画在一起\n\n  \n\n简化成\n\n> [图示：lenet model]\n\n数据变化为\n\n> [图示：lenet data]\n\n源码：\n\ntensorflow 源码 `https://github.com/tensorflow/models/tree/master/research/slim/nets/lenet.py`\n\ntensorflow的输入 改成了28×28，因此少了一层卷积层，最后使用softmax输出\n\npytorch 源码 `https://github.com/pytorch/examples/blob/master/mnist/main.py`\n\ncaffe `https://github.com/BVLC/caffe/blob/master/examples/mnist/lenet.prototxt`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-18",
+    "title": "Network In Network",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "2014年 ICLR 的paper，Network In Network(NIN)，改进了传统的CNN 网络，采用了少量参数进一步提高了 CIFAR 10、CIFAR 100 等数",
+    "content": "# Network In Network\n\n> [图示：NIN model]\n\n2014年 ICLR 的paper，Network In Network(NIN)，改进了传统的CNN 网络，采用了少量参数进一步提高了 CIFAR-10、CIFAR-100 等数据集上的准确率：\n1 Mlpconv Layer：Conv+MLP\n2 Global Average Pooling\n\npaper ：`http://arxiv.org/abs/1312.4400`\n\ngitxiv: `http://gitxiv.com/posts/PA98qGuMhsijsJzgX/network-in-network-nin`\n\ncaffe: `https://gist.github.com/mavenlin/d802a5849de39225bcc6`\n\ntensorflow： `https://github.com/tflearn/tflearn/blob/master/examples/images/network_in_network.py`\n\n# Batch-normalized Maxout Network in Network\n\narxiv: `http://arxiv.org/abs/1511.02583`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-19",
+    "title": "PolyNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "PolyNet: A pursuitof structural diversity in very deep networks paper ：Xingcheng Zhang, Zh",
+    "content": "# PolyNet\n\nPolyNet: A pursuitof structural diversity in very deep networks\n paper ：Xingcheng Zhang, Zhizhong Li, ChenChange Loy, Dahua Lin，PolyNet: A Pursuit of Structural Diversity in Very Deep Networks.2017 pdf\n\nPolyNet在ImageNet大规模图像分类测试集上获得了single-crop错误率4.25%和multi-crop错误率3.45%。在ImageNet2016的比赛中商汤科技与香港中大-商汤科技联合实验室在多项比赛中选用了这种网络结构并取得了三个单项第一的优异成绩。\n\nPolyNet的基本概念\n\n当模型的深度达到一定程度的时候，深度的增加对模型的提高起到的作用大大降低。因此PolyNet从结构多样性structural diversity的角度去探索模型的结构，它设计了比Inception modules更加复杂的PolyInception modules\n\n> [图示：polynet]\n\nresidual unit: \n\n一阶： (I+F)∙x=x+F∙x:=x+F(x)(I+F)∙x=x+F∙x:=x+F(x)\n\n二阶：(I+F+F2)∙x:=x+F(x)+F(F(x))\n\n|名称  |公式 |说明 |\n|:---:|:---:|:---:|\n|poly-2模块\t| I+F+F2I+F+F2\t|共享权值|\n|mpoly-2模块\t|I+F+GFI+F+GF\t|共享一阶权值，二阶不共享|\n|2-way模块\t|I+F+GI+F+G\t|一阶多项式网络结构|\n|poly-3模块\t|I+F+F2+F3I+F+F2+F3\t|\n|mpoly-3模块\t|I+F+GF+HGFI+F+GF+HGF|\t\n|3-way模块\t|I+F+G+HI+F+G+H\t|\n\nPolyNet 模块详细如图：\n\n> [图示：polynetmodule]\n\n整个网络建立在Inception-ResNet-v2的整体结构基础上，对其中的Inception模块进行了改进：\n\n> [图示：polynet1]\n\n由于结构过于复杂，就不进行绘制，大家可以参考\n\n模型结构图  （官方）\n`http://ethereon.github.io/netscope/#/gist/b22923712859813a051c796b19ce5944`\n`https://raw.githubusercontent.com/CUHK-MMLAB/polynet/master/polynet.png`\n\n源码：\ncaffe：`https://github.com/CUHK-MMLAB/polynet`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG\n# ResNet",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-20",
+    "title": "ResNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "ResNet,深度残差网络，通过shortcut( skip connection )的设计，打破了深度神经网络深度的限制，使得网络深度可以多达到1001层。 它构建的152层深的",
+    "content": "# ResNet\n\nResNet,深度残差网络，通过shortcut( skip connection )的设计，打破了深度神经网络深度的限制，使得网络深度可以多达到1001层。\n它构建的152层深的神经网络，在ILSVRC2015获得在ImageNet的classification、detection、localization以及COCO的detection和segmentation上均斩获了第一名的成绩，其中classificaiton 取得3.57%的top-5错误率，\n\npaper：He, Kaiming, et al. \"Deep residual learning for image recognition.\" arXiv preprint arXiv:1512.03385 (2015). pdf \n\nResNet 原始结构如图\n\n> [图示：resnet]\n\nResNet最根本的动机就是所谓的“退化”问题，即当模型的层次加深时，错误率却提高了。 但是模型的深度加深，学习能力增强，因此更深的模型不应当产生比它更浅的模型更高的错误率。\n\nResNet公式：\n这里的l表示层，xl表示l层的输出，Hl表示一个非线性变换。所以对于ResNet而言，l层的输出是l-1层的输出加上对l-1层输出的非线性变换。\n> [图示：resnet]\n\nResNet的基本模块如图，通过增加shortcut，增加一个identity mapping（恒等映射），将原始所需要学的函数H(x)转换成F(x)+x，而这两种表达的效果相同，但是优化的难度却并不相同，这一想法也是源于图像处理中的残差向量编码，通过一个reformulation，将一个问题分解成多个尺度直接的残差问题，能够很好的起到优化训练的效果。此外当模型的层数加深时，这个简单的结构能够很好的解决退化问题。\n\n> [图示：resnetmodule]\n\n> [图示：resnetmoduledetail]\n\n在不同的网络结构中，这个模块设计稍微有不同。18 和34层的网络，设计如左图，而50层以上的网络，设计如右图。\n\n> [图示：differentresnetmodule]\n\n将左图可表达如下：\n> [图示：resnetmodule-2]\n\nresnet网络结构对比图如图：\n\n> [图示：resnetstruct]\n\n可以将34层和vgg的结构进行对比，如下：\n\n> [图示：resnet34]\n\n用不同节点表示如图：\n\n> [图示：resnet]\n\n 大图 \n\n从图像尺寸，我们可以看到整个过程中有多次降采样。在conv3_1 conv4_1 conv5_1，都会有stride = 2 的降采样. 降采样前后的尺寸不同，因此不能直接相加，可以采用zero_padding:补0，或者projection：用1×1卷积变换尺寸，来处理。\n\n源码：\n\ntensorflow 源码 `https://github.com/tensorflow/models/tree/master/research/slim/nets/resnet_v1.py`\n\n`https://github.com/tensorflow/models/tree/master/research/slim/nets/resnet_v2.py`\n\ncaffe `https://github.com/KaimingHe/deep-residual-networks`\n\ntorch `https://github.com/facebook/fb.resnet.torch`\n\n改进：\n\n## Identity Mappings in Deep Residual Networks\n\n2016发表了“Identity Mappings in Deep Residual Networks”pdf中表明，通过使用identity mapping来更新残差模块，可以获得更高的准确性。\n\n> [图示：resnetmodule_new]\n\ntorch :  `https://github.com/KaimingHe/resnet-1k-layers`\n\n## WRN（wide residual network）：\n\n验证了宽度给模型性能带来的提升\n\n> [图示：wrn]\n\ngithub地址：`https://github.com/szagoruyko/wide-residual-networks`\n\n## ResNeXt\n\npaper：Aggregated Residual Transformations for Deep Neural Networks\nSaining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He\n pdf \n\n2016的ImageNet第二\n提出 ResNeXt是因为：传统方法要提高模型的准确率，都是加深或加宽网络，但是随着超参数数量的增加（比如channels数，filter size等等），网络设计的难度和计算开销也会增加。\n\nResNeXt 结构采用grouped  convolutions，减少了超参数的数量（子模块的拓扑结构一样），不增加参数复杂度，提高准确率。\n\n> [图示：resnextmodule]\n\nResNeXt和ResNet-50/101的区别仅仅在于其中的block，其他都不变\n\n> [图示：resnextstruct]\n\n> [图示：resnext]\n\n 大图 \n\ntorch: `https://github.com/facebookresearch/ResNeXt`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG\n# ResNet",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-21",
+    "title": "SENet( Squeeze-and-Excitation Networks)",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "paper：Squeeze and Excitation Networks pdf Momenta 提出的SENet 获得了最后一届 ImageNet 2017 竞赛 Image ",
+    "content": "# SENet( Squeeze-and-Excitation Networks) \n\npaper：Squeeze-and-Excitation Networks  pdf\nMomenta 提出的SENet 获得了最后一届 ImageNet 2017 竞赛 Image Classification 任务的冠军， 2.251% Top-5 错误率\n\n它在结构中增加了一个se模块，通过Squeeze 和 Excitation 的操作，学习自动获取每个特征通道的重要程度，然后依照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。\n\n这个模块可以灵活的加在任何结构中，而且模型和计算复杂度上具有良好的特性，在现有网络架构中嵌入 SE 模块而导致额外的参数和计算量的增长微乎其微。\n\nSE 模块详细如图：\n\n> [图示：senetmodule]\n\n对比不同网络结构增加了SE模块之后：\n\n> [图示：senet]\n\nSENet 网络结构如下：\n> [图示：senet1]\n\n用不同节点表示如图：\n\n> [图示：senetpic]\n\n 大图 \n\n源码：\n\ncaffe:  caffe:`https://github.com/hujie-frank/SENet`\n\n参考：\n`http://www.sohu.com/a/161633191_465975`\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG\n# ResNet",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-22",
+    "title": "VGG",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "VGG Net是2014年ILSVRC classification第二名(第一名是GoogLeNet)，ILSVRC localization 第一名。VGG Net的所有 co",
+    "content": "# VGG\n\nVGG-Net是2014年ILSVRC classification第二名(第一名是GoogLeNet)，ILSVRC localization 第一名。VGG-Net的所有 convolutional layer 使用同样大小的 convolutional filter，大小为 3 x 3\n\npaper：Simonyan, Karen, and Andrew Zisserman. \"Very deep convolutional networks for large-scale image recognition.\" arXiv preprint arXiv:1409.1556 (2014). pdf\n\nVGG-Net 原始结构如图\n\n> [图示：vggnet-org]\n\n结构如图\n\n> [图示：link]\n\n将卷积层和maxpooling层画在一起\n\n  \n\nVGG-Net 有五个stage，VGG-11 VGG-13 VGG-16 VGG-19 主要就是每个stage中的卷积层数目不同。现在将网络结构用不同节点表示如下：\n\n> [图示：vggnet]\n\n单独看VGG-19：\n\n> [图示：vggnet19-org]\n\n重新表述如下：\n\n> [图示：vggnet19]\n\n源码：\n\n   tensorflow 源码: `https://github.com/tensorflow/models/tree/master/research/slim/nets/vgg.py`\n\n   caffe ：\n\n      vgg16 https://gist.githubusercontent.com/ksimonyan/211839e770f7b538e2d8/raw/0067c9b32f60362c74f4c445a080beed06b07eb3/VGG_ILSVRC_16_layers_deploy.prototxt\n\n      vgg19 https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/f02f8769e64494bcd3d7e97d5d747ac275825721/VGG_ILSVRC_19_layers_deploy.prototxt\n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-23",
+    "title": "The Single Shot Detector（SSD）",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "SSD是一种直接预测bounding box的坐标和类别的object detection算法，没有生成proposal的过程。它使用object classification的模",
+    "content": "# The Single Shot Detector（SSD）\nSSD是一种直接预测bounding box的坐标和类别的object detection算法，没有生成proposal的过程。它使用object classification的模型作为base network，如VGG16网络，\n\n在特征图的每个位置预测K个box。对于每个box，预测C个类别得分，以及相对于default bounding box的4个偏移值，在m×n的特征图上将产生(C+4)×k×m×n 个预测值。在caffe代码中，C=21，因此输出的类别维度是8732×21 = 183372 ，boundingbox偏移值维度是8732×4 = 34928\n\npaper： Wei Liu, et al. “SSD: Single Shot MultiBox Detector.” . pdf  \n\nSSD 结构如图：\n\n> [图示：ssd]\n\n用不同节点表示如图，\n\n> [图示：ssd]\n\n 大图 \n\n预测的类别 和偏移值 计算如图\n\n> [图示：ssdcal]\n\n整个SSD完整对应如图\n\n> [图示：ssd_total]\n\n 大图 \n\n源码：\n\ntensorflow 源码 `https://github.com/balancap/SSD-Tensorflow/blob/master/nets/ssd_vgg_300.py`\n\ncaffe ：`https://github.com/weiliu89/caffe/tree/ssd`\n\n可参考的ppt : `https://docs.google.com/presentation/d/1rtfeV_VmdGdZD5ObVVpPDPIODSDxKnFSU0bsN_rgZXc/edit#slide=id.g179f601b72_0_51`\n\nintro: ECCV 2016 Oral\narxiv: `http://arxiv.org/abs/1512.02325`\npaper: `http://www.cs.unc.edu/~wliu/papers/ssd.pdf`\nslides: `http://www.cs.unc.edu/%7Ewliu/papers/ssd_eccv2016_slide.pdf`\ngithub(Official): `https://github.com/weiliu89/caffe/tree/ssd`\nvideo: `http://weibo.com/p/2304447a2326da963254c963c97fb05dd3a973`\ngithub: `https://github.com/zhreshold/mxnet-ssd`\ngithub: `https://github.com/zhreshold/mxnet-ssd.cpp`\ngithub: `https://github.com/rykov8/ssd_keras`\ngithub: `https://github.com/balancap/SSD-Tensorflow`\ngithub: `https://github.com/amdegroot/ssd.pytorch`\ngithub(Caffe): `https://github.com/chuanqi305/MobileNet-SSD`\nWhat’s the diffience in performance between this new code you pushed and the previous code? #327\n\n`https://github.com/weiliu89/caffe/issues/327`\n\nDSSD : Deconvolutional Single Shot Detector\n\nintro: UNC Chapel Hill & Amazon Inc\narxiv: `https://arxiv.org/abs/1701.06659`\ngithub: `https://github.com/chengyangfu/caffe/tree/dssd`\ngithub: `https://github.com/MTCloudVision/mxnet-dssd`\ndemo: `http://120.52.72.53/www.cs.unc.edu/c3pr90ntc0td/~cyfu/dssd_lalaland.mp4`\nEnhancement of SSD by concatenating feature maps for object detection\n\nintro: rainbow SSD (R-SSD)\narxiv: `https://arxiv.org/abs/1705.09587`\nContext-aware Single-Shot Detector\n\nkeywords: CSSD, DiCSSD, DeCSSD, effective receptive fields (ERFs), theoretical receptive fields (TRFs)\narxiv: `https://arxiv.org/abs/1707.08682`\nFeature-Fused SSD: Fast Detection for Small Objects\n\n`https://arxiv.org/abs/1709.05054`\n\nFSSD: Feature Fusion Single Shot Multibox Detector\n\n`https://arxiv.org/abs/1712.00960`\n\nWeaving Multi-scale Context for Single Shot Detector\n\nintro: WeaveNet\nkeywords: fuse multi-scale information\narxiv: `https://arxiv.org/abs/1712.03149`\nExtend the shallow part of Single Shot MultiBox Detector via Convolutional Neural Network\n\nkeywords: ESSD\narxiv: `https://arxiv.org/abs/1801.05918`\nTiny SSD: A Tiny Single-shot Detection Deep Convolutional Neural Network for Real-time Embedded Object Detection\n\n`https://arxiv.org/abs/1802.06488`\n\nMDSSD: Multi-scale Deconvolutional Single Shot Detector for small objects\n\nintro: Zhengzhou University\narxiv: `https://arxiv.org/abs/1805.07009`\nAccurate Single Stage Detector Using Recurrent Rolling Convolution\n\nintro: CVPR 2017. SenseTime\nkeywords: Recurrent Rolling Convolution (RRC)\narxiv: `https://arxiv.org/abs/1704.05776`\ngithub: `https://github.com/xiaohaoChen/rrc_detection`\nResidual Features and Unified Prediction Network for Single Stage Detection\n\n`https://arxiv.org/abs/1707.05031`\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-24",
+    "title": "Salient Object Detection 物体显著性检测",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "Salient Object Detection: A Surve ( http://mmcheng.net/zh/paperreading/ ) 这里借用一张图，展示Salien",
+    "content": "# Salient Object Detection 物体显著性检测\n\nSalient Object Detection: A Surve (`http://mmcheng.net/zh/paperreading/`)\n\n这里借用一张图，展示Salient Object Detection 算法的发展\n\n> [图示：total]\n\n1) 1998 Itti等人提出的最早、经典的的显著模型。掀起了跨认知心理学、神经科学和计算机视觉等多个学科的第一波热潮。\nA model of saliency-based visual attention for rapid scene analysis (Matlab, 9000+ citations)\npdf\n\n2) 2007 第二波热潮由刘等人和Achanta等人掀起，他们将显著性检测定义为二元分割问题，自此出现了大量的显著性检测模型。\n Saliency detection: A spectral residual approach, (Matlab, 2600+ citations)\n `http://www.houxiaodi.com/assets/papers/cvpr07.pdf`   这篇论文影响力很大，一个重要的原因是简单，出奇的简单！这篇论文一共5行matlab代码  \n\n Frequency-tuned salient region detection, (C++, 2400+ citations)\n  `http://ivrlwww.epfl.ch/supplementary_material/RK_CVPR09/` \n\n3) 第三波热潮，卷积神经网络（CNN）\n  基于CNN的模型通常包含数十万个可调参数和具有可变感受野大小的神经元。神经元具有较大的接受范围提供全局信息，可以帮助更好地识别图像中最显著的区域。CNN成为显著性物体检测的主流方向。\n\n良好的显著性检测模型应至少满足以下三个标准：\n- 良好的检测：丢失实际显著区域的可能性以及将背景错误地标记为显著区域应该是低的\n- 高分辨率：显著图应该具有高分辨率或全分辨率以准确定位突出物体并保留原始图像信息\n- 计算效率：作为其他复杂过程的前端，这些模型应该快速检测显著区域。\n\n`https://blog.csdn.net/qq_32493539/article/details/79530118`\n\n- Method\n  -[SPPNet]\n\n- [Two-Stage Object Detection】\n  - [R-CNN]\n  - [Fast R-CNN]\n  - [Faster R-CNN]\n\n- [Single-Shot Object Detection]\n  - [YOLO]\n  - [YOLOv2]\n  - [YOLOv3]\n  - [SSD]\n  - [RetinaNet]\n\n- [Great improvement]\n - [R-FCN]\n - Feature Pyramid Network (FPN)\n\n## Method\n\n这篇论文虽然只是个short paper，但是在这个领域有着不可磨灭的绝对重要性。其最大的贡献在于将Visual attention的问题用计算模型表达出来，并展示出来这个问题可以在一定程度上得到有意义的结果。其中提到的Center-Surround difference在后续的很多工作中都被以不同的形式表现出来。除了生成saliency map （后续的很多方法只生成saliency map），这篇文章也探讨了注视点的转移机制。总之，说这篇论文是saliency Detection computation的开山之作也不为过，此文对后续工作有着深刻的影响。体现了最牛的一种创新境界“提出新问题”。\n\n2.1.1 具有内在线索的基于块的模型\n\n有两个缺点：1）高对比度边缘通常突出而不是突出物体；2）凸显物体的边界不能很好地保存。为了克服这些问题，一些方法提出基于区域来计算显著性。两个主要优点：1）区域的数量远少于区块的数量，这意味着开发高效和快速算法的潜力；2）更多的信息功能可以从区域中提取，领先以更好的表现。\n\n2.1.2 具有内在线索的基于区域的模型（图4）\n\n基于区域的显著性模型的主要优势：1）采用互补先验，以提高整体性能，这是主要优势；2）与像素和色块相比，区域提供更复杂的线索（如颜色直方图），以更好地捕捉场景的显著对象；3）由于图像中的区域数量远小于像素数量，因此在生成全分辨率显著图时，区域级别的计算显著性可以显著降低计算成本。\n\n2.1.3 具有外部线索的模型（图5）\n\n2.1.4 其他经典模型（图6）\n\n局部化模型、分割模型、监督模式与无监督模式、聚合和优化模型\n\n2.2 基于深度学习的模型\n\n2.2.1 基于CNN（经典卷积网络）的模型\n\nCNN大大降低了计算成本，多级特征允许CNN更好地定位检测到显著区域的边界，即使存在阴影或反射。但CNN特征的空间信息因为使用了MLP（多层感知器）而无法保留。\n\n2.2.2 基于FCN（完全卷积网络）的模型\n\n该模型具有保存空间信息的能力，可实现点对点学习和端到端训练策略，与CNN相比大大降低了时间成本。但在具有透明物体的场景、前景和背景之间的相同对比度以及复杂的背景等情况无法检测显著物体。\n————————————————\n版权声明：本文为CSDN博主「qq_32493539」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。\n原文链接：`https://blog.csdn.net/qq_32493539/article/details/79530118`\n\n## 参考\n\n`https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html#feature-pyramid-network-fpn`",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-25",
+    "title": "DeepLab",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "DeepLabv1 DeepLab 是结合了深度卷积神经网络（DCNNs）和概率图模型（DenseCRFs）的方法。 在实验中发现 DCNNs 做语义分割时精准度不够的问题，根本原",
+    "content": "# DeepLab\n\nDeepLabv1\n\nDeepLab 是结合了深度卷积神经网络（DCNNs）和概率图模型（DenseCRFs）的方法。\n\n在实验中发现 DCNNs 做语义分割时精准度不够的问题，根本原因是 DCNNs 的高级特征的平移不变性，即高层次特征映射，根源于重复的池化和下采样。\n\n针对信号下采样或池化降低分辨率，DeepLab 是采用的 atrous（带孔）算法扩展感受野，获取更多的上下文信息。\n\n分类器获取以对象中心的决策是需要空间变换的不变性，这天然地限制了 DCNN 的定位精度，DeepLab 采用完全连接的条件随机场（CRF）提高模型捕获细节的能力。\n\n除空洞卷积和 CRFs 之外，论文使用的 tricks 还有 Multi-Scale features。其实就是 U-Net 和 FPN 的思想，在输入图像和前四个最大池化层的输出上附加了两层的 MLP，第一层是 128 个 3×3 卷积，第二层是 128 个 1×1 卷积。最终输出的特征与主干网的最后一层特征图融合，特征图增加 5×128=640 个通道。\n\n实验表示多尺度有助于提升预测结果，但是效果不如 CRF 明显。\n\n论文模型基于 VGG16，在 Titan GPU 上运行速度达到了 8FPS，全连接 CRF 平均推断需要 0.5s ，在 PASCAL VOC-2012 达到 71.6% IOU accuracy。\n\nDeepLabv2\n\nDeepLabv2 是相对于 DeepLabv1 基础上的优化。DeepLabv1 在三个方向努力解决，但是问题依然存在：特征分辨率的降低、物体存在多尺度，DCNN 的平移不变性。\n\n因 DCNN 连续池化和下采样造成分辨率降低，DeepLabv2 在最后几个最大池化层中去除下采样，取而代之的是使用空洞卷积，以更高的采样密度计算特征映射。\n\n物体存在多尺度的问题，DeepLabv1 中是用多个 MLP 结合多尺度特征解决，虽然可以提供系统的性能，但是增加特征计算量和存储空间。\n\n论文受到 Spatial Pyramid Pooling (SPP) 的启发，提出了一个类似的结构，在给定的输入上以不同采样率的空洞卷积并行采样，相当于以多个比例捕捉图像的上下文，称为 ASPP (atrous spatial pyramid pooling) 模块。\n\nDCNN 的分类不变形影响空间精度。DeepLabv2 是采样全连接的 CRF 在增强模型捕捉细节的能力。\n\n论文模型基于 ResNet，在 NVidia Titan X GPU 上运行速度达到了 8FPS，全连接 CRF 平均推断需要 0.5s ，在耗时方面和 DeepLabv1 无差异，但在 PASCAL VOC-2012 达到 79.7 mIOU。\n\nDeepLabv3\nEncoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation\n\n好的论文不止说明怎么做，还告诉为什么。DeepLab 延续到 DeepLabv3 系列，依然是在空洞卷积做文章，但是探讨不同结构的方向。\n\nDeepLabv3 论文比较了多种捕获多尺度信息的方式：\n\n1. Image Pyramid：将输入图片放缩成不同比例，分别应用在 DCNN 上，将预测结果融合得到最终输出。\n\n2. Encoder-Decoder：利用 Encoder 阶段的多尺度特征，运用到 Decoder 阶段上恢复空间分辨率，代表工作有 FCN、SegNet、PSPNet 等工。\n\n3. Deeper w. Atrous Convolution：在原始模型的顶端增加额外的模块，例如 DenseCRF，捕捉像素间长距离信息。\n\n4. Spatial Pyramid Pooling：空间金字塔池化具有不同采样率和多种视野的卷积核，能够以多尺度捕捉对象。\n\nDeepLabv1-v2 都是使用带孔卷积提取密集特征来进行语义分割。但是为了解决分割对象的多尺度问题，DeepLabv3 设计采用多比例的带孔卷积级联或并行来捕获多尺度背景。\n\n此外，DeepLabv3 将修改之前提出的带孔空间金字塔池化模块，该模块用于探索多尺度卷积特征，将全局背景基于图像层次进行编码获得特征，取得 state-of-art 性能，在 PASCAL VOC-2012 达到 86.9 mIOU。\n\nDeepLabv3+\n\nDeepLabv3+ 架构\n\nDeepLabv3+ 继续在模型的架构上作文章，为了融合多尺度信息，引入语义分割常用的 encoder-decoder。在 encoder-decoder 架构中，引入可任意控制编码器提取特征的分辨率，通过空洞卷积平衡精度和耗时。\n\n在语义分割任务中采用 Xception 模型，在 ASPP 和解码模块使用 depthwise separable convolution，提高编码器-解码器网络的运行速率和健壮性，在 PASCAL VOC 2012 数据集上取得新的 state-of-art 表现，89.0 mIOU。\n\nXception 改进\n\nEntry flow 保持不变，但是添加了更多的 Middle flow。所有的 max pooling 被 depthwise separable convolutions 替代。在每个 3x3 depthwise convolution 之外，增加了 batch normalization 和 ReLU。\n\n实验\n\n论文提出的模型在主干网络 ResNet-101 和 Xception均进行验证。两种方式均在 ImageNet 预训练。其中 Xception 预训练过程中，使用 50 个 GPU，每个 GPU batch size=32，分辨率 299x299。Xception 相比 ResNet-101，在 Top-1 和 Top-5 分别提高 0.75% 和 0.29%。\n\n在实验过程中，分别考虑 train OS: The output stride used during training、eval OS: The output stride used during evaluation、Decoder: Employing the proposed decoder structure、MS: Multi-scale inputs during evaluation、 Flip: Adding left-right flipped inputs 等各种情况。\n\n另外使用 depthwise separable convolution，使用 Pretraining on COCO 和 Pretraining on JFT，在这些 tricks 辅助下，PASCAL VOC 2012 test set 达到惊人的 89.0%，取得新的 state-of-the-art 水平。\n\n结论\n\n从 DeepLabv1-v4 系列看，空洞卷积必不可少。从 DeepLabv3 开始去掉 CRFs。\n\nGithub 目前还未有公布的 DeepLabv3，但是有网友的复现版本。DeepLabv3+ 更是没有源代码，复现起来估计有些难度。\n\nDeepLabv3 复现：\n\n`https://github.com/NanqingD/DeepLabV3-Tensorflow`\n\nDeepLabv1-v4 没有用很多 tricks，都是从网络架构中调整，主要是如何结合多尺度信息和空洞卷积。从FCN，ASPP，Encoder-Decoder with Atrous Conv，每一个想法看上去在别的都实现过，但是论文综合起来就是有效。\n\nDeeplabv1，v2 耗时为 8fps，从 Deeplabv3 开始，论文已经不说运行时间的问题，是否模型越来越慢了。\n\nMobileNetV2 已经实现 Deeplabv3，并努力在 MobileNetV2 中复现 DeepLabv3+ 版本。\n\n参考文献\n\n[1] Semantic image segmentation with deep convolutional nets and fully connected CRFs\n\n[2] DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs\n\n[3] Rethinking Atrous Convolution for Semantic Image Segmentation\n\n[4] Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation\n\nDeepLab (v1 ， v2)\nv1 : Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs\nSubmitted on 22 Dec 2014\n详细解释：\nDeepLab是Google搞出来的一个model，在VOC上的排名要比CRF as RNN的效果好。Deeplab仍然采用了FCN来得到score map，并且也是在VGG网络上进行fine-tuning。但是在得到score map的处理方式上，要比原FCN处理的优雅很多。\n还记得FCN中是怎么得到一个更加dense的score map的吗？ 是一张500x500的输入图像，直接在第一个卷积层上conv1_1加了一个100的padding。最终在fc7层勉强得到一个16x16的score map。虽然处理上稍显粗糙，但是毕竟人家是第一次将图像分割在CNN上搞成end-to-end，并且在当时performance是state-of-the-art。\n而怎样才能保证输出的尺寸不会太小而又不必加100 padding这样“粗糙的”做法呢？可能有人会说减少池化层不就行了，这样理论上是可以的，但是这样直接就改变了原先可用的结构了，而且最重要的一点是就不能用以前的结构参数进行fine-tune了。\n所以，Deeplab这里使用了一个非常优雅的做法：将VGG网络的pool4和pool5层的stride由原来的2改为了1，再加上 1 padding。就是这样一个改动，使得vgg网络总的stride由原来的32变成8，进而使得在输入图像为514x514时，fc7能得到67x67的score map, 要比FCN确实要dense很多很多。\n但是这种改变网络结果的做法也带来了一个问题： stride改变以后，如果想继续利用vgg model进行fine tuning，会导致后面感受野发生变化。这个问题在下图(a) (b)体现出来了，注意花括号就是感受野的大小：\n\n感受野就是输出featuremap某个节点的响应对应的输入图像的区域。比如我们第一层是一个33的卷积核，那么我们经过这个卷积核得到的featuremap中的每个节点都源自这个33的卷积核与原图像中33的区域做卷积，那么我们就称这个featuremap的节点感受野大小为33。\n具体计算公式为：\nrn=(rn+1−1)∗sn+kn\n\n其中：rn表示第n层layer的输入的某个区域，sn表示第n层layer的步长，kn表示kernel/pooling size\nDeeplab提出了一种新的卷积，带孔的卷积：Atrous Convolution。来解决两个看似有点矛盾的问题：\n既想利用已经训练好的模型进行fine-tuning，又想改变网络结构得到更加dense的score map。\n如下图(a) (b)所示，在以往的卷积或者pooling中，一个filter中相邻的权重作用在feature map上的位置上是连续的。为了保证感受野不发生变化，某一层的stride由2变为1以后，后面的层需要采用hole算法，具体来讲就是将连续的连接关系是根据hole size大小变成skip连接的。上图(C)中使用hole为2的Atrous Convolution则感受野依然为7。(C)中的padding为2，如果再增加padding大小，是不是又变”粗糙”了？当然不会，因为是Atrous Convolution，连接是skip的，所以2个padding不会同时和一个filter相连。\n\n所以，Atrous Convolution能够保证这样的池化后的感受野不变，从而可以fine tune，同时也能保证输出的结果更加精细。即：\n\nDeepLab后面接了一个全连接条件随机场(Fully-Connected Conditional Random Fields)对分割边界进行refine。 CRF简单来说，能做到的就是在决定一个位置的像素值时（在这个paper里是label），会考虑周围邻居的像素值（label），这样能抹除一些噪音。但是通过CNN得到的feature map在一定程度上已经足够平滑了，所以short range的CRF没什么意义。于是作者采用了fully connected CRF，这样考虑的就是全局的信息了。\n\n另外，CRF是后处理，是不参与训练的，在测试的时候对feature map做完CRF后，再双线性插值resize到原图尺寸，因为feature map是8s的，所以直接放大到原图是可以接受的。\nv2 : DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs\nSubmitted on 2 Jun 2016\nv1之后，论文作者又推出了DeepLab的v2版本。这里就简单讲讲改进的地方。\nMulti-scale对performance提升很大，而我们知道，receptive field，视野域（或者感受野），是指feature map上一个点能看到的原图的区域，那么如果有多个receptive field，是不是相当于一种Multi-scale？出于这个思路，v2版本在v1的基础上增加了一个多视野域。具体看图可以很直观的理解。\n\nrate也就是hole size。这个结构作者称之为ASPP（atrous spatial pyramid pooling），基于洞的空间金字塔。\n此外，DeepLab v2有两个基础网络结构，一个是基于vgg16，另外一个是基于resnet101的\n在VOC2012上的得分：\n\npaper： Wei Liu, et al. “SSD: Single Shot MultiBox Detector.” . pdf  \n\nSSD 结构如图：\n\n> [图示：ssd]\n\n用不同节点表示如图，\n\n> [图示：ssd]\n\n 大图 \n\n预测的类别 和偏移值 计算如图\n\n> [图示：ssdcal]\n\n整个SSD完整对应如图\n\n> [图示：ssd_total]\n\n 大图 \n\n源码：\n\ntensorflow 源码 `https://github.com/balancap/SSD-Tensorflow/blob/master/nets/ssd_vgg_300.py`\n\ncaffe ：`https://github.com/weiliu89/caffe/tree/ssd`\n\n可参考的ppt : `https://docs.google.com/presentation/d/1rtfeV_VmdGdZD5ObVVpPDPIODSDxKnFSU0bsN_rgZXc/edit#slide=id.g179f601b72_0_51`\n\n# 返回首页",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-auto-weslynn-alphatree-graphic-deep-neural-network-26",
+    "title": "MobileNet",
+    "date": "2026-11-24",
+    "category": "图解深度神经网络",
+    "tags": [
+      "deep-learning",
+      "image-classification",
+      "machine-learning"
+    ],
+    "excerpt": "MobileNet 顾名思义，可以用在移动设备上的网络，性能和效率取得了很好平衡。它发展了两个版本，第一个版本基本结构和VGG类似，主要通过 depthwise separable",
+    "content": "# MobileNet\n\nMobileNet 顾名思义，可以用在移动设备上的网络，性能和效率取得了很好平衡。它发展了两个版本，第一个版本基本结构和VGG类似，主要通过 depthwise separable convolution 来减少参数和提升计算速度。第二个版本则是基于ResNet的结构进行改进。\n\nMobileNet v2使用了 ReLU6（即对 ReLU 输出的结果进行 Clip，使得输出的最大值为 6）适配移动设备更好量化，然后提出了一种新的 Inverted Residuals and Linear Bottleneck，即 ResNet 基本结构中间使用了 depthwise 卷积，一个通道一个卷积核，减少计算量，中间的通道数比两头还多，并且全去掉了最后输出的 ReLU。\n\npaper：\n\nMobileNet v1：2017，MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applicationspdf \n\nMobileNet v2：2018，Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentationpdf\n\nMobileNet 微结构对比：\n\n> [图示：mobilenetv2_compare]\n\nMobileNet 的根本思想是使用deep-wise方式的卷积在不减少精度的情况下来减少计算量。\n\n> [图示：mobilenet]\n\n其中M为输入的通道数，Dk为卷积核的宽和高，其中DF为输入的宽和高，在某一层如果使用N个卷积核，这一个卷积层的计算量为：\n\n> [图示：mobilenetcal]\n\n如果使用deep-wise方式，将会把卷积过程拆成两个步骤，第一步使用一组M个3×3的depth卷积，每次只处理一个输入通道的，之后第二步使用1×1×M×N的卷积核进行计算。\n\n> [图示：mobilenetcal2]\n\n从数学上看 矩阵乘法拆解后计算量大大减小。\n\n> [图示：mobilenetcal3]\n\n而MobileNet v2结合ResNet的基础结构进行改进，设计了Inverted Residuals and Linear Bottleneck，即 ResNet 基本结构中间使用了 depthwise 卷积，一个通道一个卷积核，减少计算量，中间的通道数比两头还多，并且全去掉了最后输出的 ReLU。\n\n在Michael Yuan zhihu 绘制的图中加上节点表示如下：\n\n> [图示：mobilenet_compare]\n\n两两对比微结构：\nMobileNet V1 是基于VGG的结构， 而Mobilenet V2 是基于ResNet的结构\nQ：为啥Mobilenet V2 一个有add 一个没有add \n\nA : 看官方代码 Mobilenet V2选取的是红色框住那一部分，第一步是stride =2 ，没有add操作， 第二次循环是stride =1 有add操作。  如果前后通道数不一致，无论stride 为多少是没有add操作的。（当然 ，如果你就是想要add，那么可以 自己加个1×1卷积，把通道数变成一致后进行add）\n    if callable(residual):  # custom residual\n      net = residual(input_tensor=input_tensor, output_tensor=net)\n    elif (residual and\n          # stride check enforces that we don't add residuals when spatial\n          # dimensions are None\n          stride == 1 and\n          # Depth matches\n          net.get_shape().as_list()[3] ==\n          input_tensor.get_shape().as_list()[3]):\n      net += input_tensor\n\n> [图示：mobilenet_struct]\n\n> [图示：MobileNetcomparepic]\n\nResNet 是没有用depthwise separable convolution 的结构， 而Mobilenet V2 使用depthwise separable convolution ，还加入Inverted Residuals and Linear Bottleneck的设计\n\n> [图示：MobileNetcomparepic1]\n\nMobileNet 结构如图：\n\n> [图示：mobilenet_struct]\n\nMobileNet用不同节点表示如图：\n\n> [图示：MobileNetpic]\n\n 大图 \n\nMobileNet V2 结构如图：\n\n> [图示：mobilenetv2_struct]\n\nMobileNet V2用不同节点表示如图：\n\n> [图示：MobileNetv2pic]\n\n 大图 \n\n源码：\n\nTensorFlow：\n\n`https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.py`\n\n`https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet/mobilenet_v2.py`\n\ncaffe：`https://github.com/pby5/MobileNet_Caffe`\n\n`https://github.com/Zehaos/MobileNet` \n\n# 返回首页 \n# LeNet   \n# AlexNet                  \n# GoogLeNet\n# Inception V3\n# VGG\n# ResNet",
+    "source": "weslynn/AlphaTree-graphic-deep-neural-network",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
   }
 ]

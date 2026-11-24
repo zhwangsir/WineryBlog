@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T23:15:13.523Z",
+ "updatedAt": "2026-11-24T23:35:11.802Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1642,6 +1642,46 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "auto-weslynn-alphatree-graphic-deep-neural-network",
+   "repo": "weslynn/AlphaTree-graphic-deep-neural-network",
+   "branch": "master",
+   "category": "图解深度神经网络",
+   "domain": "ai",
+   "tags": [
+    "deep-learning",
+    "image-classification",
+    "machine-learning"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T23:35:10.905Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "DNN深度神经网络",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-mlnlp-world-top-ai-conferences-paper-with-code",
+   "repo": "MLNLP-World/Top-AI-Conferences-Paper-with-Code",
+   "branch": "master",
+   "category": "MLNLP：本仓库整理人工智能会",
+   "domain": "ai",
+   "tags": [
+    "computer-vision",
+    "deep-learning",
+    "machine-learning"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-24T23:35:11.802Z",
+   "note": "顶会论文链接索引清单，非教程内容（单页 100-487KB 的标题列表，链接降级后无阅读价值）"
   }
  ]
 }
