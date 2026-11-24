@@ -1276,7 +1276,7 @@
     "Spark",
     "Flink"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T20:35:39.105Z",
    "note": "curated",
    "picks": [
@@ -1301,9 +1301,19 @@
     "Dart",
     "跨端"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-24T20:35:40.231Z",
-   "note": "curated"
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "src",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   },
   {
    "id": "auto-fancyboi999-ai-engineering-from-scratch-zh",
