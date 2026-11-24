@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 189
+      "count": 216
     },
     {
       "id": "security",
@@ -21382,6 +21382,465 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-supercli-site-xiaobai-kanban-28"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-2",
+      "kind": "collection",
+      "title": "ITBuddy 设计文档（Design Doc）",
+      "summary": "中文 English 📘 这份文档本身就是教学材料。 它按真实公司里设计评审（Design Review）的格式来写：",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 36,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-2"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-3",
+      "kind": "collection",
+      "title": "Agent 项目报告模板",
+      "summary": "中文 English 📝 用途 ：你在做自己的 Agent 项目（课程项目、毕业设计、团队内部立项）时，用这份模板写最",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-3"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-4",
+      "kind": "collection",
+      "title": "企业级 Agent 速查表",
+      "summary": "中文 English 📖 一页纸速查。适合打印、贴在工位，或者在设计评审前 5 分钟快速过一遍。 详细展开见：失败模式",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-4"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-5",
+      "kind": "collection",
+      "title": "企业级 Agent 设计评审清单",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分，配合课程使用。 相关文档：失败模式图鉴 · 速查表 · 面试",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 37,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-5"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-6",
+      "kind": "collection",
+      "title": "Agent 失败模式图鉴",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分，配合课程使用。 相关文档：设计评审清单 · 速查表 · 术语",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 98,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-6"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-7",
+      "kind": "collection",
+      "title": "agentkit 概念 ↔ 主流框架对照",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分。目标： 学完本课程后，你能在一两天内上手任何一个主流 Age",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-7"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-8",
+      "kind": "collection",
+      "title": "中英术语表",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分。按主题分组（而不是按字母），因为同一组的术语放在一起读更容易",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 46,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-8"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-9",
+      "kind": "collection",
+      "title": "Agent 系统设计面试题",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分。既可以用来准备面试，也可以作为团队内部设计评审的\"压力测试题",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 80,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-9"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-10",
+      "kind": "collection",
+      "title": "课程编写规范（贡献者 & 维护者必读）",
+      "summary": "中文 English 本仓库的目标： 让基础一般的开发者，在 4 小时内建立企业级 Agent 系统设计的完整心智模型，",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-10"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-11",
+      "kind": "collection",
+      "title": "生产就绪指南：agentkit 能直接上生产吗？",
+      "summary": "中文 English 本文是\"领域参考手册\"的一部分，诚实地回答四个问题：agentkit 能不能直接上生产？每一块已经",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 50,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-11"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-12",
+      "kind": "collection",
+      "title": "精选延伸阅读",
+      "summary": "中文 English 📖 本文是\"领域参考手册\"的一部分。只收录 真实存在、链接可访问、标题已核对 的资料（2026 ",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 32,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-12"
+    },
+    {
+      "id": "g-auto-heaven999b-hello-agent-system-14",
+      "kind": "collection",
+      "title": "第 00 课自测题",
+      "summary": "中文 English 17 道题，建议 9 分钟完成。先自己作答，再展开答案核对。答错的题，回到 README 对应小节",
+      "domain": "ai",
+      "category": "Hello Agent System",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent",
+        "ai-agents",
+        "bilingual"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-heaven999b-hello-agent-system-14"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-1",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 01 - LLM From Scratch（从零手写大模型）",
+      "summary": "从零开始，用 PyTorch 手写一个大语言模型，并部署成 ChatGPT 风格的对话接口。 加载 GPT 2 预训练权",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-1"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-2",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 02 - Tokenizer（分词器）",
+      "summary": "模型怎么\"读懂\"文字？ 你有没有想过—— 你输入\"猫吃鱼\"， 模型是怎么处理这三个字的？ 它能直接看懂\"猫\"这个字吗？ ",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-2"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-3",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 03 - Embedding（嵌入层）",
+      "summary": "上一篇我们聊了BPE分词，把\"猫吃鱼\"这句话拆成了子词，再映射成一串数字： 3, 15, 27 。 看到这串数字，很多人",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-3"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-4",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 04 - Positional Encoding（位置编码）",
+      "summary": "上一期实现了 Embedding 层，把\"猫吃鱼\"里每个字都变成了向量。但有个问题没解决： \"猫吃鱼\"和\"鱼吃猫\"，经过",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-4"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-5",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 05 - Self-Attention（自注意力机制）",
+      "summary": "系列回顾：EP01 项目路线 → EP02 Tokenizer → EP03 Embedding（词变成了向量）→ EP",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-5"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-6",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 06 - Multi-Head Attention（多头注意力机制）",
+      "summary": "上一集我们实现了 Self Attention 的完整计算流程：Q、K、V 三个矩阵，经过缩放点积，得到了\"猫吃鱼\"这句",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-6"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-7",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 07 - Residual Connection（残差连接）",
+      "summary": "上一期我们把多头注意力（Multi Head Attention）讲完了，\"猫、吃、鱼\"这个3×4的矩阵，经过QKV变换",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-7"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-8",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 08 - LayerNorm（层归一化）",
+      "summary": "继续用\"猫吃鱼\"这个例子,拆解 LayerNorm 公式背后的几何直觉。 Transformer 的残差子层,我们用的是",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-8"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-9",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 09 - FFN（前馈神经网络）",
+      "summary": "前几期我们把\"猫吃鱼\"这句话，一步步从三个 token 变成了一个融合了上下文信息的 3×4 矩阵： Embedding",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-9"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-10",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 10 - Activation Function（激活函数）",
+      "summary": "EP09 我们拆完了 FFN（Feed Forward Network）的整体结构： 升维、激活、降维，三步走。升维降维",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-10"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-11",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 11 - Transformer Block（Transformer 模块）",
+      "summary": "上一期（第 10 期），我们对比了 ReLU 和 GELU，讲清楚了激活函数为什么是 FFN 的关键。第 09 期搭起了",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-11"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-12",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 12 - Transformer Stack（Transformer 堆叠）",
+      "summary": "EP11里我们把Pre LN的两行公式装进了一个 TransformerBlock ： 用\"猫吃鱼\"（ d model=",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-12"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-13",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 13 - Loading Pretrained Weights（加载预训练权重）",
+      "summary": "EP12 我们把 Transformer Block 一层层堆了起来,拼出了完整的 GPT 前向传播:embedding",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-13"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-14",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 14 - Text Generation（文本生成）",
+      "summary": "EP13 我们把 GPT 2 官方预训练权重加载进了自己手写的模型里,解决了 HuggingFace Conv1D 权重",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-14"
+    },
+    {
+      "id": "g-auto-aa1143-namigpt-15",
+      "kind": "collection",
+      "title": "从零手写大模型 · 推理篇 15 - Interpretability（可解释性 · 完结篇）",
+      "summary": "EP14 结束的时候,我们已经有了一个完全由自己手写、加载了真实 GPT 2 权重、能自回归生成文字的模型。技术闭环走完",
+      "domain": "ai",
+      "category": "NamiGPT 大模型基础",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "attention",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-aa1143-namigpt-15"
     }
   ]
 }
