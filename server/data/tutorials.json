@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 123
+      "count": 171
     },
     {
       "id": "security",
@@ -19869,6 +19869,822 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-modern-cmake-cn-modern-cmake-zh-cn-29"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-1",
+      "kind": "collection",
+      "title": "第 01 讲｜Agent 基础与全景",
+      "summary": "在很长一段时间里，构建自然语言处理应用的核心工作是训练或微调一个单体模型（Monolithic Model）：给定一段输",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-1"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-2",
+      "kind": "collection",
+      "title": "第 02 讲｜面向构建者的大语言模型",
+      "summary": "构建 AI Agent 的工程师处于整个大模型技术栈的最顶层，但这并不意味着我们可以把底层的语言模型当成一个无所不能的“",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-2"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-3",
+      "kind": "collection",
+      "title": "第 03 讲｜检索增强生成（RAG）",
+      "summary": "如果直接向一个大语言模型提问：“本周哪一节助教答疑（Office Hour）排队的人最少？”没有任何外部信息源的模型只能",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-3"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-4",
+      "kind": "collection",
+      "title": "第 04 讲｜工具使用与函数调用",
+      "summary": "在上一讲中，我们看到检索增强生成（RAG）能够为大语言模型补充外部静态或动态文档。但如果用户问的是：“$17,423 \\",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-4"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-5",
+      "kind": "collection",
+      "title": "第 05 讲｜框架与持久编排",
+      "summary": "在早期深度学习时代，研究者需要用 NumPy 手动推导并编写每一层的反向传播梯度公式；直到 PyTorch 与 JAX ",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-5"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-6",
+      "kind": "collection",
+      "title": "第 06 讲｜Agent 设计模式与上下文管理",
+      "summary": "软件工程大师 Martin Fowler 在《企业应用架构模式》中曾说：“设计模式都是半成品——这意味着你永远必须根据自",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-6"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-7",
+      "kind": "collection",
+      "title": "第 07 讲｜Agent 记忆架构",
+      "summary": "试想你雇了一位人类助理，但他每天早上走进办公室时都会彻底失去前一天之前的所有记忆：你必须每天重新教他一遍公司报销系统的操",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-7"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-8",
+      "kind": "collection",
+      "title": "第 08 讲｜多 Agent 系统",
+      "summary": "当单个 Agent 在面对复杂庞大的工程任务（比如同时维护一个大型代码仓库的前端、后端与测试套件，或者从零编写一个完整的",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-8"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-9",
+      "kind": "collection",
+      "title": "第 09 讲｜Agent 系统优化",
+      "summary": "来看看在同一个数学推理基准上，仅仅改变提示词里的一句引导语，PaLM 2 L IT 模型的准确率会发生怎样的变化： 提示",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-9"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-10",
+      "kind": "collection",
+      "title": "第 10 讲｜Terminal-Bench 与评测工程",
+      "summary": "回顾计算机软件工程八十年的演进史：20 世纪 40 年代，程序员直接用十六进制机器码（如 48 83 C0 05 ）为 ",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-10"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-11",
+      "kind": "collection",
+      "title": "第 11 讲｜Agent 需要什么数据",
+      "summary": "在传统单轮自然语言处理任务中，“数据”往往意味着一张静态的二维表格：左边一列是输入文本 $x$，右边一列是标准答案标签 ",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-11"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-12",
+      "kind": "collection",
+      "title": "第 12 讲｜数据选择与质量",
+      "summary": "在构建和优化 Agent 系统时，一个常见的误区是盲目崇拜“数据规模”：认为只要往训练集里塞进十万条自动抓取的轨迹，或者",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-12"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-13",
+      "kind": "collection",
+      "title": "第 13 讲｜评测基础与基准设计",
+      "summary": "在单轮分类或抽取任务中，评测往往只需要一行代码： accuracy = mean(y pred == y true) 。",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-13"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-14",
+      "kind": "collection",
+      "title": "第 14 讲｜LLM 裁判与评测基础设施",
+      "summary": "在上一讲的四元组框架中，我们强调了评分器（Scorer / Grader）是整个评测体系的裁决中枢。对于“输出的 JSO",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-14"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-15",
+      "kind": "collection",
+      "title": "第 15 讲｜Agent 安全与防护",
+      "summary": "当大语言模型还只是一个网页聊天框里的文本生成器时，它最严重的安全问题不过是输出一段得罪人的话或编造一条假新闻。然而，当我",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-15"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-16",
+      "kind": "collection",
+      "title": "第 16 讲｜专题研讨：复合 Agent 系统架构复盘",
+      "summary": "在原课程安排中，本讲为面向业界前沿实践的机动客座讲座（Guest Lecture）。借此承上启下的节点，我们将前十五讲所",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-16"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-17",
+      "kind": "collection",
+      "title": "第 17 讲｜编程与软件 Agent",
+      "summary": "如果问过去两年里，AI Agent 在哪个垂直领域率先走出了实验室、真正成为了全球数百万专业人士每天离不开的生产力工具，",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-17"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-18",
+      "kind": "collection",
+      "title": "第 18 讲｜主动式 Agent",
+      "summary": "到目前为止，我们在课程中讨论的几乎所有 Agent——无论是问答助手、RAG 流水线还是处理工单的编程 Agent——都",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-18"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-19",
+      "kind": "collection",
+      "title": "第 19 讲｜前沿与开放问题",
+      "summary": "走过前面十八讲，我们已经完整走通了现代 AI Agent 工程的核心主干：从基础模型解码、注意力机制、RAG 检索与工具",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-19"
+    },
+    {
+      "id": "g-auto-wanghao-sunsky-cs329z-chinese-20",
+      "kind": "collection",
+      "title": "配套代码架构导读",
+      "summary": "本课程提供两套核心配套代码：第一套是 HW1：从零搭建 Agent Harness 的工程骨架（ assignment1",
+      "domain": "ai",
+      "category": "斯坦福 CS329 课程翻译",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agent-memory",
+        "agentic-ai",
+        "ai-agents"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wanghao-sunsky-cs329z-chinese-20"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-1",
+      "kind": "collection",
+      "title": "第 0 章 · 如何高效学习编程（必读）",
+      "summary": "这一章不是技术，但比任何技术都重要。 没读完这章不要进 01 章 。 理解为什么\"看视频学不会编程\" 建立你的学习节奏与",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-1"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-2",
+      "kind": "collection",
+      "title": "环境配置完全指南",
+      "summary": "工欲善其事，必先利其器。在敲第一行代码之前，我们先把\"厨房\"准备好。 想象你要成为一名大厨。在炒菜之前，你需要： 一个 ",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-2"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-3",
+      "kind": "collection",
+      "title": "Git 与 GitHub 入门",
+      "summary": "不会 Git 的程序员就像不会保存文件的作家——所有努力都可能瞬间归零。 想象三个场景： 1. 打游戏存档： 你怕 BO",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-3"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-4",
+      "kind": "collection",
+      "title": "命令行终端基础",
+      "summary": "图形界面是开车，命令行是骑摩托——后者风更大，但更快、更灵活，能钻进小巷。 任务 图形界面 命令行 改 1 个文件名 双",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-4"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-5",
+      "kind": "collection",
+      "title": "VSCode 与 AI 辅助编程",
+      "summary": "编辑器是程序员的画板，AI 是会聊天的副驾驶。学会让它们配合你工作，而不是替你工作。 编辑器 优点 缺点 记事本 简单 ",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-5"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-6",
+      "kind": "collection",
+      "title": "GitHub 项目精选 · 入门导航",
+      "summary": "这一篇不是\"项目列表\"，而是\"学习地图\"。每个项目都告诉你 怎么用它学 ，而不是单纯告诉你\"这是个 awesome 项目",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-6"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-7",
+      "kind": "collection",
+      "title": "费曼学习法与笔记系统",
+      "summary": "\"如果你不能用简单的话讲清楚一件事，说明你还没有真正理解它。\" —— Richard Feynman 学编程最大的陷阱不",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-7"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-8",
+      "kind": "collection",
+      "title": "反向工程别人的代码",
+      "summary": "\"Talk is cheap. Show me the code.\" —— Linus Torvalds 写代码的能力上",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-8"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-9",
+      "kind": "collection",
+      "title": "第 01 章 · Python 从零到源码（10 周）",
+      "summary": "学完本章你将： 用 Python 写出 任何 算法题、命令行工具、爬虫 理解装饰器、生成器、协程、元类、描述符等高级特性",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-9"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-10",
+      "kind": "collection",
+      "title": "GitHub 项目精选 · Python",
+      "summary": "学 Python 的最大坑是： 只看官方教程 。Python 真正的精华在那些被全世界打磨过 10 年的开源库里。 这一",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-10"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-11",
+      "kind": "collection",
+      "title": "W01 · Python 语法基础 🐍",
+      "summary": "本周目标：从 \"看不懂代码\" 到 \"能写出 BMI 计算器、猜数字游戏、九九乘法表\"。 你会反复地： 敲代码 → 报错 ",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-11"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-12",
+      "kind": "collection",
+      "title": "W02 · Python 数据结构 📦📦📦",
+      "summary": "上一周你学会了\"一个变量装一个值\"。 这周我们要学的是 — 怎么 一次装一堆数据 ，并且高效地查找、增删、统计它们。 类",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-12"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-13",
+      "kind": "collection",
+      "title": "W03 · Python 函数与模块 🧩",
+      "summary": "函数是程序员最重要的工具 — 它把\"会重复的逻辑\"打包成\"可复用的零件\"。 模块是把这些零件 整理到不同抽屉 里的箱子。",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-13"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-14",
+      "kind": "collection",
+      "title": "W04 · Python 面向对象 🐱🐶🐭",
+      "summary": "函数让你\"复用一段逻辑\"，而 类 让你\"复用一个 有状态的概念 \"。 这一周你会从\"操作数据\"，升级成\"操作 对象 \"。",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-14"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-15",
+      "kind": "collection",
+      "title": "W05 · 装饰器与上下文管理器 🎁",
+      "summary": "这一周，你会读到很多写了 5 年 Python 的人都讲不清的概念 — 闭包、装饰器、上下文管理器 。 别紧张：它们只是",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-15"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-16",
+      "kind": "collection",
+      "title": "W06 · 迭代器与生成器 🌀",
+      "summary": "本周目标：彻底搞懂 for x in something 背后的\"魔法\"，能写出节省内存的生成器、能在 1GB 大文件上",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-16"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-17",
+      "kind": "collection",
+      "title": "W07 · 并发与异步 🚦",
+      "summary": "本周目标：搞清\"并发 vs 并行\"、\"线程 vs 进程 vs 协程\"，能写出比同步快 30 倍的异步爬虫，理解为什么 P",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-17"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-18",
+      "kind": "collection",
+      "title": "W08 · 类型系统与 Pydantic 📐",
+      "summary": "本周目标：让你的代码\"自带说明书\"。读 100 行别人的代码，从看 5 分钟变看 30 秒；从\"运行时炸了\"变\"写代码时",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-18"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-19",
+      "kind": "collection",
+      "title": "W09 · 工程化与发布 📦",
+      "summary": "本周目标：把\"能跑的脚本\"升级为\"能让别人 pip install 的真正项目\"。配齐项目结构 / pyproject.",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-19"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-20",
+      "kind": "collection",
+      "title": "W10 · CPython 源码导读 🔬",
+      "summary": "本周目标：打开 CPython 的\"引擎盖\"。理解 list 为什么扩容是 1.125 倍、dict 怎么保持插入顺序、",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-20"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-21",
+      "kind": "collection",
+      "title": "第 02 章 · JavaScript 从零到源码（10 周）",
+      "summary": "不靠 jQuery/React 手写动态网页 彻底搞懂 this / 闭包 / 原型链 / 事件循环 / Promise",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-21"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-22",
+      "kind": "collection",
+      "title": "GitHub 项目精选 · JavaScript",
+      "summary": "JavaScript 是一门\"开始很容易、深入要命\"的语言。 而 GitHub 上的 JS 仓库密度，可能是所有语言里最",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-22"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-24",
+      "kind": "collection",
+      "title": "W02 - 函数与 this",
+      "summary": "本周目标：把 JS 函数玩明白。重点是 this 的 5 种绑定（这是 JS 区别于 Python 的最大坑），以及箭头",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-24"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-25",
+      "kind": "collection",
+      "title": "W03 - 闭包与作用域",
+      "summary": "本周目标：彻底理解 JS 的作用域机制和闭包，看穿一切\" for + setTimeout \"面试题。结束时能手写 on",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-25"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-26",
+      "kind": "collection",
+      "title": "W04 - 原型与继承",
+      "summary": "本周目标：把 JS 那个被骂了 30 年的\"原型链\"看明白。结束时你能手写 myNew / myInstanceof /",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-26"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-27",
+      "kind": "collection",
+      "title": "W05 - 异步与事件循环",
+      "summary": "本周目标：彻底搞懂 JS 单线程为何能并发、Promise 如何工作、 async/await 是什么糖。结束时能手写一",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-27"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-29",
+      "kind": "collection",
+      "title": "W07 - ES6+ 进阶特性 🚀",
+      "summary": "💡 本周目标 ：吃透 ES6 之后的\"高级武器\"——Proxy、Generator、Map、Symbol。这些是读 V",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-29"
+    },
+    {
+      "id": "g-auto-karovia-fullstack-ai-agent-roadmap-30",
+      "kind": "collection",
+      "title": "W08 - 模块系统与工程化 📦",
+      "summary": "💡 本周目标 ：把零散的 JS 文件组织成可维护、可发布、可复用的工程。从\"写脚本\"升级到\"做项目\"。 📖 类比 ：",
+      "domain": "ai",
+      "category": "AI Agent 全栈路线",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai",
+        "ai-agent",
+        "chinese"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-karovia-fullstack-ai-agent-roadmap-30"
     }
   ]
 }

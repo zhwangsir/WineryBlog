@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T20:35:43.530Z",
+ "updatedAt": "2026-11-24T21:35:06.166Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1357,6 +1357,56 @@
    "picks": [
     {
      "dir": "chapters",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-wanghao-sunsky-cs329z-chinese",
+   "repo": "wanghao-SunSky/cs329z-chinese",
+   "branch": "main",
+   "category": "斯坦福 CS329 课程翻译",
+   "domain": "ai",
+   "tags": [
+    "agent-memory",
+    "agentic-ai",
+    "ai-agents"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T21:35:05.696Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-karovia-fullstack-ai-agent-roadmap",
+   "repo": "Karovia/fullstack-ai-agent-roadmap",
+   "branch": "main",
+   "category": "AI Agent 全栈路线",
+   "domain": "ai",
+   "tags": [
+    "ai",
+    "ai-agent",
+    "chinese"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T21:35:06.166Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "全栈学习路线",
      "keywords": [
       ".md"
      ],

@@ -44,8 +44,9 @@ function ghJson(pathname) {
 }
 const CJK = /[\u3400-\u4dbf\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]/g;
 const cjkCount = (s) => (String(s || '').match(CJK) || []).length;
-// 描述截断成分类名时，先截断再清掉尾部残缺的半个括号 / 悬空的连接符
+// 描述截断成分类名时：先剥掉开头的 emoji / 装饰符号，再截断、清理尾部残缺的半个括号 / 悬空连接符
 const cleanCategory = (s) => String(s || '')
+  .replace(/^[\s\p{Extended_Pictographic}\p{So}•●★☆🎯→✅️]+/u, '')
   .replace(/\s+/g, ' ').trim()
   .slice(0, 16)
   .replace(/[（(【\[][^\)）\]】]*$/, '')
