@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-23T09:15:14.905Z",
+ "updatedAt": "2026-11-24T19:15:18.539Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -814,7 +814,7 @@
    "id": "dunwublog3",
    "repo": "dunwu/blog",
    "branch": "master",
-   "category": "极客时间笔记 III（网络与系统）",
+   "category": "极客时间笔记 III（网络与系统",
    "domain": "system",
    "tags": [
     "网络",
@@ -844,7 +844,7 @@
    "id": "dunwublog4",
    "repo": "dunwu/blog",
    "branch": "master",
-   "category": "极客时间笔记 IV（数据库与算法）",
+   "category": "极客时间笔记 IV（数据库与算法",
    "domain": "data",
    "tags": [
     "数据库",
@@ -921,7 +921,7 @@
    "id": "javaguide3",
    "repo": "Snailclimb/JavaGuide",
    "branch": "main",
-   "category": "JavaGuide III（JVM 深度）",
+   "category": "JavaGuide III（JV",
    "domain": "backend",
    "tags": [
     "Java",
@@ -1016,6 +1016,184 @@
     }
    ],
    "status": "done"
+  },
+  {
+   "id": "pumpkinbook",
+   "repo": "datawhalechina/pumpkin-book",
+   "branch": "master",
+   "category": "南瓜书：机器学习公式详解",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "公式推导",
+    "Datawhale"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T19:13:49.339Z",
+   "note": "curated",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 16,
+     "recursive": true,
+     "files": [
+      "chapter1/chapter1.md",
+      "chapter2/chapter2.md",
+      "chapter3/chapter3.md",
+      "chapter4/chapter4.md",
+      "chapter5/chapter5.md",
+      "chapter6/chapter6.md",
+      "chapter7/chapter7.md",
+      "chapter8/chapter8.md",
+      "chapter9/chapter9.md",
+      "chapter10/chapter10.md",
+      "chapter11/chapter11.md",
+      "chapter12/chapter12.md",
+      "chapter13/chapter13.md",
+      "chapter14/chapter14.md",
+      "chapter15/chapter15.md",
+      "chapter16/chapter16.md"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dlbookcn",
+   "repo": "exacity/deeplearningbook-chinese",
+   "branch": "master",
+   "category": "深度学习花书中文笔记",
+   "domain": "ai",
+   "tags": [
+    "深度学习",
+    "花书",
+    "笔记"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-24T19:13:50.575Z",
+   "note": "curated"
+  },
+  {
+   "id": "waytogo",
+   "repo": "Unknwon/the-way-to-go_ZH_CN",
+   "branch": "master",
+   "category": "The Way to Go 中文",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "入门",
+    "教材"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:13:51.694Z",
+   "note": "curated"
+  },
+  {
+   "id": "auto-javascript-tutorial-zh-javascript-info",
+   "repo": "javascript-tutorial/zh.javascript.info",
+   "branch": "master",
+   "category": "现代 JavaScript 教程",
+   "domain": "frontend",
+   "tags": [
+    "chinese",
+    "javascript",
+    "tutorial"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:13:54.445Z",
+   "note": "auto-discovered"
+  },
+  {
+   "id": "goweb",
+   "repo": "astaxie/build-web-application-with-golang",
+   "branch": "master",
+   "category": "Go Web 编程",
+   "domain": "backend",
+   "tags": [
+    "Go",
+    "Web",
+    "beego"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:14.184Z",
+   "note": "curated"
+  },
+  {
+   "id": "codehunter",
+   "repo": "doocs/source-code-hunter",
+   "branch": "main",
+   "category": "源码学习笔记",
+   "domain": "backend",
+   "tags": [
+    "Spring",
+    "Netty",
+    "源码"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:14.716Z",
+   "note": "curated"
+  },
+  {
+   "id": "es6tut",
+   "repo": "ruanyf/es6tutorial",
+   "branch": "gh-pages",
+   "category": "ES6 教程",
+   "domain": "frontend",
+   "tags": [
+    "JavaScript",
+    "ES6",
+    "阮一峰"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:15.164Z",
+   "note": "curated"
+  },
+  {
+   "id": "mqblog",
+   "repo": "mqyqingfeng/Blog",
+   "branch": "master",
+   "category": "深入 ES 系列",
+   "domain": "frontend",
+   "tags": [
+    "JavaScript",
+    "ES6",
+    "进阶"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:15.628Z",
+   "note": "curated"
+  },
+  {
+   "id": "auto-xianyu110-awesome-openclaw-tutorial",
+   "repo": "xianyu110/awesome-openclaw-tutorial",
+   "branch": "main",
+   "category": "OpenClaw 中文教程",
+   "domain": "ai",
+   "tags": [
+    "agent-skills",
+    "ai-agent",
+    "ai-assistant"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:18.131Z",
+   "note": "auto-discovered"
+  },
+  {
+   "id": "auto-nndl-nndl-practice",
+   "repo": "nndl/nndl-practice",
+   "branch": "main",
+   "category": "《神经网络与深度学习：案例与实践",
+   "domain": "ai",
+   "tags": [
+    "chinese",
+    "deep-learning",
+    "jupyter-notebook"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-24T19:15:18.538Z",
+   "note": "auto-discovered"
   }
  ]
 }

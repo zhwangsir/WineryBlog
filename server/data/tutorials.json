@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 49
+      "count": 73
     },
     {
       "id": "security",
@@ -14888,6 +14888,414 @@
       ],
       "prereqs": [],
       "href": "/post/g-dunwunotes2-43"
+    },
+    {
+      "id": "g-pumpkinbook-1",
+      "kind": "collection",
+      "title": "第1章 绪论",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：1.5天 本章配套视频教程： https://www.bi",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-1"
+    },
+    {
+      "id": "g-pumpkinbook-2",
+      "kind": "collection",
+      "title": "第10章 降维与度量学习",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 39,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-2"
+    },
+    {
+      "id": "g-pumpkinbook-3",
+      "kind": "collection",
+      "title": "第11章 特征选择与稀疏学习",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-3"
+    },
+    {
+      "id": "g-pumpkinbook-4",
+      "kind": "collection",
+      "title": "第12章 计算学习理论",
+      "summary": "正如本章开篇所述，计算学习理论研究目的是分析学习任务的困难本质，为学习算法提供理论保证，并根据分析结果指导算法设计。例如",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 31,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-4"
+    },
+    {
+      "id": "g-pumpkinbook-5",
+      "kind": "collection",
+      "title": "第13章 半监督学习",
+      "summary": "\"西瓜书\"两张插图可谓本节亮点: 图 13.1 直观地说 明了使用末标记样本后带来的好处; 图 13.2 对比了主动学习",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 26,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-5"
+    },
+    {
+      "id": "g-pumpkinbook-6",
+      "kind": "collection",
+      "title": "第14章 概率图模型",
+      "summary": "本章介绍概率图模型，前三节分别介绍了有向图模型之隐马尔可夫模型以及无向图模型之马尔可夫随机场和条件随机场；接下来两节分别",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 27,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-6"
+    },
+    {
+      "id": "g-pumpkinbook-7",
+      "kind": "collection",
+      "title": "第15章 规则学习",
+      "summary": "规则学习是\"符号主义学习\"的代表性方法，用来从训练数据中学到一组能对未见示例进行判别的规则，形如\"如果A或B，并且C的条",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-7"
+    },
+    {
+      "id": "g-pumpkinbook-8",
+      "kind": "collection",
+      "title": "第16章 强化学习",
+      "summary": "强化学习作为机器学习的子领域，其本身拥有一套完整的理论体系，以及诸多经典和最新前沿算法，\"西瓜书\"该章内容仅可作为综述查",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-8"
+    },
+    {
+      "id": "g-pumpkinbook-9",
+      "kind": "collection",
+      "title": "第2章 模型评估与选择",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：1.5天 本章配套视频教程正在赶制中，先自行看书学习，第2",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 30,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-9"
+    },
+    {
+      "id": "g-pumpkinbook-10",
+      "kind": "collection",
+      "title": "第3章 线性模型",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：线性回归3天+对数几率回归3天+线性判别分析3天，共计9天",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 29,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-10"
+    },
+    {
+      "id": "g-pumpkinbook-11",
+      "kind": "collection",
+      "title": "第4章 决策树",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-11"
+    },
+    {
+      "id": "g-pumpkinbook-12",
+      "kind": "collection",
+      "title": "第5章 神经网络",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-12"
+    },
+    {
+      "id": "g-pumpkinbook-13",
+      "kind": "collection",
+      "title": "第6章 支持向量机",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： 支持向量机： https://w",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 27,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-13"
+    },
+    {
+      "id": "g-pumpkinbook-14",
+      "kind": "collection",
+      "title": "第7章 贝叶斯分类器",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-14"
+    },
+    {
+      "id": "g-pumpkinbook-15",
+      "kind": "collection",
+      "title": "第8章 集成学习",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 44,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-15"
+    },
+    {
+      "id": "g-pumpkinbook-16",
+      "kind": "collection",
+      "title": "第9章 聚类",
+      "summary": "!IMPORTANT 参与组队学习的同学须知： 本章学习时间：3天 本章配套视频教程： https://www.bili",
+      "domain": "ai",
+      "category": "南瓜书：机器学习公式详解",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "机器学习",
+        "公式推导",
+        "Datawhale"
+      ],
+      "prereqs": [],
+      "href": "/post/g-pumpkinbook-16"
+    },
+    {
+      "id": "g-dlbookcn-1",
+      "kind": "collection",
+      "title": "acknowledgmentsgithub",
+      "summary": "致谢 2016年12月8日 @tttwwy == 链接问题 @tankeco == Chapter12 语句不通 @fa",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-1"
+    },
+    {
+      "id": "g-dlbookcn-2",
+      "kind": "collection",
+      "title": "本书面向的读者",
+      "summary": "远在古希腊时期，发明家就梦想着创造能自主思考的机器。 神话人物皮格马利翁(Pygmalion)、代达罗斯(Daedalu",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 34,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-2"
+    },
+    {
+      "id": "g-dlbookcn-3",
+      "kind": "collection",
+      "title": "标量、向量、矩阵和张量",
+      "summary": "线性代数作为数学的一个分支，广泛应用于科学和工程中。 然而，因为线性代数主要是面向连续数学，而非离散数学，所以很多计算机",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 26,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-3"
+    },
+    {
+      "id": "g-dlbookcn-4",
+      "kind": "collection",
+      "title": "为什么要使用概率？",
+      "summary": "本章我们讨论概率论和信息论。 概率论是用于表示不确定性声明的数学框架。 它不仅提供了量化不确定性的方法，也提供了用于导出",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 34,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-4"
+    },
+    {
+      "id": "g-dlbookcn-5",
+      "kind": "collection",
+      "title": "上溢和下溢",
+      "summary": "机器学习算法通常需要大量的数值计算。 这通常是指通过迭代过程更新解的估计值来解决数学问题的算法，而不是通过解析过程推导出",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-5"
+    },
+    {
+      "id": "g-dlbookcn-6",
+      "kind": "collection",
+      "title": "学习算法",
+      "summary": "深度学习是机器学习的一个特定分支。 我们要想充分理解深度学习，必须对机器学习的基本原理有深刻的理解。 本章将探讨贯穿本书",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 89,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-6"
+    },
+    {
+      "id": "g-dlbookcn-7",
+      "kind": "collection",
+      "title": "实例：学习XOR",
+      "summary": "深度前馈网络，也叫作前馈神经网络或者多层感知机，是典型的深度学习模型。前馈网络的目标是近似某个函数$f^ $。 例如，对",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 87,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-7"
+    },
+    {
+      "id": "g-dlbookcn-8",
+      "kind": "collection",
+      "title": "参数范数惩罚",
+      "summary": "机器学习中的一个核心问题是设计不仅在训练数据上表现好，并且能在新输入上泛化好的算法。 在机器学习中，许多策略显式地被设计",
+      "domain": "ai",
+      "category": "深度学习花书中文笔记",
+      "difficulty": "进阶",
+      "minutes": 61,
+      "tags": [
+        "深度学习",
+        "花书",
+        "笔记"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dlbookcn-8"
     }
   ]
 }
