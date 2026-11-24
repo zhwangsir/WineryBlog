@@ -12,7 +12,8 @@
     "start": "tsx server.ts",
     "labs:build": "node scripts/build-labs.mjs",
     "labs:test": "node scripts/test-labs.mjs",
-    "labs:pyodide": "node scripts/fetch-pyodide.mjs"
+    "labs:pyodide": "node scripts/fetch-pyodide.mjs",
+    "test:rss": "node scripts/test-rss.mjs"
   },
   "dependencies": {
     "@codemirror/commands": "^6.11.1",

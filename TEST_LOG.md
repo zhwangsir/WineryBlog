@@ -1,6 +1,20 @@
 # TEST_LOG.md — WineryBlog
 
-> 最后更新：2026-11-24
+> 最后更新：2026-11-25
+
+- 2026-11-25 知识图谱与实验室重做后的回归（本机，`tsx server.ts` 开发模式 + 生产构建）：
+  - `tsc --noEmit` 无错误；`vite build` 通过：LabPage 8.77KB / gzip 3.52KB，Workbench（含编辑器）422.85KB / gzip 137.3KB，
+    打开环境时才下载；KnowledgeGraph 56.77KB / gzip 21.5KB；3D 引擎（three + 3d-force-graph）约 1.67MB，单独分包
+  - 实验室：`labs:build` 8 个环境 / 46 个示例；`labs:test` 40 项全部通过（JS 9、SQL 5、Python 6 个示例的起始代码与参考答案：
+    起始代码能跑，参考答案的输出与预期一致）
+  - 零外跳门禁 `scripts/verify-no-outbound.mjs`：0 违规
+  - 知识图谱（浏览器）：2D 在桌面 1280×720、宽屏 1680、手机 390 与亮色主题下检查了缩放、悬停、筛选、路线、下钻、搜索；
+    3D 的切换、缩放、点击知识域下钻与返回全景
+  - 实验室（浏览器）：8 个环境逐一打开——前端实时渲染、JavaScript / Python 自动运行、SQL 练习库、AI 提示词流式输出、
+    仿真终端（运行文件、敲命令）；空白练习与示例切换；AI 助教的示例模式与自由练习模式
+  - RSS：`test:rss` 10 项通过（极端输入 6 项 + 927 篇真实文章全量生成 4 项）；线上 `/rss.xml` 用严格解析器检查为合法 XML
+  - 没有做真实验证的部分：Java / Kotlin 示例的参考答案没有经过编译器；nginx、docker 的仿真输出按经验编写；
+    AI 提示词示例的效果取决于站内模型
 
 - 2026-11-24 全面优化回归（本机，`tsx server.ts` 开发模式 + 生产构建）：
   - 零外跳门禁 `scripts/verify-no-outbound.mjs`：0 违规（已加「本地图片必须存在」检查）

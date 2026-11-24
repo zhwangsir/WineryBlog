@@ -5,6 +5,7 @@ import path from "path";
 import crypto from "crypto";
 import compression from "compression";
 import { ensureSourcesFile } from "./scripts/lib/gallery-sources.mjs";
+import { buildRssFeed } from "./scripts/lib/rss-feed.mjs";
 import { execFile } from "child_process";
 
 // 会话签名密钥：首次启动随机生成，保存在本地 server/data/.session-secret（已 gitignore）。
@@ -1287,44 +1288,14 @@ async function startServer() {
       ]);
       
       const config = JSON.parse(configData);
-      const posts = [...postsRaw];
-      
-      const siteUrl = `https://${config.domain || 'blog.wineryz.top'}`;
-      const siteTitle = config.title || 'WineryBlog';
-      const siteDescription = config.subtitle || '';
-      
-      // Build RSS XML
-      const items = posts
-        .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 20)
-        .map((post: any) => {
-          const postUrl = `${siteUrl}/post/${post.id}`;
-          const pubDate = new Date(post.date).toUTCString();
-          return `
-    <item>
-      <title><![CDATA[${post.title}]]></title>
-      <link>${postUrl}</link>
-      <guid>${postUrl}</guid>
-      <pubDate>${pubDate}</pubDate>
-      <description><![CDATA[${post.excerpt}]]></description>
-      <category>${post.category}</category>
-    </item>`;
-        }).join('');
-
-      const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>${siteTitle}</title>
-    <link>${siteUrl}</link>
-    <description>${siteDescription}</description>
-    <language>zh-CN</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />${items}
-  </channel>
-</rss>`;
 
       res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
-      res.send(rss);
+      res.send(buildRssFeed({
+        siteUrl: `https://${config.domain || 'blog.wineryz.top'}`,
+        siteTitle: config.title || 'WineryBlog',
+        siteDescription: config.subtitle || '',
+        posts: postsRaw
+      }));
     } catch (error) {
       res.status(500).send('Error generating RSS feed');
     }

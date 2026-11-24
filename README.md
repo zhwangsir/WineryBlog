@@ -4,14 +4,14 @@
 
 > **路径**：`ALLProject/WineryBlog`  
 > **状态**：维护  
-> **最后更新**：2026-11-24
+> **最后更新**：2026-11-25
 
 ## 身份与远程
 
 | 项 | 值 |
 |----|----|
-| origin（Gitee） | https://gitee.com/Winery_z/WineryBlog.git |
-| github（备份） | https://github.com/zhwangsir/WineryBlog.git |
+| origin | https://github.com/zhwangsir/WineryBlog.git（本仓库当前只配置了这一个远程） |
+| Gitee 镜像 | https://gitee.com/Winery_z/WineryBlog.git（本克隆里没有配置；需要镜像时先 `git remote add gitee <地址>` 再推） |
 | 分支 | main 跟踪 origin/main |
 | 配置域名 | blog.wineryz.top（server/data/config.json 的 domain 字段） |
 
@@ -67,7 +67,7 @@ npm run dev
 - GET /api/search?q=（标题 / 正文 / 标签 / 分类全文检索）
 - GET /api/tutorials、/api/careers、/api/labs、/api/graph、/api/progress
 - POST /api/ai（支持 `stream: true`，返回 SSE）、/api/tutor、/api/lab-agent（AI 助教与仿真终端，支持 `stream: true`）、/api/lab-ai（提示词实验用的空白模型，流式）
-- GET /rss.xml
+- GET /rss.xml（最新 20 篇；生成逻辑在 `scripts/lib/rss-feed.mjs`，`npm run test:rss` 做回归检查）
 
 前端路由：/、/tutorials、/routes/:career、/lab、/graph、/ai、/archive、/about、/friends、/post/:id；后台 /admin/*。
 
@@ -112,4 +112,4 @@ GITHUB_TOKEN=<PAT> node scripts/fetch-github-tutorials.mjs --refresh       # 重
 - 历史提交里曾有明文口令与固定的会话密钥，建议尽快修改管理员密码
 - 旧 README 写「部署到 js.org」仅为历史建议，当前以自有域名配置为准
 
-push：`origin` 与 `github` 都要推。
+push：`git push origin main`（本仓库只配置了 origin；Gitee 镜像见上表）。

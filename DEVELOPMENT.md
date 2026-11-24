@@ -1,7 +1,15 @@
 # DEVELOPMENT.md — WineryBlog
 
 > 合并自旧 PROJECT_INIT / docs / 根目录散文档。原文在 `ALLProject/.archive/docs-legacy-20260827/`。
-> 最后更新：2026-08-27
+> 最后更新：2026-11-25
+
+> **阅读须知（2026-11-25）**：下文是 2026-08-27 归档合并的历史文档，描述的是初始化时（2026-07-12）的状态，保留作沿革参考；
+> 现行的特性、接口、数据、实验室与收录管线以 [README.md](README.md) 为准。第八节「已知问题」里的下面几项**已经处理**，不要再按原文去修：
+> - 会话签名密钥不再写死：首次启动随机生成，存 `server/data/.session-secret`（不入库）
+> - 管理员口令不再明文：`config.json` 的 `admin.passwordHash` 存 scrypt 哈希（旧明文配置在首次登录成功后自动升级）
+> - 文章密码改为服务端校验：`POST /api/posts/:id/unlock` 通过后签发限时令牌，解锁前不下发正文
+> - `package.json` 的 name 与版本：`wineryblog` / `1.0.0`
+> - RSS 的 `<category>` 未转义：输出改由 `scripts/lib/rss-feed.mjs` 生成并做转义，`npm run test:rss` 回归
 
 # 原 PROJECT_INIT
 
