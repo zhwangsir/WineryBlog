@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 651
+      "count": 681
     },
     {
       "id": "system",
@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 334
+      "count": 347
     },
     {
       "id": "data",
@@ -45495,6 +45495,707 @@
       ],
       "prereqs": [],
       "href": "/post/g-goweb4-7"
+    },
+    {
+      "id": "g-algonote16-1",
+      "kind": "collection",
+      "title": "0345. 反转字符串中的元音字母",
+      "summary": "标签：双指针、字符串 难度：简单 0345. 反转字符串中的元音字母 力扣 描述 ：给定一个字符串 $s$。 要求 ：将",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-1"
+    },
+    {
+      "id": "g-algonote16-2",
+      "kind": "collection",
+      "title": "0396. 旋转函数",
+      "summary": "标签：数组、数学、动态规划 难度：中等 0396. 旋转函数 力扣 描述 ： 给定一个长度为 $n$ 的整数数组 $nu",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-2"
+    },
+    {
+      "id": "g-algonote16-3",
+      "kind": "collection",
+      "title": "0354. 俄罗斯套娃信封问题",
+      "summary": "标签：数组、二分查找、动态规划、排序 难度：困难 0354. 俄罗斯套娃信封问题 力扣 给定一个二维整数数组 envel",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-3"
+    },
+    {
+      "id": "g-algonote16-4",
+      "kind": "collection",
+      "title": "0335. 路径交叉",
+      "summary": "标签：几何、数组、数学 难度：困难 0335. 路径交叉 力扣 描述 ： 给定一个整数数组 $distance$。 从 ",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-4"
+    },
+    {
+      "id": "g-algonote16-5",
+      "kind": "collection",
+      "title": "0317. 离建筑物最近的距离",
+      "summary": "标签：广度优先搜索、数组、矩阵 难度：困难 0317. 离建筑物最近的距离 力扣 描述 ： 给定一个 $m \\times",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-5"
+    },
+    {
+      "id": "g-algonote16-6",
+      "kind": "collection",
+      "title": "0384. 打乱数组",
+      "summary": "标签：数组、数学、随机化 难度：中等 0384. 打乱数组 力扣 描述 ：给定一个整数数组 $nums$。 要求 ：设计",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-6"
+    },
+    {
+      "id": "g-algonote16-7",
+      "kind": "collection",
+      "title": "0302. 包含全部黑色像素的最小矩形",
+      "summary": "标签：深度优先搜索、广度优先搜索、数组、二分查找、矩阵 难度：困难 0302. 包含全部黑色像素的最小矩形 力扣 描述 ",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-7"
+    },
+    {
+      "id": "g-algonote16-8",
+      "kind": "collection",
+      "title": "0360. 有序转化数组",
+      "summary": "标签：数组、数学、双指针、排序 难度：中等 0360. 有序转化数组 力扣 描述 ：给定一个已经排好的整数数组 $num",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-8"
+    },
+    {
+      "id": "g-algonote16-9",
+      "kind": "collection",
+      "title": "0311. 稀疏矩阵的乘法",
+      "summary": "标签：数组、哈希表、矩阵 难度：中等 0311. 稀疏矩阵的乘法 力扣 描述 ： 给定两个「稀疏矩阵」：大小为 $m \\",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-9"
+    },
+    {
+      "id": "g-algonote16-10",
+      "kind": "collection",
+      "title": "0371. 两整数之和",
+      "summary": "标签：位运算、数学 难度：中等 0371. 两整数之和 力扣 描述 ：给定两个整数 $a$ 和 $b$。 要求 ：不使用",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-10"
+    },
+    {
+      "id": "g-algonote16-11",
+      "kind": "collection",
+      "title": "0372. 超级次方",
+      "summary": "标签：数学、分治 难度：中等 0372. 超级次方 力扣 描述 ： 给定两个正整数 $a$ 和 $b$。其中 $b$ 是",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-11"
+    },
+    {
+      "id": "g-algonote16-12",
+      "kind": "collection",
+      "title": "0313. 超级丑数",
+      "summary": "标签：数组、数学、动态规划 难度：中等 0313. 超级丑数 力扣 描述 ： 「超级丑数」是一个正整数，并满足其所有质因",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-12"
+    },
+    {
+      "id": "g-algonote16-13",
+      "kind": "collection",
+      "title": "0347. 前 K 个高频元素",
+      "summary": "标签：数组、哈希表、分治、桶排序、计数、快速选择、排序、堆（优先队列） 难度：中等 0347. 前 K 个高频元素 力扣",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-13"
+    },
+    {
+      "id": "g-algonote16-14",
+      "kind": "collection",
+      "title": "0393. UTF-8 编码验证",
+      "summary": "标签：位运算、数组 难度：中等 0393. UTF 8 编码验证 力扣 描述 ： 给定一个表示数据的整数数组 $data",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-14"
+    },
+    {
+      "id": "g-algonote16-15",
+      "kind": "collection",
+      "title": "0367. 有效的完全平方数",
+      "summary": "标签：数学、二分查找 难度：简单 0367. 有效的完全平方数 力扣 描述 ：给定一个正整数 $num$。 要求 ：判断",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-15"
+    },
+    {
+      "id": "g-algonote16-16",
+      "kind": "collection",
+      "title": "0331. 验证二叉树的前序序列化",
+      "summary": "标签：栈、树、字符串、二叉树 难度：中等 0331. 验证二叉树的前序序列化 力扣 描述 ： 序列化二叉树的一种方法是使",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-16"
+    },
+    {
+      "id": "g-algonote16-17",
+      "kind": "collection",
+      "title": "0365. 水壶问题",
+      "summary": "标签：深度优先搜索、广度优先搜索、数学 难度：中等 0365. 水壶问题 力扣 描述 ： 有两个水壶，容量分别为 $x$",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-17"
+    },
+    {
+      "id": "g-algonote16-18",
+      "kind": "collection",
+      "title": "0324. 摆动排序 II",
+      "summary": "标签：数组、分治、快速选择、排序 难度：中等 0324. 摆动排序 II 力扣 给你一个整数数组 nums 。 要求：将",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-18"
+    },
+    {
+      "id": "g-algonote16-19",
+      "kind": "collection",
+      "title": "0376. 摆动序列",
+      "summary": "标签：贪心、数组、动态规划 难度：中等 0376. 摆动序列 力扣 如果一个数组序列中，连续项之间的差值是严格的在正数、",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-19"
+    },
+    {
+      "id": "g-algonote16-20",
+      "kind": "collection",
+      "title": "0456. 132 模式",
+      "summary": "标签：栈、数组、二分查找、有序集合、单调栈 难度：中等 0456. 132 模式 力扣 描述 ： 给定一个整数数组 $n",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-20"
+    },
+    {
+      "id": "g-algonote16-21",
+      "kind": "collection",
+      "title": "0454. 四数相加 II",
+      "summary": "标签：数组、哈希表 难度：中等 0454. 四数相加 II 力扣 描述 ：给定四个整数数组 $nums1$、$nums2",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-21"
+    },
+    {
+      "id": "g-algonote16-22",
+      "kind": "collection",
+      "title": "0415. 字符串相加",
+      "summary": "标签：数学、字符串、模拟 难度：简单 0415. 字符串相加 力扣 描述 ：给定两个字符串形式的非负整数 num1 和 ",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-22"
+    },
+    {
+      "id": "g-algonote16-23",
+      "kind": "collection",
+      "title": "0445. 两数相加 II",
+      "summary": "标签：栈、链表、数学 难度：中等 0445. 两数相加 II 力扣 给定两个非空链表的头节点 l1 和 l2 来代表两个",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-23"
+    },
+    {
+      "id": "g-algonote16-24",
+      "kind": "collection",
+      "title": "0432. 全 O(1) 的数据结构",
+      "summary": "标签：设计、哈希表、链表、双向链表 难度：困难 0432. 全 O(1) 的数据结构 力扣 要求 ： 设计一个用于存储字",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-24"
+    },
+    {
+      "id": "g-algonote16-25",
+      "kind": "collection",
+      "title": "0446. 等差数列划分 II - 子序列",
+      "summary": "标签：数组、动态规划 难度：困难 0446. 等差数列划分 II 子序列 力扣 描述 ： 给定一个整数数组 $nums$",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-25"
+    },
+    {
+      "id": "g-algonote16-26",
+      "kind": "collection",
+      "title": "0413. 等差数列划分",
+      "summary": "标签：数组、动态规划、滑动窗口 难度：中等 0413. 等差数列划分 力扣 描述 ： 给定一个整数数组 $nums$。 ",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-26"
+    },
+    {
+      "id": "g-algonote16-27",
+      "kind": "collection",
+      "title": "0441. 排列硬币",
+      "summary": "标签：数学、二分查找 难度：简单 0441. 排列硬币 力扣 描述 ： 你总共有 $n$ 枚硬币，并计划将它们按阶梯状排",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-27"
+    },
+    {
+      "id": "g-algonote16-28",
+      "kind": "collection",
+      "title": "0455. 分发饼干",
+      "summary": "标签：贪心、数组、双指针、排序 难度：简单 0455. 分发饼干 力扣 描述 ：一位很棒的家长为孩子们分发饼干。对于每个",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-28"
+    },
+    {
+      "id": "g-algonote16-29",
+      "kind": "collection",
+      "title": "0419. 棋盘上的战舰",
+      "summary": "标签：深度优先搜索、数组、矩阵 难度：中等 0419. 棋盘上的战舰 力扣 描述 ： 给定一个大小为 $m \\times",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-29"
+    },
+    {
+      "id": "g-algonote16-30",
+      "kind": "collection",
+      "title": "0401. 二进制手表",
+      "summary": "标签：位运算、回溯 难度：简单 0401. 二进制手表 力扣 描述 ： 二进制手表顶部有 $4$ 个 LED 代表「小时",
+      "domain": "algo",
+      "category": "算法通关手册 XVI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote16-30"
+    },
+    {
+      "id": "g-codehunter4-1",
+      "kind": "collection",
+      "title": "MethodSignature",
+      "summary": "Author: HuiFer Description: 该文介绍 mybatis MethodSignature 类 源",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-1"
+    },
+    {
+      "id": "g-codehunter4-2",
+      "kind": "collection",
+      "title": "Mybatis ObjectWrapper",
+      "summary": "Author: HuiFer 源码阅读工程: SourceHot Mybatis 源码位于: org.apache.ib",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-2"
+    },
+    {
+      "id": "g-codehunter4-3",
+      "kind": "collection",
+      "title": "ParamNameResolver 源码解析",
+      "summary": "Author: HuiFer Description: 该文介绍 mybatis @Param 注解和 ParamNam",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-3"
+    },
+    {
+      "id": "g-codehunter4-4",
+      "kind": "collection",
+      "title": "sqlCommand",
+      "summary": "Author: HuiFer Description: 该文介绍 mybatis sqlCommand 类的源码 源码阅",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-4"
+    },
+    {
+      "id": "g-codehunter4-5",
+      "kind": "collection",
+      "title": "Netty架构设计",
+      "summary": "本博文用于重点分析 Netty 的逻辑架构及关键的架构质量属性，希望有助于大家从 Netty 的架构设计中汲取营养，设计",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-5"
+    },
+    {
+      "id": "g-codehunter4-7",
+      "kind": "collection",
+      "title": "Netty高性能之道",
+      "summary": "作为一个高性能的 NIO 通信框架，Netty 被广泛应用于大数据处理、互联网消息中间件、游戏和金融行业等。大多数应用场",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-7"
+    },
+    {
+      "id": "g-codehunter4-8",
+      "kind": "collection",
+      "title": "IO模型",
+      "summary": "Linux 的内核将所有外部设备都看做一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，返回一个 fd (f",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-8"
+    },
+    {
+      "id": "g-codehunter4-9",
+      "kind": "collection",
+      "title": "Selector、SelectionKey及Channel组件",
+      "summary": "Selector、SelectionKey 和 Channel 这三个组件构成了 Java nio 包的核心，也是 Re",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-9"
+    },
+    {
+      "id": "g-codehunter4-10",
+      "kind": "collection",
+      "title": "四种IO编程及对比",
+      "summary": "网络编程的基本模型是 Client/Server 模型，也就是两个进程之间进行相互通信，其中服务端提供位置信息(绑定的 ",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-10"
+    },
+    {
+      "id": "g-codehunter4-11",
+      "kind": "collection",
+      "title": "把被说烂的BIO、NIO、AIO再从头到尾扯一遍",
+      "summary": "网上关于各种 IO 的博文已经多到飞起，如果你是大神，可以跳过我这个菜鸟的拙文，本博文没有什么特别 NB 的东西，只是集",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-11"
+    },
+    {
+      "id": "g-codehunter4-14",
+      "kind": "collection",
+      "title": "ChannelPipeline和ChannelHandler组件",
+      "summary": "Netty 的 ChannelPipeline 和 ChannelHandler 机制类似于 Servlet 和 Fil",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-14"
+    },
+    {
+      "id": "g-codehunter4-15",
+      "kind": "collection",
+      "title": "Channel和Unsafe组件",
+      "summary": "类似于 java.nio 包 的 Channel，Netty 提供了自己的 Channel 和其子类实现，用于异步 I/",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-15"
+    },
+    {
+      "id": "g-codehunter4-16",
+      "kind": "collection",
+      "title": "EventLoop组件",
+      "summary": "Netty 线程模型 的设计，也是基于 Reactor 模型，尽管不同的 NIO 框架 对于 Reactor 模式 的实",
+      "domain": "backend",
+      "category": "源码学习笔记 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter4-16"
     }
   ]
 }
