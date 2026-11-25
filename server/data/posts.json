@@ -40001,5 +40001,665 @@
     "source": "LongxingTan/Machine-learning-interview",
     "views": 0,
     "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote10-1",
+    "title": "0259. 较小的三数之和",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针、二分查找、排序 难度：中等 0259. 较小的三数之和 力扣 描述 ：给定一个长度为 $n$ 的整数数组和一个目标值 $target$。 要求 ：寻找能够使条件",
+    "content": "# 0259. 较小的三数之和\n\n- 标签：数组、双指针、二分查找、排序\n- 难度：中等\n\n## 题目链接\n\n- 0259. 较小的三数之和 - 力扣\n\n## 题目大意\n\n**描述**：给定一个长度为 $n$ 的整数数组和一个目标值 $target$。\n\n**要求**：寻找能够使条件 $nums[i] + nums[j] + nums[k] < target$ 成立的三元组  ($i$, $j$, $k$) 的个数（$0 <= i < j < k < n$）。\n\n**说明**：\n\n- 最好在 $O(n^2)$ 的时间复杂度内解决问题。\n- $n == nums.length$。\n- $0 \\le n \\le 3500$。\n- $-100 \\le nums[i] \\le 100$。\n- $-100 \\le target \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: nums = [-2,0,1,3], target = 2\n输出: 2 \n解释: 因为一共有两个三元组满足累加和小于 2:\n     [-2,0,1]\n     [-2,0,3]\n```\n\n- 示例 2：\n\n```python\n输入: nums = [], target = 0\n输出: 0\n```\n\n## 解题思路\n\n### 思路 1：排序 + 双指针\n\n三元组直接枚举的时间复杂度是 $O(n^3)$，明显不符合题目要求。那么可以考虑使用双指针减少循环内的时间复杂度。具体做法如下：\n\n- 先对数组进行从小到大排序。\n- 遍历数组，对于数组元素 $nums[i]$，使用两个指针 $left$、$right$。$left$ 指向第 $i + 1$ 个元素位置，$right$ 指向数组的最后一个元素位置。\n- 在区间 $[left, right]$ 中查找满足 $nums[i] + nums[left] + nums[right] < target$的方案数。\n- 计算 $nums[i]$、$nums[left]$、$nums[right]$ 的和，将其与 $target$ 比较。\n  - 如果 $nums[i] + nums[left] + nums[right] < target$，则说明 $i$、$left$、$right$ 作为三元组满足题目要求，同时说明区间 $[left, right]$ 中的元素作为 $right$ 都满足条件，此时将 $left$ 右移，继续判断。\n  - 如果 $nums[i] + nums[left] + nums[right] \\ge target$，则说明 $right$ 太大了，应该缩小 $right$，然后继续判断。\n- 当 $left == right$ 时，区间搜索完毕，继续遍历 $nums[i + 1]$。\n\n这种思路使用了两重循环，其中内层循环当 $left == right$ 时循环结束，时间复杂度为 $O(n)$，外层循环时间复杂度也是 $O(n)$。所以算法的整体时间复杂度为 $O(n^2)$，符合题目要求。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def threeSumSmaller(self, nums: List[int], target: int) -> int:\n        nums.sort()\n        size = len(nums)\n        res = 0\n        for i in range(size):\n            left, right = i + 1, size - 1\n            while left < right:\n                total = nums[i] + nums[left] + nums[right]\n                if total < target:\n                    res += (right - left)\n                    left += 1\n                else:\n                    right -= 1\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(\\log n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-algonote10-3",
+    "title": "0269. 火星词典",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、广度优先搜索、图、拓扑排序、数组、字符串 难度：困难 0269. 火星词典 力扣 描述 ： 现有一种使用英语字母的火星语言，这门语言的字母顺序对你来说是未知的。",
+    "content": "# 0269. 火星词典\n\n- 标签：深度优先搜索、广度优先搜索、图、拓扑排序、数组、字符串\n- 难度：困难\n\n## 题目链接\n\n- 0269. 火星词典 - 力扣\n\n## 题目大意\n\n**描述**：\n\n现有一种使用英语字母的火星语言，这门语言的字母顺序对你来说是未知的。\n\n给定一个来自这种外星语言字典的字符串列表 $words$ ，$words$ 中的字符串已经「按这门新语言的字典序进行了排序」。\n\n**要求**：\n\n如果这种说法是错误的，并且给出的 $words$ 不能对应任何字母的顺序，则返回 `\"\"`。\n\n否则，返回一个按新语言规则的「字典递增顺序」排序的独特字符串。如果有多个解决方案，则返回其中任意一个。\n\n**说明**：\n\n- $1 \\le words.length \\le 10^{3}$。\n- $1 \\le words[i].length \\le 10^{3}$。\n- $words[i]$ 仅由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\n输出：\"wertf\"\n```\n\n- 示例 2：\n\n```python\n输入：words = [\"z\",\"x\"]\n输出：\"zx\"\n```\n\n## 解题思路\n\n### 思路 1：拓扑排序 + 广度优先搜索\n\n使用拓扑排序来解决这个问题。我们需要构建一个图来表示字母之间的相对顺序关系，然后使用拓扑排序来找到字母的正确顺序。\n\n具体步骤如下：\n\n1. 构建图：遍历相邻的单词对 $(words[i], words[i+1])$，找到第一个不同的字符，建立字符 $c_1$ 到字符 $c_2$ 的边，表示 $c_1$ 在 $c_2$ 之前。\n2. 计算入度：统计每个字符的入度 $indegree[c]$。\n3. 拓扑排序：使用广度优先搜索，从入度为 $0$ 的字符开始，逐步构建字母顺序。\n4. 验证结果：检查是否所有字符都被包含在结果中。\n\n关键点：\n\n- 如果存在环，说明无法确定字母顺序，返回空字符串。\n- 如果拓扑排序后仍有字符未被访问，说明存在环。\n- 需要处理所有出现的字符，包括那些没有相对顺序关系的字符。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def alienOrder(self, words: List[str]) -> str:\n        # 构建图：字符到其后继字符的映射\n        graph = {}\n        # 统计每个字符的入度\n        indegree = {}\n        \n        # 初始化所有出现的字符\n        for word in words:\n            for char in word:\n                if char not in graph:\n                    graph[char] = set()\n                if char not in indegree:\n                    indegree[char] = 0\n        \n        # 构建图：比较相邻单词\n        for i in range(len(words) - 1):\n            word1, word2 = words[i], words[i + 1]\n            min_len = min(len(word1), len(word2))\n            \n            # 检查是否存在前缀关系\n            for j in range(min_len):\n                if word1[j] != word2[j]:\n                    # 找到第一个不同的字符，建立边关系\n                    char1, char2 = word1[j], word2[j]\n                    if char2 not in graph[char1]:\n                        graph[char1].add(char2)\n                        indegree[char2] += 1\n                    break\n            else:\n                # 如果所有字符都相同，但第一个单词更长，则无效\n                if len(word1) > len(word2):\n                    return \"\"\n        \n        # 拓扑排序：使用广度优先搜索\n        queue = []\n        # 找到所有入度为 0 的字符\n        for char in indegree:\n            if indegree[char] == 0:\n                queue.append(char)\n        \n        result = []\n        while queue:\n            char = queue.pop(0)\n            result.append(char)\n            \n            # 处理当前字符的所有后继字符\n            for next_char in graph[char]:\n                indegree[next_char] -= 1\n                if indegree[next_char] == 0:\n                    queue.append(next_char)\n        \n        # 检查是否所有字符都被访问（无环）\n        if len(result) != len(indegree):\n            return \"\"\n        \n        return ''.join(result)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(C)$，其中 $C$ 是所有单词中字符的总数。需要遍历所有字符来构建图和进行拓扑排序。\n- **空间复杂度**：$O(1)$，因为字符集大小固定为 $26$ 个字母，所以图的大小和入度数组都是常数级别。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-algonote10-4",
+    "title": "0227. 基本计算器 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、数学、字符串 难度：中等 0227. 基本计算器 II 力扣 描述 ：给定一个字符串表达式 s ，表达式中所有整数为非负整数，运算符只有 + 、 、 、 / ，没有括号。",
+    "content": "# 0227. 基本计算器 II\n\n- 标签：栈、数学、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0227. 基本计算器 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个字符串表达式 `s`，表达式中所有整数为非负整数，运算符只有 `+`、`-`、`*`、`/`，没有括号。\n\n**要求**：实现一个基本计算器来计算并返回它的值。\n\n**说明**：\n\n- $1 \\le s.length \\le 3 * 10^5$。\n- `s` 由整数和算符（`+`、`-`、`*`、`/`）组成，中间由一些空格隔开。\n- `s` 表示一个有效表达式。\n- 表达式中的所有整数都是非负整数，且在范围 $[0, 2^{31} - 1]$ 内。\n- 题目数据保证答案是一个 32-bit 整数。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"3+2*2\"\n输出：7\n```\n\n- 示例 2：\n\n```python\n输入：s = \" 3/2 \"\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：栈\n\n计算表达式中，乘除运算优先于加减运算。我们可以先进行乘除运算，再将进行乘除运算后的整数值放入原表达式中相应位置，再依次计算加减。\n\n可以考虑使用一个栈来保存进行乘除运算后的整数值。正整数直接压入栈中，负整数，则将对应整数取负号，再压入栈中。这样最终计算结果就是栈中所有元素的和。\n\n具体做法：\n\n1. 遍历字符串 `s`，使用变量 `op` 来标记数字之前的运算符，默认为 `+`。\n2. 如果遇到数字，继续向后遍历，将数字进行累积，得到完整的整数 num。判断当前 op 的符号。\n   1. 如果 `op` 为 `+`，则将 `num` 压入栈中。\n   2. 如果 `op` 为 `-`，则将 `-num` 压入栈中。\n   3. 如果 `op` 为 `*`，则将栈顶元素 `top` 取出，计算 `top * num`，并将计算结果压入栈中。\n   4. 如果 `op` 为 `/`，则将栈顶元素 `top` 取出，计算 `int(top / num)`，并将计算结果压入栈中。\n3. 如果遇到 `+`、`-`、`*`、`/` 操作符，则更新 `op`。\n4. 最后将栈中整数进行累加，并返回结果。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def calculate(self, s: str) -> int:\n        size = len(s)\n        stack = []\n        op = '+'\n        index = 0\n        while index < size:\n            if s[index] == ' ':\n                index += 1\n                continue\n            if s[index].isdigit():\n                num = ord(s[index]) - ord('0')\n                while index + 1 < size and s[index+1].isdigit():\n                    index += 1\n                    num = 10 * num + ord(s[index]) - ord('0')\n                if op == '+':\n                    stack.append(num)\n                elif op == '-':\n                    stack.append(-num)\n                elif op == '*':\n                    top = stack.pop()\n                    stack.append(top * num)\n                elif op == '/':\n                    top = stack.pop()\n                    stack.append(int(top / num))\n            elif s[index] in \"+-*/\":\n                op = s[index]\n            index += 1\n        return sum(stack)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-algonote10-5",
+    "title": "0224. 基本计算器",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、递归、数学、字符串 难度：困难 0224. 基本计算器 力扣 描述 ： 给定一个字符串表达式 $s$。 要求 ： 实现一个基本计算器来计算并返回它的值。 说明 ： 注意：",
+    "content": "# 0224. 基本计算器\n\n- 标签：栈、递归、数学、字符串\n- 难度：困难\n\n## 题目链接\n\n- 0224. 基本计算器 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串表达式 $s$。\n\n**要求**：\n\n实现一个基本计算器来计算并返回它的值。\n\n**说明**：\n\n- 注意：不允许使用任何将字符串作为数学表达式计算的内置函数，比如 `eval()`。\n- $1 \\le s.length \\le 3 \\times 10^{5}$。\n- $s$ 由数字、`'+'`、`'-'`、`'('、')'`、和 `' '` 组成。\n- $s$ 表示一个有效的表达式。\n- `'+'` 不能用作一元运算(例如， `\"+1\"` 和 `\"+(2 + 3)\"` 无效)。\n- `'-'` 可以用作一元运算(即 `\"-1\"` 和 `\"-(2 + 3)\"` 是有效的)。\n- 输入中不存在两个连续的操作符。\n- 每个数字和运行的计算将适合于一个有符号的 32 位整数。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"1 + 1\"\n输出：2\n```\n\n- 示例 2：\n\n```python\n输入：s = \" 2-1 + 2 \"\n输出：3\n```\n\n## 解题思路\n\n### 思路 1：栈 + 递归\n\n使用栈来处理括号和运算符的优先级。由于只有加法和减法，我们可以通过维护一个符号栈来处理括号内的运算。\n\n具体步骤如下：\n\n1. 使用栈 $stack$ 来存储当前的计算结果和符号。\n2. 使用变量 $result$ 来存储当前的计算结果。\n3. 使用变量 $sign$ 来存储当前的符号（$+1$ 或 $-1$）。\n4. 遍历字符串 $s$：\n   - 如果遇到数字，则计算完整的数字值。\n   - 如果遇到 `+`，则设置 $sign = 1$。\n   - 如果遇到 `-`，则设置 $sign = -1$。\n   - 如果遇到 `(`，则将当前的 $result$ 和 $sign$ 压入栈中，并重置 $result$ 和 $sign$。\n   - 如果遇到 `)`，则从栈中弹出之前的结果和符号，与当前结果进行运算\n5. 最后返回 $result$。\n\n这种方法可以正确处理括号的嵌套和运算符的优先级。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def calculate(self, s: str) -> int:\n        # 使用栈来处理括号和运算符\n        stack = []\n        result = 0  # 当前计算结果\n        sign = 1    # 当前符号，1 表示正数，-1 表示负数\n        \n        i = 0\n        while i < len(s):\n            char = s[i]\n            \n            if char.isdigit():\n                # 计算完整的数字\n                num = 0\n                while i < len(s) and s[i].isdigit():\n                    num = num * 10 + int(s[i])\n                    i += 1\n                i -= 1  # 回退一位，因为外层循环会 i += 1\n                result += sign * num\n                \n            elif char == '+':\n                sign = 1\n                \n            elif char == '-':\n                sign = -1\n                \n            elif char == '(':\n                # 遇到左括号，将当前结果和符号压入栈\n                stack.append(result)\n                stack.append(sign)\n                # 重置结果和符号\n                result = 0\n                sign = 1\n                \n            elif char == ')':\n                # 遇到右括号，从栈中弹出之前的结果和符号\n                result *= stack.pop()  # 弹出符号\n                result += stack.pop()  # 弹出之前的结果\n                \n            # 跳过空格\n            i += 1\n            \n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串 $s$ 的长度。需要遍历字符串一次。\n- **空间复杂度**：$O(n)$，最坏情况下栈的深度为 $O(n)$，例如当所有括号都嵌套时。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-algonote10-6",
+    "title": "0296. 最佳的碰头地点",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、数学、矩阵、排序 难度：困难 0296. 最佳的碰头地点 力扣 描述 ： 给定一个 $m \\times n$ 的二进制网格 $grid$，其中 $1$ 表示某个朋友的家",
+    "content": "# 0296. 最佳的碰头地点\n\n- 标签：数组、数学、矩阵、排序\n- 难度：困难\n\n## 题目链接\n\n- 0296. 最佳的碰头地点 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个 $m \\times n$  的二进制网格 $grid$，其中 $1$ 表示某个朋友的家所处的位置。\n\n**要求**：\n\n返回「最小的」总行走距离。\n\n**说明**：\n\n- 总行走距离：指的是朋友们家到碰头地点的距离之和。使用「曼哈顿距离」来计算，其中 $distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|$。\n- $m == grid.length$。\n- $n == grid[i].length$。\n- $1 \\le m, n \\le 200$。\n- $grid[i][j]$ 等于 $0$ 或者 $1$。\n- $grid$ 中 至少 有两个朋友。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2021_03_14_meetingpoint-grid.jpg)\n\n```python\n输入: grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]\n输出: 6 \n解释: 给定的三个人分别住在(0,0)，(0,4) 和 (2,2):\n     (0,2) 是一个最佳的碰面点，其总行走距离为 2 + 2 + 2 = 6，最小，因此返回 6。\n```\n\n- 示例 2：\n\n```python\n输入: grid = [[1,1]]\n输出: 1\n```\n\n## 解题思路\n\n### 思路 1：中位数优化\n\n这是一个经典的数学优化问题。关键点在于：对于曼哈顿距离，$x$ 坐标和 $y$ 坐标可以独立优化。\n\n具体思路：\n1. 收集所有朋友的位置坐标，分别得到 $x$ 坐标数组 $X$ 和 $y$ 坐标数组 $Y$\n2. 对 $x$ 坐标和 $y$ 坐标分别排序\n3. 最优的碰头地点的 $x$ 坐标是 $X$ 的中位数，$y$ 坐标是 $Y$ 的中位数\n4. 计算所有朋友到最优碰头地点的曼哈顿距离之和\n\n**数学原理**：对于一维情况，中位数是最小化绝对偏差和的最优解。由于曼哈顿距离可以分解为 $x$ 坐标差和 $y$ 坐标差的和，所以可以分别优化。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def minTotalDistance(self, grid: List[List[int]]) -> int:\n        \"\"\"\n        找到最佳的碰头地点，使所有朋友的总行走距离最小\n        \"\"\"\n        m, n = len(grid), len(grid[0])\n        \n        # 收集所有朋友的位置坐标\n        x_coords = []\n        y_coords = []\n        \n        for i in range(m):\n            for j in range(n):\n                if grid[i][j] == 1:\n                    x_coords.append(i)  # 行坐标\n                    y_coords.append(j)  # 列坐标\n        \n        # 对坐标进行排序\n        x_coords.sort()\n        y_coords.sort()\n        \n        # 计算中位数位置\n        k = len(x_coords)\n        median_x = x_coords[k // 2]  # x 坐标的中位数\n        median_y = y_coords[k // 2]  # y 坐标的中位数\n        \n        # 计算总距离\n        total_distance = 0\n        for i in range(k):\n            total_distance += abs(x_coords[i] - median_x) + abs(y_coords[i] - median_y)\n        \n        return total_distance\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n + k \\log k)$，其中 $m \\times n$ 是遍历网格的时间，$k$ 是朋友的数量，$k \\log k$ 是排序的时间。\n- **空间复杂度**：$O(k)$，用于存储所有朋友的坐标。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-algonote10-7",
+    "title": "0298. 二叉树最长连续序列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉树 难度：中等 0298. 二叉树最长连续序列 力扣 描述 ： 给你一棵指定的二叉树的根节点 $root$。 要求 ： 计算其中「最长连续序列路径」的长",
+    "content": "# 0298. 二叉树最长连续序列\n\n- 标签：树、深度优先搜索、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0298. 二叉树最长连续序列 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给你一棵指定的二叉树的根节点 $root$。\n\n**要求**：\n\n计算其中「最长连续序列路径」的长度。\n\n**说明**：\n\n- 「最长连续序列路径」是依次递增 $1$ 的路径。该路径，可以是从某个初始节点到树中任意节点，通过「父 - 子」关系连接而产生的任意路径。且必须从父节点到子节点，反过来是不可以的。\n- 树中节点的数目在范围 $[1, 3 \\times 10^{4}]$ 内。\n- $-3 \\times 10^{4} \\le Node.val \\le 3 \\times 10^{4}$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2021_03_14_consec1-1-tree.jpg)\n\n```python\n输入：root = [1,null,3,2,4,null,null,null,5]\n输出：3\n解释：当中，最长连续序列是 3-4-5 ，所以返回结果为 3。\n```\n\n- 示例 2：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2021_03_14_consec1-2-tree.jpg)\n\n```python\n输入：root = [2,null,3,2,null,1]\n输出：2\n解释：当中，最长连续序列是 2-3 。注意，不是 3-2-1，所以返回 2。\n```\n\n## 解题思路\n\n### 思路 1：深度优先搜索\n\n这是一个典型的树形动态规划问题。我们需要找到二叉树中最长的连续递增序列路径。\n\n我们可以使用深度优先搜索来解决这个问题：\n\n1. **明确问题**：对于每个节点，我们需要计算以该节点为起点的最长连续序列长度。\n2. **状态定义**：定义 $dfs(node)$ 函数，返回以 $node$ 为起点的最长连续序列长度。\n3. **状态转移**：\n   - 如果 $node.left$ 存在且 $node.left.val = node.val + 1$，则左子树可以延续当前序列。\n   - 如果 $node.right$ 存在且 $node.right.val = node.val + 1$，则右子树可以延续当前序列。\n   - 取左右子树中的最大值，加上当前节点（长度为 $1$）。\n4. **全局最优**：在遍历过程中，维护全局最长序列长度 $max_length$。\n\n### 思路 1：代码\n\n```python\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def longestConsecutive(self, root: Optional[TreeNode]) -> int:\n        self.max_length = 0  # 全局最长序列长度\n        \n        def dfs(node):\n            if not node:\n                return 0\n            \n            # 计算以当前节点为起点的最长连续序列长度\n            current_length = 1\n            \n            # 递归计算左右子树\n            left_length = dfs(node.left)\n            right_length = dfs(node.right)\n            \n            # 如果左子节点可以延续当前序列\n            if node.left and node.left.val == node.val + 1:\n                current_length = max(current_length, left_length + 1)\n            \n            # 如果右子节点可以延续当前序列\n            if node.right and node.right.val == node.val + 1:\n                current_length = max(current_length, right_length + 1)\n            \n            # 更新全局最长序列长度\n            self.max_length = max(self.max_length, current_length)\n            \n            return current_length\n        \n        dfs(root)  # 从根节点开始深度优先搜索\n        return self.max_length\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是树中节点的数量。每个节点都会被访问一次。\n- **空间复杂度**：$O(h)$，其中 $h$ 是树的高度。递归调用栈的深度最多为树的高度。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-algonote10-8",
+    "title": "0257. 二叉树的所有路径",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、字符串、回溯、二叉树 难度：简单 0257. 二叉树的所有路径 力扣 给定一个二叉树，返回所有从根节点到叶子节点的路径。 深度优先搜索。在递归遍历时，需考虑",
+    "content": "# 0257. 二叉树的所有路径\n\n- 标签：树、深度优先搜索、字符串、回溯、二叉树\n- 难度：简单\n\n## 题目链接\n\n- 0257. 二叉树的所有路径 - 力扣\n\n## 题目大意\n\n给定一个二叉树，返回所有从根节点到叶子节点的路径。\n\n## 解题思路\n\n深度优先搜索。在递归遍历时，需考虑当前节点和左右孩子节点。\n\n- 如果当前节点不是叶子节点，则当前拼接路径中加入该点，并继续递归遍历。\n- 如果当前节点是叶子节点，则当前拼接路径中加入该点，并将当前路径加入答案数组。\n\n## 代码\n\n```python\nclass Solution:\n    def binaryTreePaths(self, root: TreeNode) -> List[str]:\n        res = []\n        def dfs(root, path):\n            if not root:\n                return\n            path += str(root.val)\n            if not root.left and not root.right:\n                res.append(path)\n            elif not root.right:\n                dfs(root.left, path + \"->\")\n            elif not root.left:\n                dfs(root.right, path + \"->\")\n            else:\n                dfs(root.left, path + \"->\")\n                dfs(root.right, path + \"->\")\n        dfs(root, \"\")\n        return res\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote10-9",
+    "title": "0201. 数字范围按位与",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算 难度：中等 0201. 数字范围按位与 力扣 描述 ：给定两个整数 $left$ 和 $right$，表示区间 $ left, right $。 要求 ：返回此区间内",
+    "content": "# 0201. 数字范围按位与\n\n- 标签：位运算\n- 难度：中等\n\n## 题目链接\n\n- 0201. 数字范围按位与 - 力扣\n\n## 题目大意\n\n**描述**：给定两个整数 $left$ 和 $right$，表示区间 $[left, right]$。\n\n**要求**：返回此区间内所有数字按位与的结果（包含 $left$、$right$ 端点）。\n\n**说明**：\n\n- $0 \\le left \\le right \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：left = 5, right = 7\n输出：4\n```\n\n- 示例 2：\n\n```python\n输入：left = 1, right = 2147483647\n输出：0\n```\n\n## 解题思路\n\n### 思路 1：位运算\n\n很容易想到枚举算法：对于区间 $[left, right]$，如果使用枚举算法，对区间范围内的数依次进行按位与操作，最后输出结果。\n\n但是枚举算法在区间范围很大的时候会超时，所以我们应该换个思路来解决这道题。\n\n我们知道与运算的规则如下：\n\n- `0 & 0 == 0`\n- `0 & 1 == 0`\n- `1 & 0 == 0`\n- `1 & 1 == 1`。\n\n只有对应位置上都为 $1$ 的情况下，按位与才能得到 $1$。而对应位置上只要出现 $0$，则该位置上最终的按位与结果一定为 $0$。\n\n那么我们可以先来求一下区间所有数对应二进制的公共前缀，假设这个前缀的长度为 $x$。\n\n公共前缀部分因为每个位置上的二进制值完全一样，所以按位与的结果也相同。\n\n接下来考虑除了公共前缀的剩余的二进制位部分。\n\n这时候剩余部分有两种情况：\n\n- $x = 31$。则 $left == right$，其按位与结果就是 $left$ 本身。\n- $0 \\le x < 31$。这种情况下因为 $left < right$，所以 $left$ 的第 $x + 1$ 位必然为 $0$，$right$ 的第 $x + 1$ 位必然为 $1$。\n  - 注意：$left$、$right$ 第 $x + 1$ 位上不可能同为 $0$ 或 $1$，这样就是公共前缀了。\n  - 注意：同样不可能是 $left$ 第 $x + 1$ 位为 $1$，$right$ 第 $x + 1$ 位为 $0$，这样就是 $left > right$ 了。\n\n而从第 $x + 1$ 位起，从 $left$ 到 $right$。肯定会经过 $10000...$ 的位置，从而使得除了公共前缀的剩余部分（后面的 $31 - x$ 位）的按位与结果一定为 $0$。\n\n举个例子，$x = 27$，则除了公共前缀的剩余部分长度为 $4$。则剩余部分从 $0XXX$ 到 $1XXX$ 必然会经过 $1000$，则剩余部分的按位与结果为 $0000$。\n\n那么这道题就转变为了求 $[left, right]$ 区间范围内所有数的二进制公共前缀，然后在后缀位置上补上 $0$。\n\n求解公共前缀，我们借助于 Brian Kernigham 算法中的 `n & (n - 1)` 公式来计算。\n\n- `n & (n - 1)` 公式：对 $n$ 和 $n - 1$ 进行按位与运算后，$n$ 最右边的 $1$ 会变成 $0$，也就是清除了 $n$ 对应二进制的最右侧的 $1$。比如 $n = 10110100_{(2)}$，进行 `n & (n - 1)` 操作之后，就变为了 $n = 10110000_{(2)}$。\n\n具体计算步骤如下：\n\n1. 对于给定的区间范围 $[left, right]$，对 $right$ 进行 `right & (right - 1)` 迭代。\n2. 直到 $right$ 小于等于 $left$，此时区间内非公共前缀的 $1$ 均变为了 $0$。\n3. 最后输出 $right$ 作为答案。\n\n### 思路 1：位运算代码\n\n```python\nclass Solution:\n    def rangeBitwiseAnd(self, left: int, right: int) -> int:\n        while left < right:\n            right = right & (right - 1)\n        return right\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。\n- **空间复杂度**：$O(1)$。\n\n## 参考资料\n\n- 【题解】巨好理解的位运算思路 - 数字范围按位与 - 力扣",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-algonote10-10",
+    "title": "0299. 猜数字游戏",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、字符串、计数 难度：中等 0299. 猜数字游戏 力扣 描述 ： 你在和朋友一起玩 猜数字（Bulls and Cows）游戏，该游戏规则如下： 写出一个秘密数字，并",
+    "content": "# 0299. 猜数字游戏\n\n- 标签：哈希表、字符串、计数\n- 难度：中等\n\n## 题目链接\n\n- 0299. 猜数字游戏 - 力扣\n\n## 题目大意\n\n**描述**：\n\n你在和朋友一起玩 猜数字（Bulls and Cows）游戏，该游戏规则如下：\n\n写出一个秘密数字，并请朋友猜这个数字是多少。朋友每猜测一次，你就会给他一个包含下述信息的提示：\n\n- 猜测数字中有多少位属于数字和确切位置都猜对了（称为 `\"Bulls\"`，公牛），\n- 有多少位属于数字猜对了但是位置不对（称为 `\"Cows\"`，奶牛）。也就是说，这次猜测中有多少位非公牛数字可以通过重新排列转换成公牛数字。\n\n给定一个秘密数字 $secret$ 和朋友猜测的数字 $guess$。\n\n**要求**：\n\n请你返回对朋友这次猜测的提示。\n\n提示的格式为 `\"xAyB\"`，$x$ 是公牛个数， $y$ 是奶牛个数，$A$ 表示公牛，$B$ 表示奶牛。\n\n请注意秘密数字和朋友猜测的数字都可能含有重复数字。\n\n**说明**：\n\n- $1 \\le secret.length, guess.length \\le 10^{3}$。\n- $secret.length == guess.length$。\n- $secret$ 和 $guess$ 仅由数字组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：secret = \"1807\", guess = \"7810\"\n输出：\"1A3B\"\n解释：数字和位置都对（公牛）用 '|' 连接，数字猜对位置不对（奶牛）的采用斜体加粗标识。\n\"1807\"\n  |\n\"7810\"\n```\n\n- 示例 2：\n\n```python\n输入：secret = \"1123\", guess = \"0111\"\n输出：\"1A1B\"\n解释：数字和位置都对（公牛）用 '|' 连接，数字猜对位置不对（奶牛）的采用斜体加粗标识。\n\"1123\"        \"1123\"\n  |      or     |\n\"0111\"        \"0111\"\n注意，两个不匹配的 1 中，只有一个会算作奶牛（数字猜对位置不对）。通过重新排列非公牛数字，其中仅有一个 1 可以成为公牛数字。\n```\n\n## 解题思路\n\n### 思路 1：哈希表计数\n\n这是一个典型的计数问题。我们需要分别统计 Bulls 和 Cows 的数量。\n\n**算法步骤**：\n\n1. **统计 Bulls**：遍历 $secret$ 和 $guess$，如果 $secret[i] = guess[i]$，则 $bulls$ 计数加 $1$。\n\n2. **统计 Cows**：\n   - 使用哈希表 $secret_count$ 统计 $secret$ 中每个数字的出现次数（排除 Bulls 位置）。\n   - 使用哈希表 $guess_count$ 统计 $guess$ 中每个数字的出现次数（排除 Bulls 位置）。\n   - 对于每个数字 $digit$，$cows$ 加上 $min(secret_count[digit], guess_count[digit])$。\n\n3. **返回结果**：返回格式为 $f\"{bulls}A{cows}B\"$。\n\n**关键点**：\n\n- Bulls 位置的数字不能重复计算为 Cows。\n- 对于重复数字，Cows 的数量是两者中较小值。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def getHint(self, secret: str, guess: str) -> str:\n        bulls = 0  # Bulls 计数：位置和数字都正确\n        cows = 0   # Cows 计数：数字正确但位置错误\n        \n        # 统计 Bulls\n        secret_chars = list(secret)\n        guess_chars = list(guess)\n        \n        for i in range(len(secret)):\n            if secret_chars[i] == guess_chars[i]:\n                bulls += 1\n                # 将 Bulls 位置的字符标记为已使用，避免重复计算\n                secret_chars[i] = 'X'\n                guess_chars[i] = 'X'\n        \n        # 统计 Cows\n        secret_count = {}  # secret 中每个数字的出现次数（排除 Bulls）\n        guess_count = {}   # guess 中每个数字的出现次数（排除 Bulls）\n        \n        # 统计 secret 中非 Bulls 位置的数字\n        for char in secret_chars:\n            if char != 'X':\n                secret_count[char] = secret_count.get(char, 0) + 1\n        \n        # 统计 guess 中非 Bulls 位置的数字\n        for char in guess_chars:\n            if char != 'X':\n                guess_count[char] = guess_count.get(char, 0) + 1\n        \n        # 计算 Cows：对于每个数字，取两者中的较小值\n        for digit in secret_count:\n            if digit in guess_count:\n                cows += min(secret_count[digit], guess_count[digit])\n        \n        return f\"{bulls}A{cows}B\"\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串长度。需要遍历字符串两次，哈希表操作的时间复杂度为 $O(1)$。\n- **空间复杂度**：$O(1)$，因为数字只有 $0-9$ 共 $10$ 种，哈希表最多存储 $10$ 个键值对，空间复杂度为常数。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-algonote10-11",
+    "title": "0272. 最接近的二叉搜索树值 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、树、深度优先搜索、二叉搜索树、双指针、二叉树、堆（优先队列） 难度：困难 0272. 最接近的二叉搜索树值 II 力扣 描述 ： 给定二叉搜索树的根 $root$ 、一个",
+    "content": "# 0272. 最接近的二叉搜索树值 II\n\n- 标签：栈、树、深度优先搜索、二叉搜索树、双指针、二叉树、堆（优先队列）\n- 难度：困难\n\n## 题目链接\n\n- 0272. 最接近的二叉搜索树值 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定二叉搜索树的根 $root$ 、一个目标值 $target$ 和一个整数 $k$。\n\n**要求**：\n\n返回 BST 中最接近目标的 $k$ 个值。你可以按任意顺序返回答案。\n\n**说明**：\n\n- 题目保证该二叉搜索树中只会存在一种 $k$ 个值集合最接近 $target$。\n- 二叉树的节点总数为 n。\n- $1 \\le k \\le n \\le 10^{4}$。\n- $0 \\le Node.val \\le 10^{9}$。\n- $-10^{9} \\le target \\le 10^{9}$。\n\n- 进阶：假设该二叉搜索树是平衡的，请问您是否能在小于 O(n)（ n = total nodes ）的时间复杂度内解决该问题呢？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2021_03_12_closest1-1-tree.jpg)\n\n```python\n输入: root = [4,2,5,1,3]，目标值 = 3.714286，且 k = 2\n输出: [4,3]\n```\n\n- 示例 2：\n\n```python\n输入: root = [1], target = 0.000000, k = 1\n输出: [1]\n```\n\n## 解题思路\n\n### 思路 1：中序遍历 + 排序\n\n这是一个典型的二叉搜索树问题。我们需要找到 BST 中最接近目标值 $target$ 的 $k$ 个值。\n\n我们可以使用中序遍历 + 排序的方法来解决这个问题：\n\n1. **中序遍历**：由于 BST 的中序遍历结果是有序的，我们可以先通过中序遍历得到所有节点的值，存储在数组 $values$ 中。\n2. **按距离排序**：将所有节点值按照与 $target$ 的距离进行排序，选择距离最小的 $k$ 个值。\n3. **算法步骤**：\n   - 对 BST 进行中序遍历，得到有序数组 $values$。\n   - 创建一个包含节点值和距离的列表 $distances$，其中每个元素为 $(|value - target|, value)$。\n   - 对 $distances$ 按照距离进行排序。\n   - 取前 $k$ 个元素的值作为结果。\n\n### 思路 1：代码\n\n```python\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def closestKValues(self, root: Optional[TreeNode], target: float, k: int) -> List[int]:\n        values = []  # 存储中序遍历的结果\n        \n        def inorder(node):\n            \"\"\"中序遍历 BST，得到有序数组\"\"\"\n            if not node:\n                return\n            inorder(node.left)   # 遍历左子树\n            values.append(node.val)  # 访问根节点\n            inorder(node.right)  # 遍历右子树\n        \n        inorder(root)  # 执行中序遍历\n        \n        # 创建距离列表，每个元素为 (距离, 值)\n        distances = []\n        for value in values:\n            distance = abs(value - target)\n            distances.append((distance, value))\n        \n        # 按距离排序，取前 k 个值\n        distances.sort()\n        result = [distances[i][1] for i in range(k)]\n        \n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\log n)$，其中 $n$ 是 BST 中节点的数量。需要遍历所有节点进行中序遍历，然后对距离进行排序。\n- **空间复杂度**：$O(n)$，需要存储中序遍历的结果数组、距离列表，以及递归调用栈的空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-algonote10-12",
+    "title": "0270. 最接近的二叉搜索树值",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉搜索树、二分查找、二叉树 难度：简单 0270. 最接近的二叉搜索树值 力扣 描述 ：给定一个不为空的二叉搜索树的根节点，以及一个目标值 $target",
+    "content": "# 0270. 最接近的二叉搜索树值\n\n- 标签：树、深度优先搜索、二叉搜索树、二分查找、二叉树\n- 难度：简单\n\n## 题目链接\n\n- 0270. 最接近的二叉搜索树值 - 力扣\n\n## 题目大意\n\n**描述**：给定一个不为空的二叉搜索树的根节点，以及一个目标值 $target$。\n\n**要求**：在二叉搜索树中找到最接近目标值 $target$ 的数值。\n\n**说明**：\n\n-  树中节点的数目在范围 $[1, 10^4]$ 内。\n- $0 \\le Node.val \\le 10^9$。\n- $-10^9 \\le target \\le 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2021_03_12_closest1-1-tree.jpg)\n\n```python\n输入：root = [4,2,5,1,3], target = 3.714286\n输出：4\n```\n\n- 示例 2：\n\n```python\n输入：root = [1], target = 4.428571\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：二分查找算法\n\n题目中最接近目标值 $target$ 的数值指的就是与 $target$ 相减绝对值最小的数值。\n\n而且根据二叉搜索树的性质，我们可以利用二分搜索的方式，查找与 $target$ 相减绝对值最小的数值。具体做法为：\n\n- 定义一个变量 $closest$ 表示与 $target$ 最接近的数值，初始赋值为根节点的值 $root.val$。\n- 判断当前节点的值域 $closet$ 值哪个更接近 $target$，如果当前值更接近，则更新 $closest$。\n- 如果 $target$ < 当前节点值，则从当前节点的左子树继续查找。\n- 如果 $target$ ≥ 当前节点值，则从当前节点的右子树继续查找。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def closestValue(self, root: TreeNode, target: float) -> int:\n        closest = root.val\n        while root:\n            if abs(target - root.val) < abs(target - closest):\n                closest = root.val\n            if target < root.val:\n                root = root.left\n            else:\n                root = root.right\n        return closest\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$，其中 $n$ 为二叉搜索树的节点个数。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-algonote10-13",
+    "title": "0216. 组合总和 III",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、回溯 难度：中等 0216. 组合总和 III 力扣 描述 ： 给定两个整数 $n$ 和 $k$。 要求 ： 找出所有相加之和为 $n$ 的 $k$ 个数的组合，且满足",
+    "content": "# 0216. 组合总和 III\n\n- 标签：数组、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0216. 组合总和 III - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定两个整数 $n$ 和 $k$。\n\n**要求**：\n\n找出所有相加之和为 $n$ 的 $k$ 个数的组合，且满足下列条件：\n\n- 只使用数字 $1$ 到 $9$\n- 每个数字最多使用一次。\n\n返回所有可能的有效组合的列表。该列表不能包含相同的组合两次，组合可以以任何顺序返回。\n\n**说明**：\n\n- $2 \\le k \\le 9$。\n- $1 \\le n \\le 60$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n示例 1:\n输入: k = 3, n = 7\n输出: [[1,2,4]]\n解释:\n1 + 2 + 4 = 7\n没有其他符合的组合了。\n```\n\n- 示例 2：\n\n```python\n输入: k = 3, n = 9\n输出: [[1,2,6], [1,3,5], [2,3,4]]\n解释:\n1 + 2 + 6 = 9\n1 + 3 + 5 = 9\n2 + 3 + 4 = 9\n没有其他符合的组合了。\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n这是一个典型的回溯算法问题。我们需要从数字 $1$ 到 $9$ 中选择 $k$ 个数字，使得它们的和等于 $n$，且每个数字最多使用一次。\n\n我们可以使用回溯算法来解决这个问题：\n\n1. **明确所有选择**：对于每个位置，我们可以选择数字 $1$ 到 $9$ 中的任意一个（前提是该数字还没有被使用过）。\n2. **明确终止条件**：\n   - 当选择的数字个数达到 $k$ 个时，检查这些数字的和是否等于 $n$。\n   - 如果和等于 $n$，则找到一个有效组合，将其加入结果集。\n   - 如果和大于 $n$，则剪枝，因为继续选择只会使和更大。\n3. **将决策树和终止条件翻译成代码**：\n   - 定义回溯函数：`backtracking(start, path, current_sum)`，其中 $start$ 表示当前可以选择的数字范围，$path$ 表示当前选择的数字组合，$current_sum$ 表示当前数字组合的和。\n   - 对于每个位置，从 $start$ 开始枚举可选数字，避免重复选择。\n   - 选择数字后递归搜索，搜索完成后撤销选择（回溯）。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def combinationSum3(self, k: int, n: int) -> List[List[int]]:\n        res = []  # 存放所有符合条件结果的集合\n        path = []  # 存放当前符合条件的结果\n        \n        def backtracking(start, path, current_sum):\n            # 终止条件：选择的数字个数达到 k 个\n            if len(path) == k:\n                if current_sum == n:  # 如果和等于 n，找到一个有效组合\n                    res.append(path[:])  # 将当前组合加入结果集\n                return\n            \n            # 剪枝：如果当前和已经大于 n，或者剩余数字无法凑够 k 个数字\n            if current_sum > n or len(path) + (9 - start + 1) < k:\n                return\n            \n            # 枚举可选数字\n            for i in range(start, 10):  # 从 start 到 9\n                path.append(i)  # 选择数字 i\n                backtracking(i + 1, path, current_sum + i)  # 递归搜索\n                path.pop()  # 撤销选择（回溯）\n        \n        backtracking(1, path, 0)  # 从数字 1 开始搜索\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(C(9,k) \\times k)$，其中 $C(9,k)$ 表示从 $9$ 个数字中选择 $k$ 个数字的组合数。最坏情况下需要遍历所有可能的组合，每个组合需要 $O(k)$ 的时间来构造。\n- **空间复杂度**：$O(k)$，递归调用栈的深度最多为 $k$，每次递归需要 $O(1)$ 的额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-algonote10-14",
+    "title": "0219. 存在重复元素 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、滑动窗口 难度：简单 0219. 存在重复元素 II 力扣 描述 ：给定一个整数数组 $nums$ 和一个整数 $k$。 要求 ：判断是否存在 $nums i ",
+    "content": "# 0219. 存在重复元素 II\n\n- 标签：数组、哈希表、滑动窗口\n- 难度：简单\n\n## 题目链接\n\n- 0219. 存在重复元素 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$ 和一个整数 $k$。\n\n**要求**：判断是否存在 $nums[i] == nums[j]$（$i \\ne j$），并且 $i$ 和 $j$ 的差绝对值至多为 $k$。\n\n**说明**：\n\n- $1 \\le nums.length \\le 10^5$。\n- $-10^9 <= nums[i] <= 10^9$。\n- $0 \\le k \\le 10^5$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,3,1], k = 3\n输出：True\n```\n\n## 解题思路\n\n### 思路 1：哈希表\n\n维护一个最多有 $k$ 个元素的哈希表。遍历 $nums$，对于数组中的每个整数 $nums[i]$，判断哈希表中是否存在这个整数。\n\n- 如果存在，则说明出现了两次，且 $i \\ne j$，直接返回 $True$。\n\n- 如果不存在，则将 $nums[i]$ 加入哈希表。\n- 判断哈希表长度是否超过了 $k$，如果超过了 $k$，则删除哈希表中最旧的元素 $nums[i - k]$。\n- 如果遍历完仍旧找不到，则返回 $False$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        nums_dict = dict()\n        for i in range(len(nums)):\n            if nums[i] in nums_dict:\n                return True\n            nums_dict[nums[i]] = 1\n            if len(nums_dict) > k:\n                del nums_dict[nums[i - k]]\n        return False\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-algonote10-15",
+    "title": "0220. 存在重复元素 III",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、桶排序、有序集合、排序、滑动窗口 难度：中等 0220. 存在重复元素 III 力扣 描述 ：给定一个整数数组 $nums$，以及两个整数 $k$、$t$。 要求 ：判",
+    "content": "# 0220. 存在重复元素 III\n\n- 标签：数组、桶排序、有序集合、排序、滑动窗口\n- 难度：中等\n\n## 题目链接\n\n- 0220. 存在重复元素 III - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$，以及两个整数 $k$、$t$。\n\n**要求**：判断数组中是否存在两个不同下标的 $i$ 和 $j$，其对应元素满足 $abs(nums[i] - nums[j]) \\le t$，同时满足 $abs(i - j) \\le k$。如果满足条件则返回 `True`，不满足条件返回 `False`。\n\n**说明**：\n\n- $0 \\le nums.length \\le 2 \\times 10^4$。\n- $-2^{31} \\le nums[i] \\le 2^{31} - 1$。\n- $0 \\le k \\le 10^4$。\n- $0 \\le t \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,3,1], k = 3, t = 0\n输出：True\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1,0,1,1], k = 1, t = 2\n输出：True\n```\n\n## 解题思路\n\n题目中需要满足两个要求，一个是元素值的要求（$abs(nums[i] - nums[j]) \\le t$） ，一个是下标范围的要求（$abs(i - j) \\le k$）。\n\n对于任意一个位置 $i$ 来说，合适的 $j$ 应该在区间 $[i - k, i + k]$ 内，同时 $nums[j]$ 值应该在区间 $[nums[i] - t, nums[i] + t]$ 内。\n\n最简单的做法是两重循环遍历数组，第一重循环遍历位置 $i$，第二重循环遍历 $[i - k, i + k]$ 的元素，判断是否满足 $abs(nums[i] - nums[j]) \\le t$。但是这样做的时间复杂度为 $O(n \\times k)$，其中 $n$ 是数组 $nums$ 的长度。\n\n我们需要优化一下检测相邻 $2 \\times k$ 个元素是否满足 $abs(nums[i] - nums[j]) \\le t$ 的方法。有两种思路：「桶排序」和「滑动窗口（固定长度）」。\n\n### 思路 1：桶排序\n\n1. 利用桶排序的思想，将桶的大小设置为 $t + 1$。只需要使用一重循环遍历位置 $i$，然后根据 $\\lfloor \\frac{nums[i]}{t + 1} \\rfloor$，从而决定将 $nums[i]$ 放入哪个桶中。\n2. 这样在同一个桶内各个元素之间的差值绝对值都小于等于 $t$。而相邻桶之间的元素，只需要校验一下两个桶之间的差值是否不超过 $t$。这样就可以以 $O(1)$ 的时间复杂度检测相邻 $2 \\times k$ 个元素是否满足 $abs(nums[i] - nums[j]) \\le t$。\n3. 而 $abs(i - j) \\le k$ 条件则可以通过在一重循环遍历时，将超出范围的 $nums[i - k]$ 从对应桶中删除，从而保证桶中元素一定满足 $abs(i - j) \\le k$。\n\n具体步骤如下：\n\n1. 将每个桶的大小设置为 $t + 1$。我们将元素按照大小依次放入不同的桶中。\n2. 遍历数组 $nums$ 中的元素，对于元素$ nums[i]$ ：\n   1. 如果 $nums[i]$ 放入桶之前桶里已经有元素了，那么这两个元素必然满足 $abs(nums[i] - nums[j]) \\le t$，\n   2. 如果之前桶里没有元素，那么就将 $nums[i]$ 放入对应桶中。\n   3. 再判断左右桶的左右两侧桶中是否有元素满足 $abs(nums[i] - nums[j]) <= t$。\n   4. 然后将 $nums[i - k]$ 之前的桶清空，因为这些桶中的元素与 $nums[i]$ 已经不满足 $abs(i - j) \\le k$ 了。\n3. 最后上述满足条件的情况就返回 `True`，最终遍历完仍不满足条件就返回 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:\n        bucket_dict = dict()\n        for i in range(len(nums)):\n            # 将 nums[i] 划分到大小为 t + 1 的不同桶中\n            num = nums[i] // (t + 1)\n\n            # 桶中已经有元素了\n            if num in bucket_dict:\n                return True\n\n            # 把 nums[i] 放入桶中\n            bucket_dict[num] = nums[i]\n\n            # 判断左侧桶是否满足条件\n            if (num - 1) in bucket_dict and abs(bucket_dict[num - 1] - nums[i]) <= t:\n                return True\n            # 判断右侧桶是否满足条件\n            if (num + 1) in bucket_dict and abs(bucket_dict[num + 1] - nums[i]) <= t:\n                return True\n            # 将 i - k 之前的旧桶清除，因为之前的桶已经不满足条件了\n            if i >= k:\n                bucket_dict.pop(nums[i - k] // (t + 1))\n\n        return False\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。$n$ 是给定数组长度。\n- **空间复杂度**：$O(min(n, k))$。桶中最多包含 $min(n, k + 1)$ 个元素。\n\n### 思路 2：滑动窗口（固定长度）\n\n1. 使用一个长度为 $k$ 的滑动窗口，每次遍历到 $nums[right]$ 时，滑动窗口内最多包含 $nums[right]$ 之前最多 $k$ 个元素。只需要检查前 $k$ 个元素是否在 $[nums[right] - t, nums[right] + t]$ 区间内即可。\n2. 检查 $k$ 个元素是否在 $[nums[right] - t, nums[right] + t]$ 区间，可以借助保证有序的数据结构（比如 `SortedList`）+ 二分查找来解决，从而减少时间复杂度。\n\n具体步骤如下：\n\n1. 使用有序数组类 $window$ 维护一个长度为 $k$ 的窗口，满足数组内元素有序，且支持增加和删除操作。\n2. $left$、$right$ 都指向序列的第一个元素。即：`left = 0`，`right = 0`。\n3. 将当前元素填入窗口中，即 `window.add(nums[right])`。\n4. 当窗口元素大于 $k$ 个时，即当 $right - left > k$ 时，移除窗口最左侧元素，并向右移动 $left$。\n5. 当窗口元素小于等于 $k$ 个时：\n   1. 使用二分查找算法，查找 $nums[right]$ 在 $window$ 中的位置 $idx$。\n   2. 判断 $window[idx]$ 与相邻位置上元素差值绝对值，如果满足 $abs(window[idx] - window[idx - 1]) \\le t$ 或者 $abs(window[idx + 1] - window[idx]) \\le t$ 时返回 `True`。\n6. 向右移动 $right$。\n7. 重复 $3 \\sim 6$ 步，直到 $right$ 到达数组末尾，如果还没找到满足条件的情况，则返回 `False`。\n\n### 思路 2：代码\n\n```python\nfrom sortedcontainers import SortedList\n\nclass Solution:\n    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:\n        size = len(nums)\n        window = SortedList()\n        left, right = 0, 0\n        while right < size:\n            window.add(nums[right])\n            \n            if right - left > k:\n                window.remove(nums[left])\n                left += 1\n            \n            idx = bisect.bisect_left(window, nums[right])\n            \n            if idx > 0 and abs(window[idx] - window[idx - 1]) <= t:\n                return True\n            if idx < len(window) - 1 and abs(window[idx + 1] - window[idx]) <= t:\n                return True\n\n            right += 1\n\n        return False\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log (min(n, k)))$。\n- **空间复杂度**：$O(min(n, k))$。\n\n## 参考资料\n\n- 【题解】利用桶的原理O(n)，Python3 - 存在重复元素 III - 力扣",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-algonote10-16",
+    "title": "0217. 存在重复元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、排序 难度：简单 0217. 存在重复元素 力扣 描述 ：给定一个整数数组 nums 。 要求 ：判断是否存在重复元素。如果有元素在数组中出现至少两次，返回 T",
+    "content": "# 0217. 存在重复元素\n\n- 标签：数组、哈希表、排序\n- 难度：简单\n\n## 题目链接\n\n- 0217. 存在重复元素 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 `nums`。\n\n**要求**：判断是否存在重复元素。如果有元素在数组中出现至少两次，返回 `True`；否则返回 `False`。\n\n**说明**：\n\n- $1 \\le nums.length \\le 10^5$。\n- $-10^9 \\le nums[i] \\le 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,3,1]\n输出：True\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1,2,3,4]\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：哈希表\n\n- 使用一个哈希表存储元素和对应元素数量。\n- 遍历元素，如果哈希表中出现了该元素，则直接输出 `True`。如果没有出现，则向哈希表中插入该元素。\n- 如果遍历完也没发现重复元素，则输出 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        numDict = dict()\n        for num in nums:\n            if num in numDict:\n                return True\n            else:\n                numDict[num] = num\n        return False\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。\n\n### 思路 2：集合\n\n- 使用一个 `set` 集合存储数组中所有元素。\n- 如果集合中元素个数与数组元素个数不同，则说明出现了重复元素，返回 `True`。\n- 如果集合中元素个数与数组元素个数相同，则说明没有出现了重复元素，返回 `False`。\n\n### 思路 2：集合代码\n\n```python\nclass Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        return len(set(nums)) != len(nums)\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。\n\n### 思路 3：排序\n\n- 对数组进行排序。\n- 排序之后，遍历数组，判断相邻元素之间是否出现重复元素。\n- 如果相邻元素相同，则说明出现了重复元素，返回 `True`。\n- 如果遍历完也没发现重复元素，则输出 `False`。\n\n### 思路 3：排序代码\n\n```python\nclass Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        nums.sort()\n        for i in range(1, len(nums)):\n            if nums[i - 1] == nums[i]:\n                return True\n        return False\n```\n\n### 思路 3：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-algonote10-18",
+    "title": "0204. 计数质数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、数学、枚举、数论 难度：中等 0204. 计数质数 力扣 描述 ：给定 一个非负整数 $n$。 要求 ：统计小于 $n$ 的质数数量。 说明 ： $0 \\le n \\l",
+    "content": "# 0204. 计数质数\n\n- 标签：数组、数学、枚举、数论\n- 难度：中等\n\n## 题目链接\n\n- 0204. 计数质数 - 力扣\n\n## 题目大意\n\n**描述**：给定 一个非负整数 $n$。\n\n**要求**：统计小于 $n$ 的质数数量。\n\n**说明**：\n\n- $0 \\le n \\le 5 * 10^6$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入 n = 10\n输出 4\n解释 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7。\n```\n\n- 示例 2：\n\n```python\n输入：n = 1\n输出：0\n```\n\n## 解题思路\n\n### 思路 1：枚举算法（超时）\n\n对于小于 $n$ 的每一个数 $x$，我们可以枚举区间 $[2, x - 1]$ 上的数是否是 $x$ 的因数，即是否存在能被 $x$ 整数的数。如果存在，则该数 $x$ 不是质数。如果不存在，则该数 $x$ 是质数。\n\n这样我们就可以通过枚举 $[2, n - 1]$ 上的所有数 $x$，并判断 $x$ 是否为质数。\n\n在遍历枚举的同时，我们维护一个用于统计小于 $n$ 的质数数量的变量 `cnt`。如果符合要求，则将计数 `cnt` 加 $1$。最终返回该数目作为答案。\n\n考虑到如果 $i$ 是 $x$ 的因数，则 $\\frac{x}{i}$ 也必然是 $x$ 的因数，则我们只需要检验这两个因数中的较小数即可。而较小数一定会落在 $[2, \\sqrt x]$ 上。因此我们在检验 $x$ 是否为质数时，只需要枚举 $[2, \\sqrt x]$ 中的所有数即可。\n\n利用枚举算法单次检查单个数的时间复杂度为 $O(\\sqrt{n})$，检查 $n$ 个数的整体时间复杂度为 $O(n \\sqrt{n})$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isPrime(self, x):\n        for i in range(2, int(pow(x, 0.5)) + 1):\n            if x % i == 0:\n                return False\n        return True\n\n    def countPrimes(self, n: int) -> int:\n        cnt = 0\n        for x in range(2, n):\n            if self.isPrime(x):\n                cnt += 1\n        return cnt\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\sqrt{n})$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：埃氏筛法\n\n可以用「埃氏筛」进行求解。这种方法是由古希腊数学家埃拉托斯尼斯提出的，具体步骤如下：\n\n- 使用长度为 $n$ 的数组 `is_prime` 来判断一个数是否是质数。如果 `is_prime[i] == True` ，则表示 $i$ 是质数，如果 `is_prime[i] == False`，则表示 $i$ 不是质数。并使用变量 `count` 标记质数个数。\n- 然后从 $[2, n - 1]$ 的第一个质数（即数字 $2$） 开始，令 `count` 加 $1$，并将该质数在 $[2, n - 1]$ 范围内所有倍数（即 $4$、$6$、$8$、...）都标记为非质数。\n- 然后根据数组 `is_prime` 中的信息，找到下一个没有标记为非质数的质数（即数字  $3$），令 `count` 加 $1$，然后将该质数在 $[2, n - 1]$ 范围内的所有倍数（即 $6$、$9$、$12$、…）都标记为非质数。\n- 以此类推，直到所有小于或等于 $n - 1$ 的质数和质数的倍数都标记完毕时，输出 `count`。\n\n优化：对于一个质数 $x$，我们可以直接从 $x \\times x$ 开始标记，这是因为 $2 \\times x$、$3 \\times x$、… 这些数已经在 $x$ 之前就被其他数的倍数标记过了，例如 $2$ 的所有倍数、$3$ 的所有倍数等等。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def countPrimes(self, n: int) -> int:\n        is_prime = [True] * n\n        count = 0\n        for i in range(2, n):\n            if is_prime[i]:\n                count += 1\n                for j in range(i * i, n, i):\n                    is_prime[j] = False\n        return count\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log_2{log_2n})$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote10-19",
+    "title": "0250. 统计同值子树",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉树 难度：中等 0250. 统计同值子树 力扣 描述 ： 给定一个二叉树。 要求 ： 统计该二叉树数值相同的「子树」个数。 说明 ： 同值子树：指该子树",
+    "content": "# 0250. 统计同值子树\n\n- 标签：树、深度优先搜索、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0250. 统计同值子树 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个二叉树。\n\n**要求**：\n\n统计该二叉树数值相同的「子树」个数。\n\n**说明**：\n\n- 同值子树：指该子树的所有节点都拥有相同的数值。\n- $树中节点的编号在 $[0, 10^{3}]$ 范围内。\n- $-10^{3} \\le Node.val \\le 10^{3}$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2020_08_21_unival_e1.jpg)\n\n```python\n输入：root = [5,1,5,5,5,null,5]\n输出：4\n```\n\n- 示例 2：\n\n```python\n输入：root = []\n输出：0\n```\n\n## 解题思路\n\n### 思路 1：深度优先搜索\n\n这是一个典型的树遍历问题。我们需要统计所有同值子树的个数。\n\n**算法步骤**：\n\n1. **定义递归函数**：$is_unival(node)$ 判断以 $node$ 为根的子树是否为同值子树，同时统计同值子树个数。\n\n2. **递归终止条件**：\n   - 如果 $node$ 为空，返回 $True$（空树视为同值子树）。\n   - 如果 $node$ 是叶子节点，返回 $True$（单个节点是同值子树）。\n\n3. **递归处理**：\n   - 递归检查左子树 $left_is_unival = is_unival(node.left)$。\n   - 递归检查右子树 $right_is_unival = is_unival(node.right)$。\n   - 如果左右子树都是同值子树，且它们的值都等于当前节点值，则当前子树也是同值子树。\n\n4. **统计计数**：如果当前子树是同值子树，则计数器 $count$ 加 $1$。\n\n**关键点**：\n\n- 使用后序遍历（左右根）确保先处理子节点再处理父节点。\n- 空树和叶子节点都视为同值子树。\n- 需要同时检查子树是否为同值以及值是否相等。\n\n### 思路 1：代码\n\n```python\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def countUnivalSubtrees(self, root: Optional[TreeNode]) -> int:\n        self.count = 0  # 统计同值子树个数\n        \n        def is_unival(node):\n            \"\"\"\n            判断以 node 为根的子树是否为同值子树\n            返回: (是否为同值子树, 子树的值)\n            \"\"\"\n            # 空节点视为同值子树\n            if not node:\n                return True, None\n            \n            # 叶子节点是同值子树\n            if not node.left and not node.right:\n                self.count += 1\n                return True, node.val\n            \n            # 递归检查左右子树\n            left_is_unival, left_val = is_unival(node.left)\n            right_is_unival, right_val = is_unival(node.right)\n            \n            # 判断当前子树是否为同值子树\n            is_current_unival = True\n            \n            # 如果左子树存在且不是同值子树，或者值不相等\n            if node.left and (not left_is_unival or left_val != node.val):\n                is_current_unival = False\n            \n            # 如果右子树存在且不是同值子树，或者值不相等\n            if node.right and (not right_is_unival or right_val != node.val):\n                is_current_unival = False\n            \n            # 如果当前子树是同值子树，计数加1\n            if is_current_unival:\n                self.count += 1\n            \n            return is_current_unival, node.val\n        \n        is_unival(root)\n        return self.count\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是树中节点的个数。每个节点都会被访问一次。\n- **空间复杂度**：$O(h)$，其中 $h$ 是树的高度。递归调用栈的深度等于树的高度，最坏情况下（树退化为链表）为 $O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote10-20",
+    "title": "0210. 课程表 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、广度优先搜索、图、拓扑排序 难度：中等 0210. 课程表 II 力扣 描述 ：给定一个整数 $numCourses$，代表这学期必须选修的课程数量，课程编号为",
+    "content": "# 0210. 课程表 II\n\n- 标签：深度优先搜索、广度优先搜索、图、拓扑排序\n- 难度：中等\n\n## 题目链接\n\n- 0210. 课程表 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $numCourses$，代表这学期必须选修的课程数量，课程编号为 $0 \\sim numCourses - 1$。再给定一个数组 $prerequisites$ 表示先修课程关系，其中 $prerequisites[i] = [ai, bi]$ 表示如果要学习课程 $ai$ 则必须要先完成课程 $bi$。\n\n**要求**：返回学完所有课程所安排的学习顺序。如果有多个正确的顺序，只要返回其中一种即可。如果无法完成所有课程，则返回空数组。\n\n**说明**：\n\n- $1 \\le numCourses \\le 2000$。\n- $0 \\le prerequisites.length \\le numCourses \\times (numCourses - 1)$。\n- $prerequisites[i].length == 2$。\n- $0 \\le ai, bi < numCourses$。\n- $ai \\ne bi$。\n- 所有$[ai, bi]$ 互不相同。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：numCourses = 2, prerequisites = [[1,0]]\n输出：[0,1]\n解释：总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1]。\n```\n\n- 示例 2：\n\n```python\n输入：numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]\n输出：[0,2,1,3]\n解释：总共有 4 门课程。要学习课程 3，你应该先完成课程 1 和课程 2。并且课程 1 和课程 2 都应该排在课程 0 之后。\n因此，一个正确的课程顺序是 [0,1,2,3] 。另一个正确的排序是 [0,2,1,3]。\n```\n\n## 解题思路\n\n### 思路 1：拓扑排序\n\n这道题是「0207. 课程表」的升级版，只需要在上一题的基础上增加一个答案数组 $order$ 即可。\n\n1. 使用哈希表 $graph$ 存放课程关系图，并统计每门课程节点的入度，存入入度列表 $indegrees$。\n2. 借助队列 $S$，将所有入度为 $0$ 的节点入队。\n3. 从队列中选择一个节点 $u$，并将其加入到答案数组 $order$ 中。\n4. 从图中删除该顶点 $u$，并且删除从该顶点出发的有向边 $<u, v>$（也就是把该顶点可达的顶点入度都减 $1$）。如果删除该边后顶点 $v$ 的入度变为 $0$，则将其加入队列 $S$ 中。\n5. 重复上述步骤 $3 \\sim 4$，直到队列中没有节点。\n6. 最后判断总的顶点数和拓扑序列中的顶点数是否相等，如果相等，则返回答案数组 $order$，否则，返回空数组。\n\n### 思路 1：代码\n\n```python\nimport collections\n\nclass Solution:\n    # 拓扑排序，graph 中包含所有顶点的有向边关系（包括无边顶点）\n    def topologicalSortingKahn(self, graph: dict):\n        indegrees = {u: 0 for u in graph}   # indegrees 用于记录所有顶点入度\n        for u in graph:\n            for v in graph[u]:\n                indegrees[v] += 1           # 统计所有顶点入度\n        \n        # 将入度为 0 的顶点存入集合 S 中\n        S = collections.deque([u for u in indegrees if indegrees[u] == 0])\n        order = []                          # order 用于存储拓扑序列\n        \n        while S:\n            u = S.pop()                     # 从集合中选择一个没有前驱的顶点 0\n            order.append(u)                 # 将其输出到拓扑序列 order 中\n            for v in graph[u]:              # 遍历顶点 u 的邻接顶点 v\n                indegrees[v] -= 1           # 删除从顶点 u 出发的有向边\n                if indegrees[v] == 0:       # 如果删除该边后顶点 v 的入度变为 0\n                    S.append(v)             # 将其放入集合 S 中\n        \n        if len(indegrees) != len(order):    # 还有顶点未遍历（存在环），无法构成拓扑序列\n            return []\n        return order                        # 返回拓扑序列\n    \n    \n    def findOrder(self, numCourses: int, prerequisites):\n        graph = dict()\n        for i in range(numCourses):\n            graph[i] = []\n            \n        for v, u in prerequisites:\n            graph[u].append(v)\n            \n        return self.topologicalSortingKahn(graph)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n + m)$，其中 $n$ 为课程数，$m$ 为先修课程的要求数。\n- **空间复杂度**：$O(n + m)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-algonote10-21",
+    "title": "0207. 课程表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、广度优先搜索、图、拓扑排序 难度：中等 0207. 课程表 力扣 描述 ：给定一个整数 $numCourses$，代表这学期必须选修的课程数量，课程编号为 $0",
+    "content": "# 0207. 课程表\n\n- 标签：深度优先搜索、广度优先搜索、图、拓扑排序\n- 难度：中等\n\n## 题目链接\n\n- 0207. 课程表 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $numCourses$，代表这学期必须选修的课程数量，课程编号为 $0 \\sim numCourses - 1$。再给定一个数组 $prerequisites$ 表示先修课程关系，其中 $prerequisites[i] = [ai, bi]$ 表示如果要学习课程 $ai$ 则必须要先完成课程 $bi$。\n\n**要求**：判断是否可能完成所有课程的学习。如果可以，返回 `True`，否则，返回 `False`。\n\n**说明**：\n\n- $1 \\le numCourses \\le 10^5$。\n- $0 \\le prerequisites.length \\le 5000$。\n- $prerequisites[i].length == 2$。\n- $0 \\le ai, bi < numCourses$。\n- $prerequisites[i]$ 中所有课程对互不相同。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：numCourses = 2, prerequisites = [[1,0]]\n输出：true\n解释：总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。这是可能的。\n```\n\n- 示例 2：\n\n```python\n输入：numCourses = 2, prerequisites = [[1,0],[0,1]]\n输出：false\n解释：总共有 2 门课程。学习课程 1 之前，你需要先完成课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。\n```\n\n## 解题思路\n\n### 思路 1：拓扑排序\n\n1. 使用哈希表 $graph$ 存放课程关系图，并统计每门课程节点的入度，存入入度列表 $indegrees$。\n2. 借助队列 $S$，将所有入度为 $0$ 的节点入队。\n3. 从队列中选择一个节点 $u$，并令课程数减 $1$。\n4. 从图中删除该顶点 $u$，并且删除从该顶点出发的有向边 $<u, v>$（也就是把该顶点可达的顶点入度都减 $1$）。如果删除该边后顶点 $v$ 的入度变为 $0$，则将其加入队列 $S$ 中。\n5. 重复上述步骤 $3 \\sim 4$，直到队列中没有节点。\n6. 最后判断剩余课程数是否为 $0$，如果为 $0$，则返回 `True`，否则，返回 `False`。\n\n### 思路 1：代码\n\n```python\nimport collections\n\nclass Solution:\n    def topologicalSorting(self, numCourses, graph):\n        indegrees = {u: 0 for u in graph}\n        for u in graph:\n            for v in graph[u]:\n                indegrees[v] += 1\n        \n        S = collections.deque([u for u in indegrees if indegrees[u] == 0])\n        \n        while S:\n            u = S.pop()\n            numCourses -= 1\n            for v in graph[u]:\n                indegrees[v] -= 1\n                if indegrees[v] == 0:\n                    S.append(v)\n        \n        if numCourses == 0:\n            return True\n        return False\n\n    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:\n        graph = dict()\n        for i in range(numCourses):\n            graph[i] = []\n            \n        for v, u in prerequisites:\n            graph[u].append(v)\n            \n        return self.topologicalSorting(numCourses, graph)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n + m)$，其中 $n$ 为课程数，$m$ 为先修课程的要求数。\n- **空间复杂度**：$O(n + m)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-algonote10-23",
+    "title": "0211. 添加与搜索单词 - 数据结构设计",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、设计、字典树、字符串 难度：中等 0211. 添加与搜索单词 数据结构设计 力扣 要求 ：设计一个数据结构，支持「添加新单词」和「查找字符串是否与任何先前添加的",
+    "content": "# 0211. 添加与搜索单词 - 数据结构设计\n\n- 标签：深度优先搜索、设计、字典树、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0211. 添加与搜索单词 - 数据结构设计 - 力扣\n\n## 题目大意\n\n**要求**：设计一个数据结构，支持「添加新单词」和「查找字符串是否与任何先前添加的字符串匹配」。\n\n实现词典类 WordDictionary：\n\n- `WordDictionary()` 初始化词典对象。\n- `void addWord(word)` 将 `word` 添加到数据结构中，之后可以对它进行匹配\n- `bool search(word)` 如果数据结构中存在字符串与 `word` 匹配，则返回 `True`；否则，返回 `False`。`word` 中可能包含一些 `.`，每个 `.` 都可以表示任何一个字母。\n\n**说明**：\n\n- $1 \\le word.length \\le 25$。\n- `addWord` 中的 `word` 由小写英文字母组成。\n- `search` 中的 `word` 由 `'.'` 或小写英文字母组成。\n- 最多调用 $10^4$ 次 `addWord` 和 `search`。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"WordDictionary\",\"addWord\",\"addWord\",\"addWord\",\"search\",\"search\",\"search\",\"search\"]\n[[],[\"bad\"],[\"dad\"],[\"mad\"],[\"pad\"],[\"bad\"],[\".ad\"],[\"b..\"]]\n输出：\n[null,null,null,null,false,true,true,true]\n\n解释：\nWordDictionary wordDictionary = new WordDictionary();\nwordDictionary.addWord(\"bad\");\nwordDictionary.addWord(\"dad\");\nwordDictionary.addWord(\"mad\");\nwordDictionary.search(\"pad\"); // 返回 False\nwordDictionary.search(\"bad\"); // 返回 True\nwordDictionary.search(\".ad\"); // 返回 True\nwordDictionary.search(\"b..\"); // 返回 True\n```\n\n## 解题思路\n\n### 思路 1：字典树\n\n使用前缀树（字典树）。具体做法如下：\n\n- 初始化词典对象时，构造一棵字典树。\n- 添加 `word` 时，将 `word` 插入到字典树中。\n- 搜索 `word` 时：\n  - 如果遇到 `.`，则递归匹配当前节点所有子节点，并依次向下查找。匹配到了，则返回 `True`，否则返回 `False`。\n  - 如果遇到其他小写字母，则按 `word` 顺序匹配节点。\n  - 如果当前节点为 `word` 的结尾，则放回 `True`。\n\n### 思路 1：代码\n\n```python\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.children = dict()\n        self.isEnd = False\n\n    def insert(self, word: str) -> None:\n        \"\"\"\n        Inserts a word into the trie.\n        \"\"\"\n        cur = self\n        for ch in word:\n            if ch not in cur.children:\n                cur.children[ch] = Trie()\n            cur = cur.children[ch]\n        cur.isEnd = True\n\n    def search(self, word: str) -> bool:\n        \"\"\"\n        Returns if the word is in the trie.\n        \"\"\"\n\n        def dfs(index, node) -> bool:\n            if index == len(word):\n                return node.isEnd\n\n            ch = word[index]\n            if ch == '.':\n                for child in node.children.values():\n                    if child is not None and dfs(index + 1, child):\n                        return True\n            else:\n                if ch not in node.children:\n                    return False\n                child = node.children[ch]\n                if child is not None and dfs(index + 1, child):\n                    return True\n            return False\n\n        return dfs(0, self)\n\nclass WordDictionary:\n\n    def __init__(self):\n        self.trie_tree = Trie()\n\n    def addWord(self, word: str) -> None:\n        self.trie_tree.insert(word)\n\n    def search(self, word: str) -> bool:\n        return self.trie_tree.search(word)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：初始化操作为 $O(1)$。添加单词为 $O(|S|)$，搜索单词的平均时间复杂度为 $O(|S|)$，最坏情况下所有字符都是 `'.'`，所以最坏时间复杂度为 $O(|S|^\\sum)$。其中 $|S|$  为单词长度，$\\sum$ 为字符集的大小，此处为 $26$。\n- **空间复杂度**：$O(|T| * n)$。其中 $|T|$ 为所有添加单词的最大长度，$n$ 为添加字符串个数。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/d485940aad69b7a6.jpg"
+  },
+  {
+    "id": "g-algonote10-24",
+    "title": "0241. 为运算表达式设计优先级",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、记忆化搜索、数学、字符串、动态规划 难度：中等 0241. 为运算表达式设计优先级 力扣 描述 ：给定一个由数字和运算符组成的字符串 expression 。 要求 ：",
+    "content": "# 0241. 为运算表达式设计优先级\n\n- 标签：递归、记忆化搜索、数学、字符串、动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0241. 为运算表达式设计优先级 - 力扣\n\n## 题目大意\n\n**描述**：给定一个由数字和运算符组成的字符串 `expression`。\n\n**要求**：按不同优先级组合数字和运算符，计算并返回所有可能组合的结果。你可以按任意顺序返回答案。\n\n**说明**：\n\n- 生成的测试用例满足其对应输出值符合 $32$ 位整数范围，不同结果的数量不超过 $10^4$。\n- $1 \\le expression.length \\le 20$。\n- `expression` 由数字和算符 `'+'`、`'-'` 和 `'*'` 组成。\n- 输入表达式中的所有整数值在范围 $[0, 99]$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：expression = \"2-1-1\"\n输出：[0,2]\n解释：\n((2-1)-1) = 0 \n(2-(1-1)) = 2\n```\n\n- 示例 2：\n\n```python\n输入：expression = \"2*3-4*5\"\n输出：[-34,-14,-10,-10,10]\n解释：\n(2*(3-(4*5))) = -34 \n((2*3)-(4*5)) = -14 \n((2*(3-4))*5) = -10 \n(2*((3-4)*5)) = -10 \n(((2*3)-4)*5) = 10\n```\n\n## 解题思路\n\n### 思路 1：分治算法\n\n给定的字符串 `expression` 只包含有数字和字符，可以写成类似 `x op y` 的形式，其中 $x$、$y$ 为表达式或数字，$op$ 为字符。\n\n则我们可以根据字符的位置，将其递归分解为 $x$、$y$ 两个部分，接着分别计算 $x$ 部分的结果与 $y$ 部分的结果。然后再将其合并。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def diffWaysToCompute(self, expression: str) -> List[int]:\n        res = []\n        if len(expression) <= 2:\n            res.append(int(expression))\n            return res\n        \n        for i in range(len(expression)):\n            ch = expression[i]\n            if ch == '+' or ch == '-' or ch == '*':\n                left_cnts = self.diffWaysToCompute(expression[ :i])\n                right_cnts = self.diffWaysToCompute(expression[i + 1:])\n\n                for left in left_cnts:\n                    for right in right_cnts:\n                        if ch == '+':\n                            res.append(left + right)\n                        elif ch == '-':\n                            res.append(left - right)\n                        else:\n                            res.append(left * right)\n        \n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(C_n)$，其中 $n$ 为结果数组的大小，$C_n$ 是第 $n$ 个卡特兰数。\n- **空间复杂度**：$O(C_n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-algonote10-25",
+    "title": "0271. 字符串的编码与解码",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、数组、字符串 难度：中等 0271. 字符串的编码与解码 力扣 要求 ： 设计一个算法，可以将一个「字符串列表」编码成为一个「字符串」。这个编码后的字符串是可以通过网络",
+    "content": "# 0271. 字符串的编码与解码\n\n- 标签：设计、数组、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0271. 字符串的编码与解码 - 力扣\n\n## 题目大意\n\n**要求**：\n\n设计一个算法，可以将一个「字符串列表」编码成为一个「字符串」。这个编码后的字符串是可以通过网络进行高效传送的，并且可以在接收端被解码回原来的字符串列表。\n1 号机（发送方）有如下函数：\n\n```C++\nstring encode(vector<string> strs) {\n  // ... your code\n  return encoded_string;\n}\n```\n\n2 号机（接收方）有如下函数：\n\n```C++\nvector<string> decode(string s) {\n  //... your code\n  return strs;\n}\n```\n\n1 号机（发送方）执行：\n\n```C++\nstring encoded_string = encode(strs);\n```\n\n2 号机（接收方）执行：\n\n```C++\nvector<string> strs2 = decode(encoded_string);\n```\n\n此时，2 号机（接收方）的 $strs2$ 需要和 1 号机（发送方）的 $strs$ 相同。\n\n请你来实现这个 $encode$ 和 $decode$ 方法。\n\n不允许使用任何序列化方法解决这个问题（例如 eval）。\n\n**说明**：\n\n- $1 \\le strs.length \\le 200$。\n- $0 \\le strs[i].length \\le 200$。\n- $strs[i]$ 包含 $256$ 个有效 ASCII 字符中的任何可能字符。\n\n- 进阶：你能编写一个通用算法来处理任何可能的字符集吗？\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：dummy_input = [\"Hello\",\"World\"]\n输出：[\"Hello\",\"World\"]\n解释：\n1 号机：\nCodec encoder = new Codec();\nString msg = encoder.encode(strs);\nMachine 1 ---msg---> Machine 2\n\n2 号机：\nCodec decoder = new Codec();\nString[] strs = decoder.decode(msg);\n```\n\n- 示例 2：\n\n```python\n输入：dummy_input = [\"\"]\n输出：[\"\"]\n```\n\n## 解题思路\n\n### 思路 1：长度前缀编码\n\n这是一个典型的设计问题。我们需要将字符串列表编码成单个字符串，然后能够正确解码。\n\n**核心问题**：如何区分不同的字符串？由于字符串可能包含任何 ASCII 字符，包括分隔符，我们需要一种方法来明确标识每个字符串的边界。\n\n**解决方案**：使用长度前缀编码。对于每个字符串 $str_i$，我们将其长度 $len_i$ 和字符串内容连接起来，格式为 $len_i + \":\" + str_i$。\n\n**算法步骤**：\n\n1. **编码过程**：\n   - 遍历字符串列表 $strs$。\n   - 对于每个字符串 $str_i$，计算其长度 $len_i$。\n   - 将 $len_i + \":\" + str_i$ 添加到结果字符串中。\n\n2. **解码过程**：\n   - 使用指针 $i$ 遍历编码后的字符串。\n   - 找到冒号 `:` 的位置，提取长度信息 $len_i$。\n   - 根据长度 $len_i$ 提取对应的字符串内容。\n   - 将提取的字符串加入结果列表，继续处理下一个字符串。\n\n**关键点**：\n\n- 冒号 `:` 作为长度和内容的分隔符。\n- 长度信息确保我们能够准确提取每个字符串。\n- 这种方法可以处理包含任何 ASCII 字符的字符串。\n\n### 思路 1：代码\n\n```python\nclass Codec:\n    def encode(self, strs: List[str]) -> str:\n        \"\"\"Encodes a list of strings to a single string.\n        \n        Args:\n            strs: 字符串列表\n            \n        Returns:\n            编码后的字符串\n        \"\"\"\n        encoded = \"\"\n        for s in strs:\n            # 将每个字符串的长度和内容用冒号分隔\n            encoded += str(len(s)) + \":\" + s\n        return encoded\n\n    def decode(self, s: str) -> List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \n        Args:\n            s: 编码后的字符串\n            \n        Returns:\n            解码后的字符串列表\n        \"\"\"\n        decoded = []\n        i = 0\n        \n        while i < len(s):\n            # 找到冒号的位置，提取长度信息\n            colon_pos = s.find(\":\", i)\n            length = int(s[i:colon_pos])\n            \n            # 根据长度提取字符串内容\n            start = colon_pos + 1\n            end = start + length\n            decoded.append(s[start:end])\n            \n            # 更新指针位置\n            i = end\n            \n        return decoded\n\n# Your Codec object will be instantiated and called as such:\n# codec = Codec()\n# codec.decode(codec.encode(strs))\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：\n  - 编码：$O(n)$，其中 $n$ 是所有字符串的总长度。\n  - 解码：$O(n)$，需要遍历整个编码字符串一次。\n- **空间复杂度**：$O(n)$，存储编码后的字符串。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-algonote10-26",
+    "title": "0282. 给表达式添加运算符",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数学、字符串、回溯 难度：困难 0282. 给表达式添加运算符 力扣 描述 ： 给定一个仅包含数字 $0 \\sim 9$ 的字符串 $num$ 和一个目标值整数 $targe",
+    "content": "# 0282. 给表达式添加运算符\n\n- 标签：数学、字符串、回溯\n- 难度：困难\n\n## 题目链接\n\n- 0282. 给表达式添加运算符 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个仅包含数字 $0 \\sim 9$ 的字符串 $num$ 和一个目标值整数 $target$ ，在 $num$ 的数字之间添加「二元」运算符（不是一元）`+`、`-` 或 `*`。\n\n**要求**：\n\n返回所有能够得到 $target$ 的表达式。\n\n**说明**：\n\n- 注意：返回表达式中的操作数不应该包含前导零。\n- 注意：一个数字可以包含多个数位。\n- $1 \\le num.length \\le 10$。\n- $num$ 仅含数字。\n- $-2^{31} \\le target \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: num = \"123\", target = 6\n输出: [\"1+2+3\", \"1*2*3\"] \n解释: “1*2*3” 和 “1+2+3” 的值都是6。\n```\n\n- 示例 2：\n\n```python\n输入: num = \"232\", target = 8\n输出: [\"2*3+2\", \"2+3*2\"]\n解释: “2*3+2” 和 “2+3*2” 的值都是8。\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n使用回溯算法枚举所有可能的表达式，在每两个数字之间选择插入 `+`、`-`、`*` 或不切分继续拼接数位，并在构造过程中实时计算表达式值以实现剪枝。\n\n**核心思想**：\n\n1. **状态维护**：维护两个关键变量。\n   - $cur$：当前表达式已计算的值。\n   - $last$：最近一次加入表达式且尚未「结算」的乘法因子。\n\n2. **运算符处理**：\n   - 加法 `+x`：$cur' = cur + x$，$last' = x$。\n   - 减法 `-x`：$cur' = cur - x$，$last' = -x$。\n   - 乘法 `*x`：由于乘法优先级高，需要撤回之前的 $last$，再计算新的值：\n     $cur' = cur - last + last \\times x$，$last' = last \\times x$。\n\n**算法步骤**：\n\n1. **初始化**：从位置 $i = 0$ 开始，选择第一个数字作为起点。\n2. **枚举切分**：从当前位置 $i$ 开始，枚举所有可能的数字段 $num[i..j]$。\n3. **前导零处理**：如果 $num[i] = '0'$ 且 $j > i$，则跳过（避免前导零）。\n4. **运算符选择**：\n   - 如果是第一个数字段，直接递归处理。\n   - 否则尝试三种运算符：`+`、`-`、`*`。\n5. **递归搜索**：更新状态后递归处理剩余部分。\n6. **结果收集**：当处理完所有数字且 $cur = target$ 时，记录当前表达式。\n\n**关键细节**：\n\n- 起始位置不能放置运算符，只能选择数字段。\n- 前导零约束：以 `'0'` 开头的数字段只能取单个 `'0'`。\n- 乘法优先级处理：通过维护 $last$ 变量正确处理乘法的结合性。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def addOperators(self, num: str, target: int) -> List[str]:\n        # 回溯 + 逐步结算表达式值，使用 last 处理乘法优先级\n        n = len(num)\n        ans = []\n\n        def dfs(i: int, path: str, cur: int, last: int) -> None:\n            # i: 当前处理到 num 的下标\n            # path: 当前构造的表达式字符串\n            # cur: 当前表达式已结算的值\n            # last: 最近一次加入表达式、但在乘法优先级下需要与后续数相乘的因子\n            if i == n:\n                if cur == target:\n                    ans.append(path)\n                return\n\n            # 从位置 i 开始枚举下一个操作数 num[i:j]\n            # 为避免前导零，如果 num[i] == '0'，则只能取单个 '0'\n            val = 0\n            for j in range(i, n):\n                # 前导零剪枝\n                if j > i and num[i] == '0':\n                    break\n\n                # 将 num[i..j] 解析为整数 val\n                val = val * 10 + (ord(num[j]) - ord('0'))\n                s = num[i:j + 1]\n\n                if i == 0:\n                    # 表达式起点，不能放运算符\n                    dfs(j + 1, s, val, val)\n                else:\n                    # 加号\n                    dfs(j + 1, path + '+' + s, cur + val, val)\n                    # 减号\n                    dfs(j + 1, path + '-' + s, cur - val, -val)\n                    # 乘号：先撤回 last，再乘 val，加回去\n                    dfs(j + 1, path + '*' + s, cur - last + last * val, last * val)\n\n        dfs(0, '', 0, 0)\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(3^{n-1} \\times n)$。共有 $n-1$ 个插入位，每处最多 $3$ 种运算符选择，且每次切分还包含将子串转整数与字符串拼接的 $O(n)$ 开销。\n- **空间复杂度**：$O(n)$。递归深度与表达式长度同阶，路径与调用栈消耗线性空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-algonote10-27",
+    "title": "0254. 因子的组合",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：回溯 难度：中等 0254. 因子的组合 力扣 描述 ： 整数可以被看作是其因子的乘积。 例如：$8 = 2 \\times 2 \\times 2 = 2 \\times 4$.",
+    "content": "# 0254. 因子的组合\n\n- 标签：回溯\n- 难度：中等\n\n## 题目链接\n\n- 0254. 因子的组合 - 力扣\n\n## 题目大意\n\n**描述**：\n\n整数可以被看作是其因子的乘积。\n\n例如：$8 = 2 \\times 2 \\times 2 = 2 \\times 4$.\n\n**要求**：\n\n实现一个函数，该函数接收一个整数 $n$ 并返回该整数所有的因子组合。\n\n**说明**：\n\n- 可以假定 $n$ 为永远为正数。\n- 因子必须大于 $1$ 并且小于 $n$。\n- $1 \\le n \\le 10^{7}$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: 1\n输出: []\n```\n\n- 示例 2：\n\n```python\n输入: 12\n输出:\n[\n  [2, 6],\n  [2, 2, 3],\n  [3, 4]\n]\n```\n\n## 解题思路\n\n### 思路 1：\n\n用回溯（DFS）枚举所有按非递减顺序排列的因子组合。核心思想：当我们已经选择了若干因子组成序列 \\( path \\)，且当前剩余待分解的值为 \\( n' \\)，那么下一步只需要从上一个因子 \\( start \\) 开始，尝试所有 \\( i \\in [start, \\lfloor\\sqrt{n'}\\rfloor] \\)。一旦 \\( i \\mid n' \\)：\n\n- 记录组合 \\( path + [i, \\tfrac{n'}{i}] \\)（表示当前选择 \\( i \\) 后，最后一个因子直接取 \\( n'/i \\)）。\n- 继续递归分解 \\( n'/i \\)，并将 \\( i \\) 加入路径，即递归状态为 \\( (n'/i,\\; start=i,\\; path+[i]) \\)。\n\n通过将搜索上界限制为 \\( \\lfloor\\sqrt{n'}\\rfloor \\) 并使用 \\( start \\) 保持非递减顺序，可以避免重复组合，且有效剪枝，防止超时。\n\n### 思路 1：代码\n\n```python\nfrom typing import List\n\nclass Solution:\n    def getFactors(self, n: int) -> List[List[int]]:\n        # 回溯搜索：在保持非递减顺序的前提下，枚举 n 的因子组合\n        results: List[List[int]] = []\n\n        def dfs(remain: int, start: int, path: List[int]) -> None:\n            # 只需要尝试到 sqrt(remain)，其余因子由成对的大因子补齐\n            i = start\n            # 使用整数平方根作为上界，减少无效枚举\n            upper = int(remain ** 0.5)\n            while i <= upper:\n                if remain % i == 0:\n                    # 形成一组合法解：path + [i, remain // i]\n                    results.append(path + [i, remain // i])\n                    # 继续分解 remain // i，保证非递减（起点仍为 i）\n                    dfs(remain // i, i, path + [i])\n                i += 1\n\n        # 按题意，因子需严格在 (1, n) 内，n <= 3 时无解\n        if n <= 3:\n            return results\n\n        dfs(n, 2, [])\n        return results\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：输出敏感（output-sensitive）。搜索过程中，每个状态仅尝试到 \\( \\sqrt{n'} \\) 的因子，并通过 \\( start \\) 约束为非递减顺序，极大减少重复。总体上与因子分解树的规模相关，上界可视为与 \\( n \\) 的素因子个数指数相关；平均情况下远小于枚举 \\( 2^{\\log n} \\) 的粗略上界。\n- **空间复杂度**：\\( O(k) \\)，其中 \\( k \\) 为结果中最长组合的长度（等于 \\( n \\) 的素因子重数之和），用于递归栈与路径存储；结果集另算。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-algonote10-28",
+    "title": "0295. 数据流的中位数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、双指针、数据流、排序、堆（优先队列） 难度：困难 0295. 数据流的中位数 力扣 要求：设计一个支持一下两种操作的数组结构： void addNum(int num)",
+    "content": "# 0295. 数据流的中位数\n\n- 标签：设计、双指针、数据流、排序、堆（优先队列）\n- 难度：困难\n\n## 题目链接\n\n- 0295. 数据流的中位数 - 力扣\n\n## 题目大意\n\n要求：设计一个支持一下两种操作的数组结构：\n\n- `void addNum(int num)`：从数据流中添加一个整数到数据结构中。\n- `double findMedian()`：返回目前所有元素的中位数。\n\n## 解题思路\n\n使用一个大顶堆 `queMax` 记录大于中位数的数，使用一个小顶堆 `queMin` 小于中位数的数。\n\n- 当添加元素数量为偶数： `queMin` 和 `queMax` 中元素数量相同，则中位数为它们队头的平均值。\n- 当添加元素数量为奇数：`queMin` 中的数比 `queMax` 多一个，此时中位数为 `queMin` 的队头。\n\n为了满足上述条件，在进行 `addNum` 操作时，我们应当分情况处理：\n\n- `num > max{queMin}`：此时 `num` 大于中位数，将该数添加到大顶堆 `queMax` 中。新的中位数将大于原来的中位数，所以可能需要将 `queMax` 中的最小数移动到 `queMin` 中。\n- `num ≤ max{queMin}`：此时 `num` 小于中位数，将该数添加到小顶堆 `queMin` 中。新的中位数将小于等于原来的中位数，所以可能需要将 `queMin` 中最大数移动到 `queMax` 中。\n\n## 代码\n\n```python\nimport heapq\n\nclass MedianFinder:\n\n    def __init__(self):\n        \"\"\"\n        initialize your data structure here.\n        \"\"\"\n        self.queMin = list()\n        self.queMax = list()\n\n    def addNum(self, num: int) -> None:\n        if not self.queMin or num < -self.queMin[0]:\n            heapq.heappush(self.queMin, -num)\n            if len(self.queMax) + 1 < len(self.queMin):\n                heapq.heappush(self.queMax, -heapq.heappop(self.queMin))\n        else:\n            heapq.heappush(self.queMax, num)\n            if len(self.queMax) > len(self.queMin):\n                heapq.heappush(self.queMin, -heapq.heappop(self.queMax))\n\n    def findMedian(self) -> float:\n        if len(self.queMin) > len(self.queMax):\n            return -self.queMin[0]\n        return (-self.queMin[0] + self.queMax[0]) / 2\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-algonote10-29",
+    "title": "0277. 搜寻名人",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：图、双指针、交互 难度：中等 0277. 搜寻名人 力扣 描述 ： 假设你是一个专业的狗仔，参加了一个 $n$ 人派对，其中每个人被从 $0$ 到 $n 1$ 标号。在这个派",
+    "content": "# 0277. 搜寻名人\n\n- 标签：图、双指针、交互\n- 难度：中等\n\n## 题目链接\n\n- 0277. 搜寻名人 - 力扣\n\n## 题目大意\n\n**描述**：\n\n假设你是一个专业的狗仔，参加了一个 $n$ 人派对，其中每个人被从 $0$ 到 $n - 1$ 标号。在这个派对人群当中可能存在一位「名人」。所谓「名人」的定义是：其他所有 $n - 1$ 个人都认识他 / 她，而他 / 她并不认识其他任何人。\n现在你想要确认这个「名人」是谁，或者确定这里没有「名人」。而你唯一能做的就是问诸如「A 你好呀，请问你认不认识 B 呀？」的问题，以确定 A 是否认识 B。你需要在（渐近意义上）尽可能少的问题内来确定这位「名人」是谁（或者确定这里没有 “名人”）。\n\n给定整数 $n$ 和一个辅助函数 `bool knows(a, b)` 用来获取 a 是否认识 b。\n\n**要求**：\n\n实现一个函数 `int findCelebrity(n)`。派对最多只会有一个「名人」参加。\n\n若「名人」存在，请返回他 / 她的编号；若「名人」不存在，请返回 $-1$。\n\n**说明**：\n\n- 注意：$n \\times n$ 的二维数组 $graph$ 给定的输入并不是直接提供给你的，而是只能通过辅助函数 `knows` 获取。$graph[i][j] == 1$ 表示 $i$ 认识 $j$，而 $graph[i][j] == 0$ 表示 $j$ 不认识 $i$。\n- $n == graph.length == graph[i].length$。\n- $2 \\le n \\le 10^{3}$。\n- $graph[i][j]$ 是 $0$ 或 $1$。\n- $graph[i][i] == 1$。\n \n- 进阶：如果允许调用 API `knows` 的最大次数为 $3 \\times n$ ，你可以设计一个不超过最大调用次数的解决方案吗？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2022_01_19_g1.jpg)\n\n```python\n输入: graph = [[1,1,0],[0,1,0],[1,1,1]]\n输出: 1\n解释: 有编号分别为 0、1 和 2 的三个人。graph[i][j] = 1 代表编号为 i 的人认识编号为 j 的人，而 graph[i][j] = 0 则代表编号为 i 的人不认识编号为 j 的人。“名人” 是编号 1 的人，因为 0 和 2 均认识他/她，但 1 不认识任何人。\n```\n\n- 示例 2：\n\n![](/images/figures/algonote10/ext_assets.leetcode.com__uploads_2022_01_19_g2.jpg)\n\n```python\n输入: graph = [[1,0,1],[1,1,0],[0,1,1]]\n输出: -1\n解释: 没有 “名人”\n```\n\n## 解题思路\n\n### 思路 1：\n\n利用「候选人淘汰法」在线性次数调用 `knows` 找到唯一可能的名人候选人，再做一次线性校验。\n\n核心观察：若第一个人选为候选人 $cand$，当我们考察另一个人 $i$ 时：\n\n- 如果 `knows(cand, i)` 为真，则 $cand$ 不可能是名人（名人不认识任何人），把候选人更新为 $i$。\n- 若 `knows(cand, i)` 为假，则 $i$ 不可能是名人（名人需要被所有人认识，但 $cand$ 就不认识 $i$），候选人保持不变。\n\n一次线性扫描后，剩下的 $cand$ 是唯一可能的名人。再用一轮检查验证：对所有 $j \\neq cand$，必须满足 `knows(cand, j) == False` 且 `knows(j, cand) == True`，否则不存在名人。\n\n这保证了调用次数为 $O(n)$ 量级，不会超时。\n\n### 思路 1：代码\n\n```python\n# The knows API is already defined for you.\n# return a bool, whether a knows b\n# def knows(a: int, b: int) -> bool:\n\nclass Solution:\n    def findCelebrity(self, n: int) -> int:\n        # 第一阶段：线性淘汰，确定唯一候选人 cand\n        cand = 0\n        for i in range(1, n):\n            if knows(cand, i):\n                # cand 认识 i，cand 不可能是名人\n                cand = i\n            else:\n                # cand 不认识 i，i 不可能是名人，cand 保持\n                pass\n\n        # 第二阶段：校验 cand 是否为真正名人\n        for j in range(n):\n            if j == cand:\n                continue\n            # 名人不认识任何人，且所有人都认识名人\n            if knows(cand, j) or not knows(j, cand):\n                return -1\n\n        return cand\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。第一阶段线性淘汰 $n-1$ 次，第二阶段线性校验 $n-1$ 次，总体为线性。\n- **空间复杂度**：$O(1)$。仅使用常数个辅助变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-algonote10-30",
+    "title": "0287. 寻找重复数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 X",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、数组、双指针、二分查找 难度：中等 0287. 寻找重复数 力扣 描述 ：给定一个包含 $n + 1$ 个整数的数组 $nums$，里边包含的值都在 $1 \\sim ",
+    "content": "# 0287. 寻找重复数\n\n- 标签：位运算、数组、双指针、二分查找\n- 难度：中等\n\n## 题目链接\n\n- 0287. 寻找重复数 - 力扣\n\n## 题目大意\n\n**描述**：给定一个包含 $n + 1$ 个整数的数组 $nums$，里边包含的值都在 $1 \\sim n$ 之间。可知至少存在一个重复的整数。\n\n**要求**：假设 $nums$ 中只存在一个重复的整数，要求找出这个重复的数。\n\n**说明**：\n\n- $1 \\le n \\le 10^5$。\n- $nums.length == n + 1$。\n- $1 \\le nums[i] \\le n$。\n- 要求使用空间复杂度为常数级 $O(1)$，时间复杂度小于 $O(n^2)$ 的解决方法。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,3,4,2,2]\n输出：2\n```\n\n- 示例 2：\n\n```python\n输入：nums = [3,1,3,4,2]\n输出：3\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n利用二分查找的思想。\n\n1. 使用两个指针 $left$，$right$。$left$ 指向 $1$，$right$ 指向 $n$。\n2. 将区间 $[1, n]$ 分为 $[left, mid]$ 和 $[mid + 1, right]$。\n3. 对于中间数 $mid$，统计 $nums$ 中小于等于 $mid$ 的数个数 $cnt$。\n4. 如果 $cnt \\le mid$，则重复数一定不会出现在左侧区间，那么从右侧区间开始搜索。\n5. 如果 $cut > mid$，则重复数出现在左侧区间，则从左侧区间开始搜索。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def findDuplicate(self, nums: List[int]) -> int:\n        n = len(nums)\n        left = 1\n        right = n - 1\n        while left < right:\n            mid = left + (right - left) // 2\n            cnt = 0\n            for num in nums:\n                if num <= mid:\n                    cnt += 1\n\n            if cnt <= mid:\n                left = mid + 1\n            else:\n                right = mid\n\n        return left\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-mlint9-1",
+    "title": "674. Longest Continuous Increasing Subsequence",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/longest continuous increasing subsequence/ 贪心 时间复杂度：O() 空间复杂",
+    "content": "# 674. Longest Continuous Increasing Subsequence\n\n`https://leetcode.com/problems/longest-continuous-increasing-subsequence/`\n\n## solution\n\n- 贪心\n\n```python\nclass Solution:\n    def findLengthOfLCIS(self, nums: List[int]) -> int:\n        res = 1\n        this_res = 1\n        for i in range(1, len(nums)):\n            if nums[i] > nums[i-1]:\n                this_res += 1\n                res = max(this_res, res)\n            else:\n                this_res = 1\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 动态规划\n  - 和300 最长递增子序列的区别在于，连续只需要和上一个比较；不连续则需要和之前挨个比较\n  - 可以认为其follow up 718. 最长重复子数组，只有某个条件下进行更新，否则维持初始值\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-mlint9-4",
+    "title": "718. Maximum Length of Repeated Subarray",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum length of repeated subarray/ 动态规划 最长重复子数组，和最长公共子序列的不",
+    "content": "# 718. Maximum Length of Repeated Subarray\n\n`https://leetcode.com/problems/maximum-length-of-repeated-subarray/`\n\n## solution\n\n- 动态规划\n  - 最长重复子数组，和最长公共子序列的不同在于需要子数组是连续的\n  - 子数组的dp含义是: 以下标i - 1为结尾的A，和以下标j - 1为结尾的B，最长重复子数组长度为`dp[i][j]`\n  - 公共子序列的dp含义是: 长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为`dp[i][j]`\n  - 为什么是以...结尾的，否则断开之后，再有相同值的就会dp值会继续累加上去。因此要求连续的含义需要以...结尾的，不要求连续则是长度为...的\n\n```python\nclass Solution:\n    def findLength(self, nums1: List[int], nums2: List[int]) -> int:\n        # dp[i][j]: 以i-1为结尾的nums1和以nums2为结尾的nums2的最长重复子序列\n        dp = [[0] * (len(nums2) + 1) for _ in range(len(nums1) + 1)]\n        res = 0\n        for i in range(1, len(nums1)+1):\n            for j in range(1, len(nums2)+1):\n                if nums1[i-1] == nums2[j-1]:  # 这里一开始的判断条件写错了\n                    dp[i][j] = dp[i-1][j-1] + 1\n                    if dp[i][j] > res:\n                        res = dp[i][j]\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-mlint9-5",
+    "title": "72. Edit Distance",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/edit distance/ 动态规划 时间复杂度：O() 空间复杂度：O() dfs 时间复杂度：O() 空间复杂度：",
+    "content": "# 72. Edit Distance\n\n`https://leetcode.com/problems/edit-distance/`\n\n## solution\n\n- 动态规划\n\n```python\nclass Solution:\n    def minDistance(self, word1: str, word2: str) -> int:\n        m = len(word1)\n        n = len(word2)\n\n        dp = [[0] * (n + 1) for _ in range(m+1)]\n\n        for i in range(m+1):\n            dp[i][0] = i\n\n        for j in range(n+1):\n            dp[0][j] = j\n\n        for i in range(1, m+1):  # 注意递推范围\n            for j in range(1, n+1):\n                if word1[i-1] == word2[j-1]:\n                    dp[i][j] = dp[i-1][j-1]\n                else:\n                    dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1\n        return dp[-1][-1]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- dfs\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n392.判断子序列\n\n- 类似只允许删除的编辑距离，注意dp含义不是原本要求的定性是否问题，而是转化为定量多少问题\n- 同时dp含义还要融入，最长重复子串探讨过的dp含义，以-结尾的序列，还是截至到-的序列\n\n```python\n# dp[i][j]: 以下标i-1为结尾的字符串s，和以下标j-1为结尾的字符串t，相同子序列的长度为dp[i][j]\nclass Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        dp = [[0] * (len(t)+1) for _ in range(len(s)+1)]\n        for i in range(1, len(s)+1):\n            for j in range(1, len(t)+1):\n                if s[i-1] == t[j-1]:\n                    dp[i][j] = dp[i-1][j-1] + 1\n                else:\n                    dp[i][j] = dp[i][j-1]\n        if dp[-1][-1] == len(s):\n            return True\n        return False\n```\n\n双指针\n\n```python\ndef isSubsequence(self, s: str, t: str) -> bool:\n    i, j  = 0, 0\n\n    while i < len(s) and j < len(t):\n        if s[i] == t[j]:\n            i += 1\n        j += 1\n\n    return i == len(s)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-mlint9-10",
+    "title": "97. Interleaving String",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/interleaving string/ 两个字符串，想到2D DP 时间复杂度：O(mn) 空间复杂度：O()",
+    "content": "# 97. Interleaving String\n\n`https://leetcode.com/problems/interleaving-string/`\n\n## solution\n\n- 两个字符串，想到2D DP\n\n```python\nclass Solution:\n    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:\n        if len(s1) + len(s2) != len(s3):\n            return False\n\n        m = len(s1)\n        n = len(s2)\n\n        dp = [[False] * (n + 1) for _ in range(m + 1)]\n        dp[0][0] = True\n\n        for i in range(1, m+1):\n            if dp[i-1][0] and s1[i-1] == s3[i-1]:\n                dp[i][0] = True\n            else:\n                break\n\n        for j in range(1, n+1):\n            if dp[0][j-1] and s2[j-1] == s3[j-1]:\n                dp[0][j] = True\n            else:\n                break\n\n        for i in range(1, m+1):\n            for j in range(1, n+1):\n                if (dp[i-1][j] and s1[i-1] == s3[i+j-1]) or (dp[i][j-1] and s2[j-1] == s3[i+j-1]):\n                    dp[i][j] = True\n        return dp[-1][-1]\n```\n\n时间复杂度：O(mn) <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-mlint9-12",
+    "title": "134. Gas Station",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/gas station/ 暴力法 时间复杂度：O(n^2) 空间复杂度：O(1) 贪心 时间复杂度：O(n) 空间复杂度",
+    "content": "# 134. Gas Station\n\n`https://leetcode.com/problems/gas-station/`\n\n## solution\n\n- 暴力法\n\n```python\nclass Solution:\n    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:\n        for i in range(len(gas)):\n            rest = gas[i] - cost[i]\n            next_index = (i + 1) % len(gas)\n\n            while rest > 0 and next_index != i:\n                rest += gas[next_index] - cost[next_index]  # 注意这里是next_index\n                next_index = (next_index + 1) % len(gas)\n\n            if rest >= 0 and next_index == i:\n                return i\n        return -1\n```\n\n时间复杂度：O(n^2) <br>\n空间复杂度：O(1)\n\n- 贪心\n\n```python\nclass Solution:\n    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:\n        if sum(gas) < sum(cost):\n            return -1\n\n        tank = idx = 0\n        for i in range(len(gas)):\n            tank += gas[i] - cost[i]\n            if tank < 0:\n                tank = 0\n                idx = i+1\n        return idx\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-mlint9-14",
+    "title": "376. Wiggle Subsequence",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/wiggle subsequence/ 注意这里的判断条件 时间复杂度：O() 空间复杂度：O() \\ 280. Wig",
+    "content": "# 376. Wiggle Subsequence\n\n`https://leetcode.com/problems/wiggle-subsequence/`\n\n## solution\n\n- 注意这里的判断条件\n\n```python\nclass Solution:\n    def wiggleMaxLength(self, nums: List[int]) -> int:\n        if len(nums) < 2:\n            return len(nums)\n\n        pre = 0\n        res = 1\n        for i in range(1, len(nums)):\n            diff = nums[i] - nums[i-1]\n\n            if pre * diff <= 0 and diff != 0:\n                res += 1\n                pre = diff\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n\\*280. Wiggle Sort\n\n```python\nclass Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        # 1. If i is even, then nums[i] <= nums[i - 1].\n        # 2. If i is odd, then nums[i] >= nums[i - 1].\n        for i in range(1, len(nums)):\n            if i & 1 == 0 and nums[i] > nums[i - 1] or i & 1 == 1 and nums[i] < nums[i - 1]:\n                nums[i], nums[i - 1] = nums[i - 1], nums[i]\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n324. Wiggle Sort II\n\n```python\nclass Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        arr = sorted(nums)\n        for i in range(1, len(nums), 2):\n            nums[i] = arr.pop()\n        for i in range(0, len(nums), 2):\n            nums[i] = arr.pop()\n```\n\n- 结合 `n-largest` 与 `wiggle sort I` 的方法\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-mlint9-16",
+    "title": "452. Minimum Number of Arrows to Burst Balloons",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/minimum number of arrows to burst balloons/ 关键，重叠一个后更新右边界用于判",
+    "content": "# 452. Minimum Number of Arrows to Burst Balloons\n\n`https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/`\n\n## solution\n\n- 关键，重叠一个后更新右边界用于判断下一个\n\n```python\nclass Solution:\n    def findMinArrowShots(self, points: List[List[int]]) -> int:\n        points.sort(key= lambda x: x[0])\n        res = 1\n        for i in range(1, len(points)):\n            if points[i][0] > points[i-1][1]:\n                res += 1\n            else:\n                points[i][1] = min(points[i][1], points[i-1][1])\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- interval题目template可以采用以下方式：记录额外一个结果表\n\n```python\nclass Solution:\n    def findMinArrowShots(self, points: List[List[int]]) -> int:\n        points.sort(key=lambda x: x[1])\n\n        res_list = [points[0]]\n        for i in range(1, len(points)):\n            if points[i][0] <= res_list[-1][1]:\n                l = max(points[i][0], res_list[-1][0])\n                r = min(points[i][1], res_list[-1][1])\n                res_list.pop()\n                res_list.append([l, r])\n            else:\n                res_list.append(points[i])\n        return len(res_list)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-mlint9-17",
+    "title": "55. Jump Game",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/jump game/ 时间复杂度：O(n) 空间复杂度：O(1) 45 Jump Game II 记录当前覆盖最远距离和",
+    "content": "# 55. Jump Game\n\n`https://leetcode.com/problems/jump-game/`\n\n## solution\n\n```python\nclass Solution:\n    def canJump(self, nums: List[int]) -> bool:\n        if not nums:\n            return False\n        if len(nums) == 1:\n            return True\n\n        i = 0\n        res = 0  # 目前能覆盖的最大范围\n\n        while i <= res:  # 注意是 <=\n            res = max(res, i + nums[i])\n            if res >= len(nums) - 1:\n                return True\n            i += 1\n\n        return False\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n## follow up-jump game系列\n\n45 Jump Game II\n\n- 记录当前覆盖最远距离和下一次覆盖最远距离，当前距离最远时，增加一步到下一次最远距离\n\n```python\nclass Solution:\n    def jump(self, nums: List[int]) -> int:\n        if len(nums) == 1:\n            return 0\n\n        cur_pos = 0\n        next_pos = 0\n        res = 0\n        for i in range(len(nums)):\n            next_pos = max(i+nums[i], next_pos)\n            if i == cur_pos:\n                cur_pos = next_pos\n                res += 1\n                if next_pos >= len(nums) - 1:\n                    break\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 动态规划\n\n```python\nclass Solution:\n    def jump(self, nums: List[int]) -> int:\n        res = [float('inf')] * len(nums)\n        res[0] = 0\n\n        for i in range(len(nums)):\n            for j in range(i, i+nums[i]+1):\n                if j < len(nums):  # 注意边界\n                    res[j] = min(res[j], res[i]+1)  # 递推是根据业务含义来的\n        return res[-1]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n1306. Jump Game III\n\n- bfs\n\n```python\nclass Solution:\n    def canReach(self, arr: List[int], start: int) -> bool:\n        status = [False] * len(arr)\n        status[start] = True\n\n        queue = collections.deque()\n        queue.append(start)\n\n        while queue:\n            index = queue.popleft()\n            status[index] = True\n            if arr[index] == 0:\n                return True\n\n            if 0 <= index + arr[index] < len(arr):\n                if not status[index + arr[index]]:\n                    queue.append(index + arr[index])\n\n            if 0 <= index - arr[index] < len(arr):\n                if not status[index - arr[index]]:\n                    queue.append(index - arr[index])\n        return False\n```\n\n- dfs\n\n1345. Jump Game IV\n\n```python\n\n```\n\n1340. Jump Game V\n\n```python\n# https://www.1point3acres.com/bbs/thread-746704-1-1.html\n\n```\n\n1696. Jump Game VI\n\n```python\n\n```\n\n1871. Jump Game VII\n\n```python\n# 滑动窗口+DP: https://zhuanlan.zhihu.com/p/474961276\n\n```\n\n- 超时\n\n```python\nclass Solution:\n    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:\n        if s[-1] != '0':\n            return False\n\n        nums = [0]\n        for i, char in enumerate(s[1:]):\n            if char == '0':\n                nums.append(i+1)\n\n        dp = [False] * len(nums)\n        dp[0] = True\n\n        for i in range(1, len(nums)):\n            for j in range(i):\n                if dp[j] and minJump <= nums[i] - nums[j] <= maxJump:\n                    dp[i] = True\n                    break\n        return dp[-1]\n```\n\n\\*2297. Jump Game VIII\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-mlint9-18",
+    "title": "56. Merge Intervals",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/merge intervals/ 根据起点或终点排序, 根据上一个终点和这一个起点的关系判断有无overlap 注意循环",
+    "content": "# 56. Merge Intervals\n\n`https://leetcode.com/problems/merge-intervals/`\n\n## solution\n\n- 根据起点或终点排序, 根据上一个终点和这一个起点的关系判断有无overlap\n- 注意循环的控制方式，尤其是用输入list和输出list进行比较\n\n```python\nclass Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        intervals = sorted(intervals, key=lambda x: x[0])\n        res = []\n\n        for i in intervals:\n            if res and i[0] <= res[-1][1]:\n                res[-1][1] = max(i[1], res[-1][1])\n            else:\n                res.append(i)\n        return res\n```\n\n时间复杂度：O(nlogn) <br>\n空间复杂度：O(n)\n\n```python\nclass Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        intervals.sort(key=lambda x: x[0])\n        res = [intervals[0]]\n        for i in range(1, len(intervals)):\n            if intervals[i][0] <= res[-1][1]:\n                res[-1][1] = max(res[-1][1], intervals[i][1])\n            else:\n                res.append(intervals[i])\n        return res\n```\n\n## follow up - 间隔类题目\n\n57. Insert Interval\n\n```python\nclass Solution:\n    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n        i = 0\n        n = len(intervals)\n        res = []\n        while i < n and intervals[i][1] < newInterval[0]:\n            res.append(intervals[i])\n            i += 1\n\n        while i < n and intervals[i][0] <= newInterval[1]:\n            newInterval[0] = min(intervals[i][0], newInterval[0])\n            newInterval[1] = max(intervals[i][1], newInterval[1])\n            i += 1\n\n        res.append(newInterval)\n\n        while i < len(intervals):\n            res.append(intervals[i])\n            i += 1\n        return res\n```\n\n435. Non-overlapping Intervals\n\n- 和上题思路一样，排序后如果发现有重叠，那么按照**贪心**把重叠中更长的项删除\n\n```python\nclass Solution:\n    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n        intervals = sorted(intervals, key=lambda x: x[0])\n\n        res = []\n        for i in intervals:\n            if res and i[0] < res[-1][1]:\n                if i[1] > res[-1][1]:\n                    pass\n                else:\n                    res.pop(-1)\n                    res.append(i)\n            else:\n                res.append(i)\n        return len(intervals) - len(res)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n        if not intervals:\n            return 0\n\n        intervals.sort(key=lambda x: x[0])\n        res = 1\n        for i in range(1, len(intervals)):\n            if intervals[i][0] >= intervals[i-1][1]:\n                res += 1\n            else:\n                intervals[i][1] = min(intervals[i][1], intervals[i-1][1])\n\n        return len(intervals) - res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n\\*252. Meeting Rooms\n\n```python\nclass Solution:\n    def canAttendMeetings(self, intervals: list[list[int]]) -> bool:\n        intervals.sort()\n\n        for i in range(1, len(intervals)):\n            if intervals[i - 1][1] > intervals[i][0]:\n                return False\n        return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n1288. Remove Covered Intervals\n\n```python\nclass Solution:\n    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:\n        if not intervals:\n            return 0\n\n        intervals.sort(key=lambda x: (x[0], -x[1]))\n        res = []\n        for interval in intervals:\n            if res and (interval[0] >= res[-1][0] and interval[1] <= res[-1][1]):\n                continue\n            res.append(interval)\n        return len(res)\n```\n\n时间复杂度：O(sort) <br>\n空间复杂度：O(1)\n\n\\*253. Meeting Rooms II\n\n759 Employee Free Time\n\n452. Minimum Number of Arrows to Burst Balloons\n\n1094. Car Pooling\n\n```python\n# 相比nested loop，优化了复杂度\nclass Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        path = [0] * (max([i[2] for i in trips]) + 1)\n        for a, s, e in trips:\n            path[s] += a\n            path[e] -= a\n        res = 0\n        for n in path:\n            res += n\n            if res > capacity:\n                return False\n        return True\n```\n\n```python\nclass Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        heap = []\n        for numPassengers, start, end in trips:\n            heap.extend([(start, numPassengers), (end, -numPassengers)])\n        heapq.heapify(heap)\n\n        while capacity >= 0 and heap:\n            capacity -= heapq.heappop(heap)[1]\n\n        return len(heap) == 0\n```\n\n986. Interval List Intersections\n\n```python\n# https://leetcode.com/discuss/interview-question/124616/\n\nclass Solution:\n    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:\n        i = 0\n        j = 0\n\n        res = []\n        while i < len(firstList) and j < len(secondList):\n            l1 = firstList[i]\n            l2 = secondList[j]\n\n            if l1[1] >= l2[0] and l1[0] <= l2[1]:  # 注意此处判断两个interval有相交的条件\n                res.append([max(l1[0], l2[0]), min(l1[1], l2[1])])\n\n            if l1[1] < l2[1]:\n                i += 1\n            else:\n                j += 1\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n```python\nclass Solution:\n    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:\n        i = 0\n        j = 0\n        res = []\n\n        while i < len(firstList) and j < len(secondList):\n            if firstList[i][1] < secondList[j][0]:\n                i += 1\n            elif secondList[j][1] < firstList[i][0]:\n                j += 1\n            else:\n                res.append([max(firstList[i][0], secondList[j][0]), min(firstList[i][1], secondList[j][1])])\n                if firstList[i][1] < secondList[j][1]:\n                    i += 1\n                else:\n                    j += 1\n        return res\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-mlint9-20",
+    "title": "738. Monotone Increasing Digits",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/monotone increasing digits/ 暴力法 注意如何操作位数之间 时间复杂度：O() 空间复杂度：O",
+    "content": "# 738. Monotone Increasing Digits\n\n`https://leetcode.com/problems/monotone-increasing-digits/`\n\n## solution\n\n- 暴力法\n  - 注意如何操作位数之间\n\n```python\nclass Solution:\n    def monotoneIncreasingDigits(self, n: int) -> int:\n        for i in range(n, 0, -1):\n            if self.check_mono(i):\n                return i\n        return 0\n\n    def check_mono(self, num):\n        m = 10\n        while num > 0:\n            x = num % 10\n            if m >= x:\n                m = x\n            else:\n                return False\n            num = num // 10\n        return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 贪心\n  - 根据规律人工剪枝，如果小于上一位，上一位减1，这一位变9. 从后往前变量利用之前结果\n\n```python\nclass Solution:\n    def monotoneIncreasingDigits(self, n: int) -> int:\n        s = list(str(n))\n\n        for i in range(len(s) - 1, 0, -1):\n            if s[i-1] > s[i]:\n                s[i-1] = str(int(s[i-1]) - 1)\n                for j in range(i, len(s)):\n                    s[j] = '9'\n        return int(\"\".join(s))\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n31. Next Permutation\n\n670. Maximum Swap\n\n```python\n# 任务: 每一位数字，找到其后面 最大的数字(相同的最大则取最远的一位）进行交换\n# 有点类似单调栈, 但是从右到左，记录每一位数组中到目前见过的最大值的index\n\nclass Solution:\n    def maximumSwap(self, num: int) -> int:\n        nums = list(str(num))\n\n        for i in range(len(nums)):\n            max_value = nums[i] + '1'  # 一定要加1, 因为下面max_value要大于等于来选最远，但又必须比nums[i]大\n            max_index = i\n            for j in range(i+1, len(nums)):\n                if nums[j] >= max_value:  # 注意取最大的最后一位\n                    max_index = j\n                    max_value = nums[j]\n\n            if max_index > i:\n                nums[i], nums[max_index] = nums[max_index], nums[i]\n                return int(\"\".join(nums))\n\n        return int(\"\".join(nums))\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def maximumSwap(self, num: int) -> int:\n        digits = list(str(num))\n        # 位于自己及身后的最大值index, 有相等则取最后一位, 初始化自身index\n        max_digit_indices = list(range(len(digits)))\n\n        for i in range(len(digits) - 2, -1, -1):\n            # i + 1的位置已经是其后面最大的值index了, 那么只要自己小于等于最大的, 就更新为最大; 否则为自身\n            # 利用了max_digit_indices的性质进行更新, 减少计算\n            if digits[i] <= digits[max_digit_indices[i+1]]:\n                max_digit_indices[i] = max_digit_indices[i+1]\n\n        for i in range(len(digits)):\n            max_index = max_digit_indices[i]\n            if digits[i] < digits[max_index]:\n                digits[i], digits[max_index] = digits[max_index], digits[i]\n                break\n        return int(''.join(digits))\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-mlint9-22",
+    "title": "1031. Maximum Sum of Two Non-Overlapping Subarrays",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum sum of two non overlapping subarrays/ 注意利用已知条件: 有且只有",
+    "content": "# 1031. Maximum Sum of Two Non-Overlapping Subarrays\n\n`https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/`\n\n## solution\n\n- 注意利用已知条件: 有且只有两个\n\n```python\nclass Solution:\n    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:\n        def get_maxsum(l, r):\n            max_l = ans = 0\n            for i in range(l+r, len(prefix)):\n                max_l = max(max_l, prefix[i-r] - prefix[i-r-l])\n                ans = max(ans, max_l + prefix[i] - prefix[i-r])\n            return ans\n\n        prefix = [0] * (len(nums) + 1)\n        for i, num in enumerate(nums):\n            prefix[i+1] = prefix[i] + num\n        return max(get_maxsum(firstLen, secondLen), get_maxsum(secondLen, firstLen))\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-mlint9-24",
+    "title": "304. Range Sum Query 2D - Immutable",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/range sum query 2d immutable/ 把前缀和拓展到二维，即积分图(image integral)",
+    "content": "# 304. Range Sum Query 2D - Immutable\n\n`https://leetcode.com/problems/range-sum-query-2d-immutable/`\n\n## solution\n\n- 把前缀和拓展到二维，即积分图(image integral)\n\n```python\nclass NumMatrix:\n    def __init__(self, matrix: List[List[int]]):\n        m = len(matrix)\n        n = len(matrix[0])\n\n        self.dp = [[0] * (n + 1) for _ in range(m + 1)]  # 考虑到后续计算，这里必须+1. 顺便简化了dp初始化\n\n        for i in range(m):\n            for j in range(n):\n                self.dp[i+1][j+1] = self.dp[i][j+1] + self.dp[i+1][j] - self.dp[i][j] + matrix[i][j]\n\n    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:\n        return self.dp[row2+1][col2+1] - self.dp[row1][col2+1] - self.dp[row2+1][col1] + self.dp[row1][col1]\n```\n\n时间复杂度：O(mn) <br>\n空间复杂度：O(mn)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-mlint9-25",
+    "title": "523. Continuous Subarray Sum",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/continuous subarray sum/ 根据mode的数学特点, 前缀+贪心 prefix的精华在于两个不同位",
+    "content": "# 523. Continuous Subarray Sum\n\n`https://leetcode.com/problems/continuous-subarray-sum/`\n\n## solution\n\n- 根据mode的数学特点, 前缀+贪心\n  - prefix的精华在于两个不同位置的prefix相减, 据此怎么玩就需要随机应变(多练习)\n\n```python\nclass Solution:\n    def checkSubarraySum(self, nums: List[int], k: int) -> bool:\n        if len(nums) < 2:\n            return False\n\n        prefix_sum = 0\n        mydict = {0: -1}  #  注意包含第一个元素的序列, 如果第一个元素到中间元素可以被整除, [13, 2], 3\n        # 同时题目要求至少2个元素, 如果是前两个的和，也就是需要一个-1\n\n        for i, num in enumerate(nums):\n            prefix_sum += num\n\n            # 如果两个数除k都余同一个a，那么二者之差可以整除k\n            remainder = prefix_sum % k\n            if remainder not in mydict:  # 先判断不在, 记录每个元素记录最早的index\n                mydict[remainder] = i\n\n            if i - mydict[remainder] >= 2:  # 题目要求至少2个元素和\n                return True\n        return False\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n525. Contiguous Array\n\n- tricky的地方也在于，类似mode，通过hash记录了状态(而且是记录最早状态)，然后当前状态与hash中状态可以组成目标\n\n```python\nclass Solution:\n    def findMaxLength(self, nums: List[int]) -> int:\n        prefix_sum = 0\n        prefix_hash = {0: -1}  # 初始化解决了 f([0, 1]) = 2\n        res = 0\n        for i, num in enumerate(nums):\n            if num == 1:\n                prefix_sum += 1\n            else:\n                prefix_sum -= 1\n\n            if prefix_sum in prefix_hash:\n                res = max(res, i - prefix_hash[prefix_sum])\n            else:\n                prefix_hash[prefix_sum] = i\n        return res\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-mlint9-26",
+    "title": "53. Maximum Subarray",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum subarray/ 前缀和+贪心 时间复杂度：O(n) 空间复杂度：O(1) 动态规划 以nums i ",
+    "content": "# 53. Maximum Subarray\n\n`https://leetcode.com/problems/maximum-subarray/`\n\n## solution\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        res = -float('inf')\n        prefix_sum = 0\n\n        for num in nums:\n            prefix_sum = max(prefix_sum + num, num)  # 要么选这个数，要么不选\n            res = max(res, prefix_sum)\n        return res\n```\n\n- 前缀和+贪心\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        maxSum = float('-inf')\n        currentSum = 0\n\n        for num in nums:\n            currentSum += num\n\n            if currentSum > maxSum:\n                maxSum = currentSum\n\n            if currentSum < 0:\n                currentSum = 0\n\n        return maxSum\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n- 动态规划\n  - 以nums[i]为结尾 的最大连续子序列和为dp[i]\n  - 空间复杂度可以优化为O(1)\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return\n\n        if len(nums) == 1:\n            return nums[0]\n\n        dp = [0] * len(nums)\n        dp[0] = nums[0]\n\n        for i in range(1, len(nums)):\n            dp[i] = max(dp[i-1] + nums[i], nums[i])\n        return max(dp)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n560. Subarray Sum Equals K\n\n- 数据有正有负: 前缀和\n  - follow up: 返回所有这样的subarray\n  - follow up: array变为一个矩阵\n\n```python\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        if len(nums) < 1:\n            return 0\n\n        prefix_sum = 0\n        prefix_count_dict = collections.defaultdict(int)\n        prefix_count_dict[0] = 1  # 注意初始化, 当自身元素就等于k时\n\n        res = 0\n        for num in nums:\n            prefix_sum += num\n            res += prefix_count_dict[prefix_sum - k]   # 注意和下面一句dict更新的先后顺序会影响结果\n\n            prefix_count_dict[prefix_sum] += 1\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n523 Continuous Subarray Sum\n\n918. Maximum Sum Circular Subarray\n\n- 直接变两倍得到的结果是不正确的，还需要更精细的操作.\n- 解法\n  - 普通段: 如53\n  - 首尾两段相连: 相当于中间扣掉一段最小, 然后剩余的即最大\n\n```python\n# 特别慢\nclass Solution:\n    def maxSubarraySumCircular(self, nums: List[int]) -> int:\n        if max(nums) <= 0:\n            return max(nums)\n\n        cur_min = nums[0]\n        cur_max = nums[0]\n        res = nums[0]\n\n        for i in range(1, len(nums)):\n            cur_max = max(cur_max + nums[i], nums[i])\n            res = max(res, cur_max)\n            cur_min = min(cur_min + nums[i], nums[i])\n            res = max(res, sum(nums)-cur_min)\n        return res\n```\n\n```python\n# 原理相同: 两个dp空间换时间\nclass Solution:\n    def maxSubarraySumCircular(self, nums: List[int]) -> int:\n        if max(nums) <= 0:\n            return max(nums)\n\n        max_dp = [i for i in nums]\n        min_dp = [i for i in nums]\n        for i in range(1, len(nums)):\n            if max_dp[i-1] > 0:\n                max_dp[i] += max_dp[i-1]\n            if min_dp[i-1] < 0:\n                min_dp[i] += min_dp[i-1]\n        return max(max(max_dp), sum(nums) - min(min_dp))\n```\n\n152. Maximum Product Subarray\n\n```python\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        dp_pos = [nums[0]]  # 最大\n        dp_neg = [nums[0]]  # 最小，由于之前子序列可能是最小的负数，再突然遇到一个负数从而得到最大的子序列积\n        for i in range(1, len(nums)):\n            dp_pos.append(max(nums[i], dp_pos[i-1] * nums[i], dp_neg[i-1] * nums[i]))\n            dp_neg.append(min(nums[i], dp_pos[i-1] * nums[i], dp_neg[i-1] * nums[i]))\n        return max(dp_pos)\n```\n\n1186. Maximum Subarray Sum with One Deletion\n\n- 动态规划\n\n```python\n# dp(i, d): 删除d个元素的arr[:i + 1]最大子序和\n\nclass Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        dp = [[0] * 2 for _ in range(len(arr))]\n\n        dp[0][0] = arr[0]\n        dp[0][1] = 0\n\n        res = arr[0]\n        for i in range(1, len(arr)):\n            dp[i][0] = max(dp[i-1][0] + arr[i], arr[i])\n            dp[i][1] = max(dp[i-1][1] + arr[i], dp[i-1][0])  # 删一个 (如果前面删一个则必须加上现在，如果删现在的则以前必须不能删)\n            res = max(res, dp[i][0], dp[i][1])\n        return res\n```\n\n- 前缀和+后缀和\n\n```python\n\n```\n\n713. Subarray Product Less Than K\n\n```python\nclass Solution:\n    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:\n        # 209的做法: 固定右端点r，左边l是满足k的最大window. 此时l到r之间的元素都满足要求\n\n        res = 0\n        prefix_prod = 1\n        l = 0\n\n        for r, num in enumerate(nums):\n            prefix_prod *= num\n\n            while prefix_prod >= k:\n                prefix_prod //= nums[l]\n                l += 1\n\n            res += r - l + 1  # 结果加上从l开始，以r结果的数量. 假设l=r此时有一个元素\n        return res\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/d485940aad69b7a6.jpg"
+  },
+  {
+    "id": "g-mlint9-28",
+    "title": "547. Number of Provinces",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/number of provinces/ union find 时间复杂度：O() 空间复杂度：O() dfs",
+    "content": "# 547. Number of Provinces\n\n`https://leetcode.com/problems/number-of-provinces/`\n\n## solution\n\n- union find\n\n```python\nclass UF:\n    def __init__(self, n):\n        self.parents = list(range(n))\n\n    def find(self, x):\n        if self.parents[x] != x:\n            self.parents[x] = self.find(self.parents[x])\n        return self.parents[x]\n\n    def union(self, parent, child):\n        self.parents[self.find(child)] = self.find(parent)\n\nclass Solution:\n    def findCircleNum(self, isConnected: List[List[int]]) -> int:\n        uf = UF(n=len(isConnected))\n\n        for i in range(len(isConnected)):\n            for j in range(i):\n                if isConnected[i][j] == 1:\n                    uf.union(i, j)\n\n        res = []\n        for i in range(len(isConnected)):\n            if uf.find(i) not in res:\n                res.append(uf.find(i))\n        return len(res)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- dfs\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-mlint9-29",
+    "title": "684. Redundant Connection",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/redundant connection/ 并查集 时间复杂度：O() 空间复杂度：O() bfs 时间复杂度：O() ",
+    "content": "# 684. Redundant Connection\n\n`https://leetcode.com/problems/redundant-connection/`\n\n## solution\n\n- 并查集\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- bfs\n\n```python\nclass Solution:\n    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:\n        graph = collections.defaultdict(list)\n        indegree = collections.defaultdict(int)\n        for i, j in edges:\n            graph[i].append(j)\n            graph[j].append(i)\n            indegree[i] += 1\n            indegree[j] += 1\n\n        queue = collections.deque([i for i, v in indegree.items() if v == 1])\n\n        while queue:\n            node = queue.popleft()\n            for i in graph[node]:\n                indegree[i] -= 1\n                if indegree[i] == 1:\n                    queue.append(i)\n\n        for a, b in edges[::-1]:\n            if indegree[a] == 2 and indegree[b] == 2:\n                return [a, b]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n685. Redundant Connection II\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-mlint9-30",
+    "title": "721. Accounts Merge",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IX",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/accounts merge/ 并查集 时间复杂度：O() 空间复杂度：O() dfs 集合 bfs",
+    "content": "# 721. Accounts Merge\n\n`https://leetcode.com/problems/accounts-merge/`\n\n## solution\n\n- 并查集\n\n```python\n# https://leetcode.com/problems/accounts-merge/solutions/1084738/python-the-clean-union-find-solution-you-are-looking-for/\n\nclass UF:\n    def __init__(self, n):\n        self.parents = list(range(n))\n\n    def union(self, child, parent):\n        self.parents[self.find(child)] = self.find(parent)\n\n    def find(self, x):\n        if x != self.parents[x]:\n            self.parents[x] = self.find(self.parents[x])\n        return self.parents[x]\n\nclass Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        uf = UF(n=len(accounts))\n\n        email_to_index = {}\n        for i, account in enumerate(accounts):\n            emails = account[1:]\n            for email in emails:\n                if email in email_to_index:\n                    uf.union(i, email_to_index[email])\n                email_to_index[email] = i\n\n        ans = collections.defaultdict(list)\n        for email, index in email_to_index.items():\n            ans[uf.find(index)].append(email)\n\n        return [[accounts[i][0]] + sorted(emails) for i, emails in ans.items()]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- dfs\n\n```python\n\"\"\"\n# https://zhuanlan.zhihu.com/p/60635925\n# emails_accounts_map of email to account ID\n{\n  \"johnsmith@mail.com\": [0, 2],\n  \"john00@mail.com\": [0],\n  \"johnnybravo@mail.com\": [1],\n  \"john_newyork@mail.com\": [2],\n  \"mary@mail.com\": [3]\n}\n\"\"\"\n\nfrom collections import defaultdict\n\nclass Solution(object):\n    def accountsMerge(self, accounts):\n        visited_accounts = [False] * len(accounts)\n        emails_accounts_map = defaultdict(list)\n        res = []\n\n        for i, account in enumerate(accounts):\n            for j in range(1, len(account)):\n                email = account[j]\n                emails_accounts_map[email].append(i)\n\n        def dfs(i, emails):\n            if visited_accounts[i]:\n                return\n            visited_accounts[i] = True\n            for j in range(1, len(accounts[i])):\n                email = accounts[i][j]\n                emails.add(email)\n                for neighbor in emails_accounts_map[email]:\n                    dfs(neighbor, emails)\n\n        for i, account in enumerate(accounts):\n            if visited_accounts[i]:\n                continue\n            name = account[0]\n            emails = set()\n            dfs(i, emails)\n            res.append([name] + sorted(emails))\n        return res\n```\n\n- 集合\n\n```python\n# 注意这里的dict如何解决多个相同的key同时存在字典中: dict[str, list[list[str]]]\n# 同时, 一个错误思路是, 每次去历史列表里找，找不到则新加一个list, 可能现在找不到，但未来有别的牵桥搭线就可以找到\n\nclass Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        from collections import defaultdict\n        if not accounts:\n            return\n        lookup = defaultdict(list)\n        res = []\n        for account in accounts:\n            name = account[0]\n            email = set(account[1:])\n\n            lookup[name].append(email)\n            for e in lookup[name][:-1]:\n                # a\\b\\c搭桥相连, a:123, b:45, c:15\n                # a先进入c, 之后b并入c.\n                if e & email:\n                    lookup[name].remove(e)\n                    lookup[name][-1].update(e)\n\n        for key, val in lookup.items():\n            for tmp in val:\n                res.append([key] + list(sorted(tmp)))\n        return res\n```\n\n- bfs\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
   }
 ]
