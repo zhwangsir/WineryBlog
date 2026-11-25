@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 672
+      "count": 694
     },
     {
       "id": "security",
@@ -42085,6 +42085,358 @@
       ],
       "prereqs": [],
       "href": "/post/g-mlint9-30"
+    },
+    {
+      "id": "g-mlint10-2",
+      "kind": "collection",
+      "title": "1166. Design File System",
+      "summary": "https://leetcode.com/problems/design file system/ 时间复杂度：O() ",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-2"
+    },
+    {
+      "id": "g-mlint10-3",
+      "kind": "collection",
+      "title": "1268. Search Suggestions System",
+      "summary": "https://leetcode.com/problems/search suggestions system/ 时间复",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-3"
+    },
+    {
+      "id": "g-mlint10-4",
+      "kind": "collection",
+      "title": "208. Implement Trie",
+      "summary": "https://leetcode.com/problems/implement trie prefix tree/ 根节",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-4"
+    },
+    {
+      "id": "g-mlint10-5",
+      "kind": "collection",
+      "title": "211. Design Add and Search Words Data Structure",
+      "summary": "https://leetcode.com/problems/design add and search words da",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-5"
+    },
+    {
+      "id": "g-mlint10-8",
+      "kind": "collection",
+      "title": "218. The Skyline Problem",
+      "summary": "https://leetcode.com/problems/the skyline problem/ 使用优先队列储存每",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-8"
+    },
+    {
+      "id": "g-mlint10-9",
+      "kind": "collection",
+      "title": "253. Meeting Room II",
+      "summary": "https://leetcode.com/problems/meeting rooms ii/ heap 时间复杂度：O",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-9"
+    },
+    {
+      "id": "g-mlint10-10",
+      "kind": "collection",
+      "title": "759. Employee Free Time",
+      "summary": "https://leetcode.com/problems/employee free time/ 时间复杂度：O() ",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-10"
+    },
+    {
+      "id": "g-mlint10-11",
+      "kind": "collection",
+      "title": "318. Count of Smaller Numbers After Self",
+      "summary": "https://leetcode.com/problems/maximum product of word length",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-11"
+    },
+    {
+      "id": "g-mlint10-12",
+      "kind": "collection",
+      "title": "480. Sliding Window Median",
+      "summary": "https://leetcode.com/problems/sliding window median/ 时间复杂度：O",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-12"
+    },
+    {
+      "id": "g-mlint10-13",
+      "kind": "collection",
+      "title": "729. My Calendar I",
+      "summary": "https://leetcode.com/problems/my calendar i/ 朴素 时间复杂度：O() 空间",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-13"
+    },
+    {
+      "id": "g-mlint10-15",
+      "kind": "collection",
+      "title": "981. Time Based Key-Value Store",
+      "summary": "https://leetcode.com/problems/time based key value store/ 时间",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-15"
+    },
+    {
+      "id": "g-mlint10-17",
+      "kind": "collection",
+      "title": "1570. Dot Product of Two Sparse Vectors",
+      "summary": "https://leetcode.com/problems/dot product of two sparse vect",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-17"
+    },
+    {
+      "id": "g-mlint10-19",
+      "kind": "collection",
+      "title": "29. Divide Two Integers",
+      "summary": "https://leetcode.com/problems/divide two integers/descriptio",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-19"
+    },
+    {
+      "id": "g-mlint10-20",
+      "kind": "collection",
+      "title": "311. Sparse Matrix Multiplication",
+      "summary": "https://leetcode.com/problems/sparse matrix multiplication/ ",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-20"
+    },
+    {
+      "id": "g-mlint10-22",
+      "kind": "collection",
+      "title": "398. Random Pick Index",
+      "summary": "https://leetcode.com/problems/random pick index/ 时间复杂度：O(n) ",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-22"
+    },
+    {
+      "id": "g-mlint10-23",
+      "kind": "collection",
+      "title": "50. Pow(x, n)",
+      "summary": "https://leetcode.com/problems/powx n/description/ 快速幂: recur",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-23"
+    },
+    {
+      "id": "g-mlint10-24",
+      "kind": "collection",
+      "title": "1116. Print Zero Even Odd",
+      "summary": "https://leetcode.com/problems/print zero even odd/descriptio",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-24"
+    },
+    {
+      "id": "g-mlint10-25",
+      "kind": "collection",
+      "title": "1236. Web Crawler",
+      "summary": "https://leetcode.com/problems/web crawler/description/ 时间复杂度",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-25"
+    },
+    {
+      "id": "g-mlint10-26",
+      "kind": "collection",
+      "title": "1244. Design A Leaderboard",
+      "summary": "https://leetcode.com/problems/design a leaderboard/descripti",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-26"
+    },
+    {
+      "id": "g-mlint10-27",
+      "kind": "collection",
+      "title": "1396. Design Underground System",
+      "summary": "https://leetcode.com/problems/design underground system/desc",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-27"
+    },
+    {
+      "id": "g-mlint10-29",
+      "kind": "collection",
+      "title": "353. Design Snake Game",
+      "summary": "https://leetcode.com/problems/design snake game/ 时间复杂度：O() 空",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-29"
+    },
+    {
+      "id": "g-mlint10-30",
+      "kind": "collection",
+      "title": "355. Design Twitter",
+      "summary": "https://leetcode.com/problems/design twitter/ 时间复杂度：O() 空间复杂",
+      "domain": "ai",
+      "category": "机器学习面试题解 X",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint10-30"
     }
   ]
 }

@@ -40661,5 +40661,335 @@
     "source": "LongxingTan/Machine-learning-interview",
     "views": 0,
     "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-mlint10-2",
+    "title": "1166. Design File System",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design file system/ 时间复杂度：O() 空间复杂度：O() 588. Design In Memor",
+    "content": "# 1166. Design File System\n\n`https://leetcode.com/problems/design-file-system/`\n\n## solution\n\n```python\nclass TrieNode:\n    def __init__(self, value=0):\n        self.children = {}\n        self.value = value\n\nclass FileSystem:\n    def __init__(self):\n        self.root = TrieNode()\n\n    def createPath(self, path: str, value: int) -> bool:\n        node = self.root\n        subpaths = path.split('/')\n\n        for i in range(1, len(subpaths) - 1):\n            if subpaths[i] not in node.children:\n                return False\n            node = node.children[subpaths[i]]\n\n        if subpaths[-1] in node.children:\n            return False\n\n        node.children[subpaths[-1]] = TrieNode(value)\n        return True\n\n    def get(self, path: str) -> int:\n        node = self.root\n        for subpath in path.split('/')[1:]:\n            if subpath not in node.children:\n                return -1\n            node = node.children[subpath]\n        return node.value\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n588. Design In-Memory File System",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-mlint10-3",
+    "title": "1268. Search Suggestions System",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/search suggestions system/ 时间复杂度：O() 空间复杂度：O() binary search",
+    "content": "# 1268. Search Suggestions System\n\n`https://leetcode.com/problems/search-suggestions-system/`\n\n## solution\n\n```python\nclass Solution:\n    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:\n        res = []\n        products.sort()\n\n        for i in range(len(searchWord)):\n            search = searchWord[:i+1]\n            cur = []\n            count = 0\n            for prod in products:\n                if search == prod[:i+1]:\n                    cur.append(prod)\n                    count += 1\n\n                if count == 3:\n                    break\n            res.append(cur)\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- binary search\n\n```python\n\n```\n\n- trie\n\n```python\nclass TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.word = None\n\nclass Solution:\n    def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:\n        root = TrieNode()\n        ans = []\n\n        def insert(word):\n            node = root\n            for char in word:\n                node = node.children.setdefault(char, TrieNode())\n            node.word = word\n\n        def search(node):\n            res = []\n            dfs(node, res)\n            return res\n\n        def dfs(node, res):\n            if len(res) == 3:\n                return\n            if not node:\n                return\n\n            if node.word:\n                res.append(node.word)\n\n                for char in string.ascii_lowercase:\n                    if char in node.children:\n                        dfs(node.children[char], res)\n            return\n\n        for product in products:\n            insert(product)\n\n        node = root\n        for char in searchWord:\n            if not node or char not in node.children:\n                node = None\n                ans.append([])\n                continue\n            node = node.children[char]\n            ans.append(search(node))\n        return ans\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-mlint10-4",
+    "title": "208. Implement Trie",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/implement trie prefix tree/ 根节点不包含字符，除根节点外每一个节点都只包含一个字符 从根节点",
+    "content": "# 208. Implement Trie\n\n`https://leetcode.com/problems/implement-trie-prefix-tree/`\n\n## solution\n\n- 根节点不包含字符，除根节点外每一个节点都只包含一个字符\n- 从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串\n- 每个节点的所有子节点包含的字符都不相同\n\n```python\nclass Trie:\n    def __init__(self):\n        self.root = {}  # 多重字典实现多叉树, 字典的value是另一个字典, 这个字典的多个key是下一层\n\n    def insert(self, word: str) -> None:\n        cur = self.root  # cur类似在多重字典中的list指针\n\n        for letter in word:\n            if letter not in cur:\n                cur[letter] = {}\n            cur = cur[letter]  # 关键在于理解这里\n        cur['*'] = ''  # 结束标志\n\n    def search(self, word: str) -> bool:\n        cur = self.root\n        for letter in word:\n            if letter not in cur:\n                return False\n            cur = cur[letter]\n        return '*' in cur\n\n    def startsWith(self, prefix: str) -> bool:\n        cur = self.root\n        for letter in prefix:\n            if letter not in cur:\n                return False\n            cur = cur[letter]\n        return True\n```\n\n时间复杂度：O(l) <br>\n空间复杂度：O()\n\n```python\nclass Node:\n    def __init__(self):\n        self.children = collections.defaultdict(Node)\n        self.is_word = False\n\nclass Trie:\n    def __init__(self):\n        self.root = Node()\n\n    def insert(self, word: str) -> None:\n        cur = self.root\n        for char in word:\n            # cur = cur.children.setdefault(char, Node())  # set_default: 查找key, 存在则返回对应value；不存在，则在字典中添加key，并将值设置为指定值\n            if char not in cur.children:\n                cur.children[char] = Node()\n            cur = cur.children[char]  # 没有新建，有则往下\n\n        cur.is_word = True\n\n    def search(self, word: str) -> bool:\n        cur = self.root\n        for char in word:\n            if char not in cur.children:\n                return False\n            cur = cur.children[char]\n        return cur.is_word\n\n    def startsWith(self, prefix: str) -> bool:\n        cur = self.root\n        for char in prefix:\n            if char not in cur.children:\n                return False\n            cur = cur.children[char]\n        return True\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-mlint10-5",
+    "title": "211. Design Add and Search Words Data Structure",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design add and search words data structure/ 时间复杂度：O() 空间复杂度：",
+    "content": "# 211. Design Add and Search Words Data Structure\n\n`https://leetcode.com/problems/design-add-and-search-words-data-structure/`\n\n## solution\n\n```python\nclass TrieNode:\n    def __init__(self):\n        self.data = {}\n        self.is_word = False\n\nclass WordDictionary:\n    def __init__(self):\n        self.root = TrieNode()\n\n    def addWord(self, word: str) -> None:\n        cur = self.root\n        for char in word:\n            cur = cur.data.setdefault(char, TrieNode())\n        cur.is_word = True\n\n    def search(self, word: str) -> bool:\n        return self.dfs(self.root, 0, word)\n\n    def dfs(self, node, index, word):  # 按字母从trie中获取\n        if index == len(word):\n            return node.is_word\n\n        if word[index] == '.':  # 通配符的搜索\n            for child in node.data.values():\n                if self.dfs(child, index + 1, word):\n                    return True\n\n        if word[index] in node.data:  # 非通配符\n            return self.dfs(node.data[word[index]], index+1, word)\n        return False\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n676. Implement Magic Dictionary\n\n720. Longest Word in Dictionary\n\n```python\nclass TrieNode(object):\n    def __init__(self):\n        self.children = collections.defaultdict(TrieNode)\n        self.isEnd = False\n        self.word = ''\n\nclass Trie(object):\n    def __init__(self):\n        self.root=TrieNode()\n\n    def insert(self, word):\n        node=self.root\n        for c in word:\n            node =node.children[c]\n        node.isEnd=True\n        node.word=word\n\n    def bfs(self):\n        q = collections.deque([self.root])\n        res = ''\n        while q:\n            cur = q.popleft()\n            for n in cur.children.values():\n                if n.isEnd:\n                    q.append(n)\n                    if len(n.word) > len(res) or n.word < res:\n                        res = n.word\n        return res\n\nclass Solution(object):\n    def longestWord(self, words):\n        trie = Trie()\n        for w in words:\n            trie.insert(w)\n        return trie.bfs()\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-mlint10-8",
+    "title": "218. The Skyline Problem",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/the skyline problem/ 使用优先队列储存每个建筑物的高度和右端 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 218. The Skyline Problem\n\n`https://leetcode.com/problems/the-skyline-problem/`\n\n## solution\n\n- 使用优先队列储存每个建筑物的高度和右端\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- tree map\n\n```python\n\n```\n\n- 扫描线\n\n```python\n\n```\n\n```python\nclass Solution:\n    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        if not buildings:\n            return []\n\n        events = []\n\n        for left, right, h in buildings:\n            events.append((left, -h, right))  # start point of building\n            events.append((right, 0, 0))  # end point of building\n\n        events.sort()\n        res = [[0, 0]]\n        hp = [(0, float('inf'))]  # 结果存的就是高度，右边界\n\n        for pos, h, r in events:\n            while hp[0][1] <= pos:  # 本身已经按高度排序，如果右边比上一个小\n                heapq.heappop(hp)\n\n            if h != 0:\n                heapq.heappush(hp, (h, r))\n\n            if res[-1][1] != -hp[0][0]:\n                res.append([pos, -hp[0][0]])\n        return res[1:]\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-mlint10-9",
+    "title": "253. Meeting Room II",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/meeting rooms ii/ heap 时间复杂度：O() 空间复杂度：O() 扫描线 时间复杂度：O() 空间复",
+    "content": "# 253. Meeting Room II\n\n`https://leetcode.com/problems/meeting-rooms-ii/`\n\n## solution\n\n- heap\n\n```python\n# 每个会议入堆前都判断堆里是否有会议结束，如果有就让它出堆。\n\nclass Solution:\n    def min_meeting_rooms(self, intervals: List[Interval]) -> int:\n        if not intervals:\n            return 0\n\n        free_rooms = []\n        intervals.sort(key= lambda x: x.start)\n        heapq.heappush(free_rooms, intervals[0].end)  # 入堆的是结束时间, 便于判断是否已结束\n\n        for i in intervals[1:]:\n            # 注意是if, 不是while. 如果没有overlap, 则可以使用原本的会议室. pop相当于原本占据会议室的人离开\n            if free_rooms[0] <= i.start:\n                heapq.heappop(free_rooms)\n\n            # 新的会议室加入堆\n            heapq.heappush(free_rooms, i.end)\n\n        return len(free_rooms)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 扫描线\n\n```python\n# 一个计数器cnt表示当前正在召开的会议数量，然后从小到大遍历所有的时间点。若当前时间点有会议召开，那么就将cnt加上1，反之，若当前时间有会议结束，那么就将cnt减去1\n\nclass Solution:\n    def min_meeting_rooms(self, intervals: List[Interval]) -> int:\n        res = 0\n        count = 0\n        time = []\n        # 更直接方法是开始时间+1, 结束时间-1\n        for interval in intervals:\n            time.append([interval.start, 1])\n            time.append([interval.end, -1])\n\n        time.sort(key=lambda x: x[0])\n        for x, status in time:\n            count += status\n            res = max(res, count)\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 前缀和\n\n```python\nclass Solution:\n    def minMeetingRooms(self, intervals):\n        room = {}\n        # 开始时间+1，结束时间-1\n        for i in intervals:\n            room[i.start] = room.get(i.start, 0) + 1\n            room[i.end] = room.get(i.end, 0) - 1\n\n        ans = 0\n        tmp = 0\n        for i in sorted(room.keys()):\n            tmp = tmp + room[i]\n            ans = max(ans, tmp)\n        return ans\n```\n\n## follow up\n\n\\*252. Meeting Rooms",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-mlint10-10",
+    "title": "759. Employee Free Time",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/employee free time/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 759. Employee Free Time\n\n`https://leetcode.com/problems/employee-free-time/`\n\n## solution\n\n```python\nclass Solution:\n    def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':\n        intervals = [interval for employee in schedule for interval in employee]\n        intervals.sort(key=lambda x: x.start)\n        res = []\n        end = intervals[0].end\n\n        for i in intervals[1:]:\n            if end < i.start:\n                res.append(Interval(end, i.start))\n            end = max(end, i.end)\n        return res\n```\n\n```python\nclass Solution:\n    def employeeFreeTime(self, schedule):\n        import heapq\n        heap, result = [], []\n        for employee in schedule:\n            for i in range(0, len(employee), 2):\n                heapq.heappush(heap, (employee[i], 0))\n                heapq.heappush(heap, (employee[i + 1], 1))\n\n        count, n = 0, len(heap)\n        while n > 1:\n            left = heapq.heappop(heap)\n            right = heap[0]\n            if (left[1] == 0):\n                count += 1\n            else:\n                count -= 1\n            if left[1] == 1 and right[1] == 0:\n                if count == 0:\n                    result.append(Interval(left[0], right[0]))\n            n = len(heap)\n\n        return result\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-mlint10-11",
+    "title": "318. Count of Smaller Numbers After Self",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum product of word lengths/ 线段树、二分索引树、TreeMap都可以 时间复杂度：",
+    "content": "# 318. Count of Smaller Numbers After Self\n\n`https://leetcode.com/problems/maximum-product-of-word-lengths/`\n\n## solution\n\n- 线段树、二分索引树、TreeMap都可以\n\n```python\n# bitmask\n\nclass Solution:\n    def maxProduct(self, words: List[str]) -> int:\n        num_words = len(words)\n        # Create a list to store the bitmask representation of each word\n        masks = [0] * num_words\n\n        # Generate a bitmask for each word where bit i is set if the\n        # word contains the i-th letter of the alphabet: [4194311, 33554435, 16416, 131075, 8921120, 63]\n        for i, word in enumerate(words):\n            for ch in word:\n                masks[i] |= 1 << (ord(ch) - ord('a'))\n\n        max_product = 0\n        for i in range(num_words - 1):\n            for j in range(i + 1, num_words):\n                if masks[i] & masks[j] == 0:\n                    max_product = max(max_product, len(words[i]) * len(words[j]))\n\n        return max_product\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-mlint10-12",
+    "title": "480. Sliding Window Median",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/sliding window median/ 时间复杂度：O(n x k) 空间复杂度：O(n) 295. Find M",
+    "content": "# 480. Sliding Window Median\n\n`https://leetcode.com/problems/sliding-window-median/`\n\n## solution\n\n```python\n# 类似于81题数据流的中位数，两个堆，一个大根堆维护中位数以左的，一个小根堆维护中位数以右的元素\n\nfrom bisect import insort, bisect_left\n\nclass Solution:\n    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:\n        ans = []\n        window = sorted(nums[:k])  # 排序\n\n        def get_median(window, k):\n            return (window[(k - 1) // 2] + window[k // 2]) / 2.0\n\n        ans.append(get_median(window, k))\n\n        for i in range(k, len(nums)):\n            index = bisect_left(window, nums[i - k])  # 即将移出窗口的元素，其他的仍然排序\n            window.pop(index)\n\n            insort(window, nums[i])\n            ans.append(get_median(window, k))\n\n        return ans\n```\n\n时间复杂度：O(n x k) <br>\n空间复杂度：O(n)\n\n## follow up\n\n295. Find Median from Data Stream",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-mlint10-13",
+    "title": "729. My Calendar I",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/my calendar i/ 朴素 时间复杂度：O() 空间复杂度：O() binary search interval",
+    "content": "# 729. My Calendar I\n\n`https://leetcode.com/problems/my-calendar-i/`\n\n## solution\n\n- 朴素\n\n```python\nclass MyCalendar:\n    def __init__(self):\n        self.intervals = []\n\n    def book(self, start: int, end: int) -> bool:\n        for interval in self.intervals:\n            if interval[0] < end and interval[1] > start:\n                return False\n\n        self.intervals.append([start, end])\n        return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- binary search interval tree\n\n```python\nclass TreeNode:\n\tdef __init__(self, s, e):\n\t\tself.s = s\n\t\tself.e = e\n\t\tself.left = None\n\t\tself.right = None\n\nclass MyCalendar:\n\tdef __init__(self):\n\t\tself.root = None\n\n\tdef book(self, start: int, end: int) -> bool:\n\t\tif not self.root:\n\t\t\tself.root = TreeNode(start, end)\n\t\t\treturn True\n\t\telse:\n\t\t\treturn self.insert(start, end, self.root)\n\n\t# try to decide where I can go\n\t# if my start is greater than or equal to end then go to the right\n\t# equal is allowed as \"end\" is not part of the interval\n\n\t# if my end is less than or equal to the start then go to the left\n\t# equal is allowed as \"end\" is not part of the interval\n\tdef insert(self, s, e, node):\n\t\tif s >= node.e:\n\t\t\tif node.right:\n\t\t\t\treturn self.insert(s, e, node.right)\n\t\t\telse:\n\t\t\t\tnode.right = TreeNode(s, e)\n\t\t\t\treturn True\n\t\telif e <= node.s:\n\t\t\tif node.left:\n\t\t\t\treturn self.insert(s, e, node.left)\n\t\t\telse:\n\t\t\t\tnode.left = TreeNode(s, e)\n\t\t\t\treturn True\n\t\telse:\n\t\t\treturn False\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-mlint10-15",
+    "title": "981. Time Based Key-Value Store",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/time based key value store/ 时间复杂度：O(log(n)) 空间复杂度：O(key+valu",
+    "content": "# 981. Time Based Key-Value Store\n\n`https://leetcode.com/problems/time-based-key-value-store/`\n\n## solution\n\n```python\nimport bisect\nimport collections\n\nclass TimeMap:\n    def __init__(self):\n        # 两个并列字典, 其中value顺序对应上\n        self.value_map = collections.defaultdict(list)\n        self.time_map = collections.defaultdict(list)\n\n    def set(self, key: str, value: str, timestamp: int) -> None:\n        self.value_map[key].append(value)\n        self.time_map[key].append(timestamp)\n\n    def get(self, key: str, timestamp: int) -> str:\n        if key not in self.value_map:\n            return ''\n\n        key_time = self.time_map[key]\n        # bisect 输出: 第一个比timestamp大的index\n        index = bisect.bisect(key_time, timestamp)\n        if index >= 1:  # 注意输出\n            return self.value_map[key][index - 1]\n        return ''\n```\n\n时间复杂度：O(log(n)) <br>\n空间复杂度：O(key+value+timestamp)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-mlint10-17",
+    "title": "1570. Dot Product of Two Sparse Vectors",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/dot product of two sparse vectors/ 时间复杂度：O() 空间复杂度：O() list ",
+    "content": "# 1570. Dot Product of Two Sparse Vectors\n\n`https://leetcode.com/problems/dot-product-of-two-sparse-vectors/`\n\n## solution\n\n```python\nclass SparseVector:\n    def __init__(self, nums: List[int]):\n        self.num_dict = {}\n        for idx, value in enumerate(nums):\n            self.num_dict[idx] = value\n\n    def dot_product(self, vec: \"SparseVector\") -> int:\n        res = 0\n        for idx, value in self.num_dict.items():\n            if vec.num_dict.get(idx, 0) > 0:\n                res += self.num_dict[idx] * vec.num_dict.get(idx, 0)\n        return res\n```\n\n```python\n\"\"\"\nInput: nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]\nOutput: v1.dotProduct(v2) = 1*0 + 0*3 + 0*0 + 2*4 + 3*0 = 8\n\"\"\"\n\nclass SparseVector:\n    def __init__(self, nums: List[int]):\n        self.digit_list = []\n        for index, num in enumerate(nums):\n            if num > 0:\n                self.digit_list.append([index, num])  # hash记录其非0元素\n\n    def dotProduct(self, vec: \"SparseVector\"):\n        # 这里输入的vec, 类型就是我们定义的SparseVector\n        p1 = p2 = 0\n        res = 0\n        while p1 < len(self.digit_list) and p2 < len(vec.digit_list):\n            if self.digit_list[p1][0] == vec.digit_list[p2][0]:\n                res += self.digit_list[p1][1] * vec.digit_list[p2][1]\n                p1 += 1\n                p2 += 1\n            elif self.digit_list[p1][0] < vec.digit_list[p2][0]:\n                p1 += 1\n            else:\n                p2 += 1\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- list of pair + 二分\n\n```python\nclass SparseVector:\n    def __init__(self, nums):\n        # Store non-zero values as (index, value) pairs in sorted order.\n        self.v = [(i, nums[i]) for i in range(len(nums)) if nums[i] != 0]\n\n    def dotProduct(self, vec):\n        ans = 0\n        for idx, val in self.v:\n            # Perform binary search for the same index in the other vector's sorted list\n            j = self.binarySearch(vec.v, idx)\n            if j != -1:\n                ans += val * vec.v[j][1]  # Multiply matching values\n        return ans\n\n    def binarySearch(self, lst, target):\n        # Binary search for the target index in the list of (index, value) pairs.\n        low, high = 0, len(lst) - 1\n        while low <= high:\n            mid = (low + high) // 2\n            if lst[mid][0] == target:\n                return mid\n            elif lst[mid][0] < target:\n                low = mid + 1\n            else:\n                high = mid - 1\n        return -1  # No match found\n```\n\n## follow up\n\n- What if only one of the vectors is sparse?\n- 有一個vector很长怎么做？\n  - 如果有一个vector很长， for k in short vector: if k in long vector: ret += vs \\* vl\n- 不能用hashtable怎么做？如果变成dense vector但依然不能用hashtable怎么做？\n- 设计sparse matrix (包括加减乘等运算)\n\n311. Sparse Matrix Multiplication\n\nSparse Matrix and its representations",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-mlint10-19",
+    "title": "29. Divide Two Integers",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/divide two integers/description/ 位运算 bit shift 时间复杂度：O(log(n",
+    "content": "# 29. Divide Two Integers\n\n`https://leetcode.com/problems/divide-two-integers/description/`\n\n## solution\n\n- 位运算 bit shift\n\n```python\n\"\"\"\n以31 / 3为例\n-> temp = 3, divided = 28, num = 1, res = 1\n-> temp = 6, divided = 22, num = 2, res = 1+2\n-> temp = 12, divided = 10, num = 4, res = 1+2+4\n-> （回到第一个while）\n-> temp = 3, divided = 7, num = 1, res = 1+2+4+1\n-> temp = 6, divided = 1, num = 2, res = 1+2+4+1+1\n\"\"\"\n\nclass Solution:\n    def divide(self, dividend: int, divisor: int) -> int:\n        sign = -1 if (dividend >= 0 and divisor < 0) or (dividend < 0 and divisor >= 0) else 1\n        dividend = abs(dividend)  # 不要忘记转为正数\n        divisor = abs(divisor)\n\n        res = 0\n        while dividend >= divisor:  # x里面还能分出y\n            temp = divisor\n            num = 1  # 注意初始化为1\n            while dividend >= temp:  # 开始比较x是否大于y的倍数，一次从x里面减去最大的2^n*y\n                dividend -= temp\n                res += num  # res代表temp里面有多少个y，所以在x减去temp后，res也要加在result里\n                temp = temp << 1\n                num = num << 1\n        if sign == -1:\n            res = -res\n        return min(max(-2147483648, res), 2147483647)  # 32-bit integer limitations\n```\n\n时间复杂度：O(log(n^2)) <br>\n空间复杂度：O(1)\n\n## follow up-位运算\n\n67. Add Binary\n\n```python\n\n```\n\n136. Single Number\n\n```python\nclass Solution:\n    def singleNumber(self, nums: List[int]) -> int:\n        res = 0\n        for num in nums:\n            res = res ^ num\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n371. Sum of Two Integers\n\n```python\nclass Solution:\n    def getSum(self, a: int, b: int) -> int:\n        carry = 0\n        mask = 0xffffffff\n        while b & mask != 0:\n            carry = (a & b) << 1\n            a = a ^ b\n            b = carry\n        return a & mask if b > mask else a\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n7. Reverse Integer\n\n```python\n\n```\n\n190. Reverse Bits\n\n```python\nclass Solution:\n    def reverseBits(self, n: int) -> int:\n        ans = 0\n\n        for i in range(32):\n            if n >> i & 1:\n                ans |= 1 << 31 - i\n        return ans\n```\n\n201. Bitwise AND of Numbers Range\n\n```python\n# 从m到n，每次+1，在最低那些位，都经历了0和1的反复变化，对应最终结果都是零。\n# 只有m和n的相同的高位，才最终保留在结果里。我们每次向右移动m和n，直到结果m == n。用counter记录移动的次数，然后把当前的m或者n再向左移动counter位就是最终结果\n\nclass Solution:\n    def rangeBitwiseAnd(self, left: int, right: int) -> int:\n        counter = 0\n        while left != right:\n            left >>= 1\n            right >>= 1\n\n            counter += 1\n\n        return left << counter\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint10-20",
+    "title": "311. Sparse Matrix Multiplication",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/sparse matrix multiplication/ Brute Force 时间复杂度：O(mnl) 空间复杂度",
+    "content": "# 311. Sparse Matrix Multiplication\n\n`https://leetcode.com/problems/sparse-matrix-multiplication/`\n\n## solution\n\n- Brute Force\n\n```python\nclass Solution(object):\n    def multiply(self, mat1, mat2):\n        m = len(mat1)\n        n = len(mat2)\n        l = len(mat2[0])\n        ans = [[0] * l for _ in range(m)]\n        for i in range(m):\n            for j in range(l):\n                for k in range(n):\n                    ans[i][j] += mat1[i][k] * mat2[k][j]\n        return ans\n```\n\n时间复杂度：O(mnl) <br>\n空间复杂度：O(nl)\n\n- hash\n\n```python\n# https://zhuanlan.zhihu.com/p/595939499\n\nclass Solution(object):\n    def multiply(self, mat1, mat2):\n        m = len(mat1)\n        k = len(mat1[0])\n        n = len(mat2[0])\n\n        # create sparse matrix\n        h1 = {}\n        for i in range(m):\n            for j in range(k):\n                if mat1[i][j] != 0:\n                    if j not in h1:\n                        h1[j] = []\n                    h1[j].append([i, mat1[i][j]])\n\n        h2 = {}\n        for j in range(k):\n            for p in range(n):\n                if mat2[j][p] != 0:\n                    if j not in h2:\n                        h2[j] = []\n                    h2[j].append([p, mat2[j][p]])\n\n        res = [[0] * n for _ in range(m)]\n        for j in h1:\n            for i, v1 in h1[j]:\n                for p, v2 in h2.get(j, []):\n                    res[i][p] += v1 * v2\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-mlint10-22",
+    "title": "398. Random Pick Index",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/random pick index/ 时间复杂度：O(n) 空间复杂度：O(1) 多线程版本 528. Random P",
+    "content": "# 398. Random Pick Index\n\n`https://leetcode.com/problems/random-pick-index/`\n\n## solution\n\n```python\n# 蓄水池算法: 给定数据流，长度N很大，且N直到处理完所有数据之前都不可知，如何在只遍历一遍数据（O(N)）的情况下，随机选取出m个不重复的数据\n# i <= m: i从1开始，小于m则直接入池\n# i > m: 从[1, i]中选一个数x, x > m 掠过；x<=m, x位置的元素替换为i位置的元素\n# https://zhuanlan.zhihu.com/p/119329875\n\nclass Solution:\n    def __init__(self, nums: List[int]):\n        self.nums = nums\n\n    def pick(self, target: int) -> int:\n        count = 0\n        res = None\n        for i, num in enumerate(self.nums):\n            if num == target:\n                count += 1\n                if random.randint(1, count) == 1:\n                    res = i\n        return res\n```\n\n```python\nclass Solution:\n    def __init__(self, nums: List[int]):\n        self.nums = nums\n\n    def pick(self, target: int) -> int:\n        res = None\n        count = 0\n\n        for i, num in enumerate(self.nums):\n            if num == target:\n                if res is None:\n                    res = i  # 只选一个, 第一个先入池\n                else:\n                    if random.randint(0, count) == 0:  # 大于1后, 替代之前的概率 1/(cnt-1) 取决于count是否加上了自身\n                        res = i\n\n                count += 1\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n```python\nclass Solution:\n    def __init__(self, nums: List[int]):\n        self.indices = defaultdict(list)\n        for i, num in enumerate(nums):\n            self.indices[num].append(i)\n\n    def pick(self, target: int) -> int:\n        return random.choice(self.indices[target])\n```\n\n## follow up-Reservoir Sampling/Rejection Sampling类\n\n- 多线程版本\n\n528. Random Pick with Weight\n\n380. Insert Delete GetRandom O(1).md>)\n\n497. Random Point in Non-overlapping Rectangles\n\n```python\n# 有权重(矩阵面积)抽取矩阵\nimport random\n\nclass Solution:\n    def __init__(self, rects: List[List[int]]):\n        self.rects = rects\n        self.areas = []\n        self.total_area = 0\n\n        for rect in rects:\n            area = (rect[2] - rect[0] + 1) * (rect[3] - rect[1] + 1)\n            self.total_area += area\n            self.areas.append(self.total_area)\n\n    def pick(self) -> List[int]:\n        r = random.randint(1, self.total_area)\n        for i in range(len(self.rects)):\n            if r <= self.areas[i]:\n                rect = self.rects[i]\n                x = random.randint(rect[0], rect[2])\n                y = random.randint(rect[1], rect[3])\n                return [x, y]\n```\n\n384. Shuffle an Array\n\n```python\n# 从左往右扫描，每次随机选择当前位置或当前位置右侧的某一个数与当前位置进行交换，相当于随机抽取一个\n\nclass Solution:\n    def __init__(self, nums: List[int]):\n        self.nums = nums\n        self.original = copy.deepcopy(nums)\n\n    def reset(self) -> List[int]:\n        self.nums = copy.deepcopy(self.original)\n        return self.nums\n\n    def shuffle(self) -> List[int]:\n        n = len(self.nums)\n        for i in range(n):\n            j = random.randrange(i, n)\n            self.nums[i], self.nums[j] = self.nums[j], self.nums[i]\n        return self.nums\n```\n\n381. Insert Delete GetRandom O(1) - Duplicates allowed\n\n```python\n\n```\n\n470. Implement Rand10() Using Rand7()\n\n```python\n# 拒绝采样 Rejection Sampling: 对于当前随机生成器的一部分生成情况进行丢弃，从而完成实现利用给定的随机生成器得到我们需要的概率分布\n# 如何用骰子得到1/7概率？把骰子扔两次，获得 6 * 6 = 36 个样本，丢弃最后一个样本，剩下的 35 个样本平分成 7 份，对应的概率值便为 1/7\n\nclass Solution:\n    def rand10(self) -> int:\n        while True:\n            r1 = rand7()\n            r2 = rand7()\n            idx = (r1 - 1) * 7 + r2  # 减1 变成[0,6] 的随机数，乘7 变为{0,7,14,21,28,35,42} 中的随机数，加col 变为[1,49]的随机数\n            if idx <= 40:  # 拒绝一部分，只保留[1, 40]\n                return 1 + idx % 10  # [1, 10]\n```\n\n```python\n# general solution: creating randM() using randN()\nclass Solution:\n    def randM(self, N, M):\n        # acceptable is the desired range which can generate required integer directly\n        curr = acceptable = N * N - (N * N) % M\n        # if current no is not in the acceptable range, discard it and repeat the process again\n        while curr >= acceptable:\n            curr = (randN() - 1) * N + randN() - 1\n        return curr % M + 1\n```\n\n478. Generate Random Point in a Circle\n\n```python\n# 拒绝采用: 随机角度 + 随机半径中一点\n\nclass Solution:\n    def __init__(self, radius: float, x_center: float, y_center: float):\n        self.radius = radius\n        self.x_center = x_center\n        self.y_center = y_center\n\n    def randPoint(self) -> List[float]:\n        degree = random.uniform(0, 1) * 2 * math.pi\n        length = math.sqrt(random.uniform(0, 1)) * self.radius  # 注意 sqrt, pi * r^2\n        x = self.x_center + length * math.cos(degree)\n        y = self.y_center + length * math.sin(degree)\n        return [x, y]\n```\n\n519. Random Flip Matrix\n\n```python\n\n```\n\nGenerate random max index\n\n```python\n# 第一次遇到最大的，就把res update 成当前index\n# 第二次遇到最大的，就1/2概率把res update 成当前index\n# 第三次遇到最大的，就1/3概率把res update 成当前index\n\ndef max_random_index(nums):\n    max_val = float('-inf')\n    max_index = -1\n    count = 0\n\n    for i, num in enumerate(nums):\n        if num > max_val:\n            max_val = num\n            max_index = i\n            count = 1\n        elif num == max_val:\n            count += 1\n\n            # Probability of 1/count\n            if random.randint(0, count - 1) == 0:\n                max_index = i\n\n        print(max_index, end=\" \")\n```\n\nDistributed Weighted Reservoir Sampling - Yun Zhou的文章 - 知乎\n\nHow to incrementally sample without replacement?\n\n```python\n## follow up， very long array can not fit into memory\n\nimport random\n\ndef sample_gen(n, forbid):\n    state = dict()\n    track = dict()\n    for (i, o) in enumerate(forbid):\n        x = track.get(o, o)\n        t = state.get(n-i-1, n-i-1)\n        state[x] = t\n        track[t] = x\n        state.pop(n-i-1, None)\n        track.pop(o, None)\n    del track\n    for remaining in range(n-len(forbid), 0, -1):\n        i = random.randrange(remaining)\n        yield state.get(i, i)\n        state[i] = state.get(remaining - 1, remaining - 1)\n        state.pop(remaining - 1, None)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-mlint10-23",
+    "title": "50. Pow(x, n)",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/powx n/description/ 快速幂: recursive n为奇数，x^n = x(x^2)^(n//2) ",
+    "content": "# 50. Pow(x, n)\n\n`https://leetcode.com/problems/powx-n/description/`\n\n## solution\n\n- 快速幂: recursive\n  - n为奇数，x^n = x(x^2)^(n//2)\n  - n为偶数，x^n = (x^2)^(n//2)\n\n```python\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:  # 退出递归的关键返回\n            return 1\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        if n % 2 == 1:\n            return x * self.myPow(x, n - 1)\n        return self.myPow(x * x, n // 2)  # 注意是 (x ** 2 ^ n//2) 而不是 (x ^ n//2 ^ 2)\n```\n\n时间复杂度：O(log(n)) <br>\n空间复杂度：O(1)\n\n- 非递归: iterative\n\n```python\n# https://algo.monster/liteproblems/50\n\n```\n\n## follow up\n\n372. Super Pow\n\n```python\nclass Solution:\n    def superPow(self, a: int, b: List[int]) -> int:\n        mode = 1337\n        ans = 1\n\n        for i in b:\n            ans = pow(ans, 10, mode) * pow(a, i, mode)\n        return ans % mode\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-mlint10-24",
+    "title": "1116. Print Zero Even Odd",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/print zero even odd/description/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 1116. Print Zero Even Odd\n\n`https://leetcode.com/problems/print-zero-even-odd/description/`\n\n## solution\n\n```python\n# 对比互斥锁，互斥锁多线程的情况下，只能争抢同一把锁\nfrom threading import Semaphore\n\nclass ZeroEvenOdd:\n    def __init__(self, n: int):\n        self.n = n\n        self.zero_semaphore = Semaphore(1)\n        self.even_semaphore = Semaphore(0)\n        self.odd_semaphore = Semaphore(0)\n\n    def zero(self, print_number: Callable[[int], None]) -> None:\n        for i in range(self.n):\n            self.zero_semaphore.acquire()\n            print_number(0)\n\n            if i % 2 == 0:\n                self.odd_semaphore.release()\n            else:\n                self.even_semaphore.release()\n\n    def even(self, print_number: Callable[[int], None]) -> None:\n        for i in range(2, self.n + 1, 2):\n            self.even_semaphore.acquire()\n            print_number(i)\n            self.zero_semaphore.release()\n\n    def odd(self, print_number: Callable[[int], None]) -> None:\n        for i in range(1, self.n + 1, 2):\n            self.odd_semaphore.acquire()\n            print_number(i)\n            self.zero_semaphore.release()\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-mlint10-25",
+    "title": "1236. Web Crawler",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/web crawler/description/ 时间复杂度：O(n\\ d) 空间复杂度：O(n) lintcode 2",
+    "content": "# 1236. Web Crawler\n\n`https://leetcode.com/problems/web-crawler/description/`\n\n## solution\n\n```python\nclass Solution:\n    def crawl(self, startUrl: str, htmlParser: 'HtmlParser') -> List[str]:\n        def get_host_name(url: str) -> str:\n            return url[7:].split('/')[0]\n\n        def dfs(url: str):\n            if url in visited:\n                return\n\n            visited.add(url)\n            for next_url in htmlParser.getUrls(url):\n                if get_host_name(url) == get_host_name(next_url):\n                    dfs(next_url)\n\n        visited = set()\n        dfs(startUrl)\n        return list(visited)\n```\n\n时间复杂度：O(n\\*d) <br>\n空间复杂度：O(n)\n\n## follow up\n\nlintcode-234多线程网页爬虫\n\n```python\nimport threading\nfrom collections import deque\nimport re\n\nclass Solution:\n    pattern = re.compile(r\"^https?://[^.]*.wikipedia.org\")\n    pool_size = 3\n    pool = set()\n    seen = set()\n    tasks = deque([])\n    results = []\n\n    def crawler(self, url):\n        self.tasks.append(url)\n        self.seen.add(hash(url))\n        while len(self.tasks) > 0:\n            cur_url = self.tasks.popleft()\n            if self.pattern.search(cur_url):\n                self.results.append(cur_url)\n                for next_url in HtmlHelper.parseUrls(cur_url):\n                    t = threading.Thread(target=self._add_task, args=(next_url,))\n                    t.start()\n                    while True:\n                        curts = threading.enumerate()\n                        if (len(curts) < self.pool_size):\n                            break\n        return self.results\n\n    def _add_task(self, url):\n        docid = hash(url)\n        if (docid not in self.seen):\n            self.tasks.append(url)\n            self.seen.add(docid)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-mlint10-26",
+    "title": "1244. Design A Leaderboard",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design a leaderboard/description/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 1244. Design A Leaderboard\n\n`https://leetcode.com/problems/design-a-leaderboard/description/`\n\n## solution\n\n```python\nfrom heapq import heappop, heappush, heapify\n\nclass Leaderboard:\n    def __init__(self):\n        self.d = {}\n        self.q = []\n\n    def add_score(self, pid: int, score: int):\n        if pid not in self.d:\n            self.d[pid] = 0\n        self.d[pid] -= score\n        heappush(self.q, [self.d[pid], pid])\n\n    def top(self, k: int) -> int:\n        tem_d, tem_q, ans = {}, [], 0\n        for _ in range(k):\n            while(self.q and (self.q[0][1] not in self.d or self.d[self.q[0][1]] != self.q[0][0])):\n                heappop(self.q)\n            if self.q:\n                s, i = heappop(self.q)\n                self.d.pop(i)\n                ans -= s\n                tem_q.append([s, i])\n                tem_d[i] = s\n        self.q += tem_q\n        self.d |= tem_d\n        heapify(self.q)\n        return ans\n\n    def reset(self, pid: int):\n        self.d[pid] = 0\n        heappush(self.q, [self.d[pid], pid])\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-mlint10-27",
+    "title": "1396. Design Underground System",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design underground system/description/ 时间复杂度：O(1) 空间复杂度：O()",
+    "content": "# 1396. Design Underground System\n\n`https://leetcode.com/problems/design-underground-system/description/`\n\n## solution\n\n```python\nclass UndergroundSystem:\n    def __init__(self):\n        self.station_id_dict = {}\n        # 两个int 字典，一个记录总时长，一个记录总个数，可以进一步优化空间\n        self.station_duration_dict = collections.defaultdict(list)\n\n    def checkIn(self, id: int, stationName: str, t: int) -> None:\n        self.station_id_dict[id] = (stationName, t)\n\n    def checkOut(self, id: int, stationName: str, t: int) -> None:\n        in_station, in_t = self.station_id_dict.pop(id)\n        self.station_duration_dict[(in_station, stationName)].append(t - in_t)\n\n    def getAverageTime(self, startStation: str, endStation: str) -> float:\n        time_list = self.station_duration_dict[(startStation, endStation)]\n        return sum(time_list) / len(time_list)\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-mlint10-29",
+    "title": "353. Design Snake Game",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design snake game/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 353. Design Snake Game\n\n`https://leetcode.com/problems/design-snake-game/`\n\n## solution\n\n```python\nimport collections\n\nclass SnakeGame:\n    def __init__(self, width: int, height: int, food: List[List[int]]):\n        self.width = width\n        self.height = height\n\n        self.food = collections.deque(food)\n        self.score = 0\n\n        self.snake = collections.deque([(0, 0)])\n        self.snake_positions = set([(0, 0)])\n\n    def move(self, direction: str) -> int:\n        head_row, head_col = self.snake[0]\n\n        if direction == 'U':\n            head_row -= 1\n        elif direction == 'D':\n            head_row += 1\n        elif direction == 'L':\n            head_col -= 1\n        elif direction == 'R':\n            head_col += 1\n\n        if head_row < 0 or head_row >= self.height or head_col < 0 or head_col >= self.width:\n            return -1\n\n        if self.food and [head_row, head_col] == self.food[0]:\n            self.food.popleft()  # Eat the food\n            self.score += 1  # Increase the score\n        else:\n            tail = self.snake.pop()\n            self.snake_positions.remove(tail)\n\n        if (head_row, head_col) in self.snake_positions:\n            return -1\n\n        self.snake.appendleft((head_row, head_col))\n        self.snake_positions.add((head_row, head_col))\n        return self.score\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-mlint10-30",
+    "title": "355. Design Twitter",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 X",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design twitter/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 355. Design Twitter\n\n`https://leetcode.com/problems/design-twitter/`\n\n## solution\n\n```python\nclass User:\n    def __init__(self, userId):\n        self.userId = userId\n        self.tweets = []\n        self.followers = set()\n        self.follows = set()\n\nclass Twitter:\n    def __init__(self):\n        self.users = dict()\n        self.time = 0\n\n    def create_new_user(self, userId):\n        if userId not in self.users:\n            self.users[userId] = User(userId)\n\n    def postTweet(self, userId: int, tweetId: int) -> None:\n        self.create_new_user(userId)\n        self.users[userId].tweets.append([self.time, tweetId])\n        self.time += 1\n\n    def getNewsFeed(self, userId: int) -> List[int]:\n        self.create_new_user(userId)\n        aggregated_tweets = list(self.users[userId].tweets)\n\n        for followee in self.users[userId].follows:\n            aggregated_tweets.extend(followee.tweets)\n\n        aggregated_tweets.sort(key = lambda x: x[0], reverse=True)\n        feed = [tweet[1] for tweet in aggregated_tweets[:10]]\n        return feed\n\n    def follow(self, followerId: int, followeeId: int) -> None:\n        self.create_new_user(followerId)\n        self.create_new_user(followeeId)\n        self.users[followerId].follows.add(self.users[followeeId])\n        self.users[followeeId].followers.add(self.users[followerId])\n\n    def unfollow(self, followerId: int, followeeId: int) -> None:\n        self.create_new_user(followerId)\n        self.create_new_user(followeeId)\n\n        if self.users[followerId] in self.users[followeeId].followers:\n            self.users[followeeId].followers.remove(self.users[followerId])\n            self.users[followerId].follows.remove(self.users[followeeId])\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
   }
 ]
