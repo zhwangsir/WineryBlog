@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 507
+      "count": 536
     },
     {
       "id": "system",
@@ -42437,6 +42437,470 @@
       ],
       "prereqs": [],
       "href": "/post/g-mlint10-30"
+    },
+    {
+      "id": "g-algonote11-1",
+      "kind": "collection",
+      "title": "0278. 第一个错误的版本",
+      "summary": "标签：数组、二分查找 难度：简单 0278. 第一个错误的版本 力扣 描述 ：给你一个整数 $n$，代表已经发布的版本号",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-1"
+    },
+    {
+      "id": "g-algonote11-2",
+      "kind": "collection",
+      "title": "0251. 展开二维向量",
+      "summary": "标签：设计、数组、双指针、迭代器 难度：中等 0251. 展开二维向量 力扣 要求 ： 设计并实现一个能够展开二维向量的",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-2"
+    },
+    {
+      "id": "g-algonote11-3",
+      "kind": "collection",
+      "title": "0294. 翻转游戏 II",
+      "summary": "标签：记忆化搜索、数学、动态规划、回溯、博弈 难度：中等 0294. 翻转游戏 II 力扣 描述 ： 你和朋友玩一个叫做",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-3"
+    },
+    {
+      "id": "g-algonote11-4",
+      "kind": "collection",
+      "title": "0293. 翻转游戏",
+      "summary": "标签：字符串 难度：简单 0293. 翻转游戏 力扣 描述 ： 你和朋友玩一个叫做「翻转游戏」的游戏。游戏规则如下： 给",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-4"
+    },
+    {
+      "id": "g-algonote11-5",
+      "kind": "collection",
+      "title": "0289. 生命游戏",
+      "summary": "标签：数组、矩阵、模拟 难度：中等 0289. 生命游戏 力扣 描述 ：给定一个 $m \\times n$ 大小的二维数",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-5"
+    },
+    {
+      "id": "g-algonote11-6",
+      "kind": "collection",
+      "title": "0261. 以图判树",
+      "summary": "标签：深度优先搜索、广度优先搜索、并查集、图 难度：中等 0261. 以图判树 力扣 描述 ： 给定编号从 $0$ 到 ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-6"
+    },
+    {
+      "id": "g-algonote11-7",
+      "kind": "collection",
+      "title": "0249. 移位字符串分组",
+      "summary": "标签：数组、哈希表、字符串 难度：中等 0249. 移位字符串分组 力扣 给定一个仅包含小写字母的字符串列表。其中每个字",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-7"
+    },
+    {
+      "id": "g-algonote11-8",
+      "kind": "collection",
+      "title": "0275. H 指数 II",
+      "summary": "标签：数组、二分查找 难度：中等 0275. H 指数 II 力扣 描述 ： 给定一个整数数组 $citations$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-8"
+    },
+    {
+      "id": "g-algonote11-9",
+      "kind": "collection",
+      "title": "0274. H 指数",
+      "summary": "标签：数组、计数排序、排序 难度：中等 0274. H 指数 力扣 描述 ： 给定一个整数数组 $citations$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-9"
+    },
+    {
+      "id": "g-algonote11-10",
+      "kind": "collection",
+      "title": "0202. 快乐数",
+      "summary": "标签：哈希表、数学、双指针 难度：简单 0202. 快乐数 力扣 描述 ：给定一个整数 $n$。 要求 ：判断 $n$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-10"
+    },
+    {
+      "id": "g-algonote11-11",
+      "kind": "collection",
+      "title": "0213. 打家劫舍 II",
+      "summary": "标签：数组、动态规划 难度：中等 0213. 打家劫舍 II 力扣 描述 ：给定一个数组 $nums$，$num i $",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-11"
+    },
+    {
+      "id": "g-algonote11-12",
+      "kind": "collection",
+      "title": "0232. 用栈实现队列",
+      "summary": "标签：栈、设计、队列 难度：简单 0232. 用栈实现队列 力扣 要求 ：仅使用两个栈实现先入先出队列。 要求实现 My",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-12"
+    },
+    {
+      "id": "g-algonote11-13",
+      "kind": "collection",
+      "title": "0225. 用队列实现栈",
+      "summary": "标签：栈、设计、队列 难度：简单 0225. 用队列实现栈 力扣 要求 ：仅使用两个队列实现一个后入先出（LIFO）的栈",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-13"
+    },
+    {
+      "id": "g-algonote11-14",
+      "kind": "collection",
+      "title": "0208. 实现 Trie (前缀树)",
+      "summary": "标签：设计、字典树、哈希表、字符串 难度：中等 0208. 实现 Trie (前缀树) 力扣 要求 ：实现前缀树数据结构",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-14"
+    },
+    {
+      "id": "g-algonote11-15",
+      "kind": "collection",
+      "title": "0285. 二叉搜索树中的中序后继",
+      "summary": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0285. 二叉搜索树中的中序后继 力扣 给定一棵二叉搜索树的根",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-15"
+    },
+    {
+      "id": "g-algonote11-16",
+      "kind": "collection",
+      "title": "0273. 整数转换英文表示",
+      "summary": "标签：递归、数学、字符串 难度：困难 0273. 整数转换英文表示 力扣 描述 ： 给定一个非负整数 $num$。 要求",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-16"
+    },
+    {
+      "id": "g-algonote11-17",
+      "kind": "collection",
+      "title": "0226. 翻转二叉树",
+      "summary": "标签：树、深度优先搜索、广度优先搜索、二叉树 难度：简单 0226. 翻转二叉树 力扣 描述 ：给定一个二叉树的根节点 ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-17"
+    },
+    {
+      "id": "g-algonote11-18",
+      "kind": "collection",
+      "title": "0205. 同构字符串",
+      "summary": "标签：哈希表、字符串 难度：简单 0205. 同构字符串 力扣 描述 ：给定两个字符串 $s$ 和 $t$。 要求 ：判",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-18"
+    },
+    {
+      "id": "g-algonote11-19",
+      "kind": "collection",
+      "title": "0215. 数组中的第K个最大元素",
+      "summary": "标签：数组、分治、快速排序、排序、堆（优先队列） 难度：中等 0215. 数组中的第K个最大元素 力扣 描述 ：给定一个",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-19"
+    },
+    {
+      "id": "g-algonote11-20",
+      "kind": "collection",
+      "title": "0230. 二叉搜索树中第 K 小的元素",
+      "summary": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0230. 二叉搜索树中第 K 小的元素 力扣 描述 ： 给定一",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-20"
+    },
+    {
+      "id": "g-algonote11-21",
+      "kind": "collection",
+      "title": "0235. 二叉搜索树的最近公共祖先",
+      "summary": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0235. 二叉搜索树的最近公共祖先 力扣 描述 ：给定一个二叉",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-21"
+    },
+    {
+      "id": "g-algonote11-22",
+      "kind": "collection",
+      "title": "0236. 二叉树的最近公共祖先",
+      "summary": "标签：树、深度优先搜索、二叉树 难度：中等 0236. 二叉树的最近公共祖先 力扣 描述 ：给定一个二叉树的根节点 ro",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-22"
+    },
+    {
+      "id": "g-algonote11-23",
+      "kind": "collection",
+      "title": "0229. 多数元素 II",
+      "summary": "标签：数组、哈希表、计数、排序 难度：中等 0229. 多数元素 II 力扣 描述 ： 给定一个大小为 $n$ 的整数数",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-23"
+    },
+    {
+      "id": "g-algonote11-24",
+      "kind": "collection",
+      "title": "0221. 最大正方形",
+      "summary": "标签：数组、动态规划、矩阵 难度：中等 0221. 最大正方形 力扣 描述 ：给定一个由 '0' 和 '1' 组成的二维",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-24"
+    },
+    {
+      "id": "g-algonote11-25",
+      "kind": "collection",
+      "title": "0253. 会议室 II",
+      "summary": "标签：贪心、数组、双指针、前缀和、排序、堆（优先队列） 难度：中等 0253. 会议室 II 力扣 描述 ： 给定一个会",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-25"
+    },
+    {
+      "id": "g-algonote11-26",
+      "kind": "collection",
+      "title": "0252. 会议室",
+      "summary": "标签：数组、排序 难度：简单 0252. 会议室 力扣 描述 ： 给定一个会议时间安排的数组 $intervals$，每",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-26"
+    },
+    {
+      "id": "g-algonote11-27",
+      "kind": "collection",
+      "title": "0209. 长度最小的子数组",
+      "summary": "标签：数组、二分查找、前缀和、滑动窗口 难度：中等 0209. 长度最小的子数组 力扣 描述 ：给定一个只包含正整数的数",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-27"
+    },
+    {
+      "id": "g-algonote11-28",
+      "kind": "collection",
+      "title": "0268. 丢失的数字",
+      "summary": "标签：位运算、数组、哈希表、数学、二分查找、排序 难度：简单 0268. 丢失的数字 力扣 描述 ：给定一个包含 $ 0",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-28"
+    },
+    {
+      "id": "g-algonote11-29",
+      "kind": "collection",
+      "title": "0283. 移动零",
+      "summary": "标签：数组、双指针 难度：简单 0283. 移动零 力扣 描述 ：给定一个数组 $nums$。 要求 ：将所有 $0$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote11-29"
     }
   ]
 }

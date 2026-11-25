@@ -40991,5 +40991,440 @@
     "source": "LongxingTan/Machine-learning-interview",
     "views": 0,
     "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote11-1",
+    "title": "0278. 第一个错误的版本",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找 难度：简单 0278. 第一个错误的版本 力扣 描述 ：给你一个整数 $n$，代表已经发布的版本号。还有一个用于检测版本是否出错的接口 isBadVersio",
+    "content": "# 0278. 第一个错误的版本\n\n- 标签：数组、二分查找\n- 难度：简单\n\n## 题目链接\n\n- 0278. 第一个错误的版本 - 力扣\n\n## 题目大意\n\n**描述**：给你一个整数 $n$，代表已经发布的版本号。还有一个用于检测版本是否出错的接口 `isBadVersion(version):` 。\n\n**要求**：找出第一次出错的版本号 $bad$。\n\n**说明**：\n\n- 要求尽可能减少对 `isBadVersion(version):` 接口的调用。\n- $1 \\le bad \\le n \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 5, bad = 4\n输出：4\n解释：\n调用 isBadVersion(3) -> false \n调用 isBadVersion(5) -> true \n调用 isBadVersion(4) -> true\n所以，4 是第一个错误的版本。\n```\n\n- 示例 2：\n\n```python\n输入：n = 1, bad = 1\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n题目要求尽可能减少对 `isBadVersion(version):` 接口的调用，所以不能对每个版本都调用接口，而是应该将接口调用的次数降到最低。\n\n可以注意到：如果检测某个版本不是错误版本时，则该版本之前的所有版本都不是错误版本。而当某个版本是错误版本时，则该版本之后的所有版本都是错误版本。我们可以利用这样的性质，在 $[1, n]$ 的区间内使用二分查找方法，从而在 $O(\\log n)$ 时间复杂度内找到第一个出错误的版本。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def firstBadVersion(self, n):\n        left = 1\n        right = n\n        while left < right:\n            mid = (left + right) // 2\n            if isBadVersion(mid):\n                right = mid\n            else:\n                left = mid + 1\n        return left\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。二分查找算法的时间复杂度为 $O(\\log n)$。\n- **空间复杂度**：$O(1)$。只用到了常数空间存放若干变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote11-2",
+    "title": "0251. 展开二维向量",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、数组、双指针、迭代器 难度：中等 0251. 展开二维向量 力扣 要求 ： 设计并实现一个能够展开二维向量的迭代器。该迭代器需要支持 next 和 hasNext 两种",
+    "content": "# 0251. 展开二维向量\n\n- 标签：设计、数组、双指针、迭代器\n- 难度：中等\n\n## 题目链接\n\n- 0251. 展开二维向量 - 力扣\n\n## 题目大意\n\n**要求**：\n\n设计并实现一个能够展开二维向量的迭代器。该迭代器需要支持 `next` 和 `hasNext` 两种操作。\n实现 $Vector2D$ 类：\n\n- `Vector2D(int[][] vec)` 使用二维向量 $vec$ 初始化对象。\n- `next()` 从二维向量返回下一个元素并将指针移动到下一个位置。你可以假设对 `next` 的所有调用都是合法的。\n* `hasNext()` 当向量中还有元素返回 $true$，否则返回 $false$。\n\n**说明**：\n\n- $0 \\le vec.length \\le 200$。\n- $0 \\le vec[i].length \\le 500$。\n- $-500 \\le vec[i][j] \\le 500$。\n- 最多调用 `next` 和 `hasNext` $10^{5}$ 次。\n\n- 进阶：尝试在代码中仅使用 C++ 提供的迭代器 或 Java 提供的迭代器。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"Vector2D\", \"next\", \"next\", \"next\", \"hasNext\", \"hasNext\", \"next\", \"hasNext\"]\n[[[[1, 2], [3], [4]]], [], [], [], [], [], [], []]\n输出：\n[null, 1, 2, 3, true, true, 4, false]\n\n解释：\nVector2D vector2D = new Vector2D([[1, 2], [3], [4]]);\nvector2D.next();    // return 1\nvector2D.next();    // return 2\nvector2D.next();    // return 3\nvector2D.hasNext(); // return True\nvector2D.hasNext(); // return True\nvector2D.next();    // return 4\nvector2D.hasNext(); // return False\n```\n\n## 解题思路\n\n### 思路 1：双指针\n\n使用两个指针 $i$ 和 $j$ 来跟踪当前在二维向量中的位置。其中 $i$ 表示当前在第几个一维数组，$j$ 表示在当前一维数组中的位置。\n\n核心思想是维护指针始终指向下一个有效元素，通过预定位机制确保访问安全：\n\n- **初始化**：$i = 0$，$j = 0$，然后调用 `_findNext()` 将指针定位到第一个有效元素。\n- **`_findNext()` 方法**：跳过所有空的一维数组，将指针移动到下一个有效位置。当 $j$ 超出当前一维数组长度时，移动到下一个一维数组并重置 $j = 0$。\n- **`next()` 方法**：返回当前有效元素 $vec[i][j]$，然后 $j$ 自增，再调用 `_findNext()` 预定位到下一个有效元素。\n- **`hasNext()` 方法**：简单检查 $i$ 是否小于向量长度，因为指针已经预定位到有效位置。\n\n### 思路 1：代码\n\n```python\nclass Vector2D:\n    def __init__(self, vec: List[List[int]]):\n        # 初始化二维向量和指针\n        self.vec = vec\n        self.i = 0  # 当前一维数组的索引\n        self.j = 0  # 当前一维数组中的索引\n        # 初始化时找到第一个有效位置\n        self._findNext()\n\n    def _findNext(self):\n        # 跳过空的一维数组，找到下一个有效元素\n        while self.i < len(self.vec):\n            if self.j < len(self.vec[self.i]):\n                # 当前一维数组还有元素\n                return\n            else:\n                # 当前一维数组已遍历完，移动到下一个一维数组\n                self.i += 1\n                self.j = 0\n\n    def next(self) -> int:\n        # 获取当前元素\n        result = self.vec[self.i][self.j]\n        # 移动指针到下一个位置\n        self.j += 1\n        # 找到下一个有效位置\n        self._findNext()\n        return result\n\n    def hasNext(self) -> bool:\n        # 检查是否还有下一个元素\n        return self.i < len(self.vec)\n\n# Your Vector2D object will be instantiated and called as such:\n# obj = Vector2D(vec)\n# param_1 = obj.next()\n# param_2 = obj.hasNext()\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(1)$ 对于 `next()` 和 `hasNext()` 操作。虽然 `hasNext()` 可能需要跳过空数组，但每个元素最多被访问一次，总体时间复杂度为 $O(n)$，其中 $n$ 是总元素个数。\n- **空间复杂度**：$O(1)$。只使用了常数个额外变量来存储指针位置。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote11-3",
+    "title": "0294. 翻转游戏 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：记忆化搜索、数学、动态规划、回溯、博弈 难度：中等 0294. 翻转游戏 II 力扣 描述 ： 你和朋友玩一个叫做「翻转游戏」的游戏。游戏规则如下： 给定一个字符串 $cur",
+    "content": "# 0294. 翻转游戏 II\n\n- 标签：记忆化搜索、数学、动态规划、回溯、博弈\n- 难度：中等\n\n## 题目链接\n\n- 0294. 翻转游戏 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n你和朋友玩一个叫做「翻转游戏」的游戏。游戏规则如下：\n\n给定一个字符串 $currentState$，其中只含 `'+'` 和 `'-'`。你和朋友轮流将「连续」的两个 `\"++\"` 反转成 `\"--\"`。当一方无法进行有效的翻转时便意味着游戏结束，则另一方获胜。默认每个人都会采取最优策略。\n\n**要求**：\n\n请你写出一个函数来判定起始玩家 是否存在必胜的方案：如果存在，返回 $true$；否则，返回 $false$。\n\n**说明**：\n\n- $1 \\le currentState.length \\le 60$。\n- $currentState[i]$ 不是 `'+'` 就是 `'-'`。\n- 不能有超过 $20$ 个连续的 `'+'`。\n\n- 进阶：请推导你算法的时间复杂度。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：currentState = \"++++\"\n输出：true\n解释：起始玩家可将中间的 \"++\" 翻转变为 \"+--+\" 从而得胜。\n```\n\n- 示例 2：\n\n```python\n输入：currentState = \"+\"\n输出：false\n```\n\n## 解题思路\n\n### 思路 1：记忆化搜索\n\n这是一个博弈论问题，可以使用记忆化搜索来解决。核心思想是：当前玩家能否获胜，取决于是否存在一种操作，使得对手在剩余状态下无法获胜。\n\n设 $f(s)$ 表示当前状态为字符串 $s$ 时，当前玩家是否能获胜。则：$f(s) = \\bigvee_{i} f(s')$\n\n其中 $s'$ 是将 $s$ 中第 $i$ 个位置的 `\"++\"` 翻转为 `\"--\"` 后得到的新状态，$\\bigvee$ 表示逻辑或运算。\n\n具体算法步骤：\n\n1. 遍历字符串，找到所有可以翻转的 `\"++\"` 位置。\n2. 对每个可翻转位置，模拟翻转操作得到新状态。\n3. 递归检查新状态下对手是否能获胜。\n4. 如果存在任何一个新状态使得对手无法获胜，则当前玩家获胜。\n5. 使用记忆化避免重复计算。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def canWin(self, currentState: str) -> bool:\n        # 使用记忆化搜索，避免重复计算\n        memo = {}\n        \n        def dfs(state: str) -> bool:\n            # 如果已经计算过，直接返回结果\n            if state in memo:\n                return memo[state]\n            \n            # 遍历字符串，寻找可以翻转的 \"++\"\n            for i in range(len(state) - 1):\n                if state[i] == '+' and state[i + 1] == '+':\n                    # 模拟翻转操作：将 \"++\" 变为 \"--\"\n                    new_state = state[:i] + \"--\" + state[i + 2:]\n                    # 递归检查对手是否能获胜\n                    # 如果对手无法获胜，则当前玩家获胜\n                    if not dfs(new_state):\n                        memo[state] = True\n                        return True\n            \n            # 如果没有可翻转的位置，或者所有翻转都无法获胜\n            memo[state] = False\n            return False\n        \n        return dfs(currentState)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times 2^{n/2})$，其中 $n$ 是字符串长度。最坏情况下，每个状态都需要遍历所有可能的翻转位置，状态空间的大小约为 $2^{n/2}$（因为每次翻转会减少 2 个字符）。\n- **空间复杂度**：$O(2^{n/2})$，用于存储记忆化结果，最坏情况下需要存储所有可能的状态。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote11-4",
+    "title": "0293. 翻转游戏",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串 难度：简单 0293. 翻转游戏 力扣 描述 ： 你和朋友玩一个叫做「翻转游戏」的游戏。游戏规则如下： 给定一个字符串 $currentState$ ，其中只含 '+",
+    "content": "# 0293. 翻转游戏\n\n- 标签：字符串\n- 难度：简单\n\n## 题目链接\n\n- 0293. 翻转游戏 - 力扣\n\n## 题目大意\n\n**描述**：\n\n你和朋友玩一个叫做「翻转游戏」的游戏。游戏规则如下：\n\n给定一个字符串 $currentState$ ，其中只含 `'+'` 和 `'-'`。你和朋友轮流将「连续」的两个 `\"++\"` 反转成 `\"--\"`。当一方无法进行有效的翻转时便意味着游戏结束，则另一方获胜。\n\n**要求**：\n\n计算并返回「一次有效操作」后，字符串 $currentState$ 所有的可能状态，返回结果可以按任意顺序 排列。如果不存在可能的有效操作，请返回一个空列表 $[]$。\n\n**说明**：\n\n- $1 \\le currentState.length \\le 500$。\n- $currentState[i]$ 不是 `'+'` 就是 `'-'`。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：currentState = \"++++\"\n输出：[\"--++\",\"+--+\",\"++--\"]\n```\n\n- 示例 2：\n\n```python\n输入：currentState = \"+\"\n输出：[]\n```\n\n## 解题思路\n\n### 思路 1：遍历模拟\n\n这是一个简单的字符串模拟问题。我们需要遍历字符串，找到所有连续的 `\"++\"` 位置，然后将每个位置翻转成 `\"--\"`，生成所有可能的下一个状态。\n\n核心思想是：\n\n- 遍历字符串 $currentState$，寻找所有可以翻转的位置 $i$，满足 `currentState[i] = '+'` 且 `currentState[i+1] = '+'`。\n- 对于每个有效位置 $i$，生成新状态：`newState = currentState[:i] + \"--\" + currentState[i+2:]`。\n- 将所有生成的新状态收集到结果列表中。\n\n具体算法步骤：\n\n1. 初始化结果列表 $result = []$。\n2. 遍历字符串从位置 $0$ 到 $len(currentState) - 2$。\n3. 检查当前位置 $i$ 和 $i+1$ 是否都为 `'+'`。\n4. 如果是，则生成新状态并添加到结果中。\n5. 返回结果列表。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def generatePossibleNextMoves(self, currentState: str) -> List[str]:\n        result = []\n        # 遍历字符串，寻找可以翻转的 \"++\" 位置\n        for i in range(len(currentState) - 1):\n            # 检查当前位置和下一个位置是否都是 '+'\n            if currentState[i] == '+' and currentState[i + 1] == '+':\n                # 生成新状态：将 \"++\" 替换为 \"--\"\n                new_state = currentState[:i] + \"--\" + currentState[i + 2:]\n                result.append(new_state)\n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串长度。我们需要遍历字符串一次，每次检查两个相邻字符，生成新状态的时间复杂度为 $O(n)$。\n- **空间复杂度**：$O(k \\times n)$，其中 $k$ 是可能的下一个状态数量。最坏情况下，如果字符串中每两个相邻字符都是 `\"++\"`，则 $k = O(n)$，每个状态需要 $O(n)$ 空间存储。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-algonote11-5",
+    "title": "0289. 生命游戏",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、矩阵、模拟 难度：中等 0289. 生命游戏 力扣 描述 ：给定一个 $m \\times n$ 大小的二维数组 $board$，每一个格子都可以看做是一个细胞。每个细胞",
+    "content": "# 0289. 生命游戏\n\n- 标签：数组、矩阵、模拟\n- 难度：中等\n\n## 题目链接\n\n- 0289. 生命游戏 - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $m \\times n$ 大小的二维数组 $board$，每一个格子都可以看做是一个细胞。每个细胞都有一个初始状态：$1$ 代表活细胞，$0$ 代表死细胞。每个细胞与其相邻的八个位置（水平、垂直、对角线）细胞遵循以下生存规律：\n\n- 如果活细胞周围八个位置的活细胞数少于 $2$ 个，则该位置活细胞死亡；\n- 如果活细胞周围八个位置有 $2$ 个或 $3$ 个活细胞，则该位置活细胞仍然存活；\n- 如果活细胞周围八个位置有超过 $3$ 个活细胞，则该位置活细胞死亡；\n- 如果死细胞周围正好有 $3$ 个活细胞，则该位置死细胞复活。\n\n二维数组代表的下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的的。其中细胞的出生和死亡是同时发生的。\n\n现在给定 $m \\times n$ 的二维数组 $board$ 的当前状态。\n\n**要求**：返回下一个状态。\n\n**说明**：\n\n- $m == board.length$。\n- $n == board[i].length$。\n- $1 \\le m, n \\le 25$。\n- $board[i][j]$ 为 $0$ 或 $1$。\n- **进阶**：\n  - 你可以使用原地算法解决本题吗？请注意，面板上所有格子需要同时被更新：你不能先更新某些格子，然后使用它们的更新后的值再更新其他格子。\n  - 本题中，我们使用二维数组来表示面板。原则上，面板是无限的，但当活细胞侵占了面板边界时会造成问题。你将如何解决这些问题？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2020_12_26_grid1.jpg)\n\n```python\n输入：board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]\n输出：[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2020_12_26_grid2.jpg)\n\n```python\n输入：board = [[1,1],[1,0]]\n输出：[[1,1],[1,1]]\n```\n\n## 解题思路\n\n### 思路 1：模拟\n\n因为下一个状态隐含了过去细胞的状态，所以不能直接在原二维数组上直接进行修改。细胞的状态总共有四种情况：\n\n- 死细胞 -> 死细胞，即 $0 \\rightarrow 0$。\n- 死细胞 -> 活细胞，即 $0 \\rightarrow 1$。\n- 活细胞 -> 活细胞，即 $1 \\rightarrow 1$。\n- 活细胞 -> 死细胞，即 $1 \\rightarrow 0$。\n\n死细胞 -> 死细胞，活细胞 -> 活细胞，不会对前后状态造成影响，所以主要考虑另外两种情况。我们把活细胞 -> 死细胞暂时标记为 $-1$，并且统计每个细胞周围活细胞数量时，使用绝对值统计，这样 $abs(-1)$ 也可以暂时标记为活细胞。然后把死细胞 -> 活细胞暂时标记为 $2$，这样判断的时候也不会统计上去。然后开始遍历。\n\n- 遍历二维数组的每一个位置。并对该位置遍历周围八个位置，计算出八个位置上的活细胞数量。\n  - 如果此位置是活细胞，并且周围活细胞少于 $2$ 个或超过 $3$ 个，则将其暂时标记为 $-1$，意为此细胞死亡。\n  - 如果此位置是死细胞，并且周围有 $3$ 个活细胞，则将暂时标记为 $2$，意为此细胞复活。\n- 遍历完之后，再次遍历一遍二维数组，如果该位置为 $-1$，将其赋值为 $0$，如果该位置为 $2$，将其赋值为 $1$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def gameOfLife(self, board: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        directions = {(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)}\n\n        rows = len(board)\n        cols = len(board[0])\n\n        for row in range(rows):\n            for col in range(cols):\n                lives = 0\n                for direction in directions:\n                    new_row = row + direction[0]\n                    new_col = col + direction[1]\n\n                    if 0 <= new_row < rows and 0 <= new_col < cols and abs(board[new_row][new_col]) == 1:\n                        lives += 1\n                if board[row][col] == 1 and (lives < 2 or lives > 3):\n                    board[row][col] = -1\n                if board[row][col] == 0 and lives == 3:\n                    board[row][col] = 2\n\n        for row in range(rows):\n            for col in range(cols):\n                if board[row][col] == -1:\n                    board[row][col] = 0\n                elif board[row][col] == 2:\n                    board[row][col] = 1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$，其中 $m$、$n$ 分别为 $board$ 的行数和列数。\n- **空间复杂度**：$O(m \\times n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-algonote11-6",
+    "title": "0261. 以图判树",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、广度优先搜索、并查集、图 难度：中等 0261. 以图判树 力扣 描述 ： 给定编号从 $0$ 到 $n 1$ 的 $n$ 个结点。给定一个整数 $n$ 和一个",
+    "content": "# 0261. 以图判树\n\n- 标签：深度优先搜索、广度优先搜索、并查集、图\n- 难度：中等\n\n## 题目链接\n\n- 0261. 以图判树 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定编号从 $0$ 到 $n - 1$ 的 $n$ 个结点。给定一个整数 $n$ 和一个 $edges$ 列表，其中 $edges[i] = [ai, bi]$ 表示图中节点 $ai$ 和 $bi$ 之间存在一条无向边。\n\n**要求**：\n\n如果这些边能够形成一个合法有效的树结构，则返回 $true$，否则返回 $false$。\n\n**说明**：\n\n- $1 \\le n \\le 2000$。\n- $0 \\le edges.length \\le 5000$。\n- $edges[i].length == 2$。\n- $0 \\le ai, bi \\lt n$。\n- $ai \\ne bi$。\n- 不存在自循环或重复的边。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_03_12_tree1-graph.jpg)\n\n```python\n输入: n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]\n输出: true\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_03_12_tree2-graph.jpg)\n\n```python\n输入: n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]\n输出: false\n```\n\n## 解题思路\n\n### 思路 1：并查集\n\n这是一个图论问题，需要判断给定的边是否能构成一棵有效的树。根据树的定义，一个有效的树必须满足以下条件：\n\n1. **连通性**：所有 $n$ 个节点都连通。\n2. **无环性**：图中不存在环。\n3. **边数条件**：恰好有 $n - 1$ 条边。\n\n我们可以使用并查集来解决这个问题。核心思想是：\n\n- 如果边的数量不等于 $n-1$，则不可能构成树\n- 使用并查集检测环：如果在添加边的过程中发现两个节点已经在同一个连通分量中，则存在环\n- 最后检查是否所有节点都在同一个连通分量中\n\n具体算法步骤：\n\n1. 检查边的数量：如果 $|edges| \\neq n-1$，返回 $false$。\n2. 初始化并查集，每个节点的父节点为自己。\n3. 遍历每条边 $[a, b]$：\n   - 找到 $a$ 和 $b$ 的根节点 $root_a$ 和 $root_b$。\n   - 如果 $root_a = root_b$，说明存在环，返回 $false$。\n   - 否则将 $a$ 和 $b$ 合并到同一个连通分量。\n4. 检查连通性：所有节点是否都在同一个连通分量中。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def validTree(self, n: int, edges: List[List[int]]) -> bool:\n        # 如果边的数量不等于 n-1，则不可能构成树\n        if len(edges) != n - 1:\n            return False\n        \n        # 初始化并查集，每个节点的父节点为自己\n        parent = list(range(n))\n        \n        def find(x):\n            # 路径压缩优化\n            if parent[x] != x:\n                parent[x] = find(parent[x])\n            return parent[x]\n        \n        def union(x, y):\n            # 找到两个节点的根节点\n            root_x, root_y = find(x), find(y)\n            # 如果已经在同一个连通分量中，说明存在环\n            if root_x == root_y:\n                return False\n            # 合并两个连通分量\n            parent[root_x] = root_y\n            return True\n        \n        # 遍历每条边，检查是否存在环\n        for a, b in edges:\n            if not union(a, b):\n                return False\n        \n        # 检查连通性：所有节点是否都在同一个连通分量中\n        root = find(0)\n        for i in range(1, n):\n            if find(i) != root:\n                return False\n        \n        return True\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\alpha(n))$，其中 $\\alpha(n)$ 是反阿克曼函数，在实际应用中可以认为是常数。遍历所有边需要 $O(n)$ 时间，每次并查集操作需要 $O(\\alpha(n))$ 时间。\n- **空间复杂度**：$O(n)$，用于存储并查集的父节点数组。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote11-7",
+    "title": "0249. 移位字符串分组",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、字符串 难度：中等 0249. 移位字符串分组 力扣 给定一个仅包含小写字母的字符串列表。其中每个字符串都可以进行「移位」操作，也就是将字符串中的每个字母变为其",
+    "content": "# 0249. 移位字符串分组\n\n- 标签：数组、哈希表、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0249. 移位字符串分组 - 力扣\n\n## 题目大意\n\n给定一个仅包含小写字母的字符串列表。其中每个字符串都可以进行「移位」操作，也就是将字符串中的每个字母变为其在字母表中后续的字母。比如：`abc` -> `bcd`。\n\n要求：将该列表中满足「移位」操作规律的组合进行分组并返回。\n\n## 解题思路\n\n我们可以先将满足相同「移位」操作规律的组合翻译为相同的模式，然后利用哈希表进行存储。哈希表对应关系为 翻译后模式：该模式对应的原字符串列表。\n\n## 代码\n\n```python\nimport collections\nclass Solution:\n    def groupStrings(self, strings: List[str]) -> List[List[str]]:\n        str_dict = collections.defaultdict(list)\n        for string in strings:\n            if string[0] == 'a':\n                str_dict[string].append(string)\n            else:\n                list_string = list(string)\n                for i in range(len(list_string)):\n                    num = (ord(list_string[i]) - ord(string[0]) + 26) % 26\n                    list_string[i] = chr(num + ord('a'))\n                temp_string = ''.join(list_string)\n                str_dict[temp_string].append(string)\n        res = list()\n        for string, sublist in str_dict.items():\n            res.append(sublist)\n        return res\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote11-8",
+    "title": "0275. H 指数 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找 难度：中等 0275. H 指数 II 力扣 描述 ： 给定一个整数数组 $citations$ ，其中 $citations i $ 表示研究者的第 $i$",
+    "content": "# 0275. H 指数 II\n\n- 标签：数组、二分查找\n- 难度：中等\n\n## 题目链接\n\n- 0275. H 指数 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个整数数组 $citations$ ，其中 $citations[i]$ 表示研究者的第 $i$ 篇论文被引用的次数，$citations$ 已经按照非降序排列。\n\n**要求**：\n\n计算并返回该研究者的 $h$ 指数。\n\n**说明**：\n\n- $h$ 指数的定义：$h$ 代表「高引用次数」（high citations），一名科研人员的 $h$ 指数是指他（她）的（$n$ 篇论文中）至少有 $h$ 篇论文分别被引用了至少 $h$ 次。\n- 设计并实现对数时间复杂度的算法解决此问题。\n- $n == citations.length$。\n- $1 \\le n \\le 10^{5}$。\n- $0 \\le citations[i] \\le 10^{3}$。\n- $citations$ 按升序排列。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：citations = [0,1,3,5,6]\n输出：3\n解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 0, 1, 3, 5, 6 次。\n     由于研究者有3篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3 。\n```\n\n- 示例 2：\n\n```python\n输入：citations = [1,2,100]\n输出：2\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n这是一个经典的 H 指数计算问题，由于数组已经按升序排列，我们可以使用二分查找来优化时间复杂度。\n\n核心思想是：\n\n- 由于数组 $citations$ 已经按升序排列，我们可以使用二分查找来找到满足条件的最大 $h$ 值。\n- 对于位置 $i$，如果 $citations[i] \\geq n - i$，说明从位置 $i$ 开始到数组末尾有 $n - i$ 篇论文，且这些论文的引用次数都大于等于 $n - i$。\n- 我们需要找到最小的 $i$ 使得 $citations[i] \\geq n - i$，此时 $h$ 指数就是 $n - i$。\n\n具体算法步骤：\n\n1. 初始化二分查找的边界：$left = 0$，$right = n - 1$。\n2. 在 $[left, right]$ 区间内进行二分查找：\n   - 计算中点 $mid = (left + right) // 2$。\n   - 如果 $citations[mid] \\geq n - mid$，说明从位置 $mid$ 开始有 $n - mid$ 篇论文满足条件，尝试寻找更小的 $mid$，更新 $right = mid - 1$。\n   - 否则，说明从位置 $mid$ 开始不满足条件，需要增大 $mid$，更新 $left = mid + 1$。\n3. 最终 $h$ 指数为 $n - left$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        n = len(citations)\n        left, right = 0, n - 1\n        \n        # 二分查找满足条件的最小位置\n        while left <= right:\n            mid = (left + right) // 2\n            # 如果 citations[mid] >= n - mid，说明从位置 mid 开始\n            # 有 n - mid 篇论文的引用次数都大于等于 n - mid\n            if citations[mid] >= n - mid:\n                # 尝试寻找更小的 mid\n                right = mid - 1\n            else:\n                # 需要增大 mid\n                left = mid + 1\n        \n        # h 指数就是 n - left\n        return n - left\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$，其中 $n$ 是数组长度。使用二分查找，每次将搜索范围缩小一半。\n- **空间复杂度**：$O(1)$，只使用了常数额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote11-9",
+    "title": "0274. H 指数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、计数排序、排序 难度：中等 0274. H 指数 力扣 描述 ： 给定一个整数数组 $citations$ ，其中 $citations i $ 表示研究者的第 $i$",
+    "content": "# 0274. H 指数\n\n- 标签：数组、计数排序、排序\n- 难度：中等\n\n## 题目链接\n\n- 0274. H 指数 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个整数数组 $citations$ ，其中 $citations[i]$ 表示研究者的第 $i$ 篇论文被引用的次数。\n\n**要求**：\n\n计算并返回该研究者的 $h$ 指数。\n\n**说明**：\n\n- $h$ 指数的定义：$h$ 代表「高引用次数」，一名科研人员的 $h$ 指数是指他（她）至少发表了 $h$ 篇论文，并且至少有 $h$ 篇论文被引用次数大于等于 $h$。如果 $h$ 有多种可能的值，$h$ 指数是其中最大的那个。\n- $n == citations.length$。\n- $1 \\le n \\le 5000$。\n- $0 \\le citations[i] \\le 10^{3}$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：citations = [3,0,6,1,5]\n输出：3 \n解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 3, 0, 6, 1, 5 次。\n     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3。\n```\n\n- 示例 2：\n\n```python\n输入：citations = [1,3,1]\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：排序 + 遍历\n\n这是一个经典的 H 指数计算问题。我们需要找到一个最大的 $h$ 值，使得至少有 $h$ 篇论文的引用次数大于等于 $h$。\n\n核心思想是：\n\n- 将引用次数数组 $citations$ 按照降序排列。\n- 从大到小遍历排序后的数组，找到第一个满足 $citations[i] < i + 1$ 的位置。\n- 此时 $h$ 指数就是 $i$，表示有 $i$ 篇论文的引用次数大于等于 $i$。\n\n具体算法步骤：\n\n1. 对数组 $citations$ 进行降序排序：$citations.sort(reverse=True)$。\n2. 初始化 $h = 0$。\n3. 遍历排序后的数组，对于每个位置 $i$：\n   - 如果 $citations[i] \\geq i + 1$，说明至少有 $i + 1$ 篇论文的引用次数大于等于 $i + 1$，更新 $h = i + 1$。\n   - 否则，停止遍历。\n4. 返回 $h$ 指数。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        # 对引用次数数组进行降序排序\n        citations.sort(reverse=True)\n        \n        # 初始化 h 指数为 0\n        h = 0\n        \n        # 遍历排序后的数组\n        for i in range(len(citations)):\n            # 如果当前论文的引用次数大于等于 i+1\n            # 说明至少有 i+1 篇论文的引用次数大于等于 i+1\n            if citations[i] >= i + 1:\n                h = i + 1\n            else:\n                # 一旦不满足条件，就可以停止遍历\n                break\n        \n        return h\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\log n)$，其中 $n$ 是数组长度。主要时间消耗在排序操作上。\n- **空间复杂度**：$O(1)$，只使用了常数额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote11-10",
+    "title": "0202. 快乐数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、数学、双指针 难度：简单 0202. 快乐数 力扣 描述 ：给定一个整数 $n$。 要求 ：判断 $n$ 是否为快乐数。 说明 ： 快乐数定义： 对于一个正整数，每一",
+    "content": "# 0202. 快乐数\n\n- 标签：哈希表、数学、双指针\n- 难度：简单\n\n## 题目链接\n\n- 0202. 快乐数 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $n$。\n\n**要求**：判断 $n$ 是否为快乐数。\n\n**说明**：\n\n- 快乐数定义：\n\n  - 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。\n  - 然后重复这个过程直到这个数变为 $1$，也可能是 无限循环 但始终变不到 $1$。\n  - 如果 可以变为 $1$，那么这个数就是快乐数。\n- $1 \\le n \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 19\n输出：True\n解释：\n12 + 92 = 82\n82 + 22 = 68\n62 + 82 = 100\n12 + 02 + 02 = 1\n```\n\n- 示例 2：\n\n```python\n输入：n = 2\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：哈希表 / 集合\n\n根据题意，不断重复操作，数可能变为 $1$，也可能是无限循环。无限循环其实就相当于链表形成了闭环，可以用哈希表来存储为一位生成的数，每次判断该数是否存在于哈希表中。如果已经出现在哈希表里，则说明进入了无限循环，该数就不是快乐数。如果没有出现则将该数加入到哈希表中，进行下一次计算。不断重复这个过程，直到形成闭环或者变为 $1$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def getNext(self, n: int):\n        total_sum = 0\n        while n > 0:\n            n, digit = divmod(n, 10)\n            total_sum += digit ** 2\n        return total_sum\n\n    def isHappy(self, n: int) -> bool:\n        num_set = set()\n        while n != 1 and n not in num_set:\n            num_set.add(n)\n            n = self.getNext(n)\n        return n == 1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。\n- **空间复杂度**：$O(\\log n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote11-11",
+    "title": "0213. 打家劫舍 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划 难度：中等 0213. 打家劫舍 II 力扣 描述 ：给定一个数组 $nums$，$num i $ 代表第 $i$ 间房屋存放的金额，假设房屋可以围成一圈，最",
+    "content": "# 0213. 打家劫舍 II\n\n- 标签：数组、动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0213. 打家劫舍 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个数组 $nums$，$num[i]$ 代表第 $i$ 间房屋存放的金额，假设房屋可以围成一圈，最后一间房屋跟第一间房屋可以相连。相邻的房屋装有防盗系统，假如相邻的两间房屋同时被偷，系统就会报警。\n\n**要求**：假如你是一名专业的小偷，计算在不触动警报装置的情况下，一夜之内能够偷窃到的最高金额。\n\n**说明**：\n\n- $1 \\le nums.length \\le 100$。\n- $0 \\le nums[i] \\le 1000$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [2,3,2]\n输出：3\n解释：你不能先偷窃 1 号房屋（金额 = 2），然后偷窃 3 号房屋（金额 = 2）, 因为他们是相邻的。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1,2,3,1]\n输出：4\n解释：你可以先偷窃 1 号房屋（金额 = 1），然后偷窃 3 号房屋（金额 = 3）。偷窃到的最高金额 = 1 + 3 = 4。\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n这道题可以看做是「198. 打家劫舍」的升级版。\n\n如果房屋数大于等于 $3$ 间，偷窃了第 $1$ 间房屋，则不能偷窃最后一间房屋。同样偷窃了最后一间房屋则不能偷窃第 $1$ 间房屋。\n\n假设总共房屋数量为 $size$，这种情况可以转换为分别求解 $[0, size - 2]$ 和 $[1, size - 1]$ 范围下首尾不相连的房屋所能偷窃的最高金额，然后再取这两种情况下的最大值。而求解 $[0, size - 2]$ 和 $[1, size - 1]$ 范围下首尾不相连的房屋所能偷窃的最高金额问题就跟「198. 打家劫舍」所求问题一致了。\n\n这里来复习一下「198. 打家劫舍」的解题思路。\n\n###### 1. 阶段划分\n\n按照房屋序号进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i]$ 表示为：前 $i$ 间房屋所能偷窃到的最高金额。\n\n###### 3. 状态转移方程\n\n$i$ 间房屋的最后一个房子是 $nums[i - 1]$。\n\n如果房屋数大于等于 $2$ 间，则偷窃第 $i - 1$ 间房屋的时候，就有两种状态：\n\n1. 偷窃第 $i - 1$ 间房屋，那么第 $i - 2$ 间房屋就不能偷窃了，偷窃的最高金额为：前 $i - 2$ 间房屋的最高总金额 + 第 $i - 1$ 间房屋的金额，即 $dp[i] = dp[i - 2] + nums[i - 1]$；\n1. 不偷窃第 $i - 1$ 间房屋，那么第 $i - 2$ 间房屋可以偷窃，偷窃的最高金额为：前 $i - 1$ 间房屋的最高总金额，即 $dp[i] = dp[i - 1]$。\n\n然后这两种状态取最大值即可，即状态转移方程为：\n\n$dp[i] = \\begin{cases} nums[0] & i = 1 \\cr max(dp[i - 2] + nums[i - 1], dp[i - 1]) & i \\ge 2\\end{cases}$\n\n###### 4. 初始条件\n\n- 前 $0$ 间房屋所能偷窃到的最高金额为 $0$，即 $dp[0] = 0$。\n- 前 $1$ 间房屋所能偷窃到的最高金额为 $nums[0]$，即：$dp[1] = nums[0]$。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态，$dp[i]$ 表示为：前 $i$ 间房屋所能偷窃到的最高金额。假设求解 $[0, size - 2]$ 和 $[1, size - 1]$ 范围下（ $size$ 为总的房屋数）首尾不相连的房屋所能偷窃的最高金额问题分别为 $ans1$、$ans2$，则最终结果为 $max(ans1, ans2)$。\n\n### 思路 1：动态规划代码\n\n```python\nclass Solution:\n    def helper(self, nums):\n        size = len(nums)\n        if size == 0:\n            return 0\n \n        dp = [0 for _ in range(size + 1)]\n        dp[0] = 0\n        dp[1] = nums[0]\n        \n        for i in range(2, size + 1):\n            dp[i] = max(dp[i - 2] + nums[i - 1], dp[i - 1])\n\n        return dp[size]\n\n    def rob(self, nums: List[int]) -> int:\n        size = len(nums)\n        if size == 1:\n            return nums[0]\n        \n        ans1 = self.helper(nums[:size - 1])\n        ans2 = self.helper(nums[1:])\n        return max(ans1, ans2)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。一重循环遍历的时间复杂度为 $O(n)$。\n- **空间复杂度**：$O(n)$。用到了一维数组保存状态，所以总体空间复杂度为 $O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote11-12",
+    "title": "0232. 用栈实现队列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、设计、队列 难度：简单 0232. 用栈实现队列 力扣 要求 ：仅使用两个栈实现先入先出队列。 要求实现 MyQueue 类： void push(int x) 将元素 ",
+    "content": "# 0232. 用栈实现队列\n\n- 标签：栈、设计、队列\n- 难度：简单\n\n## 题目链接\n\n- 0232. 用栈实现队列 - 力扣\n\n## 题目大意\n\n**要求**：仅使用两个栈实现先入先出队列。\n\n要求实现 `MyQueue` 类：\n\n- `void push(int x)` 将元素 `x` 推到队列的末尾。\n- `int pop()` 从队列的开头移除并返回元素。\n- `int peek()` 返回队列开头的元素。\n- `boolean empty()` 如果队列为空，返回 `True`；否则，返回 `False`。\n\n**说明**：\n\n- 只能使用标准的栈操作 —— 也就是只有 `push to top`, `peek / pop from top`, `size`, 和 `is empty` 操作是合法的。\n- 可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。\n- $1 <= x <= 9$。\n- 最多调用 $100$ 次 `push`、`pop`、`peek` 和 `empty`。\n- 假设所有操作都是有效的 （例如，一个空的队列不会调用 `pop` 或者 `peek` 操作）。\n- 进阶：实现每个操作均摊时间复杂度为 `O(1)` 的队列。换句话说，执行 `n` 个操作的总时间复杂度为 `O(n)`，即使其中一个操作可能花费较长时间。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"MyQueue\", \"push\", \"push\", \"peek\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]\n输出：\n[null, null, null, 1, 1, false]\n\n解释：\nMyQueue myQueue = new MyQueue();\nmyQueue.push(1); // queue is: [1]\nmyQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)\nmyQueue.peek(); // return 1\nmyQueue.pop(); // return 1, queue is [2]\nmyQueue.empty(); // return false\n```\n\n## 解题思路\n\n### 思路 1：双栈\n\n使用两个栈，`inStack` 用于输入，`outStack` 用于输出。\n\n- `push` 操作：将元素压入 `inStack` 中。\n- `pop` 操作：如果 `outStack` 输出栈为空，将 `inStack` 输入栈元素依次取出，按顺序压入 `outStack` 栈。这样 `outStack` 栈的元素顺序和之前 `inStack` 元素顺序相反，`outStack` 顶层元素就是要取出的队头元素，将其移出，并返回该元素。如果 `outStack` 输出栈不为空，则直接取出顶层元素。\n- `peek` 操作：和 `pop` 操作类似，只不过最后一步不需要取出顶层元素，直接将其返回即可。\n- `empty` 操作：如果 `inStack` 和 `outStack` 都为空，则队列为空，否则队列不为空。\n\n### 思路 1：代码\n\n```python\nclass MyQueue:\n\n    def __init__(self):\n        self.inStack = []\n        self.outStack = []\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n\n    def push(self, x: int) -> None:\n        self.inStack.append(x)\n        \"\"\"\n        Push element x to the back of queue.\n        \"\"\"\n\n    def pop(self) -> int:\n        if(len(self.outStack) == 0):\n            while(len(self.inStack) != 0):\n                self.outStack.append(self.inStack[-1])\n                self.inStack.pop()\n        top = self.outStack[-1]\n        self.outStack.pop()\n        return top\n        \"\"\"\n        Removes the element from in front of queue and returns that element.\n        \"\"\"\n\n    def peek(self) -> int:\n        if (len(self.outStack) == 0):\n            while (len(self.inStack) != 0):\n                self.outStack.append(self.inStack[-1])\n                self.inStack.pop()\n        top = self.outStack[-1]\n        return top\n        \"\"\"\n        Get the front element.\n        \"\"\"\n\n    def empty(self) -> bool:\n        return len(self.outStack) == 0 and len(self.inStack) == 0\n        \"\"\"\n        Returns whether the queue is empty.\n        \"\"\"\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：`push` 和 `empty` 为 $O(1)$，`pop` 和 `peek` 为均摊 $O(1)$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/7b0bcad5da7748c0.jpg"
+  },
+  {
+    "id": "g-algonote11-13",
+    "title": "0225. 用队列实现栈",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、设计、队列 难度：简单 0225. 用队列实现栈 力扣 要求 ：仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的四种操作： push 、 top 、 pop",
+    "content": "# 0225. 用队列实现栈\n\n- 标签：栈、设计、队列\n- 难度：简单\n\n## 题目链接\n\n- 0225. 用队列实现栈 - 力扣\n\n## 题目大意\n\n**要求**：仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的四种操作：`push`、`top`、`pop` 和 `empty`。\n\n要求实现 `MyStack` 类：\n\n- `void push(int x)` 将元素 `x` 压入栈顶。\n- `int pop()` 移除并返回栈顶元素。\n- `int top()` 返回栈顶元素。\n- `boolean empty()` 如果栈是空的，返回 `True`；否则，返回 `False`。\n\n**说明**：\n\n- 只能使用队列的基本操作 —— 也就是 `push to back`、`peek/pop from front`、`size` 和 `is empty` 这些操作。\n- 所使用的语言也许不支持队列。 你可以使用 `list` （列表）或者 `deque`（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"MyStack\", \"push\", \"push\", \"top\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]\n输出：\n[null, null, null, 2, 2, false]\n\n解释：\nMyStack myStack = new MyStack();\nmyStack.push(1);\nmyStack.push(2);\nmyStack.top(); // 返回 2\nmyStack.pop(); // 返回 2\nmyStack.empty(); // 返回 False\n```\n\n## 解题思路\n\n### 思路 1：双队列\n\n使用两个队列。`pushQueue` 用作入栈，`popQueue` 用作出栈。\n\n- `push` 操作：将新加入的元素压入 `pushQueue` 队列中，并且将之前保存在 `popQueue` 队列中的元素从队头开始依次压入 `pushQueue` 中，此时 `pushQueue` 队列中头节点存放的是新加入的元素，尾部存放的是之前的元素。 而 `popQueue` 则为空。再将 `pushQueue` 和 `popQueue` 相互交换，保持 `pushQueue` 为空，`popQueue` 则用于 `pop`、`top` 等操作。\n- `pop` 操作：直接将 `popQueue` 队头元素取出。\n- `top` 操作：返回 `popQueue` 队头元素。\n- `empty`：判断 `popQueue` 是否为空。\n\n### 思路 1：代码\n\n```python\nclass MyStack:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.pushQueue = collections.deque()\n        self.popQueue = collections.deque()\n\n    def push(self, x: int) -> None:\n        \"\"\"\n        Push element x onto stack.\n        \"\"\"\n        self.pushQueue.append(x)\n        while self.popQueue:\n           self.pushQueue.append(self.popQueue.popleft())\n        self.pushQueue, self.popQueue = self.popQueue, self.pushQueue\n\n    def pop(self) -> int:\n        \"\"\"\n        Removes the element on top of the stack and returns that element.\n        \"\"\"\n        return self.popQueue.popleft()\n\n    def top(self) -> int:\n        \"\"\"\n        Get the top element.\n        \"\"\"\n        return self.popQueue[0]\n\n    def empty(self) -> bool:\n        \"\"\"\n        Returns whether the stack is empty.\n        \"\"\"\n        return not self.popQueue\n\n# Your MyStack object will be instantiated and called as such:\n# obj = MyStack()\n# obj.push(x)\n# param_2 = obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.empty()\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：入栈操作的时间复杂度为 $O(n)$。出栈、取栈顶元素、判断栈是否为空的时间复杂度为 $O(1)$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote11-14",
+    "title": "0208. 实现 Trie (前缀树)",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、字典树、哈希表、字符串 难度：中等 0208. 实现 Trie (前缀树) 力扣 要求 ：实现前缀树数据结构的相关类 Trie 类。 Trie 类： Trie() 初始",
+    "content": "# 0208. 实现 Trie (前缀树)\n\n- 标签：设计、字典树、哈希表、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0208. 实现 Trie (前缀树) - 力扣\n\n## 题目大意\n\n**要求**：实现前缀树数据结构的相关类 `Trie` 类。\n\n`Trie` 类：\n\n- `Trie()` 初始化前缀树对象。\n- `void insert(String word)` 向前缀树中插入字符串 `word`。\n- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `True`（即，在检索之前已经插入）；否则，返回 `False`。\n- `boolean startsWith(String prefix)` 如果之前已经插入的字符串 `word` 的前缀之一为 `prefix`，返回 `True`；否则，返回 `False`。\n\n**说明**：\n\n- $1 \\le word.length, prefix.length \\le 2000$。\n- `word` 和 `prefix` 仅由小写英文字母组成。\n- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 $3 * 10^4$ 次。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"Trie\", \"insert\", \"search\", \"search\", \"startsWith\", \"insert\", \"search\"]\n[[], [\"apple\"], [\"apple\"], [\"app\"], [\"app\"], [\"app\"], [\"app\"]]\n输出：\n[null, null, true, false, true, null, true]\n\n解释：\nTrie trie = new Trie();\ntrie.insert(\"apple\");\ntrie.search(\"apple\");   // 返回 True\ntrie.search(\"app\");     // 返回 False\ntrie.startsWith(\"app\"); // 返回 True\ntrie.insert(\"app\");\ntrie.search(\"app\");     // 返回 True\n```\n\n## 解题思路\n\n### 思路 1：前缀树（字典树）\n\n前缀树（字典树）是一棵多叉树，其中每个节点包含指向子节点的指针数组 `children`，以及布尔变量 `isEnd`。`children` 用于存储当前字符节点，一般长度为所含字符种类个数，也可以使用哈希表代替指针数组。`isEnd` 用于判断该节点是否为字符串的结尾。\n\n下面依次讲解插入、查找前缀的具体步骤：\n\n**插入字符串**：\n\n- 从根节点开始插入字符串。对于待插入的字符，有两种情况：\n  - 如果该字符对应的节点存在，则沿着指针移动到子节点，继续处理下一个字符。\n  - 如果该字符对应的节点不存在，则创建一个新的节点，保存在 `children` 中对应位置上，然后沿着指针移动到子节点，继续处理下一个字符。\n- 重复上述步骤，直到最后一个字符，然后将该节点标记为字符串的结尾。\n\n**查找前缀**：\n\n- 从根节点开始查找前缀，对于待查找的字符，有两种情况：\n  - 如果该字符对应的节点存在，则沿着指针移动到子节点，继续查找下一个字符。\n  - 如果该字符对应的节点不存在，则说明字典树中不包含该前缀，直接返回空指针。\n- 重复上述步骤，直到最后一个字符搜索完毕，则说明字典树中存在该前缀。\n\n### 思路 1：代码\n\n```python\nclass Node:\n    def __init__(self):\n        self.children = dict()\n        self.isEnd = False\n\nclass Trie:\n\n    def __init__(self):\n        self.root = Node()\n\n    def insert(self, word: str) -> None:\n        cur = self.root\n        for ch in word:\n            if ch not in cur.children:\n                cur.children[ch] = Node()\n            cur = cur.children[ch]\n        cur.isEnd = True \n\n    def search(self, word: str) -> bool:\n        cur = self.root\n        for ch in word:\n            if ch not in cur.children:\n                return False\n            cur = cur.children[ch]\n\n        return cur is not None and cur.isEnd\n\n    def startsWith(self, prefix: str) -> bool:\n        cur = self.root\n        for ch in prefix:\n            if ch not in cur.children:\n                return False\n            cur = cur.children[ch]\n        return cur is not None\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：初始化为 $O(1)$。插入操作、查找操作的时间复杂度为 $O(|S|)$。其中 $|S|$ 是每次插入或查找字符串的长度。\n- **空间复杂度**：$O(|T| \\times \\sum)$。其中 $|T|$ 是所有插入字符串的长度之和，$\\sum$ 是字符集的大小。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote11-15",
+    "title": "0285. 二叉搜索树中的中序后继",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0285. 二叉搜索树中的中序后继 力扣 给定一棵二叉搜索树的根节点 root 。 要求：按中序遍历顺序将其重新排列为一棵递",
+    "content": "# 0285. 二叉搜索树中的中序后继\n\n- 标签：树、深度优先搜索、二叉搜索树、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0285. 二叉搜索树中的中序后继 - 力扣\n\n## 题目大意\n\n给定一棵二叉搜索树的根节点 `root`。\n\n要求：按中序遍历顺序将其重新排列为一棵递增顺序搜索树，使树中最左边的节点成为树的根节点，并且每个节点没有左子节点，只有一个右子节点。\n\n## 解题思路\n\n可以分为两步：\n\n1. 中序遍历二叉搜索树，将节点先存储到列表中。\n2. 将列表中的节点构造成一棵递增顺序搜索树。\n\n中序遍历直接按照 `左 -> 根 -> 右` 的顺序递归遍历，然后将遍历的节点存储到 `res` 中。\n\n构造递增顺序搜索树，则用 `head` 保存头节点位置。遍历列表中的每个节点，将其左右指针先置空，再将其连接在上一个节点的右子节点上。\n\n最后返回 `head.right` 即可。\n\n## 代码\n\n```python\nclass Solution:\n    def inOrder(self, root, res):\n        if not root:\n            return\n        self.inOrder(root.left, res)\n        res.append(root)\n        self.inOrder(root.right, res)\n\n    def increasingBST(self, root: TreeNode) -> TreeNode:\n        res = []\n        self.inOrder(root, res)\n\n        if not res:\n            return\n        head = TreeNode(-1)\n        cur = head\n        for node in res:\n            node.left = node.right = None\n            cur.right = node\n            cur = cur.right\n        return head.right\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote11-16",
+    "title": "0273. 整数转换英文表示",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数学、字符串 难度：困难 0273. 整数转换英文表示 力扣 描述 ： 给定一个非负整数 $num$。 要求 ： 将非负整数 $num$ 转换为其对应的英文表示。 说明",
+    "content": "# 0273. 整数转换英文表示\n\n- 标签：递归、数学、字符串\n- 难度：困难\n\n## 题目链接\n\n- 0273. 整数转换英文表示 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个非负整数 $num$。\n\n**要求**：\n\n将非负整数 $num$ 转换为其对应的英文表示。\n\n**说明**：\n\n- $0 \\le num \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：num = 123\n输出：\"One Hundred Twenty Three\"\n```\n\n- 示例 2：\n\n```python\n输入：num = 12345\n输出：\"Twelve Thousand Three Hundred Forty Five\"\n```\n\n## 解题思路\n\n### 思路 1：递归 + 分治\n\n这是一个字符串处理问题，需要将非负整数转换为对应的英文表示。我们可以采用递归分治的思想来解决：\n\n1. **数字分组**：将数字按照千位分组，每三位为一组（个位、十位、百位）。\n2. **单位映射**：定义数字到英文单词的映射关系。\n3. **递归处理**：对每个三位数组分别处理，然后加上相应的单位。\n\n具体算法步骤：\n\n1. 定义基础数字映射：$0$ 到 $19$ 的英文单词。\n2. 定义十位数映射：$20$ 到 $90$ 的十位数英文单词。\n3. 定义单位映射：$Thousand$、$Million$、$Billion$。\n4. 递归处理每个三位数组：\n   - 处理百位数：如果 $hundred > 0$，加上对应的百位数字和 `\"Hundred\"`。\n   - 处理十位数和个位数：如果 $tens < 20$，直接使用基础映射；否则分别处理十位和个位。\n5. 根据数字大小添加相应单位。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def numberToWords(self, num: int) -> str:\n        # 处理特殊情况：0\n        if num == 0:\n            return \"Zero\"\n        \n        # 基础数字映射（0-19）\n        ones = [\"\", \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\",\n                \"Ten\", \"Eleven\", \"Twelve\", \"Thirteen\", \"Fourteen\", \"Fifteen\", \"Sixteen\", \n                \"Seventeen\", \"Eighteen\", \"Nineteen\"]\n        \n        # 十位数映射（20-90）\n        tens = [\"\", \"\", \"Twenty\", \"Thirty\", \"Forty\", \"Fifty\", \"Sixty\", \"Seventy\", \"Eighty\", \"Ninety\"]\n        \n        # 单位映射\n        thousands = [\"\", \"Thousand\", \"Million\", \"Billion\"]\n        \n        def convert_three_digits(n):\n            \"\"\"将三位数转换为英文表示\"\"\"\n            result = []\n            \n            # 处理百位数\n            if n >= 100:\n                result.append(ones[n // 100])\n                result.append(\"Hundred\")\n                n %= 100\n            \n            # 处理十位数和个位数\n            if n >= 20:\n                result.append(tens[n // 10])\n                if n % 10:\n                    result.append(ones[n % 10])\n            elif n > 0:\n                result.append(ones[n])\n            \n            return \" \".join(result)\n        \n        # 将数字按千位分组处理\n        result = []\n        i = 0\n        \n        while num > 0:\n            # 处理当前三位数组\n            three_digits = num % 1000\n            if three_digits != 0:\n                # 转换当前三位数组\n                current = convert_three_digits(three_digits)\n                # 添加单位（如果有的话）\n                if i > 0:\n                    current += \" \" + thousands[i]\n                result.append(current)\n            \n            # 移动到下一组\n            num //= 1000\n            i += 1\n        \n        # 从高位到低位拼接结果\n        return \" \".join(reversed(result))\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log_{10} n)$，其中 $n$ 是输入数字。我们需要处理数字的每一位，数字的位数是 $O(\\log_{10} n)$。\n- **空间复杂度**：$O(\\log_{10} n)$，用于存储结果字符串和递归调用栈。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-algonote11-17",
+    "title": "0226. 翻转二叉树",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、广度优先搜索、二叉树 难度：简单 0226. 翻转二叉树 力扣 描述 ：给定一个二叉树的根节点 root 。 要求 ：将该二叉树进行左右翻转。 说明 ： 树",
+    "content": "# 0226. 翻转二叉树\n\n- 标签：树、深度优先搜索、广度优先搜索、二叉树\n- 难度：简单\n\n## 题目链接\n\n- 0226. 翻转二叉树 - 力扣\n\n## 题目大意\n\n**描述**：给定一个二叉树的根节点 `root`。\n\n**要求**：将该二叉树进行左右翻转。\n\n**说明**：\n\n- 树中节点数目范围在 $[0, 100]$ 内。\n- $-100 \\le Node.val \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_03_14_invert1-tree.jpg)\n\n```python\n输入：root = [4,2,7,1,3,6,9]\n输出：[4,7,2,9,6,3,1]\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_03_14_invert2-tree.jpg)\n\n```python\n输入：root = [2,1,3]\n输出：[2,3,1]\n```\n\n## 解题思路\n\n### 思路 1：递归遍历\n\n根据我们的递推三步走策略，写出对应的递归代码。\n\n1. 写出递推公式：\n\n   1. 递归遍历翻转左子树。\n   2. 递归遍历翻转右子树。\n   3. 交换当前根节点 `root` 的左右子树。\n\n2. 明确终止条件：当前节点 `root` 为 `None`。\n\n3. 翻译为递归代码：\n   1. 定义递归函数：`invertTree(self, root)` 表示输入参数为二叉树的根节点 `root`，返回结果为翻转后二叉树的根节点。\n\n   2. 书写递归主体：\n\n      ```python\n      left = self.invertTree(root.left)\n      right = self.invertTree(root.right)\n      root.left = right\n      root.right = left\n      return root\n      ```\n\n   3. 明确递归终止条件：`if not root: return None`\n\n4. 返回根节点 `root`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        if not root:\n            return None\n        left = self.invertTree(root.left)\n        right = self.invertTree(root.right)\n        root.left = right\n        root.right = left\n        return root\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是二叉树的节点数目。\n- **空间复杂度**：$O(n)$。递归函数需要用到栈空间，栈空间取决于递归深度，最坏情况下递归深度为 $n$，所以空间复杂度为 $O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-algonote11-18",
+    "title": "0205. 同构字符串",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、字符串 难度：简单 0205. 同构字符串 力扣 描述 ：给定两个字符串 $s$ 和 $t$。 要求 ：判断字符串 $s$ 和 $t$ 是否是同构字符串。 说明 ： ",
+    "content": "# 0205. 同构字符串\n\n- 标签：哈希表、字符串\n- 难度：简单\n\n## 题目链接\n\n- 0205. 同构字符串 - 力扣\n\n## 题目大意\n\n**描述**：给定两个字符串 $s$ 和 $t$。\n\n**要求**：判断字符串 $s$ 和 $t$ 是否是同构字符串。\n\n**说明**：\n\n- **同构字符串**：如果 $s$ 中的字符可以按某种映射关系替换得到 $t$ 相同位置上的字符，那么两个字符串是同构的。\n- 每个字符都应当映射到另一个字符，且不改变字符顺序。不同字符不能映射到统一字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。\n- $1 \\le s.length \\le 5 \\times 10^4$。\n- $t.length == s.length$。\n- $s$ 和 $t$ 由任意有效的 ASCII 字符组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"egg\", t = \"add\"\n输出：True\n```\n\n- 示例 2：\n\n```python\n输入：s = \"foo\", t = \"bar\"\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：哈希表\n\n根据题目意思，字符串 $s$ 和 $t$ 每个位置上的字符是一一对应的。$s$ 的每个字符都与 $t$ 对应位置上的字符对应。可以考虑用哈希表来存储 $s[i]: t[i]$ 的对应关系。但是这样不能只能保证对应位置上的字符是对应的，但不能保证是唯一对应的。所以还需要另一个哈希表来存储 $t[i]:s[i]$ 的对应关系来判断是否是唯一对应的。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        s_dict = dict()\n        t_dict = dict()\n        for i in range(len(s)):\n            if s[i] in s_dict and s_dict[s[i]] != t[i]:\n                return False\n            if t[i] in t_dict and t_dict[t[i]] != s[i]:\n                return False\n            s_dict[s[i]] = t[i]\n            t_dict[t[i]] = s[i]\n        return True\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为字符串长度。\n- **空间复杂度**：$O(|S|)$ ，其中 $S$ 是字符串字符集。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-algonote11-19",
+    "title": "0215. 数组中的第K个最大元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、分治、快速排序、排序、堆（优先队列） 难度：中等 0215. 数组中的第K个最大元素 力扣 描述 ：给定一个未排序的整数数组 $nums$ 和一个整数 $k$。 要求 ",
+    "content": "# 0215. 数组中的第K个最大元素\n\n- 标签：数组、分治、快速排序、排序、堆（优先队列）\n- 难度：中等\n\n## 题目链接\n\n- 0215. 数组中的第K个最大元素 - 力扣\n\n## 题目大意\n\n**描述**：给定一个未排序的整数数组 $nums$ 和一个整数 $k$。\n\n**要求**：返回数组中第 $k$ 个最大的元素。\n\n**说明**：\n\n- 要求使用时间复杂度为 $O(n)$ 的算法解决此问题。\n- $1 \\le k \\le nums.length \\le 10^5$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: [3,2,1,5,6,4], k = 2\n输出: 5\n```\n\n- 示例 2：\n\n```python\n输入: [3,2,3,1,2,4,5,5,6], k = 4\n输出: 4\n```\n\n## 解题思路\n\n很不错的一道题，面试常考。\n\n直接可以想到的思路是：排序后输出数组上对应第 $k$ 位大的数。所以问题关键在于排序方法的复杂度。\n\n冒泡排序、选择排序、插入排序时间复杂度 $O(n^2)$ 太高了，很容易超时。\n\n可考虑堆排序、归并排序、快速排序。\n\n这道题的要求是找到第 $k$ 大的元素，使用归并排序只有到最后排序完毕才能返回第 $k$ 大的数。而堆排序每次排序之后，就会确定一个元素的准确排名，同理快速排序也是如此。\n\n### 思路 1：堆排序\n\n升序堆排序的思路如下：\n\n1. 将无序序列构造成第 $1$ 个大顶堆（初始堆），使得 $n$ 个元素的最大值处于序列的第 $1$ 个位置。\n\n2. **调整堆**：交换序列的第 $1$ 个元素（最大值元素）与第 $n$ 个元素的位置。将序列前 $n - 1$ 个元素组成的子序列调整成一个新的大顶堆，使得 $n - 1$ 个元素的最大值处于序列第 $1$ 个位置，从而得到第 $2$ 个最大值元素。\n\n3. **调整堆**：交换子序列的第 $1$ 个元素（最大值元素）与第 $n - 1$ 个元素的位置。将序列前 $n - 2$ 个元素组成的子序列调整成一个新的大顶堆，使得 $n - 2$ 个元素的最大值处于序列第 $1$ 个位置，从而得到第 $3$ 个最大值元素。\n\n4. 依次类推，不断交换子序列的第 $1$ 个元素（最大值元素）与当前子序列最后一个元素位置，并将其调整成新的大顶堆。直到获取第 $k$ 个最大值元素为止。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        # 调整为大顶堆\n        def heapify(nums, index, end):\n            left = index * 2 + 1\n            right = left + 1\n            while left <= end:\n                # 当前节点为非叶子节点\n                max_index = index\n                if nums[left] > nums[max_index]:\n                    max_index = left\n                if right <= end and nums[right] > nums[max_index]:\n                    max_index = right\n                if index == max_index:\n                    # 如果不用交换，则说明已经交换结束\n                    break\n                nums[index], nums[max_index] = nums[max_index], nums[index]\n                # 继续调整子树\n                index = max_index\n                left = index * 2 + 1\n                right = left + 1\n                \n        # 初始化大顶堆\n        def buildMaxHeap(nums):\n            size = len(nums)\n            # (size-2) // 2 是最后一个非叶节点，叶节点不用调整\n            for i in range((size - 2) // 2, -1, -1):\n                heapify(nums, i, size - 1)\n            return nums\n\n        buildMaxHeap(nums)\n        size = len(nums)\n        for i in range(k-1):\n            nums[0], nums[size-i-1] = nums[size-i-1], nums[0]\n            heapify(nums, 0, size-i-2)\n        return nums[0]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log n)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：快速排序\n\n使用快速排序在每次调整时，都会确定一个元素的最终位置，且以该元素为界限，将数组分成了左右两个子数组，左子数组中的元素都比该元素小，右子树组中的元素都比该元素大。\n\n这样，只要某次划分的元素恰好是第 $k$ 个下标就找到了答案。并且我们只需关注第 $k$ 个最大元素所在区间的排序情况，与第 $k$ 个最大元素无关的区间排序都可以忽略。这样进一步减少了执行步骤。\n\n### 思路 2：代码\n\n```python\nimport random\n\nclass Solution:\n    # 随机哨兵划分：从 nums[low: high + 1] 中随机挑选一个基准数，并进行移位排序\n    def randomPartition(self, nums: [int], low: int, high: int) -> int:\n        # 随机挑选一个基准数\n        i = random.randint(low, high)\n        # 将基准数与最低位互换\n        nums[i], nums[low] = nums[low], nums[i]\n        # 以最低位为基准数，然后将数组中比基准数大的元素移动到基准数右侧，比他小的元素移动到基准数左侧。最后将基准数放到正确位置上\n        return self.partition(nums, low, high)\n    \n    # 哨兵划分：以第 1 位元素 nums[low] 为基准数，然后将比基准数小的元素移动到基准数左侧，将比基准数大的元素移动到基准数右侧，最后将基准数放到正确位置上\n    def partition(self, nums: [int], low: int, high: int) -> int:        \n        # 以第 1 位元素为基准数\n        pivot = nums[low]\n        \n        i, j = low, high\n        while i < j:\n            # 从右向左找到第 1 个小于基准数的元素\n            while i < j and nums[j] >= pivot:\n                j -= 1\n            # 从左向右找到第 1 个大于基准数的元素\n            while i < j and nums[i] <= pivot:\n                i += 1\n            # 交换元素\n            nums[i], nums[j] = nums[j], nums[i]\n        \n        # 将基准数放到正确位置上\n        nums[j], nums[low] = nums[low], nums[j]\n        return j\n\n    def quickSort(self, nums: [int], low: int, high: int, k: int, size: int) -> [int]:\n        if low < high:\n            # 按照基准数的位置，将数组划分为左右两个子数组\n            pivot_i = self.randomPartition(nums, low, high)\n            if pivot_i == size - k:\n                return nums[size - k]\n            if pivot_i > size - k:\n                self.quickSort(nums, low, pivot_i - 1, k, size)\n            if pivot_i < size - k:\n                self.quickSort(nums, pivot_i + 1, high, k, size)\n\n        return nums[size - k]\n\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        size = len(nums)\n        return self.quickSort(nums, 0, len(nums) - 1, k, size)\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$。证明过程可参考「算法导论 9.2：期望为线性的选择算法」。\n- **空间复杂度**：$O(\\log n)$。递归使用栈空间的空间代价期望为 $O(\\log n)$。\n\n### 思路 3：借用标准库（不建议）\n\n提交代码中的最快代码是调用了 Python 的 `sort` 方法。这种做法适合在打算法竞赛的时候节省时间，日常练习可以尝试一下自己写。\n\n### 思路 3：代码\n\n```python\nclass Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        nums.sort()\n        return nums[len(nums) - k]\n```\n\n### 思路 3：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log n)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 4：优先队列\n\n1. 遍历数组元素，对于当前元素 $num$：\n   1. 如果优先队列中的元素个数小于 $k$ 个，则将当前元素 $num$ 放入优先队列中。\n   2. 如果优先队列中的元素个数大于等于 $k$ 个，并且当前元素 $num$ 大于优先队列的队头元素，则弹出队头元素，并将当前元素 $num$ 插入到优先队列中。\n2. 遍历完，此时优先队列的队头元素就是第 $k$ 个最大元素，将其弹出并返回即可。\n\n这里我们借助了 Python 中的 `heapq` 模块实现优先队列算法，这一步也可以通过手写堆的方式实现优先队列。\n\n### 思路 4：代码\n\n```python\nimport heapq\nclass Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        res = []\n        for num in nums:\n            if len(res) < k:\n                heapq.heappush(res, num)\n            elif num > res[0]:\n                heapq.heappop(res)\n                heapq.heappush(res, num)\n        return heapq.heappop(res)\n```\n\n### 思路 4：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log k)$。\n- **空间复杂度**：$O(k)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-algonote11-20",
+    "title": "0230. 二叉搜索树中第 K 小的元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0230. 二叉搜索树中第 K 小的元素 力扣 描述 ： 给定一个二叉搜索树的根节点 $root$，和一个整数 $k$。 要",
+    "content": "# 0230. 二叉搜索树中第 K 小的元素\n\n- 标签：树、深度优先搜索、二叉搜索树、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0230. 二叉搜索树中第 K 小的元素 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个二叉搜索树的根节点 $root$，和一个整数 $k$。\n\n**要求**：\n\n设计一个算法查找其中第 $k$ 小的元素（从 $1$ 开始计数）。\n\n**说明**：\n\n- 树中的节点数为 $n$。\n- $1 \\le k \\le n \\le 10^{4}$。\n- $0 \\le Node.val \\le 10^{4}$。\n\n- 进阶：如果二叉搜索树经常被修改（插入 / 删除操作）并且你需要频繁地查找第 $k$ 小的值，你将如何优化算法？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_01_28_kthtree1.jpg)\n\n```python\n输入：root = [3,1,4,null,2], k = 1\n输出：1\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2021_01_28_kthtree2.jpg)\n\n```python\n输入：root = [5,3,6,2,4,null,null,1], k = 3\n输出：3\n```\n\n## 解题思路\n\n### 思路 1：中序遍历\n\n这是一个经典的二叉搜索树问题。由于二叉搜索树具有左子树所有节点值小于根节点值，右子树所有节点值大于根节点值的性质，我们可以利用中序遍历来获得升序排列的节点值。\n\n核心思想是：\n\n- 对二叉搜索树进行中序遍历（左子树 → 根节点 → 右子树）。\n- 中序遍历的结果是升序排列的节点值序列。\n- 遍历到第 $k$ 个节点时，返回该节点的值。\n\n具体算法步骤：\n\n1. 使用递归或迭代的方式进行中序遍历。\n2. 维护一个计数器 $count$，记录当前访问的节点序号。\n3. 当 $count = k$ 时，返回当前节点的值。\n4. 由于只需要找到第 $k$ 小的元素，可以在找到后立即返回，不需要遍历完整棵树。\n\n### 思路 1：代码\n\n```python\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        # 使用中序遍历找到第k小的元素\n        self.count = 0  # 计数器，记录当前访问的节点序号\n        self.result = 0  # 存储结果\n        \n        def inorder_traversal(node):\n            if not node:\n                return\n            \n            # 遍历左子树\n            inorder_traversal(node.left)\n            \n            # 访问根节点\n            self.count += 1\n            if self.count == k:\n                self.result = node.val\n                return\n            \n            # 遍历右子树\n            inorder_traversal(node.right)\n        \n        inorder_traversal(root)\n        return self.result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(k)$，其中 $k$ 是题目给定的参数。最坏情况下需要遍历 $k$ 个节点才能找到第 $k$ 小的元素。\n- **空间复杂度**：$O(h)$，其中 $h$ 是树的高度。递归调用栈的深度等于树的高度，最坏情况下为 $O(n)$（树退化为链表）。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/7b0bcad5da7748c0.jpg"
+  },
+  {
+    "id": "g-algonote11-21",
+    "title": "0235. 二叉搜索树的最近公共祖先",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0235. 二叉搜索树的最近公共祖先 力扣 描述 ：给定一个二叉搜索树的根节点 root ，以及两个指定节点 p 和 q 。",
+    "content": "# 0235. 二叉搜索树的最近公共祖先\n\n- 标签：树、深度优先搜索、二叉搜索树、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0235. 二叉搜索树的最近公共祖先 - 力扣\n\n## 题目大意\n\n**描述**：给定一个二叉搜索树的根节点 `root`，以及两个指定节点 `p` 和 `q`。\n\n**要求**：找到该树中两个指定节点的最近公共祖先。\n\n**说明**：\n\n- **祖先**：如果节点 `p` 在节点 `node` 的左子树或右子树中，或者 `p == node`，则称 `node` 是 `p` 的祖先。\n- **最近公共祖先**：对于树的两个节点 `p`、`q`，最近公共祖先表示为一个节点 `lca_node`，满足 `lca_node` 是 `p`、`q` 的祖先且 `lca_node` 的深度尽可能大（一个节点也可以是自己的祖先）。\n- 所有节点的值都是唯一的。\n- `p`、`q` 为不同节点且均存在于给定的二叉搜索树中。\n\n**示例**：\n\n- 示例 1：\n\n![img](/images/figures/algonote11/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2018_12_14_binarysearchtree_improved.png)\n\n```python\n输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8\n输出: 6 \n解释: 节点 2 和节点 8 的最近公共祖先是 6。\n```\n\n- 示例 2：\n\n```python\n输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4\n输出: 2\n解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。\n```\n\n## 解题思路\n\n### 思路 1：递归遍历\n\n对于节点 `p`、节点 `q`，最近公共祖先就是从根节点分别到它们路径上的分岔点，也是路径中最后一个相同的节点，现在我们的问题就是求这个分岔点。\n\n我们可以使用递归遍历查找二叉搜索树的最近公共祖先，具体方法如下。\n\n1. 从根节点 `root` 开始遍历。\n2. 如果当前节点的值大于 `p`、`q` 的值，说明 `p` 和 `q`  应该在当前节点的左子树，因此将当前节点移动到它的左子节点，继续遍历；\n3. 如果当前节点的值小于 `p`、`q` 的值，说明 `p` 和 `q`  应该在当前节点的右子树，因此将当前节点移动到它的右子节点，继续遍历；\n4. 如果当前节点不满足上面两种情况，则说明 `p` 和 `q` 分别在当前节点的左右子树上，则当前节点就是分岔点，直接返回该节点即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        ancestor = root\n        while True:\n            if ancestor.val > p.val and ancestor.val > q.val:\n                ancestor = ancestor.left\n            elif ancestor.val < p.val and ancestor.val < q.val:\n                ancestor = ancestor.right\n            else:\n                break\n        return ancestor\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 是二叉搜索树的节点个数。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote11-22",
+    "title": "0236. 二叉树的最近公共祖先",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉树 难度：中等 0236. 二叉树的最近公共祖先 力扣 描述 ：给定一个二叉树的根节点 root ，以及二叉树中两个节点 p 和 q 。 要求 ：找到该",
+    "content": "# 0236. 二叉树的最近公共祖先\n\n- 标签：树、深度优先搜索、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0236. 二叉树的最近公共祖先 - 力扣\n\n## 题目大意\n\n**描述**：给定一个二叉树的根节点 `root`，以及二叉树中两个节点 `p` 和 `q`。\n\n**要求**：找到该二叉树中指定节点 `p`、`q` 的最近公共祖先。\n\n**说明**：\n\n- **祖先**：如果节点 `p` 在节点 `node` 的左子树或右子树中，或者 `p == node`，则称 `node` 是 `p` 的祖先。\n- **最近公共祖先**：对于树的两个节点 `p`、`q`，最近公共祖先表示为一个节点 `lca_node`，满足 `lca_node` 是 `p`、`q` 的祖先且 `lca_node` 的深度尽可能大（一个节点也可以是自己的祖先）。\n- 树中节点数目在范围 $[2, 10^5]$ 内。\n- $-10^9 \\le Node.val \\le 10^9$。\n- 所有 `Node.val` 互不相同。\n- `p != q`。\n- `p` 和 `q` 均存在于给定的二叉树中。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2018_12_14_binarytree.png)\n\n```python\n输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1\n输出：3\n解释：节点 5 和节点 1 的最近公共祖先是节点 3 。\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2018_12_14_binarytree.png)\n\n```python\n输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4\n输出：5\n解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。\n```\n\n## 解题思路\n\n### 思路 1：递归遍历\n\n设 `lca_node` 为节点 `p`、`q` 的最近公共祖先。则 `lca_node` 只能是下面几种情况：\n\n1. `p`、`q` 在 `lca_node` 的子树中，且分别在 `lca_node` 的两侧子树中。\n2. `p == lca_node`，且 `q` 在 `lca_node` 的左子树或右子树中。\n3. `q == lca_node`，且 `p` 在 `lca_node` 的左子树或右子树中。\n\n下面递归求解 `lca_node`。递归需要满足以下条件：\n\n- 如果 `p`、`q` 都不为空，则返回 `p`、`q` 的公共祖先。\n- 如果 `p`、`q` 只有一个存在，则返回存在的一个。\n- 如果 `p`、`q` 都不存在，则返回 `None`。\n\n具体思路为：\n\n1. 如果当前节点 `node` 等于 `p` 或者 `q`，那么 `node` 就是 `p`、`q` 的最近公共祖先，直接返回 `node`。\n2. 如果当前节点 `node` 不为 `None`，则递归遍历左子树、右子树，并判断左右子树结果。\n   1. 如果左右子树都不为空，则说明 `p`、`q` 在当前根节点的两侧，当前根节点就是他们的最近公共祖先。\n   2. 如果左子树为空，则返回右子树。\n   3. 如果右子树为空，则返回左子树。\n   4. 如果左右子树都为空，则返回 `None`。\n3. 如果当前节点 `node` 为 `None`，则说明 `p`、`q` 不在 `node` 的子树中，不可能为公共祖先，直接返回 `None`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        if root == p or root == q:\n            return root\n\n        if root:\n            node_left = self.lowestCommonAncestor(root.left, p, q)\n            node_right = self.lowestCommonAncestor(root.right, p, q)\n            if node_left and node_right:\n                return root\n            elif not node_left:\n                return node_right\n            else:\n                return node_left\n        return None\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 是二叉树的节点数目。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote11-23",
+    "title": "0229. 多数元素 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、计数、排序 难度：中等 0229. 多数元素 II 力扣 描述 ： 给定一个大小为 $n$ 的整数数组。 要求 ： 找出其中所有出现超过 $\\lfloor n/",
+    "content": "# 0229. 多数元素 II\n\n- 标签：数组、哈希表、计数、排序\n- 难度：中等\n\n## 题目链接\n\n- 0229. 多数元素 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个大小为 $n$ 的整数数组。\n\n**要求**：\n\n找出其中所有出现超过 $\\lfloor n/3 \\rfloor$ 次的元素。\n\n**说明**：\n\n- $1 \\le nums.length \\le 5 \\times 10^{4}$。\n- $-10^{9} \\le nums[i] \\le 10^{9}$。\n\n- 进阶：尝试设计时间复杂度为 $O(n)$、空间复杂度为 $O(1)$ 的算法解决此问题。\n\n**示例**：\n\n- 示例 1：\n\n```python\n示例 1：\n\n输入：nums = [3,2,3]\n输出：[3]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1]\n输出：[1]\n```\n\n## 解题思路\n\n### 思路 1：哈希表计数\n\n这是一个经典的多数元素问题。我们需要找出所有出现次数超过 $\\lfloor n/3 \\rfloor$ 次的元素。\n\n核心思想是：\n\n- 使用哈希表统计每个元素 $nums[i]$ 的出现次数 $count$。\n- 遍历数组，对每个元素进行计数：$count[nums[i]] += 1$。\n- 遍历哈希表，找出所有满足 $count[element] > \\lfloor n/3 \\rfloor$ 的元素。\n\n具体算法步骤：\n\n1. 初始化哈希表 $count = \\{\\}$ 和结果列表 $result = []$。\n2. 遍历数组 $nums$，统计每个元素的出现次数。\n3. 计算阈值 $threshold = \\lfloor len(nums) / 3 \\rfloor$。\n4. 遍历哈希表，找出所有出现次数大于阈值的元素。\n5. 返回结果列表。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def majorityElement(self, nums: List[int]) -> List[int]:\n        # 使用哈希表统计每个元素的出现次数\n        count = {}\n        \n        # 遍历数组，统计每个元素的出现次数\n        for num in nums:\n            count[num] = count.get(num, 0) + 1\n        \n        # 计算阈值：出现次数需要超过 ⌊n/3⌋\n        threshold = len(nums) // 3\n        \n        # 找出所有出现次数超过阈值的元素\n        result = []\n        for num, freq in count.items():\n            if freq > threshold:\n                result.append(num)\n        \n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组长度。需要遍历数组一次进行计数，然后遍历哈希表一次找出结果。\n- **空间复杂度**：$O(n)$，最坏情况下哈希表需要存储所有不同的元素。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote11-24",
+    "title": "0221. 最大正方形",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划、矩阵 难度：中等 0221. 最大正方形 力扣 描述 ：给定一个由 '0' 和 '1' 组成的二维矩阵 $matrix$。 要求 ：找到只包含 '1' 的最大",
+    "content": "# 0221. 最大正方形\n\n- 标签：数组、动态规划、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0221. 最大正方形 - 力扣\n\n## 题目大意\n\n**描述**：给定一个由 `'0'` 和 `'1'` 组成的二维矩阵 $matrix$。\n\n**要求**：找到只包含 `'1'` 的最大正方形，并返回其面积。\n\n**说明**：\n\n- $m == matrix.length$。\n- $n == matrix[i].length$。\n- $1 \\le m, n \\le 300$。\n- $matrix[i][j]$ 为 `'0'` 或 `'1'`。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2020_11_26_max1grid.jpg)\n\n```python\n输入：matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\n输出：4\n```\n\n- 示例 2：\n\n![](/images/figures/algonote11/ext_assets.leetcode.com__uploads_2020_11_26_max2grid.jpg)\n\n```python\n输入：matrix = [[\"0\",\"1\"],[\"1\",\"0\"]]\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照正方形的右下角坐标进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i][j]$ 表示为：以矩阵位置 $(i, j)$ 为右下角，且值包含 $1$ 的正方形的最大边长。\n\n###### 3. 状态转移方程\n\n只有当矩阵位置 $(i, j)$ 值为 $1$ 时，才有可能存在正方形。\n\n- 如果矩阵位置 $(i, j)$ 上值为 $0$，则 $dp[i][j] = 0$。\n- 如果矩阵位置 $(i, j)$ 上值为 $1$，则 $dp[i][j]$ 的值由该位置上方、左侧、左上方三者共同约束的，为三者中最小值加 $1$。即：$dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1$。\n\n###### 4. 初始条件\n\n- 默认所有以矩阵位置 $(i, j)$ 为右下角，且值包含 $1$ 的正方形的最大边长都为 $0$，即 $dp[i][j] = 0$。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态， $dp[i][j]$ 表示为：以矩阵位置 $(i, j)$ 为右下角，且值包含 $1$ 的正方形的最大边长。则最终结果为所有 $dp[i][j]$ 中的最大值。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def maximalSquare(self, matrix: List[List[str]]) -> int:\n        rows, cols = len(matrix), len(matrix[0])\n        max_size = 0\n        dp = [[0 for _ in range(cols + 1)] for _ in range(rows + 1)]\n        for i in range(rows):\n            for j in range(cols):\n                if matrix[i][j] == '1':\n                    if i == 0 or j == 0:\n                        dp[i][j] = 1\n                    else:\n                        dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1\n                    max_size = max(max_size, dp[i][j])\n        return max_size * max_size\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$，其中 $m$、$n$ 分别为二维矩阵 $matrix$ 的行数和列数。\n- **空间复杂度**：$O(m \\times n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-algonote11-25",
+    "title": "0253. 会议室 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：贪心、数组、双指针、前缀和、排序、堆（优先队列） 难度：中等 0253. 会议室 II 力扣 描述 ： 给定一个会议时间安排的数组 $intervals$，每个会议时间都会包",
+    "content": "# 0253. 会议室 II\n\n- 标签：贪心、数组、双指针、前缀和、排序、堆（优先队列）\n- 难度：中等\n\n## 题目链接\n\n- 0253. 会议室 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个会议时间安排的数组 $intervals$，每个会议时间都会包括开始和结束的时间 $intervals[i] = [start_i, end_i]$。\n\n**要求**：\n\n返回「所需会议室的最小数量」。\n\n**说明**：\n\n- $1 \\le intervals.length \\le 10^{4}$。\n- $0 \\le start_i \\lt end_i \\le 10^{6}$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：intervals = [[0,30],[5,10],[15,20]]\n输出：2\n```\n\n- 示例 2：\n\n```python\n输入：intervals = [[7,10],[2,4]]\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：优先队列（最小堆）\n\n这是一个经典的区间调度问题。我们需要找出同时进行的会议的最大数量，这就是所需会议室的最小数量。\n\n核心思想是：\n\n- 使用优先队列（最小堆）来维护当前正在进行的会议的结束时间。\n- 按照会议开始时间 $start_i$ 对区间进行排序。\n- 对于每个会议，检查是否有会议室可用（堆顶的结束时间 $\\le$ 当前会议开始时间）。\n- 如果有可用会议室，则复用；否则需要新的会议室。\n\n具体算法步骤：\n\n1. 对会议区间按开始时间排序：$intervals.sort(key=lambda x: x[0])$。\n2. 初始化最小堆 $heap = []$ 用于存储当前会议的结束时间。\n3. 遍历排序后的会议：\n   - 如果堆不为空且堆顶元素（最早结束时间）$\\le$ 当前会议开始时间，则弹出堆顶（复用会议室）。\n   - 将当前会议的结束时间加入堆中。\n4. 堆的大小就是所需会议室的最小数量。\n\n### 思路 1：代码\n\n```python\nimport heapq\n\nclass Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        # 处理空数组情况\n        if not intervals:\n            return 0\n        \n        # 按开始时间排序\n        intervals.sort(key=lambda x: x[0])\n        \n        # 使用最小堆存储当前会议的结束时间\n        heap = []\n        \n        # 遍历每个会议\n        for start, end in intervals:\n            # 如果堆不为空且最早结束的会议已经结束，则复用该会议室\n            if heap and heap[0] <= start:\n                heapq.heappop(heap)\n            \n            # 将当前会议的结束时间加入堆中\n            heapq.heappush(heap, end)\n        \n        # 堆的大小就是所需会议室的最小数量\n        return len(heap)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\log n)$，其中 $n$ 是会议数量。排序需要 $O(n \\log n)$ 时间，每个会议最多进行一次堆操作（插入和删除），堆操作的时间复杂度为 $O(\\log n)$。\n- **空间复杂度**：$O(n)$，最坏情况下所有会议都需要同时进行，堆的大小为 $n$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-algonote11-26",
+    "title": "0252. 会议室",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、排序 难度：简单 0252. 会议室 力扣 描述 ： 给定一个会议时间安排的数组 $intervals$，每个会议时间都会包括开始和结束的时间 $intervals i",
+    "content": "# 0252. 会议室\n\n- 标签：数组、排序\n- 难度：简单\n\n## 题目链接\n\n- 0252. 会议室 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个会议时间安排的数组 $intervals$，每个会议时间都会包括开始和结束的时间 $intervals[i] = [start_i, end_i]$。\n\n**要求**：\n\n判断一个人是否能够参加这里面的全部会议。\n\n**说明**：\n\n- $0 \\le intervals.length \\le 10^{4}$。\n- $intervals[i].length == 2$。\n- $0 \\le start_i \\lt end_i \\le 10^{6}$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：intervals = [[0,30],[5,10],[15,20]]\n输出：false\n```\n\n- 示例 2：\n\n```python\n输入：intervals = [[7,10],[2,4]]\n输出：true\n```\n\n## 解题思路\n\n### 思路 1：排序 + 遍历\n\n这是一个经典的区间重叠检测问题。我们需要判断是否存在两个会议时间重叠，如果存在重叠，则无法参加所有会议。\n\n核心思想是：\n\n- 对会议区间按开始时间 $start_i$ 进行排序。\n- 遍历排序后的会议，检查相邻会议是否存在时间重叠。\n- 如果存在重叠（前一个会议的结束时间 $end_{i-1} >$ 后一个会议的开始时间 $start_i$），则无法参加所有会议。\n\n具体算法步骤：\n\n1. 对会议区间按开始时间排序：$intervals.sort(key=lambda x: x[0])$。\n2. 遍历排序后的会议，检查相邻会议是否重叠：\n   - 如果 $intervals[i-1][1] > intervals[i][0]$，则存在重叠，返回 $false$。\n3. 如果所有会议都不重叠，返回 $true$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:\n        # 处理空数组或只有一个会议的情况\n        if not intervals or len(intervals) <= 1:\n            return True\n        \n        # 按开始时间排序\n        intervals.sort(key=lambda x: x[0])\n        \n        # 检查相邻会议是否重叠\n        for i in range(1, len(intervals)):\n            # 如果前一个会议的结束时间 > 当前会议的开始时间，则存在重叠\n            if intervals[i-1][1] > intervals[i][0]:\n                return False\n        \n        # 所有会议都不重叠，可以参加所有会议\n        return True\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\log n)$，其中 $n$ 是会议数量。排序需要 $O(n \\log n)$ 时间，遍历需要 $O(n)$ 时间。\n- **空间复杂度**：$O(1)$，只使用了常数额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote11-27",
+    "title": "0209. 长度最小的子数组",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找、前缀和、滑动窗口 难度：中等 0209. 长度最小的子数组 力扣 描述 ：给定一个只包含正整数的数组 $nums$ 和一个正整数 $target$。 要求 ：",
+    "content": "# 0209. 长度最小的子数组\n\n- 标签：数组、二分查找、前缀和、滑动窗口\n- 难度：中等\n\n## 题目链接\n\n- 0209. 长度最小的子数组 - 力扣\n\n## 题目大意\n\n**描述**：给定一个只包含正整数的数组 $nums$ 和一个正整数 $target$。\n\n**要求**：找出数组中满足和大于等于 $target$ 的长度最小的「连续子数组」，并返回其长度。如果不存在符合条件的子数组，返回 $0$。\n\n**说明**：\n\n- $1 \\le target \\le 10^9$。\n- $1 \\le nums.length \\le 10^5$。\n- $1 \\le nums[i] \\le 10^5$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：target = 7, nums = [2,3,1,2,4,3]\n输出：2\n解释：子数组 [4,3] 是该条件下的长度最小的子数组。\n```\n\n- 示例 2：\n\n```python\n输入：target = 4, nums = [1,4,4]\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：滑动窗口（不定长度）\n\n最直接的做法是暴力枚举，时间复杂度为 $O(n^2)$。但是我们可以利用滑动窗口的方法，在时间复杂度为 $O(n)$ 的范围内解决问题。\n\n用滑动窗口来记录连续子数组的和，设定两个指针：$left$、$right$，分别指向滑动窗口的左右边界，保证窗口中的和刚好大于等于 $target$。\n\n1. 一开始，$left$、$right$ 都指向 $0$。\n2. 向右移动 $right$，将最右侧元素加入当前窗口和 $window_sum$ 中。\n3. 如果 $window_sum \\ge target$，则不断右移 $left$，缩小滑动窗口长度，并更新窗口和的最小值，直到 $window_sum < target$。\n4. 然后继续右移 $right$，直到 $right \\ge len(nums)$ 结束。\n5. 输出窗口和的最小值作为答案。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def minSubArrayLen(self, target: int, nums: List[int]) -> int:\n        size = len(nums)\n        ans = size + 1\n        left = 0\n        right = 0\n        window_sum = 0\n\n        while right < size:\n            window_sum += nums[right]\n\n            while window_sum >= target:\n                ans = min(ans, right - left + 1)\n                window_sum -= nums[left]\n                left += 1\n\n            right += 1\n\n        return ans if ans != size + 1 else 0\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote11-28",
+    "title": "0268. 丢失的数字",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、数组、哈希表、数学、二分查找、排序 难度：简单 0268. 丢失的数字 力扣 描述 ：给定一个包含 $ 0, n $ 中 $n$ 个数的数组 $nums$。 要求 ：",
+    "content": "# 0268. 丢失的数字\n\n- 标签：位运算、数组、哈希表、数学、二分查找、排序\n- 难度：简单\n\n## 题目链接\n\n- 0268. 丢失的数字 - 力扣\n\n## 题目大意\n\n**描述**：给定一个包含 $[0, n]$ 中 $n$ 个数的数组 $nums$。\n\n**要求**：找出 $[0, n]$ 这个范围内没有出现在数组中的那个数。\n\n**说明**：\n\n- $n == nums.length$\n- $1 \\le n \\le 10^4$\n- $0 \\le nums[i] \\le n$。\n- $nums$ 中的所有数字都独一无二。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [3,0,1]\n输出：2\n解释：n = 3，因为有 3 个数字，所以所有的数字都在范围 [0,3] 内。2 是丢失的数字，因为它没有出现在 nums 中。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,1]\n输出：2\n解释：n = 2，因为有 2 个数字，所以所有的数字都在范围 [0,2] 内。2 是丢失的数字，因为它没有出现在 nums 中。\n```\n\n## 解题思路\n\n$[0, n]$ 的范围有 $n + 1$ 个数（包含 $0$）。现在给了我们 $n$ 个数，要求找出其中缺失的那个数。\n\n### 思路 1：哈希表\n\n将 $nums$ 中所有元素插入到哈希表中，然后遍历 $[0, n]$，找到缺失的数字。\n\n这里的哈希表也可以用长度为 $n + 1$ 的数组代替。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def missingNumber(self, nums: List[int]) -> int:\n        numSet = set(nums)\n\n        for num in range(len(nums)+1):\n            if num not in numSet:\n                return num\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。\n\n### 思路 2：数学计算\n\n已知 $[0, n]$ 的求和公式为：$\\sum_{i=0}^n i = \\frac{n*(n+1)}{2}$，则用 $[0, n]$ 的和，减去数组中所有元素的和，就得到了缺失数字。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def missingNumber(self, nums: List[int]) -> int:\n        sum_nums = sum(nums)\n        n = len(nums)\n        return (n + 1) * n // 2 - sum_nums\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote11-29",
+    "title": "0283. 移动零",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针 难度：简单 0283. 移动零 力扣 描述 ：给定一个数组 $nums$。 要求 ：将所有 $0$ 移动到末尾，并保持原有的非 $0$ 数字的相对顺序。 说明 ",
+    "content": "# 0283. 移动零\n\n- 标签：数组、双指针\n- 难度：简单\n\n## 题目链接\n\n- 0283. 移动零 - 力扣\n\n## 题目大意\n\n**描述**：给定一个数组 $nums$。\n\n**要求**：将所有 $0$ 移动到末尾，并保持原有的非 $0$ 数字的相对顺序。\n\n**说明**：\n\n- 只能在原数组上进行操作。\n- $1 \\le nums.length \\le 10^4$。\n- $-2^{31} \\le nums[i] \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: nums = [0,1,0,3,12]\n输出: [1,3,12,0,0]\n```\n\n- 示例 2：\n\n```python\n输入: nums = [0]\n输出: [0]\n```\n\n## 解题思路\n\n### 思路 1：冒泡排序（超时）\n\n冒泡排序的思想，就是通过相邻元素的比较与交换，使得较大元素从前面移到后面。\n\n我们可以借用冒泡排序的思想，将值为 $0$ 的元素移动到数组末尾。\n\n因为数据规模为 $10^4$，而冒泡排序的时间复杂度为 $O(n^2)$。所以这种做法会导致超时。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        for i in range(len(nums)):\n            for j in range(len(nums) - i - 1):\n                if nums[j] == 0 and nums[j + 1] != 0:\n                    nums[j], nums[j + 1] = nums[j + 1], nums[j]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：快慢指针\n\n1. 使用两个指针 $slow$，$fast$。$slow$ 指向处理好的非 $0$ 数字数组的尾部，$fast$ 指针指向当前待处理元素。\n2. 不断向右移动 $fast$ 指针，每次移动到非零数，则将左右指针对应的数交换，交换同时将 $slow$ 右移。\n3. 此时，$slow$ 指针左侧均为处理好的非零数，而从 $slow$ 指针指向的位置开始， $fast$ 指针左边为止都为 $0$。\n\n遍历结束之后，则所有 $0$ 都移动到了右侧，且保持了非零数的相对位置。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        slow = 0\n        fast = 0\n        while fast < len(nums):\n            if nums[fast] != 0:\n                nums[slow], nums[fast] = nums[fast], nums[slow]\n                slow += 1\n            fast += 1\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
   }
 ]

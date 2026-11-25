@@ -3270,7 +3270,7 @@
      "skip": 308
     }
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T11:35:47.745Z",
    "note": "continuation: 存量来源深度续收 XI 批（上轮 curl 瞬时失败，重置重试）"
   },
