@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 319
+      "count": 333
     },
     {
       "id": "algo",
@@ -39557,6 +39557,230 @@
       ],
       "prereqs": [],
       "href": "/post/g-mlint6-30"
+    },
+    {
+      "id": "g-waytogo6-1",
+      "kind": "collection",
+      "title": "15.6 用模板编写网页应用",
+      "summary": "以下程序是用 100 行以内代码实现可行的 wiki 网页应用，它由一组页面组成，用于阅读、编辑和保存。它是来自 Go ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-1"
+    },
+    {
+      "id": "g-waytogo6-2",
+      "kind": "collection",
+      "title": "15.7 探索 template 包",
+      "summary": "（ template 包的文档可以在 https://golang.org/pkg/text/template/ 找到。",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-2"
+    },
+    {
+      "id": "g-waytogo6-3",
+      "kind": "collection",
+      "title": "15.8 精巧的多功能网页服务器",
+      "summary": "为进一步深入理解 http 包以及如何构建网页服务器功能，让我们来学习和体会下面的例子：先列出代码，然后给出不同功能的实",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-3"
+    },
+    {
+      "id": "g-waytogo6-4",
+      "kind": "collection",
+      "title": "15.9 用 rpc 实现远程过程调用",
+      "summary": "Go 程序之间可以使用 net/rpc 包实现相互通信，这是另一种客户端 服务器应用场景。它提供了一种方便的途径，通过网",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-4"
+    },
+    {
+      "id": "g-waytogo6-5",
+      "kind": "collection",
+      "title": "16.0 常见的陷阱与错误",
+      "summary": "在之前的内容中，有时候使用 !!...!! 标记警告 Go 语言中的一些错误使用方式。当你在编程时候遇到的一个困难，可以",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-5"
+    },
+    {
+      "id": "g-waytogo6-7",
+      "kind": "collection",
+      "title": "16.10 糟糕的错误处理",
+      "summary": "译者注：该小结关于错误处理的观点，译者并不完全赞同，关于本小结的部分想法请参考 关于 16.10.2 小节错误处理的一些",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-7"
+    },
+    {
+      "id": "g-waytogo6-12",
+      "kind": "collection",
+      "title": "16.6 使用指针指向接口类型",
+      "summary": "查看如下程序： nexter 是一个接口类型，并且定义了一个 next() 方法读取下一字节。函数 nextFew1 将",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-12"
+    },
+    {
+      "id": "g-waytogo6-15",
+      "kind": "collection",
+      "title": "16.9 闭包和协程的使用",
+      "summary": "请看下面代码： 输出： 版本 A 调用闭包 5 次打印每个索引值，版本 B 也做相同的事，但是通过协程调用每个闭包。按理",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-15"
+    },
+    {
+      "id": "g-waytogo6-17",
+      "kind": "collection",
+      "title": "17.1 逗号 ok 模式",
+      "summary": "在学习本书第二部分和第三部分时，我们经常在一个表达式返回 2 个参数时使用这种模式： something, ok ，第一",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-17"
+    },
+    {
+      "id": "g-waytogo6-18",
+      "kind": "collection",
+      "title": "17.2 defer 模式",
+      "summary": "使用 defer 可以确保资源不再需要时，都会被恰当地关闭或归还到“池子”中。更重要的一点是，它可以恢复 panic。 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-18"
+    },
+    {
+      "id": "g-waytogo6-20",
+      "kind": "collection",
+      "title": "17.4 运算符模式和接口",
+      "summary": "运算符是一元或二元函数，它返回一个新对象而不修改其参数，类似 C++ 中的 + 和 ，特殊的中缀运算符（ + ， ， 等",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-20"
+    },
+    {
+      "id": "g-waytogo6-22",
+      "kind": "collection",
+      "title": "18.1 字符串",
+      "summary": "（1）如何修改字符串中的一个字符： （2）如何获取字符串的子串： （3）如何使用 for 或者 for range 遍历",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-22"
+    },
+    {
+      "id": "g-waytogo6-28",
+      "kind": "collection",
+      "title": "18.5 接口",
+      "summary": "（1）如何检测一个值 v 是否实现了接口 Stringer ： go if v, ok := v.(Stringer);",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-28"
+    },
+    {
+      "id": "g-waytogo6-30",
+      "kind": "collection",
+      "title": "18.7 文件",
+      "summary": "（1）如何打开一个文件并读取： go file, err := os.Open(\"input.dat\") if err ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo6-30"
     }
   ]
 }

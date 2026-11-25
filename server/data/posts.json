@@ -38291,5 +38291,215 @@
     "source": "LongxingTan/Machine-learning-interview",
     "views": 0,
     "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-waytogo6-1",
+    "title": "15.6 用模板编写网页应用",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "以下程序是用 100 行以内代码实现可行的 wiki 网页应用，它由一组页面组成，用于阅读、编辑和保存。它是来自 Go 网站 codelab 的 wiki 制作教程，我所知的最好的",
+    "content": "# 15.6 用模板编写网页应用\n\n以下程序是用 100 行以内代码实现可行的 wiki 网页应用，它由一组页面组成，用于阅读、编辑和保存。它是来自 Go 网站 codelab 的 wiki 制作教程，我所知的最好的 Go 教程之一，非常值得进行完整的实验，以见证并理解程序是如何被构建起来的（`https://golang.org/doc/articles/wiki/`）。这里，我们将以自顶向下的视角，从整体上给出程序的补充说明。程序是网页服务器，它必须从命令行启动，监听某个端口，例如 8080。浏览器可以通过请求 URL 阅读 wiki 页面的内容，例如：`http://localhost:8080/view/page1`。\n\n接着，页面的文本内容从一个文件中读取，并显示在网页中。它包含一个超链接，指向编辑页面（`http://localhost:8080/edit/page1`）。编辑页面将内容显示在一个文本域中，用户可以更改文本，点击“保存”按钮保存到对应的文件中。然后回到阅读页面显示更改后的内容。如果某个被请求阅读的页面不存在（例如：`http://localhost:8080/edit/page999`），程序可以作出识别，立即重定向到编辑页面，如此新的 wiki 页面就可以被创建并保存。\n\nwiki 页面需要一个标题和文本内容，它在程序中被建模为如下结构体，Body 字段存放内容，由字节切片组成。\n```go\ntype Page struct {\n\tTitle string\n\tBody  []byte\n}\n```\n\n为了在可执行程序之外维护 wiki 页面内容，我们简单地使用了文本文件作为持久化存储。程序、必要的模板和文本文件可以在 wiki 中找到。\n\n示例 15.12 wiki.go\n\n```go\npackage main\n\nimport (\n\t\"net/http\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"regexp\"\n\t\"text/template\"\n)\n\nconst lenPath = len(\"/view/\")\n\nvar titleValidator = regexp.MustCompile(\"^[a-zA-Z0-9]+$\")\nvar templates = make(map[string]*template.Template)\nvar err error\n\ntype Page struct {\n\tTitle string\n\tBody  []byte\n}\n\nfunc init() {\n\tfor _, tmpl := range []string{\"edit\", \"view\"} {\n\t\ttemplates[tmpl] = template.Must(template.ParseFiles(tmpl + \".html\"))\n\t}\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/view/\", makeHandler(viewHandler))\n\thttp.HandleFunc(\"/edit/\", makeHandler(editHandler))\n\thttp.HandleFunc(\"/save/\", makeHandler(saveHandler))\n\terr := http.ListenAndServe(\"localhost:8080\", nil)\n\tif err != nil {\n\t\tlog.Fatal(\"ListenAndServe: \", err.Error())\n\t}\n}\n\nfunc makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {\n\treturn func(w http.ResponseWriter, r *http.Request) {\n\t\ttitle := r.URL.Path[lenPath:]\n\t\tif !titleValidator.MatchString(title) {\n\t\t\thttp.NotFound(w, r)\n\t\t\treturn\n\t\t}\n\t\tfn(w, r, title)\n\t}\n}\n\nfunc viewHandler(w http.ResponseWriter, r *http.Request, title string) {\n\tp, err := load(title)\n\tif err != nil { // page not found\n\t\thttp.Redirect(w, r, \"/edit/\"+title, http.StatusFound)\n\t\treturn\n\t}\n\trenderTemplate(w, \"view\", p)\n}\n\nfunc editHandler(w http.ResponseWriter, r *http.Request, title string) {\n\tp, err := load(title)\n\tif err != nil {\n\t\tp = &Page{Title: title}\n\t}\n\trenderTemplate(w, \"edit\", p)\n}\n\nfunc saveHandler(w http.ResponseWriter, r *http.Request, title string) {\n\tbody := r.FormValue(\"body\")\n\tp := &Page{Title: title, Body: []byte(body)}\n\terr := p.save()\n\tif err != nil {\n\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)\n\t\treturn\n\t}\n\thttp.Redirect(w, r, \"/view/\"+title, http.StatusFound)\n}\n\nfunc renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {\n\terr := templates[tmpl].Execute(w, p)\n\tif err != nil {\n\t\thttp.Error(w, err.Error(), http.StatusInternalServerError)\n\t}\n}\n\nfunc (p *Page) save() error {\n\tfilename := p.Title + \".txt\"\n\t// file created with read-write permissions for the current user only\n\treturn ioutil.WriteFile(filename, p.Body, 0600)\n}\n\nfunc load(title string) (*Page, error) {\n\tfilename := title + \".txt\"\n\tbody, err := ioutil.ReadFile(filename)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn &Page{Title: title, Body: body}, nil\n}\n```\n\n让我们来通读代码：\n\n- 首先导入必要的包。由于我们在构建网页服务器，`http` 当然是必须的。不过还导入了 `io/ioutil` 来方便地读写文件，`regexp` 用于验证输入标题，以及 `template` 来动态创建 html 文档。\n- 为避免黑客构造特殊输入攻击服务器，我们用如下正则表达式检查用户在浏览器上输入的 URL（同时也是 wiki 页面标题）：\n  ```go\n  var titleValidator = regexp.MustCompile(\"^[a-zA-Z0-9]+$\")\n  ```\n  `makeHandler` 会用它对请求管控。\n- 必须有一种机制把 `Page` 结构体数据插入到网页的标题和内容中，可以利用 `template` 包通过如下步骤完成：\n\t1. 先在文本编辑器中创建 html 模板文件，例如 view.html：\n\t```html\n\t<h1>{{.Title |html}}</h1>\n\t<p>[<a href=\"/edit/{{.Title |html}}\">edit</a>]</p>\n\t<div>{{printf \"%s\" .Body |html}}</div>\n\t```\n\t把要插入的数据结构字段放在 `{{` 和 `}}` 之间，这里是把 `Page` 结构体数据 `{{.Title |html}}` 和 `{{printf \"%s\" .Body |html}}` 插入页面（当然可以是非常复杂的 html，但这里尽可能地简化了，以突出模板的原理。）（`{{.Title |html}}` 和 `{{printf \"%s\" .Body |html}}` 语法说明详见后续章节）。\n\n\t2. `template.Must(template.ParseFiles(tmpl + \".html\"))` 把模板文件转换为 `*template.Template` 类型的对象，为了高效，在程序运行时仅做一次解析，在 `init()` 函数中处理可以方便地达到目的。所有模板对象都被保持在内存中，存放在以 html 文件名作为索引的 `map` 中：\n\t```go\n\ttemplates = make(map[string]*template.Template)\n\t```\n\t这种技术被称为*模板缓存*，是推荐的最佳实践。\n\n\t3. 为了真正从模板和结构体构建出页面，必须使用：\n\t```go\n\ttemplates[tmpl].Execute(w, p)\n\t```\n\t它基于模板执行，用 `Page` 结构体对象 `p` 作为参数对模板进行替换，并写入 `ResponseWriter` 对象 `w`。必须检查该方法的 `error` 返回值，万一有一个或多个错误，我们可以调用 `http.Error()` 来明示。在我们的应用程序中，这段代码会被多次调用，所以把它提取为单独的函数 `renderTemplate()`。\n- 在 `main()` 中网页服务器用 `ListenAndServe()` 启动并监听 8080 端口。但正如 15.2节 那样，需要先为紧接在 URL `localhost:8080/` 之后， 以 `view`, `edit` 或 `save` 开头的 url 路径定义一些处理函数。在大多数网页服务器应用程序中，这形成了一系列 URL 路径到处理函数的映射，类似于 Ruby 和 Rails，Django 或 ASP.NET MVC 这样的 MVC 框架中的路由表。请求的 URL 与这些路径尝试匹配，较长的路径被优先匹配。如不与任何路径匹配，则调用 / 的处理程序。\n\n  在此定义了 3 个处理函数，由于包含重复的启动代码，我们将其提取到单独的 `makeHandler()` 函数中。这是一个值得研究的特殊高阶函数：其参数是一个函数，返回一个新的闭包函数：\n```go\nfunc makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {\n\treturn func(w http.ResponseWriter, r *http.Request) {\n\t\ttitle := r.URL.Path[lenPath:]\n\t\tif !titleValidator.MatchString(title) {\n\t\t\thttp.NotFound(w, r)\n\t\t\treturn\n\t\t}\n\t\tfn(w, r, title)\n\t}\n}\n```\n- 闭包封闭了函数变量 `fn` 来构造其返回值。但在此之前，它先用 `titleValidator.MatchString(title)` 验证输入标题 `title` 的有效性。如果标题包含了字母和数字以外的字符，就触发 `NotFound` 错误（例如：尝试 `localhost:8080/view/page++`）。`viewHandler`，`editHandler` 和 `saveHandler` 都是传入 `main()` 中 `makeHandler` 的参数，类型必须都与 `fn` 相同。\n- `viewHandler` 尝试按标题读取文本文件，这是通过调用 `load()` 函数完成的，它会构建文件名并用 `ioutil.ReadFile` 读取内容。如果文件存在，其内容会存入字符串中。一个指向 `Page` 结构体的指针按字面量被创建：`&Page{Title: title, Body: body}`。\n\n  另外，该值和表示没有 error 的 `nil` 值一起返回给调用者。然后在 `renderTemplate` 中将该结构体与模板对象整合。\n\n  万一发生错误，也就是说 wiki 页面在磁盘上不存在，错误会被返回给 `viewHandler`，此时会自动重定向，跳转请求对应标题的编辑页面。\n\n- `editHandler` 基本上也差不多：尝试读取文件，如果存在则用“编辑”模板来渲染；万一发生错误，创建一个新的包含指定标题的 `Page` 对象并渲染。\n- 当在编辑页面点击“保存”按钮时，触发保存页面内容的动作。按钮须放在 html 表单中，它开头是这样的：\n  ```html\n  <form action=\"/save/{{.Title |html}}\" method=\"POST\">\n  ```\n  \n  这意味着，当提交表单到类似 `http://localhost/save/{Title}` 这样的 URL 格式时，一个 POST 请求被发往网页服务器。针对这样的 URL 我们已经定义好了处理函数：`saveHandler()`。在 request 对象上调用 `FormValue()` 方法，可以提取名称为 body 的文本域内容，用这些信息构造一个 `Page` 对象，然后尝试通过调用 `save()` 方法保存其内容。万一运行失败，执行 `http.Error` 以将错误显示到浏览器。如果保存成功，重定向浏览器到该页的阅读页面。`save()` 函数非常简单，利用 `ioutil.WriteFile()`，写入 `Page` 结构体的 `Body` 字段到文件 `filename` 中，之后会被用于模板替换占位符 `{{printf \"%s\" .Body |html}}`。\n\n## 链接\n\n- 目录\n- 上一节：确保网页应用健壮\n- 下一节：探索 template 包",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-waytogo6-2",
+    "title": "15.7 探索 template 包",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "（ template 包的文档可以在 https://golang.org/pkg/text/template/ 找到。） 在前一章节，我们使用 template 对象把数据结构整",
+    "content": "# 15.7 探索 template 包\n\n（`template` 包的文档可以在 `https://golang.org/pkg/text/template/` 找到。）\n\n在前一章节，我们使用 template 对象把数据结构整合到 HTML 模板中。这项技术确实对网页应用程序非常有用，然而模板是一项更为通用的技术方案：数据驱动的模板被创建出来，以生成文本输出。HTML 仅是其中的一种特定使用案例。\n\n模板通过与数据结构的整合来生成，通常为结构体或其切片。当数据项传递给 `tmpl.Execute()` ，它用其中的元素进行替换， 动态地重写某一小段文本。**只有被导出的数据项**才可以被整合进模板中。可以在 `{{` 和 `}}` 中加入数据求值或控制结构。数据项可以是值或指针，接口隐藏了他们的差异。\n\n## 15.7.1 字段替换：`{{.FieldName}}`\n\n要在模板中包含某个字段的内容，使用双花括号括起以点 (`.`) 开头的字段名。例如，假设 `Name` 是某个结构体的字段，其值要在被模板整合时替换，则在模板中使用文本 `{{.Name}}`。当 `Name` 是 `map` 的键时这么做也是可行的。要创建一个新的 `Template` 对象，调用 `template.New()`，其字符串参数可以指定模板的名称。正如 15.5 节出现过的，`Parse()` 方法通过解析模板定义字符串，生成模板的内部表示。当使用包含模板定义字符串的文件时，将文件路径传递给 `ParseFiles()` 来解析。解析过程如产生错误，这两个函数第二个返回值 `error != nil`。最后通过 `Execute()` 方法，数据结构中的内容与模板整合，并将结果写入方法的第一个参数中，其类型为 `io.Writer`。再一次地，可能会有 `error` 返回。以下程序演示了这些步骤，输出通过 `os.Stdout()` 被写到控制台。\n\n示例 15.13 template_field.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n\t\"text/template\"\n)\n\ntype Person struct {\n\tName string\n\tnonExportedAgeField string\n}\n\nfunc main() {\n\tt := template.New(\"hello\")\n\tt, _ = t.Parse(\"hello {{.Name}}!\")\n\tp := Person{Name: \"Mary\", nonExportedAgeField: \"31\"}\n\tif err := t.Execute(os.Stdout, p); err != nil {\n\t\tfmt.Println(\"There was an error:\", err.Error())\n\t}\n}\n```\n\n输出：`hello Mary!`\n\n如果数据结构中包含一个未导出的字段，当我们尝试把它整合到类似这样的定义字符串：\n```go\nt, _ = t.Parse(\"your age is {{.nonExportedAgeField}}!\")\n```\n会产生错误：\n```\nThere was an error: template: nonexported template hello:1: can’t evaluate field nonExportedAgeField in type main.Person.\n```\n\n如果只是想简单地把 `Execute()` 方法的第二个参数用于替换，使用 `{{.}}`。\n\n当在浏览器环境中进行这些步骤，应首先使用 `html` 过滤器来过滤内容，例如 `{{html .}}`， 或者对 `FieldName` 过滤：`{{ .FieldName |html }}`。\n\n`|html` 这部分代码，是请求模板引擎在输出 `FieldName` 的结果前把值传递给 html 格式化器，它会执行 HTML 字符转义（例如把 `>` 替换为 `&gt;`）。这可以避免用户输入数据破坏 HTML 文档结构。\n\n## 15.7.2 验证模板格式\n\n为了确保模板定义语法是正确的，使用 `Must()` 函数处理 `Parse` 的返回结果。在下面的例子中 `tOK` 是正确的模板， `tErr` 验证时发生错误，会导致运行时 panic。\n\n示例 15.14 template_validation.go\n\n```go\npackage main\n\nimport (\n\t\"text/template\"\n\t\"fmt\"\n)\n\nfunc main() {\n\ttOk := template.New(\"ok\")\n\t//a valid template, so no panic with Must:\n\ttemplate.Must(tOk.Parse(\"/* and a comment */ some static text: {{ .Name }}\"))\n\tfmt.Println(\"The first one parsed OK.\")\n\tfmt.Println(\"The next one ought to fail.\")\n\ttErr := template.New(\"error_template\")\n\ttemplate.Must(tErr.Parse(\" some static text {{ .Name }\"))\n}\n```\n\n输出：\n\n\tThe first one parsed OK.\n\tThe next one ought to fail.\n\tpanic: template: error_template:1: unexpected \"}\" in operand\n\n模板语法出现错误比较少见，可以使用 13.3节 概括的 `defer/recover` 机制来报告并纠正错误。\n\n在代码中常见到这 3 个基本函数被串联使用：\n```go\nvar strTempl = template.Must(template.New(\"TName\").Parse(strTemplateHTML))\n```\n\n练习 15.7 template_validation_recover.go\n\n在上述示例代码上实现 defer/recover 机制。\n\n## 15.7.3 `If-else`\n\n运行 `Execute()` 产生的结果来自模板的输出，它包含静态文本，以及被 `{{}}` 包裹的称之为*管道*的文本。例如，运行这段代码（示例 15.15 pipline1.go）：\n```go\nt := template.New(\"template test\")\nt = template.Must(t.Parse(\"This is just static text. \\n{{\\\"This is pipeline data - because it is evaluated within the double braces.\\\"}} {{`So is this, but within reverse quotes.`}}\\n\"))\nt.Execute(os.Stdout, nil)\n```\n\n输出结果为：\n\n\tThis is just static text.\n\tThis is pipeline data—because it is evaluated within the double braces. So is this, but within reverse quotes.\n\n现在我们可以对管道数据的输出结果用 `if-else-end` 设置条件约束：如果管道是空的，类似于：\n```html\n{{if ``}} Will not print. {{end}}\n```\n那么 `if` 条件的求值结果为 `false`，不会有输出内容。但如果是这样：\n```html\n{{if `anything`}} Print IF part. {{else}} Print ELSE part.{{end}}\n```\n会输出 `Print IF part.`。以下程序演示了这点：\n\n示例 15.16 template_ifelse.go\n\n```go\npackage main\n\nimport (\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\ttEmpty := template.New(\"template test\")\n\ttEmpty = template.Must(tEmpty.Parse(\"Empty pipeline if demo: {{if ``}} Will not print. {{end}}\\n\")) //empty pipeline following if\n\ttEmpty.Execute(os.Stdout, nil)\n\n\ttWithValue := template.New(\"template test\")\n\ttWithValue = template.Must(tWithValue.Parse(\"Non empty pipeline if demo: {{if `anything`}} Will print. {{end}}\\n\")) //non empty pipeline following if condition\n\ttWithValue.Execute(os.Stdout, nil)\n\n\ttIfElse := template.New(\"template test\")\n\ttIfElse = template.Must(tIfElse.Parse(\"if-else demo: {{if `anything`}} Print IF part. {{else}} Print ELSE part.{{end}}\\n\")) //non empty pipeline following if condition\n\ttIfElse.Execute(os.Stdout, nil)\n}\n```\n\n输出：\n\n\tEmpty pipeline if demo:\n\tNon empty pipeline if demo: Will print.\n\tif-else demo: Print IF part.\n\n## 15.7.4 点号和 `with-end`\n\n点号 (`.`) 可以在 Go 模板中使用：其值 `{{.}}` 被设置为当前管道的值。\n\n`with` 语句将点号设为管道的值。如果管道是空的，那么不管 `with-end` 块之间有什么，都会被忽略。在被嵌套时，点号根据最近的作用域取得值。以下程序演示了这点：\n\n示例 15.17 template_with_end.go\n\n```go\npackage main\n\nimport (\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\tt := template.New(\"test\")\n\tt, _ = t.Parse(\"{{with `hello`}}{{.}}{{end}}!\\n\")\n\tt.Execute(os.Stdout, nil)\n\n\tt, _ = t.Parse(\"{{with `hello`}}{{.}} {{with `Mary`}}{{.}}{{end}}{{end}}!\\n\")\n\tt.Execute(os.Stdout, nil)\n}\n```\n\n输出：\n\n\thello!\n\thello Mary!\n\n## 15.7.5 模板变量 `$`\n\n可以在模板内为管道设置本地变量，变量名以 `$` 符号作为前缀。变量名只能包含字母、数字和下划线。以下示例使用了多种形式的有效变量名。\n\n示例 15.18 template_variables.go\n\n```go\npackage main\n\nimport (\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\tt := template.New(\"test\")\n\tt = template.Must(t.Parse(\"{{with $3 := `hello`}}{{$3}}{{end}}!\\n\"))\n\tt.Execute(os.Stdout, nil)\n\n\tt = template.Must(t.Parse(\"{{with $x3 := `hola`}}{{$x3}}{{end}}!\\n\"))\n\tt.Execute(os.Stdout, nil)\n\n\tt = template.Must(t.Parse(\"{{with $x_1 := `hey`}}{{$x_1}} {{.}} {{$x_1}}{{end}}!\\n\"))\n\tt.Execute(os.Stdout, nil)\n}\n```\n\n输出：\n\n\thello!\n\thola!\n\they hey hey!\n\n## 15.7.6 `range-end`\n\n`range-end` 结构格式为：`{{range pipeline}} T1 {{else}} T0 {{end}}`。\n\n`range` 被用于在集合上迭代：管道的值必须是数组、切片或 `map`。如果管道的值长度为零，点号的值不受影响，且执行 `T0`；否则，点号被设置为数组、切片或 `map` 内元素的值，并执行 `T1`。\n\n如果模板为：\n```html\n{{range .}}\n{{.}}\n{{end}}\n```\n那么执行代码：\n```go\ns := []int{1,2,3,4}\nt.Execute(os.Stdout, s)\n```\n会输出：\n```\n1\n2\n3\n4\n```\n\n如需更实用的示例，请参考 20.7 节，来自 App Engine 数据库的数据通过模板来显示：\n```html\n{{range .}}\n\t{{with .Author}}\n\t\t<p><b>{{html .}}</b> wrote:</p>\n\t{{else}}\n\t\t<p>An anonymous person wrote:</p>\n\t{{end}}\n\t<pre>{{html .Content}}</pre>\n\t<pre>{{html .Date}}</pre>\n{{end}}\n```\n\n这里 `range .` 在结构体切片上迭代，每次都包含 `Author`、`Content` 和 `Date` 字段。\n\n## 15.7.7 模板预定义函数\n\n也有一些可以在模板代码中使用的预定义函数，例如 `printf()` 函数工作方式类似于 `fmt.Sprintf()`：\n\n示例 15.19 predefined_functions.go\n\n```go\npackage main\n\nimport (\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\tt := template.New(\"test\")\n\tt = template.Must(t.Parse(\"{{with $x := `hello`}}{{printf `%s %s` $x `Mary`}}{{end}}!\\n\"))\n\tt.Execute(os.Stdout, nil)\n}\n```\n输出 `hello Mary!`。\n\n预定义函数也在 15.6 节中使用：`{{ printf \"%s\" .Body|html}}`，否则字节切片 `Body` 会作为数字序列打印出来。\n\n## 链接\n\n- 目录\n- 上一节：用模板编写网页应用\n- 下一节：精巧的多功能网页服务器",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-waytogo6-3",
+    "title": "15.8 精巧的多功能网页服务器",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "为进一步深入理解 http 包以及如何构建网页服务器功能，让我们来学习和体会下面的例子：先列出代码，然后给出不同功能的实现方法，程序输出显示在表格中。 示例 15.20 elabo",
+    "content": "# 15.8 精巧的多功能网页服务器\n\n为进一步深入理解 `http` 包以及如何构建网页服务器功能，让我们来学习和体会下面的例子：先列出代码，然后给出不同功能的实现方法，程序输出显示在表格中。\n\n示例 15.20 elaborated_webserver.go\n\n```go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"expvar\"\n\t\"flag\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"strconv\"\n)\n\n// hello world, the web server\nvar helloRequests = expvar.NewInt(\"hello-requests\")\n// flags:\nvar webroot = flag.String(\"root\", \"/home/user\", \"web root directory\")\n\n// simple flag server\nvar booleanflag = flag.Bool(\"boolean\", true, \"another flag for testing\")\n\n// Simple counter server. POSTing to it will set the value.\ntype Counter struct {\n\tn int\n}\n\n// a channel\ntype Chan chan int\n\nfunc main() {\n\tflag.Parse()\n\thttp.Handle(\"/\", http.HandlerFunc(Logger))\n\thttp.Handle(\"/go/hello\", http.HandlerFunc(HelloServer))\n\t// The counter is published as a variable directly.\n\tctr := new(Counter)\n\texpvar.Publish(\"counter\", ctr)\n\thttp.Handle(\"/counter\", ctr)\n\t// http.Handle(\"/go/\", http.FileServer(http.Dir(\"/tmp\"))) // uses the OS filesystem\n\thttp.Handle(\"/go/\", http.StripPrefix(\"/go/\", http.FileServer(http.Dir(*webroot))))\n\thttp.Handle(\"/flags\", http.HandlerFunc(FlagServer))\n\thttp.Handle(\"/args\", http.HandlerFunc(ArgServer))\n\thttp.Handle(\"/chan\", ChanCreate())\n\thttp.Handle(\"/date\", http.HandlerFunc(DateServer))\n\terr := http.ListenAndServe(\":12345\", nil)\n\tif err != nil {\n\t\tlog.Panicln(\"ListenAndServe:\", err)\n\t}\n}\n\nfunc Logger(w http.ResponseWriter, req *http.Request) {\n\tlog.Print(req.URL.String())\n\tw.WriteHeader(404)\n\tw.Write([]byte(\"oops\"))\n}\n\nfunc HelloServer(w http.ResponseWriter, req *http.Request) {\n\thelloRequests.Add(1)\n\tio.WriteString(w, \"hello, world!\\n\")\n}\n\n// This makes Counter satisfy the expvar.Var interface, so we can export\n// it directly.\nfunc (ctr *Counter) String() string { return fmt.Sprintf(\"%d\", ctr.n) }\n\nfunc (ctr *Counter) ServeHTTP(w http.ResponseWriter, req *http.Request) {\n\tswitch req.Method {\n\tcase \"GET\": // increment n\n\t\tctr.n++\n\tcase \"POST\": // set n to posted value\n\t\tbuf := new(bytes.Buffer)\n\t\tio.Copy(buf, req.Body)\n\t\tbody := buf.String()\n\t\tif n, err := strconv.Atoi(body); err != nil {\n\t\t\tfmt.Fprintf(w, \"bad POST: %v\\nbody: [%v]\\n\", err, body)\n\t\t} else {\n\t\t\tctr.n = n\n\t\t\tfmt.Fprint(w, \"counter reset\\n\")\n\t\t}\n\t}\n\tfmt.Fprintf(w, \"counter = %d\\n\", ctr.n)\n}\n\nfunc FlagServer(w http.ResponseWriter, req *http.Request) {\n\tw.Header().Set(\"Content-Type\", \"text/plain; charset=utf-8\")\n\tfmt.Fprint(w, \"Flags:\\n\")\n\tflag.VisitAll(func(f *flag.Flag) {\n\t\tif f.Value.String() != f.DefValue {\n\t\t\tfmt.Fprintf(w, \"%s = %s [default = %s]\\n\", f.Name, f.Value.String(), f.DefValue)\n\t\t} else {\n\t\t\tfmt.Fprintf(w, \"%s = %s\\n\", f.Name, f.Value.String())\n\t\t}\n\t})\n}\n\n// simple argument server\nfunc ArgServer(w http.ResponseWriter, req *http.Request) {\n\tfor _, s := range os.Args {\n\t\tfmt.Fprint(w, s, \" \")\n\t}\n}\n\nfunc ChanCreate() Chan {\n\tc := make(Chan)\n\tgo func(c Chan) {\n\t\tfor x := 0; ; x++ {\n\t\t\tc <- x\n\t\t}\n\t}(c)\n\treturn c\n}\n\nfunc (ch Chan) ServeHTTP(w http.ResponseWriter, req *http.Request) {\n\tio.WriteString(w, fmt.Sprintf(\"channel send #%d\\n\", <-ch))\n}\n\n// exec a program, redirecting output\nfunc DateServer(rw http.ResponseWriter, req *http.Request) {\n\trw.Header().Set(\"Content-Type\", \"text/plain; charset=utf-8\")\n\tr, w, err := os.Pipe()\n\tif err != nil {\n\t\tfmt.Fprintf(rw, \"pipe: %s\\n\", err)\n\t\treturn\n\t}\n\n\tp, err := os.StartProcess(\"/bin/date\", []string{\"date\"}, &os.ProcAttr{Files: []*os.File{nil, w, w}})\n\tdefer r.Close()\n\tw.Close()\n\tif err != nil {\n\t\tfmt.Fprintf(rw, \"fork/exec: %s\\n\", err)\n\t\treturn\n\t}\n\tdefer p.Release()\n\tio.Copy(rw, r)\n\twait, err := p.Wait()\n\tif err != nil {\n\t\tfmt.Fprintf(rw, \"wait: %s\\n\", err)\n\t\treturn\n\t}\n\tif !wait.Exited() {\n\t\tfmt.Fprintf(rw, \"date: %v\\n\", wait)\n\t\treturn\n\t}\n}\n```\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`Logger()` | `http://localhost:12345/` （根） | oops\n\n`Logger()` 处理函数用 `w.WriteHeader(404)` 来输出 “404 Not Found”头部。\n\n这项技术通常很有用，无论何时服务器执行代码产生错误，都可以应用类似这样的代码：\n\n```go\nif err != nil {\n\tw.WriteHeader(400)\n\treturn\n}\n```\n\n另外利用 `logger` 包的函数，针对每个请求在服务器端命令行打印日期、时间和 URL。\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`HelloServer()` | `http://localhost:12345/go/hello` | hello, world!\n\n包 `expvar` 可以创建（Int，Float 和 String 类型）变量，并将它们发布为公共变量。它会在 HTTP URL `/debug/vars` 上以 JSON 格式公布。通常它被用于服务器操作计数。`helloRequests` 就是这样一个 `int64` 变量，该处理函数对其加 1，然后写入“hello world!”到浏览器。\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`Counter()` | `http://localhost:12345/counter` | counter = 1\n`Counter()` | 刷新（GET 请求） | counter = 2\n\n计数器对象 `ctr` 有一个 `String()` 方法，所以它实现了 `expvar.Var` 接口。这使其可以被发布，尽管它是一个结构体。`ServeHTTP()` 函数使 `ctr` 成为处理器，因为它的签名正确实现了 `http.Handler` 接口。\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`FileServer()` | `http://localhost:12345/go/ggg.html` | 404 page not found\n\n`FileServer(root FileSystem) Handler` 返回一个处理器，它以 `root` 作为根，用文件系统的内容响应 HTTP 请求。要获得操作系统的文件系统，用 `http.Dir`，例如：\n\n```go\nhttp.Handle(\"/go/\", http.FileServer(http.Dir(\"/tmp\")))\n```\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`FlagServer()` | `http://localhost:12345/flags` | Flags: boolean = true root = /home/rsc\n\n该处理函数使用了 `flag` 包。`VisitAll()` 函数迭代所有的标签 (flag)，打印它们的名称、值和默认值（当不同于“值”时）。\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`ArgServer()` | `http://localhost:12345/args` | ./elaborated_webserver.exe\n\n该处理函数迭代 `os.Args` 以打印出所有的命令行参数。如果没有指定则只有程序名称（可执行程序的路径）会被打印出来。\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`Channel()` | `http://localhost:12345/chan` | channel send #1\n`Channel()` | 刷新 | channel send #2\n\n每当有新请求到达，通道的 `ServeHTTP()` 方法从通道获取下一个整数并显示。由此可见，网页服务器可以从通道中获取要发送的响应，它可以由另一个函数产生（甚至是客户端）。下面的代码片段正是一个这样的处理函数，但会在 30 秒后超时：\n\n```go\nfunc ChanResponse(w http.ResponseWriter, req *http.Request) {\n\ttimeout := make (chan bool)\n\tgo func () {\n\t\ttime.Sleep(30e9)\n\t\ttimeout <- true\n\t}()\n\tselect {\n\tcase msg := <-messages:\n\t\tio.WriteString(w, msg)\n\tcase stop := <-timeout:\n\t\treturn\n\t}\n}\n```\n\n处理函数 | 调用 URL | 浏览器获得响应\n--------|----------|---------------\n`DateServer()` | `http://localhost:12345/date` | 显示当前时间（由于是调用 /bin/date，仅在 Unix 下有效）\n\n可能的输出：`Thu Sep 8 12:41:09 CEST 2011`。\n\n`os.Pipe()` 返回一对相关联的 `File`，从 `r` 读取数据，返回已读取的字节数来自于 `w` 的写入。函数返回这两个文件和错误，如果有的话：\n\n```go\nfunc Pipe() (r *File, w *File, err error)\n```\n\n## 链接\n\n- 目录\n- 上一节：探索 template 包\n- 下一节：用 rpc 实现远程过程调用",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-waytogo6-4",
+    "title": "15.9 用 rpc 实现远程过程调用",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "Go 程序之间可以使用 net/rpc 包实现相互通信，这是另一种客户端 服务器应用场景。它提供了一种方便的途径，通过网络连接调用远程函数。当然，仅当程序运行在不同机器上时，这项技",
+    "content": "# 15.9 用 rpc 实现远程过程调用\n\nGo 程序之间可以使用 `net/rpc` 包实现相互通信，这是另一种客户端-服务器应用场景。它提供了一种方便的途径，通过网络连接调用远程函数。当然，仅当程序运行在不同机器上时，这项技术才实用。`rpc` 包建立在 `gob` 包之上（见 12.11 节），实现了自动编码/解码传输的跨网络方法调用。\n\n服务器端需要注册一个对象实例，与其类型名一起，使之成为一项可见的服务：它允许远程客户端跨越网络或其他 I/O 连接访问此对象已导出的方法。总之就是在网络上暴露类型的方法。\n\n`rpc` 包使用了 http 和 tcp 协议，以及用于数据传输的 `gob` 包。服务器端可以注册多个不同类型的对象（服务），但同一类型的多个对象会产生错误。\n\n我们讨论一个简单的例子：定义一个类型 `Args` 及其方法 `Multiply()`，完美地置于单独的包中。方法必须返回可能的错误。\n\n示例15.21 rpc_objects.go\n```go\npackage rpc_objects\n\nimport \"net\"\n\ntype Args struct {\n\tN, M int\n}\n\nfunc (t *Args) Multiply(args *Args, reply *int) net.Error {\n\t*reply = args.N * args.M\n\treturn nil\n}\n```\n\n（**译注：Go 当前版本要求此方法返回类型为 `error`，以上示例中返回 `net.Error` 已无法通过编译，见更新后的 rpc_objects.go。**）\n\n服务器端产生一个 `rpc_objects.Args` 类型的对象 `calc`，并用 `rpc.Register(object)` 注册。调用 `HandleHTTP()`，然后用 `net.Listen` 在指定的地址上启动监听。也可以按名称来注册对象，例如：`rpc.RegisterName(\"Calculator\", calc)`。\n\n以协程启动 `http.Serve(listener, nil)` 后，会为每一个进入 `listener` 的 HTTP 连接创建新的服务线程。我们必须用诸如 `time.Sleep(1000e9)` 来使服务器在一段时间内保持运行状态。\n\n示例 15.22 rpc_server.go\n```go\npackage main\n\nimport (\n\t\"net/http\"\n\t\"log\"\n\t\"net\"\n\t\"net/rpc\"\n\t\"time\"\n\t\"./rpc_objects\"\n)\n\nfunc main() {\n\tcalc := new(rpc_objects.Args)\n\trpc.Register(calc)\n\trpc.HandleHTTP()\n\tlistener, e := net.Listen(\"tcp\", \"localhost:1234\")\n\tif e != nil {\n\t\tlog.Fatal(\"Starting RPC-server -listen error:\", e)\n\t}\n\tgo http.Serve(listener, nil)\n\ttime.Sleep(1000e9)\n}\n```\n\n输出：\n\n\tStarting Process E:/Go/GoBoek/code_examples/chapter_14/rpc_server.exe ...\n\t** 5 秒后： **\n\tEnd Process exit status 0\n\n客户端必须知晓对象类型及其方法的定义。执行 `rpc.DialHTTP()` 连接到服务器后，就可以用 `client.Call(\"Type.Method\", args, &reply)` 调用远程对象的方法。`Type` 是远程对象的类型名，`Method` 是要调用的方法，`args` 是用 `Args` 类型初始化的对象，`reply` 是一个必须事先声明的变量，方法调用产生的结果将存入其中。\n\n示例 15.23 rpc_client.go\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"log\"\n\t\"net/rpc\"\n\t\"./rpc_objects\"\n)\n\nconst serverAddress = \"localhost\"\n\nfunc main() {\n\tclient, err := rpc.DialHTTP(\"tcp\", serverAddress + \":1234\")\n\tif err != nil {\n\t\tlog.Fatal(\"Error dialing:\", err)\n\t}\n\t// Synchronous call\n\targs := &rpc_objects.Args{7, 8}\n\tvar reply int\n\terr = client.Call(\"Args.Multiply\", args, &reply)\n\tif err != nil {\n\t\tlog.Fatal(\"Args error:\", err)\n\t}\n\tfmt.Printf(\"Args: %d * %d = %d\", args.N, args.M, reply)\n}\n```\n\n先启动服务器，再运行客户端，然后就能得到如下输出结果：\n\n\tStarting Process E:/Go/GoBoek/code_examples/chapter_14/rpc_client.exe ...\n\t\n\tArgs: 7 * 8 = 56\n\tEnd Process exit status 0\n\n该远程调用以同步方式进行，它会等待服务器返回结果。也可使用如下方式异步地执行调用：\n```go\ncall1 := client.Go(\"Args.Multiply\", args, &reply, nil)\nreplyCall := <- call1.Done\n```\n\n如果最后一个参数值为 `nil` ，调用完成后会创建一个新的通道。\n\n如果你有一个以 root 管理员身份运行的 Go 服务器，想要以不同的用户身份运行某部分代码，Brad Fitz 利用 `rpc` 写的 `go-runas` 包可以完成任务：`https://github.com/bradfitz/go-runas。我们将会在` 19 章看到一个完整的项目，它是一个使用了 `rpc` 的应用程序。\n\n## 链接\n\n- 目录\n- 上一节：精巧的多功能网页服务器\n- 下一节：基于网络的通道 netchan",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-waytogo6-5",
+    "title": "16.0 常见的陷阱与错误",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在之前的内容中，有时候使用 !!...!! 标记警告 Go 语言中的一些错误使用方式。当你在编程时候遇到的一个困难，可以确定本书特定的章节能找到类似的主题。为了方便起见，这里列出了",
+    "content": "# 16.0 常见的陷阱与错误\n\n在之前的内容中，有时候使用 `!!...!!` 标记警告 Go 语言中的一些错误使用方式。当你在编程时候遇到的一个困难，可以确定本书特定的章节能找到类似的主题。为了方便起见，这里列出了一些常见陷阱，以便于你能发现更多的解释和例子：\n\n- 永远不要使用形如 `var p*a` 声明变量，这会混淆指针声明和乘法运算（参考 4.9 小节）\n- 永远不要在 `for` 循环自身中改变计数器变量（参考 5.4 小节）\n- 永远不要在 `for-range` 循环中使用一个值去改变自身的值（参考 5.4.4 小节）\n- 永远不要将 `goto` 和前置标签一起使用（参考 5.6 小节）\n- 永远不要忘记在函数名（参考第 6 章）后加括号 `()`，尤其是调用一个对象的方法或者使用匿名函数启动一个协程时\n- 永远不要使用 `new()` 一个 `map`，一直使用 `make()`（参考第 8 章）\n- 当为一个类型定义一个 `String()` 方法时，不要使用 `fmt.Print` 或者类似的代码（参考 10.7 小节）\n- 永远不要忘记当终止缓存写入时，使用 `Flush()` 函数（参考 12.2.3 小节）\n- 永远不要忽略错误提示，忽略错误会导致程序崩溃（参考 13.1 小节）\n- 不要使用全局变量或者共享内存，这会使并发执行的代码变得不安全（参考 14.1 小节）\n- `println()` 函数仅仅是用于调试的目的\n\n最佳实践：对比以下使用方式：\n\n- 使用正确的方式初始化一个元素是切片的映射，例如 `map[type]slice`（参考 8.1.3 小节）\n- 一直使用逗号 ok 模式或者 checked 形式作为类型断言（参考 11.3 小节）\n- 使用一个工厂函数创建并初始化自己定义类型（参考 10.2 小节-18.4 小节）\n- 仅当一个结构体的方法想改变结构体时，使用结构体指针作为方法的接受者，否则使用一个结构体值类型 10.6.3 小节\n\n本章主要汇总了 Go 语言使用过程中最常见的错误和注意事项。在之前的章节已经涉及到了完整的示例和解释，你应该做的不仅仅是阅读这段的标题。\n\n## 链接\n\n- 目录\n- 上一章：使用SMTP（简单邮件传输协议）发送邮件\n- 下一节：误用短声明导致变量覆盖",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-waytogo6-7",
+    "title": "16.10 糟糕的错误处理",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "译者注：该小结关于错误处理的观点，译者并不完全赞同，关于本小结的部分想法请参考 关于 16.10.2 小节错误处理的一些见解。 依附于第 13 章模式的描述和第 17.1 小节与第",
+    "content": "# 16.10 糟糕的错误处理\n\n译者注：该小结关于错误处理的观点，译者并不完全赞同，关于本小结的部分想法请参考 关于 16.10.2 小节错误处理的一些见解。\n\n依附于第 13 章模式的描述和第 17.1 小节与第 17.2.4 小节的总结。\n\n## 16.10.1 不要使用布尔值：\n\n像下面代码一样，创建一个布尔型变量用于测试错误条件是多余的：\n\n```go\nvar good bool\n    // 测试一个错误，`good` 被赋为 `true` 或者 `false`\n    if !good {\n        return errors.New(\"things aren’t good\")\n    }\n```\n\n立即检测一个错误：\n\n```go\n... err1 := api.Func1()\nif err1 != nil { … }\n```\n\n## 16.10.2 避免错误检测使代码变得混乱：\n\n避免写出这样的代码：\n\n```go\n... err1 := api.Func1()\nif err1 != nil {\n    fmt.Println(\"err: \" + err.Error())\n    return\n}\nerr2 := api.Func2()\nif err2 != nil {\n...\n    return\n}    \n```\n\n首先，包括在一个初始化的 `if` 语句中对函数的调用。但即使代码中到处都是以 `if` 语句的形式通知错误（通过打印错误信息）。通过这种方式，很难分辨什么是正常的程序逻辑，什么是错误检测或错误通知。还需注意的是，大部分代码都是致力于错误的检测。通常解决此问题的好办法是尽可能以闭包的形式封装你的错误检测，例如下面的代码：\n\n```go\nfunc httpRequestHandler(w http.ResponseWriter, req *http.Request) {\n    err := func () error {\n        if req.Method != \"GET\" {\n            return errors.New(\"expected GET\")\n        }\n        if input := parseInput(req); input != \"command\" {\n            return errors.New(\"malformed command\")\n        }\n        // 可以在此进行其他的错误检测\n    } ()\n\n        if err != nil {\n            w.WriteHeader(400)\n            io.WriteString(w, err)\n            return\n        }\n        doSomething() ...\n```\n\n这种方法可以很容易分辨出错误检测、错误通知和正常的程序逻辑（更详细的方式参考第 13.5 小节）。\n\n**在开始阅读第 17 章前，先回答下列 2 个问题：**\n\n- 问题 16.1：总结你能记住的所有关于 `, ok` 模式的情况。\n\n- 问题 16.2：总结你能记住的所有关于 `defer` 模式的情况。\n\n## 链接\n\n- 目录\n- 上一节：闭包和协程的使用\n- 下一章：Go 语言模式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-waytogo6-12",
+    "title": "16.6 使用指针指向接口类型",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "查看如下程序： nexter 是一个接口类型，并且定义了一个 next() 方法读取下一字节。函数 nextFew1 将 nexter 接口作为参数并读取接下来的 num 个字节，",
+    "content": "# 16.6 使用指针指向接口类型\n\n查看如下程序：`nexter` 是一个接口类型，并且定义了一个 `next()` 方法读取下一字节。函数 `nextFew1` 将 `nexter` 接口作为参数并读取接下来的 `num` 个字节，并返回一个切片：这是正确做法。但是 `nextFew2` 使用一个指向 `nexter` 接口类型的指针作为参数传递给函数：当使用 `next()` 函数时，系统会给出一个编译错误：**`n.next undefined (type *nexter has no field or method next)`** （译者注：n.next 未定义（*nexter 类型没有 next 成员或 next 方法））\n\n例 16.1 pointer_interface.go （不能通过编译）:\n\n```go\npackage main\nimport (\n    \"fmt\"\n)\ntype nexter interface {\n    next() byte\n}\nfunc nextFew1(n nexter, num int) []byte {\n    var b []byte\n    for i:=0; i < num; i++ {\n        b[i] = n.next()\n    }\n    return b\n}\nfunc nextFew2(n *nexter, num int) []byte {\n    var b []byte\n    for i:=0; i < num; i++ {\n        b[i] = n.next() // 编译错误：n.next 未定义（*nexter 类型没有 next 成员或 next 方法）\n    }\n    return b\n}\nfunc main() {\n    fmt.Println(\"Hello World!\")\n}\n```\n\n**永远不要使用一个指针指向一个接口类型，因为它已经是一个指针。**\n\n## 链接\n\n- 目录\n- 上一节：不需要将一个指向切片的指针传递给函数\n- 下一节：使用值类型时误用指针",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-waytogo6-15",
+    "title": "16.9 闭包和协程的使用",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "请看下面代码： 输出： 版本 A 调用闭包 5 次打印每个索引值，版本 B 也做相同的事，但是通过协程调用每个闭包。按理说这将执行得更快，因为闭包是并发执行的。如果我们阻塞足够多的",
+    "content": "# 16.9 闭包和协程的使用\n\n请看下面代码：\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n    \"time\"\n)\n\nvar values = [5]int{10, 11, 12, 13, 14}\n\nfunc main() {\n    // 版本 A：\n    for ix := range values { // ix 是索引值\n        func() {\n            fmt.Print(ix, \" \")\n        }() // 调用闭包打印每个索引值\n    }\n    fmt.Println()\n    // 版本 B：和 A 版本类似，但是通过调用闭包作为一个协程\n    for ix := range values {\n        go func() {\n            fmt.Print(ix, \" \")\n        }()\n    }\n    fmt.Println()\n    time.Sleep(5e9)\n    // 版本 C：正确的处理方式\n    for ix := range values {\n        go func(ix interface{}) {\n            fmt.Print(ix, \" \")\n        }(ix)\n    }\n    fmt.Println()\n    time.Sleep(5e9)\n    // 版本 D：输出值：\n    for ix := range values {\n        val := values[ix]\n        go func() {\n            fmt.Print(val, \" \")\n        }()\n    }\n    time.Sleep(1e9)\n}\n```\n\n输出：\n\n```\n0 1 2 3 4\n\n4 4 4 4 4\n\n1 0 3 4 2\n\n10 11 12 13 14\n```\n\n版本 A 调用闭包 5 次打印每个索引值，版本 B 也做相同的事，但是通过协程调用每个闭包。按理说这将执行得更快，因为闭包是并发执行的。如果我们阻塞足够多的时间，让所有协程执行完毕，版本 B 的输出是：`4 4 4 4 4`。为什么会这样？在版本 B 的循环中，`ix` 变量实际是一个单变量，表示每个数组元素的索引值。因为这些闭包都只绑定到一个变量，这是一个比较好的方式，当你运行这段代码时，你将看见每次循环都打印最后一个索引值 `4`，而不是每个元素的索引值。因为协程可能在循环结束后还没有开始执行，而此时 `ix` 值是 `4`。\n\n版本 C 的循环写法才是正确的：调用每个闭包时将 `ix` 作为参数传递给闭包。`ix` 在每次循环时都被重新赋值，并将每个协程的 `ix` 放置在栈中，所以当协程最终被执行时，每个索引值对协程都是可用的。注意这里的输出可能是 `0 2 1 3 4` 或者 `0 3 1 2 4` 或者其他类似的序列，这主要取决于每个协程何时开始被执行。\n\n在版本 D 中，我们输出这个数组的值，为什么版本 B 不能而版本 D 可以呢？\n\n因为版本 D 中的变量声明是在循环体内部，所以在每次循环时，这些变量相互之间是不共享的，所以这些变量可以单独的被每个闭包使用。\n\n## 链接\n\n- 目录\n- 上一节：误用协程和通道\n- 下一节：糟糕的错误处理",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-waytogo6-17",
+    "title": "17.1 逗号 ok 模式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在学习本书第二部分和第三部分时，我们经常在一个表达式返回 2 个参数时使用这种模式： something, ok ，第一个参数是一个值或者 nil ，第二个参数是 true / f",
+    "content": "# 17.1 逗号 ok 模式\n\n在学习本书第二部分和第三部分时，我们经常在一个表达式返回 2 个参数时使用这种模式：`something, ok`，第一个参数是一个值或者 `nil`，第二个参数是 `true`/`false` 或者一个错误 `error`。在一个需要赋值的 `if` 条件语句中，使用这种模式去检测第二个参数值会让代码显得优雅简洁。这种模式在 Go 语言编码规范中非常重要。下面总结了所有使用这种模式的例子：\n\n（1）在函数返回时检测错误（参考第 5.2 小节）:\n\n```go\nvalue, err := pack1.Func1(param1)\n\nif err != nil {\n    fmt.Printf(\"Error %s in pack1.Func1 with parameter %v\", err.Error(), param1)\n    return err\n}\n\n// 函数Func1没有错误:\nProcess(value)\n\ne.g.: os.Open(file) strconv.Atoi(str)\n```\n\n这段代码中的函数将错误返回给它的调用者，当函数执行成功时，返回的错误是 `nil`，所以使用这种写法：\n\n```go\nfunc SomeFunc() error {\n    …\n    if value, err := pack1.Func1(param1); err != nil {\n        …\n        return err\n    }\n    …\n    return nil\n}\n```\n\n这种模式也常用于通过 `defer` 使程序从 `panic` 中恢复执行（参考第 17.2(4) 小节）。\n\n要实现简洁的错误检测代码，更好的方式是使用闭包，参考第 16.10.2 小节\n\n（2）检测映射中是否存在一个键值（参考第 8.2 小节）：`key1` 在映射 `map1` 中是否有值？\n\n```go\nif value, isPresent = map1[key1]; isPresent {\n        Process(value)\n}\n// key1 不存在\n…\n```\n\n（3）检测一个接口类型变量 `varI` 是否包含了类型 `T`：类型断言（参考第 11.3 小节）：\n\n```go\nif value, ok := varI.(T); ok {\n    Process(value)\n}\n// 接口类型 varI 没有包含类型 T\n```\n\n（4）检测一个通道 `ch` 是否关闭（参考第 14.3 小节）：\n\n```go\n    for input := range ch {\n        Process(input)\n    }\n```\n\n或者:\n\n```go\n    for {\n        if input, open := <-ch; !open {\n            break // 通道是关闭的\n        }\n        Process(input)\n    }\n```\n\n## 链接\n\n- 目录\n- 上一节：Go 语言模式\n- 下一节：defer 模式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-waytogo6-18",
+    "title": "17.2 defer 模式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "使用 defer 可以确保资源不再需要时，都会被恰当地关闭或归还到“池子”中。更重要的一点是，它可以恢复 panic。 1. 关闭一个文件流：（见 12.7节） 2. 解锁一个被锁",
+    "content": "# 17.2 defer 模式\n\n使用 `defer` 可以确保资源不再需要时，都会被恰当地关闭或归还到“池子”中。更重要的一点是，它可以恢复 panic。\n\n1. 关闭一个文件流：（见 12.7节）\n```go\n// 先打开一个文件 f\ndefer f.Close()\n```\n\n2. 解锁一个被锁定的资源（`mutex`）：（见 9.3节）\n```go\nmu.Lock()\ndefer mu.Unlock()\n```\n\n3. 关闭一个通道（如有必要）：\n```\nch := make(chan float64)\ndefer close(ch)\n```\n\n也可以是两个通道：\n```go\nanswerα, answerβ := make(chan int), make(chan int)\ndefer func() { close(answerα); close(answerβ) }()\n```\n\n4. 从 panic 恢复：（见 13.3节）\n```go\ndefer func() {\n\tif err := recover(); err != nil {\n\t\tlog.Printf(\"run time panic: %v\", err)\n\t}\n}()\n```\n\n5. 停止一个计时器：（见 14.5节）\n```go\ntick1 := time.NewTicker(updateInterval)\ndefer tick1.Stop()\n```\n\n6. 释放一个进程 p：（见 13.6节）\n```go\np, err := os.StartProcess(…, …, …)\ndefer p.Release()\n```\n\n7. 停止 CPU 性能分析并立即写入：（见 13.10节）\n```go\npprof.StartCPUProfile(f)\ndefer pprof.StopCPUProfile()\n```\n\n当然 `defer` 也可以在打印报表时避免忘记输出页脚。\n\n## 链接\n\n- 目录\n- 上一节：逗号 ok 模式\n- 下一节：可见性模式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-waytogo6-20",
+    "title": "17.4 运算符模式和接口",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "运算符是一元或二元函数，它返回一个新对象而不修改其参数，类似 C++ 中的 + 和 ，特殊的中缀运算符（ + ， ， 等）可以被重载以支持类似数学运算的语法。但除了一些特殊情况，G",
+    "content": "# 17.4 运算符模式和接口\n\n运算符是一元或二元函数，它返回一个新对象而不修改其参数，类似 C++ 中的 `+` 和 `*`，特殊的中缀运算符（`+`，`-`，`*` 等）可以被重载以支持类似数学运算的语法。但除了一些特殊情况，Go 语言并不支持运算符重载：为了克服该限制，运算符必须由函数来模拟。既然 Go 同时支持面向过程和面向对象编程，我们有两种选择：\n\n## 17.4.1 函数作为运算符\n\n运算符由包级别的函数实现，以操作一个或两个参数，并返回一个新对象。函数针对要操作的对象，在专门的包中实现。例如，假设要在包 `matrix` 中实现矩阵操作，就会包含 `Add()` 用于矩阵相加，`Mult()` 用于矩阵相乘，他们都会返回一个矩阵。这两个函数通过包名来调用，因此可以创造出如下形式的表达式：\n```go\nm := matrix.Add(m1, matrix.Mult(m2, m3))\n```\n\n如果我们想在这些运算中区分不同类型的矩阵（稀疏或稠密），由于没有函数重载，我们不得不给函数起不同的名称，例如：\n```go\nfunc addSparseToDense (a *sparseMatrix, b *denseMatrix) *denseMatrix\nfunc addDenseToDense (a *denseMatrix, b *denseMatrix) *denseMatrix\nfunc addSparseToSparse (a *sparseMatrix, b *sparseMatrix) *sparseMatrix\n```\n\n这可不怎么优雅，我们能选择的最佳方案是将它们隐藏起来，作为包的私有函数，并暴露单一的 `Add()` 函数作为公共 API。可以在嵌套的 `switch` 断言中测试类型，以便在任何支持的参数组合上执行操作：\n```go\nfunc Add(a Matrix, b Matrix) Matrix {\n\tswitch a.(type) {\n\tcase sparseMatrix:\n\t\tswitch b.(type) {\n\t\tcase sparseMatrix:\n\t\t\treturn addSparseToSparse(a.(sparseMatrix), b.(sparseMatrix))\n\t\tcase denseMatrix:\n\t\t\treturn addSparseToDense(a.(sparseMatrix), b.(denseMatrix))\n\t\t…\n\t\t}\n\tdefault:\n\t\t// 不支持的参数\n\t\t…\n\t}\n}\n```\n\n然而，更优雅和优选的方案是将运算符作为方法实现，标准库中到处都运用了这种做法。有关 Ryanne Dolan 实现的线性代数包的更详细信息，可以在 `https://github.com/skelterjohn/go.matrix` 找到。\n\n## 17.4.2 方法作为运算符\n\n根据接收者类型不同，可以区分不同的方法。因此我们可以为每种类型简单地定义 `Add` 方法，来代替使用多个函数名称：\n```go\nfunc (a *sparseMatrix) Add(b Matrix) Matrix\nfunc (a *denseMatrix) Add(b Matrix) Matrix\n```\n\n每个方法都返回一个新对象，成为下一个方法调用的接收者，因此我们可以使用*链式调用*表达式：\n```go\nm := m1.Mult(m2).Add(m3)\n```\n比上一节面向过程的形式更简洁。\n\n正确的实现同样可以基于类型，通过 `switch` 类型断言在运行时确定：\n```go\nfunc (a *sparseMatrix) Add(b Matrix) Matrix {\n\tswitch b.(type) {\n\tcase sparseMatrix:\n\t\treturn addSparseToSparse(a.(sparseMatrix), b.(sparseMatrix))\n\tcase denseMatrix:\n\t\treturn addSparseToDense(a.(sparseMatrix), b.(denseMatrix))\n\t…\n\tdefault:\n\t\t// 不支持的参数\n\t\t…\n\t}\n}\n```\n\n再次地，这比上一节嵌套的 `switch` 更简单。\n\n## 17.4.3 使用接口\n\n当在不同类型上执行相同的方法时，创建一个通用化的接口以实现多态的想法，就会自然产生。\n\n例如定义一个代数 `Algebraic` 接口：\n```go\ntype Algebraic interface {\n\tAdd(b Algebraic) Algebraic\n\tMin(b Algebraic) Algebraic\n\tMult(b Algebraic) Algebraic\n\t…\n\tElements()\n}\n```\n\n然后为我们的 `matrix` 类型定义 `Add()`，`Min()`，`Mult()`，……等方法。\n\n每种实现上述 `Algebraic` 接口类型的方法都可以链式调用。每个方法实现都应基于参数类型，使用 `switch` 类型断言来提供优化过的实现。另外，应该为仅依赖于接口的方法，指定一个默认处理分支：\n```go\nfunc (a *denseMatrix) Add(b Algebraic) Algebraic {\n\tswitch b.(type) {\n\tcase sparseMatrix:\n\t\treturn addDenseToSparse(a, b.(sparseMatrix))\n\t…\n\tdefault:\n\t\tfor x in range b.Elements() …\n\t}\n}\n```\n\n如果一个通用的功能无法仅使用接口方法来实现，你可能正在处理两个不怎么相似的类型，此时应该放弃这种运算符模式。例如，如果 `a` 是一个集合而 `b` 是一个矩阵，那么编写 `a.Add(b)` 没有意义。就集合和矩阵运算而言，很难实现一个通用的 `a.Add(b)` 方法。遇到这种情况，把包拆分成两个，然后提供单独的 `AlgebraicSet` 和 `AlgebraicMatrix` 接口。\n\n## 链接\n\n- 目录\n- 上一节：可见性模式\n- 下一章：出于性能考虑的实用代码片段",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-waytogo6-22",
+    "title": "18.1 字符串",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "（1）如何修改字符串中的一个字符： （2）如何获取字符串的子串： （3）如何使用 for 或者 for range 遍历一个字符串： （4）如何获取一个字符串的字节数： len(s",
+    "content": "# 18.1 字符串\n\n（1）如何修改字符串中的一个字符：\n\n```go\nstr:=\"hello\"\nc:=[]byte(str)\nc[0]='c'\ns2:= string(c) // s2 == \"cello\"\n```\n\n（2）如何获取字符串的子串：\n\n```go\nsubstr := str[n:m]\n```\n\n（3）如何使用 `for` 或者 `for-range` 遍历一个字符串：\n\n```go\n// gives only the bytes:\nfor i:=0; i < len(str); i++ {\n… = str[i]\n}\n// gives the Unicode characters:\nfor ix, ch := range str {\n…\n}\n```\n\n（4）如何获取一个字符串的字节数：`len(str)`\n\n   如何获取一个字符串的字符数：\n\n   （最快速）使用 `utf8.RuneCountInString(str)` \n\n   或使用 `len([]rune(str))` \n\n（5）如何连接字符串：\n\n   （最快速）使用 `bytes.Buffer`（参考章节 7.2）\n\n   或使用 `Strings.Join()`（参考章节 4.7）\n\n   或使用 `+=`：\n\n ```go\n str1 := \"Hello \" \n str2 := \"World!\"\n str1 += str2 //str1 == \"Hello World!\"\n ```\n\n（6）如何解析命令行参数：使用 `os` 或者 `flag` 包（参考例 12.4）\n\n## 链接\n\n- 目录\n- 上一节：出于性能考虑的实用代码片段\n- 下一节：数组和切片",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-waytogo6-28",
+    "title": "18.5 接口",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "（1）如何检测一个值 v 是否实现了接口 Stringer ： go if v, ok := v.(Stringer); ok fmt.Printf(\"implements Str",
+    "content": "# 18.5 接口\r\n\r\n（1）如何检测一个值 `v` 是否实现了接口 `Stringer`：\r\n\r\n```go\r\nif v, ok := v.(Stringer); ok {\r\n    fmt.Printf(\"implements String(): %s\\n\", v.String())\r\n}\r\n```\r\n\r\n（2）如何使用接口实现一个类型分类函数：\r\n\r\n```go\r\nfunc classifier(items ...interface{}) {\r\n    for i, x := range items {\r\n        switch x.(type) {\r\n        case bool:\r\n            fmt.Printf(\"param #%d is a bool\\n\", i)\r\n        case float64:\r\n            fmt.Printf(\"param #%d is a float64\\n\", i)\r\n        case int, int64:\r\n            fmt.Printf(\"param #%d is an int\\n\", i)\r\n        case nil:\r\n            fmt.Printf(\"param #%d is nil\\n\", i)\r\n        case string:\r\n            fmt.Printf(\"param #%d is a string\\n\", i)\r\n        default:\r\n            fmt.Printf(\"param #%d’s type is unknown\\n\", i)\r\n        }\r\n    }\r\n}\r\n```\r\n\r\n## 链接\r\n\r\n- 目录\r\n- 上一节：结构体\r\n- 下一节：函数",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-waytogo6-30",
+    "title": "18.7 文件",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 VI",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "（1）如何打开一个文件并读取： go file, err := os.Open(\"input.dat\") if err != nil fmt.Printf(\"An error oc",
+    "content": "# 18.7 文件\r\n\r\n（1）如何打开一个文件并读取：\r\n\r\n```go    \r\nfile, err := os.Open(\"input.dat\")\r\n  if err != nil {\r\n    fmt.Printf(\"An error occurred on opening the inputfile\\n\" +\r\n      \"Does the file exist?\\n\" +\r\n      \"Have you got acces to it?\\n\")\r\n    return\r\n  }\r\n  defer file.Close()\r\n  iReader := bufio.NewReader(file)\r\n  for {\r\n    str, err := iReader.ReadString('\\n')\r\n    if err != nil {\r\n      return // error or EOF\r\n    }\r\n    fmt.Printf(\"The input was: %s\", str)\r\n  }\r\n```\r\n\r\n（2）如何通过切片读写文件：\r\n```go\r\nfunc cat(f *file.File) {\r\n  const NBUF = 512\r\n  var buf [NBUF]byte\r\n  for {\r\n    switch nr, er := f.Read(buf[:]); true {\r\n    case nr < 0:\r\n      fmt.Fprintf(os.Stderr, \"cat: error reading from %s: %s\\n\",\r\n        f.String(), er.String())\r\n      os.Exit(1)\r\n    case nr == 0: // EOF\r\n      return\r\n    case nr > 0:\r\n      if nw, ew := file.Stdout.Write(buf[0:nr]); nw != nr {\r\n        fmt.Fprintf(os.Stderr, \"cat: error writing from %s: %s\\n\",\r\n          f.String(), ew.String())\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n## 链接\r\n\r\n- 目录\r\n- 上一节：函数\r\n- 下一节：协程 (goroutine) 与通道 (channel)",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
   }
 ]
