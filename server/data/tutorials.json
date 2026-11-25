@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 307
+      "count": 335
     },
     {
       "id": "system",
@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 37
+      "count": 42
     }
   ],
   "tutorials": [
@@ -35285,6 +35285,534 @@
       ],
       "prereqs": [],
       "href": "/post/g-codehunter2-20"
+    },
+    {
+      "id": "g-dailyq3-2",
+      "kind": "collection",
+      "title": "文件系统中 mtime、ctime 和 atime 指什么，都有什么不同",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 116 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq3-2"
+    },
+    {
+      "id": "g-dailyq3-3",
+      "kind": "collection",
+      "title": "如何监控文件的变动",
+      "summary": "更多描述 当一个文件或者一个目录下的文件有所变动时能够监控到。 如一些前端和后端项目在开发环境下会根据项目目录变动而重启",
+      "domain": "swe",
+      "category": "大厂面经题库 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq3-3"
+    },
+    {
+      "id": "g-dailyq3-9",
+      "kind": "collection",
+      "title": "什么是 exit code",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 424 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq3-9"
+    },
+    {
+      "id": "g-dailyq3-16",
+      "kind": "collection",
+      "title": "什么是原码、补码与反码",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 690 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq3-16"
+    },
+    {
+      "id": "g-dailyq3-20",
+      "kind": "collection",
+      "title": "如何使用vim查看文件有多少个字符以及多少行",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 45 Author 回答者: shfshany",
+      "domain": "swe",
+      "category": "大厂面经题库 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq3-20"
+    },
+    {
+      "id": "g-algonote4-1",
+      "kind": "collection",
+      "title": "0067. 二进制求和",
+      "summary": "标签：位运算、数学、字符串、模拟 难度：简单 0067. 二进制求和 力扣 给定两个二进制数的字符串 a、b。计算 a ",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-1"
+    },
+    {
+      "id": "g-algonote4-2",
+      "kind": "collection",
+      "title": "0002. 两数相加",
+      "summary": "标签：递归、链表、数学 难度：中等 0002. 两数相加 力扣 描述 ：给定两个非空的链表 l1 和 l2 。分别用来表",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-2"
+    },
+    {
+      "id": "g-algonote4-3",
+      "kind": "collection",
+      "title": "0094. 二叉树的中序遍历",
+      "summary": "标签：栈、树、深度优先搜索、二叉树 难度：简单 0094. 二叉树的中序遍历 力扣 描述 ：给定一个二叉树的根节点 ro",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-3"
+    },
+    {
+      "id": "g-algonote4-4",
+      "kind": "collection",
+      "title": "0070. 爬楼梯",
+      "summary": "标签：记忆化搜索、数学、动态规划 难度：简单 0070. 爬楼梯 力扣 描述 ：假设你正在爬楼梯。需要 $n$ 阶你才能",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-4"
+    },
+    {
+      "id": "g-algonote4-5",
+      "kind": "collection",
+      "title": "0040. 组合总和 II",
+      "summary": "标签：数组、回溯 难度：中等 0040. 组合总和 II 力扣 描述 ：给定一个数组 candidates 和一个目标数",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-5"
+    },
+    {
+      "id": "g-algonote4-6",
+      "kind": "collection",
+      "title": "0039. 组合总和",
+      "summary": "标签：数组、回溯 难度：中等 0039. 组合总和 力扣 描述 ：给定一个无重复元素的正整数数组 candidates ",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-6"
+    },
+    {
+      "id": "g-algonote4-7",
+      "kind": "collection",
+      "title": "0077. 组合",
+      "summary": "标签：回溯 难度：中等 0077. 组合 力扣 给定两个整数 n 和 k ，返回范围 1, n 中所有可能的 k 个数的",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-7"
+    },
+    {
+      "id": "g-algonote4-8",
+      "kind": "collection",
+      "title": "0011. 盛最多水的容器",
+      "summary": "标签：贪心、数组、双指针 难度：中等 0011. 盛最多水的容器 力扣 描述 ：给定 $n$ 个非负整数 $a 1,a ",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-8"
+    },
+    {
+      "id": "g-algonote4-9",
+      "kind": "collection",
+      "title": "0038. 外观数列",
+      "summary": "标签：字符串 难度：中等 0038. 外观数列 力扣 给定一个正整数 n，$(1 \\le n \\le 30)$，要求输出",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-9"
+    },
+    {
+      "id": "g-algonote4-10",
+      "kind": "collection",
+      "title": "0091. 解码方法",
+      "summary": "标签：字符串、动态规划 难度：中等 0091. 解码方法 力扣 描述 ：给定一个数字字符串 $s$。该字符串已经按照下面",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-10"
+    },
+    {
+      "id": "g-algonote4-11",
+      "kind": "collection",
+      "title": "0029. 两数相除",
+      "summary": "标签：位运算、数学 难度：中等 0029. 两数相除 力扣 给定两个整数，被除数 dividend 和除数 diviso",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-11"
+    },
+    {
+      "id": "g-algonote4-12",
+      "kind": "collection",
+      "title": "0072. 编辑距离",
+      "summary": "标签：字符串、动态规划 难度：困难 0072. 编辑距离 力扣 描述 ：给定两个单词 $word1$、$word2$。 ",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-12"
+    },
+    {
+      "id": "g-algonote4-13",
+      "kind": "collection",
+      "title": "0034. 在排序数组中查找元素的第一个和最后一个位置",
+      "summary": "标签：数组、二分查找 难度：中等 0034. 在排序数组中查找元素的第一个和最后一个位置 力扣 描述 ：给你一个按照非递",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-13"
+    },
+    {
+      "id": "g-algonote4-14",
+      "kind": "collection",
+      "title": "0028. 找出字符串中第一个匹配项的下标",
+      "summary": "标签：双指针、字符串、字符串匹配 难度：中等 0028. 找出字符串中第一个匹配项的下标 力扣 描述 ：给定两个字符串 ",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-14"
+    },
+    {
+      "id": "g-algonote4-15",
+      "kind": "collection",
+      "title": "0041. 缺失的第一个正数",
+      "summary": "标签：数组、哈希表 难度：困难 0041. 缺失的第一个正数 力扣 描述 ：给定一个未排序的整数数组 nums 。 要求",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-15"
+    },
+    {
+      "id": "g-algonote4-16",
+      "kind": "collection",
+      "title": "0022. 括号生成",
+      "summary": "标签：字符串、回溯算法 难度：中等 0022. 括号生成 力扣 描述 ：给定一个整数 $n$，代表生成括号的对数。 要求",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-16"
+    },
+    {
+      "id": "g-algonote4-17",
+      "kind": "collection",
+      "title": "0089. 格雷编码",
+      "summary": "标签：位运算、数学、回溯 难度：中等 0089. 格雷编码 力扣 描述 ：给定一个整数 $n$。 要求 ：返回任一有效的",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-17"
+    },
+    {
+      "id": "g-algonote4-19",
+      "kind": "collection",
+      "title": "0057. 插入区间",
+      "summary": "标签：数组 难度：中等 0057. 插入区间 力扣 描述 ： 给定一个无重叠的、按照区间起始端点排序的区间列表 $int",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-19"
+    },
+    {
+      "id": "g-algonote4-20",
+      "kind": "collection",
+      "title": "0012. 整数转罗马数字",
+      "summary": "标签：哈希表、数学、字符串 难度：中等 0012. 整数转罗马数字 力扣 给定一个整数，将其转换为罗马数字。 罗马数字规",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-20"
+    },
+    {
+      "id": "g-algonote4-21",
+      "kind": "collection",
+      "title": "0097. 交错字符串",
+      "summary": "标签：字符串、动态规划 难度：中等 0097. 交错字符串 力扣 描述 ： 两个字符串 $s$ 和 $t$ 交错的定义与",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-21"
+    },
+    {
+      "id": "g-algonote4-22",
+      "kind": "collection",
+      "title": "0045. 跳跃游戏 II",
+      "summary": "标签：贪心、数组、动态规划 难度：中等 0045. 跳跃游戏 II 力扣 描述 ：给定一个非负整数数组 nums ，数组",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-22"
+    },
+    {
+      "id": "g-algonote4-23",
+      "kind": "collection",
+      "title": "0055. 跳跃游戏",
+      "summary": "标签：贪心、数组、动态规划 难度：中等 0055. 跳跃游戏 力扣 描述 ：给定一个非负整数数组 nums ，数组中每个",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-23"
+    },
+    {
+      "id": "g-algonote4-24",
+      "kind": "collection",
+      "title": "0084. 柱状图中最大的矩形",
+      "summary": "标签：栈、数组、单调栈 难度：困难 0084. 柱状图中最大的矩形 力扣 给定一个非负整数数组 heights ， he",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-24"
+    },
+    {
+      "id": "g-algonote4-26",
+      "kind": "collection",
+      "title": "0017. 电话号码的字母组合",
+      "summary": "标签：哈希表、字符串、回溯 难度：中等 0017. 电话号码的字母组合 力扣 描述 ：给定一个只包含数字 2 9 的字符",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-26"
+    },
+    {
+      "id": "g-algonote4-27",
+      "kind": "collection",
+      "title": "0014. 最长公共前缀",
+      "summary": "标签：字典树、字符串 难度：简单 0014. 最长公共前缀 力扣 描述 ：给定一个字符串数组 strs 。 要求 ：返回",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-27"
+    },
+    {
+      "id": "g-algonote4-28",
+      "kind": "collection",
+      "title": "0005. 最长回文子串",
+      "summary": "标签：字符串、动态规划 难度：中等 0005. 最长回文子串 力扣 描述 ：给定一个字符串 $s$。 要求 ：找到 $s",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-28"
+    },
+    {
+      "id": "g-algonote4-29",
+      "kind": "collection",
+      "title": "0003. 无重复字符的最长子串",
+      "summary": "标签：哈希表、字符串、滑动窗口 难度：中等 0003. 无重复字符的最长子串 力扣 描述 ：给定一个字符串 $s$。 要",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-29"
+    },
+    {
+      "id": "g-algonote4-30",
+      "kind": "collection",
+      "title": "0032. 最长有效括号",
+      "summary": "标签：栈、字符串、动态规划 难度：困难 0032. 最长有效括号 力扣 描述 ：给定一个只包含 '(' 和 ')' 的字",
+      "domain": "algo",
+      "category": "算法通关手册 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote4-30"
     }
   ]
 }
