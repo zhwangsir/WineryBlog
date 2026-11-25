@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T09:15:39.208Z",
+ "updatedAt": "2026-11-25T09:55:47.248Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3023,6 +3023,81 @@
    "status": "done",
    "addedAt": "2026-11-25T09:15:39.208Z",
    "note": "continuation: 存量来源深度续收 VI 批"
+  },
+  {
+   "id": "algonote7",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 VII",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 188
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T09:55:47.248Z",
+   "note": "continuation: 存量来源深度续收 VII 批"
+  },
+  {
+   "id": "mlint6",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 VI",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 150
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T09:55:47.248Z",
+   "note": "continuation: 存量来源深度续收 VII 批"
+  },
+  {
+   "id": "waytogo6",
+   "repo": "Unknwon/the-way-to-go_ZH_CN",
+   "branch": "master",
+   "category": "The Way to Go 中文版 VI",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "入门"
+   ],
+   "picks": [
+    {
+     "dir": "eBook",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 150
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T09:55:47.248Z",
+   "note": "continuation: 存量来源深度续收 VII 批"
   }
  ]
 }
