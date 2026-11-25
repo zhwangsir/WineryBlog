@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 417
+      "count": 457
     },
     {
       "id": "security",
@@ -29008,6 +29008,686 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-xiaomoboy-pi-bluebook-8"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-1",
+      "kind": "collection",
+      "title": "01-overview",
+      "summary": "Apache TVM 是一个机器学习编译框架， 遵循Python 优先开发和通用部署的原则。 它接受经过预训练的机器学习",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-1"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-2",
+      "kind": "collection",
+      "title": "确保从一个干净的环境开始",
+      "summary": "本文档介绍如何从源代码构建和安装 TVM 软件包。 目录 步骤 1：安装依赖项 步骤 2：从 GitHub 获取源码 步",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-2"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-3",
+      "kind": "collection",
+      "title": "02-docker-images",
+      "summary": "我们提供了 Docker 实用脚本帮助开发者搭建开发环境，这些脚本也能辅助运行 TVM 的演示和教程。如需使用 CUDA",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-3"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-4",
+      "kind": "collection",
+      "title": "为 torch.export 提供示例输入参数",
+      "summary": "title: 端到端优化模型 本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-4"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-5",
+      "kind": "collection",
+      "title": "from tvm.script import ir as I",
+      "summary": "title: 自定义优化 本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter N",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-5"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-6",
+      "kind": "collection",
+      "title": "HFWEIGHTPATH = Path(\"/path/to/TinyLlama-1.1B-Chat-v1.0/\")",
+      "summary": "title: 优化大语言模型 本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-6"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-7",
+      "kind": "collection",
+      "title": "将库保存到临时目录",
+      "summary": "本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter Notebook。 在 Go",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-7"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-8",
+      "kind": "collection",
+      "title": "显式列出使用的目标",
+      "summary": "对于任何支持的开发环境，TVM 都应该生成数值正确的结果。因此，在编写验证数值输出的单元测试时，这些单元测试应在所有受支",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-8"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-9",
+      "kind": "collection",
+      "title": "可能需要启用如 USEOPENCL、USExPU 的选项。",
+      "summary": "title: 设置 RPC 系统 远程过程调用（RPC）是 Apache TVM 中非常重要和有用的功能，它允许我们在真",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-9"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-10",
+      "kind": "collection",
+      "title": "03-handle-tvm-errors",
+      "summary": "在运行 TVM 时，你可能会遇到如下的错误信息： 恭喜！你找到了这篇文档。下面是一些关于如何理解这些错误信息以及遇到错误",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-10"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-11",
+      "kind": "collection",
+      "title": "01-vulkan",
+      "summary": "TVM 支持使用 Vulkan 计算着色器来执行任务。 每个计算内核都会被编译成一个 SPIR V 着色器，然后可通过 ",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-11"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-12",
+      "kind": "collection",
+      "title": "02-introductiontomoduleserialization",
+      "summary": "在部署 TVM 运行时模块时，无论目标是 CPU 还是 GPU，TVM 最终只需要一个动态共享库（dynamic sha",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-12"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-13",
+      "kind": "collection",
+      "title": "覆盖 PassInstrument 实例",
+      "summary": "Relax 与 TVM IR 都包含一系列优化传递（optimization passes），用于改进模型在特定设备上的",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-13"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-14",
+      "kind": "collection",
+      "title": "04-devicetargetinteractions",
+      "summary": "本文档面向希望了解 TVM 框架如何与特定设备 API 进行交互的开发者，或希望为新的 API 或新硬件添加支持的开发者",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-14"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-15",
+      "kind": "collection",
+      "title": "01-tensor-program-abstraction",
+      "summary": "在深入了解 TensorIR 之前，我们先介绍什么是原始张量函数（primitive tensor function）。",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-15"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-16",
+      "kind": "collection",
+      "title": "TensorIR",
+      "summary": "TensorIR 是 Apache TVM 中的张量程序抽象，它是标准的机器学习编译框架之一。张量程序抽象的主要目标是描",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-16"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-17",
+      "kind": "collection",
+      "title": "Python 变量",
+      "summary": "本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter Notebook。 在 Go",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-17"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-18",
+      "kind": "collection",
+      "title": "from tvm.script import ir as I",
+      "summary": "本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter Notebook。 在 Go",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-18"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-19",
+      "kind": "collection",
+      "title": "01-graph-abstraction-for-ml-models",
+      "summary": "图抽象是机器学习（ML）编译器中用于表示和分析模型结构与数据流的关键技术。通过将模型抽象为图结构，编译器可以执行各种优化",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-19"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-20",
+      "kind": "collection",
+      "title": "02-understand-relax-abstraction",
+      "summary": "title: 理解 Relax 抽象层 Relax 是 Apache TVM Unity 策略中使用的一种图抽象方式，用",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-20"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-21",
+      "kind": "collection",
+      "title": "from tvm.script import ir as I",
+      "summary": "本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter Notebook。 在 Go",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-21"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-22",
+      "kind": "collection",
+      "title": "from tvm.script import ir as I",
+      "summary": "本教程可通过 Google Colab 交互式运行！也可点击此处在本地运行 Jupyter Notebook。 在 Go",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-22"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-23",
+      "kind": "collection",
+      "title": "Python 示例",
+      "summary": "TVM 中的结构化错误类。 每个错误类都接受一个错误消息作为输入。有关建议的消息格式，请参见示例部分。为了提高代码可读性",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-23"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-24",
+      "kind": "collection",
+      "title": "02-tvm-ir",
+      "summary": "适用于所有 IR 变体的通用数据结构 类： Attrs 属性节点，主要用于定义运算符的属性 : : DictAttrs ",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-24"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-25",
+      "kind": "collection",
+      "title": "03-tvm-instrument",
+      "summary": "IR 变体的通用 pass 工具。 pass 工具的实现。 要使用 PassInstrument，用户类可以直接从 Pa",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-25"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-26",
+      "kind": "collection",
+      "title": "创建自定义流水线实例",
+      "summary": "跨 IR 变体的通用基础设施。 将 pass 应用于 IRModule 中特定函数的实用工具。 TVM 在降阶的所有阶段",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-26"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-27",
+      "kind": "collection",
+      "title": "05-tvm-target",
+      "summary": "目标描述和 codgen 模块。 TVM 的目标字符串格式为。 option=value ... 。 选项列表包括： d",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-27"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-28",
+      "kind": "collection",
+      "title": "06-tvm-driver",
+      "summary": "驱动程序 API 的命名空间 将 IRModule 编译为运行时可执行文件。 此函数作为编译 TIR 和 Relax 模",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-28"
+    },
+    {
+      "id": "g-auto-hyperai-tvm-cn-30",
+      "kind": "collection",
+      "title": "08-tvm-runtime-vm",
+      "summary": "Relax 虚拟机。 一个枚举。 Relax VM 运行时。 调用一个闭包。 参数： closure ( Object ",
+      "domain": "ai",
+      "category": "TVM 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "apache",
+        "chinese-simplified",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-hyperai-tvm-cn-30"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-2",
+      "kind": "collection",
+      "title": "数据增强",
+      "summary": "数据增强是用来提升深度学习性能的非常有效的技术。通过在原始音频中添加小的随机扰动（标签不变转换）获得新音频来增强的语音数",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-2"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-3",
+      "kind": "collection",
+      "title": "集束搜索解码",
+      "summary": "本项目目前支持两种解码方法，分别是集束搜索解码器(ctc beam search)和贪心解码器(ctc greedy)，",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-3"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-4",
+      "kind": "collection",
+      "title": "数据准备",
+      "summary": "1. 在 download data 目录下是公开数据集的下载和制作训练数据列表和词汇表的，本项目提供了下载公开的中文普",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-4"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-5",
+      "kind": "collection",
+      "title": "评估",
+      "summary": "执行下面这个脚本对模型进行评估，通过字符错误率来评价模型的性能，详细参数请查看该程序。 输出结果：",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-5"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-6",
+      "kind": "collection",
+      "title": "导出模型",
+      "summary": "训练保存的或者下载作者提供的模型都是模型参数，我们要将它导出为预测模型，这样可以直接使用模型，不再需要模型结构代码，同时",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-6"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-8",
+      "kind": "collection",
+      "title": "合成语音数据",
+      "summary": "1. 为了拟补数据集的不足，我们合成一批语音用于训练，语音合成一批音频文件。首先搭建CosyVoice，目前只支持Ubu",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-8"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-9",
+      "kind": "collection",
+      "title": "本地预测",
+      "summary": "我们可以使用这个脚本使用模型进行预测，如果如何还没导出模型，需要执行导出模型操作把模型参数导出为预测模型，通过传递音频文",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-9"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-10",
+      "kind": "collection",
+      "title": "说话人日志语音识别",
+      "summary": "我们可以使用这个脚本使用模型进行预测，如果如何还没导出模型，需要执行导出模型操作把模型参数导出为预测模型，通过传递音频文",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-10"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-12",
+      "kind": "collection",
+      "title": "前言",
+      "summary": "在语音识别中，模型输出的结果只是单纯的文本结果，并没有根据语法添加标点符号，本教程就是针对这种情况，在语音识别文本中根据",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-12"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-13",
+      "kind": "collection",
+      "title": "训练模型",
+      "summary": "训练流程，首先是准备数据集，具体看数据准备部分，重点是执行 create data.py 程序，执行完成之后检查是否在 ",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-13"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-ppasr-14",
+      "kind": "collection",
+      "title": "WenetSpeech数据集",
+      "summary": "10000+小时的普通话语音数据集 WenetSpeech数据集 包含了10000+小时的普通话语音数据集，所有数据均来",
+      "domain": "ai",
+      "category": "PPASR 中文语音识别",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "conformer"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-ppasr-14"
     }
   ]
 }

@@ -151,10 +151,10 @@ const BUCKETS = [
 // 技术内容信号：名称/描述/topics 至少命中一个才算教程类仓库
 //（「topic:tutorial + 中文」会捞到人生指南这类站外货，语言字段也救不了——byoungd/up 的 language 是 JavaScript）
 const TECH_SIGNAL = new RegExp([
-  'javascript|typescript|python|golang|go语言|rust|c\\+\\+|c语言|kotlin|swift|php|ruby|scala|dart|lua|sql|shell|bash|汇编|wasm',
+  'javascript|typescript|python|golang|go语言|rust|c\\+\\+|c语言|kotlin|swift|php|ruby|scala|dart|lua|sql|shell|bash|汇编|wasm|vim|emacs',
   '前端|后端|全栈|web开发|浏览器|css|html|react|vue|angular|node|jquery',
   '数据库|mysql|postgres|redis|mongodb|大数据|hadoop|spark|flink|clickhouse|etcd',
-  '机器学习|深度学习|强化学习|神经网络|人工智能|大模型|llm|nlp|transformer|pytorch|tensorflow|计算机视觉|扩散模型',
+  '机器学习|深度学习|强化学习|神经网络|人工智能|大模型|llm|nlp|transformer|pytorch|tensorflow|计算机视觉|扩散模型|语音识别|语音',
   '算法|数据结构|leetcode|剑指|题解|动态规划',
   '操作系统|linux|unix|计算机网络|tcp|http|docker|kubernetes|k8s|云原生|devops|运维|nginx|编译原理|编译器|计算机组成|嵌入式|单片机',
   '渗透|ctf|信息安全|网络安全|密码学|web安全|漏洞',
@@ -162,7 +162,7 @@ const TECH_SIGNAL = new RegExp([
   'spring|jvm|tomcat|netty|grpc|rpc|api网关',
   'flutter|android|ios|swiftui|uniapp|小程序|微信开发',
   'unity|游戏开发|图形学|opengl|godot|cocos|threejs|渲染|shader|pbr|vulkan',
-  '面试|校招|秋招|八股文|编程|程序设计|教程|实战|入门|手册|笔记|指南|学习路线|roadmap|文档|agent|智能体|语音识别|语音|爬虫|正则|解释器|提示词',
+  '面试|校招|秋招|八股文|编程|程序设计|教程|实战|入门|手册|笔记|指南|学习路线|roadmap|文档|agent|智能体|语音识别|语音|爬虫|正则|解释器|提示词|vim|emacs',
 ].join('|'), 'i');
 // domain 细化：搜索桶只给个粗方向，按名称/描述/topics 的关键词落到 14 域里更准的那个
 const DOMAIN_HINTS = [

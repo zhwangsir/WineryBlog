@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T03:38:43.282Z",
+ "updatedAt": "2026-11-25T03:55:16.836Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2207,16 +2207,51 @@
    "id": "auto-hyperai-tvm-cn",
    "repo": "hyperai/tvm-cn",
    "branch": "master",
-   "category": "TVM Documentatio",
+   "category": "TVM 中文文档",
    "domain": "ai",
    "tags": [
     "apache",
     "chinese-simplified",
     "deep-learning"
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T03:38:43.281Z",
-   "note": "auto-discovered"
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-yeyupiaoling-ppasr",
+   "repo": "yeyupiaoling/PPASR",
+   "branch": "develop",
+   "category": "PPASR 中文语音识别",
+   "domain": "ai",
+   "tags": [
+    "asr",
+    "chinese",
+    "conformer"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T03:55:01.344Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 14,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
