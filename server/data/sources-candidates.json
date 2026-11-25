@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T12:57:27.325Z",
+ "updatedAt": "2026-11-25T13:16:23.169Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3449,6 +3449,56 @@
    "status": "done",
    "addedAt": "2026-11-25T12:57:27.325Z",
    "note": "continuation: 存量来源深度续收 XIV 批"
+  },
+  {
+   "id": "algonote15",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 XV",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 428
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T13:16:23.169Z",
+   "note": "continuation: 存量来源深度续收 XV 批"
+  },
+  {
+   "id": "goweb4",
+   "repo": "astaxie/build-web-application-with-golang",
+   "branch": "master",
+   "category": "Go Web 编程 IV",
+   "domain": "backend",
+   "tags": [
+    "Go",
+    "Web"
+   ],
+   "picks": [
+    {
+     "dir": "zh",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 90
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T13:16:23.169Z",
+   "note": "continuation: 存量来源深度续收 XV 批"
   }
  ]
 }

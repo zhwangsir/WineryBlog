@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 622
+      "count": 651
     },
     {
       "id": "system",
@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 328
+      "count": 334
     },
     {
       "id": "data",
@@ -44935,6 +44935,566 @@
       ],
       "prereqs": [],
       "href": "/post/g-codehunter3-20"
+    },
+    {
+      "id": "g-algonote15-1",
+      "kind": "collection",
+      "title": "0340. 至多包含 K 个不同字符的最长子串",
+      "summary": "标签：哈希表、字符串、滑动窗口 难度：中等 0340. 至多包含 K 个不同字符的最长子串 力扣 给定一个字符串 s ，",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-1"
+    },
+    {
+      "id": "g-algonote15-2",
+      "kind": "collection",
+      "title": "0363. 矩形区域不超过 K 的最大数值和",
+      "summary": "标签：数组、二分查找、矩阵、有序集合、前缀和 难度：困难 0363. 矩形区域不超过 K 的最大数值和 力扣 描述 ： ",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-2"
+    },
+    {
+      "id": "g-algonote15-3",
+      "kind": "collection",
+      "title": "0318. 最大单词长度乘积",
+      "summary": "标签：位运算、数组、字符串 难度：中等 0318. 最大单词长度乘积 力扣 给定一个字符串数组 words 。字符串中只",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-3"
+    },
+    {
+      "id": "g-algonote15-4",
+      "kind": "collection",
+      "title": "0325. 和等于 k 的最长子数组长度",
+      "summary": "标签：数组、哈希表、前缀和 难度：中等 0325. 和等于 k 的最长子数组长度 力扣 描述 ： 给定一个数组 $num",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-4"
+    },
+    {
+      "id": "g-algonote15-5",
+      "kind": "collection",
+      "title": "0385. 迷你语法分析器",
+      "summary": "标签：栈、深度优先搜索、字符串 难度：中等 0385. 迷你语法分析器 力扣 描述 ： 给定一个字符串 $s$ 表示一个",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-5"
+    },
+    {
+      "id": "g-algonote15-6",
+      "kind": "collection",
+      "title": "0310. 最小高度树",
+      "summary": "标签：深度优先搜索、广度优先搜索、图、拓扑排序 难度：中等 0310. 最小高度树 力扣 描述 ：有一棵包含 $n$ 个",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-6"
+    },
+    {
+      "id": "g-algonote15-7",
+      "kind": "collection",
+      "title": "0346. 数据流中的移动平均值",
+      "summary": "标签：设计、队列、数组、数据流 难度：简单 0346. 数据流中的移动平均值 力扣 给定一个整数 val 和一个窗口大小",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-7"
+    },
+    {
+      "id": "g-algonote15-8",
+      "kind": "collection",
+      "title": "0364. 嵌套列表加权和 II",
+      "summary": "标签：栈、深度优先搜索、广度优先搜索 难度：中等 0364. 嵌套列表加权和 II 力扣 描述 ： 给定一个整数嵌套列表",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-8"
+    },
+    {
+      "id": "g-algonote15-9",
+      "kind": "collection",
+      "title": "0339. 嵌套列表加权和",
+      "summary": "标签：深度优先搜索、广度优先搜索 难度：中等 0339. 嵌套列表加权和 力扣 描述 ： 给定一个嵌套的整数列表 $ne",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-9"
+    },
+    {
+      "id": "g-algonote15-10",
+      "kind": "collection",
+      "title": "0323. 无向图中连通分量的数目",
+      "summary": "标签：深度优先搜索、广度优先搜索、并查集、图 难度：中等 0323. 无向图中连通分量的数目 力扣 描述 ：给定 n 个",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-10"
+    },
+    {
+      "id": "g-algonote15-11",
+      "kind": "collection",
+      "title": "0305. 岛屿数量 II",
+      "summary": "标签：并查集、数组、哈希表 难度：困难 0305. 岛屿数量 II 力扣 描述 ： 给定一个大小为 $m \\times ",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-11"
+    },
+    {
+      "id": "g-algonote15-12",
+      "kind": "collection",
+      "title": "0328. 奇偶链表",
+      "summary": "标签：链表 难度：中等 0328. 奇偶链表 力扣 描述 ：给定一个单链表的头节点 head 。 要求 ：将链表中的奇数",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-12"
+    },
+    {
+      "id": "g-algonote15-13",
+      "kind": "collection",
+      "title": "0336. 回文对",
+      "summary": "标签：字典树、数组、哈希表、字符串 难度：困难 0336. 回文对 力扣 给定一组互不相同的单词列表 words 。 要",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-13"
+    },
+    {
+      "id": "g-algonote15-14",
+      "kind": "collection",
+      "title": "0330. 按要求补齐数组",
+      "summary": "标签：贪心、数组 难度：困难 0330. 按要求补齐数组 力扣 描述 ： 给定一个已排序的正整数数组 $nums$，和一",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-14"
+    },
+    {
+      "id": "g-algonote15-15",
+      "kind": "collection",
+      "title": "0391. 完美矩形",
+      "summary": "标签：数组、扫描线 难度：困难 0391. 完美矩形 力扣 描述 ：给定一个数组 rectangles ，其中 rect",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-15"
+    },
+    {
+      "id": "g-algonote15-16",
+      "kind": "collection",
+      "title": "0369. 给单链表加一",
+      "summary": "标签：链表、数学 难度：中等 0369. 给单链表加一 力扣 描述 ： 给定一个用链表表示的非负整数。 要求 ： 将这个",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-16"
+    },
+    {
+      "id": "g-algonote15-17",
+      "kind": "collection",
+      "title": "0342. 4的幂",
+      "summary": "标签：位运算、递归、数学 难度：简单 0342. 4的幂 力扣 给定一个整数 $n$，判断 $n$ 是否是 $4$ 的幂",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-17"
+    },
+    {
+      "id": "g-algonote15-19",
+      "kind": "collection",
+      "title": "0398. 随机数索引",
+      "summary": "标签：水塘抽样、哈希表、数学、随机化 难度：中等 0398. 随机数索引 力扣 描述 ： 给定一个可能含有「重复元素」的",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-19"
+    },
+    {
+      "id": "g-algonote15-20",
+      "kind": "collection",
+      "title": "0370. 区间加法",
+      "summary": "标签：数组、前缀和 难度：中等 0370. 区间加法 力扣 描述 ：给定一个数组的长度 length ，初始情况下数组中",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-20"
+    },
+    {
+      "id": "g-algonote15-21",
+      "kind": "collection",
+      "title": "0304. 二维区域和检索 - 矩阵不可变",
+      "summary": "标签：设计、数组、矩阵、前缀和 难度：中等 0304. 二维区域和检索 矩阵不可变 力扣 给定一个二维矩阵 matrix",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-21"
+    },
+    {
+      "id": "g-algonote15-22",
+      "kind": "collection",
+      "title": "0308. 二维区域和检索 - 矩阵可修改",
+      "summary": "标签：设计、树状数组、线段树、数组、矩阵 难度：中等 0308. 二维区域和检索 矩阵可修改 力扣 描述 ： 给定一个二",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-22"
+    },
+    {
+      "id": "g-algonote15-23",
+      "kind": "collection",
+      "title": "0303. 区域和检索 - 数组不可变",
+      "summary": "标签：设计、数组、前缀和 难度：简单 0303. 区域和检索 数组不可变 力扣 描述 ：给定一个整数数组 nums 。 ",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-23"
+    },
+    {
+      "id": "g-algonote15-24",
+      "kind": "collection",
+      "title": "0307. 区域和检索 - 数组可修改",
+      "summary": "标签：设计、树状数组、线段树、数组 难度：中等 0307. 区域和检索 数组可修改 力扣 描述 ：给定一个数组 nums",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-24"
+    },
+    {
+      "id": "g-algonote15-25",
+      "kind": "collection",
+      "title": "0383. 赎金信",
+      "summary": "标签：哈希表、字符串、计数 难度：简单 0383. 赎金信 力扣 描述 ：为了不在赎金信中暴露字迹，从杂志上搜索各个需要",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-25"
+    },
+    {
+      "id": "g-algonote15-26",
+      "kind": "collection",
+      "title": "0358. K 距离间隔重排字符串",
+      "summary": "标签：贪心、哈希表、字符串、计数、排序、堆（优先队列） 难度：困难 0358. K 距离间隔重排字符串 力扣 描述 ： ",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-26"
+    },
+    {
+      "id": "g-algonote15-27",
+      "kind": "collection",
+      "title": "0332. 重新安排行程",
+      "summary": "标签：深度优先搜索、图、欧拉回路 难度：困难 0332. 重新安排行程 力扣 描述 ： 给定一份航线列表 $ticket",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-27"
+    },
+    {
+      "id": "g-algonote15-28",
+      "kind": "collection",
+      "title": "0316. 去除重复字母",
+      "summary": "标签：栈、贪心、字符串、单调栈 难度：中等 0316. 去除重复字母 力扣 描述 ：给定一个字符串 s 。 要求 ：去除",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-28"
+    },
+    {
+      "id": "g-algonote15-29",
+      "kind": "collection",
+      "title": "0301. 删除无效的括号",
+      "summary": "标签：广度优先搜索、字符串、回溯 难度：困难 0301. 删除无效的括号 力扣 描述 ： 给定一个由若干括号和字母组成的",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-29"
+    },
+    {
+      "id": "g-algonote15-30",
+      "kind": "collection",
+      "title": "0344. 反转字符串",
+      "summary": "标签：双指针、字符串 难度：简单 0344. 反转字符串 力扣 描述 ：给定一个字符数组 $s$。 要求 ：将其反转。 ",
+      "domain": "algo",
+      "category": "算法通关手册 XV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote15-30"
+    },
+    {
+      "id": "g-goweb4-1",
+      "kind": "collection",
+      "title": "14.3 表单及验证支持",
+      "summary": "在Web开发中对于这样的一个流程可能很眼熟： 打开一个网页显示出表单。 用户填写并提交了表单。 如果用户提交了一些无效的",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-1"
+    },
+    {
+      "id": "g-goweb4-2",
+      "kind": "collection",
+      "title": "14.4 用户认证",
+      "summary": "在开发Web应用过程中，用户认证是开发者经常遇到的问题，用户登录、注册、登出等操作，而一般认证也分为三个方面的认证 HT",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-2"
+    },
+    {
+      "id": "g-goweb4-3",
+      "kind": "collection",
+      "title": "14.5 多语言支持",
+      "summary": "我们在第十章介绍过国际化和本地化，开发了一个go i18n库，这小节我们将把该库集成到beego框架里面来，使得我们的框",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-3"
+    },
+    {
+      "id": "g-goweb4-4",
+      "kind": "collection",
+      "title": "14.6 pprof支持",
+      "summary": "Go语言有一个非常棒的设计就是标准库里面带有代码的性能监控工具，在两个地方有包： Go net/http/pprof r",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-4"
+    },
+    {
+      "id": "g-goweb4-6",
+      "kind": "collection",
+      "title": "SUMMARY",
+      "summary": "Go环境配置 Go安装 Go Module, GOPATH 与工作空间 Go 命令 Go开发工具 小结 Go语言基础 你",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-6"
+    },
+    {
+      "id": "g-goweb4-7",
+      "kind": "collection",
+      "title": "preface",
+      "summary": "1.Go环境配置 1.1. 安装Go 1.2. GOPATH 与工作空间 1.3. Go 命令 1.4. Go开发工具 ",
+      "domain": "backend",
+      "category": "Go Web 编程 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb4-7"
     }
   ]
 }
