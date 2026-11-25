@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T12:15:51.732Z",
+ "updatedAt": "2026-11-25T12:35:48.382Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3348,6 +3348,56 @@
    "status": "done",
    "addedAt": "2026-11-25T12:15:51.732Z",
    "note": "continuation: 存量来源深度续收 XII 批"
+  },
+  {
+   "id": "algonote13",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 XIII",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 368
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T12:35:48.382Z",
+   "note": "continuation: 存量来源深度续收 XIII 批"
+  },
+  {
+   "id": "goweb3",
+   "repo": "astaxie/build-web-application-with-golang",
+   "branch": "master",
+   "category": "Go Web 编程 III",
+   "domain": "backend",
+   "tags": [
+    "Go",
+    "Web"
+   ],
+   "picks": [
+    {
+     "dir": "zh",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 60
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T12:35:48.382Z",
+   "note": "continuation: 存量来源深度续收 XIII 批"
   }
  ]
 }

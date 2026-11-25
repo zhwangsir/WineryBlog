@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 565
+      "count": 595
     },
     {
       "id": "system",
@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 292
+      "count": 310
     },
     {
       "id": "data",
@@ -43429,6 +43429,774 @@
       ],
       "prereqs": [],
       "href": "/post/g-mlint11-4"
+    },
+    {
+      "id": "g-algonote13-1",
+      "kind": "collection",
+      "title": "0288. 单词的唯一缩写",
+      "summary": "标签：设计、数组、哈希表、字符串 难度：中等 0288. 单词的唯一缩写 力扣 单词缩写规则：。如果单词长度不超过 2，",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-1"
+    },
+    {
+      "id": "g-algonote13-2",
+      "kind": "collection",
+      "title": "0242. 有效的字母异位词",
+      "summary": "标签：哈希表、字符串、排序 难度：简单 0242. 有效的字母异位词 力扣 描述 ：给定两个字符串 $s$ 和 $t$。",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-2"
+    },
+    {
+      "id": "g-algonote13-3",
+      "kind": "collection",
+      "title": "0255. 验证二叉搜索树的前序遍历序列",
+      "summary": "标签：栈、树、二叉搜索树、递归、数组、二叉树、单调栈 难度：中等 0255. 验证二叉搜索树的前序遍历序列 力扣 描述 ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-3"
+    },
+    {
+      "id": "g-algonote13-4",
+      "kind": "collection",
+      "title": "0286. 墙与门",
+      "summary": "标签：广度优先搜索、数组、矩阵 难度：中等 0286. 墙与门 力扣 给定一个 m n 的二维网络 rooms 。其中每",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-4"
+    },
+    {
+      "id": "g-algonote13-5",
+      "kind": "collection",
+      "title": "0280. 摆动排序",
+      "summary": "标签：贪心、数组、排序 难度：中等 0280. 摆动排序 力扣 描述 ： 给定一个的整数数组 $nums$。 要求 ： ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-5"
+    },
+    {
+      "id": "g-algonote13-6",
+      "kind": "collection",
+      "title": "0291. 单词规律 II",
+      "summary": "标签：哈希表、字符串、回溯 难度：中等 0291. 单词规律 II 力扣 描述 ： 给定一种规律 $pattern$ 和",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-6"
+    },
+    {
+      "id": "g-algonote13-7",
+      "kind": "collection",
+      "title": "0290. 单词规律",
+      "summary": "标签：哈希表、字符串 难度：简单 0290. 单词规律 力扣 给定一种规律 pattern 和一个字符串 str ，判断",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-7"
+    },
+    {
+      "id": "g-algonote13-8",
+      "kind": "collection",
+      "title": "0212. 单词搜索 II",
+      "summary": "标签：字典树、数组、字符串、回溯、矩阵 难度：困难 0212. 单词搜索 II 力扣 给定一个 m n 二维字符网格 b",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-8"
+    },
+    {
+      "id": "g-algonote13-9",
+      "kind": "collection",
+      "title": "0281. 锯齿迭代器",
+      "summary": "标签：设计、队列、数组、迭代器 难度：中等 0281. 锯齿迭代器 力扣 描述 ： 给定两个整数向量 $v1$ 和 $v",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-9"
+    },
+    {
+      "id": "g-algonote13-10",
+      "kind": "collection",
+      "title": "0306. 累加数",
+      "summary": "标签：字符串、回溯 难度：中等 0306. 累加数 力扣 描述 ： 「累加数」是一个字符串，组成它的数字可以形成累加序列",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-10"
+    },
+    {
+      "id": "g-algonote13-11",
+      "kind": "collection",
+      "title": "0351. 安卓系统手势解锁",
+      "summary": "标签：动态规划、回溯 难度：中等 0351. 安卓系统手势解锁 力扣 描述 ：安卓系统手势解锁的界面是一个编号为 $1 ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-11"
+    },
+    {
+      "id": "g-algonote13-12",
+      "kind": "collection",
+      "title": "0309. 买卖股票的最佳时机含冷冻期",
+      "summary": "标签：数组、动态规划 难度：中等 0309. 买卖股票的最佳时机含冷冻期 力扣 给定一个整数数组，其中第 i 个元素代表",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-12"
+    },
+    {
+      "id": "g-algonote13-13",
+      "kind": "collection",
+      "title": "0314. 二叉树的垂直遍历",
+      "summary": "标签：树、深度优先搜索、广度优先搜索、哈希表、二叉树、排序 难度：中等 0314. 二叉树的垂直遍历 力扣 描述 ： 给",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-13"
+    },
+    {
+      "id": "g-algonote13-14",
+      "kind": "collection",
+      "title": "0361. 轰炸敌人",
+      "summary": "标签：数组、动态规划、矩阵 难度：中等 0361. 轰炸敌人 力扣 描述 ： 给定一个大小为 $m \\times n$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-14"
+    },
+    {
+      "id": "g-algonote13-15",
+      "kind": "collection",
+      "title": "0319. 灯泡开关",
+      "summary": "标签：脑筋急转弯、数学 难度：中等 0319. 灯泡开关 力扣 描述 ： 初始时有 $n$ 个灯泡处于关闭状态。第一轮，",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-15"
+    },
+    {
+      "id": "g-algonote13-16",
+      "kind": "collection",
+      "title": "0312. 戳气球",
+      "summary": "标签：数组、动态规划 难度：困难 0312. 戳气球 力扣 描述 ：有 $n$ 个气球，编号为 $0 \\sim n 1$",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-16"
+    },
+    {
+      "id": "g-algonote13-17",
+      "kind": "collection",
+      "title": "0322. 零钱兑换",
+      "summary": "标签：广度优先搜索、数组、动态规划 难度：中等 0322. 零钱兑换 力扣 描述 ：给定代表不同面额的硬币数组 $coi",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-17"
+    },
+    {
+      "id": "g-algonote13-18",
+      "kind": "collection",
+      "title": "0377. 组合总和 Ⅳ",
+      "summary": "标签：数组、动态规划 难度：中等 0377. 组合总和 Ⅳ 力扣 描述 ：给定一个由不同整数组成的数组 $nums$ 和",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-18"
+    },
+    {
+      "id": "g-algonote13-19",
+      "kind": "collection",
+      "title": "0357. 统计各位数字都不同的数字个数",
+      "summary": "标签：数学、动态规划、回溯 难度：中等 0357. 统计各位数字都不同的数字个数 力扣 描述 ：给定一个整数 $n$。 ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-19"
+    },
+    {
+      "id": "g-algonote13-20",
+      "kind": "collection",
+      "title": "0327. 区间和的个数",
+      "summary": "标签：树状数组、线段树、数组、二分查找、分治、有序集合、归并排序 难度：困难 0327. 区间和的个数 力扣 描述 ： ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-20"
+    },
+    {
+      "id": "g-algonote13-21",
+      "kind": "collection",
+      "title": "0315. 计算右侧小于当前元素的个数",
+      "summary": "标签：树状数组、线段树、数组、二分查找、分治、有序集合、归并排序 难度：困难 0315. 计算右侧小于当前元素的个数 力",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-21"
+    },
+    {
+      "id": "g-algonote13-22",
+      "kind": "collection",
+      "title": "0338. 比特位计数",
+      "summary": "标签：位运算、动态规划 难度：简单 0338. 比特位计数 力扣 描述 ：给定一个整数 n 。 要求 ：对于 0 ≤ i",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-22"
+    },
+    {
+      "id": "g-algonote13-23",
+      "kind": "collection",
+      "title": "0321. 拼接最大数",
+      "summary": "标签：栈、贪心、数组、双指针、单调栈 难度：困难 0321. 拼接最大数 力扣 描述 ： 给定两个整数数组 $nums1",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-23"
+    },
+    {
+      "id": "g-algonote13-24",
+      "kind": "collection",
+      "title": "0352. 将数据流变为多个不相交区间",
+      "summary": "标签：设计、二分查找、有序集合 难度：困难 0352. 将数据流变为多个不相交区间 力扣 描述 ： 给定一个由非负整数 ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-24"
+    },
+    {
+      "id": "g-algonote13-25",
+      "kind": "collection",
+      "title": "0394. 字符串解码",
+      "summary": "标签：栈、递归、字符串 难度：中等 0394. 字符串解码 力扣 描述 ：给定一个经过编码的字符串 s 。 要求 ：返回",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-25"
+    },
+    {
+      "id": "g-algonote13-26",
+      "kind": "collection",
+      "title": "0362. 敲击计数器",
+      "summary": "标签：设计、队列、数组、二分查找、数据流 难度：中等 0362. 敲击计数器 力扣 要求 ： 设计一个敲击计数器，使它可",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-26"
+    },
+    {
+      "id": "g-algonote13-27",
+      "kind": "collection",
+      "title": "0379. 电话目录管理系统",
+      "summary": "标签：设计、队列、数组、哈希表、链表 难度：中等 0379. 电话目录管理系统 力扣 要求 ： 设计一个电话目录管理系统",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-27"
+    },
+    {
+      "id": "g-algonote13-28",
+      "kind": "collection",
+      "title": "0353. 贪吃蛇",
+      "summary": "标签：设计、队列、数组、哈希表、模拟 难度：中等 0353. 贪吃蛇 力扣 要求 ： 设计一个「贪吃蛇游戏」，该游戏将会",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-28"
+    },
+    {
+      "id": "g-algonote13-29",
+      "kind": "collection",
+      "title": "0348. 设计井字棋",
+      "summary": "标签：设计、数组、哈希表、矩阵、模拟 难度：中等 0348. 设计井字棋 力扣 要求 ： 在 $n \\times n$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-29"
+    },
+    {
+      "id": "g-algonote13-30",
+      "kind": "collection",
+      "title": "0355. 设计推特",
+      "summary": "标签：设计、哈希表、链表、堆（优先队列） 难度：中等 0355. 设计推特 力扣 要求 ： 设计一个简化版的推特(Twi",
+      "domain": "algo",
+      "category": "算法通关手册 XIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote13-30"
+    },
+    {
+      "id": "g-goweb3-1",
+      "kind": "collection",
+      "title": "9.4 避免SQL注入",
+      "summary": "SQL注入攻击（SQL Injection），简称注入攻击，是Web开发中最常见的一种安全漏洞。可以用它来从数据库获取敏",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-1"
+    },
+    {
+      "id": "g-goweb3-2",
+      "kind": "collection",
+      "title": "9.5 存储密码",
+      "summary": "过去一段时间以来, 许多的网站遭遇用户密码数据泄露事件, 这其中包括顶级的互联网企业–Linkedin, 国内诸如CSD",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-2"
+    },
+    {
+      "id": "g-goweb3-3",
+      "kind": "collection",
+      "title": "9.6 加密和解密数据",
+      "summary": "前面小节介绍了如何存储密码，但是有的时候，我们想把一些敏感数据加密后存储起来，在将来的某个时候，随需将它们解密出来，此时",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-3"
+    },
+    {
+      "id": "g-goweb3-5",
+      "kind": "collection",
+      "title": "10 国际化和本地化",
+      "summary": "为了适应经济的全球一体化，作为开发者，我们需要开发出支持多国语言、国际化的Web应用，即同样的页面在不同的语言环境下需要",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-5"
+    },
+    {
+      "id": "g-goweb3-6",
+      "kind": "collection",
+      "title": "10.1 设置默认地区",
+      "summary": "Locale是一组描述世界上某一特定区域文本格式和语言习惯的设置的集合。locale名通常由三个部分组成：第一部分，是一",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-6"
+    },
+    {
+      "id": "g-goweb3-7",
+      "kind": "collection",
+      "title": "10.2 本地化资源",
+      "summary": "前面小节我们介绍了如何设置Locale，设置好Locale之后我们需要解决的问题就是如何存储相应的Locale对应的信息",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-7"
+    },
+    {
+      "id": "g-goweb3-8",
+      "kind": "collection",
+      "title": "10.3 国际化站点",
+      "summary": "前面小节介绍了如何处理本地化资源，即Locale一个相应的配置文件，那么如果处理多个的本地化资源呢？而对于一些我们经常用",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-8"
+    },
+    {
+      "id": "g-goweb3-11",
+      "kind": "collection",
+      "title": "11.1 错误处理",
+      "summary": "Go语言主要的设计准则是：简洁、明白，简洁是指语法和C类似，相当的简单，明白是指任何语句都是很明显的，不含有任何隐含的东",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-11"
+    },
+    {
+      "id": "g-goweb3-12",
+      "kind": "collection",
+      "title": "11.2 使用GDB调试",
+      "summary": "开发程序过程中调试代码是开发者经常要做的一件事情，Go语言不像PHP、Python等动态语言，只要修改不需要编译就可以直",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-12"
+    },
+    {
+      "id": "g-goweb3-13",
+      "kind": "collection",
+      "title": "11.3 Go怎么写测试用例",
+      "summary": "开发程序其中很重要的一点是测试，我们如何保证代码的质量，如何保证每个函数是可运行，运行结果是正确的，又如何保证写出来的代",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-13"
+    },
+    {
+      "id": "g-goweb3-16",
+      "kind": "collection",
+      "title": "12.1 应用日志",
+      "summary": "我们期望开发的Web应用程序能够把整个程序运行过程中出现的各种事件一一记录下来，Go语言中提供了一个简易的log包，我们",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-16"
+    },
+    {
+      "id": "g-goweb3-18",
+      "kind": "collection",
+      "title": "12.3 应用部署",
+      "summary": "程序开发完毕之后，我们现在要部署Web应用程序了，但是我们如何来部署这些应用程序呢？因为Go程序编译之后是一个可执行文件",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-18"
+    },
+    {
+      "id": "g-goweb3-19",
+      "kind": "collection",
+      "title": "12.4 备份和恢复",
+      "summary": "这小节我们要讨论应用程序管理的另一个方面：生产服务器上数据的备份和恢复。我们经常会遇到生产服务器的网络断了、硬盘坏了、操",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-19"
+    },
+    {
+      "id": "g-goweb3-22",
+      "kind": "collection",
+      "title": "13.1 项目规划",
+      "summary": "做任何事情都需要做好规划，那么我们在开发博客系统之前，同样需要做好项目的规划，如何设置目录结构，如何理解整个项目的流程图",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-22"
+    },
+    {
+      "id": "g-goweb3-23",
+      "kind": "collection",
+      "title": "13.2 自定义路由器设计",
+      "summary": "HTTP路由组件负责将HTTP请求交到对应的函数处理(或者是一个struct的方法)，如前面小节所描述的结构图，路由在框",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-23"
+    },
+    {
+      "id": "g-goweb3-25",
+      "kind": "collection",
+      "title": "13.4 日志和配置设计",
+      "summary": "前面已经介绍过日志在我们程序开发中起着很重要的作用，通过日志我们可以记录调试我们的信息，当初介绍过一个日志系统seelo",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-25"
+    },
+    {
+      "id": "g-goweb3-29",
+      "kind": "collection",
+      "title": "14.1 静态文件支持",
+      "summary": "我们在前面已经讲过如何处理静态文件，这小节我们详细的介绍如何在beego里面设置和使用静态文件。通过再介绍一个twitt",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-29"
+    },
+    {
+      "id": "g-goweb3-30",
+      "kind": "collection",
+      "title": "14.2 Session支持",
+      "summary": "第六章的时候我们介绍过如何在Go语言中使用session，也实现了一个sessionManger，beego框架基于se",
+      "domain": "backend",
+      "category": "Go Web 编程 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb3-30"
     }
   ]
 }
