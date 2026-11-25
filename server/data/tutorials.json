@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 53
+      "count": 79
     },
     {
       "id": "games",
@@ -30623,6 +30623,448 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-summerjava-system-design-interview-5"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-1",
+      "kind": "collection",
+      "title": "ActivityManagerService",
+      "summary": "在 Android 系统启动、应用程序进程启动过程以及四大组件工作过程都设计到一个非常重要的概念 AMS。AMS是And",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-1"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-2",
+      "kind": "collection",
+      "title": "Activity启动过程",
+      "summary": "Activity 的启动过程分为两种： 根 Activity 的启动过程（应用程序的启动过程） 普通 Activity ",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-2"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-3",
+      "kind": "collection",
+      "title": "Android 中的 ClassLoader",
+      "summary": "系统类加载器 BootClassLoader： 预加载常用类 ，由 Java 实现，继承 ClassLoader Pat",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-3"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-4",
+      "kind": "collection",
+      "title": "Android9.0非SDK接口限制",
+      "summary": "在 Android 9.0 中，通过反射或 JNI 访问非公开接口时会触发警告/异常等。当我们调用反射 java.lan",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-4"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-5",
+      "kind": "collection",
+      "title": "Android匿名共享内存-Ashmem",
+      "summary": "Binder 是 Android 最常用的 IPC，但它并不适合搬大块数据： 缓冲区小 ：Binder 驱动为每个进程映",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-5"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-6",
+      "kind": "collection",
+      "title": "Android基础",
+      "summary": "时效提示 ：本文主体写于 2019 年前后，部分 API（AsyncTask、Support 库、findViewByI",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 55,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-6"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-7",
+      "kind": "collection",
+      "title": "Android新特性",
+      "summary": "2025 更新：本文保留 5.0～10.0 的原始条目，并在每一节补充当年容易漏掉、面试又会追问的点；11.0～16.0",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-7"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-8",
+      "kind": "collection",
+      "title": "Android 版本适配：6.0 到 16 的行为变更与适配清单",
+      "summary": "面向真实面试复习：每个版本的 行为变更（Behavior Changes） 什么时候生效、会炸在哪里、工程上怎么改。 配",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-8"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-9",
+      "kind": "collection",
+      "title": "Android系统启动",
+      "summary": "2025 更新：下面的 1.1 1.7 是原有整理，保留不动；后面补了 init 的 .rc / 属性服务、Zygote",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-9"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-10",
+      "kind": "collection",
+      "title": "Android系统架构",
+      "summary": "2025 更新：五层架构仍然是面试骨架，但 2019 年之后 Android 的关键变化是「层间接口标准化 + 系统组件",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-10"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-11",
+      "kind": "collection",
+      "title": "Android 面试题精选（2025）",
+      "summary": "一份可以直接拿来自测和背诵的现代 Android 面试题库。每题只给\"能说出口\"的要点，不追求教科书式完整；需要展开的细",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 44,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-11"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-13",
+      "kind": "collection",
+      "title": "Binder机制",
+      "summary": "Binder 中文译为粘合剂，它把系统中各个组件粘合到了一起，是各个组件的桥梁。Binder 是Android 系统中进",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-13"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-14",
+      "kind": "collection",
+      "title": "1 简介",
+      "summary": "@ TOC Bitmap 在安卓中是一个非常重要的概念，翻译成中文就是位图， Bitmap 位图包括像素以及长、宽、颜色",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-14"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-15",
+      "kind": "collection",
+      "title": "ContentProvider启动过程",
+      "summary": "Content Provider 译为内容提供者，为不同的应用之间数据共享，提供统一的接口。 2025 更新：Provi",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-15"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-16",
+      "kind": "collection",
+      "title": "Context",
+      "summary": "Context 上下文对象，Android 中很多业务流程都涉及到 Context。 Context 数量 = Acti",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-16"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-17",
+      "kind": "collection",
+      "title": "Dalvik和ART",
+      "summary": "简称 Dalvik VM 或 DVM，并不是一个 JVM 没有遵循 DVM 规范来实现。 与 JVM 区别： JVM D",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-17"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-18",
+      "kind": "collection",
+      "title": "DataBinding原理",
+      "summary": "ʵ����Ŀ�У�ʹ�� DataBinding ���� activity conversation.xml AS �",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-18"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-20",
+      "kind": "collection",
+      "title": "WindowManagerService",
+      "summary": "Window 是一个抽象类，实现类为 PhoneWindow，对 View 进行管理。 WindowManager 是一",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-20"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-22",
+      "kind": "collection",
+      "title": "v2+ 必须先对齐再签名",
+      "summary": "PackageManager 是客户端抽象类， Context.getPackageManager() 返回的通常是 A",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-22"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-24",
+      "kind": "collection",
+      "title": "Handler",
+      "summary": "Android 消息机制本质上是 Handler 运行机制和 MessageQueue 以及Looper 工作过程，这三",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-24"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-25",
+      "kind": "collection",
+      "title": "HandlerThread",
+      "summary": "继承自 Thread 的类，本质是一个线程； 持有一个可用来构建 Handler 的子线程 Looper； 通常使用如下",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-25"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-26",
+      "kind": "collection",
+      "title": "Hilt依赖注入",
+      "summary": "DI 的核心是： 对象不在内部 new 依赖，而由外部把创建好的依赖传进来 ，调用方只声明「我需要什么」。手动 new ",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-26"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-27",
+      "kind": "collection",
+      "title": "Hook技术",
+      "summary": "对象 A 调用 对象 B 之前做一些处理，起到欺上瞒下的作用，Hook 就是一个钩子，也称 Hook 点，有了 Hook",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-27"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-28",
+      "kind": "collection",
+      "title": "IntentService",
+      "summary": "本质是一种特殊的Service，继承自Service，本身就是一个抽象类。 可以用于在后台执行耗时的异步任务，当任务完成",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-28"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-29",
+      "kind": "collection",
+      "title": "Jetpack Compose",
+      "summary": "Compose 是 Android 的声明式 UI 工具包，1.0 稳定版发布于 2021 年。它换的不是控件，而是描述",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-29"
+    },
+    {
+      "id": "g-auto-yoyiyi-soleilnotes-30",
+      "kind": "collection",
+      "title": "Jetpack",
+      "summary": "Jetpack 是由一套库、工具和指南的集合，旨在帮助开发者快速的开发应用，Jetpack 构成如下所示： 由上图所示，",
+      "domain": "mobile",
+      "category": "Android 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "algorithm",
+        "android",
+        "c"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yoyiyi-soleilnotes-30"
     }
   ]
 }

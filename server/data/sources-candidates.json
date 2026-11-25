@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T04:35:07.478Z",
+ "updatedAt": "2026-11-25T04:55:06.418Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2342,6 +2342,46 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "auto-yoyiyi-soleilnotes",
+   "repo": "yoyiyi/SoleilNotes",
+   "branch": "master",
+   "category": "Android 面试笔记",
+   "domain": "mobile",
+   "tags": [
+    "algorithm",
+    "android",
+    "c"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T04:55:05.545Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "Android",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-archlizheng-aipm-wiki",
+   "repo": "archlizheng/AIPM-Wiki",
+   "branch": "main",
+   "category": "AI 产品经理入门知识库:面试题",
+   "domain": "ai",
+   "tags": [
+    "ai",
+    "ai-product-manager",
+    "aipm"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T04:55:06.418Z",
+   "note": "AI 产品经理求职/职业内容，非编程教程（站点定位是编程自学）"
   }
  ]
 }
