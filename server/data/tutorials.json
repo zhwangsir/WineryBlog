@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 301
+      "count": 311
     },
     {
       "id": "security",
@@ -24401,6 +24401,176 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-fendouai-opencvtutorials-30"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-1",
+      "kind": "collection",
+      "title": "数据增强",
+      "summary": "数据增强是用来提升深度学习性能的非常有效的技术。通过在原始音频中添加小的随机扰动（标签不变转换）获得新音频来增强的语音数",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-1"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-2",
+      "kind": "collection",
+      "title": "集束搜索解码",
+      "summary": "本项目目前支持两种解码方法，分别是集束搜索解码器(ctc beam search)和贪心解码器(ctc greedy)，",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-2"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-3",
+      "kind": "collection",
+      "title": "数据准备",
+      "summary": "1. 在 download data 目录下是公开数据集的下载和制作训练数据列表和词汇表的，本项目提供了下载公开的中文普",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-3"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-4",
+      "kind": "collection",
+      "title": "评估",
+      "summary": "执行下面这个脚本对模型进行评估，通过字符错误率来评价模型的性能。 输出结果：",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-4"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-5",
+      "kind": "collection",
+      "title": "导出模型",
+      "summary": "训练保存的或者下载作者提供的模型都是模型参数，我们要将它导出为预测模型，这样可以直接使用模型，不再需要模型结构代码，同时",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-5"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-6",
+      "kind": "collection",
+      "title": "合成语音数据",
+      "summary": "1. 为了拟补数据集的不足，我们合成一批语音用于训练，语音合成一批音频文件。首先搭建CosyVoice，目前只支持Ubu",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-6"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-7",
+      "kind": "collection",
+      "title": "本地预测",
+      "summary": "我们可以使用这个脚本使用模型进行预测，如果如何还没导出模型，需要执行导出模型操作把模型参数导出为预测模型，通过传递音频文",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-7"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-9",
+      "kind": "collection",
+      "title": "Nvidia Jetson部署",
+      "summary": "1. 这对Nvidia Jetson设备，如Nano、Nx、AGX等设备，可以通过下面命令安装PaddlePaddle的",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-9"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-11",
+      "kind": "collection",
+      "title": "训练模型",
+      "summary": "执行训练脚本，开始训练语音识别模型， 每训练一轮和每2000个batch都会保存一次模型，模型保存在 PaddlePad",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-11"
+    },
+    {
+      "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-12",
+      "kind": "collection",
+      "title": "WenetSpeech数据集",
+      "summary": "10000+小时的普通话语音数据集 WenetSpeech数据集 包含了10000+小时的普通话语音数据集，所有数据均来",
+      "domain": "ai",
+      "category": "中文语音识别实战（PaddlePaddle）",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "asr",
+        "chinese",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-12"
     }
   ]
 }

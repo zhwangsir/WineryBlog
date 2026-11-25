@@ -24054,5 +24054,165 @@
     "source": "fendouai/OpenCVTutorials",
     "views": 0,
     "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-1",
+    "title": "数据增强",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "数据增强是用来提升深度学习性能的非常有效的技术。通过在原始音频中添加小的随机扰动（标签不变转换）获得新音频来增强的语音数据。开发者不必自己合成，因为数据增强已经嵌入到数据生成器中并",
+    "content": "# 数据增强\n\n数据增强是用来提升深度学习性能的非常有效的技术。通过在原始音频中添加小的随机扰动（标签不变转换）获得新音频来增强的语音数据。开发者不必自己合成，因为数据增强已经嵌入到数据生成器中并且能够即时完成，在训练模型的每个epoch中随机合成音频。\n\n目前提供五个可选的增强组件供选择，配置并插入处理过程。\n\n- 噪声干扰（需要背景噪音的音频文件）\n- 混响（需要混响音频文件）\n- 随机采样率增强\n- 速度扰动\n- 移动扰动\n- 音量扰动\n- SpecAugment增强方式\n- SpecSubAugment增强方式\n\n在项目提供了数据增强的配置参数，路径在`configs/augmentation.yml`，示例配置文件如下所示：\n```yaml\n# 语速增强\nspeed:\n  # 增强概率\n  prob: 0.5\n\n# 音量增强\nvolume:\n  # 增强概率\n  prob: 0.5\n  # 最小增益\n  min_gain_dBFS: -15\n  # 最大增益\n  max_gain_dBFS: 15\n\n# 位移增强\nshift:\n  # 增强概率\n  prob: 0.5\n  # 最小偏移，单位为毫秒\n  min_shift_ms: -5\n  # 最大偏移，单位为毫秒\n  max_shift_ms: 5\n\n# 重采样增强\nresample:\n  # 增强概率\n  prob: 0.0\n  # 最小增益\n  new_sample_rate: [ 8000, 16000, 24000 ]\n\n# 噪声增强\nnoise:\n  # 增强概率\n  prob: 0.5\n  # 噪声增强的噪声文件夹\n  noise_dir: 'dataset/noise'\n  # 针对噪声的最小音量增益\n  min_snr_dB: 10\n  # 针对噪声的最大音量增益\n  max_snr_dB: 50\n\n# 混响增强\nreverb:\n  # 增强概率\n  prob: 0.2\n  # 混响增强的混响文件夹\n  reverb_dir: 'dataset/reverb'\n\n# Spec增强\nspec_aug:\n  # 增强概率\n  prob: 0.5\n  # 频域掩蔽的比例\n  freq_mask_ratio: 0.15\n  # 频域掩蔽次数\n  n_freq_masks: 2\n  # 频域掩蔽的比例\n  time_mask_ratio: 0.05\n  # 频域掩蔽次数\n  n_time_masks: 2\n  # 最大时间扭曲\n  max_time_warp: 5\n\nspec_sub_aug:\n  # 增强概率\n  prob: 0.5\n  # 时间替换的最大宽度\n  max_time: 30\n  # 时间替换的的次数\n  num_time_sub: 3\n```\n\n当`train.py`的`--data_augment_configs`参数被设置为上述示例配置文件的路径时，每个epoch中的每个音频片段都将被处理。使用数据增强技术时要小心，由于扩大了训练和测试集的差异，不恰当的增强会对训练模型不利，导致训练和预测的差距增大。",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-2",
+    "title": "集束搜索解码",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "本项目目前支持两种解码方法，分别是集束搜索解码器(ctc beam search)和贪心解码器(ctc greedy)，项目全部默认都是使用贪婪策略解码的，首先要安装所需的依赖库，",
+    "content": "# 集束搜索解码\n\n本项目目前支持两种解码方法，分别是集束搜索解码器(ctc_beam_search)和贪心解码器(ctc_greedy)，项目全部默认都是使用贪婪策略解码的，首先要安装所需的依赖库，执行下面命令安装。\n```shell\npython -m pip install kenlm\n```\n\n# 语言模型\n\n集束搜索解码需要使用到语言模型，下载语言模型并放在lm目录下，下面下载的小语言模型，如何有足够大性能的机器，可以下载70G的超大语言模型，点击下载Mandarin LM Large ，这个模型会大超多。\n```shell script\ncd PaddlePaddle-DeepSpeech/\nmkdir lm\ncd lm\nwget https://deepspeech.bj.bcebos.com/zh_lm/zh_giga.no_cna_cmn.prune01244.klm\n```\n\n# 使用集束搜索解码\n\n在需要使用到解码器的程序，如评估，预测，指定参数`--decoder`为`ctc_beam_search`即可，如果alpha和beta参数值有改动，修改对应的值即可。\n\n# 语言模型表格\n\n|                                          语言模型                                          |                                                      训练数据                                                       |  数据量  |  文件大小   |                 说明                  |\n|:--------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|:-----:|:-------:|:-----------------------------------:|\n|         自定义中文语言模型          |                       自定义中文语料                        | 约2千万  | 572 MB  |           训练参数`-o 5`，无剪枝            |\n|  英文语言模型  | CommonCrawl | 18.5亿 | 8.3 GB  | 训练参数`-o 5`，剪枝参数`'--prune 0 1 1 1 1` |\n| 中文语言模型（剪枝） |                                                     百度内部语料库                                                     | 1.3亿  | 2.8 GB  | 训练参数`-o 5`，剪枝参数`'--prune 0 1 1 1 1` |                                     |\n|            中文语言模型            |                                                     百度内部语料库                                                     |  37亿  | 70.4 GB |           训练参数`-o 5`，无剪枝            |                                     \n\n# 训练自己的语言模型\n\n1. 首先安装kenlm，此步骤要从项目根目录开始，以下是Ubuntu的安装方式，其他系统请自行百度。\n```shell\nsudo apt install -y libbz2-dev liblzma-dev cmake build-essential libboost-all-dev\ncd tools/\nwget -O - https://kheafield.com/code/kenlm.tar.gz |tar xz\ncd kenlm\nmkdir -p build\ncd build\ncmake ..\nmake -j 4\n```\n\n2. 准备kenlm语料，此步骤要从项目根目录开始，使用的语料是训练数据集，所以要执行`create_data.py`完成之后才能执行下面操作。或者自己准备语料，修改生成语料的代码。\n\n```shell\ncd tools/\npython create_kenlm_corpus.py\n```\n\n3. 有了kenlm语料之后，就可以训练kenlm模型了，此步骤要从项目根目录开始，执行下面命令训练和压缩模型。\n```shell\ncd tools/kenlm/build/ \nbin/lmplz -o 5 --verbose header --text ../../../dataset/corpus.txt --arpa ../../../lm/my_lm.arpa\n# 把模型转为二进制，减小模型大小\nbin/build_binary trie -a 22 -q 8 -b 8 ../../../lm/my_lm.arpa ../../../lm/my_lm.klm\n```\n\n4. 可以使用下面代码测试模型是否有效。\n```python\nimport kenlm\n\nmodel = kenlm.Model('kenlm1/build/model/test.klm')\nresult = model.score('近几年不但我用书给女儿儿压岁也劝说亲朋不要给女儿压岁钱而改送压岁书', bos=True, eos=True)\nprint(result)\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-3",
+    "title": "数据准备",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "1. 在 download data 目录下是公开数据集的下载和制作训练数据列表和词汇表的，本项目提供了下载公开的中文普通话语音数据集，分别是Aishell，Free ST Chi",
+    "content": "# 数据准备\n\n1. 在`download_data`目录下是公开数据集的下载和制作训练数据列表和词汇表的，本项目提供了下载公开的中文普通话语音数据集，分别是Aishell，Free ST-Chinese-Mandarin-Corpus，THCHS-30 这三个数据集，总大小超过28G。下载这三个数据只需要执行一下代码即可，当然如果想快速训练，也可以只下载其中一个。**注意：** `noise.py`可下载可不下载，这是用于训练时数据增强的，如果不想使用噪声数据增强，可以不用下载。\n```shell script\ncd download_data/\npython aishell.py\npython free_st_chinese_mandarin_corpus.py\npython thchs_30.py\npython noise.py\n```\n\n**注意：** 以上代码只支持在Linux下执行，如果是Windows的话，可以获取程序中的`DATA_URL`单独下载，建议用迅雷等下载工具，这样下载速度快很多。然后把`download()`函数改为文件的绝对路径，如下，我把`aishell.py`的文件单独下载，然后替换`download()`函数，再执行该程序，就会自动解压文件文本生成数据列表。\n```python\n# 把这行代码\nfilepath = download(url, md5sum, target_dir)\n# 修改为\nfilepath = \"D:\\\\Download\\\\data_aishell.tgz\"\n```\n\n2. 如果开发者有自己的数据集，可以使用自己的数据集进行训练，当然也可以跟上面下载的数据集一起训练。自定义的语音数据需要符合以下格式，另外对于音频的采样率，本项目默认使用的是16000Hz，在`create_data.py`中也提供了统一音频数据的采样率转换为16000Hz，只要`is_change_frame_rate`参数设置为True就可以。\n    1. 语音文件需要放在`PaddlePaddle-DeepSpeech/dataset/audio/`目录下，例如我们有个`wav`的文件夹，里面都是语音文件，我们就把这个文件存放在`PaddlePaddle-DeepSpeech/dataset/audio/`。\n    2. 然后把数据列表文件存在`PaddlePaddle-DeepSpeech/dataset/annotation/`目录下，程序会遍历这个文件下的所有数据列表文件。例如这个文件下存放一个`my_audio.txt`，它的内容格式如下。每一行数据包含该语音文件的相对路径和该语音文件对应的中文文本，他们之间用`\\t`隔开，要注意的是该中文文本只能包含纯中文，不能包含标点符号、阿拉伯数字以及英文字母。\n```shell script\ndataset/audio/wav/0175/H0175A0171.wav   我需要把空调温度调到二十度\ndataset/audio/wav/0175/H0175A0377.wav   出彩中国人\ndataset/audio/wav/0175/H0175A0470.wav   据克而瑞研究中心监测\ndataset/audio/wav/0175/H0175A0180.wav   把温度加大到十八\n```\n\n3. 最后执行下面的数据集处理脚本，这个是把我们的数据集生成JSON格式的数据列表，分别是`manifest.test、manifest.train`。然后建立词汇表，把所有出现的字符都存放子在`vocabulary.txt`文件中，一行一个字符。最后计算均值和标准差用于归一化，默认使用全部的语音计算均值和标准差，并将结果保存在`mean_istd.json`中。以上生成的文件都存放在`PaddlePaddle-DeepSpeech/dataset/`目录下。\n```shell script\n# 生成数据列表\npython create_data.py\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-4",
+    "title": "评估",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "执行下面这个脚本对模型进行评估，通过字符错误率来评价模型的性能。 输出结果：",
+    "content": "# 评估\n\n执行下面这个脚本对模型进行评估，通过字符错误率来评价模型的性能。\n```shell\npython eval.py --resume_model=./models/epoch_100/model.pdparams\n```\n\n输出结果：\n```\n2024-09-28 11:59:16.676 | INFO     | utils.utils:print_arguments:11 - ----------- 额外配置参数 -----------\n2024-09-28 11:59:16.676 | INFO     | utils.utils:print_arguments:13 - alpha: 1.2\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - batch_size: 32\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - beam_size: 300\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - beta: 0.35\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - cutoff_prob: 0.99\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - cutoff_top_n: 40\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - decoder: ctc_greedy\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - lang_model_path: ./lm/zh_giga.no_cna_cmn.prune01244.klm\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - max_duration: 20.0\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - mean_istd_path: ./dataset/mean_istd.json\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - metrics_type: cer\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - min_duration: 0.5\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - num_proc_bsearch: 8\n2024-09-28 11:59:16.677 | INFO     | utils.utils:print_arguments:13 - num_rnn_layers: 3\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:13 - pretrained_model: ./models/epoch_15/\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:13 - rnn_layer_size: 1024\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:13 - test_manifest: ./dataset/manifest.test\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:13 - use_gpu: True\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:13 - vocab_path: ./dataset/vocabulary.txt\n2024-09-28 11:59:16.678 | INFO     | utils.utils:print_arguments:14 - ------------------------------------------------\nW0928 11:59:17.548969 22724 gpu_resources.cc:119] Please NOTE: device: 0, GPU Compute Capability: 7.5, Driver API Version: 12.4, Runtime API Version: 11.7\nW0928 11:59:17.550941 22724 gpu_resources.cc:164] device: 0, cuDNN Version: 8.4.\n2024-09-28 11:59:18.096 | INFO     | utils.checkpoint:load_pretrained:40 - 成功加载预训练模型：./models/epoch_100/model.pdparams\n2024-09-28 11:59:20.380 | INFO     | __main__:evaluate:95 - 预测结果为：在政府目标的引导下\n2024-09-28 11:59:20.380 | INFO     | __main__:evaluate:96 - 实际标签为：在政府目标的引导下\n2024-09-28 11:59:20.380 | INFO     | __main__:evaluate:97 - 这条数据的cer：0.0，当前cer：0.0\n  0%|          | 0/9 [00:00<?, ?it/s]\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-5",
+    "title": "导出模型",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "训练保存的或者下载作者提供的模型都是模型参数，我们要将它导出为预测模型，这样可以直接使用模型，不再需要模型结构代码，同时使用Inference接口可以加速预测。 输出结果：",
+    "content": "# 导出模型\n\n训练保存的或者下载作者提供的模型都是模型参数，我们要将它导出为预测模型，这样可以直接使用模型，不再需要模型结构代码，同时使用Inference接口可以加速预测。\n```shell\npython export_model.py --resume_model=./models/epoch_100/model.pdparams\n```\n\n输出结果：\n```\n2024-09-28 12:01:11.360 | INFO     | utils.utils:print_arguments:11 - ----------- 额外配置参数 -----------\n2024-09-28 12:01:11.360 | INFO     | utils.utils:print_arguments:13 - mean_istd_path: ./dataset/mean_istd.json\n2024-09-28 12:01:11.360 | INFO     | utils.utils:print_arguments:13 - num_rnn_layers: 3\n2024-09-28 12:01:11.361 | INFO     | utils.utils:print_arguments:13 - pretrained_model: ./models/epoch_15/\n2024-09-28 12:01:11.361 | INFO     | utils.utils:print_arguments:13 - rnn_layer_size: 1024\n2024-09-28 12:01:11.361 | INFO     | utils.utils:print_arguments:13 - save_model_path: ./models/infer/\n2024-09-28 12:01:11.361 | INFO     | utils.utils:print_arguments:13 - vocab_path: ./dataset/vocabulary.txt\n2024-09-28 12:01:11.361 | INFO     | utils.utils:print_arguments:14 - ------------------------------------------------\nW0928 12:01:12.347131 35992 gpu_resources.cc:119] Please NOTE: device: 0, GPU Compute Capability: 7.5, Driver API Version: 12.4, Runtime API Version: 11.7\nW0928 12:01:12.350131 35992 gpu_resources.cc:164] device: 0, cuDNN Version: 8.4.\n2024-09-28 12:01:13.202 | INFO     | utils.checkpoint:load_pretrained:40 - 成功加载预训练模型：./models/epoch_15/model.pdparams\n2024-09-28 12:01:14.121 | INFO     | __main__:<module>:40 - 预测模型已保存：./models/infer/model\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-6",
+    "title": "合成语音数据",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "1. 为了拟补数据集的不足，我们合成一批语音用于训练，语音合成一批音频文件。首先搭建CosyVoice，目前只支持Ubuntu，执行下面命令即可安装完成。 2. 然后下载一个语料，",
+    "content": "# 合成语音数据\n\n1. 为了拟补数据集的不足，我们合成一批语音用于训练，语音合成一批音频文件。首先搭建CosyVoice，目前只支持Ubuntu，执行下面命令即可安装完成。\n```shell\ncd tools/\n# 克隆代码，注意中间会克隆好几个库，必须保证每个库都成功，中间有失败的，请删除文件夹重新继续。\ngit clone --recursive https://github.com/FunAudioLLM/CosyVoice.git\ncd CosyVoice\ngit submodule update --init --recursive\n# 建立独立的虚拟环境\nconda create -n cosyvoice python=3.8\nconda activate cosyvoice\n# 安装依赖库\nconda install -y -c conda-forge pynini==2.1.5\nsudo apt-get install sox libsox-dev\npip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com\n# 复制程序\ncp ../generate_corpus.py .\ncp ../generate_audio.py .\n```\n\n2. 然后下载一个语料，如果开发者有其他更好的语料也可以替换。然后解压`dgk_lost_conv/results`目录下的压缩文件，windows用户可以手动解压。\n```shell\n# 注意路径\ncd tools/CosyVoice/\ngit clone https://github.com/aceimnorstuvwxz/dgk_lost_conv.git\ncd dgk_lost_conv/results\nunzip dgk_shooter_z.conv.zip\nunzip xiaohuangji50w_fenciA.conv.zip\nunzip xiaohuangji50w_nofenci.conv.zip\n```\n\n3. 接着执行下面命令生成中文语料数据集，生成的中文语料存放在`tools/corpus.txt`。\n```shell\n# 注意路径\ncd tools/CosyVoice/\npython generate_corpus.py\n```\n\n4. 最后执行以下命令即可自动合成语音，合成时会随机获取说话人进行合成语音，合成的语音会放在`dataset/audio/generate`， 标注文件会放在`dataset/annotation/generate.txt`。\n```shell\n# 注意路径\ncd tools/CosyVoice/\n# 设置环境变量\nexport PYTHONPATH=third_party/Matcha-TTS\npython generate_audio.py\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-7",
+    "title": "本地预测",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "我们可以使用这个脚本使用模型进行预测，如果如何还没导出模型，需要执行导出模型操作把模型参数导出为预测模型，通过传递音频文件的路径进行识别，通过参数 wav path 指定需要预测的",
+    "content": "# 本地预测\n\n我们可以使用这个脚本使用模型进行预测，如果如何还没导出模型，需要执行导出模型操作把模型参数导出为预测模型，通过传递音频文件的路径进行识别，通过参数`--wav_path`指定需要预测的音频路径。\n```shell script\npython infer_path.py --wav_path=./dataset/test.wav\n```\n\n输出结果：\n```\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:11 - ----------- 额外配置参数 -----------\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - alpha: 1.2\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - beam_size: 300\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - beta: 0.35\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - cutoff_prob: 0.99\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - cutoff_top_n: 40\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - decoder: ctc_greedy\n2024-09-28 12:02:04.321 | INFO     | utils.utils:print_arguments:13 - enable_mkldnn: False\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - lang_model_path: ./lm/zh_giga.no_cna_cmn.prune01244.klm\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - model_dir: ./models/infer/\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - to_itn: False\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - use_gpu: True\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - vocab_path: ./dataset/vocabulary.txt\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:13 - wav_path: ./dataset/test.wav\n2024-09-28 12:02:04.322 | INFO     | utils.utils:print_arguments:14 - ------------------------------------------------\n消耗时间：132, 识别结果: 近几年不但我用书给女儿儿压岁也劝说亲朋不要给女儿压岁钱而改送压岁书\n```\n\n## Web部署\n\n在服务器执行下面命令通过创建一个Web服务，通过提供HTTP接口来实现语音识别。启动服务之后，如果在本地运行的话，在浏览器上访问`http://localhost:5000`，否则修改为对应的 IP地址。打开页面之后可以选择上传长音或者短语音音频文件，也可以在页面上直接录音，录音完成之后点击上传，播放功能只支持录音的音频。\n```shell script\npython infer_server.py\n```\n\n打开页面如下：\n![录音测试页面](/images/figures/auto-yeyupiaoling-paddlepaddle-deepspeech/docs_images_infer_server.jpg)\n\n## GUI界面部署\n通过打开页面，在页面上选择长语音或者短语音进行识别，也支持录音识别，同时播放识别的音频。默认使用的是贪心解码策略，如果需要使用集束搜索方法的话，需要在启动参数的时候指定。\n```shell script\npython infer_gui.py\n```\n\n打开界面如下：\n![GUI界面](/images/figures/auto-yeyupiaoling-paddlepaddle-deepspeech/docs_images_infer_gui.jpg)",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-9",
+    "title": "Nvidia Jetson部署",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "1. 这对Nvidia Jetson设备，如Nano、Nx、AGX等设备，可以通过下面命令安装PaddlePaddle的Inference预测库。 2. 安装其他依赖库，如果缺少库",
+    "content": "# Nvidia Jetson部署\n\n1. 这对Nvidia Jetson设备，如Nano、Nx、AGX等设备，可以通过下面命令安装PaddlePaddle的Inference预测库。\n```shell\nwget https://paddle-inference-lib.bj.bcebos.com/2.6.1/python/Jetson/jetpack5.0.2_gcc9.4/all/paddlepaddle_gpu-2.6.1-cp38-cp38-linux_aarch64.whl\npip3 install paddlepaddle_gpu-2.6.1-cp38-cp38-linux_aarch64.whl\n```\n\n2. 安装其他依赖库，如果缺少库，可以手动安装。\n```shell\npip3 install -r requirements.txt\n```\n\n3. 执行预测，直接使用根目录下的预测代码。\n```shell\npython infer_path.py --wav_path=./dataset/test.wav\n```\n\n以Nvidia AGX为例，输出结果如下：\n```\nWARNING: AVX is not support on your machine. Hence, no_avx core will be imported, It has much worse preformance than avx core.\n-----------  Configuration Arguments -----------\nalpha: 1.2\nbeam_size: 10\nbeta: 0.35\ncutoff_prob: 1.0\ncutoff_top_n: 40\ndecoding_method: ctc_greedy\nenable_mkldnn: False\nis_long_audio: False\nlang_model_path: ./lm/zh_giga.no_cna_cmn.prune01244.klm\nmean_std_path: ./dataset/mean_std.npz\nmodel_dir: ./models/infer/\nto_an: True\nuse_gpu: True\nuse_tensorrt: False\nvocab_path: ./dataset/zh_vocab.txt\nwav_path: ./dataset/test.wav\n------------------------------------------------\n消耗时间：416ms, 识别结果: 近几年不但我用书给女儿压岁也劝说亲朋不要给女儿压岁钱而改送压岁书, 得分: 97\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-11",
+    "title": "训练模型",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "执行训练脚本，开始训练语音识别模型， 每训练一轮和每2000个batch都会保存一次模型，模型保存在 PaddlePaddle DeepSpeech/models/param/ 目",
+    "content": "# 训练模型\n\n - 执行训练脚本，开始训练语音识别模型， 每训练一轮和每2000个batch都会保存一次模型，模型保存在`PaddlePaddle-DeepSpeech/models/param/`目录下，默认会使用数据增强训练，如何不想使用数据增强，只需要将参数`augment_conf_path`设置为`None`即可。关于数据增强，请查看数据增强部分。如果没有关闭测试，在每一轮训练结果之后，都会执行一次测试计算模型在测试集的准确率。执行训练时，如果是Linux下，通过`CUDA_VISIBLE_DEVICES`可以指定多卡训练。\n```shell script\nCUDA_VISIBLE_DEVICES=0,1 python train.py\n```\n\n训练输出结果如下：\n```\n2024-09-28 11:57:46.355 | INFO     | utils.utils:print_arguments:11 - ----------- 额外配置参数 -----------\n2024-09-28 11:57:46.355 | INFO     | utils.utils:print_arguments:13 - augment_conf_path: ./conf/augmentation.yml\n2024-09-28 11:57:46.355 | INFO     | utils.utils:print_arguments:13 - batch_size: 8\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - learning_rate: 0.0005\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - max_duration: 20.0\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - mean_istd_path: ./dataset/mean_istd.json\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - metrics_type: cer\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - min_duration: 0.5\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - num_epoch: 100\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - num_rnn_layers: 3\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - output_model_dir: ./models/\n2024-09-28 11:57:46.356 | INFO     | utils.utils:print_arguments:13 - pretrained_model: None\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - resume_model: None\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - rnn_layer_size: 1024\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - test_manifest: ./dataset/manifest.test\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - train_manifest: ./dataset/manifest.train\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - use_gpu: True\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:13 - vocab_path: ./dataset/vocabulary.txt\n2024-09-28 11:57:46.357 | INFO     | utils.utils:print_arguments:14 - ------------------------------------------------\n2024-09-28 11:57:46.365 | INFO     | utils.utils:print_arguments:17 - ----------- 数据增强配置 -----------\n2024-09-28 11:57:46.365 | INFO     | utils.utils:print_arguments:21 - noise:\n2024-09-28 11:57:46.365 | INFO     | utils.utils:print_arguments:28 - \tmax_snr_dB: 50\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tmin_snr_dB: 10\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tnoise_dir: dataset/noise\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:21 - resample:\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tnew_sample_rate: [8000, 16000, 24000]\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.0\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:21 - reverb:\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.2\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \treverb_dir: dataset/reverb\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:21 - shift:\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tmax_shift_ms: 5\n2024-09-28 11:57:46.366 | INFO     | utils.utils:print_arguments:28 - \tmin_shift_ms: -5\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:21 - spec_aug:\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tfreq_mask_ratio: 0.15\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tmax_time_warp: 5\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tn_freq_masks: 2\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tn_time_masks: 2\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \ttime_mask_ratio: 0.05\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:21 - spec_sub_aug:\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tmax_time: 30\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tnum_time_sub: 3\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.367 | INFO     | utils.utils:print_arguments:21 - speed:\n2024-09-28 11:57:46.368 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.368 | INFO     | utils.utils:print_arguments:21 - volume:\n2024-09-28 11:57:46.371 | INFO     | utils.utils:print_arguments:28 - \tmax_gain_dBFS: 15\n2024-09-28 11:57:46.371 | INFO     | utils.utils:print_arguments:28 - \tmin_gain_dBFS: -15\n2024-09-28 11:57:46.371 | INFO     | utils.utils:print_arguments:28 - \tprob: 0.5\n2024-09-28 11:57:46.371 | INFO     | utils.utils:print_arguments:31 - ------------------------------------------------\n2024-09-28 11:57:46.373 | INFO     | yeaudio.augmentation:__init__:135 - 噪声增强的噪声音频文件数量: 0\n2024-09-28 11:57:46.374 | INFO     | yeaudio.augmentation:__init__:170 - 混响增强音频文件数量: 0\nW0928 11:57:47.821491 35864 gpu_resources.cc:119] Please NOTE: device: 0, GPU Compute Capability: 7.5, Driver API Version: 12.4, Runtime API Version: 11.7\nW0928 11:57:47.825518 35864 gpu_resources.cc:164] device: 0, cuDNN Version: 8.4.\n2024-09-28 11:57:50.527 | INFO     | __main__:train:146 - Train epoch: [1/200], batch: [0/17664], loss: 63.13452, learning_rate: 0.00000004, eta: 110 days, 1:57:04\n2024-09-28 11:58:04.960 | INFO     | __main__:train:146 - Train epoch: [1/200], batch: [100/17664], loss: 55.69350, learning_rate: 0.00000204, eta: 5 days, 21:14:44\n```\n\n - 在训练过程中，程序会使用VisualDL记录训练结果，可以通过以下的命令启动VisualDL。\n```shell\nvisualdl --logdir=log --host=0.0.0.0\n```\n\n - 然后再浏览器上访问`http://localhost:8040`可以查看结果显示，如下。\n\n![Learning rate](/images/figures/auto-yeyupiaoling-paddlepaddle-deepspeech/ext_img-blog.csdnimg.cn__20210318165719805.png)\n> [图示：Test Cer]\n> [图示：Train Loss]\n\n# 恢复训练\n如果在训练的时候中断了，可以通过参数`resume_model`指定模型，然后在这基础上恢复训练，在启动训练之后会加载该模型，并以当前epoch继续训练。\n\n```shell script\nCUDA_VISIBLE_DEVICES=0,1 python train.py --resume_model=./models/epoch_100/\n```\n\n# 微调模型\n如果读者已经训练或者下载了模型，想使用自己的数据集微调模型，除了使用`resume_model`参数指定模型外，还需要修改训练的`num_epoch`，因为该模型已经是最大`num_epoch`保存的模型，如果不修改参数的话，可能直接就停止训练了，可以设置为110，模型就会在原来的模型在训练10个epoch。数据集需要加上原来的数据合并一起训练。\n\n```shell script\nCUDA_VISIBLE_DEVICES=0,1 python train.py --resume_model=./models/epoch_100/ --num_epoch=110\n```",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-auto-yeyupiaoling-paddlepaddle-deepspeech-12",
+    "title": "WenetSpeech数据集",
+    "date": "2026-11-25",
+    "category": "中文语音识别实战（PaddlePaddle）",
+    "tags": [
+      "asr",
+      "chinese",
+      "deep-learning"
+    ],
+    "excerpt": "10000+小时的普通话语音数据集 WenetSpeech数据集 包含了10000+小时的普通话语音数据集，所有数据均来自 YouTube 和 Podcast。采用光学字符识别(O",
+    "content": "# WenetSpeech数据集\n\n10000+小时的普通话语音数据集\n\n![WenetSpeech数据集](/images/figures/auto-yeyupiaoling-paddlepaddle-deepspeech/docs_images_wenetspeech.jpg)\n\nWenetSpeech数据集 包含了10000+小时的普通话语音数据集，所有数据均来自 YouTube 和 Podcast。采用光学字符识别(OCR)和自动语音识别(ASR)技术分别标记每个YouTube和Podcast录音。为了提高语料库的质量，WenetSpeech使用了一种新颖的端到端标签错误检测方法来进一步验证和过滤数据。\n\n - 所有数据分为 3 类，如下表所示：\n\n| 数据分类 | 时长（小时） |     可信度     |   可用系统    |\n|:----:|:------:|:-----------:|:---------:|\n| 强标签  | 10005  |   \\>=0.95   |   监督训练    |\n| 弱标签  |  2478  | [0.6, 0.95] | 半监督或噪音训练  |\n| 无标签  |  9952  |      /      | 无监督训练或预训练 |\n|  总共  | 22435  |      /      |     /     |\n\n - 领域、说话风格和场景将高标签分为 10 组，如下表所示：\n\n|  领域  | Youtube（小时） | Podcast（小时） | 全部（小时） |\n|:----:|:-----------:|:-----------:|:------:|\n| 有声读物 |      0      |    250.9    | 250.9  |\n| 现场解说 |    112.6    |    135.7    | 248.3  |\n| 纪录片  |    386.7    |    90.5     | 477.2  |\n|  戏剧  |   4338.2    |      0      | 4338.2 |\n|  采访  |    324.2    |     614     | 938.2  |\n|  新闻  |      0      |     868     |  868   |\n|  阅读  |      0      |   1110.2    | 1110.2 |\n|  讨论  |     204     |    90.7     | 294.7  |\n|  综艺  |    603.3    |    224.5    | 827.8  |\n|  其他  |     144     |    507.5    | 651.5  |\n|  总共  |    6113     |    3892     | 10005  |\n\n - 3个子集，即S，M并且L对不同的数据规模建设ASR系统\n\n| 训练数据 |     可信度     | 时长（小时） |\n|:----:|:-----------:|:------:|\n|  L   | [0.95, 1.0] | 10005  |\n|  M   |     1.0     |  1000  |\n|  S   |     1.0     |  100   |\n\n - 评估测试数据\n\n|     评估数据      | 时长（小时） | 来源  |            描述            |\n|:-------------:|:------:|:---:|:------------------------:|\n|      DEV      |   20   | 互联网 | 专为一些需要在训练中设置交叉验证的语音工具而设计 |\n|   TEST_NET   |   23   | 互联网 |           比赛测试           |\n| TEST_MEETING |   15   | 会议  |      远场、对话、自发和会议数据集      |\n\n1. 本教程介绍如何使用该数据集训练语音识别模型，只是用强标签的数据，主要分三步。下载并解压WenetSpeech数据集，在官网 填写表单之后，会收到邮件，执行邮件上面的三个命令就可以下载并解压数据集了，注意这要500G的磁盘空间。\n\n2. 然后制作数据集，下载原始的数据是没有裁剪的，我们需要根据JSON标注文件裁剪并标注音频文件。在`tools`目录下执行`create_wenetspeech_data.py`程序就可以制作数据集了，注意此时需要3T的磁盘空间。`--wenetspeech_json`参数是指定WenetSpeech数据集的标注文件路径，具体根据读者下载的地址设置。\n```shell\ncd tools/\npython create_wenetspeech_data.py --wenetspeech_json=/media/wenetspeech/WenetSpeech.json\n```\n\n3. 最后创建训练数据，跟普通使用一样，在项目根目录执行`create_data.py`就能过生成训练所需的数据列表，词汇表和均值标准差文件。这一步结束后就可以训练模型了，具体看训练模型\n```shell\npython create_data.py\n```\n\n**温馨提示：** 数据集超大，费时费资源，看自己的情况使用，无金刚钻就不要揽瓷器活。",
+    "source": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
   }
 ]

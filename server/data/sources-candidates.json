@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T00:15:10.735Z",
+ "updatedAt": "2026-11-25T00:34:53.610Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1762,6 +1762,46 @@
    "status": "failed",
    "addedAt": "2026-11-25T00:15:10.734Z",
    "note": "Awesome 链接清单：可用 md 为 0（发现路径此前未接 md 校验，已补上）"
+  },
+  {
+   "id": "auto-sou350121-vla-handbook",
+   "repo": "sou350121/VLA-Handbook",
+   "branch": "main",
+   "category": "本项目旨在为致力于进入VLA",
+   "domain": "ai",
+   "tags": [
+    "chinese",
+    "deep-learning",
+    "embodied-ai"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T00:34:51.913Z",
+   "note": "书稿只有 278KB/700KB 两个巨型单文件（单页体验差），其余为 .claude 技能配置，无章节化 md"
+  },
+  {
+   "id": "auto-yeyupiaoling-paddlepaddle-deepspeech",
+   "repo": "yeyupiaoling/PaddlePaddle-DeepSpeech",
+   "branch": "master",
+   "category": "中文语音识别实战（PaddlePaddle）",
+   "domain": "ai",
+   "tags": [
+    "asr",
+    "chinese",
+    "deep-learning"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T00:34:53.609Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 12,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
