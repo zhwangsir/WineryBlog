@@ -34288,21 +34288,6 @@
     "cover": "/images/acg/c20c604f333ea251.jpg"
   },
   {
-    "id": "g-dailyq3-2",
-    "title": "文件系统中 mtime、ctime 和 atime 指什么，都有什么不同",
-    "date": "2026-11-25",
-    "category": "大厂面经题库 III",
-    "tags": [
-      "面试",
-      "题库"
-    ],
-    "excerpt": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 116 Author 回答者: shfshanyue 在 linux 中， mtime ： modifie",
-    "content": "# 文件系统中 mtime、ctime 和 atime 指什么，都有什么不同\n\n> Issue\n> 欢迎在 Gtihub Issue 中回答此问题: Issue 116\n\n> Author\n> 回答者: shfshanyue\n\n在 `linux` 中，\n\n- `mtime`：`modified time` 指文件内容改变的时间戳\n- `ctime`：`change time` 指文件属性改变的时间戳，属性包括 `mtime`。而在 windows 上，它表示的是 `creation time`\n\n所以 `ctime` 会比 `mtime` 要大一些，使用 `stat` 查看文件属性如下\n\n```bash\n$ stat hello.txt\n  File: ‘hello.txt’\n  Size: 30              Blocks: 8          IO Block: 4096   regular file\nDevice: fd01h/64769d    Inode: 917526      Links: 1\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\nAccess: 2019-12-10 16:15:55.253325208 +0800\nModify: 2019-12-10 16:15:52.740653330 +0800\nChange: 2019-12-10 16:15:52.742653069 +0800\n Birth: -\n```\n\n而 http 服务选择 `Last_Modified` 时一般会选择 `mtime`",
-    "source": "shfshanyue/Daily-Question",
-    "views": 0,
-    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
-  },
-  {
     "id": "g-dailyq3-3",
     "title": "如何监控文件的变动",
     "date": "2026-11-25",
@@ -34316,21 +34301,6 @@
     "source": "shfshanyue/Daily-Question",
     "views": 0,
     "cover": "/images/acg/7508d797f8854870.webp"
-  },
-  {
-    "id": "g-dailyq3-9",
-    "title": "什么是 exit code",
-    "date": "2026-11-25",
-    "category": "大厂面经题库 III",
-    "tags": [
-      "面试",
-      "题库"
-    ],
-    "excerpt": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 424 Author 回答者: shfshanyue exit code 代表一个进程的返回码，通过系统调",
-    "content": "# 什么是 exit code\n\n> Issue\n> 欢迎在 Gtihub Issue 中回答此问题: Issue 424\n\n> Author\n> 回答者: shfshanyue\n\n`exit code` 代表一个进程的返回码，通过系统调用 `exit_group` 来触发。在 `POSIX` 中，`0` 代表正常的返回码，`1-255` 代表异常返回码，一般主动抛出的错误码都是 `1`。\n\n这里有一张关于异常码的附表 Appendix E. Exit Codes With Special Meanings。\n\n异常码在操作系统中随处可见，以下是一个关于 `cat` 命令的异常以及它的 `exit code`，并使用 `strace` 追踪系统调用。\n\n```bash\n$ cat a\ncat: a: No such file or directory\n\n# 使用 strace 查看 cat 的系统调用\n# -e 只显示 write 与 exit_group 的系统调用\n$ strace -e write,exit_group cat a\nwrite(2, \"cat: \", 5cat: )                    = 5\nwrite(2, \"a\", 1a)                        = 1\nwrite(2, \": No such file or directory\", 27: No such file or directory) = 27\nwrite(2, \"\\n\", 1\n)                       = 1\nexit_group(1)                           = ?\n+++ exited with 1 +++\n```\n\n从系统调用的最后一行可以看出，该进行的 `exit code` 是 1，并把错误信息输出到 `stderr` (标准错误的 fd 为2) 中\n\n## 如何查看 exit code\n\n从 `strace` 中可以来判断进程的 `exit code`，但是不够方便过于冗余，特别身处 shell 编程环境中。\n\n**有一种简单的方法，通过 `echo $?` 来确认返回码**\n\n```bash\n$ cat a\ncat: a: No such file or directory\n\n$ echo $?\n1\n```",
-    "source": "shfshanyue/Daily-Question",
-    "views": 0,
-    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
   },
   {
     "id": "g-dailyq3-16",

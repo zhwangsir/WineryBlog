@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 42
+      "count": 40
     }
   ],
   "tutorials": [
@@ -35287,22 +35287,6 @@
       "href": "/post/g-codehunter2-20"
     },
     {
-      "id": "g-dailyq3-2",
-      "kind": "collection",
-      "title": "文件系统中 mtime、ctime 和 atime 指什么，都有什么不同",
-      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 116 Author 回答者: shfshan",
-      "domain": "swe",
-      "category": "大厂面经题库 III",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "面试",
-        "题库"
-      ],
-      "prereqs": [],
-      "href": "/post/g-dailyq3-2"
-    },
-    {
       "id": "g-dailyq3-3",
       "kind": "collection",
       "title": "如何监控文件的变动",
@@ -35317,22 +35301,6 @@
       ],
       "prereqs": [],
       "href": "/post/g-dailyq3-3"
-    },
-    {
-      "id": "g-dailyq3-9",
-      "kind": "collection",
-      "title": "什么是 exit code",
-      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 424 Author 回答者: shfshan",
-      "domain": "swe",
-      "category": "大厂面经题库 III",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "面试",
-        "题库"
-      ],
-      "prereqs": [],
-      "href": "/post/g-dailyq3-9"
     },
     {
       "id": "g-dailyq3-16",
