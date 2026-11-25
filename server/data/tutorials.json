@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 177
+      "count": 183
     },
     {
       "id": "backend",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 311
+      "count": 341
     },
     {
       "id": "security",
@@ -25591,6 +25591,618 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-wx-chevalier-database-notes-30"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-1",
+      "kind": "collection",
+      "title": "es6面试题",
+      "summary": "鼓励PR，持续更新 最新：2019.10.05 es6 es7 举例说明setImmediate有什么作用？ 请分析如下",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-1"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-2",
+      "kind": "collection",
+      "title": "css面试题",
+      "summary": "不定时更新 最新：2021.02.27 你有使用过mask属性吗？请说说它的用途 你有使用过css doodle吗？说说",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 27,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-2"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-4",
+      "kind": "collection",
+      "title": "js试题",
+      "summary": "不定时更新 最新：2021.02.27 infinity代表什么数据？ 请解释下面题目输出的结果 如何计算动画的帧率（F",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 29,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-4"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-5",
+      "kind": "collection",
+      "title": "nodejs面试题",
+      "summary": "不定时更新 最新：2029.07.09 如何使用nodejs对base64进行编解码？ 如何获取项目的根路径？ 如果发现",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-5"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-6",
+      "kind": "collection",
+      "title": "软技能试题",
+      "summary": "不定时更新 最新：2021.02.27 请说说使用iconfont图标的优点和缺点 png 8和png 24有什么区别？",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 30,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-6"
+    },
+    {
+      "id": "g-auto-haizlin-fe-interview-7",
+      "kind": "collection",
+      "title": "周汇总 2019.07.07",
+      "summary": "《论语》，曾子曰： “吾日三省吾身” （我每天多次反省自己）。 前端面试每日3+1题，以面试题来驱动学习，每天进步一点！",
+      "domain": "frontend",
+      "category": "前端面试每日 3+1 题集",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "css",
+        "fe-interview",
+        "front-end"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-haizlin-fe-interview-7"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-1",
+      "kind": "collection",
+      "title": "1.llm概念",
+      "summary": "\\ toc 目前主流的开源LLM（语言模型）模型体系包括以下几个： 1. GPT（Generative Pre trai",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-1"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-2",
+      "kind": "collection",
+      "title": "1.分词",
+      "summary": "分词是自然语言处理的基础，分词准确度直接决定了后面的词性标注、句法分析、词向量以及文本分析的质量。 英文语句使用空格将单",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-2"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-3",
+      "kind": "collection",
+      "title": "1.激活函数",
+      "summary": "神经网络是线性的，无法解决非线性的问题，加入激活函数就是给模型引入非线性能力； 不同的激活函数，特点和作用不同： Sig",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-3"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-4",
+      "kind": "collection",
+      "title": "1.语言模型",
+      "summary": "语言模型（LM）的经典定义 是一种对令牌序列(token)的概率分布 。假设有一个令牌集的词汇表 $V$ 。语言模型p为",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-4"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-5",
+      "kind": "collection",
+      "title": "2.jieba分词用法及原理",
+      "summary": "上篇文章分析了自然语言处理，特别是中文处理中，分词的几个主要难点。为了解决这些难点，提出了 基于字符串匹配的算法 和 基",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-5"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-6",
+      "kind": "collection",
+      "title": "3.词性标注",
+      "summary": "词性标注在自然语言处理中也属于基础性的模块，为句法分析、信息抽取等工作打下基础。和分词一样，中文词性标注也存在着很多难点",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-6"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-7",
+      "kind": "collection",
+      "title": "4.句法分析",
+      "summary": "句法分析也是自然语言处理中的基础性工作，它分析句子的句法结构（主谓宾结构）和词汇间的依存关系（并列，从属等）。通过句法分",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-7"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-8",
+      "kind": "collection",
+      "title": "5.词向量",
+      "summary": "词向量和分词一样，也是自然语言处理中的基础性工作。 词向量一方面解决了词语的编码问题，另一方面也解决了词的同义关系 ，使",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-8"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-9",
+      "kind": "collection",
+      "title": "LLM为什么Decoder only架构",
+      "summary": "为什么现在的LLM都是Decoder only的架构？ LLM 是 “Large Language Model” 的简写",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-9"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-10",
+      "kind": "collection",
+      "title": "NLP三大特征抽取器（CNN/RNN/TF）",
+      "summary": "摘自文章：自然语言处理三大特征抽取器 结论 ：RNN已经基本完成它的历史使命，将来会逐步退出历史舞台；CNN如果改造得当",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-10"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-11",
+      "kind": "collection",
+      "title": "NLP面试题",
+      "summary": "BERT（Bidirectional Encoder Representations from Transformers",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-11"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-12",
+      "kind": "collection",
+      "title": "Word2Vec",
+      "summary": "文章来源：Word2Vec详解 知乎 (zhihu.com)\") Word2Vec是google在2013年推出的一个N",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-12"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-13",
+      "kind": "collection",
+      "title": "1.MoE论文",
+      "summary": "参考文章： Mixture of Experts Introduction Understanding the Mixt",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-13"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-14",
+      "kind": "collection",
+      "title": "1.attention",
+      "summary": "Attention机制是一种在处理时序相关问题的时候常用的技术，主要用于处理序列数据。 核心思想是在处理序列数据时，网络",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 26,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-14"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-15",
+      "kind": "collection",
+      "title": "2.MoE经典论文简牍",
+      "summary": "参考资料： MoE (Mixture of Experts) 经典文章简读 经典文章简读\") Mixture of Ex",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-15"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-16",
+      "kind": "collection",
+      "title": "2.layernormalization",
+      "summary": "为什么要进行BN呢？ 1. 在深度神经网络训练的过程中，通常以输入网络的每一个mini batch进行训练，这样每个ba",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-16"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-17",
+      "kind": "collection",
+      "title": "3.LLM MoE ：Switch Transformers",
+      "summary": "GPT 4远不止1万亿，甚至，还是8个2200亿参数组成的混合专家模型（ MoE ）。 2023年6月，美国知名骇客Ge",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-17"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-18",
+      "kind": "collection",
+      "title": "3.位置编码",
+      "summary": "不同于RNN、CNN等模型，对于Transformer模型来说，位置编码的加入是必不可少的，因为 纯粹的Attentio",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 19,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-18"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-19",
+      "kind": "collection",
+      "title": "4.tokenize分词",
+      "summary": "分词方法 特点 被提出的时间 典型模型 BPE 采用合并规则，可以适应未知词 2016年 GPT 2、RoBERTa W",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-19"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-20",
+      "kind": "collection",
+      "title": "5.token及模型参数",
+      "summary": "参考资料： https://zhuanlan.zhihu.com/p/636812912 https://mp.weix",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-20"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-21",
+      "kind": "collection",
+      "title": "6.激活函数",
+      "summary": "\\ toc FFN（Feed Forward Network）块是Transformer模型中的一个重要组成部分，接受自",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-21"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-22",
+      "kind": "collection",
+      "title": "MHAMQAGQA",
+      "summary": "在 MHA（Multi Head Attention） 中，每个头有自己单独的 key value 对；标准的多头注意力",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-22"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-23",
+      "kind": "collection",
+      "title": "Transformer架构细节",
+      "summary": "经典的Transformer架构中的Encoder模块包含6个Encoder Block. & x20; 每个Encod",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-23"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-24",
+      "kind": "collection",
+      "title": "bert变种",
+      "summary": "原论文链接: https://arxiv.org/pdf/1907.11692.pdf RoBERTa 的全称是 Rob",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-24"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-25",
+      "kind": "collection",
+      "title": "bert细节",
+      "summary": "BERT（Bidirectional Encoder Representations from Transformers",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-25"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-26",
+      "kind": "collection",
+      "title": "chatglm系列模型",
+      "summary": "主流的预训练框架主要有三种： 1. autoregressive自回归模型（AR模型） ：代表作GPT。本质上是一个le",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-26"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-27",
+      "kind": "collection",
+      "title": "llama 2代码详解",
+      "summary": "文章摘自：Llama 2详解 知乎 (zhihu.com)\") LLM(Large Language Model)应该是",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-27"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-28",
+      "kind": "collection",
+      "title": "llama 3",
+      "summary": "Meta LLaMA3 强势发布，迄今为止功能最强大的公开可用的 LLM。此版本是在 15 万亿个 Token 上预训练",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-28"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-29",
+      "kind": "collection",
+      "title": "llama系列模型",
+      "summary": "Open and Efficient Foundation Language Models (Open但没完全Open的",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-29"
+    },
+    {
+      "id": "g-auto-wdndev-llm-interview-note-30",
+      "kind": "collection",
+      "title": "解码策略（Top-k & Top-p & Temperature）",
+      "summary": "在大模型训练好之后，如何对训练好的模型进行解码（decode）是一个火热的研究话题。 一般给模型传入的解码参数如下所示。",
+      "domain": "ai",
+      "category": "LLM 面试笔记",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "interview",
+        "llm",
+        "llm-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wdndev-llm-interview-note-30"
     }
   ]
 }

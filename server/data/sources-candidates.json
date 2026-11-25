@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T01:15:04.117Z",
+ "updatedAt": "2026-11-25T01:35:11.432Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1892,6 +1892,65 @@
    "status": "failed",
    "addedAt": "2026-11-25T01:15:04.117Z",
    "note": "智能办公 OA 产品仓库：md 为 .cursor 编辑器规则与商业方案文档，非教程内容"
+  },
+  {
+   "id": "auto-haizlin-fe-interview",
+   "repo": "haizlin/fe-interview",
+   "branch": "master",
+   "category": "前端面试每日 3+1 题集",
+   "domain": "frontend",
+   "tags": [
+    "css",
+    "fe-interview",
+    "front-end"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T01:35:10.087Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "category",
+     "keywords": [
+      ".md"
+     ],
+     "max": 7,
+     "recursive": true,
+     "files": [
+      "ECMAScript.md",
+      "css.md",
+      "html.md",
+      "js.md",
+      "nodejs.md",
+      "skill.md",
+      "week.md"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "auto-wdndev-llm-interview-note",
+   "repo": "wdndev/llm_interview_note",
+   "branch": "main",
+   "category": "LLM 面试笔记",
+   "domain": "ai",
+   "tags": [
+    "interview",
+    "llm",
+    "llm-interview"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T01:35:11.432Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
