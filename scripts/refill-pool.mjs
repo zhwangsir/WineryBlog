@@ -36,9 +36,14 @@ function gh(pathname, accept = 'application/vnd.github+json') {
     '-H', `Authorization: Bearer ${TOKEN}`, '-H', `Accept: ${accept}`,
     `https://api.github.com${pathname}`], { maxBuffer: 64 * 1024 * 1024, encoding: 'utf8' });
 }
-/** 返回 { code, body }；非 200 不抛错（404 是正常的候选淘汰路径） */
+/** 返回 { code, body }；非 200 不抛错（404 是正常的候选淘汰路径）；curl 传输失败也返回 code 0（按查询失败→跳过处理，不杀整轮） */
 function ghJson(pathname) {
-  const out = gh(pathname);
+  let out;
+  try {
+    out = gh(pathname);
+  } catch {
+    return { code: 0, body: '' };
+  }
   const i = out.lastIndexOf('\n');
   return { code: Number(out.slice(i + 1).trim()) || 0, body: out.slice(0, i) };
 }
