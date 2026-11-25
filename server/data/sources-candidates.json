@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T01:35:11.432Z",
+ "updatedAt": "2026-11-25T01:55:05.766Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1949,6 +1949,60 @@
      ],
      "max": 30,
      "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-adongwanai-agentguide",
+   "repo": "adongwanai/AgentGuide",
+   "branch": "main",
+   "category": "AI Agent 开发指南",
+   "domain": "ai",
+   "tags": [
+    "agentic-rl",
+    "agenticrag",
+    "ai-agent"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T01:55:04.918Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 36,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-ysgstudyhards-dotnetguide",
+   "repo": "YSGStudyHards/DotNetGuide",
+   "branch": "main",
+   "category": "DotNet 学习指南",
+   "domain": "backend",
+   "tags": [
+    "asp-net",
+    "aspnet-core",
+    "aspnetcore"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T01:55:05.766Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs/DotNet",
+     "keywords": [
+      ".md"
+     ],
+     "max": 3,
+     "recursive": true,
+     "files": [
+      "DotNetStudy.md",
+      "CsharpRecommendedBooks.md"
+     ]
     }
    ]
   }

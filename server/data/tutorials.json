@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 226
+      "count": 228
     },
     {
       "id": "data",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 341
+      "count": 367
     },
     {
       "id": "security",
@@ -26203,6 +26203,482 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-wdndev-llm-interview-note-30"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-1",
+      "kind": "collection",
+      "title": "Agent Learning Map：Agent 学习地图",
+      "summary": "Agent 不是一个库名，而是一类系统设计：模型在受控环境里观察状态、选择动作、调用工具、接收反馈，并在必要时请求人类介",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-1"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-2",
+      "kind": "collection",
+      "title": "First 7 Days：前 7 天学习计划",
+      "summary": "这不是“收藏 100 个链接”的计划，而是一周内做出最小 Agent 项目骨架的执行清单。 学习目标 ：区分 chatb",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-2"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-3",
+      "kind": "collection",
+      "title": "Resource Quality Checklist：高质量资源筛选清单",
+      "summary": "Agent 资料很多，但真正值得花时间的资源通常有共同特征：可运行、可验证、可追溯、能解释失败。 维度 高质量信号 低质",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-3"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-4",
+      "kind": "collection",
+      "title": "Repo Gap Map：仓库补洞地图",
+      "summary": "本文记录对当前仓库空目录和占位内容的盘点，并给出后续补充优先级。 目录 状态 建议补充 本次处理 : : : : doc",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-4"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-5",
+      "kind": "collection",
+      "title": "什么是 AI Agent？",
+      "summary": "AI Agent 是一个能在给定目标和约束下，观察环境、选择动作、调用工具、接收反馈，并持续推进任务的软件系统。 一句话",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-5"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-8",
+      "kind": "collection",
+      "title": "手撕 ReAct 框架",
+      "summary": "ReAct = Reasoning + Acting。它让模型在推理和行动之间交替：先判断下一步，再调用工具，再根据观察",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-8"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-11",
+      "kind": "collection",
+      "title": "Agent 评估指标体系",
+      "summary": "没有评测的 Agent 只能算 demo。Agent 评估不仅看最终答案，还要看路径、工具、证据、安全、成本和可恢复性。",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-11"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-12",
+      "kind": "collection",
+      "title": "DeepSeek 系列完整深度笔记",
+      "summary": "覆盖范围：DeepSeek V1 → V2 → V3 → R1 → Prover V2 → V3.2 → DualPat",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 43,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-12"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-13",
+      "kind": "collection",
+      "title": "LLaMA 系列完整深度笔记",
+      "summary": "覆盖 LLaMA1 → LLaMA2 → CodeLlama → LLaMA3 → LLaMA4 包含模型结构、训练方式",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 19,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-13"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-14",
+      "kind": "collection",
+      "title": "Qwen 系列模型深度学习笔记",
+      "summary": "覆盖范围：Qwen1 → Qwen1.5 → Qwen2 → Qwen2.5 → Qwen3 → Qwen3.5 学习方",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 27,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-14"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-19",
+      "kind": "collection",
+      "title": "MCP 协议详解",
+      "summary": "MCP（Model Context Protocol）可以理解为 Agent 连接外部工具和数据源的标准接口层。它解决的",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-19"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-20",
+      "kind": "collection",
+      "title": "上下文工程：业界最佳实践精华",
+      "summary": "核心观点 ：上下文工程是 Agent 开发的本质，成功的 Agent 系统关键不在于调用什么模型，而在于如何设计系统来控",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-20"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-21",
+      "kind": "collection",
+      "title": "大厂都在用的12-Factor Agent架构，终于有人讲清楚了！",
+      "summary": "在构建生产级AI Agent的过程中，许多开发者都会遇到同样的问题：使用现有框架可以快速达到70 80%的质量标准，但要",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-21"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-22",
+      "kind": "collection",
+      "title": "13-context-engineering-resources",
+      "summary": "✴️ 全网最全最优质的上下文工程资源合集 上下文工程（Context Engineering） ：一门将不断变化的信息宇",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-22"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-23",
+      "kind": "collection",
+      "title": "长文深度解析：大模型的\"上下文陷阱\"与6大修复技巧",
+      "summary": "随着 GPT 4.5、Claude 4.5、Gemini 2.5 等大模型相继推出百万级上下文窗口，整个AI圈都沸腾了。",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-23"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-24",
+      "kind": "collection",
+      "title": "Agent Memory - 从原理到实战",
+      "summary": "完整的 Agent 记忆系统开发指南 学完本章，你将能够： ✅ 理解 Agent Memory 的核心概念和设计原则 ✅",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-24"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-25",
+      "kind": "collection",
+      "title": "SFT（监督微调）实战经验分享（阿东玩AI）",
+      "summary": "通用大模型在特定领域或任务表现可能不佳，微调可以实现： 领域专业化 ：深度内化专业知识与术语 任务适配 ：针对特定任务优",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-25"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-26",
+      "kind": "collection",
+      "title": "Claude Code 最佳实践指南",
+      "summary": "你的 Claude Code 完整操作手册 从入门到精通 文档定位 ：Claude Code 完整使用指南，涵盖从基础配",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-26"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-27",
+      "kind": "collection",
+      "title": "上下文工程完全指南:设计控制信息流向LLM的系统",
+      "summary": "核心理念 : 上下文工程是设计架构的学科,在正确的时间向LLM提供正确的信息。这不是改变模型本身,而是构建连接模型与外部",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-27"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-28",
+      "kind": "collection",
+      "title": "《上下文工程：从提示到系统的AI应用架构指南》",
+      "summary": "教程定位 ：系统化的上下文工程学习路径，从理论认知到生产实践的完整知识体系 核心理念 ：上下文工程是将不断变化的信息宇宙",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-28"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-31",
+      "kind": "collection",
+      "title": "Parlant：如何让AI Agent真正\"靠谱\"？深度解析Agent合规保障方案",
+      "summary": "作为大模型算法工程师，今天和大家聊聊AI Agent在生产环境中最头疼的问题：如何保证Agent不\"出格\"？ 最近Git",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-31"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-32",
+      "kind": "collection",
+      "title": "Agent AI 企业转型的六大实战教训",
+      "summary": "核心洞察 : 在 Agentic AI 革命一年后,一个教训非常清晰:要做好它需要付出艰苦的努力。 引言 教训1: 关注",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-32"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-33",
+      "kind": "collection",
+      "title": "OpenClaw彻底带火了沙箱，桌面Agent落地必看",
+      "summary": "阿东最近做桌面 Agent 项目时，几个信号让我重新审视了架构设计 2026 年 1 月，有个叫 OpenClaw 的项",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-33"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-34",
+      "kind": "collection",
+      "title": "LLM Post-Training 面试笔记",
+      "summary": "面试级别 · 结构化排版 · 保留原始知识点并补入 2025 2026 官方实践锚点 1. 为什么需要 Post Tra",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 197,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-34"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-35",
+      "kind": "collection",
+      "title": "Agent Evaluation Harness 完全指南 —— 让你的 Agent 评估不再玄学 🎯",
+      "summary": "写给谁的？ AI Agent 算法工程师、开发工程师，以及所有被\"Agent 评估到底怎么做\"折磨到头秃的同学。 你能得",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 36,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-35"
+    },
+    {
+      "id": "g-auto-adongwanai-agentguide-36",
+      "kind": "collection",
+      "title": "Agent Harness Engineering：把裸模型变成能干活的系统",
+      "summary": "模型决定推理下限，Harness 决定产品上限。真正的 Agent 工程，不是只调用 LLM API，而是给模型配好工具",
+      "domain": "ai",
+      "category": "AI Agent 开发指南",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-rl",
+        "agenticrag",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-adongwanai-agentguide-36"
+    },
+    {
+      "id": "g-auto-ysgstudyhards-dotnetguide-1",
+      "kind": "collection",
+      "title": "C#/.NET/.NET Core推荐学习书籍",
+      "summary": "古人云：“书中自有黄金屋，书中自有颜如玉”，说明了书籍的重要性。作为程序员，我们需要不断学习以提升自己的核心竞争力。以下",
+      "domain": "backend",
+      "category": "DotNet 学习指南",
+      "difficulty": "进阶",
+      "minutes": 35,
+      "tags": [
+        "asp-net",
+        "aspnet-core",
+        "aspnetcore"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-ysgstudyhards-dotnetguide-1"
+    },
+    {
+      "id": "g-auto-ysgstudyhards-dotnetguide-2",
+      "kind": "collection",
+      "title": "C#/.NET/.NET Core拾遗补漏",
+      "summary": "在这个快速发展的技术世界中，时常会有一些重要的知识点、信息或细节被忽略或遗漏。《C /.NET/.NET Core拾遗补",
+      "domain": "backend",
+      "category": "DotNet 学习指南",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "asp-net",
+        "aspnet-core",
+        "aspnetcore"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-ysgstudyhards-dotnetguide-2"
     }
   ]
 }
