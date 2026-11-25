@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 457
+      "count": 481
     },
     {
       "id": "security",
@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 15
+      "count": 20
     }
   ],
   "tutorials": [
@@ -30130,6 +30130,499 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-cosen1024-java-interview-27"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-1",
+      "kind": "collection",
+      "title": "🗺️ AI Agent 工程师学习路线图（2025-2026）",
+      "summary": "本路线图面向 国内互联网大厂跳槽 场景，系统梳理从零到拿到 Offer 的完整学习路径。 适用于有一定编程基础（Pyth",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 35,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-1"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-2",
+      "kind": "collection",
+      "title": "Anthropic AI Agent 相关岗位要求",
+      "summary": "最后更新：2026年6月（基于 Anthropic 官网 JD、面试经历汇总及公开信息整理） Anthropic 是目前",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-2"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-3",
+      "kind": "collection",
+      "title": "Anthropic 面试题与面经",
+      "summary": "最后更新：2026年6月（综合 Glassdoor、Levels.fyi、LinkedIn 公开分享） Q1: 解释 A",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-3"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-4",
+      "kind": "collection",
+      "title": "OpenAI AI Agent 相关岗位要求",
+      "summary": "最后更新：2026年6月（基于 OpenAI 官网 JD 及公开招聘信息整理） OpenAI 目前 Agent 相关岗位",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-4"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-5",
+      "kind": "collection",
+      "title": "OpenAI AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： OpenAI 是 RLHF 的先驱，面试官考察你对 RL 在 Agent 场景中应用的深入理解。 参考",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-5"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-7",
+      "kind": "collection",
+      "title": "初创公司 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 初创公司资源有限，面试官考察你的务实工程能力和成本意识。 参考答案： 初创 Agent 快速落地原则：",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-7"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-8",
+      "kind": "collection",
+      "title": "华为 AI Agent 相关岗位要求（2025年）",
+      "summary": "参与华为盘古大模型的研发与优化，包括模型预训练、行业微调、多模态融合等。将大模型技术应用于矿山、气象、金融、制造等行业场",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-8"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-9",
+      "kind": "collection",
+      "title": "华为 AI Agent/大模型岗位 - 真实面经网络实录",
+      "summary": "整理自牛客、脉脉、CSDN等平台的真实面试分享，2024 2025年 面试时间： 2024年9月（秋招） 岗位： 大模型",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-9"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-10",
+      "kind": "collection",
+      "title": "华为 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 华为核心业务是终端设备和芯片，面试官想考察你对模型轻量化的工程理解，不是只会调 API，而是真正懂部署",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-10"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-12",
+      "kind": "collection",
+      "title": "商汤科技 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 商汤是视觉AI公司，面试官考察你对多模态融合的技术理解。 参考答案： 多模态融合策略：1）早期融合（E",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-12"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-14",
+      "kind": "collection",
+      "title": "字节跳动 AI Agent - 真实面经（牛客实录）",
+      "summary": "来源：牛客网 2025 年真实面经，持续更新 来源 : 牛客网 2025 03 22 面试者自评：说不明白业务逻辑 面试",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-14"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-15",
+      "kind": "collection",
+      "title": "字节跳动 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "2 3 轮技术面 + HR 面 每轮：自我介绍（5min）→ 技术问题（15 20min）→ 编程题（30min） 编程",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-15"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-17",
+      "kind": "collection",
+      "title": "小红书 AI Agent - 真实面经（牛客实录）",
+      "summary": "来源：牛客网 2025 年真实面经，持续更新 来源 : 牛客网 2025 攒人品 面试问题（21 道，全部围绕项目和 A",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-17"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-18",
+      "kind": "collection",
+      "title": "小红书 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "算法题难度偏大 会考察对 小红书产品和内容生态 的理解 Agent 架构设计题较多 前端 AI 应用方向也有独立考察 参",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-18"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-20",
+      "kind": "collection",
+      "title": "微软 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 微软 Copilot 是旗舰产品，面试官考察你对企业级 SaaS Agent 架构的理解。 参考答案：",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-20"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-21",
+      "kind": "collection",
+      "title": "快手 AI Agent 相关岗位要求（2025年）",
+      "summary": "负责快手大模型相关算法的研发和优化，包括但不限于大模型预训练、微调、推理加速、多模态融合等方向。将大模型技术与快手核心业",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-21"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-22",
+      "kind": "collection",
+      "title": "快手 AI Agent/大模型岗位 - 真实面经网络实录",
+      "summary": "整理自牛客、脉脉、CSDN等平台的真实面试分享，2024 2025年 面试时间： 2024年10月 岗位： 大模型算法工",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-22"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-23",
+      "kind": "collection",
+      "title": "快手 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 快手核心业务是短视频，面试官考察你对多模态理解的工程化方案。 参考答案： 短视频内容理解 Agent ",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-23"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-25",
+      "kind": "collection",
+      "title": "百度 AI Agent/大模型岗位 - 真实面经网络实录",
+      "summary": "整理自牛客、脉脉、CSDN等平台的真实面试分享，2024 2025年 面试时间： 2024年10月（秋招） 岗位： 大模",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-25"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-26",
+      "kind": "collection",
+      "title": "百度 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 百度核心业务是搜索，面试官考察你对搜索 + Agent 融合的理解，不能把搜索简单理解为 RAG。 参",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-26"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-27",
+      "kind": "collection",
+      "title": "美团 AI Agent 相关岗位要求（2025年）",
+      "summary": "探索LLM前沿研究，参与美团大模型基座研发。工作内容包括数据建设、模型预训练、模型压缩、推理优化、逻辑推理、Agent、",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-27"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-28",
+      "kind": "collection",
+      "title": "美团 AI Agent/大模型岗位 - 真实面经网络实录",
+      "summary": "整理自牛客、脉脉、CSDN等平台的真实面试分享，2024 2025年 面试时间： 2024年10月（秋招） 岗位： 大模",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-28"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-29",
+      "kind": "collection",
+      "title": "美团 AI Agent 工程师 - 面试题 & 面经",
+      "summary": "💡 思考逻辑： 美团客服是 Agent 的典型落地场景，面试官考察你对业务流程的理解和系统集成能力。 参考答案： 本地",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-29"
+    },
+    {
+      "id": "g-auto-zchary1106-agent-interview-hub-30",
+      "kind": "collection",
+      "title": "腾讯 AI Agent 工程师 - 岗位要求",
+      "summary": "AI Agent 基础研发（Agent Infra）：开发框架、数据链路、基础设施 Coding Agent 开发 多智",
+      "domain": "ai",
+      "category": "AI Agent 面试资料",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "chinese",
+        "claude"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-zchary1106-agent-interview-hub-30"
+    },
+    {
+      "id": "g-auto-summerjava-system-design-interview-1",
+      "kind": "collection",
+      "title": "云存储的优点",
+      "summary": "DropBox是一个文件云存储服务，类似产品还有Google Drive、Onedrive等等。用户可以将文件存储于远端",
+      "domain": "swe",
+      "category": "系统设计面试",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-science",
+        "interview",
+        "software-architecture"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-summerjava-system-design-interview-1"
+    },
+    {
+      "id": "g-auto-summerjava-system-design-interview-2",
+      "kind": "collection",
+      "title": "Instagram是什么",
+      "summary": "Instagram是一款社交服务软件，用户可以上传图片、分享图片以及视频。用户分享自己的信息可以设置为公开的或私有的，如",
+      "domain": "swe",
+      "category": "系统设计面试",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "computer-science",
+        "interview",
+        "software-architecture"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-summerjava-system-design-interview-2"
+    },
+    {
+      "id": "g-auto-summerjava-system-design-interview-3",
+      "kind": "collection",
+      "title": "什么是短链接服务",
+      "summary": "短链接服务的目的是将普通url转换为比较短的url，当用户点击短链接的时候，会跳转到原始链接。短链接会带来几个好处：节省",
+      "domain": "swe",
+      "category": "系统设计面试",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "computer-science",
+        "interview",
+        "software-architecture"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-summerjava-system-design-interview-3"
+    },
+    {
+      "id": "g-auto-summerjava-system-design-interview-4",
+      "kind": "collection",
+      "title": "理清需求",
+      "summary": "很多软件工程师受困于系统设计面试，主要有以下几点原因： 开放式的题目，没有固定的套路，没有固定的答案 缺乏大规模复杂系统",
+      "domain": "swe",
+      "category": "系统设计面试",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-science",
+        "interview",
+        "software-architecture"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-summerjava-system-design-interview-4"
+    },
+    {
+      "id": "g-auto-summerjava-system-design-interview-5",
+      "kind": "collection",
+      "title": "理清需求",
+      "summary": "很多软件工程师受困于系统设计面试，主要有以下几点原因： 开放式的题目，没有固定的套路，没有固定的答案 缺乏大规模复杂系统",
+      "domain": "swe",
+      "category": "系统设计面试",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-science",
+        "interview",
+        "software-architecture"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-summerjava-system-design-interview-5"
     }
   ]
 }

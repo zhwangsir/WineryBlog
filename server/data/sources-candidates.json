@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T04:15:05.644Z",
+ "updatedAt": "2026-11-25T04:35:07.478Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2292,6 +2292,56 @@
    "status": "failed",
    "addedAt": "2026-11-25T04:15:05.644Z",
    "note": "截屏工具产品仓库：md 为内置 AGENTS/CLAUDE 配置与应用内提示词，非教程内容"
+  },
+  {
+   "id": "auto-zchary1106-agent-interview-hub",
+   "repo": "Zchary1106/agent-interview-hub",
+   "branch": "main",
+   "category": "AI Agent 面试资料",
+   "domain": "ai",
+   "tags": [
+    "ai-agent",
+    "chinese",
+    "claude"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T04:35:06.254Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-summerjava-system-design-interview",
+   "repo": "summerjava/system-design-interview",
+   "branch": "main",
+   "category": "系统设计面试",
+   "domain": "swe",
+   "tags": [
+    "computer-science",
+    "interview",
+    "software-architecture"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T04:35:07.477Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 5,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
