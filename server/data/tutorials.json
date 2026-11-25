@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 79
+      "count": 97
     },
     {
       "id": "games",
@@ -31065,6 +31065,312 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-yoyiyi-soleilnotes-30"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-1",
+      "kind": "collection",
+      "title": "动画",
+      "summary": "核心动画只作用在layer. 核心动画修改的值都是假像.它的真实位置没有发生变化. 当需要与用户进行交互时用UIView",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-1"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-2",
+      "kind": "collection",
+      "title": "算法",
+      "summary": "时间频度 一个算法执行所耗费的时间,从理论上是不能算出来的,必须上机运行测试才能知道.但我们不可能也没有必要对每个算法都",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-2"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-3",
+      "kind": "collection",
+      "title": "代码管理",
+      "summary": "1．SVN优缺点 优点： 1、管理方便，逻辑明确，符合一般人思维习惯。 2、易于管理，集中式服务器更能保证安全性。 3、",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-3"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-4",
+      "kind": "collection",
+      "title": "组件化",
+      "summary": "业务分层、解耦，使代码变得可维护； 有效的拆分、组织日益庞大的工程代码，使工程目录变得可维护； 便于各业务功能拆分、抽离",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-4"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-8",
+      "kind": "collection",
+      "title": "数据结构",
+      "summary": "数据结构的存储一般常用的有两种 顺序存储结构 和 链式存储结构 顺序存储结构: 比如，数组，1 2 3 4 5 6 7 ",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-8"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-9",
+      "kind": "collection",
+      "title": "调试技巧",
+      "summary": "po：print object的缩写，表示显示对象的文本描述，如果对象不存在则打印nil。 p：可以用来打印基本数据类型",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-9"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-10",
+      "kind": "collection",
+      "title": "设计模式",
+      "summary": "单例模式：单例保证了应用程序的生命周期内仅有一个该类的实例对象,而且易于外界访问.在ios sdk中,UIApplica",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-10"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-11",
+      "kind": "collection",
+      "title": "Foundation",
+      "summary": "nil、NIL 可以说是等价的，都代表内存中一块空地址。 NSNULL 代表一个指向 nil 的对象。 NSMutabl",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-11"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-13",
+      "kind": "collection",
+      "title": "内存管理",
+      "summary": "什么情况使用 weak 关键字？ 在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-13"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-14",
+      "kind": "collection",
+      "title": "消息传递的方式",
+      "summary": "KVC，键 值编码，使用字符串直接访问对象的属性。 底层实现，当一个对象调用setValue方法时，方法内部会做以下操作",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-14"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-15",
+      "kind": "collection",
+      "title": "多线程",
+      "summary": "进程： 1.进程是一个具有一定独立功能的程序关于某次数据集合的一次运行活动，它是操作系统分配资源的基本单元. 2.进程是",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-15"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-16",
+      "kind": "collection",
+      "title": "网络",
+      "summary": "应用层： 1.用户接口、应用程序； 2.Application典型设备：网关； 3.典型协议、标准和应用：TELNET、",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-16"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-17",
+      "kind": "collection",
+      "title": "性能优化",
+      "summary": "1.最常用的就是cell的重用， 注册重用标识符 如果不重用cell时，每当一个cell显示到屏幕上时，就会重新创建一个",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-17"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-18",
+      "kind": "collection",
+      "title": "项目架构",
+      "summary": "MVC是比较直观的架构模式，最核心的就是通过Controller层来进行调控，首先看一下官方提供的MVC示意图： Mod",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-18"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-19",
+      "kind": "collection",
+      "title": "Runloop",
+      "summary": "一个线程对应一个 Runloop。 主线程的默认就有了 Runloop。 子线程的 Runloop 以懒加载的形式创建。",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-19"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-20",
+      "kind": "collection",
+      "title": "Runtime",
+      "summary": "Category 实际上是 Category t的结构体，在运行时，新添加的方法，都被以倒序插入到原有方法列表的最前面，",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-20"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-21",
+      "kind": "collection",
+      "title": "源码理解",
+      "summary": "YYKit 是一组庞大、功能丰富的 iOS 组件。 我们需要从组件架构，源码，设计思路，解决问题的方案策略等多方面去学习",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-21"
+    },
+    {
+      "id": "g-auto-icofans-ios-interview-questions-22",
+      "kind": "collection",
+      "title": "UIKit",
+      "summary": "UIView 继承 UIResponder，而 UIResponder 是响应者对象，可以对iOS 中的事件响应及传递，",
+      "domain": "mobile",
+      "category": "iOS 面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "gcd",
+        "interview",
+        "interview-questions"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-icofans-ios-interview-questions-22"
     }
   ]
 }

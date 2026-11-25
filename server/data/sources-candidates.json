@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T04:55:06.418Z",
+ "updatedAt": "2026-11-25T05:15:07.335Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2382,6 +2382,46 @@
    "status": "failed",
    "addedAt": "2026-11-25T04:55:06.418Z",
    "note": "AI 产品经理求职/职业内容，非编程教程（站点定位是编程自学）"
+  },
+  {
+   "id": "auto-weicanie-prisma-ai",
+   "repo": "weicanie/prisma-ai",
+   "branch": "main",
+   "category": "你的求职AI co-pilot",
+   "domain": "system",
+   "tags": [
+    "ai",
+    "human-in-the-loop",
+    "interview"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T05:15:05.889Z",
+   "note": "求职 AI 工具产品的使用手册，非编程教程（与 skyeye/AIPM 同型）"
+  },
+  {
+   "id": "auto-icofans-ios-interview-questions",
+   "repo": "icofans/iOS-Interview-Questions",
+   "branch": "master",
+   "category": "iOS 面试题",
+   "domain": "mobile",
+   "tags": [
+    "gcd",
+    "interview",
+    "interview-questions"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T05:15:07.335Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 23,
+     "recursive": true
+    }
+   ]
   }
  ]
 }
