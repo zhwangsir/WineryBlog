@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 132
+      "count": 162
     },
     {
       "id": "algo",
@@ -23891,6 +23891,516 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-nlp-love-introduction-nlp-13"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-1",
+      "kind": "collection",
+      "title": "相机校准",
+      "summary": "在本节中，我们将学习 由相机引起的失真类型， 如何找到相机的固有和非固有特性 如何根据这些特性使图像不失真 一些针孔相机",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-1"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-2",
+      "kind": "collection",
+      "title": "姿态估计",
+      "summary": "在本章中 我们将学习利用calib3d模块在图像中创建一些3D效果。 这将是一小部分。在上一次相机校准的会话中，你发现了",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-2"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-3",
+      "kind": "collection",
+      "title": "对极几何",
+      "summary": "在本节中 我们将学习多视图几何的基础知识 我们将了解什么是极点，极线，极线约束等。 当我们使用针孔相机拍摄图像时，我们失",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-3"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-4",
+      "kind": "collection",
+      "title": "74立体图像的深度图",
+      "summary": "立体图像的深度图 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Pyt",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-4"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-5",
+      "kind": "collection",
+      "title": "级联分类器",
+      "summary": "作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python Tutor",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-5"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-6",
+      "kind": "collection",
+      "title": "级联分类器",
+      "summary": "作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python Tutor",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-6"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-7",
+      "kind": "collection",
+      "title": "直方图-1：查找、绘制和分析",
+      "summary": "学会 使用OpenCV和Numpy函数查找直方图 使用OpenCV和Matplotlib函数绘制直方图 你将看到以下函数",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-7"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-8",
+      "kind": "collection",
+      "title": "直方图-2：直方图均衡",
+      "summary": "在本节中, 我们将学习直方图均衡化的概念,并利用它来提高图像的对比度。 考虑这样一个图像，它的像素值仅局限于某个特定的值",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-8"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-9",
+      "kind": "collection",
+      "title": "直方图-3：二维直方图",
+      "summary": "在本章中，我们将学习查找和绘制2D直方图。这将在以后的章节中有所帮助。 在第一篇文章中，我们计算并绘制了一维直方图。 之",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-9"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-10",
+      "kind": "collection",
+      "title": "直方图4：直方图反投影",
+      "summary": "在本章中，我们将学习直方图反投影。 这是由 Michael J. Swain 和 Dana H. Ballard 在他们",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-10"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-11",
+      "kind": "collection",
+      "title": "傅里叶变换",
+      "summary": "在本节中，我们将学习 使用OpenCV查找图像的傅立叶变换 利用Numpy中可用的FFT函数 傅立叶变换的某些应用程序 ",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-11"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-12",
+      "kind": "collection",
+      "title": "模板匹配",
+      "summary": "在本章中，您将学习 使用模板匹配在图像中查找对象 你将看到以下功能： cv.matchTemplate ()， cv.m",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-12"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-13",
+      "kind": "collection",
+      "title": "霍夫线变换",
+      "summary": "在这一章当中， 我们将了解霍夫变换的概念。 我们将看到如何使用它来检测图像中的线条。 我们将看到以下函数： cv.Hou",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-13"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-14",
+      "kind": "collection",
+      "title": "霍夫圈变换",
+      "summary": "在本章中， 我们将学习使用霍夫变换来查找图像中的圆。 我们将看到以下函数： cv.HoughCircles () 圆在数",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-14"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-15",
+      "kind": "collection",
+      "title": "图像分割与Watershed算法",
+      "summary": "在本章中， 我们将学习使用分水岭算法实现基于标记的图像分割 我们将看到： cv.watershed () 任何灰度图像都",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-15"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-16",
+      "kind": "collection",
+      "title": "交互式前景提取使用GrabCut算法",
+      "summary": "在本章中， 我们将看到GrabCut算法来提取图像中的前景 我们将为此创建一个交互式应用程序。 GrabCut算法由英国",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-16"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-17",
+      "kind": "collection",
+      "title": "改变颜色空间",
+      "summary": "在本教程中，你将学习如何将图像从一个色彩空间转换到另一个，像BGR↔灰色，BGR↔HSV等 除此之外，我们还将创建一个应",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-17"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-18",
+      "kind": "collection",
+      "title": "cols-1 和 rows-1 是坐标限制",
+      "summary": "图像的几何变换 学习将不同的几何变换应用到图像上，如平移、旋转、仿射变换等。 你会看到这些函数: cv.getPersp",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-18"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-19",
+      "kind": "collection",
+      "title": "图像阈值",
+      "summary": "在本教程中，您将学习简单阈值，自适应阈值和Otsu阈值。 你将学习函数 cv.threshold 和 cv.adapti",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-19"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-20",
+      "kind": "collection",
+      "title": "图像平滑",
+      "summary": "学会： 使用各种低通滤镜模糊图像 将定制的滤镜应用于图像（2D卷积） 与一维信号一样，还可以使用各种低通滤波器（LPF）",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-20"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-21",
+      "kind": "collection",
+      "title": "形态学转换",
+      "summary": "在这一章当中， 我们将学习不同的形态学操作，例如侵蚀，膨胀，开运算，闭运算等。 我们将看到不同的功能，例如： cv.er",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-21"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-22",
+      "kind": "collection",
+      "title": "图像梯度",
+      "summary": "在本章中，我们将学习： 查找图像梯度，边缘等 我们将看到以下函数： cv.Sobel ()， cv.Scharr ()，",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-22"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-23",
+      "kind": "collection",
+      "title": "Canny边缘检测",
+      "summary": "在本章中，我们将学习 Canny边缘检测的概念 OpenCV函数: cv.Canny() Canny Edge Dete",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-23"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-24",
+      "kind": "collection",
+      "title": "图像金字塔",
+      "summary": "在本章中， 我们将学习图像金字塔 我们将使用图像金字塔创建一个新的水果“Orapple” 我们将看到以下功能： cv.p",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-24"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-25",
+      "kind": "collection",
+      "title": "轮廓：入门",
+      "summary": "了解轮廓是什么。 学习查找轮廓，绘制轮廓等。 你将看到以下功能： cv.findContours ()， cv.draw",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-25"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-26",
+      "kind": "collection",
+      "title": "轮廓特征",
+      "summary": "在本文中，我们将学习 如何找到轮廓的不同特征，例如面积，周长，质心，边界框等。 您将看到大量与轮廓有关的功能。 特征矩可",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-26"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-27",
+      "kind": "collection",
+      "title": "轮廓属性",
+      "summary": "在这里，我们将学习提取一些常用的物体属性，如坚实度，等效直径，掩模图像，平均强度等。更多的功能可以在Matlab reg",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-27"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-28",
+      "kind": "collection",
+      "title": "轮廓：更多属性",
+      "summary": "在本章中，我们将学习 凸性缺陷以及如何找到它们 查找点到多边形的最短距离 匹配不同的形状 我们看到了关于轮廓的第二章的凸",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-28"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-29",
+      "kind": "collection",
+      "title": "轮廓分层",
+      "summary": "这次我们学习轮廓的层次，即轮廓中的父子关系。 在前几篇关于轮廓的文章中，我们已经讨论了与OpenCV提供的轮廓相关的几个",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-29"
+    },
+    {
+      "id": "g-auto-fendouai-opencvtutorials-30",
+      "kind": "collection",
+      "title": "0OpenCV-Python Tutorials",
+      "summary": "OpenCV是计算机视觉中经典的专用库，其支持多语言、跨平台，功能强大。 OpenCV Python为OpenCV提供了",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "computer-vision",
+        "deep-learning",
+        "machine-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-fendouai-opencvtutorials-30"
     }
   ]
 }

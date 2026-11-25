@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24T23:55:10.744Z",
+ "updatedAt": "2026-11-25T00:15:10.735Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1722,6 +1722,46 @@
    "status": "failed",
    "addedAt": "2026-11-24T23:55:10.743Z",
    "note": "代码工程仓库非教程：可用 md 为 0"
+  },
+  {
+   "id": "auto-fendouai-opencvtutorials",
+   "repo": "fendouai/OpenCVTutorials",
+   "branch": "master",
+   "category": "OpenCV-Python 中文教程",
+   "domain": "langs",
+   "tags": [
+    "computer-vision",
+    "deep-learning",
+    "machine-learning"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T00:15:10.186Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-fendouai-awesome-tensorflow-chinese",
+   "repo": "fendouai/Awesome-TensorFlow-Chinese",
+   "branch": "master",
+   "category": "Awesome-TensorFl",
+   "domain": "ai",
+   "tags": [
+    "awesome",
+    "deep-learning",
+    "google-tensorflow"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T00:15:10.734Z",
+   "note": "Awesome 链接清单：可用 md 为 0（发现路径此前未接 md 校验，已补上）"
   }
  ]
 }

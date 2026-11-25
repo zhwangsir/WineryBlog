@@ -202,6 +202,10 @@ if (!CURATED_ONLY && MAX_DISCOVER > 0) {
       const signalText = [r.name, desc, (r.topics || []).join(' ')].join(' ');
       if (!TECH_SIGNAL.test(signalText)) { skipped.push(`${full}(非技术内容)`); continue; }
       if (!readmeIsChinese(full)) { skipped.push(`${full}(README 非中文)`); continue; }
+      // md 贫矿淘汰（发现路径同样要查：Awesome 清单 / 代码工程 / notebook 仓库都过不了这一关）
+      const md = usableMdCount(full, r.default_branch);
+      if (md === -1) { skipped.push(`${full}(trees api 失败)`); continue; }
+      if (md < 5) { skipped.push(`${full}(仅 ${md} 个可用 md)`); continue; }
       const id = `auto-${slug(full)}`;
       if (knownIds.has(id)) continue;
       const entry = makeEntry({
