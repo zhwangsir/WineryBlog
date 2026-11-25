@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T02:15:15.143Z",
+ "updatedAt": "2026-11-25T02:35:15.272Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2065,6 +2065,56 @@
    "picks": [
     {
      "dir": "content",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-moosphan-android-daily-interview",
+   "repo": "Moosphan/Android-Daily-Interview",
+   "branch": "master",
+   "category": "Android 每日面试题",
+   "domain": "mobile",
+   "tags": [
+    "android",
+    "android-interview-questions",
+    "daily-tasks"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T02:35:12.893Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "android-interview",
+     "keywords": [
+      ".md"
+     ],
+     "max": 13,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-wethinkin-aigc-interview-book",
+   "repo": "WeThinkIn/AIGC-Interview-Book",
+   "branch": "main",
+   "category": "AIGC 面试宝典",
+   "domain": "ai",
+   "tags": [
+    "ai-agent",
+    "aigc",
+    "computer-vision"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T02:35:15.272Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
      "keywords": [
       ".md"
      ],

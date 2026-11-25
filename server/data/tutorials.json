@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 367
+      "count": 397
     },
     {
       "id": "security",
@@ -73,7 +73,7 @@
       "name": "移动与跨端",
       "icon": "Smartphone",
       "blurb": "Android、iOS、Flutter、跨平台方案",
-      "count": 46
+      "count": 53
     },
     {
       "id": "games",
@@ -27699,6 +27699,635 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-golang-design-go-questions-30"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-1",
+      "kind": "collection",
+      "title": "第01期-自定义Handler时如何有效避免内存泄漏问题",
+      "summary": "自定义Handler时如何有效避免内存泄漏问题？ 在 Android 开发过程中， Handler 是我们经常接触到的概",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-1"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-2",
+      "kind": "collection",
+      "title": "第02期-Activity 与 Fragment 之间常见的几种通信方式？",
+      "summary": "Activity 与 Fragment 之间常见的几种通信方式？ 开始介绍方法之前，先借用之前 lx36301766 写",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-2"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-3",
+      "kind": "collection",
+      "title": "第03期-什么情况下会导致内存泄漏问题",
+      "summary": "什么情况下会导致内存泄漏问题？ 下面从几个方面说明这个问题 什么是内存泄漏 什么情况造成内存泄漏 内存泄漏会造成什么后果",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-3"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-10",
+      "kind": "collection",
+      "title": "第10期-抽象类与接口的区别",
+      "summary": "抽象类与接口的区别？ 本题仅针对 Java 平台的情况。 首先，我们简单回顾一下：什么是抽象类？什么是接口？ 何为抽象类",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-10"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-11",
+      "kind": "collection",
+      "title": "answer-rules",
+      "summary": "TOC 为了方便广大 Android 开发者的阅读和理解，特推出 ADIF 冲刺计划（Android Daily Int",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-11"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-12",
+      "kind": "collection",
+      "title": "contributors",
+      "summary": "1. 参与每日答题，在 答题区 留下你的见解，让更多人认识你！ 2. 参与往期面试题的进一步解析和补充，稳固基石！ 3.",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-12"
+    },
+    {
+      "id": "g-auto-moosphan-android-daily-interview-13",
+      "kind": "collection",
+      "title": "interivew-history",
+      "summary": "每工作日更新一道 Android 面试题，小聚成河，大聚成江，坚持下来的都是时代的铸就者，共勉之！如果想要和我们一起坚持",
+      "domain": "mobile",
+      "category": "Android 每日面试题",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "android",
+        "android-interview-questions",
+        "daily-tasks"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-moosphan-android-daily-interview-13"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-1",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. AIGC 时代 AI Agent 的本质是什么？ 面试问题：Agent 的目标、行动与反馈分别意味着什么？ 面试问",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-1"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-2",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 编码 Agent 与 AgentOS 工程系统的核心价值是什么？ 面试问题：编码 Agent 的工程能力应如何分层",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 29,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-2"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-3",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 为什么 AI Agent 需要设计模式？ 面试问题：模式选择如何服务于任务约束？ 面试问题：Agent Patte",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-3"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-4",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 为什么 AIGC 时代需要 Agent 协议标准化？ 面试问题：Agent 互操作为什么需要标准化接口？ 面试问题",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-4"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-5",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 为什么 AI Agent 必须重视记忆与上下文工程？ 面试问题：长期任务为什么需要主动管理信息生命周期？ 面试问题",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 29,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-5"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-6",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 为什么 Agent 系统的安全和评测比普通 Chatbot 更难？ 面试问题：Agent 的行动能力如何改变风险与",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-6"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-7",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. 企业级 Agent 平台的本质是什么？ 面试问题：平台复用能力与单个应用目标应如何区分？ 面试问题：Agent 平",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 24,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-7"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-8",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. AI Agent 中的 Harness Engineering 是什么？ 面试问题：Harness、Benchma",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-8"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-9",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. AIGC 时代的自进化 Agent 是什么？ 面试问题：自进化 Agent 和普通长期记忆 Agent 有什么区别",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-9"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-10",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1. RAG 的知识链路与检索选型 面试问题：什么是 RAG？从文档入库到生成回答，完整流程是什么？ 面试问题：向量检索",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 25,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-10"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-11",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.介绍一下扩散模型中DDPM的原理 面试问题：介绍一下DDPM的前向扩散过程和反向去噪过程 面试问题：介绍一下DDPM",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 117,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-11"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-12",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.介绍一下Stable Diffusion的原理 面试问题：Stable Diffusion相比经典Latent Di",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 123,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-12"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-13",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.介绍一下AIGC图像创作领域中LoRA的技术原理和主流应用场景 面试问题：LoRA的核心数学原理是什么？为什么LoR",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 75,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-13"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-14",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.介绍一下ControlNet的技术原理与模型架构 面试问题：介绍一下ControlNet的整体模型架构和最小单元 面",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 88,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-14"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-15",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.AIGC图像创作领域的主流技术发展趋势是什么样的？ 面试问题：AIGC图像创作领域的技术发展趋势是什么样的？ 面试问",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 72,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-15"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-16",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.介绍一下GAN的核心思想和原理 面试问题：介绍一下生成对抗网络（GAN）的核心思想 面试问题：GAN的训练流程是什么",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 47,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-16"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-17",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.AIGC图像创作大模型的完整训练与性能优化流程通常包含哪些阶段？ 2.介绍一下AIGC图像创作大模型的主流数据工程和",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 51,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-17"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-18",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.主流的AIGC图像创作框架有哪些？应该如何选型？ 面试问题：目前主流的AIGC图像创作框架有哪些？ 面试问题：在AI",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 33,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-18"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-19",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "1.数字图像在计算机中是如何表示的？ 2.图像尺寸、分辨率、宽高比、PPI和DPI有什么区别？ 3.位深、色深、每像素位",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 83,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-19"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-20",
+      "kind": "collection",
+      "title": "目录",
+      "summary": "本文精选多模态大模型高频面试考点，系统梳理从理论基础、核心组件到CLIP、BLIP、InternVL、Qwen VL、G",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-20"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-21",
+      "kind": "collection",
+      "title": "GLM-V系列模型核心考点",
+      "summary": "1、请阐述GLM 4.5V和GLM 4.1V Thinking的核心设计目标及其在架构上的关键差异。 2、GLM系列在预",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-21"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-22",
+      "kind": "collection",
+      "title": "Intern-VL系列模型核心考点",
+      "summary": "1、在InternVL 3.5的研发中，团队为什么会选择采用“级联”式的强化学习策略（Cascade Reinforce",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-22"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-23",
+      "kind": "collection",
+      "title": "对于图像: gridthw = [1, Hgrid, Wgrid]",
+      "summary": "Qwen Vl Qwen2.5VL 1、Qwen VL系列视觉编码器的核心演进路径及每代解决的问题？ 2、Qwen2 V",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 49,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-23"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-24",
+      "kind": "collection",
+      "title": "多模态-前沿技术",
+      "summary": "一、多模态思维链（MCoT） 二、多模态检索 增强（Multimodal Retrieval Augmented Gen",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 26,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-24"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-25",
+      "kind": "collection",
+      "title": "多模态-大模型主干",
+      "summary": "1.什么是语言模型骨架LLM Backbone,在多模态模型中的作用？ 2.什么是AutoRegressive自回归模型",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-25"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-26",
+      "kind": "collection",
+      "title": "多模态-核心模型",
+      "summary": "1.BLIP的原理? 2.CLIP的原理? 3.为什么StableDiffusion使用CLIP而不使用BLIP? 4.",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 19,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-26"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-27",
+      "kind": "collection",
+      "title": "多模态-模态生成器",
+      "summary": "1.什么是多模态大模型中的模态生成器？ 2.多模态模型中文本生成器的过程和原理？ 3.多模态模型中图像生成器使用的扩散模",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-27"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-28",
+      "kind": "collection",
+      "title": "加载模型",
+      "summary": "1.CLIP的textEncoder能输入多少个单词? 2.比较BERT和GPT 3的模型结构，并分析它们在语言理解和生",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-28"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-29",
+      "kind": "collection",
+      "title": "多模态-理论知识",
+      "summary": "1.说一下多模态的定义? 2.多模态的常用方法有哪些? 3.多模态技术主要在哪些AI领域得到了广泛的应用? 4.多模态技",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 28,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-29"
+    },
+    {
+      "id": "g-auto-wethinkin-aigc-interview-book-30",
+      "kind": "collection",
+      "title": "多模态-训练与微调",
+      "summary": "1.为什么多模态模型需要大规模预训练？ 2.简述预训练基础模型的四种主要学习机制，并分析它们各自的优缺点 3.比较提示学",
+      "domain": "ai",
+      "category": "AIGC 面试宝典",
+      "difficulty": "进阶",
+      "minutes": 23,
+      "tags": [
+        "ai-agent",
+        "aigc",
+        "computer-vision"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wethinkin-aigc-interview-book-30"
     }
   ]
 }
