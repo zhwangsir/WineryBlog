@@ -34751,5 +34751,650 @@
     "source": "itcharge/AlgoNote",
     "views": 0,
     "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-mlint3-1",
+    "title": "19. Remove Nth Node From End of List",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/remove nth node from end of list/ 时间复杂度：O(n) 空间复杂度：O(1) 237.",
+    "content": "# 19. Remove Nth Node From End of List\n\n`https://leetcode.com/problems/remove-nth-node-from-end-of-list/`\n\n## solution\n\n```python\nclass Solution:\n    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:\n        dummy = ListNode(next=head)\n\n        i = 0\n        slow = fast = dummy\n        while i < n:\n            fast = fast.next\n            i += 1\n\n        while fast.next is not None:\n            slow = slow.next\n            fast = fast.next\n\n        slow.next = slow.next.next\n        return dummy.next\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n## follow up\n\n237. Delete Node in a Linked List\n\n```python\nclass Solution:\n    def deleteNode(self, node):\n        node.val = node.next.val\n        node.next = node.next.next\n```\n\n\\*708. Insert into a Sorted Circular Linked List\n\n```python\n# 1. 空list, 2. list中间位, 3. 排序list的edge\n\nclass Solution:\n    def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':\n        node = Node(insertVal)\n        if head is None:\n            node.next = node\n            return node\n\n        prev = head\n        cur = head.next\n        while cur != head:\n            if prev.val <= insertVal <= cur.val or (prev.val > cur.val and (insertVal >= prev.val or insertVal <= cur.val)):\n                break\n            prev = cur\n            cur = cur.next\n        prev.next = node\n        node.next = cur\n        return head\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint3-2",
+    "title": "203. Remove Linked List Elements",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/remove linked list elements/ 时间复杂度:O(n) 空间复杂度:O(1) 82. Remov",
+    "content": "# 203. Remove Linked List Elements\n\n`https://leetcode.com/problems/remove-linked-list-elements/`\n\n## solution\n\n```python\nclass Solution:\n    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:\n        dummy = ListNode(-1)\n        dummy.next = head\n        pre = dummy\n        cur = dummy.next\n\n        while cur is not None:\n            if cur.val == val:\n                pre.next = cur.next\n                cur = cur.next\n            else:\n                cur = cur.next\n                pre = pre.next\n        return dummy.next\n```\n\n时间复杂度:O(n) <br>\n空间复杂度:O(1)\n\n## follow up\n\n82. Remove Duplicates from Sorted List II\n\n```python\nclass Solution:\n    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:\n\n        dummy = ListNode(-1, next=head)\n        pre = dummy\n        #cur = head\n        while pre.next:\n            cur = pre.next\n\n            while cur.next and cur.val == cur.next.val:\n                cur = cur.next\n\n            if pre.next != cur:\n                pre.next = cur.next\n            else:\n                pre = pre.next\n\n        return dummy.next\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-mlint3-3",
+    "title": "206. Reverse Linked List",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/reverse linked list/ 迭代 时间复杂度：O(n) 空间复杂度：O(1) 递归 时间复杂度：O(n) ",
+    "content": "# 206. Reverse Linked List\n\n`https://leetcode.com/problems/reverse-linked-list/`\n\n## solution\n\n- 迭代\n\n```python\nclass Solution:\n    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        if head is None or head.next is None:\n            return head\n\n        pre = None\n        cur = head\n        while cur is not None:\n            tmp = cur.next\n            cur.next = pre\n            pre = cur\n            cur = tmp\n        return pre\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n- 递归\n\n```python\n# 从树的角度来看递归\nclass Solution:\n    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        return self.recursive(head, None)\n\n    def recursive(self, cur, pre):\n        if cur is None:\n            return pre\n\n        tmp = cur.next\n        cur.next = pre\n        return self.recursive(tmp, cur)  # 注意此时的return\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n92. Reverse Linked List II\n\n24. Swap Nodes in Pairs\n\n双向链表的反转\n\n```python\nclass DListNode:\n    def __init__(self, val):\n        self.val = val\n        self.prev = self.next = None\n\n    def reverse(self, head):\n        cur = None\n        while head:\n            cur = head\n            head = cur.next\n            cur.next = cur.prev\n            cur.prev = cur\n        return cur\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint3-4",
+    "title": "24. Swap Nodes in Pairs",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/swap nodes in pairs/ 可以一次移动两步，实现交替移动 当前pre和cur，交换的是 cur 和 cu",
+    "content": "# 24. Swap Nodes in Pairs\n\n`https://leetcode.com/problems/swap-nodes-in-pairs/`\n\n## solution\n\n- 可以一次移动两步，实现交替移动\n- 当前pre和cur，交换的是 cur 和 cur.next\n\n```python\n# 0(dummy) -> 1 -> 2 -> 3 -> 4\n\nclass Solution:\n    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        dummy = ListNode(-1, next=head)\n        pre = dummy\n        cur = head\n\n        while cur and cur.next:\n            temp = cur.next.next  # 3\n            cur.next.next = cur  # 2 -> 1\n            pre.next = cur.next  # 0 -> 2\n            cur.next = temp  # 1 -> 3\n\n            pre = cur  # 向后移动 -1 > 1\n            cur = cur.next  # 向后移动 1 > 3. 由于1已经挪到3前面了，实现按pair\n        return dummy.next\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        dummy = ListNode(next=head)\n\n        cur = dummy\n        while cur.next is not None and cur.next.next is not None:\n            tmp1 = cur.next  # 被间隔的线隔开\n            tmp2 = cur.next.next.next  # 被后面隔离\n\n            cur.next = cur.next.next\n            cur.next.next = tmp1\n            cur.next.next.next = tmp2\n\n            cur = cur.next.next  # 展开第一轮后可确定是两步\n        return dummy.next\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n## follow up\n\n25. Reverse Nodes in k-Group\n\n- 迭代法\n\n```python\n# https://www.geeksforgeeks.org/reverse-a-linked-list-in-groups-of-given-size/\n\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n- 递归法\n\n```python\nclass Solution:\n    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n        if not head:\n            return\n\n        tail = head\n        for _ in range(k):\n            if not tail:\n                return head\n            tail = tail.next\n\n        new_head = self.reverse(head, tail)\n        head.next = self.reverseKGroup(tail, k)\n        return new_head\n\n    def reverse(self, head, tail):\n        prev = None\n        cur = head\n\n        while cur != tail:\n            temp = cur.next\n            cur.next = prev\n            prev = cur\n            cur = temp\n        return prev\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n```python\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        # Check if we need to reverse the group\n        curr = head\n        for _ in range(k):\n            if not curr:\n                return head\n            curr = curr.next\n\n        # Reverse the group (basic way to reverse linked list)\n        prev = None\n        curr = head\n        for _ in range(k):\n            nxt = curr.next\n            curr.next = prev\n            prev = curr\n            curr = nxt\n\n        # After reverse, we know that `head` is the tail of the group.\n\t\t# And `curr` is the next pointer in original linked list order\n        head.next = self.reverseKGroup(curr, k)\n        return prev\n```\n\n- 栈的思路更直白一些\n\n```python\n# https://zhuanlan.zhihu.com/p/674723050\n\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        dummy = ListNode(0)\n        p = dummy\n        while True:\n            count = k\n            stack = []\n            tmp = head\n            while count and tmp:\n                stack.append(tmp)\n                tmp = tmp.next\n                count -= 1\n            # 注意,目前tmp所在k+1位置\n            # 说明剩下的链表不够k个,跳出循环\n            if count :\n                p.next = head\n                break\n            # 翻转操作\n            while stack:\n                p.next = stack.pop()\n                p = p.next\n            #与剩下链表连接起来\n            p.next = tmp\n            head = tmp\n        return dummy.next\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-mlint3-5",
+    "title": "328. Odd Even Linked List",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/odd even linked list/ 双指针 时间复杂度：O(n) 空间复杂度：O(1) 两段链表拼接",
+    "content": "# 328. Odd Even Linked List\n\n`https://leetcode.com/problems/odd-even-linked-list/`\n\n## solution\n\n- 双指针\n\n```python\nclass Solution:\n    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        if not head:\n            return head\n\n        odd = head\n        even = head.next\n        init_even_head = even  # record the initial even\n\n        while even and even.next:  # 一下跨两步\n            odd.next = even.next\n            odd = odd.next\n            even.next = odd.next\n            even = even.next\n        odd.next = init_even_head\n        return head\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n- 两段链表拼接\n\n```python\nclass Solution:\n    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        if not head:\n            return head\n\n        dummy_odd = odd = ListNode(0, head)\n        dummy_even = even = ListNode(0, head.next)\n\n        while even and odd and odd.next:\n            if odd.next:\n                odd.next = odd.next.next\n            if even.next:\n                even.next = even.next.next\n\n            odd = odd.next\n            even = even.next\n\n        odd.next = dummy_even.next\n        return dummy_odd.next\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-mlint3-6",
+    "title": "707. Design Linked List",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design linked list/ 增加节点和删除节点的有效index范围不同 时间复杂度：index相关操作为 O",
+    "content": "# 707. Design Linked List\n\n`https://leetcode.com/problems/design-linked-list/`\n\n## solution\n\n- 增加节点和删除节点的有效index范围不同\n\n```python\nclass MyLinkedList:\n    def __init__(self):\n        self.dummy = ListNode()\n        self.size = 0\n\n    def get(self, index: int) -> int:\n        if index < 0 or index >= self.size:\n            return -1\n\n        cur = self.dummy.next\n        for i in range(index):\n            cur = cur.next\n        return cur.val\n\n    def addAtHead(self, val: int) -> None:\n        tmp = self.dummy.next\n        self.dummy.next = ListNode(val)\n        self.dummy.next.next = tmp\n        self.size += 1\n\n    def addAtTail(self, val: int) -> None:\n        cur = self.dummy\n        while cur.next is not None:\n            cur = cur.next\n        cur.next = ListNode(val)\n        self.size += 1\n\n    def addAtIndex(self, index: int, val: int) -> None:\n        if index < 0 or index > self.size:\n            return\n\n        cur = self.dummy\n        for i in range(index):\n            cur = cur.next\n\n        tmp = cur.next\n        cur.next = ListNode(val)\n        cur.next.next = tmp\n\n        self.size += 1\n\n    def deleteAtIndex(self, index: int) -> None:\n        if index < 0 or index >= self.size:\n            return\n\n        i = 0\n        cur = self.dummy\n        while i < index:\n            cur = cur.next\n            i += 1\n\n        cur.next = cur.next.next\n        self.size -= 1\n\n# Your MyLinkedList object will be instantiated and called as such:\n# obj = MyLinkedList()\n# param_1 = obj.get(index)\n# obj.addAtHead(val)\n# obj.addAtTail(val)\n# obj.addAtIndex(index,val)\n# obj.deleteAtIndex(index)\n```\n\n时间复杂度：index相关操作为 O(index), 其余为 O(1) <br>\n空间复杂度：O(n)\n\n## Follow up\n\n432. All O`one Data Structure",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-mlint3-9",
+    "title": "1. Two Sum",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/two sum/description/ Brute Force Use every element as an anc",
+    "content": "# 1. Two Sum\n\n`https://leetcode.com/problems/two-sum/description/`\n\n## Solution\n\n- Brute Force\n  - Use every element as an anchor and search its right element\n\n```python\nclass Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        for i in range(len(nums)):\n            for j in range(i+1, len(nums)):\n                if nums[i] + nums[j] == target:\n                    return [i,j]\n```\n\n时间复杂度：O(n^2) <br>\n空间复杂度：O(1)\n\n- Hash Map\n  - Leverage the power of hashmap and store the number and its index in the map\n  - When the map contain target - curNum, we know the search is complete\n\n```python\nclass Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        residual_dict = {}\n\n        for i, num in enumerate(nums):\n            if num in residual_dict:\n                return [residual_dict[num], i]\n            else:\n                residual_dict[target - num] = i\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-mlint3-10",
+    "title": "128. Longest Consecutive Sequence",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/longest consecutive sequence/description/ sort + hash 时间复杂度：",
+    "content": "# 128. Longest Consecutive Sequence\n\n`https://leetcode.com/problems/longest-consecutive-sequence/description/`\n\n## solution\n\n- sort + hash\n\n```python\nclass Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n\n        nums = list(set(nums))\n        nums.sort()\n        res = 1\n        temp = 1\n        for i in range(len(nums) - 1):\n            if nums[i+1] == nums[i] + 1:\n                temp += 1\n                res = max(res, temp)\n            else:\n                temp = 1\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        nums_set = set(nums)\n        res = 0\n\n        for num in nums_set:\n            # 根据前一个是否在list中判断是否已经计算过，则略过.\n            if num - 1 in nums_set:\n                continue\n\n            # 寻找每一段连续的第一个数，并借此寻找其开始的连续段\n            length = 1\n            while num + 1 in nums_set:\n                length += 1\n                num += 1\n            \n            # 更新结果\n            res = max(res, length)\n        return res\n```\n\n```python\n# 所有数字放到一个哈希表，然后不断地从哈希表中任意取一个值，并删除掉其之 前之后的所有连续数字，然后更新目前的最长连续序列长度\n\nclass Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        if len(nums) < 2:\n            return len(nums)\n\n        nums_map = {}\n        longest_consecutive = 0\n        for num in nums:\n            if num not in nums_map:\n                nums_map[num] = [num, num]\n                left = num\n                right = num\n\n                # left neighbor - extend left range\n                if num - 1 in nums_map:\n                    left = nums_map[num - 1][0]\n\n                # right neighbor - extend right range\n                if num + 1 in nums_map:\n                    right = nums_map[num + 1][1]\n\n                nums_map[left] = [left, right]\n                nums_map[right] = [left, right]\n                longest_consecutive = max(longest_consecutive, right - left + 1)\n\n        return longest_consecutive\n```\n\n## follow up\n\n- 二维数组",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-mlint3-11",
+    "title": "146. LRU Cache",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/lru cache/ 复合数据结构通常采用 unordered map 或 map 辅助记录，加速寻址；配上 vecto",
+    "content": "# 146. LRU Cache\n\n`https://leetcode.com/problems/lru-cache/`\n\n## solution\n\n复合数据结构通常采用 unordered_map 或 map 辅助记录，加速寻址；配上 vector 或 list数据储存，加速连续选址或删除值\n\n- 1.新数据放到链表的开头\n- 2.数据被访问后，也需要放到链表开头\n- 3.当超过LRU的容量之后，将链表尾部的数据删除\n\n- 双向链表+哈希\n\n```python\n# 一个类似字典item的node, 同时记录其前后的位置\n\nclass Node:\n    def __init__(self, key=0, value=0):\n        self.key = key\n        self.value = value\n        self.prev = None\n        self.next = None\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}  # key到Node的索引, 对于linked list, tree, graph等通过局部逐渐访问, 建立一个全局的快速访问\n        self.head = Node()  # dummy head and tail\n        self.tail = Node()\n\n        self.head.next = self.tail\n        self.tail.prev = self.head\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        node = self.cache[key]\n        self.remove_node(node)\n        self.add_to_head(node)\n        return node.value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            node = self.cache[key]\n            node.value = value  # 记得更新value\n            self.remove_node(node)\n            self.add_to_head(node)\n        else:\n            node = Node(key, value)\n            self.cache[key] = node\n            self.add_to_head(node)\n            if len(self.cache) > self.capacity:\n                self.remove_tail()\n\n    def remove_node(self, node):\n        node.prev.next = node.next\n        node.next.prev = node.prev\n\n    def add_to_head(self, node):\n        self.head.next.prev = node\n        node.next = self.head.next\n        self.head.next = node\n        node.prev = self.head\n\n    def remove_tail(self):\n        del self.cache[self.tail.prev.key]\n        node = self.tail.prev\n        self.remove_node(node)\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O(1)\n\n```python\n# ordered dict: 记录并保持了加入字典的顺序 (可能会不允许使用ordered dict)\nimport collections\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.ordered_dict = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        # 1.找到目标数据 2.将目标对象移至list前端\n        if key in self.ordered_dict:\n            value = self.ordered_dict[key]\n            self.ordered_dict.pop(key)\n            self.ordered_dict[key] = value\n            return value\n        else:\n            return -1\n\n    def put(self, key: int, value: int) -> None:\n        # 1.向list的前端加入对象 2.如果超过capacity，将list尾部的对象删除\n        if key in self.ordered_dict:\n            self.ordered_dict.pop(key)\n        self.ordered_dict[key] = value\n        if len(self.ordered_dict) > self.capacity:\n            self.ordered_dict.popitem(last=False)\n\n# obj = LRUCache(capacity)\n# param_1 = obj.get(key)\n# obj.put(key,value)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n- 多线程版本LRU\n\n  - multiprocessing库: cpu-intensive 任务用 processPool, 如果是 io-intensive 任务用 threadPool\n  - 多进程: 多核CPU上并行执行，资源和变量不共享，需要通过管道队列通信，更适合计算密集型\n  - 多线程: CPU单核上互斥锁串行执行，资源共享。由于python GIL，一个进程当中如果存在多个线程，也只能在单核CPU上顺序执行，不能利用多个CPU，更适合IO密集型\n\n- MultiCache调用\n  - `https://www.1point3acres.com/bbs/thread-1104232-1-1.html`\n\n460. LFU Cache\n\n```python\n# https://zhuanlan.zhihu.com/p/126313561\n# https://leetcode.com/problems/lfu-cache/solutions/3111521/o-1-time-full-explanation-hashtable-c-java-python3/\n\nclass Node:\n    def __init__(self, key, val):\n        self.key = key\n        self.val = val\n        self.freq = 1\n        self.prev = None\n        self.next = None\n\nclass DLinkedList:\n    def __init__(self):\n        self.dummy = Node(None, None)\n        self.dummy.next = self.dummy\n        self.dummy.prev = self.dummy\n        self.size = 0\n\n    def append(self, node: Node):\n        # 尾插入, 加到双向链表尾部\n        node.prev = self.dummy.prev\n        node.next = self.dummy\n        node.prev.next = node\n        self.dummy.prev = node\n        self.size += 1\n\n    def pop(self, node: Node = None):\n        if self.size == 0:\n            return\n        # 删除头部\n        if node is None:\n            node = self.dummy.next\n        node.prev.next = node.next\n        node.next.prev = node.prev\n        self.size -= 1\n        return node\n\nclass LFUCache:\n    def __init__(self, capacity: int):\n        from collections import defaultdict\n        self.key_to_node = {}\n        self.freq = defaultdict(DLinkedList)\n        self.min_freq = 0\n        self.capacity = capacity\n\n    def get(self, key: int) -> int:\n        if key not in self.key_to_node:\n            return -1\n        node = self.key_to_node[key]\n        node_freq = node.freq\n        self.freq[node_freq].pop(node)\n        if self.min_freq == node_freq and self.freq[node_freq].size == 0:\n            self.min_freq += 1\n        node.freq += 1\n        self.freq[node.freq].append(node)\n        return node.val\n\n    def put(self, key: int, value: int) -> None:\n        if self.capacity == 0: return\n        if key in self.key_to_node:\n            node = self.key_to_node[key]\n            node_freq = node.freq\n            self.freq[node_freq].pop(node)\n            if self.min_freq == node_freq and self.freq[node_freq].size == 0:\n                self.min_freq += 1\n            node.freq += 1\n            node.val = value\n            self.freq[node.freq].append(node)\n        else:\n            if len(self.key_to_node) == self.capacity:\n                node = self.freq[self.min_freq].pop()\n                self.key_to_node.pop(node.key)\n            node = Node(key, value)\n            self.key_to_node[key] = node\n            self.freq[1].append(node)\n            self.min_freq = 1\n```\n\n- ordered_dict\n\n```python\nclass LFUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self._items = collections.defaultdict(int)  # key: frequency.\n        self._freqs = collections.defaultdict(OrderedDict)  # frequency: {key: val}\n        self._minFreq = 0  # Minimum used frequency for the keys in the cache.\n\n    def _update_freq(self, key: int, value: int = None) -> int:\n        \"\"\"\n        Update the _items and the _freqs with the input key, then return the latest value.\n        \"\"\"\n        f = self._items[key]\n        v = self._freqs[f].pop(key)  # Remove the current key.\n        if value is not None:  # Update with new value if any.\n            v = value\n\n        self._freqs[f + 1][key] = v  # Add the key to the new frequency.\n        self._items[key] += 1  # Update the frequency in the items.\n        if self._minFreq == f and not self._freqs[f]:  # Update minimum freq.\n            self._minFreq += 1\n\n        return v\n\n    def get(self, key: int) -> int:\n        if key not in self._items:\n            return -1\n\n        return self._update_freq(key)\n\n    def put(self, key: int, value: int) -> None:\n        if not self.capacity:  # Not able to put anything.\n            return\n\n        if key in self._items:\n            self._update_freq(key, value)\n        else:\n            if len(self._items) == self.capacity:  # Cache is full.\n                # 1. Pop the least frequently used key in _freqs[minimum freq].\n                # 2. Pop the same key from _items as it does not exist.\n                self._items.pop(\n                    self._freqs[self._minFreq].popitem(last=False)[0])\n\n            # Add the new key.\n            self._minFreq = 1\n            self._items[key] = 1\n            self._freqs[1][key] = value\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint3-12",
+    "title": "299. Bulls and Cows",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/bulls and cows/ 时间复杂度：O(n) 空间复杂度：O(n)",
+    "content": "# 299. Bulls and Cows\n\n`https://leetcode.com/problems/bulls-and-cows/`\n\n## solution\n\n```python\nclass Solution:\n    def getHint(self, secret: str, guess: str) -> str:\n        a = {}\n        b = {}\n        for i in secret:\n            if i in a:\n                a[i] += 1\n            else:\n                a[i] = 1\n        for i in guess:\n            if i in b:\n                b[i] += 1\n            else:\n                b[i] = 1\n\n        bulls = 0\n        for i in range(len(secret)): # Counting bulls\n            if secret[i] == guess[i]:\n                bulls += 1\n                a[secret[i]] -= 1\n                b[secret[i]] -= 1\n        cows = 0\n        for i in a: # Counting cows\n            if i in b:\n                cows += min(a[i], b[i])\n        res = str(bulls) + \"A\" + str(cows) + \"B\"\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-mlint3-13",
+    "title": "348 Design Tic-Tac-Toe",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design tic tac toe/ 时间复杂度：O() 空间复杂度：O() 794. Valid Tic Tac T",
+    "content": "# 348 Design Tic-Tac-Toe\n\n`https://leetcode.com/problems/design-tic-tac-toe/`\n\n## solution\n\n```python\nclass TicTacToe(object):\n    def __init__(self, n):\n        self.n = n\n        self.row = [0] * n  # 记录下，每一行的和，每一列的和，两个对角线的和\n        self.col = [0] * n\n        self.left = 0\n        self.right = 0\n\n    def move(self, row, col, player):\n        if player == 1:\n            delta = 1\n        else:\n            delta = -1\n\n        self.row[row] += delta\n        self.col[col] += delta\n        if row == col:\n            self.left += delta\n        if row == self.n - 1 - col:\n            self.right += delta\n\n        # 每一个条件判断也可以在各自加delta之后立马判断\n        if abs(self.row[row]) == self.n or abs(self.col[col]) == self.n or abs(self.left) == self.n or abs(self.right) == self.n:\n            return player\n\n        return 0\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n794. Valid Tic-Tac-Toe State\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint3-15",
+    "title": "380. Insert Delete GetRandom O(1)",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/insert delete getrandom o1/ 要求: each function works in avera",
+    "content": "# 380. Insert Delete GetRandom O(1)\n\n`https://leetcode.com/problems/insert-delete-getrandom-o1/`\n\n## solution\n\n> 要求: each function works in average O(1) time complexity\n\n```python\nclass RandomizedSet:\n    def __init__(self):\n        self.list = []\n        self.data_map = {}\n\n    def insert(self, val: int) -> bool:\n        if val in self.list:\n            return False\n        self.list.append(val)\n        self.data_map[val] = len(self.list)\n        return True\n\n    def remove(self, val: int) -> bool:\n        if val not in self.data_map:\n            return False\n        last_element = self.list[-1]\n        index_of_element = self.data_map[val]\n\n        self.data_map[last_element] = index_of_element\n        self.list[index_of_element] = last_element\n\n        self.list[-1] = val\n        self.list.pop()\n        self.data_map.pop(val)\n        return True\n\n    def getRandom(self) -> int:\n        return random.choice(self.list)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass RandomizedSet:\n    def __init__(self):\n        self.set = set()\n\n    def insert(self, val: int) -> bool:\n        if val in self.set:\n            return False\n        else:\n            self.set.add(val)\n            return True\n\n    def remove(self, val: int) -> bool:\n        if val in self.set:\n            self.set.remove(val)\n            return True\n        return False\n\n    def getRandom(self) -> int:\n        # set无序，转为list需要创建index，时间复杂度O(n)\n        return random.choice(list(self.set))\n```\n\n## follow up\n\n381. Insert Delete GetRandom O(1) - Duplicates allowed\n\n```python\n# follow1: delete function with a twist that there can be duplicates as well\n# follow2: Modify the map such that each unique element has equal probability of being returned. Ex: If values in map are [5,5,6,5,5] both 5 and 6 have 50% probability of being returned.\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-mlint3-16",
+    "title": "49. Group Anagrams",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/group anagrams/ hash的key有要求，本题采用sort后的字符串作为key 时间复杂度：O(nklog",
+    "content": "# 49. Group Anagrams\n\n`https://leetcode.com/problems/group-anagrams/`\n\n## solution\n\n- hash的key有要求，本题采用sort后的字符串作为key\n\n```python\nclass Solution:\n    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:\n        query = {}\n        for string in strs:\n            string_counter = \"\".join(sorted(string))  # 注意对字符串sort之后会变成 字符list\n            if string_counter in query:\n                query[string_counter].append(string)\n            else:\n                query[string_counter] = [string]\n        return [i[1] for i in query.items()]\n```\n\n时间复杂度：O(nklog(k)), where n=|strs|, k=|strs[i]| <br>\n空间复杂度：O(nk)\n\n```python\nclass Solution:\n    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:\n        anagram_dict = collections.defaultdict(list)\n        for word in strs:\n            key = ''.join(sorted(word))\n            anagram_dict[key].append(word)\n        return list(anagram_dict.values())\n```\n\n## follow up\n\n\\*249. Group Shifted Strings\n\n```python\nclass Solution:\n    def groupStrings(self, strings):\n        normalized_to_group = collections.defaultdict(list)\n        for s in strings:\n            normalized_chars = []\n            shift = ord(s[0]) - ord('a')\n            for char in s:\n                normalized_char_code = ord(char) - shift\n                if normalized_char_code < ord('a'):\n                    normalized_char_code += 26\n                normalized_chars.append(chr(normalized_char_code))\n\n            normalized_string = ''.join(normalized_chars)\n            normalized_to_group[normalized_string].append(s)\n        return list(normalized_to_group.values())\n```\n\n时间复杂度：O(nk) <br>\n空间复杂度：O(n)\n\n242. Valid Anagram",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-mlint3-19",
+    "title": "151. Reverse Words in a String",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/reverse words in a string/ 直接 时间复杂度：O() 空间复杂度：O(n) 双指针 时间复杂度",
+    "content": "# 151. Reverse Words in a String\n\n`https://leetcode.com/problems/reverse-words-in-a-string/`\n\n## solution\n\n- 直接\n\n```python\nclass Solution:\n    def reverseWords(self, s: str) -> str:\n        return \" \".join(s.split()[::-1])\n```\n\n时间复杂度：O() <br>\n空间复杂度：O(n)\n\n- 双指针\n\n```python\nclass Solution:\n    def reverseWords(self, s: str) -> str:\n        words = s.strip().split()\n        left, right = 0, len(words) - 1\n\n        while left < right:\n            words[left], words[right] = words[right], words[left]\n            left += 1\n            right -= 1\n        return \" \".join(words)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\n# TODO: no pass, for blank between and tail\nclass Solution:\n    def reverseWords(self, s: str) -> str:\n        s = list(s)\n        start, end = 0, len(s) - 1\n        self.help_reverse_word(s, start, end)\n\n        start = end = 0\n        # Iterate over the string S\n        while end < len(s):\n            if s[end] == ' ':\n                self.help_reverse_word(s, start, end - 1)\n                start = end + 1\n            end += 1\n\n        # Reverse the words\n        self.help_reverse_word(s, start, end - 1)\n        return ''.join(s)\n\n    def help_reverse_word(self, s, start, end):\n        while start < end:\n            s[start], s[end] = s[end], s[start]\n            start += 1\n            end -= 1\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n## follow up\n\n186 Reverse Words in a String II\n\n541. 反转字符串II\n\n```python\nclass Solution:\n    def reverseStr(self, s: str, k: int) -> str:\n        res = []\n        flag = 0\n        for i in range(0, len(s), k):\n            substring = s[i: i+k]\n            if flag % 2 == 0:\n                res.append(substring[::-1])\n            else:\n                res.append(substring)\n            flag += 1\n        return \"\".join(res)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-mlint3-22",
+    "title": "242. Valid Anagram",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/valid anagram/ hash 时间复杂度：O(n) 空间复杂度：O(26) O(1) hash using a",
+    "content": "# 242. Valid Anagram\n\n`https://leetcode.com/problems/valid-anagram/`\n\n## solution\n\n- hash\n\n```python\nclass Solution:\n    def isAnagram(self, s: str, t: str) -> bool:\n        if len(s) != len(t):\n            return False\n\n        counter = {}\n        for i in s:\n            if i in counter:\n                counter[i] += 1\n            else:\n                counter[i] = 1\n\n        for j in t:\n            if j in counter:\n                counter[j] -= 1\n            else:\n                return False\n\n        for x, y in counter.items():\n            if y > 0:\n                return False\n        return True\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(26) -> O(1)\n\n- hash using array 26\n\n- sort\n\n## follow up\n\n125. Valid Palindrome\n\n438. Find All Anagrams in a String",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-mlint3-27",
+    "title": "1249. Minimum Remove to Make Valid Parentheses",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/minimum remove to make valid parentheses/ 时间复杂度：O(n) 空间复杂度：O",
+    "content": "# 1249. Minimum Remove to Make Valid Parentheses\n\n`https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/`\n\n## solution\n\n```python\nclass Solution:\n    def minRemoveToMakeValid(self, s: str) -> str:\n        s = list(s)  # 一定要先展开, 否则下面直接把位置变为空则s是动态的\n\n        stack = []  # 栈只负责左右括号，删除调整的动作是在s的list上\n        for i, char in enumerate(s):\n            if char == '(':\n                stack.append(i)  # 注意index入栈，用index调整字符串位置\n            elif char == ')':\n                if stack:\n                    stack.pop()  # stack里只有左括号\n                else:\n                    s[i] = ''  # 多余的右括号去掉. 因此一开始要变为list，才可以按序号修改\n\n        while stack:  # 注意是while\n            s[stack.pop()] = ''  # 多余的左括号去掉\n        return ''.join(s)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n括号类小结\n\n301 Remove Invalid Parentheses\n\n1653. Minimum Deletions to Make String Balanced\n\n```python\nclass Solution:\n  # Same as 926. Flip String to Monotone Increasing\n  def minimumDeletions(self, s: str) -> int:\n    dp = 0  # the number of characters to be deleted to make subso far balanced\n    count_b = 0\n\n    for c in s:\n      if c == 'a':\n        # 1. Delete 'a'.\n        # 2. Keep 'a' and delete the previous 'b's.\n        dp = min(dp + 1, count_b)\n      else:\n        count_b += 1\n\n    return dp\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint3-29",
+    "title": "1472. Design Browser History",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design browser history/ 时间复杂度：O(steps) 空间复杂度：O(n)",
+    "content": "# 1472. Design Browser History\n\n`https://leetcode.com/problems/design-browser-history/`\n\n## solution\n\n```python\nclass BrowserHistory:\n    def __init__(self, homepage: str):\n        self.history = []\n        self.visit(homepage)\n\n    def visit(self, url: str) -> None:\n        self.history.append(url)\n        self.future = []\n\n    def back(self, steps: int) -> str:\n        while len(self.history) > 1 and steps > 0:\n            self.future.append(self.history.pop())\n            steps -= 1\n        return self.history[-1]\n\n    def forward(self, steps: int) -> str:\n        while self.future and steps > 0:\n            self.history.append(self.future.pop())\n            steps -= 1\n        return self.history[-1]\n```\n\n时间复杂度：O(steps) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint3-30",
+    "title": "150. Evaluate Reverse Polish Notation",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 III",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/evaluate reverse polish notation/ 注意运算顺序与栈的顺序 python中如何将字符串符",
+    "content": "# 150. Evaluate Reverse Polish Notation\n\n`https://leetcode.com/problems/evaluate-reverse-polish-notation/`\n\n## solution\n\n- 注意运算顺序与栈的顺序\n- python中如何将字符串符号对应为运算符\n\n```python\nclass Solution:\n    def evalRPN(self, tokens: List[str]) -> int:\n        stack = []\n        # op_map = {'+': add, '-': sub, '*': mul, '/': lambda x, y: int(x / y)}\n\n        for token in tokens:\n            if token in ['+', '-', '*', '/']:\n                a = stack.pop(-1)\n                b = stack.pop(-1)\n                if token == '+':\n                    x = a + b\n                elif token == '-':\n                    x = b - a\n                elif token == '*':\n                    x = b * a\n                elif token == '/':\n                    x = b / a\n                else:\n                    raise ValueError\n\n                stack.append(int(x))\n            else:\n                stack.append(int(token))\n        return stack[-1]\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-waytogo4-1",
+    "title": "11.14 结构体、集合和高阶函数",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "通常你在应用中定义了一个结构体，那么你也可能需要这个结构体的（指针）对象集合，比如： 然后我们就可以使用高阶函数，实际上也就是把函数作为定义所需方法（其他函数）的参数，例如： 1）",
+    "content": "# 11.14 结构体、集合和高阶函数\n\n通常你在应用中定义了一个结构体，那么你也可能需要这个结构体的（指针）对象集合，比如：\n\n```go\ntype Any interface{}\ntype Car struct {\n\tModel        string\n\tManufacturer string\n\tBuildYear    int\n\t// ...\n}\n\ntype Cars []*Car\n```\n\n然后我们就可以使用高阶函数，实际上也就是把函数作为定义所需方法（其他函数）的参数，例如：\n\n1）定义一个通用的 `Process()` 函数，它接收一个作用于每一辆 car 的 f 函数作参数：\n\n```go\n// Process all cars with the given function f:\nfunc (cs Cars) Process(f func(car *Car)) {\n\tfor _, c := range cs {\n\t\tf(c)\n\t}\n}\n```\n\n2）在上面的基础上，实现一个查找函数来获取子集合，并在 `Process()` 中传入一个闭包执行（这样就可以访问局部切片 `cars`）：\n\n```go\n// Find all cars matching a given criteria.\nfunc (cs Cars) FindAll(f func(car *Car) bool) Cars {\n\n\tcars := make([]*Car, 0)\n\tcs.Process(func(c *Car) {\n\t\tif f(c) {\n\t\t\tcars = append(cars, c)\n\t\t}\n\t})\n\treturn cars\n}\n```\n\n3）实现对应作用的功效 (Map-functionality)，从每个 `car` 对象当中产出某些东西：\n\n```go\n// Process cars and create new data.\nfunc (cs Cars) Map(f func(car *Car) Any) []Any {\n\tresult := make([]Any, 0)\n\tix := 0\n\tcs.Process(func(c *Car) {\n\t\tresult[ix] = f(c)\n\t\tix++\n\t})\n\treturn result\n}\n```\n\n现在我们可以定义下面这样的具体查询：\n\n```go\nallNewBMWs := allCars.FindAll(func(car *Car) bool {\n\treturn (car.Manufacturer == \"BMW\") && (car.BuildYear > 2010)\n})\n```\n\n4）我们也可以根据参数返回不同的函数。也许我们想根据不同的厂商添加汽车到不同的集合，但是这（这种映射关系）可能会是会改变的。所以我们可以定义一个函数来产生特定的添加函数和 `map` 集：\n\n```go\nfunc MakeSortedAppender(manufacturers []string)(func(car *Car),map[string]Cars) {\n\t// Prepare maps of sorted cars.\n\tsortedCars := make(map[string]Cars)\n\tfor _, m := range manufacturers {\n\t\tsortedCars[m] = make([]*Car, 0)\n\t}\n\tsortedCars[\"Default\"] = make([]*Car, 0)\n\t// Prepare appender function:\n\tappender := func(c *Car) {\n\t\tif _, ok := sortedCars[c.Manufacturer]; ok {\n\t\t\tsortedCars[c.Manufacturer] = append(sortedCars[c.Manufacturer], c)\n\t\t} else {\n\t\t\tsortedCars[\"Default\"] = append(sortedCars[\"Default\"], c)\n\t\t}\n\n\t}\n\treturn appender, sortedCars\n}\n```\n\n现在我们可以用它把汽车分类为独立的集合，像这样：\n\n```go\nmanufacturers := []string{\"Ford\", \"Aston Martin\", \"Land Rover\", \"BMW\", \"Jaguar\"}\nsortedAppender, sortedCars := MakeSortedAppender(manufacturers)\nallUnsortedCars.Process(sortedAppender)\nBMWCount := len(sortedCars[\"BMW\"])\n```\n\n我们让这些代码在下面的程序 cars.go 中执行：\n\n示例 11.18 cars.go：\n\n```go\n// cars.go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\ntype Any interface{}\ntype Car struct {\n\tModel        string\n\tManufacturer string\n\tBuildYear    int\n\t// ...\n}\ntype Cars []*Car\n\nfunc main() {\n\t// make some cars:\n\tford := &Car{\"Fiesta\", \"Ford\", 2008}\n\tbmw := &Car{\"XL 450\", \"BMW\", 2011}\n\tmerc := &Car{\"D600\", \"Mercedes\", 2009}\n\tbmw2 := &Car{\"X 800\", \"BMW\", 2008}\n\t// query:\n\tallCars := Cars([]*Car{ford, bmw, merc, bmw2})\n\tallNewBMWs := allCars.FindAll(func(car *Car) bool {\n\t\treturn (car.Manufacturer == \"BMW\") && (car.BuildYear > 2010)\n\t})\n\tfmt.Println(\"AllCars: \", allCars)\n\tfmt.Println(\"New BMWs: \", allNewBMWs)\n\t//\n\tmanufacturers := []string{\"Ford\", \"Aston Martin\", \"Land Rover\", \"BMW\", \"Jaguar\"}\n\tsortedAppender, sortedCars := MakeSortedAppender(manufacturers)\n\tallCars.Process(sortedAppender)\n\tfmt.Println(\"Map sortedCars: \", sortedCars)\n\tBMWCount := len(sortedCars[\"BMW\"])\n\tfmt.Println(\"We have \", BMWCount, \" BMWs\")\n}\n\n// Process all cars with the given function f:\nfunc (cs Cars) Process(f func(car *Car)) {\n\tfor _, c := range cs {\n\t\tf(c)\n\t}\n}\n\n// Find all cars matching a given criteria.\nfunc (cs Cars) FindAll(f func(car *Car) bool) Cars {\n\tcars := make([]*Car, 0)\n\n\tcs.Process(func(c *Car) {\n\t\tif f(c) {\n\t\t\tcars = append(cars, c)\n\t\t}\n\t})\n\treturn cars\n}\n\n// Process cars and create new data.\nfunc (cs Cars) Map(f func(car *Car) Any) []Any {\n\tresult := make([]Any, len(cs))\n\tix := 0\n\tcs.Process(func(c *Car) {\n\t\tresult[ix] = f(c)\n\t\tix++\n\t})\n\treturn result\n}\n\nfunc MakeSortedAppender(manufacturers []string) (func(car *Car), map[string]Cars) {\n\t// Prepare maps of sorted cars.\n\tsortedCars := make(map[string]Cars)\n\n\tfor _, m := range manufacturers {\n\t\tsortedCars[m] = make([]*Car, 0)\n\t}\n\tsortedCars[\"Default\"] = make([]*Car, 0)\n\n\t// Prepare appender function:\n\tappender := func(c *Car) {\n\t\tif _, ok := sortedCars[c.Manufacturer]; ok {\n\t\t\tsortedCars[c.Manufacturer] = append(sortedCars[c.Manufacturer], c)\n\t\t} else {\n\t\t\tsortedCars[\"Default\"] = append(sortedCars[\"Default\"], c)\n\t\t}\n\t}\n\treturn appender, sortedCars\n}\n```\n\n输出：\n\n```\nAllCars:  [0xf8400038a0 0xf840003bd0 0xf840003ba0 0xf840003b70]\nNew BMWs:  [0xf840003bd0]\nMap sortedCars:  map[Default:[0xf840003ba0] Jaguar:[] Land Rover:[] BMW:[0xf840003bd0 0xf840003b70] Aston Martin:[] Ford:[0xf8400038a0]]\nWe have  2  BMWs\n```\n\n## 链接\n\n- 目录\n- 上一节：Go 中的面向对象\n- 下一章：读写数据",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-waytogo4-3",
+    "title": "11.3 类型断言：如何检测和转换接口变量的类型",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "一个接口类型的变量 varI 中可以包含任何类型的值，必须有一种方式来检测它的 动态 类型，即运行时在变量中存储的值的实际类型。在执行过程中动态类型可能会有所不同，但是它总是可以分",
+    "content": "# 11.3 类型断言：如何检测和转换接口变量的类型\n\n一个接口类型的变量 `varI` 中可以包含任何类型的值，必须有一种方式来检测它的 **动态** 类型，即运行时在变量中存储的值的实际类型。在执行过程中动态类型可能会有所不同，但是它总是可以分配给接口变量本身的类型。通常我们可以使用 **类型断言** 来测试在某个时刻 `varI` 是否包含类型 `T` 的值：\n\n```go\nv := varI.(T)       // unchecked type assertion\n```\n\n**`varI` 必须是一个接口变量**，否则编译器会报错：`invalid type assertion: varI.(T) (non-interface type (type of varI) on left)` 。\n\n类型断言可能是无效的，虽然编译器会尽力检查转换是否有效，但是它不可能预见所有的可能性。如果转换在程序运行时失败会导致错误发生。更安全的方式是使用以下形式来进行类型断言：\n\n```go\nif v, ok := varI.(T); ok {  // checked type assertion\n    Process(v)\n    return\n}\n// varI is not of type T\n```\n\n如果转换合法，`v` 是 `varI` 转换到类型 `T` 的值，`ok` 会是 `true`；否则 `v` 是类型 `T` 的零值，`ok` 是 `false`，也没有运行时错误发生。\n\n**应该总是使用上面的方式来进行类型断言**。\n\n多数情况下，我们可能只是想在 `if` 中测试一下 `ok` 的值，此时使用以下的方法会是最方便的：\n\n```go\nif _, ok := varI.(T); ok {\n    // ...\n}\n```\n\n示例 11.4 type_interfaces.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"math\"\n)\n\ntype Square struct {\n\tside float32\n}\n\ntype Circle struct {\n\tradius float32\n}\n\ntype Shaper interface {\n\tArea() float32\n}\n\nfunc main() {\n\tvar areaIntf Shaper\n\tsq1 := new(Square)\n\tsq1.side = 5\n\n\tareaIntf = sq1\n\t// Is Square the type of areaIntf?\n\tif t, ok := areaIntf.(*Square); ok {\n\t\tfmt.Printf(\"The type of areaIntf is: %T\\n\", t)\n\t}\n\tif u, ok := areaIntf.(*Circle); ok {\n\t\tfmt.Printf(\"The type of areaIntf is: %T\\n\", u)\n\t} else {\n\t\tfmt.Println(\"areaIntf does not contain a variable of type Circle\")\n\t}\n}\n\nfunc (sq *Square) Area() float32 {\n\treturn sq.side * sq.side\n}\n\nfunc (ci *Circle) Area() float32 {\n\treturn ci.radius * ci.radius * math.Pi\n}\n```\n\n输出：\n\n    The type of areaIntf is: *main.Square\n    areaIntf does not contain a variable of type Circle\n\n程序中定义了一个新类型 `Circle`，它也实现了 `Shaper` 接口。 `if t, ok := areaIntf.(*Square); ok` 测试 `areaIntf` 里是否有一个包含 `*Square` 类型的变量，结果是确定的；然后我们测试它是否包含一个 `*Circle` 类型的变量，结果是否定的。\n\n**备注**\n\n如果忽略 `areaIntf.(*Square)` 中的 `*` 号，会导致编译错误：`impossible type assertion: Square does not implement Shaper (Area method has pointer receiver)`。\n\n## 链接\n\n- 目录\n- 上一节：接口嵌套接口\n- 下一节：类型判断：type-switch",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-waytogo4-4",
+    "title": "11.4 类型判断：type-switch",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "接口变量的类型也可以使用一种特殊形式的 switch 来检测： type switch （下面是示例 11.4 的第二部分）： 输出： Type Square main.Squar",
+    "content": "# 11.4 类型判断：type-switch\n\n接口变量的类型也可以使用一种特殊形式的 `switch` 来检测：**type-switch** （下面是示例 11.4 的第二部分）：\n\n```go\nswitch t := areaIntf.(type) {\ncase *Square:\n\tfmt.Printf(\"Type Square %T with value %v\\n\", t, t)\ncase *Circle:\n\tfmt.Printf(\"Type Circle %T with value %v\\n\", t, t)\ncase nil:\n\tfmt.Printf(\"nil value: nothing to check?\\n\")\ndefault:\n\tfmt.Printf(\"Unexpected type %T\\n\", t)\n}\n```\n\n输出：\n\n    Type Square *main.Square with value &{5}\n\n变量 `t` 得到了 `areaIntf` 的值和类型，所有 `case` 语句中列举的类型（`nil` 除外）都必须实现对应的接口（在上例中即 `Shaper`），如果被检测类型没有在 `case` 语句列举的类型中，就会执行 `default` 语句。\n\n可以用 `type-switch` 进行运行时类型分析，但是在 `type-switch` 不允许有 `fallthrough` 。\n\n如果仅仅是测试变量的类型，不用它的值，那么就可以不需要赋值语句，比如：\n\n```go\nswitch areaIntf.(type) {\ncase *Square:\n\t// TODO\ncase *Circle:\n\t// TODO\n...\ndefault:\n\t// TODO\n}\n```\n\n下面的代码片段展示了一个类型分类函数，它有一个可变长度参数，可以是任意类型的数组，它会根据数组元素的实际类型执行不同的动作：\n\n```go\nfunc classifier(items ...interface{}) {\n\tfor i, x := range items {\n\t\tswitch x.(type) {\n\t\tcase bool:\n\t\t\tfmt.Printf(\"Param #%d is a bool\\n\", i)\n\t\tcase float64:\n\t\t\tfmt.Printf(\"Param #%d is a float64\\n\", i)\n\t\tcase int, int64:\n\t\t\tfmt.Printf(\"Param #%d is a int\\n\", i)\n\t\tcase nil:\n\t\t\tfmt.Printf(\"Param #%d is a nil\\n\", i)\n\t\tcase string:\n\t\t\tfmt.Printf(\"Param #%d is a string\\n\", i)\n\t\tdefault:\n\t\t\tfmt.Printf(\"Param #%d is unknown\\n\", i)\n\t\t}\n\t}\n}\n```\n\n可以这样调用此方法：`classifier(13, -14.3, \"BELGIUM\", complex(1, 2), nil, false)` 。\n\n在处理来自于外部的、类型未知的数据时，比如解析诸如 JSON 或 XML 编码的数据，类型测试和转换会非常有用。\n\n在示例 12.17 (xml.go) 中解析 XML 文档时，我们就会用到 `type-switch`。\n\n**练习 11.4** simple_interface2.go：\n\n接着练习 11.1 中的内容，创建第二个类型 `RSimple`，它也实现了接口 `Simpler`，写一个函数 `fi()`，使它可以区分 `Simple` 和 `RSimple` 类型的变量。\n\n## 链接\n\n- 目录\n- 上一节：类型断言：如何检测和转换接口变量的类型\n- 下一节：测试一个值是否实现了某个接口",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-waytogo4-6",
+    "title": "11.6 使用方法集与接口",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在第 10.6.3 节及例子 methodset1.go 中我们看到，作用于变量上的方法实际上是不区分变量到底是指针还是值的。当碰到接口类型值时，这会变得有点复杂，原因是接口变量中",
+    "content": "# 11.6 使用方法集与接口\n\n在第 10.6.3 节及例子 methodset1.go 中我们看到，作用于变量上的方法实际上是不区分变量到底是指针还是值的。当碰到接口类型值时，这会变得有点复杂，原因是接口变量中存储的具体值是不可寻址的，幸运的是，如果使用不当编译器会给出错误。考虑下面的程序：\n\n示例 11.5 methodset2.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\ntype List []int\n\nfunc (l List) Len() int {\n\treturn len(l)\n}\n\nfunc (l *List) Append(val int) {\n\t*l = append(*l, val)\n}\n\ntype Appender interface {\n\tAppend(int)\n}\n\nfunc CountInto(a Appender, start, end int) {\n\tfor i := start; i <= end; i++ {\n\t\ta.Append(i)\n\t}\n}\n\ntype Lener interface {\n\tLen() int\n}\n\nfunc LongEnough(l Lener) bool {\n\treturn l.Len()*10 > 42\n}\n\nfunc main() {\n\t// A bare value\n\tvar lst List\n\t// compiler error:\n\t// cannot use lst (type List) as type Appender in argument to CountInto:\n\t//       List does not implement Appender (Append method has pointer receiver)\n\t// CountInto(lst, 1, 10)\n\tif LongEnough(lst) { // VALID: Identical receiver type\n\t\tfmt.Printf(\"- lst is long enough\\n\")\n\t}\n\n\t// A pointer value\n\tplst := new(List)\n\tCountInto(plst, 1, 10) // VALID: Identical receiver type\n\tif LongEnough(plst) {\n\t\t// VALID: a *List can be dereferenced for the receiver\n\t\tfmt.Printf(\"- plst is long enough\\n\")\n\t}\n}\n```\n\n**讨论**\n\n在 `lst` 上调用 `CountInto` 时会导致一个编译器错误，因为 `CountInto` 需要一个 `Appender`，而它的方法 `Append` 只定义在指针上。 在 `lst` 上调用 `LongEnough` 是可以的，因为 `Len` 定义在值上。\n\n在 `plst` 上调用 `CountInto` 是可以的，因为 `CountInto` 需要一个 `Appender`，并且它的方法 `Append` 定义在指针上。 在 `plst` 上调用 `LongEnough` 也是可以的，因为指针会被自动解引用。\n\n**总结**\n\n在接口上调用方法时，必须有和方法定义时相同的接收者类型或者是可以根据具体类型 `P` 直接辨识的：\n\n- 指针方法可以通过指针调用\n- 值方法可以通过值调用\n- 接收者是值的方法可以通过指针调用，因为指针会首先被解引用\n- 接收者是指针的方法不可以通过值调用，因为存储在接口中的值没有地址\n\n将一个值赋值给一个接口时，编译器会确保所有可能的接口方法都可以在此值上被调用，因此不正确的赋值在编译期就会失败。\n\n**译注**\n\nGo 语言规范定义了接口方法集的调用规则：\n\n- 类型 `*T` 的可调用方法集包含接受者为 `*T` 或 `T` 的所有方法集\n- 类型 `T` 的可调用方法集包含接受者为 `T` 的所有方法\n- 类型 `T` 的可调用方法集**不**包含接受者为 `*T` 的方法\n\n## 链接\n\n- 目录\n- 上一节：测试一个值是否实现了某个接口\n- 下一节：第一个例子：使用 Sorter 接口排序",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-waytogo4-7",
+    "title": "11.7 第一个例子：使用 Sorter 接口排序",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "一个很好的例子是来自标准库的 sort 包，要对一组数字或字符串排序，只需要实现三个方法：反映元素个数的 Len() 方法、比较第 i 和 j 个元素的 Less(i, j) 方法",
+    "content": "# 11.7 第一个例子：使用 Sorter 接口排序\n\n一个很好的例子是来自标准库的 `sort` 包，要对一组数字或字符串排序，只需要实现三个方法：反映元素个数的 `Len()` 方法、比较第 `i` 和 `j` 个元素的 `Less(i, j)` 方法以及交换第 `i` 和 `j` 个元素的 `Swap(i, j)` 方法。\n\n排序函数的算法只会使用到这三个方法（可以使用任何排序算法来实现，此处我们使用冒泡排序）：\n\n```go\nfunc Sort(data Sorter) {\n    for pass := 1; pass < data.Len(); pass++ {\n        for i := 0;i < data.Len() - pass; i++ {\n            if data.Less(i+1, i) {\n                data.Swap(i, i + 1)\n            }\n        }\n    }\n}\n```\n\n`Sort` 函数接收一个接口类型的参数：`Sorter` ，它声明了这些方法：\n\n```go\ntype Sorter interface {\n    Len() int\n    Less(i, j int) bool\n    Swap(i, j int)\n}\n```\n\n参数中的 `int` 是待排序序列长度的类型，而不是说要排序的对象一定要是一组 `int`。`i` 和 `j` 表示元素的整型索引，长度也是整型的。\n\n现在如果我们想对一个 `int` 数组进行排序，所有必须做的事情就是：为数组定一个类型并在它上面实现 `Sorter` 接口的方法：\n\n```go\ntype IntArray []int\nfunc (p IntArray) Len() int           { return len(p) }\nfunc (p IntArray) Less(i, j int) bool { return p[i] < p[j] }\nfunc (p IntArray) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }\n```\n\n下面是调用排序函数的一个具体例子：\n\n```go\ndata := []int{74, 59, 238, -784, 9845, 959, 905, 0, 0, 42, 7586, -5467984, 7586}\na := sort.IntArray(data) //conversion to type IntArray from package sort\nsort.Sort(a)\n```\n\n完整的、可运行的代码可以在 sort.go 和 sortmain.go 里找到。\n\n同样的原理，排序函数可以用于一个浮点型数组，一个字符串数组，或者一个表示每周各天的结构体 `dayArray`。\n\n示例 11.6 sort.go：\n\n```go\npackage sort\n\ntype Sorter interface {\n\tLen() int\n\tLess(i, j int) bool\n\tSwap(i, j int)\n}\n\nfunc Sort(data Sorter) {\n\tfor pass := 1; pass < data.Len(); pass++ {\n\t\tfor i := 0; i < data.Len()-pass; i++ {\n\t\t\tif data.Less(i+1, i) {\n\t\t\t\tdata.Swap(i, i+1)\n\t\t\t}\n\t\t}\n\t}\n}\n\nfunc IsSorted(data Sorter) bool {\n\tn := data.Len()\n\tfor i := n - 1; i > 0; i-- {\n\t\tif data.Less(i, i-1) {\n\t\t\treturn false\n\t\t}\n\t}\n\treturn true\n}\n\n// Convenience types for common cases\ntype IntArray []int\n\nfunc (p IntArray) Len() int           { return len(p) }\nfunc (p IntArray) Less(i, j int) bool { return p[i] < p[j] }\nfunc (p IntArray) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }\n\ntype StringArray []string\n\nfunc (p StringArray) Len() int           { return len(p) }\nfunc (p StringArray) Less(i, j int) bool { return p[i] < p[j] }\nfunc (p StringArray) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }\n\n// Convenience wrappers for common cases\nfunc SortInts(a []int)       { Sort(IntArray(a)) }\nfunc SortStrings(a []string) { Sort(StringArray(a)) }\n\nfunc IntsAreSorted(a []int) bool       { return IsSorted(IntArray(a)) }\nfunc StringsAreSorted(a []string) bool { return IsSorted(StringArray(a)) }\n```\n\n示例 11.7 sortmain.go：\n\n```go\npackage main\n\nimport (\n\t\"./sort\"\n\t\"fmt\"\n)\n\nfunc ints() {\n\tdata := []int{74, 59, 238, -784, 9845, 959, 905, 0, 0, 42, 7586, -5467984, 7586}\n\ta := sort.IntArray(data) //conversion to type IntArray\n\tsort.Sort(a)\n\tif !sort.IsSorted(a) {\n\t\tpanic(\"fails\")\n\t}\n\tfmt.Printf(\"The sorted array is: %v\\n\", a)\n}\n\nfunc strings() {\n\tdata := []string{\"monday\", \"friday\", \"tuesday\", \"wednesday\", \"sunday\", \"thursday\", \"\", \"saturday\"}\n\ta := sort.StringArray(data)\n\tsort.Sort(a)\n\tif !sort.IsSorted(a) {\n\t\tpanic(\"fail\")\n\t}\n\tfmt.Printf(\"The sorted array is: %v\\n\", a)\n}\n\ntype day struct {\n\tnum       int\n\tshortName string\n\tlongName  string\n}\n\ntype dayArray struct {\n\tdata []*day\n}\n\nfunc (p *dayArray) Len() int           { return len(p.data) }\nfunc (p *dayArray) Less(i, j int) bool { return p.data[i].num < p.data[j].num }\nfunc (p *dayArray) Swap(i, j int)      { p.data[i], p.data[j] = p.data[j], p.data[i] }\n\nfunc days() {\n\tSunday    := day{0, \"SUN\", \"Sunday\"}\n\tMonday    := day{1, \"MON\", \"Monday\"}\n\tTuesday   := day{2, \"TUE\", \"Tuesday\"}\n\tWednesday := day{3, \"WED\", \"Wednesday\"}\n\tThursday  := day{4, \"THU\", \"Thursday\"}\n\tFriday    := day{5, \"FRI\", \"Friday\"}\n\tSaturday  := day{6, \"SAT\", \"Saturday\"}\n\tdata := []*day{&Tuesday, &Thursday, &Wednesday, &Sunday, &Monday, &Friday, &Saturday}\n\ta := dayArray{data}\n\tsort.Sort(&a)\n\tif !sort.IsSorted(&a) {\n\t\tpanic(\"fail\")\n\t}\n\tfor _, d := range data {\n\t\tfmt.Printf(\"%s \", d.longName)\n\t}\n\tfmt.Printf(\"\\n\")\n}\n\nfunc main() {\n\tints()\n\tstrings()\n\tdays()\n}\n```\n\n输出：\n\n    The sorted array is: [-5467984 -784 0 0 42 59 74 238 905 959 7586 7586 9845]\n    The sorted array is: [ friday monday saturday sunday thursday tuesday wednesday]\n    Sunday Monday Tuesday Wednesday Thursday Friday Saturday \n\n**备注**：\n\n`panic(\"fail\")` 用于停止处于在非正常情况下的程序（详细请参考第 13 章），当然也可以先打印一条信息，然后调用 `os.Exit(1)` 来停止程序。\n\n上面的例子帮助我们进一步了解了接口的意义和使用方式。对于基本类型的排序，标准库已经提供了相关的排序函数，所以不需要我们再重复造轮子了。对于一般性的排序，`sort` 包定义了一个接口：\n\n```go\ntype Interface interface {\n\tLen() int\n\tLess(i, j int) bool\n\tSwap(i, j int)\n}\n```\n\n这个接口总结了需要用于排序的抽象方法，函数 `Sort(data Interface)` 用来对此类对象进行排序，可以用它们来实现对其他类型的数据（非基本类型）进行排序。在上面的例子中，我们也是这么做的，不仅可以对 `int` 和 `string` 序列进行排序，也可以对用户自定义类型 `dayArray` 进行排序。\n\n**练习 11.5** interfaces_ext.go：\n\na). 继续扩展程序，定义类型 `Triangle`，让它实现 `AreaInterface` 接口。通过计算一个特定三角形的面积来进行测试（三角形面积=0.5 * (底 * 高)）\n\nb). 定义一个新接口 `PeriInterface`，它有一个 `Perimeter` 方法。让 `Square` 实现这个接口，并通过一个 `Square` 示例来测试它。\n\n**练习 11.6** point_interfaces.go：\n\n继续 10.3 中的练习 point_methods.go，定义接口 `Magnitude`，它有一个方法 `Abs()`。让 `Point`、`Point3` 及 `Polar` 实现此接口。通过接口类型变量使用方法做 point.go 中同样的事情。\n\n**练习 11.7** float_sort.go / float_sortmain.go：\n\n类似 11.7 和示例 11.3/4，定义一个包 `float64`，并在包里定义类型 `Float64Array`，然后让它实现 `Sorter` 接口用来对 `float64` 数组进行排序。\n\n另外提供如下方法：\n\n- `NewFloat64Array()`：创建一个包含 25 个元素的数组变量（参考 10.2 ）\n- `List()`：返回数组格式化后的字符串，并在 `String()` 方法中调用它，这样就不用显式地调用 `List()` 来打印数组（参考 10.7）\n- `Fill()`：创建一个包含 10 个随机浮点数的数组（参考 4.5.2.6）\n\n在主程序中新建一个此类型的变量，然后对它排序并进行测试。\n\n**练习 11.8** sort.go / sort_persons.go：\n\n定义一个结构体 `Person`，它有两个字段：`firstName` 和 `lastName`，为 `[]Person` 定义类型 `Persons` 。让 `Persons` 实现 `Sorter` 接口并进行测试。\n\n## 链接\n\n- 目录\n- 上一节：使用方法集与接口\n- 下一节：第二个例子：读和写",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-waytogo4-8",
+    "title": "11.8 第二个例子：读和写",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "读和写是软件中很普遍的行为，提起它们会立即想到读写文件、缓存（比如字节或字符串切片）、标准输入输出、标准错误以及网络连接、管道等等，或者读写我们的自定义类型。为了让代码尽可能通用，",
+    "content": "# 11.8 第二个例子：读和写\n\n读和写是软件中很普遍的行为，提起它们会立即想到读写文件、缓存（比如字节或字符串切片）、标准输入输出、标准错误以及网络连接、管道等等，或者读写我们的自定义类型。为了让代码尽可能通用，Go 采取了一致的方式来读写数据。\n\n`io` 包提供了用于读和写的接口 `io.Reader` 和 `io.Writer`：\n\n```go\ntype Reader interface {\n    Read(p []byte) (n int, err error)\n}\n\ntype Writer interface {\n    Write(p []byte) (n int, err error)\n}\n```\n\n只要类型实现了读写接口，提供 `Read` 和 `Write` 方法，就可以从它读取数据，或向它写入数据。一个对象要是可读的，它必须实现 `io.Reader` 接口，这个接口只有一个签名是 `Read(p []byte) (n int, err error)` 的方法，它从调用它的对象上读取数据，并把读到的数据放入参数中的字节切片中，然后返回读取的字节数和一个 `error` 对象，如果没有错误发生返回 `nil`，如果已经到达输入的尾端，会返回 `io.EOF(\"EOF\")`，如果读取的过程中发生了错误，就会返回具体的错误信息。类似地，一个对象要是可写的，它必须实现 `io.Writer` 接口，这个接口也只有一个签名是 `Write(p []byte) (n int, err error)` 的方法，它将指定字节切片中的数据写入调用它的对象里，然后返回实际写入的字节数和一个 `error` 对象（如果没有错误发生就是 `nil`）。\n\n`io` 包里的 `Readers` 和 `Writers` 都是不带缓冲的，`bufio` 包里提供了对应的带缓冲的操作，在读写 `UTF-8` 编码的文本文件时它们尤其有用。在第 12 章我们会看到很多在实战中使用它们的例子。\n\n在实际编程中尽可能的使用这些接口，会使程序变得更通用，可以在任何实现了这些接口的类型上使用读写方法。\n\n例如一个 `JPEG` 图形解码器，通过一个 `Reader` 参数，它可以解码来自磁盘、网络连接或以 `gzip` 压缩的 `HTTP` 流中的 `JPEG` 图形数据，或者其他任何实现了 `Reader` 接口的对象。 \n\n## 链接\n\n- 目录\n- 上一节：第一个例子：使用Sorter接口排序\n- 下一节：空接口",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-waytogo4-9",
+    "title": "11.9 空接口",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "空接口或者最小接口 不包含任何方法，它对实现不做任何要求： go type Any interface 任何其他类型都实现了空接口（它不仅仅像 Java/C 中 Object 引用",
+    "content": "# 11.9 空接口\r\n\r\n## 11.9.1 概念\r\n\r\n**空接口或者最小接口** 不包含任何方法，它对实现不做任何要求：\r\n\r\n```go\r\ntype Any interface {}\r\n```\r\n\r\n任何其他类型都实现了空接口（它不仅仅像 `Java/C#` 中 `Object` 引用类型），`any` 或 `Any` 是空接口一个很好的别名或缩写。\r\n\r\n空接口类似 `Java/C#` 中所有类的基类： `Object` 类，二者的目标也很相近。\r\n\r\n可以给一个空接口类型的变量 `var val interface {}` 赋任何类型的值。\r\n\r\n示例 11.8 empty_interface.go：\r\n\r\n```go\r\npackage main\r\nimport \"fmt\"\r\n\r\nvar i = 5\r\nvar str = \"ABC\"\r\n\r\ntype Person struct {\r\n\tname string\r\n\tage  int\r\n}\r\n\r\ntype Any interface{}\r\n\r\nfunc main() {\r\n\tvar val Any\r\n\tval = 5\r\n\tfmt.Printf(\"val has the value: %v\\n\", val)\r\n\tval = str\r\n\tfmt.Printf(\"val has the value: %v\\n\", val)\r\n\tpers1 := new(Person)\r\n\tpers1.name = \"Rob Pike\"\r\n\tpers1.age = 55\r\n\tval = pers1\r\n\tfmt.Printf(\"val has the value: %v\\n\", val)\r\n\tswitch t := val.(type) {\r\n\tcase int:\r\n\t\tfmt.Printf(\"Type int %T\\n\", t)\r\n\tcase string:\r\n\t\tfmt.Printf(\"Type string %T\\n\", t)\r\n\tcase bool:\r\n\t\tfmt.Printf(\"Type boolean %T\\n\", t)\r\n\tcase *Person:\r\n\t\tfmt.Printf(\"Type pointer to Person %T\\n\", t)\r\n\tdefault:\r\n\t\tfmt.Printf(\"Unexpected type %T\", t)\r\n\t}\r\n}\r\n```\r\n\r\n输出：\r\n\r\n    val has the value: 5\r\n    val has the value: ABC\r\n    val has the value: &{Rob Pike 55}\r\n    Type pointer to Person *main.Person\r\n\r\n在上面的例子中，接口变量 `val` 被依次赋予一个 `int`，`string` 和 `Person` 实例的值，然后使用 `type-switch` 来测试它的实际类型。每个 `interface {}` 变量在内存中占据两个字长：一个用来存储它包含的类型，另一个用来存储它包含的数据或者指向数据的指针。\r\n\r\n示例 emptyint_switch.go 说明了空接口在 `type-switch` 中联合 `lambda` 函数的用法：\r\n\r\n```go\r\npackage main\r\n\r\nimport \"fmt\"\r\n\r\ntype specialString string\r\n\r\nvar whatIsThis specialString = \"hello\"\r\n\r\nfunc TypeSwitch() {\r\n\ttestFunc := func(any interface{}) {\r\n\t\tswitch v := any.(type) {\r\n\t\tcase bool:\r\n\t\t\tfmt.Printf(\"any %v is a bool type\", v)\r\n\t\tcase int:\r\n\t\t\tfmt.Printf(\"any %v is an int type\", v)\r\n\t\tcase float32:\r\n\t\t\tfmt.Printf(\"any %v is a float32 type\", v)\r\n\t\tcase string:\r\n\t\t\tfmt.Printf(\"any %v is a string type\", v)\r\n\t\tcase specialString:\r\n\t\t\tfmt.Printf(\"any %v is a special String!\", v)\r\n\t\tdefault:\r\n\t\t\tfmt.Println(\"unknown type!\")\r\n\t\t}\r\n\t}\r\n\ttestFunc(whatIsThis)\r\n}\r\n\r\nfunc main() {\r\n\tTypeSwitch()\r\n}\r\n```\r\n\r\n输出：\r\n\r\n    any hello is a special String!\r\n\r\n**练习 11.9** simple_interface3.go：\r\n\r\n继续练习 11.2，在它中添加一个 `gI()` 函数，它不再接受 `Simpler` 类型的参数，而是接受一个空接口参数。然后通过类型断言判断参数是否是 `Simpler` 类型。最后在 `main` 使用 `gI()` 取代 `fI()` 函数并调用它。确保你的代码足够安全。\r\n\r\n## 11.9.2 构建通用类型或包含不同类型变量的数组\r\n\r\n在 7.6.6 中我们看到了能被搜索和排序的 `int` 数组、`float` 数组以及 `string` 数组，那么对于其他类型的数组呢，是不是我们必须得自己编程实现它们？\r\n\r\n现在我们知道该怎么做了，就是通过使用空接口。让我们给空接口定一个别名类型 `Element`：`type Element interface{}`\r\n\r\n然后定义一个容器类型的结构体 `Vector`，它包含一个 `Element` 类型元素的切片：\r\n\r\n```go\r\ntype Vector struct {\r\n\ta []Element\r\n}\r\n```\r\n\r\n`Vector` 里能放任何类型的变量，因为任何类型都实现了空接口，实际上 `Vector` 里放的每个元素可以是不同类型的变量。我们为它定义一个 `At()` 方法用于返回第 `i` 个元素：\r\n\r\n```go\r\nfunc (p *Vector) At(i int) Element {\r\n\treturn p.a[i]\r\n}\r\n```\r\n\r\n再定一个 `Set()` 方法用于设置第 `i` 个元素的值：\r\n\r\n```go\r\nfunc (p *Vector) Set(i int, e Element) {\r\n\tp.a[i] = e\r\n}\r\n```\r\n\r\n`Vector` 中存储的所有元素都是 `Element` 类型，要得到它们的原始类型（unboxing：拆箱）需要用到类型断言。TODO：The compiler rejects assertions guaranteed to fail，类型断言总是在运行时才执行，因此它会产生运行时错误。\r\n\r\n**练习 11.10** min_interface.go / minmain.go：\r\n\r\n仿照 11.7 中开发的 `Sorter` 接口，创建一个 `Miner` 接口并实现一些必要的操作。函数 `Min()` 接受一个 `Miner` 类型变量的集合，然后计算并返回集合中最小的元素。\r\n\r\n## 11.9.3 复制数据切片至空接口切片\r\n\r\n假设你有一个 `myType` 类型的数据切片，你想将切片中的数据复制到一个空接口切片中，类似：\r\n\r\n```go\r\nvar dataSlice []myType = FuncReturnSlice()\r\nvar interfaceSlice []interface{} = dataSlice\r\n```\r\n\r\n可惜不能这么做，编译时会出错：`cannot use dataSlice (type []myType) as type []interface { } in assignment`。\r\n\r\n原因是它们俩在内存中的布局是不一样的（参考 Go wiki）。\r\n\r\n必须使用 `for-range` 语句来一个一个显式地赋值：\r\n\r\n```go\r\nvar dataSlice []myType = FuncReturnSlice()\r\nvar interfaceSlice []interface{} = make([]interface{}, len(dataSlice))\r\nfor i, d := range dataSlice {\r\n    interfaceSlice[i] = d\r\n}\r\n```\r\n\r\n## 11.9.4 通用类型的节点数据结构\r\n\r\n在 10.1 中我们遇到了诸如列表和树这样的数据结构，在它们的定义中使用了一种叫节点的递归结构体类型，节点包含一个某种类型的数据字段。现在可以使用空接口作为数据字段的类型，这样我们就能写出通用的代码。下面是实现一个二叉树的部分代码：通用定义、用于创建空节点的 `NewNode` 方法，及设置数据的 `SetData` 方法。\r\n\r\n示例 11.10 node_structures.go：\r\n\r\n```go\r\npackage main\r\n\r\nimport \"fmt\"\r\n\r\ntype Node struct {\r\n\tle   *Node\r\n\tdata interface{}\r\n\tri   *Node\r\n}\r\n\r\nfunc NewNode(left, right *Node) *Node {\r\n\treturn &Node{left, nil, right}\r\n}\r\n\r\nfunc (n *Node) SetData(data interface{}) {\r\n\tn.data = data\r\n}\r\n\r\nfunc main() {\r\n\troot := NewNode(nil, nil)\r\n\troot.SetData(\"root node\")\r\n\t// make child (leaf) nodes:\r\n\ta := NewNode(nil, nil)\r\n\ta.SetData(\"left node\")\r\n\tb := NewNode(nil, nil)\r\n\tb.SetData(\"right node\")\r\n\troot.le = a\r\n\troot.ri = b\r\n\tfmt.Printf(\"%v\\n\", root) // Output: &{0x125275f0 root node 0x125275e0}\r\n}\r\n```\r\n\r\n## 11.9.5 接口到接口\r\n\r\n一个接口的值可以赋值给另一个接口变量，只要底层类型实现了必要的方法。这个转换是在运行时进行检查的，转换失败会导致一个运行时错误：这是 `Go` 语言动态的一面，可以拿它和 `Ruby` 和 `Python` 这些动态语言相比较。\r\n\r\n假定：\r\n\r\n```go\r\nvar ai AbsInterface // declares method Abs()\r\ntype SqrInterface interface {\r\n    Sqr() float\r\n}\r\nvar si SqrInterface\r\npp := new(Point) // say *Point implements Abs, Sqr\r\nvar empty interface{}\r\n```\r\n\r\n那么下面的语句和类型断言是合法的：\r\n\r\n```go\r\nempty = pp                // everything satisfies empty\r\nai = empty.(AbsInterface) // underlying value pp implements Abs()\r\n// (runtime failure otherwise)\r\nsi = ai.(SqrInterface) // *Point has Sqr() even though AbsInterface doesn’t\r\nempty = si             // *Point implements empty set\r\n// Note: statically checkable so type assertion not necessary.\r\n```\r\n\r\n下面是函数调用的一个例子：\r\n\r\n```go\r\ntype myPrintInterface interface {\r\n\tprint()\r\n}\r\n\r\nfunc f3(x myInterface) {\r\n\tx.(myPrintInterface).print() // type assertion to myPrintInterface\r\n}\r\n```\r\n\r\n`x` 转换为 `myPrintInterface` 类型是完全动态的：只要 `x` 的底层类型（动态类型）定义了 `print` 方法这个调用就可以正常运行（译注：若 `x` 的底层类型未定义 `print` 方法，此处类型断言会导致 `panic`，最佳实践应该为 `if mpi, ok := x.(myPrintInterface); ok { mpi.print() }`，参考 11.3 章节）。\r\n\r\n## 链接\r\n\r\n- 目录\r\n- 上一节：第二个例子：读和写\r\n- 下一节：反射包",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-waytogo4-11",
+    "title": "12.1 读取用户的输入",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "我们如何读取用户的键盘（控制台）输入呢？从键盘和标准输入 os.Stdin 读取输入，最简单的办法是使用 fmt 包提供的 Scan... 和 Sscan... 开头的函数。请看以",
+    "content": "# 12.1 读取用户的输入\n\n我们如何读取用户的键盘（控制台）输入呢？从键盘和标准输入 `os.Stdin` 读取输入，最简单的办法是使用 `fmt` 包提供的 `Scan...` 和 `Sscan...` 开头的函数。请看以下程序：\n\n示例 12.1 readinput1.go：\n\n```go\n// 从控制台读取输入:\npackage main\nimport \"fmt\"\n\nvar (\n   firstName, lastName, s string\n   i int\n   f float32\n   input = \"56.12 / 5212 / Go\"\n   format = \"%f / %d / %s\"\n)\n\nfunc main() {\n   fmt.Println(\"Please enter your full name: \")\n   fmt.Scanln(&firstName, &lastName)\n   // fmt.Scanf(\"%s %s\", &firstName, &lastName)\n   fmt.Printf(\"Hi %s %s!\\n\", firstName, lastName) // Hi Chris Naegels\n   fmt.Sscanf(input, format, &f, &i, &s)\n   fmt.Println(\"From the string we read: \", f, i, s)\n    // 输出结果: From the string we read: 56.12 5212 Go\n}\n```\n\n`Scanln()` 扫描来自标准输入的文本，将空格分隔的值依次存放到后续的参数内，直到碰到换行。`Scanf()` 与其类似，除了 `Scanf()` 的第一个参数用作格式字符串，用来决定如何读取。`Sscan...` 和以 `Sscan...` 开头的函数则是从字符串读取，除此之外，与 `Scanf()` 相同。如果这些函数读取到的结果与您预想的不同，您可以检查成功读入数据的个数和返回的错误。\n\n您也可以使用 `bufio` 包提供的缓冲读取器 (buffered reader) 来读取数据，正如以下例子所示：\n\n示例 12.2 readinput2.go：\n\n```go\npackage main\nimport (\n    \"fmt\"\n    \"bufio\"\n    \"os\"\n)\n\nvar inputReader *bufio.Reader\nvar input string\nvar err error\n\nfunc main() {\n    inputReader = bufio.NewReader(os.Stdin)\n    fmt.Println(\"Please enter some input: \")\n    input, err = inputReader.ReadString('\\n')\n    if err == nil {\n        fmt.Printf(\"The input was: %s\\n\", input)\n    }\n}\n```\n\n`inputReader` 是一个指向 `bufio.Reader` 的指针。`inputReader := bufio.NewReader(os.Stdin)` 这行代码，将会创建一个读取器，并将其与标准输入绑定。\n\n`bufio.NewReader()` 构造函数的签名为：`func NewReader(rd io.Reader) *Reader`\n\n该函数的实参可以是满足 `io.Reader` 接口的任意对象（任意包含有适当的 `Read()` 方法的对象，请参考章节 11.8），函数返回一个新的带缓冲的 `io.Reader` 对象，它将从指定读取器（例如 `os.Stdin`）读取内容。\n\n返回的读取器对象提供一个方法 `ReadString(delim byte)`，该方法从输入中读取内容，直到碰到 `delim` 指定的字符，然后将读取到的内容连同 `delim` 字符一起放到缓冲区。\n\n`ReadString` 返回读取到的字符串，如果碰到错误则返回 `nil`。如果它一直读到文件结束，则返回读取到的字符串和 `io.EOF`。如果读取过程中没有碰到 `delim` 字符，将返回错误 `err != nil`。\n\n在上面的例子中，我们会读取键盘输入，直到回车键 (`\\n`) 被按下。\n\n屏幕是标准输出 `os.Stdout`；`os.Stderr` 用于显示错误信息，大多数情况下等同于 `os.Stdout`。\n\n一般情况下，我们会省略变量声明，而使用 `:=`，例如：\n\n```go\ninputReader := bufio.NewReader(os.Stdin)\ninput, err := inputReader.ReadString('\\n')\n```\n\n我们将从现在开始使用这种写法。\n\n第二个例子从键盘读取输入，使用了 `switch` 语句：\n\n示例 12.3 switch_input.go：\n\n```go\npackage main\nimport (\n    \"fmt\"\n    \"os\"\n    \"bufio\"\n)\n\nfunc main() {\n    inputReader := bufio.NewReader(os.Stdin)\n    fmt.Println(\"Please enter your name:\")\n    input, err := inputReader.ReadString('\\n')\n\n    if err != nil {\n        fmt.Println(\"There were errors reading, exiting program.\")\n        return\n    }\n\n    fmt.Printf(\"Your name is %s\", input)\n    // For Unix: test with delimiter \"\\n\", for Windows: test with \"\\r\\n\"\n    switch input {\n    case \"Philip\\r\\n\":  fmt.Println(\"Welcome Philip!\")\n    case \"Chris\\r\\n\":   fmt.Println(\"Welcome Chris!\")\n    case \"Ivo\\r\\n\":     fmt.Println(\"Welcome Ivo!\")\n    default: fmt.Printf(\"You are not welcome here! Goodbye!\")\n    }\n\n    // version 2:   \n    switch input {\n    case \"Philip\\r\\n\":  fallthrough\n    case \"Ivo\\r\\n\":     fallthrough\n    case \"Chris\\r\\n\":   fmt.Printf(\"Welcome %s\\n\", input)\n    default: fmt.Printf(\"You are not welcome here! Goodbye!\\n\")\n    }\n\n    // version 3:\n    switch input {\n    case \"Philip\\r\\n\", \"Ivo\\r\\n\":   fmt.Printf(\"Welcome %s\\n\", input)\n    default: fmt.Printf(\"You are not welcome here! Goodbye!\\n\")\n    }\n}\n```\n\n注意：Unix 和 Windows 的行结束符是不同的！\n\n**练习**\n\n**练习 12.1:** word_letter_count.go\n\n编写一个程序，从键盘读取输入。当用户输入 'S' 的时候表示输入结束，这时程序输出 3 个数字：  \ni) 输入的字符的个数，包括空格，但不包括 `'\\r'` 和 `'\\n'`  \nii) 输入的单词的个数  \niii) 输入的行数\n\n**练习 12.2:** calculator.go\n\n编写一个简单的逆波兰式计算器，它接受用户输入的整型数（最大值 999999）和运算符 +、-、\\*、/。  \n输入的格式为：`number1 ENTER number2 ENTER operator ENTER --> 显示结果`  \n当用户输入字符 `'q'` 时，程序结束。请使用您在练习 11.13 中开发的 `stack` 包。\n\n## 链接\n\n- 目录\n- 上一节：读写数据\n- 下一节：文件读写",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-waytogo4-12",
+    "title": "12.10 XML 数据格式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "下面是与 12.9 节 JSON 例子等价的 XML 版本： 如同 json 包一样，也有 xml.Marshal() 和 xml.Unmarshal() 从 XML 中编码和解码",
+    "content": "# 12.10 XML 数据格式\n\n下面是与 12.9 节 JSON 例子等价的 XML 版本：\n\n```xml\n<Person>\n    <FirstName>Laura</FirstName>\n    <LastName>Lynn</LastName>\n</Person>\n```\n\n如同 `json` 包一样，也有 `xml.Marshal()` 和 `xml.Unmarshal()` 从 XML 中编码和解码数据；但这个更通用，可以从文件中读取和写入（或者任何实现了 `io.Reader` 和 `io.Writer` 接口的类型）\n\n和 JSON 的方式一样，XML 数据可以序列化为结构，或者从结构反序列化为 XML 数据；这些可以在例子 15.8（twitter_status.go）中看到。\n\n`encoding`/`xml` 包实现了一个简单的 XML 解析器（SAX），用来解析 XML 数据内容。下面的例子说明如何使用解析器：\n\n示例 12.17 xml.go：\n\n```go\n// xml.go\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"strings\"\n)\n\nvar t, token xml.Token\nvar err error\n\nfunc main() {\n\tinput := \"<Person><FirstName>Laura</FirstName><LastName>Lynn</LastName></Person>\"\n\tinputReader := strings.NewReader(input)\n\tp := xml.NewDecoder(inputReader)\n\n\tfor t, err = p.Token(); err == nil; t, err = p.Token() {\n\t\tswitch token := t.(type) {\n\t\tcase xml.StartElement:\n\t\t\tname := token.Name.Local\n\t\t\tfmt.Printf(\"Token name: %s\\n\", name)\n\t\t\tfor _, attr := range token.Attr {\n\t\t\t\tattrName := attr.Name.Local\n\t\t\t\tattrValue := attr.Value\n\t\t\t\tfmt.Printf(\"An attribute is: %s %s\\n\", attrName, attrValue)\n\t\t\t\t// ...\n\t\t\t}\n\t\tcase xml.EndElement:\n\t\t\tfmt.Println(\"End of token\")\n\t\tcase xml.CharData:\n\t\t\tcontent := string([]byte(token))\n\t\t\tfmt.Printf(\"This is the content: %v\\n\", content)\n\t\t\t// ...\n\t\tdefault:\n\t\t\t// ...\n\t\t}\n\t}\n}\n```\n\n输出：\n\n```\nToken name: Person\nToken name: FirstName\nThis is the content: Laura\nEnd of token\nToken name: LastName\nThis is the content: Lynn\nEnd of token\nEnd of token\n```\n\n包中定义了若干 XML 标签类型：StartElement，Chardata（这是从开始标签到结束标签之间的实际文本），EndElement，Comment，Directive 或 ProcInst。\n\n包中同样定义了一个结构解析器：`NewParser()` 方法持有一个 `io.Reader`（这里具体类型是 `strings.NewReader`）并生成一个解析器类型的对象。还有一个 `Token()` 方法返回输入流里的下一个 XML token。在输入流的结尾处，会返回 (`nil`,`io.EOF`)\n\nXML 文本被循环处理直到 `Token()` 返回一个错误，因为已经到达文件尾部，再没有内容可供处理了。通过一个 type-switch 可以根据一些 XML 标签进一步处理。Chardata 中的内容只是一个 `[]byte`，通过字符串转换让其变得可读性强一些。\n\n## 链接\n\n- 目录\n- 上一节：Json 数据格式\n- 下一节：用 Gob 传输数据",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-waytogo4-13",
+    "title": "12.11 用 Gob 传输数据",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "Gob 是 Go 自己的以二进制形式序列化和反序列化程序数据的格式；可以在 encoding 包中找到。这种格式的数据简称为 Gob （即 Go binary 的缩写）。类似于 P",
+    "content": "# 12.11 用 Gob 传输数据\n\nGob 是 Go 自己的以二进制形式序列化和反序列化程序数据的格式；可以在 `encoding` 包中找到。这种格式的数据简称为 Gob （即 Go binary 的缩写）。类似于 Python 的 \"pickle\" 和 Java 的 \"Serialization\"。\n\nGob 通常用于远程方法调用（RPCs，参见 15.9 节的 `rpc` 包）参数和结果的传输，以及应用程序和机器之间的数据传输。\n它和 JSON 或 XML 有什么不同呢？Gob 特定地用于纯 Go 的环境中，例如，两个用 Go 写的服务之间的通信。这样的话服务可以被实现得更加高效和优化。\nGob 不是可外部定义，语言无关的编码方式。因此它的首选格式是二进制，而不是像 JSON 和 XML 那样的文本格式。\nGob 并不是一种不同于 Go 的语言，而是在编码和解码过程中用到了 Go 的反射。\n\nGob 文件或流是完全自描述的：里面包含的所有类型都有一个对应的描述，并且总是可以用 Go 解码，而不需要了解文件的内容。\n\n只有可导出的字段会被编码，零值会被忽略。在解码结构体的时候，只有同时匹配名称和可兼容类型的字段才会被解码。当源数据类型增加新字段后，Gob 解码客户端仍然可以以这种方式正常工作：解码客户端会继续识别以前存在的字段。并且还提供了很大的灵活性，比如在发送者看来，整数被编码成没有固定长度的可变长度，而忽略具体的 Go 类型。\n\n假如在发送者这边有一个有结构 T：\n\n```go\ntype T struct { X, Y, Z int }\nvar t = T{X: 7, Y: 0, Z: 8}\n```\n\n而在接收者这边可以用一个结构体 U 类型的变量 u 来接收这个值：\n\n```go\ntype U struct { X, Y *int8 }\nvar u U\n```\n\n在接收者中，`X` 的值是 `7`，`Y` 的值是 `0`（`Y` 的值并没有从 `t` 中传递过来，因为它是零值）\n\n和 JSON 的使用方式一样，Gob 使用通用的 `io.Writer` 接口，通过 `NewEncoder()` 函数创建 `Encoder` 对象并调用 `Encode()`；相反的过程使用通用的 `io.Reader` 接口，通过 `NewDecoder()` 函数创建 `Decoder` 对象并调用 `Decode()`。\n\n我们把示例 12.12 的信息写进名为 vcard.gob 的文件作为例子。这会产生一个文本可读数据和二进制数据的混合，当你试着在文本编辑中打开的时候会看到。\n\n在示例 12.18 中你会看到一个编解码，并且以字节缓冲模拟网络传输的简单例子：\n\n示例 12.18 gob1.go：\n\n```go\n// gob1.go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"encoding/gob\"\n\t\"log\"\n)\n\ntype P struct {\n\tX, Y, Z int\n\tName    string\n}\n\ntype Q struct {\n\tX, Y *int32\n\tName string\n}\n\nfunc main() {\n\t// Initialize the encoder and decoder.  Normally enc and dec would be      \n\t// bound to network connections and the encoder and decoder would      \n\t// run in different processes.      \n\tvar network bytes.Buffer   // Stand-in for a network connection      \n\tenc := gob.NewEncoder(&network) // Will write to network.      \n\tdec := gob.NewDecoder(&network)\t// Will read from network.      \n\t// Encode (send) the value.      \n\terr := enc.Encode(P{3, 4, 5, \"Pythagoras\"})\n\tif err != nil {\n\t\tlog.Fatal(\"encode error:\", err)\n\t}\n\t// Decode (receive) the value.      \n\tvar q Q\n\terr = dec.Decode(&q)\n\tif err != nil {\n\t\tlog.Fatal(\"decode error:\", err)\n\t}\n\tfmt.Printf(\"%q: {%d,%d}\\n\", q.Name, q.X, q.Y)\n}\n// Output:   \"Pythagoras\": {3,4}\n```\n\n示例 12.19 gob2.go 编码到文件：\n\n```go\n// gob2.go\npackage main\n\nimport (\n\t\"encoding/gob\"\n\t\"log\"\n\t\"os\"\n)\n\ntype Address struct {\n\tType             string\n\tCity             string\n\tCountry          string\n}\n\ntype VCard struct {\n\tFirstName\tstring\n\tLastName\tstring\n\tAddresses\t[]*Address\n\tRemark\t\tstring\n}\n\nvar content\tstring\n\nfunc main() {\n\tpa := &Address{\"private\", \"Aartselaar\",\"Belgium\"}\n\twa := &Address{\"work\", \"Boom\", \"Belgium\"}\n\tvc := VCard{\"Jan\", \"Kersschot\", []*Address{pa,wa}, \"none\"}\n\t// fmt.Printf(\"%v: \\n\", vc) // {Jan Kersschot [0x126d2b80 0x126d2be0] none}:\n\t// using an encoder:\n\tfile, _ := os.OpenFile(\"vcard.gob\", os.O_CREATE|os.O_WRONLY, 0666)\n\tdefer file.Close()\n\tenc := gob.NewEncoder(file)\n\terr := enc.Encode(vc)\n\tif err != nil {\n\t\tlog.Println(\"Error in encoding gob\")\n\t}\n}\n```\n\n**练习 12.8**：degob.go：\n\n写一个程序读取 vcard.gob 文件，解码并打印它的内容。\n\n## 链接\n\n- 目录\n- 上一节：XML 数据格式\n- 下一节：Go 中的密码学",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-waytogo4-14",
+    "title": "12.12 Go 中的密码学",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "通过网络传输的数据必须加密，以防止被 hacker（黑客）读取或篡改，并且保证发出的数据和收到的数据检验和一致。 鉴于 Go 母公司的业务，我们毫不惊讶地看到 Go 的标准库为该领",
+    "content": "# 12.12 Go 中的密码学\n\n通过网络传输的数据必须加密，以防止被 hacker（黑客）读取或篡改，并且保证发出的数据和收到的数据检验和一致。\n鉴于 Go 母公司的业务，我们毫不惊讶地看到 Go 的标准库为该领域提供了超过 30 个的包：\n\n- `hash` 包：实现了 `adler32`、`crc32`、`crc64` 和 `fnv` 校验；\n- `crypto` 包：实现了其它的 hash 算法，比如 `md4`、`md5`、`sha1` 等。以及完整地实现了 `aes`、`blowfish`、`rc4`、`rsa`、`xtea` 等加密算法。\n\n下面的示例用 `sha1` 和 `md5` 计算并输出了一些校验值。\n\n示例 12.20 hash_sha1.go：\n\n```go\n// hash_sha1.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"crypto/sha1\"\n\t\"io\"\n\t\"log\"\n)\n\nfunc main() {\n\thasher := sha1.New()\n\tio.WriteString(hasher, \"test\")\n\tb := []byte{}\n\tfmt.Printf(\"Result: %x\\n\", hasher.Sum(b))\n\tfmt.Printf(\"Result: %d\\n\", hasher.Sum(b))\n\t//\n\thasher.Reset()\n\tdata := []byte(\"We shall overcome!\")\n\tn, err := hasher.Write(data)\n\tif n!=len(data) || err!=nil {\n\t\tlog.Printf(\"Hash write error: %v / %v\", n, err)\n\t}\n\tchecksum := hasher.Sum(b)\n\tfmt.Printf(\"Result: %x\\n\", checksum)\n}\n```\n\n输出：\n\n```\nResult: a94a8fe5ccb19ba61c4c0873d391e987982fbbd3\nResult: [169 74 143 229 204 177 155 166 28 76 8 115 211 145 233 135 152 47 187 211]\nResult: e2222bfc59850bbb00a722e764a555603bb59b2a\n```\n\n通过调用 `sha1.New()` 创建了一个新的 `hash.Hash` 对象，用来计算 SHA1 校验值。`Hash` 类型实际上是一个接口，它实现了 `io.Writer` 接口：\n\n```go\ntype Hash interface {\n\t// Write (via the embedded io.Writer interface) adds more data to the running hash.\n\t// It never returns an error.\n\tio.Writer\n\n\t// Sum appends the current hash to b and returns the resulting slice.\n\t// It does not change the underlying hash state.\n\tSum(b []byte) []byte\n\n\t// Reset resets the Hash to its initial state.\n\tReset()\n\n\t// Size returns the number of bytes Sum will return.\n\tSize() int\n\n\t// BlockSize returns the hash's underlying block size.\n\t// The Write method must be able to accept any amount\n\t// of data, but it may operate more efficiently if all writes\n\t// are a multiple of the block size.\n\tBlockSize() int\n}\n```\n\n通过 `io.WriteString` 或 `hasher.Write` 将给定的 `[]byte` 附加到当前的 `hash.Hash` 对象中。\n\n**练习 12.9**：hash_md5.go：\n\n在示例 12.20 中检验 md5 算法。\n\n## 链接\n\n- 目录\n- 上一节：用 Gob 传输数据\n- 下一章：错误处理与测试",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-waytogo4-15",
+    "title": "12.2 文件读写",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在 Go 语言中，文件使用指向 os.File 类型的指针来表示的，也叫做文件句柄。我们在前面章节使用到过标准输入 os.Stdin 和标准输出 os.Stdout ，他们的类型都",
+    "content": "# 12.2 文件读写\n\n## 12.2.1 读文件\n\n在 Go 语言中，文件使用指向 `os.File` 类型的指针来表示的，也叫做文件句柄。我们在前面章节使用到过标准输入 `os.Stdin` 和标准输出 `os.Stdout`，他们的类型都是 `*os.File`。让我们来看看下面这个程序：\n\n示例 12.4 fileinput.go：\n\n```go\npackage main\n\nimport (\n    \"bufio\"\n    \"fmt\"\n    \"io\"\n    \"os\"\n)\n\nfunc main() {\n    inputFile, inputError := os.Open(\"input.dat\")\n    if inputError != nil {\n        fmt.Printf(\"An error occurred on opening the inputfile\\n\" +\n            \"Does the file exist?\\n\" +\n            \"Have you got access to it?\\n\")\n        return // exit the function on error\n    }\n    defer inputFile.Close()\n\n    inputReader := bufio.NewReader(inputFile)\n    for {\n        inputString, readerError := inputReader.ReadString('\\n')\n        fmt.Printf(\"The input was: %s\", inputString)\n        if readerError == io.EOF {\n            return\n        }      \n    }\n}\n```\n\n变量 `inputFile` 是 `*os.File` 类型的。该类型是一个结构，表示一个打开文件的描述符（文件句柄）。然后，使用 `os` 包里的 `Open()` 函数来打开一个文件。该函数的参数是文件名，类型为 `string`。在上面的程序中，我们以只读模式打开 `input.dat` 文件。\n\n如果文件不存在或者程序没有足够的权限打开这个文件，Open函数会返回一个错误：`inputFile, inputError = os.Open(\"input.dat\")`。如果文件打开正常，我们就使用 `defer inputFile.Close()` 语句确保在程序退出前关闭该文件。然后，我们使用 `bufio.NewReader()` 来获得一个读取器变量。\n\n通过使用 `bufio` 包提供的读取器（写入器也类似），如上面程序所示，我们可以很方便的操作相对高层的 `string` 对象，而避免了去操作比较底层的字节。\n\n接着，我们在一个无限循环中使用 `ReadString('\\n')` 或 `ReadBytes('\\n')` 将文件的内容逐行（行结束符 `'\\n'`）读取出来。\n\n**注意：** 在之前的例子中，我们看到，Unix 和 Linux 的行结束符是 `\\n`，而 Windows 的行结束符是 `\\r\\n`。在使用 `ReadString` 和 `ReadBytes` 方法的时候，我们不需要关心操作系统的类型，直接使用 `\\n` 就可以了。另外，我们也可以使用 `ReadLine()` 方法来实现相同的功能。\n\n一旦读取到文件末尾，变量 `readerError` 的值将变成非空（事实上，其值为常量 `io.EOF`），我们就会执行 `return` 语句从而退出循环。\n\n**其他类似函数：**\n\n**1) 将整个文件的内容读到一个字符串里：**\n\n如果您想这么做，可以使用 `io/ioutil` 包里的 `ioutil.ReadFile()` 方法，该方法第一个返回值的类型是 `[]byte`，里面存放读取到的内容，第二个返回值是错误，如果没有错误发生，第二个返回值为 `nil`。请看示例 12.5。类似的，函数 `WriteFile()` 可以将 `[]byte` 的值写入文件。\n\n示例 12.5 read_write_file1.go：\n\n```go\npackage main\nimport (\n    \"fmt\"\n    \"io/ioutil\"\n    \"os\"\n)\n\nfunc main() {\n    inputFile := \"products.txt\"\n    outputFile := \"products_copy.txt\"\n    buf, err := ioutil.ReadFile(inputFile)\n    if err != nil {\n        fmt.Fprintf(os.Stderr, \"File Error: %s\\n\", err)\n        // panic(err.Error())\n    }\n    fmt.Printf(\"%s\\n\", string(buf))\n    err = ioutil.WriteFile(outputFile, buf, 0644) // oct, not hex\n    if err != nil {\n        panic(err.Error())\n    }\n}\n```\n\n**2) 带缓冲的读取**\n\n在很多情况下，文件的内容是不按行划分的，或者干脆就是一个二进制文件。在这种情况下，`ReadString()` 就无法使用了，我们可以使用 `bufio.Reader` 的 `Read()`，它只接收一个参数：\n\n```go\nbuf := make([]byte, 1024)\n...\nn, err := inputReader.Read(buf)\nif (n == 0) { break}\n```\n\n变量 `n` 的值表示读取到的字节数.\n\n**3) 按列读取文件中的数据**\n\n如果数据是按列排列并用空格分隔的，你可以使用 `fmt` 包提供的以 `FScan...` 开头的一系列函数来读取他们。请看以下程序，我们将 3 列的数据分别读入变量 `v1`、`v2` 和 `v3` 内，然后分别把他们添加到切片的尾部。\n\n示例 12.6 read_file2.go：\n\n```go\npackage main\nimport (\n    \"fmt\"\n    \"os\"\n)\n\nfunc main() {\n    file, err := os.Open(\"products2.txt\")\n    if err != nil {\n        panic(err)\n    }\n    defer file.Close()\n\n    var col1, col2, col3 []string\n    for {\n        var v1, v2, v3 string\n        _, err := fmt.Fscanln(file, &v1, &v2, &v3)\n        // scans until newline\n        if err != nil {\n            break\n        }\n        col1 = append(col1, v1)\n        col2 = append(col2, v2)\n        col3 = append(col3, v3)\n    }\n\n    fmt.Println(col1)\n    fmt.Println(col2)\n    fmt.Println(col3)\n}\n```\n\n输出结果：\n\n```\n[ABC FUNC GO]\n[40 56 45]\n[150 280 356]\n```\n\n**注意：** `path` 包里包含一个子包叫 `filepath`，这个子包提供了跨平台的函数，用于处理文件名和路径。例如 `Base()` 函数用于获得路径中的最后一个元素（不包含后面的分隔符）：\n\n```go\nimport \"path/filepath\"\nfilename := filepath.Base(path)\n```\n\n**练习 12.3**：read_csv.go\n\n文件 products.txt 的内容如下：\n\n```\n\"The ABC of Go\";25.5;1500\n\"Functional Programming with Go\";56;280\n\"Go for It\";45.9;356\n\"The Go Way\";55;500\n```\n每行的第一个字段为标题，第二个字段为价格，第三个字段为数量。内容的格式基本与 示例 12.3c 的相同，除了分隔符改成了分号。请读取出文件的内容，创建一个结构用于存取一行的数据，然后使用结构的切片，并把数据打印出来。\n\n关于解析 CSV 文件，`encoding/csv` 包提供了相应的功能。具体请参考 `http://golang.org/pkg/encoding/csv/` 。\n\n## 12.2.2 compress 包：读取压缩文件\n\n`compress` 包提供了读取压缩文件的功能，支持的压缩文件格式为：bzip2、flate、gzip、lzw 和 zlib。\n\n下面的程序展示了如何读取一个 gzip 文件。\n\n示例 12.7 gzipped.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"bufio\"\n\t\"os\"\n\t\"compress/gzip\"\n)\n\nfunc main() {\n\tfName := \"MyFile.gz\"\n\tvar r *bufio.Reader\n\tfi, err := os.Open(fName)\n\tif err != nil {\n\t\tfmt.Fprintf(os.Stderr, \"%v, Can't open %s: error: %s\\n\", os.Args[0], fName,\n\t\t\terr)\n\t\tos.Exit(1)\n\t}\n\tdefer fi.Close()\n\tfz, err := gzip.NewReader(fi)\n\tif err != nil {\n\t\tr = bufio.NewReader(fi)\n\t} else {\n\t\tr = bufio.NewReader(fz)\n\t}\n\n\tfor {\n\t\tline, err := r.ReadString('\\n')\n\t\tif err != nil {\n\t\t\tfmt.Println(\"Done reading file\")\n\t\t\tos.Exit(0)\n\t\t}\n\t\tfmt.Println(line)\n\t}\n}\n```\n\n## 12.2.3 写文件\n\n请看以下程序：\n\n示例 12.8 fileoutput.go：\n\n```go\npackage main\n\nimport (\n\t\"os\"\n\t\"bufio\"\n\t\"fmt\"\n)\n\nfunc main () {\n\t// var outputWriter *bufio.Writer\n\t// var outputFile *os.File\n\t// var outputError os.Error\n\t// var outputString string\n\toutputFile, outputError := os.OpenFile(\"output.dat\", os.O_WRONLY|os.O_CREATE, 0666)\n\tif outputError != nil {\n\t\tfmt.Printf(\"An error occurred with file opening or creation\\n\")\n\t\treturn  \n\t}\n\tdefer outputFile.Close()\n\n\toutputWriter := bufio.NewWriter(outputFile)\n\toutputString := \"hello world!\\n\"\n\n\tfor i:=0; i<10; i++ {\n\t\toutputWriter.WriteString(outputString)\n\t}\n\toutputWriter.Flush()\n}\n```\n\n除了文件句柄，我们还需要 `bufio` 的 `Writer`。我们以只写模式打开文件 `output.dat`，如果文件不存在则自动创建：\n\n```go\noutputFile, outputError := os.OpenFile(\"output.dat\", os.O_WRONLY|os.O_CREATE, 0666)\n```\n\n可以看到，`OpenFile` 函数有三个参数：文件名、一个或多个标志（使用逻辑运算符 `|` 连接），使用的文件权限。\n\n我们通常会用到以下标志：\n\n- `os.O_RDONLY`：只读  \n- `os.O_WRONLY`：只写  \n- `os.O_CREATE`：创建：如果指定文件不存在，就创建该文件。  \n- `os.O_TRUNC`：截断：如果指定文件已存在，就将该文件的长度截为 0 。\n\n在读文件的时候，文件的权限是被忽略的，所以在使用 `OpenFile()` 时传入的第三个参数可以用 0 。而在写文件时，不管是 Unix 还是 Windows，都需要使用 `0666`。\n\n然后，我们创建一个写入器（缓冲区）对象：\n\n```go\noutputWriter := bufio.NewWriter(outputFile)\n```\n\n接着，使用一个 `for` 循环，将字符串写入缓冲区，写 10 次：`outputWriter.WriteString(outputString)`\n\n缓冲区的内容紧接着被完全写入文件：`outputWriter.Flush()`\n\n如果写入的东西很简单，我们可以使用 `fmt.Fprintf(outputFile, \"Some test data.\\n\")` 直接将内容写入文件。`fmt` 包里的 `F...` 开头的 `Print()` 函数可以直接写入任何 `io.Writer`，包括文件（请参考章节 12.8)。\n\n程序 `filewrite.go` 展示了不使用 `fmt.FPrintf()` 函数，使用其他函数如何写文件：\n\n示例 12.8 filewrite.go：\n\n```go\npackage main\n\nimport \"os\"\n\nfunc main() {\n\tos.Stdout.WriteString(\"hello, world\\n\")\n\tf, _ := os.OpenFile(\"test\", os.O_CREATE|os.O_WRONLY, 0666)\n\tdefer f.Close()\n\tf.WriteString(\"hello, world in a file\\n\")\n}\n```\n\n使用 `os.Stdout.WriteString(\"hello, world\\n\")`，我们可以输出到屏幕。\n\n我们以只写模式创建或打开文件 `\"test\"` ，并且忽略了可能发生的错误：`f, _ := os.OpenFile(\"test\", os.O_CREATE|os.O_WRONLY, 0666)`\n\n我们不使用缓冲区，直接将内容写入文件：`f.WriteString()`\n\n**练习 12.4**：wiki_part1.go\n\n（这是一个独立的练习，但是同时也是为章节 15.4 做准备）\n\n程序中的数据结构如下，是一个包含以下字段的结构:\n\n```go\ntype Page struct {\n    Title string\n    Body  []byte\n}\n```\n\n请给这个结构编写一个 `save()` 方法，将 Title 作为文件名、Body 作为文件内容，写入到文本文件中。\n\n再编写一个 `load()` 函数，接收的参数是字符串 `title`，该函数读取出与 `title` 对应的文本文件。请使用 `*Page` 做为参数，因为这个结构可能相当巨大，我们不想在内存中拷贝它。请使用 `ioutil` 包里的函数（参考章节 12.2.1）。\n\n## 链接\n\n- 目录\n- 上一节：读取用户的输入\n- 下一节：文件拷贝",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-waytogo4-17",
+    "title": "12.4 从命令行读取参数",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "os 包中有一个 string 类型的切片变量 os.Args ，用来处理一些基本的命令行参数，它在程序启动后读取命令行输入的参数。来看下面的打招呼程序： 示例 12.11 os ",
+    "content": "# 12.4 从命令行读取参数\n\n## 12.4.1 os 包\n\n`os` 包中有一个 `string` 类型的切片变量 `os.Args`，用来处理一些基本的命令行参数，它在程序启动后读取命令行输入的参数。来看下面的打招呼程序：\n\n示例 12.11 os_args.go：\n\n```go\n// os_args.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n\t\"strings\"\n)\n\nfunc main() {\n\twho := \"Alice \"\n\tif len(os.Args) > 1 {\n\t\twho += strings.Join(os.Args[1:], \" \")\n\t}\n\tfmt.Println(\"Good Morning\", who)\n}\n```\n\n我们在 IDE 或编辑器中直接运行这个程序输出：`Good Morning Alice`\n\n我们在命令行运行 `os_args` 或 `./os_args` 会得到同样的结果。\n\n但是我们在命令行加入参数，像这样：`os_args John Bill Marc Luke`，将得到这样的输出：`Good Morning Alice John Bill Marc Luke`\n\n这个命令行参数会放置在切片 `os.Args[]` 中（以空格分隔），从索引 1 开始（`os.Args[0]` 放的是程序本身的名字，在本例中是 `os_args`）。函数 `strings.Join` 以空格为间隔连接这些参数。\n\n**练习 12.5**：hello_who.go\n\n写一个“Hello World”的变种程序：把人的名字作为程序命令行执行的一个参数，比如： `hello_who Evan Michael Laura` 那么会输出 `Hello Evan Michael Laura!`\n\n## 12.4.2 flag 包\n\n`flag` 包有一个扩展功能用来解析命令行选项。但是通常被用来替换基本常量，例如，在某些情况下我们希望在命令行给常量一些不一样的值。（参看 19 章的项目）\n\n在 `flag` 包中有一个 `Flag` 是被定义成一个含有如下字段的结构体：\n\n```go\ntype Flag struct {\n\tName     string // name as it appears on command line\n\tUsage    string // help message\n\tValue    Value  // value as set\n\tDefValue string // default value (as text); for usage message\n}\n```\n\n下面的程序 echo.go 模拟了 Unix 的 echo 功能：\n\n```go\npackage main\n\nimport (\n\t\"flag\" // command line option parser\n\t\"os\"\n)\n\nvar NewLine = flag.Bool(\"n\", false, \"print newline\") // echo -n flag, of type *bool\n\nconst (\n\tSpace   = \" \"\n\tNewline = \"\\n\"\n)\n\nfunc main() {\n\tflag.PrintDefaults()\n\tflag.Parse() // Scans the arg list and sets up flags\n\tvar s string = \"\"\n\tfor i := 0; i < flag.NArg(); i++ {\n\t\tif i > 0 {\n\t\t\ts += \" \"\n\t\t\tif *NewLine { // -n is parsed, flag becomes true\n\t\t\t\ts += Newline\n\t\t\t}\n\t\t}\n\t\ts += flag.Arg(i)\n\t}\n\tos.Stdout.WriteString(s)\n}\n```\n\n`flag.Parse()` 扫描参数列表（或者常量列表）并设置 flag, `flag.Arg(i)` 表示第 i 个参数。`Parse()` 之后 `flag.Arg(i)` 全部可用，`flag.Arg(0)` 就是第一个真实的 flag，而不是像 `os.Args(0)` 放置程序的名字。\n\n`flag.Narg()` 返回参数的数量。解析后 flag 或常量就可用了。\n`flag.Bool()` 定义了一个默认值是 `false` 的 flag：当在命令行出现了第一个参数（这里是 `'n'`），flag 被设置成 `true`（`NewLine` 是 `*bool` 类型）。flag 被解引用到 `*NewLine`，所以当值是 `true` 时将添加一个 `Newline(\"\\n\")`。\n\n`flag.PrintDefaults()` 打印 flag 的使用帮助信息，本例中打印的是：\n\n```go\n-n=false: print newline\n```\n\n`flag.VisitAll(fn func(*Flag))` 是另一个有用的功能：按照字典顺序遍历 flag，并且对每个标签调用 fn （参考 15.8 章的例子）\n\n当在命令行 (Windows) 中执行：`echo.exe A B C`，将输出：`A B C`；执行 `echo.exe -n A B C`，将输出：\n\n```\nA\nB\nC\n```\n\n每个字符的输出都新起一行，每次都在输出的数据前面打印使用帮助信息：`-n=false: print newline`。\n\n对于 `flag.Bool` 你可以设置布尔型 flag 来测试你的代码，例如定义一个 flag `processedFlag`:\n\n```go\nvar processedFlag = flag.Bool(\"proc\", false, \"nothing processed yet\")\n```\n\n在后面用如下代码来测试：\n\n```go\nif *processedFlag { // found flag -proc\n\tr = process()\n}\n```\n\n要给 flag 定义其它类型，可以使用 `flag.Int()`，`flag.Float64()`，`flag.String()`。\n\n在第 15.8 章你将找到一个具体的例子。\n\n## 链接\n\n- 目录\n- 上一节：文件拷贝\n- 下一节：用 buffer 读取文件",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-waytogo4-18",
+    "title": "12.5 用 buffer 读取文件",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在下面的例子中，我们结合使用了缓冲读取文件和命令行 flag 解析这两项技术。如果不加参数，那么你输入什么屏幕就打印什么。 参数被认为是文件名，如果文件存在的话就打印文件内容到屏幕",
+    "content": "# 12.5 用 buffer 读取文件\n\n在下面的例子中，我们结合使用了缓冲读取文件和命令行 flag 解析这两项技术。如果不加参数，那么你输入什么屏幕就打印什么。\n\n参数被认为是文件名，如果文件存在的话就打印文件内容到屏幕。命令行执行 `cat test` 测试输出。\n\n示例 12.11 cat.go：\n\n```go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"flag\"\n\t\"fmt\"\n\t\"io\"\n\t\"os\"\n)\n\nfunc cat(r *bufio.Reader) {\n\tfor {\n\t\tbuf, err := r.ReadBytes('\\n')\n\t\tfmt.Fprintf(os.Stdout, \"%s\", buf)\n\t\tif err == io.EOF {\n\t\t\tbreak\n\t\t}\n\t}\n\treturn\n}\n\nfunc main() {\n\tflag.Parse()\n\tif flag.NArg() == 0 {\n\t\tcat(bufio.NewReader(os.Stdin))\n\t}\n\tfor i := 0; i < flag.NArg(); i++ {\n\t\tf, err := os.Open(flag.Arg(i))\n\t\tif err != nil {\n\t\t\tfmt.Fprintf(os.Stderr, \"%s:error reading from %s: %s\\n\", os.Args[0], flag.Arg(i), err.Error())\n\t\t\tcontinue\n\t\t}\n\t\tcat(bufio.NewReader(f))\n\t\tf.Close()\n\t}\n}\n```\n\n在 12.6 章节，我们将看到如何使用缓冲写入。\n\n**练习 12.6**：cat_numbered.go\n\n扩展 cat.go 例子，使用 flag 添加一个选项，目的是为每一行头部加入一个行号。使用 `cat -n test` 测试输出。\n\n## 链接\n\n- 目录\n- 上一节：从命令行读取参数\n- 下一节：用切片读写文件",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-waytogo4-19",
+    "title": "12.6 用切片读写文件",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "切片提供了 Go 中处理 I/O 缓冲的标准方式，下面 cat 函数的第二版中，在一个切片缓冲内使用无限 for 循环（直到文件尾部 EOF ）读取文件，并写入到标准输出（ os.",
+    "content": "# 12.6 用切片读写文件\n\n切片提供了 Go 中处理 I/O 缓冲的标准方式，下面 `cat` 函数的第二版中，在一个切片缓冲内使用无限 `for` 循环（直到文件尾部 `EOF`）读取文件，并写入到标准输出（`os.Stdout`）。\n\n```go\nfunc cat(f *os.File) {\n\tconst NBUF = 512\n\tvar buf [NBUF]byte\n\tfor {\n\t\tswitch nr, err := f.Read(buf[:]);  {\n\t\tcase nr < 0:\n\t\t\tfmt.Fprintf(os.Stderr, \"cat: error reading: %s\\n\", err.Error())\n\t\t\tos.Exit(1)\n\t\tcase nr == 0: // EOF\n\t\t\treturn\n\t\tcase nr > 0:\n\t\t\tif nw, ew := os.Stdout.Write(buf[0:nr]); nw != nr {\n\t\t\t\tfmt.Fprintf(os.Stderr, \"cat: error writing: %s\\n\", ew.Error())\n\t\t\t}\n\t\t}\n\t}\n}\n```\n\n上面的代码来自于 cat2.go，使用了 os 包中的 `os.File` 和 `Read` 方法；`cat2.go` 与 `cat.go` 具有同样的功能。\n\n示例 12.14 cat2.go：\n\n```go\npackage main\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc cat(f *os.File) {\n\tconst NBUF = 512\n\tvar buf [NBUF]byte\n\tfor {\n\t\tswitch nr, err := f.Read(buf[:]); true {\n\t\tcase nr < 0:\n\t\t\tfmt.Fprintf(os.Stderr, \"cat: error reading: %s\\n\", err.Error())\n\t\t\tos.Exit(1)\n\t\tcase nr == 0: // EOF\n\t\t\treturn\n\t\tcase nr > 0:\n\t\t\tif nw, ew := os.Stdout.Write(buf[0:nr]); nw != nr {\n\t\t\t\tfmt.Fprintf(os.Stderr, \"cat: error writing: %s\\n\", ew.Error())\n\t\t\t}\n\t\t}\n\t}\n}\n\nfunc main() {\n\tflag.Parse() // Scans the arg list and sets up flags\n\tif flag.NArg() == 0 {\n\t\tcat(os.Stdin)\n\t}\n\tfor i := 0; i < flag.NArg(); i++ {\n\t\tf, err := os.Open(flag.Arg(i))\n\t\tif f == nil {\n\t\t\tfmt.Fprintf(os.Stderr, \"cat: can't open %s: error %s\\n\", flag.Arg(i), err)\n\t\t\tos.Exit(1)\n\t\t}\n\t\tcat(f)\n\t\tf.Close()\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：用 buffer 读取文件\n- 下一节：用 defer 关闭文件",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-waytogo4-21",
+    "title": "12.8 使用接口的实际例子：fmt.Fprintf",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "例子程序 io interfaces.go 很好的阐述了 io 包中的接口概念。 示例 12.15 io interfaces.go： go // interfaces being",
+    "content": "# 12.8 使用接口的实际例子：fmt.Fprintf\r\n\r\n例子程序 `io_interfaces.go` 很好的阐述了 `io` 包中的接口概念。\r\n\r\n示例 12.15 io_interfaces.go：\r\n\r\n```go\r\n// interfaces being used in the GO-package fmt\r\npackage main\r\n\r\nimport (\r\n\t\"bufio\"\r\n\t\"fmt\"\r\n\t\"os\"\r\n)\r\n\r\nfunc main() {\r\n\t// unbuffered\r\n\tfmt.Fprintf(os.Stdout, \"%s\\n\", \"hello world! - unbuffered\")\r\n\t// buffered: os.Stdout implements io.Writer\r\n\tbuf := bufio.NewWriter(os.Stdout)\r\n\t// and now so does buf.\r\n\tfmt.Fprintf(buf, \"%s\\n\", \"hello world! - buffered\")\r\n\tbuf.Flush()\r\n}\r\n```\r\n\r\n输出：\r\n\r\n```\r\nhello world! - unbuffered\r\nhello world! - buffered\r\n```\r\n\r\n下面是 `fmt.Fprintf()` 函数的实际签名\r\n\r\n```go\r\nfunc Fprintf(w io.Writer, format string, a ...interface{}) (n int, err error)\r\n```\r\n\r\n不是写入一个文件，而是写入一个 `io.Writer` 接口类型的变量，下面是 `Writer` 接口在 `io` 包中的定义：\r\n\r\n```go\r\ntype Writer interface {\r\n\tWrite(p []byte) (n int, err error)\r\n}\r\n```\r\n\r\n`fmt.Fprintf()` 依据指定的格式向第一个参数内写入字符串，第一个参数必须实现了 `io.Writer` 接口。`Fprintf()` 能够写入任何类型，只要其实现了 `Write` 方法，包括 `os.Stdout`，文件（例如 `os.File`），管道，网络连接，通道等等。同样地，也可以使用 `bufio` 包中缓冲写入。`bufio` 包中定义了 `type Writer struct{...}` 。\r\n\r\n`bufio.Writer` 实现了 `Write()` 方法：\r\n\r\n```go\r\nfunc (b *Writer) Write(p []byte) (nn int, err error)\r\n```\r\n\r\n它还有一个工厂函数：传给它一个 `io.Writer` 类型的参数，它会返回一个带缓冲的 `bufio.Writer` 类型的 `io.Writer` ：\r\n\r\n```go\r\nfunc NewWriter(wr io.Writer) (b *Writer)\r\n```\r\n\r\n适合任何形式的缓冲写入。\r\n\r\n在缓冲写入的最后千万不要忘了使用 `Flush()`，否则最后的输出不会被写入。\r\n\r\n在 15.2-15.8 章节，我们将使用 `fmt.Fprint()` 函数向 `http.ResponseWriter` 写入，其同样实现了 `io.Writer` 接口。\r\n\r\n**练习 12.7**：remove_3till5char.go\r\n\r\n下面的代码有一个输入文件 `goprogram`，然后以每一行为单位读取，从读取的当前行中截取第 3 到第 5 的字节写入另一个文件。然而当你运行这个程序，输出的文件却是个空文件。找出程序逻辑中的 bug，修正它并测试。\r\n\r\n```go\r\npackage main\r\n\r\nimport (\r\n\t\"bufio\"\r\n\t\"fmt\"\r\n\t\"os\"\r\n\t\"io\"\r\n)\r\n\r\nfunc main() {\r\n\tinputFile, _ := os.Open(\"goprogram\")\r\n\toutputFile, _ := os.OpenFile(\"goprogramT\", os.O_WRONLY|os.O_CREATE, 0666)\r\n\tdefer inputFile.Close()\r\n\tdefer outputFile.Close()\r\n\tinputReader := bufio.NewReader(inputFile)\r\n\toutputWriter := bufio.NewWriter(outputFile)\r\n\tfor {\r\n\t\tinputString, _, readerError := inputReader.ReadLine()\r\n\t\tif readerError == io.EOF {\r\n\t\t\tfmt.Println(\"EOF\")\r\n\t\t\treturn\r\n\t\t}\r\n\t\toutputString := string(inputString[2:5]) + \"\\r\\n\"\r\n\t\t_, err := outputWriter.WriteString(outputString)\r\n\t\tif err != nil {\r\n\t\t\tfmt.Println(err)\r\n\t\t\treturn\r\n\t\t}\r\n\t}\r\n\tfmt.Println(\"Conversion done\")\r\n}\r\n```\r\n\r\n## 链接\r\n\r\n- 目录\r\n- 上一节：用 defer 关闭文件\r\n- 下一节：格式化 JSON 数据",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-waytogo4-22",
+    "title": "12.9 JSON 数据格式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "数据结构要在网络中传输或保存到文件，就必须对其编码和解码；目前存在很多编码格式：JSON，XML，gob，Google 缓冲协议等等。Go 语言支持所有这些编码格式；在后面的章节，",
+    "content": "# 12.9 JSON 数据格式\n\n数据结构要在网络中传输或保存到文件，就必须对其编码和解码；目前存在很多编码格式：JSON，XML，gob，Google 缓冲协议等等。Go 语言支持所有这些编码格式；在后面的章节，我们将讨论前三种格式。\n\n结构可能包含二进制数据，如果将其作为文本打印，那么可读性是很差的。另外结构内部可能包含匿名字段，而不清楚数据的用意。\n\n通过把数据转换成纯文本，使用命名的字段来标注，让其具有可读性。这样的数据格式可以通过网络传输，而且是与平台无关的，任何类型的应用都能够读取和输出，不与操作系统和编程语言的类型相关。\n\n下面是一些术语说明：\n\n- 数据结构 --> 指定格式 = **序列化** 或 **编码**（传输之前）\n- 指定格式 --> 数据结构 = **反序列化** 或 **解码**（传输之后）\n\n序列化是在内存中把数据转换成指定格式（数据 -> 字符串），反之亦然（字符串 -> 数据）。\n\n编码也是一样的，只是输出一个数据流（实现了 `io.Writer` 接口）；解码是从一个数据流（实现了 `io.Reader`）输出到一个数据结构。\n\n我们都比较熟悉 XML 格式(参阅 12.10)；但有些时候 JSON（JavaScript Object Notation，参阅 `http://json.org`）被作为首选，主要是由于其格式上非常简洁。通常 JSON 被用于 web 后端和浏览器之间的通讯，但是在其它场景也同样的有用。\n\n这是一个简短的 JSON 片段：\n\n```javascript\n{\n    \"Person\": {\n        \"FirstName\": \"Laura\",\n        \"LastName\": \"Lynn\"\n    }\n}\n```\n\n尽管 XML 被广泛的应用，但是 JSON 更加简洁、轻量（占用更少的内存、磁盘及网络带宽）和更好的可读性，这也使它越来越受欢迎。\n\nGo 语言的 `json` 包可以让你在程序中方便的读取和写入 JSON 数据。\n\n我们将在下面的例子里使用 `json` 包，并使用练习 10.1 vcard.go 中一个简化版本的 `Address` 和 `VCard` 结构（为了简单起见，我们忽略了很多错误处理，不过在实际应用中你必须要合理的处理这些错误，参阅 13 章）。\n\n示例 12.16 json.go：\n\n```go\n// json.go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"os\"\n)\n\ntype Address struct {\n\tType    string\n\tCity    string\n\tCountry string\n}\n\ntype VCard struct {\n\tFirstName string\n\tLastName  string\n\tAddresses []*Address\n\tRemark    string\n}\n\nfunc main() {\n\tpa := &Address{\"private\", \"Aartselaar\", \"Belgium\"}\n\twa := &Address{\"work\", \"Boom\", \"Belgium\"}\n\tvc := VCard{\"Jan\", \"Kersschot\", []*Address{pa, wa}, \"none\"}\n\t// fmt.Printf(\"%v: \\n\", vc) // {Jan Kersschot [0x126d2b80 0x126d2be0] none}:\n\t// JSON format:\n\tjs, _ := json.Marshal(vc)\n\tfmt.Printf(\"JSON format: %s\", js)\n\t// using an encoder:\n\tfile, _ := os.OpenFile(\"vcard.json\", os.O_CREATE|os.O_WRONLY, 0666)\n\tdefer file.Close()\n\tenc := json.NewEncoder(file)\n\terr := enc.Encode(vc)\n\tif err != nil {\n\t\tlog.Println(\"Error in encoding json\")\n\t}\n}\n```\n\n`json.Marshal()` 的函数签名是 `func Marshal(v interface{}) ([]byte, error)`，下面是数据编码后的 JSON 文本（实际上是一个 `[]byte`）：\n\n```javascript\n{\n    \"FirstName\": \"Jan\",\n    \"LastName\": \"Kersschot\",\n    \"Addresses\": [{\n        \"Type\": \"private\",\n        \"City\": \"Aartselaar\",\n        \"Country\": \"Belgium\"\n    }, {\n        \"Type\": \"work\",\n        \"City\": \"Boom\",\n        \"Country\": \"Belgium\"\n    }],\n    \"Remark\": \"none\"\n}\n```\n\n出于安全考虑，在 web 应用中最好使用 `json.MarshalforHTML()` 函数，其对数据执行 HTML 转码，所以文本可以被安全地嵌在 HTML ` 标签中。\n\n`json.NewEncoder()` 的函数签名是 `func NewEncoder(w io.Writer) *Encoder`，返回的 `Encoder` 类型的指针可调用方法 `Encode(v interface{})`，将数据对象 `v` 的 json 编码写入 `io.Writer` `w` 中。\n\nJSON 与 Go 类型对应如下：\n\n- `bool` 对应 JSON 的 boolean\n- `float64` 对应 JSON 的 number\n- `string` 对应 JSON 的 string\n- `nil` 对应 JSON 的 null\n\n不是所有的数据都可以编码为 JSON 类型，只有验证通过的数据结构才能被编码：\n\n- JSON 对象只支持字符串类型的 key；要编码一个 Go `map` 类型，`map` 必须是 `map[string]T`（`T` 是 `json` 包中支持的任何类型）\n- Channel，复杂类型和函数类型不能被编码\n- 不支持循环数据结构；它将引起序列化进入一个无限循环\n- 指针可以被编码，实际上是对指针指向的值进行编码（或者指针是 `nil`）\n\n### 反序列化：\n\n`json.Unmarshal()` 的函数签名是 `func Unmarshal(data []byte, v interface{}) error` 把 JSON 解码为数据结构。\n\n示例 12.16 中对 `vc` 编码后的数据为 `js` ，对其解码时，我们首先创建结构 `VCard` 用来保存解码的数据：`var v VCard` 并调用 `json.Unmarshal(js, &v)`，解析 `[]byte` 中的 JSON 数据并将结果存入指针 `&v` 指向的值。\n\n虽然反射能够让 JSON 字段去尝试匹配目标结构字段；但是只有真正匹配上的字段才会填充数据。字段没有匹配不会报错，而是直接忽略掉。\n\n（练习 15.2b twitter_status_json.go 中用到了 `Unmarshal()`）\n\n### 解码任意的数据：\n\njson 包使用 `map[string]interface{}` 和 `[]interface{}` 储存任意的 JSON 对象和数组；其可以被反序列化为任何的 JSON blob 存储到接口值中。\n\n来看这个 JSON 数据，被存储在变量 `b` 中：\n\n```go\nb := []byte(`{\"Name\": \"Wednesday\", \"Age\": 6, \"Parents\": [\"Gomez\", \"Morticia\"]}`)\n```\n\n不用理解这个数据的结构，我们可以直接使用 `Unmarshal()` 把这个数据编码并保存在接口值中：\n\n```go\nvar f interface{}\nerr := json.Unmarshal(b, &f)\n```\n\nf 指向的值是一个 `map`，key 是一个字符串，value 是自身存储作为空接口类型的值：\n\n```go\nmap[string]interface{} {\n\t\"Name\": \"Wednesday\",\n\t\"Age\":  6,\n\t\"Parents\": []interface{} {\n\t\t\"Gomez\",\n\t\t\"Morticia\",\n\t},\n}\n```\n\n要访问这个数据，我们可以使用类型断言\n\n```go\nm := f.(map[string]interface{})\n```\n\n我们可以通过 for range 语法和 type switch 来访问其实际类型：\n\n```go\nfor k, v := range m {\n\tswitch vv := v.(type) {\n\tcase string:\n\t\tfmt.Println(k, \"is string\", vv)\n\tcase int:\n\t\tfmt.Println(k, \"is int\", vv)\n\n\tcase []interface{}:\n\t\tfmt.Println(k, \"is an array:\")\n\t\tfor i, u := range vv {\n\t\t\tfmt.Println(i, u)\n\t\t}\n\tdefault:\n\t\tfmt.Println(k, \"is of a type I don’t know how to handle\")\n\t}\n}\n```\n\n通过这种方式，你可以处理未知的 JSON 数据，同时可以确保类型安全。\n\n### 解码数据到结构\n\n如果我们事先知道 JSON 数据，我们可以定义一个适当的结构并对 JSON 数据反序列化。下面的例子中，我们将定义：\n\n```go\ntype FamilyMember struct {\n\tName    string\n\tAge     int\n\tParents []string\n}\n\n```\n\n并对其反序列化：\n\n```go\nvar m FamilyMember\nerr := json.Unmarshal(b, &m)\n```\n\n程序实际上是分配了一个新的切片。这是一个典型的反序列化引用类型（指针、切片和 `map`）的例子。\n\n### 编码和解码流\n\n`json` 包提供 `Decoder` 和 `Encoder` 类型来支持常用 JSON 数据流读写。`NewDecoder()` 和 `NewEncoder()` 函数分别封装了 `io.Reader` 和 `io.Writer` 接口。\n\n```go\nfunc NewDecoder(r io.Reader) *Decoder\nfunc NewEncoder(w io.Writer) *Encoder\n```\n\n要想把 JSON 直接写入文件，可以使用 `json.NewEncoder` 初始化文件（或者任何实现 `io.Writer` 的类型），并调用 `Encode()`；反过来与其对应的是使用 `json.NewDecoder` 和 `Decode()` 函数：\n\n```go\nfunc NewDecoder(r io.Reader) *Decoder\nfunc (dec *Decoder) Decode(v interface{}) error\n```\n\n来看下接口是如何对实现进行抽象的：数据结构可以是任何类型，只要其实现了某种接口，目标或源数据要能够被编码就必须实现 `io.Writer` 或 `io.Reader` 接口。由于 Go 语言中到处都实现了 Reader 和 Writer，因此 `Encoder` 和 `Decoder` 可被应用的场景非常广泛，例如读取或写入 HTTP 连接、websockets 或文件。\n\n## 链接\n\n- 目录\n- 上一节：使用接口的实际例子:fmt.Fprintf\n- 下一节：XML 数据格式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-waytogo4-23",
+    "title": "13.0 错误处理与测试",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "Go 没有像 Java 和 .NET 那样的 try/catch 异常机制：不能执行抛异常操作。但是有一套 defer panic and recover 机制（参见 13.2 1",
+    "content": "# 13.0 错误处理与测试\n\nGo 没有像 Java 和 .NET 那样的 `try/catch` 异常机制：不能执行抛异常操作。但是有一套 `defer-panic-and-recover` 机制（参见 13.2-13.3 节）。\n\nGo 的设计者觉得 `try/catch` 机制的使用太泛滥了，而且从底层向更高的层级抛异常太耗费资源。他们给 Go 设计的机制也可以“捕捉”异常，但是更轻量，并且只应该作为（处理错误的）最后的手段。\n\nGo 是怎么处理普通错误的呢？通过在函数和方法中返回错误对象作为它们的唯一或最后一个返回值——如果返回 `nil`，则没有错误发生——并且主调 (calling) 函数总是应该检查收到的错误。\n\n**永远不要忽略错误，否则可能会导致程序崩溃！！**\n\n处理错误并且在函数发生错误的地方给用户返回错误信息：照这样处理就算真的出了问题，你的程序也能继续运行并且通知给用户。`panic()` 和 `recover()` 是用来处理真正的异常（无法预测的错误）而不是普通的错误。\n\n库函数通常必须返回某种错误提示给主调函数。\n\n在前面的章节中我们了解了 Go 检查和报告错误条件的惯有方式：\n\n- 产生错误的函数会返回两个变量，一个值和一个错误码；如果后者是 `nil` 就是成功，非 `nil` 就是发生了错误。\n\n- 为了防止发生错误时正在执行的函数（如果有必要的话甚至会是整个程序）被中止，在调用函数后必须检查错误。\n\n下面这段来自 `pack1` 包的代码 `Func1()` 测试了它的返回值：\n\n```go\nif value, err := pack1.Func1(param1); err != nil {\n\tfmt.Printf(\"Error %s in pack1.Func1 with parameter %v\", err.Error(), param1)\n\treturn    // or: return err\n} else {\n\t// Process(value)\n}\n```\n\n*为了更清晰的代码，应该总是使用包含错误值变量的 if 复合语句*\n\n上例除了 `fmt.Printf()` 还可以使用 `log` 中对应的方法（参见 13.3 节和 15.2 节），如果程序中止也没关系的话甚至可以使用 `panic()`（参见后面的章节）。\n\n## 链接\n\n- 目录\n- 上一节：Go 中的密码学\n- 下一节：错误处理",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-waytogo4-24",
+    "title": "13.1 错误处理",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "Go 有一个预先定义的 error 接口类型 错误值用来表示异常状态；我们可以在 5.2 节中看到它的标准用法。处理文件操作的例子可以在 12 章找到；我们将在 15 章看到网络操",
+    "content": "# 13.1 错误处理\n\nGo 有一个预先定义的 error 接口类型\n\n```go\ntype error interface {\n\tError() string\n}\n```\n\n错误值用来表示异常状态；我们可以在 5.2 节中看到它的标准用法。处理文件操作的例子可以在 12 章找到；我们将在 15 章看到网络操作的例子。`errors` 包中有一个 `errorString` 结构体实现了 `error` 接口。当程序处于错误状态时可以用 `os.Exit(1)` 来中止运行。\n\n## 13.1.1 定义错误\n\n任何时候当你需要一个新的错误类型，都可以用 `errors` 包（必须先 `import`）的 `errors.New()` 函数接收合适的错误信息来创建，像下面这样：\n\n```go\nerr := errors.New(\"math - square root of negative number\")\n```\n\n在示例 13.1 中你可以看到一个简单的用例：\n\n示例 13.1 errors.go：\n\n```go\n// errors.go\npackage main\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n)\n\nvar errNotFound error = errors.New(\"Not found error\")\n\nfunc main() {\n\tfmt.Printf(\"error: %v\", errNotFound)\n}\n// error: Not found error\n```\n\n可以把它用于计算平方根函数的参数测试：\n\n```go\nfunc Sqrt(f float64) (float64, error) {\n\tif f < 0 {\n\t\treturn 0, errors.New (\"math - square root of negative number\")\n\t}\n   // implementation of Sqrt\n}\n```\n\n你可以像下面这样调用 `Sqrt()` 函数：\n\n```go\nif f, err := Sqrt(-1); err != nil {\n\tfmt.Printf(\"Error: %s\\n\", err)\n}\n```\n\n由于 `fmt.Printf` 会自动调用 `String()` 方法 （参见 10.7 节），所以错误信息 “`Error: math - square root of negative number`” 会打印出来。通常（错误信息）都会有像 `Error:...` 这样的前缀，所以你的错误信息不要以大写字母开头（注：英文只有句首单词首字母大写，这里应当是考虑到这一点）。\n\n在大部分情况下自定义错误结构类型很有意义的，可以包含除了（低层级的）错误信息以外的其它有用信息，例如，正在进行的操作（打开文件等），全路径或名字。看下面例子中 `os.Open()` 操作触发的 `PathError` 错误：\n\n```go\n// PathError records an error and the operation and file path that caused it.\ntype PathError struct {\n\tOp string    // \"open\", \"unlink\", etc.\n\tPath string  // The associated file.\n\tErr error  // Returned by the system call.\n}\n\nfunc (e *PathError) Error() string {\n\treturn e.Op + \" \" + e.Path + \": \"+ e.Err.Error()\n}\n```\n\n如果有不同错误条件可能发生，那么对实际的错误使用类型断言或类型判断（type-switch）是很有用的，并且可以根据错误场景做一些补救和恢复操作。\n\n```go\n//  err != nil\nif e, ok := err.(*os.PathError); ok {\n\t// remedy situation\n}\n```\n\n或：\n\n```go\nswitch err := err.(type) {\n\tcase ParseError:\n\t\tPrintParseError(err)\n\tcase PathError:\n\t\tPrintPathError(err)\n\t...\n\tdefault:\n\t\tfmt.Printf(\"Not a special error, just %s\\n\", err)\n}\n```\n\n作为第二个例子考虑用 `json` 包的情况。当 `json.Decode()` 在解析 JSON 文档发生语法错误时，指定返回一个 `SyntaxError` 类型的错误：\n\n```go\ntype SyntaxError struct {\n\tmsg    string // description of error\n// error occurred after reading Offset bytes, from which line and columnnr can be obtained\n\tOffset int64\n}\n\nfunc (e *SyntaxError) Error() string { return e.msg }\n```\n\n在调用代码中你可以像这样用类型断言测试错误是不是上面的类型：\n\n```go\nif serr, ok := err.(*json.SyntaxError); ok {\n\tline, col := findLine(f, serr.Offset)\n\treturn fmt.Errorf(\"%s:%d:%d: %v\", f.Name(), line, col, err)\n}\n```\n\n包也可以用额外的方法 (methods)定义特定的错误，比如 `net.Error`：\n\n```go\npackage net\ntype Error interface {\n\tTimeout() bool   // Is the error a timeout?\n\tTemporary() bool // Is the error temporary?\n}\n```\n\n在 15.1 节 我们可以看到怎么使用它。\n\n正如你所看到的一样，所有的例子都遵循同一种命名规范：错误类型以 `...Error` 结尾，错误变量以 `err...` 或 `Err...` 开头或者直接叫 `err` 或 `Err`。\n\n`syscall` 是低阶外部包，用来提供系统基本调用的原始接口。它们返回封装整数类型错误码的 `syscall.Errno`；类型 `syscall.Errno` 实现了 `Error` 接口。\n\n大部分 `syscall` 函数都返回一个结果和可能的错误，比如：\n\n```go\nr, err := syscall.Open(name, mode, perm)\nif err != nil {\n\tfmt.Println(err.Error())\n}\n```\n\n`os` 包也提供了一套像 `os.EINAL` 这样的标准错误，它们基于 `syscall` 错误：\n\n```go\nvar (\n\tEPERM\t\tError = Errno(syscall.EPERM)\n\tENOENT\t\tError = Errno(syscall.ENOENT)\n\tESRCH\t\tError = Errno(syscall.ESRCH)\n\tEINTR\t\tError = Errno(syscall.EINTR)\n\tEIO\t\t\tError = Errno(syscall.EIO)\n\t...\n)\n```\n\n## 13.1.2 用 fmt 创建错误对象\n\n通常你想要返回包含错误参数的更有信息量的字符串，例如：可以用 `fmt.Errorf()` 来实现：它和 `fmt.Printf()` 完全一样，接收一个或多个格式占位符的格式化字符串和相应数量的占位变量。和打印信息不同的是它用信息生成错误对象。\n\n比如在前面的平方根例子中使用：\n\n```go\nif f < 0 {\n\treturn 0, fmt.Errorf(\"math: square root of negative number %g\", f)\n}\n```\n\n第二个例子：从命令行读取输入时，如果加了 `--help` 或 `-h` 标志，我们可以用有用的信息产生一个错误：\n\n```go\nif len(os.Args) > 1 && (os.Args[1] == \"-h\" || os.Args[1] == \"--help\") {\n\terr = fmt.Errorf(\"usage: %s infile.txt outfile.txt\", filepath.Base(os.Args[0]))\n\treturn\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：错误处理与测试\n- 下一节：运行时异常和 panic",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-waytogo4-25",
+    "title": "13.10 性能调试：分析并优化 Go 程序",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "可以用这个便捷脚本 xtime 来测量： 在 Unix 命令行中像这样使用 xtime goprogexec ，这里的 progexec 是一个 Go 可执行程序，这句命令行输出类",
+    "content": "# 13.10 性能调试：分析并优化 Go 程序\n\n## 13.10.1 时间和内存消耗\n\n可以用这个便捷脚本 *xtime* 来测量：\n\n```sh\n#!/bin/sh\n/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\"\n```\n\n在 Unix 命令行中像这样使用 ``xtime goprogexec``，这里的 progexec 是一个 Go 可执行程序，这句命令行输出类似：56.63u 0.26s 56.92r 1642640kB progexec，分别对应用户时间，系统时间，实际时间和最大内存占用。\n\n## 13.10.2 用 go test 调试\n\n如果代码使用了 Go 中 `testing` 包的基准测试功能，我们可以用 gotest 标准的 `-cpuprofile` 和 `-memprofile` 标志向指定文件写入 CPU 或 内存使用情况报告。\n\n使用方式：``go test -x -v -cpuprofile=prof.out -file x_test.go``\n\n编译执行 x_test.go 中的测试，并向 prof.out 文件中写入 cpu 性能分析信息。\n\n## 13.10.3 用 pprof 调试\n\n你可以在单机程序 progexec 中引入 `runtime/pprof` 包；这个包以 pprof 可视化工具需要的格式写入运行时报告数据。对于 CPU 性能分析来说你需要添加一些代码：\n\n```go\nvar cpuprofile = flag.String(\"cpuprofile\", \"\", \"write cpu profile to file\")\n\nfunc main() {\n\tflag.Parse()\n\tif *cpuprofile != \"\" {\n\t\tf, err := os.Create(*cpuprofile)\n\t\tif err != nil {\n\t\t\tlog.Fatal(err)\n\t\t}\n\t\tpprof.StartCPUProfile(f)\n\t\tdefer pprof.StopCPUProfile()\n\t}\n...\n```\n\n代码定义了一个名为 cpuprofile 的 flag，调用 Go flag 库来解析命令行 flag，如果命令行设置了 cpuprofile flag，则开始 CPU 性能分析并把结果重定向到那个文件（`os.Create` 用拿到的名字创建了用来写入分析数据的文件）。这个分析程序最后需要在程序退出之前调用 `StopCPUProfile()` 来刷新挂起的写操作到文件中；我们用 `defer` 来保证这一切会在 `main()` 返回时触发。\n\n现在用这个 flag 运行程序：``progexec -cpuprofile=progexec.prof``\n\n然后可以像这样用 gopprof 工具：``gopprof progexec progexec.prof``\n\ngopprof 程序是 Google pprofC++ 分析器的一个轻微变种；关于此工具更多的信息，参见`https://github.com/gperftools/gperftools` 。\n\n如果开启了 CPU 性能分析，Go 程序会以大约每秒 100 次的频率阻塞，并记录当前执行的 goroutine 栈上的程序计数器样本。\n\n此工具一些有趣的命令：\n\n1）`topN`\n\n用来展示分析结果中最开头的 N 份样本，例如：``top5``\n它会展示在程序运行期间调用最频繁的 5 个函数，输出如下：\n\n```\nTotal: 3099 samples\n626 20.2% 20.2% 626 20.2% scanblock\n309 10.0% 30.2% 2839 91.6% main.FindLoops\n...\n```\n\n第 5 列表示函数的调用频度。\n\n2）`web` 或 `web 函数名`\n\n该命令生成一份 SVG 格式的分析数据图表，并在网络浏览器中打开它（还有一个 gv 命令可以生成 PostScript 格式的数据，并在 GhostView 中打开，这个命令需要安装 graphviz）。函数被表示成不同的矩形（被调用越多，矩形越大），箭头指示函数调用链。\n\n3）`list 函数名` 或 `weblist 函数名`\n\n展示对应函数名的代码行列表，第 2 列表示当前行执行消耗的时间，这样就很好地指出了运行过程中消耗最大的代码。\n\n如果发现函数 `runtime.mallocgc`（分配内存并执行周期性的垃圾回收）调用频繁，那么是应该进行内存分析的时候了。找出垃圾回收频繁执行的原因，和内存大量分配的根源。\n\n为了做到这一点必须在合适的地方添加下面的代码：\n\n```go\nvar memprofile = flag.String(\"memprofile\", \"\", \"write memory profile to this file\")\n...\n\nCallToFunctionWhichAllocatesLotsOfMemory()\nif *memprofile != \"\" {\n\tf, err := os.Create(*memprofile)\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tpprof.WriteHeapProfile(f)\n\tf.Close()\n\treturn\n}\n```\n\n用 `-memprofile flag` 运行这个程序：``progexec -memprofile=progexec.mprof``\n\n然后你可以像这样再次使用 gopprof 工具：``gopprof progexec progexec.mprof``\n\n`top5`，`list 函数名` 等命令同样适用，只不过现在是以 Mb 为单位测量内存分配情况，这是 top 命令输出的例子：\n\n```\nTotal: 118.3 MB\n\t66.1 55.8% 55.8% 103.7 87.7% main.FindLoops\n\t30.5 25.8% 81.6% 30.5 25.8% main.*LSG·NewLoop\n\t...\n```\n\n从第 1 列可以看出，最上面的函数占用了最多的内存。\n\n同样有一个报告内存分配计数的有趣工具：\n\n```sh\ngopprof --inuse_objects progexec progexec.mprof\n```\n\n对于 web 应用来说，有标准的 HTTP 接口可以分析数据。在 HTTP 服务中添加\n\n```go\nimport _ \"http/pprof\"\n```\n\n会为 /debug/pprof/ 下的一些 URL 安装处理器。然后你可以用一个唯一的参数——你服务中的分析数据的 URL 来执行 gopprof 命令——它会下载并执行在线分析。\n\n```sh\ngopprof http://localhost:6060/debug/pprof/profile # 30-second CPU profile\ngopprof http://localhost:6060/debug/pprof/heap # heap profile\n```\n\n在 Go-blog（引用 15）中有一篇很好的文章用具体的例子进行了分析：分析 Go 程序（2011年6月）。\n\n## 链接\n\n- 目录\n- 上一节：用（测试数据）表驱动测试\n- 下一章：协程（goroutine）与通道（channel）",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-waytogo4-26",
+    "title": "13.2 运行时异常和 panic",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "当发生像数组下标越界或类型断言失败这样的运行错误时，Go 运行时会触发 运行时 panic ，伴随着程序的崩溃抛出一个 runtime.Error 接口类型的值。这个错误值有个 R",
+    "content": "# 13.2 运行时异常和 panic\n\n当发生像数组下标越界或类型断言失败这样的运行错误时，Go 运行时会触发*运行时 panic*，伴随着程序的崩溃抛出一个 `runtime.Error` 接口类型的值。这个错误值有个 `RuntimeError()` 方法用于区别普通错误。\n\n`panic()` 可以直接从代码初始化：当错误条件（我们所测试的代码）很严苛且不可恢复，程序不能继续运行时，可以使用 `panic()` 函数产生一个中止程序的运行时错误。`panic()` 接收一个做任意类型的参数，通常是字符串，在程序死亡时被打印出来。Go 运行时负责中止程序并给出调试信息。在示例 13.2 panic.go 中阐明了它的工作方式：\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Starting the program\")\n\tpanic(\"A severe error occurred: stopping the program!\")\n\tfmt.Println(\"Ending the program\")\n}\n```\n\n输出如下：\n\n```\nStarting the program\npanic: A severe error occurred: stopping the program!\npanic PC=0x4f3038\nruntime.panic+0x99 /go/src/pkg/runtime/proc.c:1032\n       runtime.panic(0x442938, 0x4f08e8)\nmain.main+0xa5 E:/Go/GoBoek/code examples/chapter 13/panic.go:8\n       main.main()\nruntime.mainstart+0xf 386/asm.s:84\n       runtime.mainstart()\nruntime.goexit /go/src/pkg/runtime/proc.c:148\n       runtime.goexit()\n---- Error run E:/Go/GoBoek/code examples/chapter 13/panic.exe with code Crashed\n---- Program exited with code -1073741783\n```\n\n一个检查程序是否被已知用户启动的具体例子：\n\n```go\nvar user = os.Getenv(\"USER\")\n\nfunc check() {\n\tif user == \"\" {\n\t\tpanic(\"Unknown user: no value for $USER\")\n\t}\n}\n```\n\n可以在导入包的 `init()` 函数中检查这些。\n\n当发生错误必须中止程序时，`panic()` 可以用于错误处理模式：\n\n```go\nif err != nil {\n\tpanic(\"ERROR occurred:\" + err.Error())\n}\n```\n\n<u>Go panicking</u>：\n\n在多层嵌套的函数调用中调用 `panic()`，可以马上中止当前函数的执行，所有的 `defer` 语句都会保证执行并把控制权交还给接收到 panic 的函数调用者。这样向上冒泡直到最顶层，并执行（每层的） `defer`，在栈顶处程序崩溃，并在命令行中用传给 `panic()` 的值报告错误情况：这个终止过程就是 *panicking*。\n\n标准库中有许多包含 `Must` 前缀的函数，像 `regexp.MustComplie()` 和 `template.Must()`；当正则表达式或模板中转入的转换字符串导致错误时，这些函数会 `panic()`。\n\n不能随意地用 `panic()` 中止程序，必须尽力补救错误让程序能继续执行。\n\n## 链接\n\n- 目录\n- 上一节：错误处理\n- 下一节：从 panic 中恢复 (recover)",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-waytogo4-27",
+    "title": "13.3 从 panic 中恢复 (recover)",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "正如名字一样，这个 ( recover() ) 内建函数被用于从 panic 或错误场景中恢复：让程序可以从 panicking 重新获得控制权，停止终止过程进而恢复正常执行。 r",
+    "content": "# 13.3 从 panic 中恢复 (recover)\n\n正如名字一样，这个 (`recover()`) 内建函数被用于从 panic 或错误场景中恢复：让程序可以从 panicking 重新获得控制权，停止终止过程进而恢复正常执行。\n\n`recover` 只能在 `defer` 修饰的函数（参见 6.4 节）中使用：用于取得 `panic()` 调用中传递过来的错误值，如果是正常执行，调用 `recover()` 会返回 `nil`，且没有其它效果。\n\n<u>总结</u>：`panic()` 会导致栈被展开直到 `defer` 修饰的 `recover()` 被调用或者程序中止。\n\n下面例子中的 `protect()` 函数调用函数参数 `g` 来保护调用者防止从 `g` 中抛出的运行时 panic，并展示 panic 中的信息：\n\n```go\nfunc protect(g func()) {\n\tdefer func() {\n\t\tlog.Println(\"done\")\n\t\t// Println executes normally even if there is a panic\n\t\tif err := recover(); err != nil {\n\t\t\tlog.Printf(\"run time panic: %v\", err)\n\t\t}\n\t}()\n\tlog.Println(\"start\")\n\tg() //   possible runtime-error\n}\n```\n\n这跟 Java 和 .NET 这样的语言中的 catch 块类似。\n\n`log` 包实现了简单的日志功能：默认的 log 对象向标准错误输出中写入并打印每条日志信息的日期和时间。除了 `Println` 和 `Printf` 函数，其它的致命性函数都会在写完日志信息后调用 `os.Exit(1)`，那些退出函数也是如此。而 Panic 效果的函数会在写完日志信息后调用 `panic()`；可以在程序必须中止或发生了临界错误时使用它们，就像当 web 服务器不能启动时那样（参见 15.4 节 中的例子）。\n\nlog 包用那些方法 (methods) 定义了一个 `Logger` 接口类型，如果你想自定义日志系统的话可以参考 `http://golang.org/pkg/log/#Logger` 。\n\n这是一个展示 `panic()`，`defer` 和 `recover()` 怎么结合使用的完整例子：\n\n示例 13.3 panic_recover.go：\n\n```go\n// panic_recover.go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc badCall() {\n\tpanic(\"bad end\")\n}\n\nfunc test() {\n\tdefer func() {\n\t\tif e := recover(); e != nil {\n\t\t\tfmt.Printf(\"Panicing %s\\r\\n\", e)\n\t\t}\n\t}()\n\tbadCall()\n\tfmt.Printf(\"After bad call\\r\\n\") // <-- would not reach\n}\n\nfunc main() {\n\tfmt.Printf(\"Calling test\\r\\n\")\n\ttest()\n\tfmt.Printf(\"Test completed\\r\\n\")\n}\n```\n\n输出：\n\n```\nCalling test\nPanicing bad end\nTest completed\n```\n\n`defer`-`panic()`-`recover()` 在某种意义上也是一种像 `if`，`for` 这样的控制流机制。\n\nGo 标准库中许多地方都用了这个机制，例如，`json` 包中的解码和 `regexp` 包中的 `Complie()` 函数。Go 库的原则是即使在包的内部使用了 `panic()`，在它的对外接口 (API) 中也必须用 `recover()` 处理成显式返回的错误。\n\n## 链接\n\n- 目录\n- 上一节：错运行时异常和 panic\n- 下一节：自定义包中的错误处理和 panicking",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-waytogo4-28",
+    "title": "13.4 自定义包中的错误处理和 panicking",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "这是所有自定义包实现者应该遵守的最佳实践： 1） 在包内部，总是应该从 panic 中 recover ：不允许显式的超出包范围的 panic() 2） 向包的调用者返回错误值（而",
+    "content": "# 13.4 自定义包中的错误处理和 panicking\n\n这是所有自定义包实现者应该遵守的最佳实践：\n\n1）*在包内部，总是应该从 panic 中 recover*：不允许显式的超出包范围的 `panic()`\n\n2）*向包的调用者返回错误值（而不是 panic）。*\n\n在包内部，特别是在非导出函数中有很深层次的嵌套调用时，将 panic 转换成 `error` 来告诉调用方为何出错，是很实用的（且提高了代码可读性）。\n\n下面的代码则很好地阐述了这一点。我们有一个简单的 `parse` 包（示例 13.4）用来把输入的字符串解析为整数切片；这个包有自己特殊的 `ParseError`。\n\n当没有东西需要转换或者转换成整数失败时，这个包会 `panic()`（在函数 `fields2numbers()` 中）。但是可导出的 `Parse()` 函数会从 `panic()` 中 `recover()` 并用所有这些信息返回一个错误给调用者。为了演示这个过程，在 panic_recover.go 中 调用了 `parse` 包（示例 13.5）；不可解析的字符串会导致错误并被打印出来。\n\n示例 13.4 parse.go：\n\n```go\n// parse.go\npackage parse\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"strconv\"\n)\n\n// A ParseError indicates an error in converting a word into an integer.\ntype ParseError struct {\n    Index int      // The index into the space-separated list of words.\n    Word  string   // The word that generated the parse error.\n    Err error // The raw error that precipitated this error, if any.\n}\n\n// String returns a human-readable error message.\nfunc (e *ParseError) String() string {\n    return fmt.Sprintf(\"pkg parse: error parsing %q as int\", e.Word)\n}\n\n// Parse parses the space-separated words in in put as integers.\nfunc Parse(input string) (numbers []int, err error) {\n    defer func() {\n        if r := recover(); r != nil {\n            var ok bool\n            err, ok = r.(error)\n            if !ok {\n                err = fmt.Errorf(\"pkg: %v\", r)\n            }\n        }\n    }()\n\n    fields := strings.Fields(input)\n    numbers = fields2numbers(fields)\n    return\n}\n\nfunc fields2numbers(fields []string) (numbers []int) {\n    if len(fields) == 0 {\n        panic(\"no words to parse\")\n    }\n    for idx, field := range fields {\n        num, err := strconv.Atoi(field)\n        if err != nil {\n            panic(&ParseError{idx, field, err})\n        }\n        numbers = append(numbers, num)\n    }\n    return\n}\n```\n\n示例 13.5 panic_package.go：\n\n```go\n// panic_package.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"./parse/parse\"\n)\n\nfunc main() {\n    var examples = []string{\n            \"1 2 3 4 5\",\n            \"100 50 25 12.5 6.25\",\n            \"2 + 2 = 4\",\n            \"1st class\",\n            \"\",\n    }\n\n    for _, ex := range examples {\n        fmt.Printf(\"Parsing %q:\\n  \", ex)\n        nums, err := parse.Parse(ex)\n        if err != nil {\n            fmt.Println(err) // here String() method from ParseError is used\n            continue\n        }\n        fmt.Println(nums)\n    }\n}\n```\n\n输出：\n\n```\nParsing \"1 2 3 4 5\":\n  [1 2 3 4 5]\nParsing \"100 50 25 12.5 6.25\":\n  pkg: pkg parse: error parsing \"12.5\" as int\nParsing \"2 + 2 = 4\":\n  pkg: pkg parse: error parsing \"+\" as int\nParsing \"1st class\":\n  pkg: pkg parse: error parsing \"1st\" as int\nParsing \"\":\n  pkg: no words to parse\n```\n\n## 链接\n\n- 目录\n- 上一节：从 panic 中恢复 (recover)\n- 下一节：一种用闭包处理错误的模式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-waytogo4-29",
+    "title": "13.5 一种用闭包处理错误的模式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "每当函数返回时，我们应该检查是否有错误发生：但是这会导致重复乏味的代码。结合 defer/panic/recover 机制和闭包可以得到一个我们马上要讨论的更加优雅的模式。不过这个",
+    "content": "# 13.5 一种用闭包处理错误的模式\n\n每当函数返回时，我们应该检查是否有错误发生：但是这会导致重复乏味的代码。结合 defer/panic/recover 机制和闭包可以得到一个我们马上要讨论的更加优雅的模式。不过这个模式只有当所有的函数都是同一种签名时可用，这样就有相当大的限制。一个很好的使用它的例子是 web 应用，所有的处理函数都是下面这样：\n\n```go\nfunc handler1(w http.ResponseWriter, r *http.Request) { ... }\n```\n\n假设所有的函数都有这样的签名：\n\n```go\nfunc f(a type1, b type2)\n```\n\n参数的数量和类型是不相关的。\n\n我们给这个类型一个名字：\n\n```go\nfType1 = func f(a type1, b type2)\n```\n\n在我们的模式中使用了两个帮助函数：\n\n1）`check()`：这是用来检查是否有错误和 panic 发生的函数：\n\n```go\nfunc check(err error) { if err != nil { panic(err) } }\n```\n\n2）`errorhandler()`：这是一个包装函数。接收一个 `fType1` 类型的函数 `fn` 并返回一个调用 `fn` 的函数。里面就包含有 defer/recover 机制，这在 13.3 节中有相应描述。\n\n```go\nfunc errorHandler(fn fType1) fType1 {\n\treturn func(a type1, b type2) {\n\t\tdefer func() {\n\t\t\tif err, ok := recover().(error); ok {\n\t\t\t\tlog.Printf(\"run time panic: %v\", err)\n\t\t\t}\n\t\t}()\n\t\tfn(a, b)\n\t}\n}\n```\n\n当错误发生时会 recover 并打印在日志中；除了简单的打印，应用也可以用 `template` 包（参见 15.7 节）为用户生成自定义的输出。`check()` 函数会在所有的被调函数中调用，像这样：\n\n```go\nfunc f1(a type1, b type2) {\n\t...\n\tf, _, err := // call function/method\n\tcheck(err)\n\tt, err := // call function/method\n\tcheck(err)\n\t_, err2 := // call function/method\n\tcheck(err2)\n\t...\n}\n```\n\n通过这种机制，所有的错误都会被 recover，并且调用函数后的错误检查代码也被简化为调用 `check(err)` 即可。在这种模式下，不同的错误处理必须对应不同的函数类型；它们（错误处理）可能被隐藏在错误处理包内部。可选的更加通用的方式是用一个空接口类型的切片作为参数和返回值。\n\n我们会在 15.5 节 的 web 应用中使用这种模式。\n\n**练习 13.1**：recover_dividebyzero.go\n\n用示例 13.3 中的编码模式通过整数除以 0 触发一个运行时 panic。\n\n**练习 13.2**：panic_defer.go\n\n阅读下面的完整程序。不要执行它，写出程序的输出结果。然后编译执行并验证你的预想。\n\n```go\n// panic_defer.go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tf()\n\tfmt.Println(\"Returned normally from f.\")\n}\n\nfunc f() {\n\tdefer func() {\n\t\tif r := recover(); r != nil {\n\t\t\tfmt.Println(\"Recovered in f\", r)\n\t\t}\n\t}()\n\tfmt.Println(\"Calling g.\")\n\tg(0)\n\tfmt.Println(\"Returned normally from g.\")\n}\n\nfunc g(i int) {\n\tif i > 3 {\n\t\tfmt.Println(\"Panicking!\")\n\t\tpanic(fmt.Sprintf(\"%v\", i))\n\t}\n\tdefer fmt.Println(\"Defer in g\", i)\n\tfmt.Println(\"Printing in g\", i)\n\tg(i + 1)\n}\n```\n\n输出：\n\n```\nCalling g.\nPrinting in g 0\nPrinting in g 1\nPrinting in g 2\nPrinting in g 3\nPanicking!\nDefer in g 3\nDefer in g 2\nDefer in g 1\nDefer in g 0\nRecovered in f 4\nReturned normally from f.\n```\n\n**练习 13.3**：panic_defer_convint.go\n\n写一个 `ConvertInt64ToInt()` 函数把 `int64` 值转换为 `int` 值，如果发生错误（提示：参见 4.5.2.1 节）就 `panic()` 。然后在函数 `IntFromInt64` 中调用这个函数并 `recover()`，返回一个整数和一个错误。请测试这个函数！\n\n## 链接\n\n- 目录\n- 上一节：自定义包中的错误处理和 panicking\n- 下一节：启动外部命令和程序",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-waytogo4-30",
+    "title": "13.6 启动外部命令和程序",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 IV",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "os 包有一个 StartProcess 函数可以调用或启动外部系统命令和二进制可执行文件；它的第一个参数是要运行的进程，第二个参数用来传递选项或参数，第三个参数是含有系统环境基本",
+    "content": "# 13.6 启动外部命令和程序\n\n`os` 包有一个 `StartProcess` 函数可以调用或启动外部系统命令和二进制可执行文件；它的第一个参数是要运行的进程，第二个参数用来传递选项或参数，第三个参数是含有系统环境基本信息的结构体。\n\n这个函数返回被启动进程的 id (pid)，或者启动失败返回错误。\n\n`exec` 包中也有同样功能的更简单的结构体和函数；主要是 `exec.Command(name string, arg ...string)` 和 `Run()`。首先需要用系统命令或可执行文件的名字创建一个 `Command` 对象，然后用这个对象作为接收者调用 `Run()`。下面的程序（因为是执行 Linux 命令，只能在 Linux 下面运行）演示了它们的使用：\n\n示例 13.6 exec.go：\n\n```go\n// exec.go\npackage main\nimport (\n\t\"fmt\"\n    \"os/exec\"\n\t\"os\"\n)\n\nfunc main() {\n// 1) os.StartProcess //\n/*********************/\n/* Linux: */\nenv := os.Environ()\nprocAttr := &os.ProcAttr{\n\t\t\tEnv: env,\n\t\t\tFiles: []*os.File{\n\t\t\t\tos.Stdin,\n\t\t\t\tos.Stdout,\n\t\t\t\tos.Stderr,\n\t\t\t},\n\t\t}\n// 1st example: list files\npid, err := os.StartProcess(\"/bin/ls\", []string{\"ls\", \"-l\"}, procAttr)  \nif err != nil {\n\t\tfmt.Printf(\"Error %v starting process!\", err)  //\n\t\tos.Exit(1)\n}\nfmt.Printf(\"The process id is %v\", pid)\n```\n\n输出：\n\n``` go\nThe process id is &{2054 0}total 2056\n-rwxr-xr-x 1 ivo ivo 1157555 2011-07-04 16:48 Mieken_exec\n-rw-r--r-- 1 ivo ivo    2124 2011-07-04 16:48 Mieken_exec.go\n-rw-r--r-- 1 ivo ivo   18528 2011-07-04 16:48 Mieken_exec_go_.6\n-rwxr-xr-x 1 ivo ivo  913920 2011-06-03 16:13 panic.exe\n-rw-r--r-- 1 ivo ivo     180 2011-04-11 20:39 panic.go\n```\n\n```go\n// 2nd example: show all processes\npid, err = os.StartProcess(\"/bin/ps\", []string{\"ps\", \"-e\", \"-opid,ppid,comm\"}, procAttr)  \n\nif err != nil {\n\t\tfmt.Printf(\"Error %v starting process!\", err)  //\n\t\tos.Exit(1)\n}\n\nfmt.Printf(\"The process id is %v\", pid)\n```\n\n```go\n// 2) exec.Run //\n/***************/\n// Linux:  OK, but not for ls ?\n// cmd := exec.Command(\"ls\", \"-l\")  // no error, but doesn't show anything ?\n// cmd := exec.Command(\"ls\")  \t\t// no error, but doesn't show anything ?\n\tcmd := exec.Command(\"gedit\")  // this opens a gedit-window\n\terr = cmd.Run()\n\tif err != nil {\n\t\tfmt.Printf(\"Error %v executing command!\", err)\n\t\tos.Exit(1)\n\t}\n\tfmt.Printf(\"The command is %v\", cmd)\n// The command is &{/bin/ls [ls -l] []  <nil> <nil> <nil> 0xf840000210 <nil> true [0xf84000ea50 0xf84000e9f0 0xf84000e9c0] [0xf84000ea50 0xf84000e9f0 0xf84000e9c0] [] [] 0xf8400128c0}\n}\n// in Windows: uitvoering: Error fork/exec /bin/ls: The system cannot find the path specified. starting process!\n```\n\n## 链接\n\n- 目录\n- 上一节：一种用闭包处理错误的模式\n- 下一节：Go 中的单元测试和基准测试",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
   }
 ]
