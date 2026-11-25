@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 254
+      "count": 292
     },
     {
       "id": "data",
@@ -34661,6 +34661,630 @@
       ],
       "prereqs": [],
       "href": "/post/g-algonote3-30"
+    },
+    {
+      "id": "g-goweb2-1",
+      "kind": "collection",
+      "title": "5.2 使用MySQL数据库",
+      "summary": "目前Internet上流行的网站构架方式是LAMP，其中的M即MySQL, 作为数据库，MySQL以免费、开源、使用方便",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-1"
+    },
+    {
+      "id": "g-goweb2-2",
+      "kind": "collection",
+      "title": "5.3 使用SQLite数据库",
+      "summary": "SQLite 是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。其特点是高度便携、使用方便、",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-2"
+    },
+    {
+      "id": "g-goweb2-3",
+      "kind": "collection",
+      "title": "5.4 使用PostgreSQL数据库",
+      "summary": "PostgreSQL 是一个自由的对象 关系数据库服务器(数据库管理系统)，它在灵活的 BSD 风格许可证下发行。它提供",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-3"
+    },
+    {
+      "id": "g-goweb2-4",
+      "kind": "collection",
+      "title": "5.5 使用Beego orm库进行ORM开发",
+      "summary": "beego orm是我开发的一个Go进行ORM操作的库，它采用了Go style方式对数据库进行操作，实现了struct",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-4"
+    },
+    {
+      "id": "g-goweb2-5",
+      "kind": "collection",
+      "title": "5.6 NOSQL数据库操作",
+      "summary": "NoSQL(Not Only SQL)，指的是非关系型的数据库。随着Web2.0的兴起，传统的关系数据库在应付Web2.",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-5"
+    },
+    {
+      "id": "g-goweb2-8",
+      "kind": "collection",
+      "title": "6.1 session和cookie",
+      "summary": "session和cookie是网站浏览中较为常见的两个概念，也是比较难以辨析的两个概念，但它们在浏览需要认证的服务页面以",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-8"
+    },
+    {
+      "id": "g-goweb2-9",
+      "kind": "collection",
+      "title": "6.2 Go如何使用session",
+      "summary": "通过上一小节的介绍，我们知道session是在服务器端实现的一种用户和服务器之间认证的解决方案，目前Go标准包没有为se",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-9"
+    },
+    {
+      "id": "g-goweb2-10",
+      "kind": "collection",
+      "title": "6.3 session存储",
+      "summary": "上一节我们介绍了Session管理器的实现原理，定义了存储session的接口，这小节我们将示例一个基于内存的sessi",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-10"
+    },
+    {
+      "id": "g-goweb2-11",
+      "kind": "collection",
+      "title": "6.4 预防session劫持",
+      "summary": "session劫持是一种广泛存在的比较严重的安全威胁，在session技术中，客户端和服务端通过session的标识符来",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-11"
+    },
+    {
+      "id": "g-goweb2-14",
+      "kind": "collection",
+      "title": "7.1 XML处理",
+      "summary": "XML作为一种数据交换和信息传递的格式已经十分普及。而随着Web服务日益广泛的应用，现在XML在日常的开发工作中也扮演了",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-14"
+    },
+    {
+      "id": "g-goweb2-15",
+      "kind": "collection",
+      "title": "7.2 JSON处理",
+      "summary": "JSON（Javascript Object Notation）是一种轻量级的数据交换语言，以文字为基础，具有自我描述性",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-15"
+    },
+    {
+      "id": "g-goweb2-16",
+      "kind": "collection",
+      "title": "7.3 正则处理",
+      "summary": "正则表达式是一种进行模式匹配和文本操纵的复杂而又强大的工具。虽然正则表达式比纯粹的文本匹配效率低，但是它却更灵活。按照它",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-16"
+    },
+    {
+      "id": "g-goweb2-18",
+      "kind": "collection",
+      "title": "7.5 文件操作",
+      "summary": "在任何计算机设备中，文件是都是必须的对象，而在Web编程中,文件的操作一直是Web程序员经常遇到的问题,文件操作在Web",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-18"
+    },
+    {
+      "id": "g-goweb2-19",
+      "kind": "collection",
+      "title": "7.6 字符串处理",
+      "summary": "字符串在我们平常的Web开发中经常用到，包括用户的输入，数据库读取的数据等，我们经常需要对字符串进行分割、连接、转换等操",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-19"
+    },
+    {
+      "id": "g-goweb2-21",
+      "kind": "collection",
+      "title": "8 Web服务",
+      "summary": "Web服务可以让你在HTTP协议的基础上通过XML或者JSON来交换信息。如果你想知道上海的天气预报、中国石油的股价或者",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-21"
+    },
+    {
+      "id": "g-goweb2-22",
+      "kind": "collection",
+      "title": "8.1 Socket编程",
+      "summary": "在很多底层网络应用开发者的眼里一切编程都是Socket，话虽然有点夸张，但却也几乎如此了，现在的网络编程几乎都是用Soc",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-22"
+    },
+    {
+      "id": "g-goweb2-24",
+      "kind": "collection",
+      "title": "8.3 REST",
+      "summary": "RESTful，是目前最为流行的一种互联网软件架构。因为它结构清晰、符合标准、易于理解、扩展方便，所以正得到越来越多网站",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-24"
+    },
+    {
+      "id": "g-goweb2-25",
+      "kind": "collection",
+      "title": "8.4 RPC",
+      "summary": "前面几个小节我们介绍了如何基于Socket和HTTP来编写网络应用，通过学习我们了解了Socket和HTTP采用的是类似",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-25"
+    },
+    {
+      "id": "g-goweb2-27",
+      "kind": "collection",
+      "title": "9 安全与加密",
+      "summary": "无论是开发Web应用的开发者还是企图利用Web应用漏洞的攻击者，对于Web程序安全这个话题都给予了越来越多的关注。特别是",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-27"
+    },
+    {
+      "id": "g-goweb2-28",
+      "kind": "collection",
+      "title": "9.1 预防CSRF攻击",
+      "summary": "CSRF（Cross site request forgery），中文名称：跨站请求伪造，也被称为：one click ",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-28"
+    },
+    {
+      "id": "g-goweb2-29",
+      "kind": "collection",
+      "title": "9.2 确保输入过滤",
+      "summary": "过滤用户数据是Web应用安全的基础。它是验证数据合法性的过程。通过对所有的输入数据进行过滤，可以避免恶意数据在程序中被误",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-29"
+    },
+    {
+      "id": "g-goweb2-30",
+      "kind": "collection",
+      "title": "9.3 避免XSS攻击",
+      "summary": "随着互联网技术的发展，现在的Web应用都含有大量的动态内容以提高用户体验。所谓动态内容，就是应用程序能够根据用户环境和用",
+      "domain": "backend",
+      "category": "Go Web 编程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "Web"
+      ],
+      "prereqs": [],
+      "href": "/post/g-goweb2-30"
+    },
+    {
+      "id": "g-codehunter2-1",
+      "kind": "collection",
+      "title": "Thread",
+      "summary": "本来想看 ThreadLocal 的源码的，但发现其中最重要的 get/set 方法都是操纵的 Thread 类 中的 ",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-1"
+    },
+    {
+      "id": "g-codehunter2-2",
+      "kind": "collection",
+      "title": "ThreadLocal",
+      "summary": "前面我们分析了 Thread 类的源码，有了前面的铺垫，通过源码 理解 ThreadLocal 的秘密就容易多了。 Th",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-2"
+    },
+    {
+      "id": "g-codehunter2-3",
+      "kind": "collection",
+      "title": "一文直接带你吃透 ArrayList",
+      "summary": "ArrayList 是日常开发中相当常见、面试也相当常考的一种 JDK 集合类，了解并熟悉、甚至能实现一个 ArrayL",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-3"
+    },
+    {
+      "id": "g-codehunter2-4",
+      "kind": "collection",
+      "title": "ConcurrentHashMap",
+      "summary": "HashMap 源码中主要了解其核心源码及实现逻辑。ConcurrentHashMap 就不再重复那些数据结构相关的内容",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-4"
+    },
+    {
+      "id": "g-codehunter2-5",
+      "kind": "collection",
+      "title": "HashMap",
+      "summary": "作为工作中最重要、最常用的容器之一，当然还是要自己动手写一篇 HashMap 的源码解析来加深对其的印象咯，而且它的设计",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-5"
+    },
+    {
+      "id": "g-codehunter2-6",
+      "kind": "collection",
+      "title": "HashSet",
+      "summary": "HashSet 本身并没有什么特别的东西，它提供的所有集合核心功能，都是基于 HashMap 来实现的。如果了解 Has",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-6"
+    },
+    {
+      "id": "g-codehunter2-7",
+      "kind": "collection",
+      "title": "LinkedHashMap",
+      "summary": "HashMap 大家都清楚，底层是 数组 + (链表 / 红黑树)， 元素是无序的 ，而 LinkedHashMap 则",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-7"
+    },
+    {
+      "id": "g-codehunter2-10",
+      "kind": "collection",
+      "title": "Executor线程池组件",
+      "summary": "看源码之前，先了解一下该组件 最主要的几个 接口、抽象类和实现类的结构关系。 该组件中，Executor 和 Execu",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-10"
+    },
+    {
+      "id": "g-codehunter2-12",
+      "kind": "collection",
+      "title": "Lock锁组件",
+      "summary": "J.U.C 的锁组件中 类相对较少，从 JDK 相应的包中也能看出来，下图标记了其中最主要的几个接口和类，也是本文要分析",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-12"
+    },
+    {
+      "id": "g-codehunter2-13",
+      "kind": "collection",
+      "title": "Semaphore",
+      "summary": "Semaphore 信号量，可用于控制一定时间内，并发执行的线程数，基于 AQS 实现。可应用于网关限流、资源限制 (如",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-13"
+    },
+    {
+      "id": "g-codehunter2-14",
+      "kind": "collection",
+      "title": "详解AbstractQueuedSynchronizer",
+      "summary": "AbstractQueuedSynchronizer 是 Doug Lea 大师创作的用来构建锁或者其他同步组件的基础框",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-14"
+    },
+    {
+      "id": "g-codehunter2-15",
+      "kind": "collection",
+      "title": "Java并发编程在各主流框架中的应用",
+      "summary": "Spring、Netty、Mybatis 等框架的代码中大量运用了 Java 多线程编程技巧。并发编程处理的恰当与否，将",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-15"
+    },
+    {
+      "id": "g-codehunter2-16",
+      "kind": "collection",
+      "title": "从Spring及Mybatis框架源码中学习设计模式(创建型)",
+      "summary": "设计模式是解决问题的方案，从大神的代码中学习对设计模式的使用，可以有效提升个人编码及设计代码的能力。本系列博文用于总结阅",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-16"
+    },
+    {
+      "id": "g-codehunter2-17",
+      "kind": "collection",
+      "title": "从Spring及Mybatis框架源码中学习设计模式(结构型)",
+      "summary": "设计模式是解决问题的方案，从大神的代码中学习对设计模式的使用，可以有效提升个人编码及设计代码的能力。本系列博文用于总结阅",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-17"
+    },
+    {
+      "id": "g-codehunter2-18",
+      "kind": "collection",
+      "title": "从Spring及Mybatis框架源码中学习设计模式(行为型)",
+      "summary": "设计模式是解决问题的方案，从大神的代码中学习对设计模式的使用，可以有效提升个人编码及设计代码的能力。本系列博文用于总结阅",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-18"
+    },
+    {
+      "id": "g-codehunter2-20",
+      "kind": "collection",
+      "title": "初级开发者应该从spring源码中学什么",
+      "summary": "作为一名初入职场的开发者，最开始是在逛 B 站刷视频时看到的一个 Spring 源码阅读解析，当时作为一个只知道 SSH",
+      "domain": "backend",
+      "category": "源码学习笔记 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter2-20"
     }
   ]
 }

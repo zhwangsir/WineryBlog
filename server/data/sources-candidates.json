@@ -2694,7 +2694,7 @@
      "skip": 30
     }
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T07:15:43.876Z",
    "note": "continuation: 存量来源深度续收 III 批"
   },
@@ -2720,7 +2720,7 @@
      "skip": 20
     }
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T07:15:43.876Z",
    "note": "continuation: 存量来源深度续收 III 批"
   }
