@@ -31,7 +31,7 @@
       "name": "计算机系统与网络",
       "icon": "Server",
       "blurb": "网络协议、操作系统、Linux 运维——理解机器如何运转",
-      "count": 149
+      "count": 158
     },
     {
       "id": "frontend",
@@ -52,7 +52,7 @@
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 79
+      "count": 107
     },
     {
       "id": "ai",
@@ -24571,6 +24571,635 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-yeyupiaoling-paddlepaddle-deepspeech-12"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-1",
+      "kind": "collection",
+      "title": "ElasticSearch快速上手",
+      "summary": "ES是一个基于Lucene的开源的、分布式的、支持多用户的、由Java实现的一个业界非常流行的全文实时搜索引擎。它还拥有",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 17,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-1"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-2",
+      "kind": "collection",
+      "title": "定义一个变量 example-chart.name",
+      "summary": "Helm是一个用于Kubernetes应用的包管理工具。它允许你定义、安装和升级Kubernetes应用。 Helm 使",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-2"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-3",
+      "kind": "collection",
+      "title": "修改下面两行",
+      "summary": "什么是ohmyzsh？",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-3"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-5",
+      "kind": "collection",
+      "title": "查看系统日志，pageUp和pageDown按钮进行翻页",
+      "summary": "在Kubernetes（K8s）集群中，日志管理是关键的运维任务之一。由于容器化应用程序的特性，它们产生的日志通常分散在",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-5"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-6",
+      "kind": "collection",
+      "title": "Kubernetes 维护指导",
+      "summary": "如果你在阅读本文时发现了任何错误，请在Github上提交ISSUE（或PR），我将由衷地表示感谢。 为了方便阅读，请点击",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-6"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-7",
+      "kind": "collection",
+      "title": "docsecurity",
+      "summary": "声明，本篇文章的内容主要来自Kubernetes修炼手册 @Nigel Poulton。 本文采用STRIDE模型来对K",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-7"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-8",
+      "kind": "collection",
+      "title": "Kubernetes 小技巧汇总",
+      "summary": "为了方便阅读，请点击网页右侧的 按钮在右侧展开目录以了解全文大纲。 使用如下命令： 返回结果中包含某些API资源的缩写。",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-8"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-12",
+      "kind": "collection",
+      "title": "--force允许在root执行",
+      "summary": "为了提高命令行使用效率，建议先 安装ohmyzsh。 环境准备 ： minikube是本地Kubernetes环境（单节",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-12"
+    },
+    {
+      "id": "g-auto-chasespace-k8s-tutorial-cn-13",
+      "kind": "collection",
+      "title": "t1.unexpectedclusterboom",
+      "summary": "排错记录如下。 突现集群失联： 查询master上的kubelet： 注意关键字： k8s master 节点找不到，推",
+      "domain": "system",
+      "category": "Kubernetes 中文教程",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "cn",
+        "k8s",
+        "kubernetes"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-chasespace-k8s-tutorial-cn-13"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-1",
+      "kind": "collection",
+      "title": "Advanced M:N Associations - 高级 M:N 关联",
+      "summary": "阅读本指南之前,请确保已阅读 关联指南. 让我们从 User 和 Profile 之间的多对多关系示例开始. js co",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-1"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-2",
+      "kind": "collection",
+      "title": "Association Scopes - 关联作用域",
+      "summary": "本节涉及关联作用域,它们与模型作用域类似但不相同. 关联作用域既可以放在关联的模型(关联的目标)上,也可以放在多对多关系",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-2"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-3",
+      "kind": "collection",
+      "title": "Creating with Associations - 创建关联",
+      "summary": "只要所有元素都是新元素,就可以一步创建带有嵌套关联的实例. 相反,无法执行涉及嵌套对象的更新和删除. 为此,你将必须明确",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-3"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-4",
+      "kind": "collection",
+      "title": "Eager Loading - 预先加载",
+      "summary": "如关联指南中简要提到的,预先加载是一次查询多个模型(一个\"主\"模型和一个或多个关联模型)的数据的行为. 在 SQL 级别",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-4"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-5",
+      "kind": "collection",
+      "title": "Polymorphic Associations - 多态关联",
+      "summary": "注意: 如本指南所述,在 Sequelize 中使用多态关联时应谨慎行事. 不要只是从此处复制粘贴代码,否则你可能会容易",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-5"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-6",
+      "kind": "collection",
+      "title": "使用 npm",
+      "summary": "Sequelize CLI Sequelize CLI 及其文档尚未准备好用于 Sequelize 7。如果你依赖 CL",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-6"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-7",
+      "kind": "collection",
+      "title": "Associations - 关联",
+      "summary": "Sequelize 支持标准关联关系: 一对一, 一对多 和 多对多. 为此,Sequelize 提供了 四种 关联类型",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-7"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-8",
+      "kind": "collection",
+      "title": "Getters, Setters & Virtuals - 获取器, 设置器 & 虚拟字段",
+      "summary": "Sequelize 允许你为模型的属性定义自定义获取器和设置器. Sequelize 还允许你指定所谓的 虚拟属性 ,它",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-8"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-9",
+      "kind": "collection",
+      "title": "Getting Started - 入门",
+      "summary": "在本教程中,你将进行学习 Sequelize 的简单设置. Sequelize 的使用可以通过 npm (或 yarn)",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-9"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-10",
+      "kind": "collection",
+      "title": "Model Basics - 模型基础",
+      "summary": "在本教程中,你将学习 Sequelize 中的模型以及如何使用它们. 模型是 Sequelize 的本质. 模型是代表数",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-10"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-11",
+      "kind": "collection",
+      "title": "Model Instances - 模型实例",
+      "summary": "如你所知,模型是 ES6 类. 类的实例表示该模型中的一个对象(该对象映射到数据库中表的一行). 这样,模型实例就是 D",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-11"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-12",
+      "kind": "collection",
+      "title": "Model Querying - Basics - 模型查询(基础)",
+      "summary": "Sequelize 提供了多种方法来协助查询数据库中的数据. 重要说明：要使用 Sequelize 执行生产级别的查询,",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-12"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-13",
+      "kind": "collection",
+      "title": "Model Querying - Finders - 模型查询(查找器)",
+      "summary": "Finder 方法是生成 SELECT 查询的方法. 默认情况下,所有 finder 方法的结果都是模型类的实例(与普通",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-13"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-14",
+      "kind": "collection",
+      "title": "Paranoid - 偏执表",
+      "summary": "Sequelize 支持 paranoid 表的概念. 一个 paranoid 表是一个被告知删除记录时不会真正删除它的",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-14"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-15",
+      "kind": "collection",
+      "title": "Raw Queries - 原始查询",
+      "summary": "由于常常使用简单的方式来执行原始/已经准备好的SQL查询,因此可以使用 sequelize.query 方法. 默认情况",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-15"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-16",
+      "kind": "collection",
+      "title": "Validations & Constraints - 验证 & 约束",
+      "summary": "在本教程中,你将学习如何在 Sequelize 中设置模型的验证和约束. 对于本教程,将假定以下设置： js const",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-16"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-18",
+      "kind": "collection",
+      "title": "Sequelize 用于 DB2 for Linux、Unix 和 Windows",
+      "summary": "请参阅 Releases 以了解支持哪些版本的 DB2 for LUW。 要在 DB2 for LUW 上使用 Sequ",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-18"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-19",
+      "kind": "collection",
+      "title": "Sequelize 用于 DB2 for IBM i",
+      "summary": "我们对 DB2 for IBM i 的实现并未在真实数据库上进行集成测试。 因此，我们无法保证其能如预期工作，也无法保证",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-19"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-20",
+      "kind": "collection",
+      "title": "Sequelize 用于 MariaDB",
+      "summary": "请参阅 Releases 以了解支持哪些版本的 MariaDB。 要在 MariaDB 上使用 Sequelize，你需",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-20"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-21",
+      "kind": "collection",
+      "title": "Sequelize 用于 Microsoft SQL Server",
+      "summary": "请参阅 Releases 以了解支持哪些版本的 SQL Server。 要在 Microsoft SQL Server ",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-21"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-22",
+      "kind": "collection",
+      "title": "Sequelize 用于 MySQL",
+      "summary": "请参阅 Releases 以了解支持哪些版本的 MySQL。 要在 MySQL 上使用 Sequelize，你需要安装 ",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-22"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-23",
+      "kind": "collection",
+      "title": "其他数据库",
+      "summary": "如果你正在使用 Sequelize 当前尚未支持的数据库，你有以下几种选择： 请求支持新的方言 贡献新的方言 创建第三方",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-23"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-24",
+      "kind": "collection",
+      "title": "Sequelize 用于 PostgreSQL",
+      "summary": "请参阅 Releases 以了解支持哪些版本的 PostgreSQL。 要在 PostgreSQL 上使用 Sequel",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-24"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-25",
+      "kind": "collection",
+      "title": "Sequelize 用于 Snowflake",
+      "summary": "我们对 Snowflake 的实现并未在真实数据库上进行集成测试。 因此，我们无法保证其能如预期工作，也无法保证其稳定性",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-25"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-26",
+      "kind": "collection",
+      "title": "Sequelize 用于 SQLite",
+      "summary": "要在 SQLite 上使用 Sequelize，你需要安装 @sequelize/sqlite 方言包： bash np",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-26"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-27",
+      "kind": "collection",
+      "title": "快速开始",
+      "summary": "在本教程中，你将学习如何对 Sequelize 进行一个简单的基础配置。 Sequelize 可以通过 npm（或 ya",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-27"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-29",
+      "kind": "collection",
+      "title": "Constraints & Circularities - 约束 & 循环",
+      "summary": "在表之间添加约束意味着使用 sequelize.sync 时必须在数据库中以一定顺序创建表. 如果 Task 具有对 U",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-29"
+    },
+    {
+      "id": "g-auto-demopark-sequelize-docs-zh-cn-30",
+      "kind": "collection",
+      "title": "Dialect-Specific Things - 方言特定事项",
+      "summary": "Sequelize for PostgreSQL 使用的底层连接器库是 pg 包.查看 Releases 查看支持哪些版",
+      "domain": "data",
+      "category": "Sequelize 中文文档",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "mysql",
+        "orm",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-30"
     }
   ]
 }

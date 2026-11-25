@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T00:34:53.610Z",
+ "updatedAt": "2026-11-25T00:55:04.504Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1799,6 +1799,56 @@
       ".md"
      ],
      "max": 12,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-chasespace-k8s-tutorial-cn",
+   "repo": "chaseSpace/k8s-tutorial-cn",
+   "branch": "main",
+   "category": "Kubernetes 中文教程",
+   "domain": "system",
+   "tags": [
+    "cn",
+    "k8s",
+    "kubernetes"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T00:55:00.311Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 13,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-demopark-sequelize-docs-zh-cn",
+   "repo": "demopark/sequelize-docs-Zh-CN",
+   "branch": "master",
+   "category": "Sequelize 中文文档",
+   "domain": "data",
+   "tags": [
+    "mysql",
+    "orm",
+    "postgresql"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T00:55:04.503Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
      "recursive": true
     }
    ]
