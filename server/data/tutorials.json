@@ -52,7 +52,7 @@
       "name": "数据库与大数据",
       "icon": "HardDrive",
       "blurb": "SQL/NoSQL、Redis、Hadoop/Spark 生态",
-      "count": 107
+      "count": 130
     },
     {
       "id": "ai",
@@ -25200,6 +25200,397 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-demopark-sequelize-docs-zh-cn-30"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-2",
+      "kind": "collection",
+      "title": "关系模型",
+      "summary": "SQL 是最著名的关系数据模型，它基于 Edgar Codd 在 1970 年提出的关系模型：数据被组织成关系（SQL ",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-2"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-3",
+      "kind": "collection",
+      "title": "图模型",
+      "summary": "如我们之前所见，多对多关系是不同数据模型之间具有区别性的重要特征。如果你的应用程序大多数的关系是一对多关系（树状结构化数",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-3"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-4",
+      "kind": "collection",
+      "title": "文档模型",
+      "summary": "支持文档数据模型的主要论据是架构灵活性，因局部性而拥有更好的性能，以及对于某些应用程序而言更接近于应用程序使用的数据结构",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-4"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-6",
+      "kind": "collection",
+      "title": "查询语言",
+      "summary": "当引入关系模型时，关系模型包含了一种查询数据的新方法：SQL 是一种 声明式 查询语言，而 IMS 和 CODASYL ",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-6"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-8",
+      "kind": "collection",
+      "title": "数据库编年史",
+      "summary": "数据库领域图灵奖获得者 Jim Gray 说过：所有的存储系统最终都会演变成数据库系统。(All storage sys",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-8"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-9",
+      "kind": "collection",
+      "title": "DBMS",
+      "summary": "后来到了 20 世纪 50 年代后期，随着磁盘、操作系统、磁芯存储器等数据存储设备的出现，新的数据处理系统迅猛发展起来。",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-9"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-10",
+      "kind": "collection",
+      "title": "NoSQL",
+      "summary": "NoSQL 的爆发与 Web 2.0 时代互联网数据的爆炸式增长密切相关，传统的关系数据库无法处理如此大量的数据，基于传",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-10"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-11",
+      "kind": "collection",
+      "title": "数据库选择",
+      "summary": "您选择的数据库系统可能会产生长期影响如果数据库可能由于性能问题，一致性问题或操作难题而不太适合，则最好在开发周期中早些找",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-11"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-12",
+      "kind": "collection",
+      "title": "实现一个基本功能的数据库",
+      "summary": "今天我们摒弃直接介绍数据库内核各个模块的思路，而是从应用开发者的角度出发，来看实现一个数据库需要哪些基本功能，然后把这些",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-12"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-13",
+      "kind": "collection",
+      "title": "SQLite is not a toy database",
+      "summary": "Whether you are a developer, data analyst, QA engineer, DevO",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-13"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-14",
+      "kind": "collection",
+      "title": "简介和设置 REPL",
+      "summary": "作为一个 web 开发者，我每天都在工作中和关系型数据库打交道，但是他们对我来说是一个黑盒。这导致我出现了一些疑问： 数",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-14"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-17",
+      "kind": "collection",
+      "title": "LevelDB 背景与配置",
+      "summary": "Google BigTable 的设计已总所周知，但许多细节 BigTable 论文中并不详细，LevelDB 可看作是",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-17"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-19",
+      "kind": "collection",
+      "title": "基础数据类型",
+      "summary": "命令 说明 APPEND 将值追加到指定 key 的值末尾，如果 key 不存在，则相当于增加操作 BITCOUNT 计",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-19"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-20",
+      "kind": "collection",
+      "title": "Redis 键基础操作",
+      "summary": "Redis 的 key 是二进制安全的，也就是说你可以使用任何二进制的序列作为 key，从一个”foo”字符串到一个 J",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-20"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-21",
+      "kind": "collection",
+      "title": "DataTypes",
+      "summary": "命令 说明 HDEL 删除哈希表 key 中的一个或多个指定域，不存在的域将被忽略 HEXISTS 查看哈希表 key ",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-21"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-22",
+      "kind": "collection",
+      "title": "Redis Optimization | Redis 性能优化实践",
+      "summary": "在 Redis 集群中，应用程序尽量避免使用大键；直接影响容易导致集群的容量和请求出现”倾斜问题“，但在实际生产过程中，",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-22"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-23",
+      "kind": "collection",
+      "title": "AOF 机制",
+      "summary": "AOF 是 Redis 提供的另外一种持久化的方式，它以独立日志的方式记录每次写入操作，重启时再重新执行这些操作，从而达",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-23"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-24",
+      "kind": "collection",
+      "title": "RDB 机制",
+      "summary": "RDB 机制是以指定的时间间隔将 Redis 中的数据生成快照并保存到硬盘中，它更适合于定时备份数据的应用场景。可以通过",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-24"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-25",
+      "kind": "collection",
+      "title": "部署与配置",
+      "summary": "Redis 的安装还是比较简单的，直接从官网下载好安装包进行编译即可： 可为 redis 服务启动指定配置文件，配置文件",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-25"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-26",
+      "kind": "collection",
+      "title": "Redis Sharding | Redis 分片",
+      "summary": "分片(partitioning)就是将你的数据拆分到多个 Redis 实例的过程，这样每个实例将只包含所有键的子集。Re",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-26"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-27",
+      "kind": "collection",
+      "title": "Redis 单线程架构",
+      "summary": "https://sctrack.sendcloud.net/track/click/eyJuZXRlYXNlIjogIm",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-27"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-29",
+      "kind": "collection",
+      "title": "Redis 线程架构",
+      "summary": "我们在使用 Redis 的时候，通常是多个客户端连接 Redis 服务器，然后各自发送命令请求(例如 Get、Set)到",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-29"
+    },
+    {
+      "id": "g-auto-wx-chevalier-database-notes-30",
+      "kind": "collection",
+      "title": "客户端通信",
+      "summary": "每个 Redis 客户端(以下简称”Client”)都有多个状态属性，而理解和分析这些属性，对于我们设计 Redis 键",
+      "domain": "data",
+      "category": "深入浅出数据库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "database",
+        "mysql",
+        "postgresql"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-wx-chevalier-database-notes-30"
     }
   ]
 }

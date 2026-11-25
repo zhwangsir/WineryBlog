@@ -93,7 +93,7 @@ function usableMdCount(repo, branch) {
     try {
       const tree = JSON.parse(body).tree || [];
       return tree.filter((t) => t.type === 'blob' && /\.md$/i.test(t.path)
-        && !/node_modules|\.github|CHANGELOG|CODE_OF|LICENSE|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)).length;
+        && !/node_modules|\.github|\.claude|\.cursor|\.vscode|CHANGELOG|CODE_OF|LICENSE|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)).length;
     } catch { /* 再试 */ }
   }
   return -1;

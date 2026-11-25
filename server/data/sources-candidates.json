@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T00:55:04.504Z",
+ "updatedAt": "2026-11-25T01:15:04.117Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -1852,6 +1852,46 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "auto-wx-chevalier-database-notes",
+   "repo": "wx-chevalier/Database-Notes",
+   "branch": "master",
+   "category": "深入浅出数据库",
+   "domain": "data",
+   "tags": [
+    "database",
+    "mysql",
+    "postgresql"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T01:15:01.980Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-dromara-skyeye",
+   "repo": "dromara/skyeye",
+   "branch": "company_server",
+   "category": "智能办公OA系统",
+   "domain": "data",
+   "tags": [
+    "approval-process",
+    "cms",
+    "crm"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T01:15:04.117Z",
+   "note": "智能办公 OA 产品仓库：md 为 .cursor 编辑器规则与商业方案文档，非教程内容"
   }
  ]
 }
