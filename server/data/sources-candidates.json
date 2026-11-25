@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T08:35:46.846Z",
+ "updatedAt": "2026-11-25T09:15:39.208Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2923,6 +2923,106 @@
    "status": "done",
    "addedAt": "2026-11-25T08:35:46.846Z",
    "note": "continuation: 存量来源深度续收 V 批"
+  },
+  {
+   "id": "algonote6",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 VI",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 158
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T09:15:39.208Z",
+   "note": "continuation: 存量来源深度续收 VI 批"
+  },
+  {
+   "id": "mlint5",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 V",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 120
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T09:15:39.208Z",
+   "note": "continuation: 存量来源深度续收 VI 批"
+  },
+  {
+   "id": "opencvtut3",
+   "repo": "fendouai/OpenCVTutorials",
+   "branch": "master",
+   "category": "OpenCV-Python 中文教程 III",
+   "domain": "langs",
+   "tags": [
+    "OpenCV",
+    "图像处理"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 5,
+     "recursive": true,
+     "skip": 60
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T09:15:39.208Z",
+   "note": "continuation: 存量来源深度续收 VI 批"
+  },
+  {
+   "id": "mqblog2",
+   "repo": "mqyqingfeng/Blog",
+   "branch": "master",
+   "category": "深入 ES 系列 II",
+   "domain": "frontend",
+   "tags": [
+    "JavaScript",
+    "ES6"
+   ],
+   "picks": [
+    {
+     "dir": "articles",
+     "keywords": [
+      ".md"
+     ],
+     "max": 6,
+     "recursive": true,
+     "skip": 29
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T09:15:39.208Z",
+   "note": "continuation: 存量来源深度续收 VI 批"
   }
  ]
 }

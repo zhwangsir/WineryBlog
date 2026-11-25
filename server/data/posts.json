@@ -36581,5 +36581,770 @@
     "source": "Unknwon/the-way-to-go_ZH_CN",
     "views": 0,
     "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-algonote6-1",
+    "title": "0092. 反转链表 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表 难度：中等 0092. 反转链表 II 力扣 描述 ：给定单链表的头指针 head 和两个整数 left 和 right ，其中 left right ） 时，将反转区",
+    "content": "# 0092. 反转链表 II \n\n- 标签：链表\n- 难度：中等\n\n## 题目链接\n\n- 0092. 反转链表 II  - 力扣\n\n## 题目大意\n\n**描述**：给定单链表的头指针 `head` 和两个整数 `left` 和 `right` ，其中 `left <= right`。\n\n**要求**：反转从位置 `left` 到位置 `right` 的链表节点，返回反转后的链表 。\n\n**说明**：\n\n- 链表中节点数目为 `n`。\n- $1 \\le n \\le 500$。\n- $-500 \\le Node.val \\le 500$。\n- $1 \\le left \\le right \\le n$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：head = [1,2,3,4,5], left = 2, right = 4\n输出：[1,4,3,2,5]\n```\n\n## 解题思路\n\n在「0206. 反转链表」中我们可以通过迭代、递归两种方法将整个链表反转。这道题而这道题要求对链表的部分区间进行反转。我们同样可以通过迭代、递归两种方法将链表的部分区间进行反转。\n\n### 思路 1：迭代\n\n我们可以先遍历到需要反转的链表区间的前一个节点，然后对需要反转的链表区间进行迭代反转。最后再返回头节点即可。\n\n但是需要注意一点，如果需要反转的区间包含了链表的第一个节点，那么我们可以事先创建一个哑节点作为链表初始位置开始遍历，这样就能避免找不到需要反转的链表区间的前一个节点。\n\n这道题的具体解题步骤如下：\n\n1. 先使用哑节点 `dummy_head` 构造一个指向 `head` 的指针，使得可以从 `head` 开始遍历。使用 `index` 记录当前元素的序号。\n2. 我们使用一个指针 `reverse_start`，初始赋值为 `dummy_head`。然后向右逐步移动到需要反转的区间的前一个节点。\n3. 然后再使用两个指针 `cur` 和 `pre` 进行迭代。`pre` 指向 `cur` 前一个节点位置，即 `pre` 指向需要反转节点的前一个节点，`cur` 指向需要反转的节点。初始时，`pre` 指向 `reverse_start`，`cur` 指向 `pre.next`。\n4. 当当前节点 `cur` 不为空，且 `index` 在反转区间内时，将 `pre` 和 `cur` 的前后指针进行交换，指针更替顺序为：\n   1. 使用 `next` 指针保存当前节点 `cur` 的后一个节点，即 `next = cur.next`；\n   2. 断开当前节点 `cur` 的后一节点链接，将 `cur` 的 `next` 指针指向前一节点 `pre`，即 `cur.next = pre`；\n   3. `pre` 向前移动一步，移动到 `cur` 位置，即 `pre = cur`；\n   4. `cur` 向前移动一步，移动到之前 `next` 指针保存的位置，即 `cur = next`。\n   5. 然后令 `index` 加 `1`。\n5. 继续执行第 `4` 步中的 `1`、`2`、`3`、`4`、`5` 步。\n6. 最后等到 `cur` 遍历到链表末尾（即 `cur == None`）或者遍历到需要反转区间的末尾时（即 `index > right`） 时，将反转区间的头尾节点分别与之前保存的需要反转的区间的前一个节点 `reverse_start` 相连，即 `reverse_start.next.next = cur`，`reverse_start.next = pre`。\n7. 最后返回新的头节点 `dummy_head.next`。\n\n### 思路 1：代码\n\n```python\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:\n        index = 1\n        dummy_head = ListNode(0)\n        dummy_head.next = head\n        pre = dummy_head\n\n        reverse_start = dummy_head\n        while reverse_start.next and index < left:\n            reverse_start = reverse_start.next\n            index += 1\n\n        pre = reverse_start\n        cur = pre.next\n        while cur and index <= right:\n            next = cur.next\n            cur.next = pre\n            pre = cur\n            cur = next\n            index += 1\n\n        reverse_start.next.next = cur\n        reverse_start.next = pre\n        \n        return dummy_head.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 是链表节点个数。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：递归算法\n\n#### 1. 翻转链表前 n 个节点\n\n1. 当 `left == 1`  时，无论 `right` 等于多少，实际上都是将当前链表到 `right` 部分进行翻转，也就是将前 `right` 个节点进行翻转。\n\n2. 我们可以先定义一个递归函数 `reverseN(self, head, n)`，含义为：将链表前第 $n$ 个节点位置进行翻转。\n   1. 然后从 `head.next` 的位置开始调用递归函数，即将 `head.next` 为头节点的链表的的前 $n - 1$ 个位置进行反转，并返回该链表的新头节点 `new_head`。\n   2. 然后改变 `head`（原先头节点）和 `new_head`（新头节点）之间的指向关系，即将 `head` 指向的节点作为 `head` 下一个节点的下一个节点。\n   3. 先保存 `head.next` 的 `next` 指针，也就是新链表前 $n$ 个节点的尾指针，即 `last = head.next.next`。\n   4. 将 `head.next` 的`next` 指针先指向当前节点 `head`，即 `head.next.next = head `。\n   5. 然后让当前节点 `head` 的 `next` 指针指向 `last`，则完成了前 $n - 1$ 个位置的翻转。\n\n3. 递归终止条件：当 `n == 1` 时，相当于翻转第一个节点，直接返回 `head` 即可。\n\n4. #### 翻转链表 `[left, right]` 上的节点。\n\n接下来我们来翻转区间上的节点。\n\n1. 定义递归函数 `reverseBetween(self, head, left, right)` 为\n2. \n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:\n        if left == 1:\n            return self.reverseN(head, right)\n        \n        head.next = self.reverseBetween(head.next, left - 1, right - 1)\n        return head\n    \n    def reverseN(self, head, n):\n        if n == 1:\n            return head\n        last = self.reverseN(head.next, n - 1)\n        next = head.next.next\n        head.next.next = head\n        head.next = next\n        return last\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。最多需要 $n$ 层栈空间。\n\n## 参考资料\n\n- 【题解】动画图解：翻转链表的指定区间 - 反转链表 II - 力扣\n- 【题解】【宫水三叶】一个能应用所有「链表」题里的「哨兵」技巧 - 反转链表 II - 力扣",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-algonote6-2",
+    "title": "0025. K 个一组翻转链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、链表 难度：困难 0025. K 个一组翻转链表 力扣 描述 ：给你链表的头节点 head ，再给定一个正整数 k ， k 的值小于或等于链表的长度。 要求 ：每 k ",
+    "content": "# 0025. K 个一组翻转链表\n\n- 标签：递归、链表\n- 难度：困难\n\n## 题目链接\n\n- 0025. K 个一组翻转链表 - 力扣\n\n## 题目大意\n\n**描述**：给你链表的头节点 `head` ，再给定一个正整数 `k`，`k` 的值小于或等于链表的长度。\n\n**要求**：每 `k` 个节点一组进行翻转，并返回修改后的链表。如果链表节点总数不是 `k` 的整数倍，则将最后剩余的节点保持原有顺序。\n\n**说明**：\n\n- 不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。\n- 假设链表中的节点数目为 `n`。\n- $1 \\le k \\le n \\le 5000$。\n- $0 \\le Node.val \\le 1000$。\n- 要求设计一个只用 `O(1)` 额外内存空间的算法解决此问题。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：head = [1,2,3,4,5], k = 2\n输出：[2,1,4,3,5]\n```\n\n## 解题思路\n\n### 思路 1：迭代\n\n在「0206. 反转链表」中我们可以通过迭代、递归两种方法将整个链表反转。而这道题要求以 `k` 为单位，对链表的区间进行反转。而区间反转其实就是「0092. 反转链表 II 」这道题的题目要求。\n\n本题中，我们可以以 `k` 为单位对链表进行切分，然后分别对每个区间部分进行反转。最后再返回头节点即可。\n\n但是需要注意一点，如果需要反转的区间包含了链表的第一个节点，那么我们可以事先创建一个哑节点作为链表初始位置开始遍历，这样就能避免找不到需要反转的链表区间的前一个节点。\n\n这道题的具体解题步骤如下：\n\n1. 先使用哑节点 `dummy_head` 构造一个指向 `head` 的指针，避免找不到需要反转的链表区间的前一个节点。使用变量 `index` 记录当前元素的序号。\n2. 使用两个指针 `cur`、`tail` 分别表示链表中待反转区间的首尾节点。初始 `cur` 赋值为 `dummy_head`，`tail` 赋值为 `dummy_head.next`，也就是 `head`。\n3. 将 `tail` 向右移动，每移动一步，就领 `index` 加 `1`。\n   1. 当 `index % k != 0` 时，直接将 `tail` 向右移动，直到移动到当前待反转区间的结尾位置。\n   2. 当 `index % k == 0` 时，说明 `tail` 已经移动到了当前待反转区间的结尾位置，此时调用 `cur = self.reverse(cur, tail.next)` ，将待反转区间进行反转，并返回反转后区间的起始节点赋值给当前反转区间的首节点 `cur`。然后将 `tail` 移动到 `cur` 的下一个节点。\n4. 最后返回新的头节点 `dummy_head.next`。\n\n关于 `def reverse(self, head, tail):` 方法这里也说下具体步骤：\n\n1. `head` 代表当前待反转区间的第一个节点的前一个节点，`tail`  代表当前待反转区间的最后一个节点的后一个节点。\n2. 先用 `first` 保存一下待反转区间的第一个节点（反转之后为区间的尾节点），方便反转之后进行连接。\n3. 我们使用两个指针 `cur` 和 `pre` 进行迭代。`pre` 指向 `cur` 前一个节点位置，即 `pre` 指向需要反转节点的前一个节点，`cur` 指向需要反转的节点。初始时，`pre` 指向待反转区间的第一个节点的前一个节点 `head`，`cur` 指向待反转区间的第一个节点，即 `pre.next`。\n4. 当当前节点 `cur` 不等于 `tail` 时，将 `pre` 和 `cur` 的前后指针进行交换，指针更替顺序为：\n   1. 使用 `next` 指针保存当前节点 `cur` 的后一个节点，即 `next = cur.next`；\n   2. 断开当前节点 `cur` 的后一节点链接，将 `cur` 的 `next` 指针指向前一节点 `pre`，即 `cur.next = pre`；\n   3. `pre` 向前移动一步，移动到 `cur` 位置，即 `pre = cur`；\n   4. `cur` 向前移动一步，移动到之前 `next` 指针保存的位置，即 `cur = next`。\n5. 继续执行第 `4` 步中的 `1`、`2`、`3`、`4`步。\n6. 最后等到 `cur` 遍历到链表末尾（即 `cur == tail`）时，令「当前待反转区间的第一个节点的前一个节点」指向「反转区间后的头节点」 ，即 `head.next = pre`。令「待反转区间的第一个节点（反转之后为区间的尾节点）」指向「待反转分区间的最后一个节点的后一个节点」，即 `first.next = tail`。\n7. 最后返回新的头节点 `dummy_head.next`。\n\n### 思路 1：代码\n\n```python\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def reverse(self, head, tail):\n        pre = head\n        cur = pre.next\n        first = cur\n        while cur != tail:\n            next = cur.next\n            cur.next = pre\n            pre = cur\n            cur = next\n        head.next = pre\n        first.next = tail\n        return first\n\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        dummy_head = ListNode(0)\n        dummy_head.next = head\n        cur = dummy_head\n        tail = dummy_head.next\n        index = 0\n        while tail:\n            index += 1\n            if index % k == 0:\n                cur = self.reverse(cur, tail.next)\n                tail = cur.next\n            else:\n                tail = tail.next\n        return dummy_head.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 为链表的总长度。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-algonote6-3",
+    "title": "0013. 罗马数字转整数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、数学、字符串 难度：简单 0013. 罗马数字转整数 力扣 给定一个罗马数字对应的字符串，将其转换为整数。 罗马数字规则： I 代表数值 1，V 代表数值 5，X 代",
+    "content": "# 0013. 罗马数字转整数\n\n- 标签：哈希表、数学、字符串\n- 难度：简单\n\n## 题目链接\n\n- 0013. 罗马数字转整数 - 力扣\n\n## 题目大意\n\n给定一个罗马数字对应的字符串，将其转换为整数。\n\n罗马数字规则：\n\n- I 代表数值 1，V 代表数值 5，X 代表数值 10，L 代表数值 50，C 代表数值 100，D 代表数值 500，M 代表数值 1000；\n- 一般罗马数字较大数字在左边，较小数字在右边，此时值为两者之和，比如 XI = X + I = 10 + 1 = 11。\n- 例外情况下，较小数字在左边，较大数字在右边，此时值为后者减前者之差，比如 IX = X - I = 10 - 1 = 9。\n\n## 解题思路\n\n用一个哈希表存储罗马数字与对应数值关系。遍历罗马数字对应的字符串，判断相邻两个数大小关系，并计算对应结果。\n\n## 代码\n\n```python\nclass Solution:\n    def romanToInt(self, s: str) -> int:\n        nunbers = {\n            \"I\" : 1,\n            \"V\" : 5,\n            \"X\" : 10,\n            \"L\" : 50,\n            \"C\" : 100,\n            \"D\" : 500,\n            \"M\" : 1000\n        }\n        sum = 0\n        pre_num = nunbers[s[0]]\n        for i in range(1, len(s)):\n            cur_num = nunbers[s[i]]\n            if pre_num < cur_num:\n                sum -= pre_num\n            else:\n                sum += pre_num\n            pre_num = cur_num\n        sum += pre_num\n        return sum\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-algonote6-4",
+    "title": "0048. 旋转图像",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、数学、矩阵 难度：中等 0048. 旋转图像 力扣 描述 ：给定一个 $n \\times n$ 大小的二维矩阵（代表图像）$matrix$。 要求 ：将二维矩阵 $ma",
+    "content": "# 0048. 旋转图像\n\n- 标签：数组、数学、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0048. 旋转图像 - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $n \\times n$ 大小的二维矩阵（代表图像）$matrix$。\n\n**要求**：将二维矩阵 $matrix$ 顺时针旋转 90°。\n\n**说明**：\n\n- 不能使用额外的数组空间。\n- $n == matrix.length == matrix[i].length$。\n- $1 \\le n \\le 20$。\n- $-1000 \\le matrix[i][j] \\le 1000$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_08_28_mat1.jpg)\n\n```python\n输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]\n输出：[[7,4,1],[8,5,2],[9,6,3]]\n```\n\n- 示例 2：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_08_28_mat2.jpg)\n\n```python\n输入：matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]\n输出：[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]\n```\n\n## 解题思路\n\n### 思路 1：原地旋转\n\n如果使用额外数组空间的话，将对应元素存放到对应位置即可。如果不使用额外的数组空间，则需要观察每一个位置上的点最初位置和最终位置有什么规律。\n\n对于矩阵中第 $i$ 行的第 $j$ 个元素，在旋转后，它出现在倒数第 $i$ 列的第 $j$ 个位置。即 $matrixnew[j][n − i − 1] = matrix[i][j]$。\n\n而  $matrixnew[j][n - i - 1]$  的点经过旋转移动到了 $matrix[n − i − 1][n − j − 1]$ 的位置。\n\n$matrix[n − i − 1][n − j − 1]$ 位置上的点经过旋转移动到了 $matrix[n − j − 1][i]$  的位置。\n\n$matrix[n− j − 1][i]$  位置上的点经过旋转移动到了最初的 $matrix[i][j]$ 的位置。\n\n这样就形成了一个循环，我们只需要通过一个临时变量 $temp$ 就可以将循环中的元素逐一进行交换。Python 中则可以直接使用语法直接交换。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def rotate(self, matrix: List[List[int]]) -> None:\n        n = len(matrix)\n\n        for i in range(n // 2):\n            for j in range((n + 1) // 2):\n                matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1], matrix[i][j]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：原地翻转\n\n通过观察可以得出：原矩阵可以通过一次「水平翻转」+「主对角线翻转」得到旋转后的二维矩阵。\n\n### 思路 2：代码\n\n```python\ndef rotate(self, matrix: List[List[int]]) -> None:\n    n = len(matrix)\n    \n    for i in range(n // 2):\n        for j in range(n):\n            matrix[i][j], matrix[n - i - 1][j] = matrix[n - i - 1][j], matrix[i][j]\n    \n    for i in range(n):\n        for j in range(i):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-algonote6-5",
+    "title": "0061. 旋转链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表、双指针 难度：中等 0061. 旋转链表 力扣 给定一个链表和整数 k，将链表每个节点向右移动 k 个位置。 我们可以将链表先连成环，然后将链表在指定位置断开。 先遍历",
+    "content": "# 0061. 旋转链表\n\n- 标签：链表、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0061. 旋转链表 - 力扣\n\n## 题目大意\n\n给定一个链表和整数 k，将链表每个节点向右移动 k 个位置。\n\n## 解题思路\n\n我们可以将链表先连成环，然后将链表在指定位置断开。\n\n先遍历一遍，求出链表节点个数 n。注意到 k 可能很大，我们只需将链表右移 k % n 个位置即可。\n\n第二次遍历到 n - k % n 的位置，记录下断开后新链表头节点位置，再将其断开并返回新的头节点。\n\n## 代码\n\n```python\nclass Solution:\n    def rotateRight(self, head: ListNode, k: int) -> ListNode:\n        if k == 0 or not head or not head.next:\n            return head\n        curr = head\n        count = 1\n        while curr.next:\n            count += 1\n            curr = curr.next\n        cut = count - k % count\n        curr.next = head\n        while cut:\n            curr = curr.next\n            cut -= 1\n        newHead = curr.next\n        curr.next = None\n        return newHead\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-algonote6-6",
+    "title": "0087. 扰乱字符串",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串、动态规划 难度：困难 0087. 扰乱字符串 力扣 描述 ： 使用下面描述的算法可以扰乱字符串 $s$ 得到字符串 $t$： 1. 如果字符串的长度为 $1$，算法停",
+    "content": "# 0087. 扰乱字符串\n\n- 标签：字符串、动态规划\n- 难度：困难\n\n## 题目链接\n\n- 0087. 扰乱字符串 - 力扣\n\n## 题目大意\n\n**描述**：\n\n使用下面描述的算法可以扰乱字符串 $s$ 得到字符串 $t$：\n\n1. 如果字符串的长度为 $1$，算法停止。\n2. 如果字符串的长度 > $1$，执行下述步骤：\n   - 在一个随机下标处将字符串分割成两个非空的子字符串。即，如果已知字符串 $s$ ，则可以将其分成两个子字符串 $x$ 和 $y$，且满足 $s = x + y$。\n   - 随机决定是要「交换两个子字符串」还是要「保持这两个子字符串的顺序不变」。即，在执行这一步骤之后，$s$ 可能是 $s = x + y$ 或者 $s = y + x$。\n   - 在 $x$ 和 $y$ 这两个子字符串上继续从步骤 $1$ 开始递归执行此算法。\n\n给定两个长度相等的字符串 $s1$ 和 $s2$。\n\n**要求**：\n\n判断 $s2$ 是否是 $s1$ 的扰乱字符串。如果是，返回 $true$；否则，返回 $false$。\n\n**说明**：\n\n- $s1.length == s2.length$。\n- $1 \\le s1.length \\le 30$。\n- $s1$ 和 $s2$ 由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s1 = \"great\", s2 = \"rgeat\"\n输出：true\n解释：s1 上可能发生的一种情形是：\n\"great\" --> \"gr/eat\" // 在一个随机下标处分割得到两个子字符串\n\"gr/eat\" --> \"gr/eat\" // 随机决定：「保持这两个子字符串的顺序不变」\n\"gr/eat\" --> \"g/r / e/at\" // 在子字符串上递归执行此算法。两个子字符串分别在随机下标处进行一轮分割\n\"g/r / e/at\" --> \"r/g / e/at\" // 随机决定：第一组「交换两个子字符串」，第二组「保持这两个子字符串的顺序不变」\n\"r/g / e/at\" --> \"r/g / e/ a/t\" // 继续递归执行此算法，将 \"at\" 分割得到 \"a/t\"\n\"r/g / e/ a/t\" --> \"r/g / e/ a/t\" // 随机决定：「保持这两个子字符串的顺序不变」\n算法终止，结果字符串和 s2 相同，都是 \"rgeat\"\n这是一种能够扰乱 s1 得到 s2 的情形，可以认为 s2 是 s1 的扰乱字符串，返回 true\n```\n\n- 示例 2：\n\n```python\n输入：s1 = \"abcde\", s2 = \"caebd\"\n输出：false\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n**核心思想**：\n\n使用三维动态规划来解决扰乱字符串问题。定义 $dp[i][j][k]$ 表示 $s1$ 从位置 $i$ 开始长度为 $k$ 的子串，是否可以通过扰乱操作得到 $s2$ 从位置 $j$ 开始长度为 $k$ 的子串。\n\n**算法步骤**：\n\n1. **状态定义**：$dp[i][j][k]$ 表示 $s1[i:i+k]$ 是否可以通过扰乱得到 $s2[j:j+k]$。\n2. **边界条件**：当 $k = 1$ 时，$dp[i][j][1] = (s1[i] == s2[j])$。\n3. **状态转移**：对于长度 $k$ 的子串，尝试所有可能的分割点 $l$（$1 \\le l < k$）：\n   - **不交换情况**：$dp[i][j][l] \\land dp[i+l][j+l][k-l]$\n   - **交换情况**：$dp[i][j+k-l][l] \\land dp[i+l][j][k-l]$\n4. **最终结果**：$dp[0][0][n]$ 即为答案。\n\n**关键点**：\n\n- 需要枚举所有可能的分割点 $l$，其中 $l$ 表示左子串的长度\n- 对于每个分割点，考虑交换和不交换两种情况\n- 使用记忆化搜索或自底向上的动态规划来避免重复计算\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isScramble(self, s1: str, s2: str) -> bool:\n        \"\"\"\n        判断 s2 是否是 s1 的扰乱字符串\n        使用动态规划方法\n        \"\"\"\n        n = len(s1)\n        if n != len(s2):\n            return False\n        \n        # 三维 DP 数组：dp[i][j][k] 表示 s1[i:i+k] 是否可以通过扰乱得到 s2[j:j+k]\n        dp = [[[False] * (n + 1) for _ in range(n)] for _ in range(n)]\n        \n        # 边界条件：长度为 1 的子串\n        for i in range(n):\n            for j in range(n):\n                dp[i][j][1] = (s1[i] == s2[j])\n        \n        # 动态规划：枚举所有可能的长度和分割点\n        for k in range(2, n + 1):  # 子串长度从 2 到 n\n            for i in range(n - k + 1):  # s1 的起始位置\n                for j in range(n - k + 1):  # s2 的起始位置\n                    # 尝试所有可能的分割点 l (1 <= l < k)\n                    for l in range(1, k):\n                        # 情况 1：不交换，左子串对应左子串，右子串对应右子串\n                        if dp[i][j][l] and dp[i + l][j + l][k - l]:\n                            dp[i][j][k] = True\n                            break\n                        \n                        # 情况 2：交换，左子串对应右子串，右子串对应左子串\n                        if dp[i][j + k - l][l] and dp[i + l][j][k - l]:\n                            dp[i][j][k] = True\n                            break\n        \n        return dp[0][0][n]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^4)$，其中 $n$ 是字符串长度。需要四重循环：长度 $k$、起始位置 $i$ 和 $j$、分割点 $l$，每重循环最多 $n$ 次。\n- **空间复杂度**：$O(n^3)$，需要 $O(n^3)$ 空间存储三维 DP 数组。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/d485940aad69b7a6.jpg"
+  },
+  {
+    "id": "g-algonote6-7",
+    "title": "0074. 搜索二维矩阵",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找、矩阵 难度：中等 0074. 搜索二维矩阵 力扣 描述 ：给定一个 $m \\times n$ 大小的有序二维矩阵 $matrix$。矩阵中每行元素从左到右升序",
+    "content": "# 0074. 搜索二维矩阵\n\n- 标签：数组、二分查找、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0074. 搜索二维矩阵 - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $m \\times n$ 大小的有序二维矩阵 $matrix$。矩阵中每行元素从左到右升序排列，每列元素从上到下升序排列。再给定一个目标值 $target$。\n\n**要求**：判断矩阵中是否存在目标值 $target$。\n\n**说明**：\n\n- $m == matrix.length$。\n- $n == matrix[i].length$。\n- $1 \\le m, n \\le 100$。\n- $-10^4 \\le matrix[i][j], target \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_10_05_mat.jpg)\n\n```python\n输入：matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3\n输出：True\n```\n\n- 示例 2：\n\n![](/images/figures/algonote6/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2020_11_25_mat2.jpg)\n\n```python\n输入：matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n二维矩阵是有序的，可以考虑使用二分搜索来进行查找。\n\n1. 首先二分查找遍历对角线元素，假设对角线元素的坐标为 $(row, col)$。把数组元素按对角线分为右上角部分和左下角部分。\n2. 然后对于当前对角线元素右侧第 $row$ 行、对角线元素下侧第 $col$ 列进行二分查找。\n   1. 如果找到目标，直接返回 `True`。\n   2. 如果找不到目标，则缩小范围，继续查找。\n   3. 直到所有对角线元素都遍历完，依旧没找到，则返回 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    # 二分查找对角线元素\n    def diagonalBinarySearch(self, matrix, diagonal, target):\n        left = 0\n        right = diagonal\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[mid][mid] < target:\n                left = mid + 1\n            else:\n                right = mid\n        return left\n    \n    def rowBinarySearch(self, matrix, begin, cols, target):\n        left = begin\n        right = cols\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[begin][mid] < target:\n                left = mid + 1\n            elif matrix[begin][mid] > target:\n                right = mid - 1\n            else:\n                left = mid\n                break\n        return begin <= left <= cols and matrix[begin][left] == target\n\n    def colBinarySearch(self, matrix, begin, rows, target):\n        left = begin + 1\n        right = rows\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[mid][begin] < target:\n                left = mid + 1\n            elif matrix[mid][begin] > target:\n                right = mid - 1\n            else:\n                left = mid\n                break\n        return begin <= left <= rows and matrix[left][begin] == target\n\n    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:\n        rows = len(matrix)\n        if rows == 0:\n            return False\n        cols = len(matrix[0])\n        if cols == 0:\n            return False\n\n        min_val = min(rows, cols)\n        index = self.diagonalBinarySearch(matrix, min_val - 1, target)\n        if matrix[index][index] == target:\n            return True\n        for i in range(index + 1):\n            row_search = self.rowBinarySearch(matrix, i, cols - 1, target)\n            col_search = self.colBinarySearch(matrix, i, rows - 1, target)\n            if row_search or col_search:\n                return True\n        return False\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log m + \\log n)$，其中 $m$、$n$ 分别是矩阵的行数和列数。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-algonote6-8",
+    "title": "0081. 搜索旋转排序数组 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找 难度：中等 0081. 搜索旋转排序数组 II 力扣 描述 ：一个按照升序排列的整数数组 $nums$，在位置的某个下标 $k$ 处进行了旋转操作。（例如：$",
+    "content": "# 0081. 搜索旋转排序数组 II\n\n- 标签：数组、二分查找\n- 难度：中等\n\n## 题目链接\n\n- 0081. 搜索旋转排序数组 II - 力扣\n\n## 题目大意\n\n**描述**：一个按照升序排列的整数数组 $nums$，在位置的某个下标 $k$ 处进行了旋转操作。（例如：$[0, 1, 2, 5, 6, 8]$ 可能变为 $[5, 6, 8, 0, 1, 2]$）。\n\n现在给定旋转后的数组 $nums$ 和一个整数 $target$。\n\n**要求**：编写一个函数来判断给定的 $target$ 是否存在与数组中。如果存在则返回 `True`，否则返回 `False`。\n\n**说明**：\n\n- $1 \\le nums.length \\le 5000$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n- 题目数据保证 $nums$ 在预先未知的某个下标上进行了旋转。\n- $-10^4 \\le target \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [2,5,6,0,0,1,2], target = 0\n输出：true\n```\n\n- 示例 2：\n\n```python\n输入：nums = [2,5,6,0,0,1,2], target = 3\n输出：false\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n这道题算是「0033. 搜索旋转排序数组」的变形，只不过输出变为了判断。\n\n原本为升序排列的数组 nums 经过「旋转」之后，会有两种情况，第一种就是原先的升序序列，另一种是两段升序的序列。\n\n```\n          *\n        *\n      *\n    *\n  *\n*\n```\n\n```\n    *\n  *\n*\n          *\n        *\n      *\n```\n\n最直接的办法就是遍历一遍，找到目标值 target。但是还可以有更好的方法。考虑用二分查找来降低算法的时间复杂度。\n\n我们将旋转后的数组看成左右两个升序部分：左半部分和右半部分。\n\n有人会说第一种情况不是只有一个部分吗？其实我们可以把第一种情况中的整个数组看做是左半部分，然后右半部分为空数组。\n\n然后创建两个指针 $left$、$right$，分别指向数组首尾。让后计算出两个指针中间值 $mid$。将 $mid$ 与两个指针做比较，并考虑与 $target$ 的关系。\n\n- 如果 $nums[mid] > nums[left]$，则 $mid$ 在左半部分（因为右半部分值都比 $nums[left]$ 小）。\n  - 如果 $nums[mid] \\ge target$，并且 $target \\ge nums[left]$，则 $target$ 在左半部分，并且在 $mid$ 左侧，此时应将 $right$ 左移到 $mid - 1$ 位置。\n  - 否则如果 $nums[mid] < target$，则 $target$ 在左半部分，并且在 $mid$ 右侧，此时应将 $left$ 右移到 $mid + 1$。\n  - 否则如果 $nums[left] > target$，则 $target$ 在右半部分，应将 $left$ 移动到 $mid + 1$ 位置。\n\n- 如果 $nums[mid] < nums[left]$，则 $mid$ 在右半部分（因为右半部分值都比 $nums[left]$ 小）。\n  - 如果 $nums[mid] < target$，并且 $target \\le nums[right]$，则 $target$ 在右半部分，并且在 $mid$ 右侧，此时应将 $left$ 右移到 $mid + 1$ 位置。\n  - 否则如果 $nums[mid] \\ge target$，则 $target$ 在右半部分，并且在 $mid$ 左侧，此时应将 $right$ 左移到 $mid - 1$ 位置。\n  - 否则如果 $nums[right] < target$，则 $target$ 在左半部分，应将 $right$ 左移到 $mid - 1$ 位置。\n- 最终判断 $nums[left]$ 是否等于 $target$，如果等于，则返回 `True`，否则返回 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def search(self, nums: List[int], target: int) -> bool:\n        n = len(nums)\n        if n == 0:\n            return False\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = left + (right - left) // 2\n\n            if nums[mid] > nums[left]:\n                if nums[left] <= target and target <= nums[mid]:\n                    right = mid\n                else:\n                    left = mid + 1\n            elif nums[mid] < nums[left]:\n                if nums[mid] < target and target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n            else:\n                if nums[mid] == target:\n                    return True\n                else:\n                    left = left + 1\n\n        return nums[left] == target\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组 $nums$ 的长度。最坏情况下数组元素均相等且不为 $target$，我们需要访问所有位置才能得出结果。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-algonote6-9",
+    "title": "0033. 搜索旋转排序数组",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找 难度：中等 0033. 搜索旋转排序数组 力扣 描述 ：给定一个整数数组 $nums$，数组中值互不相同。给定的 $nums$ 是经过升序排列后的又进行了「旋",
+    "content": "# 0033. 搜索旋转排序数组\n\n- 标签：数组、二分查找\n- 难度：中等\n\n## 题目链接\n\n- 0033. 搜索旋转排序数组 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$，数组中值互不相同。给定的 $nums$ 是经过升序排列后的又进行了「旋转」操作的。再给定一个整数 $target$。\n\n**要求**：从 $nums$ 中找到 $target$ 所在位置，如果找到，则返回对应下标，找不到则返回 $-1$。\n\n**说明**：\n\n- 旋转操作：升序排列的数组 nums 在预先未知的第 k 个位置进行了右移操作，变成了 $[nums[k]], nums[k+1], ... , nums[n-1], ... , nums[0], nums[1], ... , nums[k-1]$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [4,5,6,7,0,1,2], target = 0\n输出：4\n```\n\n- 示例 2：\n\n```python\n输入：nums = [4,5,6,7,0,1,2], target = 3\n输出：-1\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n原本为升序排列的数组 $nums$ 经过「旋转」之后，会有两种情况，第一种就是原先的升序序列，另一种是两段升序的序列。\n\n```python\n          *\n        *\n      *\n    *\n  *\n*\n```\n\n```python\n    *\n  *\n*\n          *\n        *\n      *\n```\n\n最直接的办法就是遍历一遍，找到目标值 $target$。但是还可以有更好的方法。考虑用二分查找来降低算法的时间复杂度。\n\n我们将旋转后的数组看成左右两个升序部分：左半部分和右半部分。\n\n有人会说第一种情况不是只有一个部分吗？其实我们可以把第一种情况中的整个数组看做是左半部分，然后右半部分为空数组。\n\n然后创建两个指针 $left$、$right$，分别指向数组首尾。让后计算出两个指针中间值 $mid$。将 $mid$ 与两个指针做比较，并考虑与 $target$ 的关系。\n\n- 如果 $nums[mid] == target$，说明找到了 $target$，直接返回下标。\n- 如果 $nums[mid] \\ge nums[left]$，则 $mid$ 在左半部分（因为右半部分值都比 $nums[left]$ 小）。\n  - 如果 $nums[mid] \\ge target$，并且 $target \\ge nums[left]$，则 $target$ 在左半部分，并且在 $mid$ 左侧，此时应将 $right$ 左移到 $mid - 1$ 位置。\n  - 否则如果 $nums[mid] \\le target$，则 $target$ 在左半部分，并且在 $mid$ 右侧，此时应将 $left$ 右移到 $mid + 1$ 位置。\n  - 否则如果 $nums[left] > target$，则 $target$ 在右半部分，应将 $left$ 移动到 $mid + 1$ 位置。\n\n- 如果 $nums[mid] < nums[left]$，则 $mid$ 在右半部分（因为右半部分值都比 $nums[left]$ 小）。\n  - 如果 $nums[mid] < target$，并且 $target \\le nums[right]$，则 $target$ 在右半部分，并且在 $mid$ 右侧，此时应将 $left$ 右移到 $mid + 1$ 位置。\n  - 否则如果 $nums[mid] \\ge target$，则 $target$ 在右半部分，并且在 $mid$ 左侧，此时应将 $right$ 左移到 $mid - 1$ 位置。\n  - 否则如果 $nums[right] < target$，则 $target$ 在左半部分，应将 $right$ 左移到 $mid - 1$ 位置。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        left = 0\n        right = len(nums) - 1\n        while left <= right:\n            mid = left + (right - left) // 2\n            if nums[mid] == target:\n                return mid\n\n            if nums[mid] >= nums[left]:\n                if nums[mid] > target and target >= nums[left]:\n                    right = mid - 1\n                else:\n                    left = mid + 1\n            else:\n                if nums[mid] < target and target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid - 1\n\n        return -1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。二分查找算法的时间复杂度为 $O(\\log n)$。\n- **空间复杂度**：$O(1)$。只用到了常数空间存放若干变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-algonote6-10",
+    "title": "0035. 搜索插入位置",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找 难度：简单 0035. 搜索插入位置 力扣 描述 ：给定一个排好序的数组 $nums$，以及一个目标值 $target$。 要求 ：在数组中找到目标值，并返回",
+    "content": "# 0035. 搜索插入位置\n\n- 标签：数组、二分查找\n- 难度：简单\n\n## 题目链接\n\n- 0035. 搜索插入位置 - 力扣\n\n## 题目大意\n\n**描述**：给定一个排好序的数组 $nums$，以及一个目标值 $target$。\n\n**要求**：在数组中找到目标值，并返回下标。如果找不到，则返回目标值按顺序插入数组的位置。\n\n**说明**：\n\n- $1 \\le nums.length \\le 10^4$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n- $nums$ 为无重复元素的升序排列数组。\n- $-10^4 \\le target \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,3,5,6], target = 5\n输出：2\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n设定左右节点为数组两端，即 `left = 0`，`right = len(nums) - 1`，代表待查找区间为 $[left, right]$（左闭右闭）。\n\n取两个节点中心位置 $mid$，先比较中心位置值 $nums[mid]$ 与目标值 $target$ 的大小。\n\n- 如果 $target == nums[mid]$，则当前中心位置为待插入数组的位置。\n- 如果 $target > nums[mid]$，则将左节点设置为 $mid + 1$，然后继续在右区间 $[mid + 1, right]$ 搜索。\n- 如果 $target < nums[mid]$，则将右节点设置为 $mid - 1$，然后继续在左区间 $[left, mid - 1]$ 搜索。\n\n直到查找到目标值返回待插入数组的位置，或者等到 $left > right$ 时停止查找，此时 $left$ 所在位置就是待插入数组的位置。\n\n### 思路 1：二分查找代码\n\n```python\nclass Solution:\n    def searchInsert(self, nums: List[int], target: int) -> int:\n        size = len(nums)\n        left, right = 0, size - 1\n\n        while left <= right:\n            mid = left + (right - left) // 2\n            if nums[mid] == target:\n                return mid\n            elif nums[mid] < target:\n                left = mid + 1\n            else:\n                right = mid - 1\n\n        return left\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。二分查找算法的时间复杂度为 $O(\\log n)$。\n- **空间复杂度**：$O(1)$。只用到了常数空间存放若干变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-algonote6-11",
+    "title": "0073. 矩阵置零",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、矩阵 难度：中等 0073. 矩阵置零 力扣 描述 ：给定一个 $m \\times n$ 大小的矩阵 $matrix$。 要求 ：如果一个元素为 $0$，则将其",
+    "content": "# 0073. 矩阵置零\n\n- 标签：数组、哈希表、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0073. 矩阵置零 - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $m \\times n$ 大小的矩阵 $matrix$。\n\n**要求**：如果一个元素为 $0$，则将其所在行和列所有元素都置为 $0$。\n\n**说明**：\n\n- 请使用「原地」算法。\n- $m == matrix.length$。\n- $n == matrix[0].length$。\n- $1 \\le m, n \\le 200$。\n- $-2^{31} \\le matrix[i][j] \\le 2^{31} - 1$。\n- **进阶**：\n  - 一个直观的解决方案是使用  $O(m \\times n)$ 的额外空间，但这并不是一个好的解决方案。\n  - 一个简单的改进方案是使用 $O(m + n)$ 的额外空间，但这仍然不是最好的解决方案。\n  - 你能想出一个仅使用常量空间的解决方案吗？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_08_17_mat1.jpg)\n\n```python\n输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]\n输出：[[1,0,1],[0,0,0],[1,0,1]]\n```\n\n- 示例 2：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_08_17_mat2.jpg)\n\n```\n输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]\n输出：[[1,0,1],[0,0,0],[1,0,1]]\n```\n\n## 解题思路\n\n### 思路 1：使用标记变量\n\n直观上可以使用两个数组来标记行和列出现 $0$ 的情况，但这样空间复杂度就是 $O(m+n)$ 了，不符合题意。\n\n考虑使用数组原本的元素进行记录出现 $0$ 的情况。\n\n1. 设定两个变量 $flag_row0$、$flag_col0$ 来标记第一行、第一列是否出现了 $0$。\n2. 接下来我们使用数组第一行、第一列来标记 $0$ 的情况。\n3. 对数组除第一行、第一列之外的每个元素进行遍历，如果某个元素出现 $0$ 了，则使用数组的第一行、第一列对应位置来存储 $0$ 的标记。\n4. 再对数组除第一行、第一列之外的每个元素进行遍历，通过对第一行、第一列的标记 $0$ 情况，进行置为 $0$ 的操作。\n5. 最后再根据 $flag_row0$、$flag_col0$ 的标记情况，对第一行、第一列进行置为 $0$ 的操作。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        m = len(matrix)\n        n = len(matrix[0])\n        flag_col0 = False\n        flag_row0 = False\n        for i in range(m):\n            if matrix[i][0] == 0:\n                flag_col0 = True\n                break\n\n        for j in range(n):\n            if matrix[0][j] == 0:\n                flag_row0 = True\n                break\n\n        for i in range(1, m):\n            for j in range(1, n):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = matrix[0][j] = 0\n\n        for i in range(1, m):\n            for j in range(1, n):\n                if matrix[i][0] == 0 or matrix[0][j] == 0:\n                    matrix[i][j] = 0\n\n        if flag_col0:\n            for i in range(m):\n                matrix[i][0] = 0\n\n        if flag_row0:\n            for j in range(n):\n                matrix[0][j] = 0\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-algonote6-12",
+    "title": "0071. 简化路径",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、字符串 难度：中等 0071. 简化路径 力扣 描述 ： 在 Unix 风格的文件系统中规则如下： 一个点 '.' 表示当前目录本身。 此外，两个点 '..' 表示将目录",
+    "content": "# 0071. 简化路径\n\n- 标签：栈、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0071. 简化路径 - 力扣\n\n## 题目大意\n\n**描述**：\n\n在 Unix 风格的文件系统中规则如下：\n\n- 一个点 `'.'` 表示当前目录本身。\n- 此外，两个点 `'..'` 表示将目录切换到上一级（指向父目录）。\n- 任意多个连续的斜杠（即，`'//'` 或 `'///'`）都被视为单个斜杠 `'/'`。\n- 任何其他格式的点（例如，`'...'` 或 `'....'`）均被视为有效的文件 / 目录名称。\n\n给定一个字符串 $path$，表示指向某一文件或目录的 Unix 风格绝对路径 （以 `'/'` 开头），\n\n**要求**：\n\n请你将其转化为更加简洁的规范路径。返回简化后得到的规范路径。\n\n**说明**：\n\n- $1 \\le path.length \\le 3000$。\n- path 由英文字母，数字，`'.'`，`'/'` 或 `'_'` 组成。\n- path 是一个有效的 Unix 风格绝对路径。\n- 返回的 简化路径 必须遵循下述格式：\n   - 始终以斜杠 `'/'` 开头。\n   - 两个目录名之间必须只有一个斜杠 `'/'`。\n   - 最后一个目录名（如果存在）不能 以 `'/'` 结尾。\n   - 此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 `'.'` 或 `'..'`）。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：path = \"/home/\"\n输出：\"/home\"\n解释：应删除尾随斜杠。\n```\n\n- 示例 2：\n\n```python\n输入：path = \"/home//foo/\"\n输出：\"/home/foo\"\n解释：多个连续的斜杠被单个斜杠替换。\n```\n\n## 解题思路\n\n### 思路 1：栈\n\n**核心思想**：\n\n使用栈来模拟路径的层级结构，根据不同的路径组件进行相应的栈操作，最后将栈中的元素组合成简化后的路径。\n\n**算法步骤**：\n\n1. **分割路径**：将输入路径 $path$ 按照 `'/'` 分割成路径组件数组 $components$。\n2. **遍历组件**：遍历每个路径组件 $component$：\n   - 如果 $component$ 为空字符串或 `'.'`，跳过（表示当前目录）。\n   - 如果 $component$ 为 `'..'`，弹出栈顶元素（表示返回上一级目录）。\n   - 否则，将 $component$ 压入栈中（表示进入下一级目录）。\n3. **构建结果**：将栈中的元素用 `'/'` 连接，并在前面加上 `'/'` 作为根目录。\n\n**关键点**：\n\n- 使用栈来维护当前路径的层级结构。\n- 遇到 `'..'` 时弹出栈顶，遇到有效目录名时压入栈中。\n- 最终结果以 `'/'` 开头，表示绝对路径。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def simplifyPath(self, path: str) -> str:\n        \"\"\"\n        简化 Unix 风格的绝对路径\n        \"\"\"\n        # 使用栈来存储路径组件\n        stack = []\n        \n        # 按照 '/' 分割路径\n        components = path.split('/')\n        \n        # 遍历每个路径组件\n        for component in components:\n            if component == '' or component == '.':\n                # 空字符串或 '.' 表示当前目录，跳过\n                continue\n            elif component == '..':\n                # '..' 表示返回上一级目录，弹出栈顶元素\n                if stack:\n                    stack.pop()\n            else:\n                # 有效的目录名，压入栈中\n                stack.append(component)\n        \n        # 构建简化后的路径\n        # 如果栈为空，返回根目录 '/'\n        if not stack:\n            return '/'\n        \n        # 将栈中的组件用 '/' 连接，并在前面加上 '/'\n        return '/' + '/'.join(stack)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是路径的长度。需要遍历路径一次，每个字符最多被处理一次。\n- **空间复杂度**：$O(n)$，其中 $n$ 是路径的长度。栈最多存储 $O(n)$ 个路径组件。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-algonote6-13",
+    "title": "0075. 颜色分类",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针、排序 难度：中等 0075. 颜色分类 力扣 描述 ：给定一个数组 $nums$，元素值只有 $0$、$1$、$2$，分别代表红色、白色、蓝色。 要求 ：将数组",
+    "content": "# 0075. 颜色分类\n\n- 标签：数组、双指针、排序\n- 难度：中等\n\n## 题目链接\n\n- 0075. 颜色分类 - 力扣\n\n## 题目大意\n\n**描述**：给定一个数组 $nums$，元素值只有 $0$、$1$、$2$，分别代表红色、白色、蓝色。\n\n**要求**：将数组进行排序，使得红色在前，白色在中间，蓝色在最后。\n\n**说明**：\n\n- 要求不使用标准库函数，同时仅用常数空间，一趟扫描解决。\n- $n == nums.length$。\n- $1 \\le n \\le 300$。\n- $nums[i]$ 为 $0$、$1$ 或 $2$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [2,0,2,1,1,0]\n输出：[0,0,1,1,2,2]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [2,0,1]\n输出：[0,1,2]\n```\n\n## 解题思路\n\n### 思路 1：双指针 + 快速排序思想\n\n快速排序算法中的 $partition$ 过程，利用双指针，将序列中比基准数 $pivot$ 大的元素移动到了基准数右侧，将比基准数 $pivot$ 小的元素移动到了基准数左侧。从而将序列分为了三部分：比基准数小的部分、基准数、比基准数大的部分。\n\n这道题我们也可以借鉴快速排序算法中的 $partition$ 过程，将 $1$ 作为基准数 $pivot$，然后将序列分为三部分：$0$（即比 $1$ 小的部分）、等于 $1$ 的部分、$2$（即比 $1$ 大的部分）。具体步骤如下：\n\n1. 使用两个指针 $left$、$right$，分别指向数组的头尾。$left$ 表示当前处理好红色元素的尾部，$right$ 表示当前处理好蓝色的头部。\n2. 再使用一个下标 $index$ 遍历数组：\n   - 如果遇到 $nums[index] == 0$，就交换 $nums[index]$ 和 $nums[left]$，同时将 $left$ 和 $index$ 都右移（因为交换后 $nums[index]$ 可能是从 $left$ 位置换过来的，需要继续检查）。\n   - 如果遇到 $nums[index] == 2$，就交换 $nums[index]$ 和 $nums[right]$，同时将 $right$ 左移（注意 $index$ 不增加，因为交换后 $nums[index]$ 可能是从 $right$ 位置换过来的 0 或 1，需要再次检查）。\n   - 如果遇到 $nums[index] == 1$，直接将 $index$ 右移。\n3. 直到 $index$ 移动到 $right$ 位置之后，停止遍历。遍历结束之后，此时 $left$ 左侧都是红色，$right$ 右侧都是蓝色。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        left = 0\n        right = len(nums) - 1\n        index = 0\n        while index <= right:\n            if nums[index] == 0:\n                nums[index], nums[left] = nums[left], nums[index]\n                left += 1\n                index += 1\n            elif nums[index] == 2:\n                nums[index], nums[right] = nums[right], nums[index]\n                right -= 1\n            else:\n                index += 1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-algonote6-14",
+    "title": "0059. 螺旋矩阵 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、矩阵、模拟 难度：中等 0059. 螺旋矩阵 II 力扣 给你一个正整数 $n$。 要求：生成一个包含 $1 \\sim n^2$ 的所有元素，且元素按顺时针顺序螺旋排列",
+    "content": "# 0059. 螺旋矩阵 II\n\n- 标签：数组、矩阵、模拟\n- 难度：中等\n\n## 题目链接\n\n- 0059. 螺旋矩阵 II - 力扣\n\n## 题目大意\n\n给你一个正整数 $n$。\n\n要求：生成一个包含 $1 \\sim n^2$ 的所有元素，且元素按顺时针顺序螺旋排列的 $n \\times n$ 正方形矩阵 $matrix$。\n\n## 解题思路\n\n### 思路 1：模拟\n\n这道题跟「54. 螺旋矩阵」思路是一样的。\n\n1. 构建一个 $n \\times n$ 大小的数组 $matrix$ 存储答案。然后定义一下上、下、左、右的边界。\n2. 然后按照顺时针的顺序从边界上依次给数组 $matrix$ 相应位置赋值。\n3. 当访问完当前边界之后，要更新一下边界位置，缩小范围，方便下一轮进行访问。\n4. 最后返回 $matrix$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def generateMatrix(self, n: int) -> List[List[int]]:\n        matrix = [[0 for _ in range(n)] for _ in range(n)]\n        up, down, left, right = 0, len(matrix) - 1, 0, len(matrix[0]) - 1\n        index = 1\n        while True:\n            for i in range(left, right + 1):\n                matrix[up][i] = index\n                index += 1\n            up += 1\n            if up > down:\n                break\n            for i in range(up, down + 1):\n                matrix[i][right] = index\n                index += 1\n            right -= 1\n            if right < left:\n                break\n            for i in range(right, left - 1, -1):\n                matrix[down][i] = index\n                index += 1\n            down -= 1\n            if down < up:\n                break\n            for i in range(down, up - 1, -1):\n                matrix[i][left] = index\n                index += 1\n            left += 1\n            if left > right:\n                break\n        return matrix\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(n^2)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-algonote6-15",
+    "title": "0054. 螺旋矩阵",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、矩阵、模拟 难度：中等 0054. 螺旋矩阵 力扣 描述 ：给定一个 $m \\times n$ 大小的二维矩阵 $matrix$。 要求 ：按照顺时针旋转的顺序，返回矩",
+    "content": "# 0054. 螺旋矩阵\n\n- 标签：数组、矩阵、模拟\n- 难度：中等\n\n## 题目链接\n\n- 0054. 螺旋矩阵 - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $m \\times n$ 大小的二维矩阵 $matrix$。\n\n**要求**：按照顺时针旋转的顺序，返回矩阵中的所有元素。\n\n**说明**：\n\n- $m == matrix.length$。\n- $n == matrix[i].length$。\n- $1 \\le m, n \\le 10$。\n- $-100 \\le matrix[i][j] \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_11_13_spiral1.jpg)\n\n```python\n输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]\n输出：[1,2,3,6,9,8,7,4,5]\n```\n\n- 示例 2：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_11_13_spiral.jpg)\n\n```python\n输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]\n输出：[1,2,3,4,8,12,11,10,9,5,6,7]\n```\n\n## 解题思路\n\n### 思路 1：模拟\n\n1. 使用数组 $ans$ 存储答案。然后定义一下上、下、左、右的边界。\n2. 然后按照顺时针的顺序从边界上依次访问元素。\n3. 当访问完当前边界之后，要更新一下边界位置，缩小范围，方便下一轮进行访问。\n4. 最后返回答案数组 $ans$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:\n        up, down, left, right = 0, len(matrix)-1, 0, len(matrix[0])-1\n        ans = []\n        while True:\n            for i in range(left, right + 1):\n                ans.append(matrix[up][i])\n            up += 1\n            if up > down:\n                break\n            for i in range(up, down + 1):\n                ans.append(matrix[i][right])\n            right -= 1\n            if right < left:\n                break\n            for i in range(right, left - 1, -1):\n                ans.append(matrix[down][i])\n            down -= 1\n            if down < up:\n                break\n            for i in range(down, up - 1, -1):\n                ans.append(matrix[i][left])\n            left += 1\n            if left > right:\n                break\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$。其中 $m$、$n$ 分别为二维矩阵的行数和列数。\n- **空间复杂度**：$O(m \\times n)$。如果算上答案数组的空间占用，则空间复杂度为 $O(m \\times n)$。不算上则空间复杂度为 $O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-algonote6-16",
+    "title": "0069. x 的平方根",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数学、二分查找 难度：简单 0069. x 的平方根 力扣 要求 ：实现 int sqrt(int x) 函数。计算并返回 $x$ 的平方根（只保留整数部分），其中 $x$ ",
+    "content": "# 0069. x 的平方根\n\n- 标签：数学、二分查找\n- 难度：简单\n\n## 题目链接\n\n- 0069. x 的平方根 - 力扣\n\n## 题目大意\n\n**要求**：实现 `int sqrt(int x)` 函数。计算并返回 $x$ 的平方根（只保留整数部分），其中 $x$ 是非负整数。\n\n**说明**：\n\n- $0 \\le x \\le 2^{31} - 1$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：x = 4\n输出：2\n```\n\n- 示例 2：\n\n```python\n输入：x = 8\n输出：2\n解释：8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n因为求解的是 $x$ 开方的整数部分。所以我们可以从 $0 \\sim x$ 的范围进行遍历，找到 $k^2 \\le x$ 的最大结果。\n\n为了减少算法的时间复杂度，我们使用二分查找的方法来搜索答案。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def mySqrt(self, x: int) -> int:\n        left = 0\n        right = x\n        ans = -1\n        while left <= right:\n            mid = (left + right) // 2\n            if mid * mid <= x:\n                ans = mid\n                left = mid + 1\n            else:\n                right = mid - 1\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。二分查找算法的时间复杂度为 $O(\\log n)$。\n- **空间复杂度**：$O(1)$。只用到了常数空间存放若干变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-algonote6-17",
+    "title": "0008. 字符串转换整数 (atoi)",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串 难度：中等 0008. 字符串转换整数 (atoi) 力扣 描述 ：给定一个字符串 s 。 要求 ：实现一个 myAtoi(s) 函数。使其能换成一个 32 位有符号",
+    "content": "# 0008. 字符串转换整数 (atoi)\n\n- 标签：字符串\n- 难度：中等\n\n## 题目链接\n\n- 0008. 字符串转换整数 (atoi) - 力扣\n\n## 题目大意\n\n**描述**：给定一个字符串 `s`。\n\n**要求**：实现一个 `myAtoi(s)` 函数。使其能换成一个 32 位有符号整数（类似 C / C++ 中的 `atoi` 函数）。需要检测有效性，无法读取返回 $0$。\n\n**说明**：\n\n- 函数 `myAtoi(s)` 的算法如下：\n  1. 读入字符串并丢弃无用的前导空格。\n  2. 检查下一个字符（假设还未到字符末尾）为正还是负号，读取该字符（如果有）。 确定最终结果是负数还是正数。 如果两者都不存在，则假定结果为正。\n  3. 读入下一个字符，直到到达下一个非数字字符或到达输入的结尾。字符串的其余部分将被忽略。\n  4. 将前面步骤读入的这些数字转换为整数（即，`\"123\"` -> `123`， `\"0032\"` -> `32`）。如果没有读入数字，则整数为 `0` 。必要时更改符号（从步骤 2 开始）。\n  5. 如果整数数超过 32 位有符号整数范围 $[−2^{31}, 2^{31} − 1]$ ，需要截断这个整数，使其保持在这个范围内。具体来说，小于 $−2^{31}$ 的整数应该被固定为 $−2^{31}$ ，大于 $2^{31} − 1$ 的整数应该被固定为 $2^{31} − 1$。\n  6. 返回整数作为最终结果。\n- 本题中的空白字符只包括空格字符 `' '` 。\n- 除前导空格或数字后的其余字符串外，请勿忽略任何其他字符。\n- $0 \\le s.length \\le 200$。\n- `s` 由英文字母（大写和小写）、数字（`0-9`）、`' '`、`'+'`、`'-'` 和 `'.'` 组成\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"42\"\n输出：42\n解释：加粗的字符串为已经读入的字符，插入符号是当前读取的字符。\n第 1 步：\"42\"（当前没有读入字符，因为没有前导空格）\n         ^\n第 2 步：\"42\"（当前没有读入字符，因为这里不存在 '-' 或者 '+'）\n         ^\n第 3 步：\"42\"（读入 \"42\"）\n           ^\n解析得到整数 42 。\n由于 \"42\" 在范围 [-231, 231 - 1] 内，最终结果为 42 。\n```\n\n- 示例 2：\n\n```python\n输入：s = \"   -42\"\n输出：-42\n解释：\n第 1 步：\"   -42\"（读入前导空格，但忽视掉）\n            ^\n第 2 步：\"   -42\"（读入 '-' 字符，所以结果应该是负数）\n             ^\n第 3 步：\"   -42\"（读入 \"42\"）\n               ^\n解析得到整数 -42 。\n由于 \"-42\" 在范围 [-231, 231 - 1] 内，最终结果为 -42 。\n```\n\n## 解题思路\n\n### 思路 1：模拟\n\n1. 先去除前后空格。\n2. 检测正负号。\n3. 读入数字，并用字符串存储数字结果。\n4. 将数字字符串转为整数，并根据正负号转换整数结果。\n5. 判断整数范围，并返回最终结果。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def myAtoi(self, s: str) -> int:\n        num_str = \"\"\n        positive = True\n        start = 0\n\n        s = s.lstrip()\n        if not s:\n            return 0\n\n        if s[0] == '-':\n            positive = False\n            start = 1\n        elif s[0] == '+':\n            positive = True\n            start = 1\n        elif not s[0].isdigit():\n            return 0\n\n        for i in range(start, len(s)):\n            if s[i].isdigit():\n                num_str += s[i]\n            else:\n                break\n        if not num_str:\n            return 0\n        num = int(num_str)\n        if not positive:\n            num = -num\n            return max(num, -2 ** 31)\n        else:\n            return min(num, 2 ** 31 - 1)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串 `s` 的长度。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-algonote6-18",
+    "title": "0090. 子集 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、数组、回溯 难度：中等 0090. 子集 II 力扣 描述 ：给定一个整数数组 nums ，其中可能包含重复元素。 要求 ：返回该数组所有可能的子集（幂集）。 说明 ",
+    "content": "# 0090. 子集 II\n\n- 标签：位运算、数组、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0090. 子集 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 `nums`，其中可能包含重复元素。\n\n**要求**：返回该数组所有可能的子集（幂集）。\n\n**说明**：\n\n- 解集不能包含重复的子集。返回的解集中，子集可以按任意顺序排列。\n- $1 \\le nums.length \\le 10$。\n- $-10 \\le nums[i] \\le 10$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,2]\n输出：[[],[1],[1,2],[1,2,2],[2],[2,2]]\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n数组的每个元素都有两个选择：选与不选。\n\n我们可以通过向当前子集数组中添加可选元素来表示选择该元素。也可以在当前递归结束之后，将之前添加的元素从当前子集数组中移除（也就是回溯）来表示不选择该元素。\n\n因为数组中可能包含重复元素，所以我们可以先将数组排序，然后在回溯时，判断当前元素是否和上一个元素相同，如果相同，则直接跳过，从而去除重复元素。\n\n回溯算法解决这道题的步骤如下：\n\n- 先对数组 `nums` 进行排序。\n- 从第 `0` 个位置开始，调用 `backtrack` 方法进行深度优先搜索。\n- 将当前子集数组 `sub_set` 添加到答案数组 `sub_sets` 中。\n- 然后从当前位置开始，到数组结束为止，枚举出所有可选的元素。对于每一个可选元素：\n  - 如果当前元素与上一个元素相同，则跳过当前生成的子集。\n  - 将可选元素添加到当前子集数组 `sub_set` 中。\n  - 在选择该元素的情况下，继续递归考虑下一个元素。\n  - 进行回溯，撤销选择该元素。即从当前子集数组 `sub_set` 中移除之前添加的元素。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def backtrack(self, nums, index, res, path):\n        res.append(path[:])\n\n        for i in range(index, len(nums)):\n            if i > index and nums[i] == nums[i - 1]:\n                continue\n            path.append(nums[i])\n            self.backtrack(nums, i + 1, res, path)\n            path.pop()\n\n    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:\n        nums.sort()\n        res, path = [], []\n        self.backtrack(nums, 0, res, path)\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times 2^n)$，其中 $n$ 指的是数组 `nums` 的元素个数，$2^n$ 指的是所有状态数。每种状态需要 $O(n)$ 的时间来构造子集。\n- **空间复杂度**：$O(n)$，每种状态下构造子集需要使用 $O(n)$ 的空间。\n\n### 思路 2：二进制枚举\n\n对于一个元素个数为 `n` 的集合 `nums`  来说，每一个位置上的元素都有选取和未选取两种状态。我们可以用数字 `1` 来表示选取该元素，用数字 `0` 来表示不选取该元素。\n\n那么我们就可以用一个长度为 `n` 的二进制数来表示集合 `nums` 或者表示 `nums` 的子集。其中二进制的每一位数都对应了集合中某一个元素的选取状态。对于集合中第 `i` 个元素（`i` 从 `0` 开始编号）来说，二进制对应位置上的 `1` 代表该元素被选取，`0` 代表该元素未被选取。\n\n举个例子来说明一下，比如长度为 `5` 的集合 `nums = {5, 4, 3, 2, 1}`，我们可以用一个长度为 `5` 的二进制数来表示该集合。 \n\n比如二进制数 `11111` 就表示选取集合的第 `0` 位、第 `1` 位、第 `2` 位、第 `3` 位、第 `4` 位元素，也就是集合 `{5, 4, 3, 2, 1}` ，即集合 `nums`  本身。如下表所示：\n\n| 集合 nums 对应位置（下标） |  4   |  3   |  2   |  1   |  0   |\n| :------------------------- | :--: | :--: | :--: | :--: | :--: |\n| 二进制数对应位数           |  1   |  1   |  1   |  1   |  1   |\n| 对应选取状态               | 选取 | 选取 | 选取 | 选取 | 选取 |\n\n再比如二进制数 `10101` 就表示选取集合的第 `0` 位、第 `2` 位、第 `5` 位元素，也就是集合 `{5, 3, 1}`。如下表所示：\n\n| 集合 nums 对应位置（下标） |  4   |   3    |  2   |   1    |  0   |\n| :------------------------- | :--: | :----: | :--: | :----: | :--: |\n| 二进制数对应位数           |  1   |   0    |  1   |   0    |  1   |\n| 对应选取状态               | 选取 | 未选取 | 选取 | 未选取 | 选取 |\n\n再比如二进制数 `01001` 就表示选取集合的第 `0` 位、第 `3` 位元素，也就是集合 `{5, 2}`。如下标所示：\n\n| 集合 nums 对应位置（下标） |   4    |  3   |   2    |   1    |  0   |\n| :------------------------- | :----: | :--: | :----: | :----: | :--: |\n| 二进制数对应位数           |   0    |  1   |   0    |   0    |  1   |\n| 对应选取状态               | 未选取 | 选取 | 未选取 | 未选取 | 选取 |\n\n通过上面的例子我们可以得到启发：对于长度为 `5` 的集合 `nums` 来说，我们只需要从 `00000` ~ `11111` 枚举一次（对应十进制为 $0 \\sim 2^4 - 1$）即可得到长度为 `5` 的集合 `S` 的所有子集。\n\n我们将上面的例子拓展到长度为 `n` 的集合 `nums`。可以总结为：\n\n- 对于长度为 `5` 的集合 `nums` 来说，只需要枚举 $0 \\sim 2^n - 1$（共 $2^n$ 种情况），即可得到所有的子集。\n\n因为数组中可能包含重复元素，所以我们可以先对数组进行排序。然后在枚举过程中，如果发现当前元素和上一个元素相同，则直接跳过当前生层的子集，从而去除重复元素。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:\n        nums.sort()\n        n = len(nums)                       # n 为集合 nums 的元素个数\n        sub_sets = []                       # sub_sets 用于保存所有子集\n        for i in range(1 << n):             # 枚举 0 ~ 2^n - 1\n            sub_set = []                    # sub_set 用于保存当前子集\n            flag = True                     # flag 用于判断重复元素\n            for j in range(n):  # 枚举第 i 位元素\n                if i >> j & 1:  # 如果第 i 为元素对应二进制位为 1，则表示选取该元素\n                    if j > 0 and (i >> (j - 1) & 1) == 0 and nums[j] == nums[j - 1]:\n                        flag = False        # 如果出现重复元素，则跳过当前生成的子集\n                        break\n                    sub_set.append(nums[j]) # 将选取的元素加入到子集 sub_set 中\n            if flag:\n                sub_sets.append(sub_set)    # 将子集 sub_set 加入到所有子集数组 sub_sets 中\n        return sub_sets                     # 返回所有子集\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n \\times 2^n)$，其中 $n$ 指的是数组 `nums` 的元素个数，$2^n$ 指的是所有状态数。每种状态需要 $O(n)$ 的时间来构造子集。\n- **空间复杂度**：$O(n)$，每种状态下构造子集需要使用 $O(n)$ 的空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-algonote6-19",
+    "title": "0078. 子集",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、数组、回溯 难度：中等 0078. 子集 力扣 描述 ：给定一个整数数组 nums ，数组中的元素互不相同。 要求 ：返回该数组所有可能的不重复子集。可以按任意顺序返",
+    "content": "# 0078. 子集\n\n- 标签：位运算、数组、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0078. 子集 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 `nums`，数组中的元素互不相同。\n\n**要求**：返回该数组所有可能的不重复子集。可以按任意顺序返回解集。\n\n**说明**：\n\n- $1 \\le nums.length \\le 10$。\n- $-10 \\le nums[i] \\le 10$。\n- `nums` 中的所有元素互不相同。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入 nums = [1,2,3]\n输出 [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0]\n输出：[[],[0]]\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n数组的每个元素都有两个选择：选与不选。\n\n我们可以通过向当前子集数组中添加可选元素来表示选择该元素。也可以在当前递归结束之后，将之前添加的元素从当前子集数组中移除（也就是回溯）来表示不选择该元素。\n\n下面我们根据回溯算法三步走，写出对应的回溯算法。\n\n![回溯算法](/images/figures/algonote6/ext_qcdn.itcharge.cn__images_20220425210640.png)\n\n1. **明确所有选择**：根据数组中每个位置上的元素选与不选两种选择，画出决策树，如上图所示。\n2. **明确终止条件**：\n   - 当遍历到决策树的叶子节点时，就终止了。即当前路径搜索到末尾时，递归终止。\n3. **将决策树和终止条件翻译成代码**：\n   1. 定义回溯函数：\n      - `backtracking(nums, index):` 函数的传入参数是 `nums`（可选数组列表）和 `index`（代表当前正在考虑元素是 `nums[i]` ），全局变量是 `res`（存放所有符合条件结果的集合数组）和 `path`（存放当前符合条件的结果）。\n      - `backtracking(nums, index):` 函数代表的含义是：在选择 `nums[index]` 的情况下，递归选择剩下的元素。\n   2. 书写回溯函数主体（给出选择元素、递归搜索、撤销选择部分）。\n      - 从当前正在考虑元素，到数组结束为止，枚举出所有可选的元素。对于每一个可选元素：\n        - 约束条件：之前选过的元素不再重复选用。每次从 `index` 位置开始遍历而不是从 `0` 位置开始遍历就是为了避免重复。集合跟全排列不一样，子集中 `{1, 2}` 和 `{2, 1}` 是等价的。为了避免重复，我们之前考虑过的元素，就不再重复考虑了。\n        - 选择元素：将其添加到当前子集数组 `path` 中。\n        - 递归搜索：在选择该元素的情况下，继续递归考虑下一个位置上的元素。\n        - 撤销选择：将该元素从当前子集数组 `path` 中移除。\n    ```python\n    for i in range(index, len(nums)):   # 枚举可选元素列表\n        path.append(nums[i])            # 选择元素\n        backtracking(nums, i + 1)       # 递归搜索\n        path.pop()                      # 撤销选择\n    ```\n   3. 明确递归终止条件（给出递归终止条件，以及递归终止时的处理方法）。\n      - 当遍历到决策树的叶子节点时，就终止了。也就是当正在考虑的元素位置到达数组末尾（即 `start >= len(nums)`）时，递归停止。\n      - 从决策树中也可以看出，子集需要存储的答案集合应该包含决策树上所有的节点，应该需要保存递归搜索的所有状态。所以无论是否达到终止条件，我们都应该将当前符合条件的结果放入到集合中。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def subsets(self, nums: List[int]) -> List[List[int]]:\n        res = []  # 存放所有符合条件结果的集合\n        path = []  # 存放当前符合条件的结果\n        def backtracking(nums, index):          # 正在考虑可选元素列表中第 index 个元素\n            res.append(path[:])                 # 将当前符合条件的结果放入集合中\n            if index >= len(nums):              # 遇到终止条件（本题）\n                return\n\n            for i in range(index, len(nums)):   # 枚举可选元素列表\n                path.append(nums[i])            # 选择元素\n                backtracking(nums, i + 1)       # 递归搜索\n                path.pop()                      # 撤销选择\n\n        backtracking(nums, 0)\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times 2^n)$，其中 $n$ 指的是数组 `nums` 的元素个数，$2^n$ 指的是所有状态数。每种状态需要 $O(n)$ 的时间来构造子集。\n- **空间复杂度**：$O(n)$，每种状态下构造子集需要使用 $O(n)$ 的空间。\n\n### 思路 2：二进制枚举\n\n对于一个元素个数为 `n` 的集合 `nums`  来说，每一个位置上的元素都有选取和未选取两种状态。我们可以用数字 `1` 来表示选取该元素，用数字 `0` 来表示不选取该元素。\n\n那么我们就可以用一个长度为 `n` 的二进制数来表示集合 `nums` 或者表示 `nums` 的子集。其中二进制的每一位数都对应了集合中某一个元素的选取状态。对于集合中第 `i` 个元素（`i` 从 `0` 开始编号）来说，二进制对应位置上的 `1` 代表该元素被选取，`0` 代表该元素未被选取。\n\n举个例子来说明一下，比如长度为 `5` 的集合 `nums = {5, 4, 3, 2, 1}`，我们可以用一个长度为 `5` 的二进制数来表示该集合。 \n\n比如二进制数 `11111` 就表示选取集合的第 `0` 位、第 `1` 位、第 `2` 位、第 `3` 位、第 `4` 位元素，也就是集合 `{5, 4, 3, 2, 1}` ，即集合 `nums`  本身。如下表所示：\n\n| 集合 nums 对应位置（下标） |  4   |  3   |  2   |  1   |  0   |\n| :------------------------- | :--: | :--: | :--: | :--: | :--: |\n| 二进制数对应位数           |  1   |  1   |  1   |  1   |  1   |\n| 对应选取状态               | 选取 | 选取 | 选取 | 选取 | 选取 |\n\n再比如二进制数 `10101` 就表示选取集合的第 `0` 位、第 `2` 位、第 `5` 位元素，也就是集合 `{5, 3, 1}`。如下表所示：\n\n| 集合 nums 对应位置（下标） |  4   |   3    |  2   |   1    |  0   |\n| :------------------------- | :--: | :----: | :--: | :----: | :--: |\n| 二进制数对应位数           |  1   |   0    |  1   |   0    |  1   |\n| 对应选取状态               | 选取 | 未选取 | 选取 | 未选取 | 选取 |\n\n再比如二进制数 `01001` 就表示选取集合的第 `0` 位、第 `3` 位元素，也就是集合 `{5, 2}`。如下标所示：\n\n| 集合 nums 对应位置（下标） |   4    |  3   |   2    |   1    |  0   |\n| :------------------------- | :----: | :--: | :----: | :----: | :--: |\n| 二进制数对应位数           |   0    |  1   |   0    |   0    |  1   |\n| 对应选取状态               | 未选取 | 选取 | 未选取 | 未选取 | 选取 |\n\n通过上面的例子我们可以得到启发：对于长度为 `5` 的集合 `nums` 来说，我们只需要从 `00000` ~ `11111` 枚举一次（对应十进制为 $0 \\sim 2^4 - 1$）即可得到长度为 `5` 的集合 `S` 的所有子集。\n\n我们将上面的例子拓展到长度为 `n` 的集合 `nums`。可以总结为：\n\n- 对于长度为 `5` 的集合 `nums` 来说，只需要枚举 $0 \\sim 2^n - 1$（共 $2^n$ 种情况），即可得到所有的子集。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def subsets(self, nums: List[int]) -> List[List[int]]:\n        n = len(nums)                       # n 为集合 nums 的元素个数\n        sub_sets = []                       # sub_sets 用于保存所有子集\n        for i in range(1 << n):             # 枚举 0 ~ 2^n - 1\n            sub_set = []                    # sub_set 用于保存当前子集\n            for j in range(n):              # 枚举第 i 位元素\n                if i >> j & 1:              # 如果第 i 为元素对应二进制位为 1，则表示选取该元素\n                    sub_set.append(nums[j]) # 将选取的元素加入到子集 sub_set 中\n            sub_sets.append(sub_set)        # 将子集 sub_set 加入到所有子集数组 sub_sets 中\n        return sub_sets                     # 返回所有子集\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n \\times 2^n)$，其中 $n$ 指的是数组 `nums` 的元素个数，$2^n$ 指的是所有状态数。每种状态需要 $O(n)$ 的时间来构造子集。\n- **空间复杂度**：$O(n)$，每种状态下构造子集需要使用 $O(n)$ 的空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-algonote6-20",
+    "title": "0030. 串联所有单词的子串",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、字符串、滑动窗口 难度：困难 0030. 串联所有单词的子串 力扣 描述 ： 给定一个字符串 $s$ 和一个字符串数组 $words$。$words$ 中所有字符串长",
+    "content": "# 0030. 串联所有单词的子串\n\n- 标签：哈希表、字符串、滑动窗口\n- 难度：困难\n\n## 题目链接\n\n- 0030. 串联所有单词的子串 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串 $s$ 和一个字符串数组 $words$。$words$ 中所有字符串长度相同。\n\n$s$ 中的「串联子串」是指一个包含 $words$ 中所有字符串以任意顺序排列连接起来的子串。\n- 例如，如果 $words = [\"ab\",\"cd\",\"ef\"]$， 那么 `\"abcdef\"`， `\"abefcd\"`，`\"cdabef\"`， `\"cdefab\"`，`\"efabcd\"` 和 `\"efcdab\"` 都是串联子串。 `\"acdbef\"` 不是串联子串，因为他不是任何 $words$ 排列的连接。\n\n**要求**：\n\n返回所有串联子串在 $s$ 中的开始索引。你可以以任意顺序返回答案。\n\n**说明**：\n\n- $1 \\le s.length \\le 10^4$。\n- $1 \\le words.length \\le 5000$。\n- $1 <= words[i].length <= 30$。\n- $words[i]$ 和 $s$ 由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"barfoothefoobarman\", words = [\"foo\",\"bar\"]\n输出：[0,9]\n解释：因为 words.length == 2 同时 words[i].length == 3，连接的子字符串的长度必须为 6。\n子串 \"barfoo\" 开始位置是 0。它是 words 中以 [\"bar\",\"foo\"] 顺序排列的连接。\n子串 \"foobar\" 开始位置是 9。它是 words 中以 [\"foo\",\"bar\"] 顺序排列的连接。\n输出顺序无关紧要。返回 [9,0] 也是可以的。\n```\n\n- 示例 2：\n\n```python\n输入：s = \"wordgoodgoodgoodbestword\", words = [\"word\",\"good\",\"best\",\"word\"]\n输出：[]\n解释：因为 words.length == 4 并且 words[i].length == 4，所以串联子串的长度必须为 16。\ns 中没有子串长度为 16 并且等于 words 的任何顺序排列的连接。\n所以我们返回一个空数组。\n```\n\n## 解题思路\n\n### 思路 1：滑动窗口 + 哈希表\n\n**核心思想**：\n\n使用滑动窗口技术，结合哈希表来统计单词出现次数，通过固定窗口大小来检查所有可能的串联子串。\n\n**算法步骤**：\n\n1. **计算窗口大小**：串联子串的长度为 $word_length \\times word_count$，其中 $word_length$ 是每个单词的长度，$word_count$ 是单词数组的长度。\n\n2. **构建目标哈希表**：统计 $words$ 数组中每个单词的出现次数，存储在 $target_count$ 中。\n\n3. **滑动窗口检查**：从字符串 $s$ 的每个可能起始位置开始，使用滑动窗口：\n   - 窗口大小为 $word_length \\times word_count$。\n   - 将窗口内的字符串按 $word_length$ 分割成单词。\n   - 统计这些单词的出现次数，与 $target_count$ 比较。\n\n4. **匹配判断**：如果当前窗口内的单词统计与目标统计完全匹配，则记录起始位置。\n\n**关键点**：\n\n- 滑动窗口的大小固定为所有单词的总长度。\n- 使用哈希表快速比较单词出现次数。\n- 需要处理字符串长度不足的情况。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def findSubstring(self, s: str, words: List[str]) -> List[int]:\n        \"\"\"\n        找到所有串联子串的起始位置\n        \"\"\"\n        if not s or not words or not words[0]:\n            return []\n        \n        # 获取基本参数\n        word_length = len(words[0])  # 每个单词的长度\n        word_count = len(words)      # 单词数量\n        total_length = word_length * word_count  # 串联子串的总长度\n        \n        # 如果字符串长度小于串联子串长度，直接返回空列表\n        if len(s) < total_length:\n            return []\n        \n        # 构建目标单词计数哈希表\n        target_count = {}\n        for word in words:\n            target_count[word] = target_count.get(word, 0) + 1\n        \n        result = []\n        \n        # 遍历所有可能的起始位置\n        for start in range(len(s) - total_length + 1):\n            # 获取当前窗口的子串\n            window = s[start:start + total_length]\n            \n            # 将窗口按单词长度分割\n            window_words = []\n            for i in range(0, total_length, word_length):\n                word = window[i:i + word_length]\n                window_words.append(word)\n            \n            # 统计当前窗口的单词出现次数\n            current_count = {}\n            for word in window_words:\n                current_count[word] = current_count.get(word, 0) + 1\n            \n            # 检查是否匹配目标计数\n            if current_count == target_count:\n                result.append(start)\n        \n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times m \\times k)$，其中 $n$ 是字符串 $s$ 的长度，$m$ 是单词数组的长度，$k$ 是每个单词的长度。需要检查 $O(n)$ 个起始位置，每个位置需要处理 $O(m)$ 个单词，每个单词长度为 $O(k)$。\n- **空间复杂度**：$O(m \\times k)$，用于存储目标单词计数哈希表和当前窗口单词计数哈希表。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote6-21",
+    "title": "0037. 解数独",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表、回溯、矩阵 难度：困难 0037. 解数独 力扣 描述 ：给定一个二维的字符数组 $board$ 用来表示数独，其中数字 $1 \\sim 9$ 表示该位置已经填",
+    "content": "# 0037. 解数独\n\n- 标签：数组、哈希表、回溯、矩阵\n- 难度：困难\n\n## 题目链接\n\n- 0037. 解数独 - 力扣\n\n## 题目大意\n\n**描述**：给定一个二维的字符数组 $board$ 用来表示数独，其中数字 $1 \\sim 9$ 表示该位置已经填入了数字，`.` 表示该位置还没有填入数字。\n\n**要求**：现在编写一个程序，通过填充空格的方式来解决数独问题，最终不用返回答案，将题目给定 $board$ 修改为可行的方案即可。\n\n**说明**：\n\n- 数独解法需遵循如下规则：\n\n  - 数字 $1 \\sim 9$ 在每一行只能出现一次。\n  - 数字 $1 \\sim 9$ 在每一列只能出现一次。\n  - 数字 $1 \\sim 9$ 在每一个以粗直线分隔的 $3 \\times 3$ 宫格内只能出现一次。\n- $board.length == 9$。\n- $board[i].length == 9$。\n- $board[i][j]$ 是一位数字或者 `.`。\n- 题目数据保证输入数独仅有一个解。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2021_04_12_250px-sudoku-by-l2g-20050714svg.png)\n\n```python\n输入：board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n输出：[[\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"],[\"6\",\"7\",\"2\",\"1\",\"9\",\"5\",\"3\",\"4\",\"8\"],[\"1\",\"9\",\"8\",\"3\",\"4\",\"2\",\"5\",\"6\",\"7\"],[\"8\",\"5\",\"9\",\"7\",\"6\",\"1\",\"4\",\"2\",\"3\"],[\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"],[\"7\",\"1\",\"3\",\"9\",\"2\",\"4\",\"8\",\"5\",\"6\"],[\"9\",\"6\",\"1\",\"5\",\"3\",\"7\",\"2\",\"8\",\"4\"],[\"2\",\"8\",\"7\",\"4\",\"1\",\"9\",\"6\",\"3\",\"5\"],[\"3\",\"4\",\"5\",\"2\",\"8\",\"6\",\"1\",\"7\",\"9\"]]\n解释：输入的数独如上图所示，唯一有效的解决方案如下所示：\n```\n\n![](/images/figures/algonote6/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2021_04_12_250px-sudoku-by-l2g-20050714_solutionsvg.png)\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n对于每一行、每一列、每一个数字，都需要一重 `for` 循环来遍历，这样就是三重 `for` 循环。\n\n对于第 $i$ 行、第 $j$ 列的元素来说，如果当前位置为空位，则尝试将第 $k$ 个数字置于此处，并检验数独的有效性。如果有效，则继续遍历下一个空位，直到遍历完所有空位，得到可行方案或者遍历失败时结束。\n\n遍历完下一个空位之后再将此位置进行回退，置为 `.`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def backtrack(self, board: List[List[str]]):\n        for i in range(len(board)):\n            for j in range(len(board[0])):\n                if board[i][j] != '.':\n                    continue\n                for k in range(1, 10):\n                    if self.isValid(i, j, k, board):\n                        board[i][j] = str(k)\n                        if self.backtrack(board):\n                            return True\n                        board[i][j] = '.'\n                return False\n        return True\n\n    def isValid(self, row: int, col: int, val: int, board: List[List[str]]) -> bool:\n        for i in range(0, 9):\n            if board[row][i] == str(val):\n                return False\n\n        for j in range(0, 9):\n            if board[j][col] == str(val):\n                return False\n\n        start_row = (row // 3) * 3\n        start_col = (col // 3) * 3\n\n        for i in range(start_row, start_row + 3):\n            for j in range(start_col, start_col + 3):\n                if board[i][j] == str(val):\n                    return False\n        return True\n\n    def solveSudoku(self, board: List[List[str]]) -> None:\n        self.backtrack(board)\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(9^m)$，$m$ 为棋盘中 `.` 的数量。\n- **空间复杂度**：$O(9^2)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote6-22",
+    "title": "0024. 两两交换链表中的节点",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、链表 难度：中等 0024. 两两交换链表中的节点 力扣 描述 ：给定一个链表的头节点 head 。 要求 ：按顺序将链表中每两个节点交换一下，并返回交换后的链表。 说",
+    "content": "# 0024. 两两交换链表中的节点\n\n- 标签：递归、链表\n- 难度：中等\n\n## 题目链接\n\n- 0024. 两两交换链表中的节点 - 力扣\n\n## 题目大意\n\n**描述**：给定一个链表的头节点 `head`。\n\n**要求**：按顺序将链表中每两个节点交换一下，并返回交换后的链表。\n\n**说明**：\n\n- 需要实际进行节点交换，而不是纸改变节点内部的值。\n- 链表中节点的数目在范围 $[0, 100]$ 内。\n- $0 \\le Node.val \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_10_03_swap_ex1.jpg)\n\n```python\n输入：head = [1,2,3,4]\n输出：[2,1,4,3]\n```\n\n- 示例 2：\n\n```python\n输入：head = []\n输出：[]\n```\n\n## 解题思路\n\n### 思路 1：迭代\n\n1. 创建一个哑节点 `new_head`，令 `new_head.next = head`。\n2. 遍历链表，并判断当前链表后两位节点是否为空。如果后两个节点不为空，则使用三个指针：`curr` 指向当前节点，`node1` 指向下一个节点，`node2` 指向下面第二个节点。\n3. 将 `curr` 指向 `node2`，`node1` 指向 `node2` 后边的节点，`node2` 指向 `node1`。则节点关系由 `curr → node1 → node2` 变为了 `curr → node2 → node1`。\n4. 依次类推，最终返回哑节点连接的后一个节点。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def swapPairs(self, head: ListNode) -> ListNode:\n        new_head = ListNode(0)\n        new_head.next = head\n        curr = new_head\n        while curr.next and curr.next.next:\n            node1 = curr.next\n            node2 = curr.next.next\n            curr.next = node2\n            node1.next = node2.next\n            node2.next = node1\n            curr = node1\n        return new_head.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为链表的节点数量。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-algonote6-23",
+    "title": "0068. 文本左右对齐",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、字符串、模拟 难度：困难 0068. 文本左右对齐 力扣 描述 ： 给定一个单词数组 $words$ 和一个长度 $maxWidth$， 要求 ： 重新排版单词，使其成",
+    "content": "# 0068. 文本左右对齐\n\n- 标签：数组、字符串、模拟\n- 难度：困难\n\n## 题目链接\n\n- 0068. 文本左右对齐 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个单词数组 $words$ 和一个长度 $maxWidth$，\n\n**要求**：\n\n重新排版单词，使其成为每行恰好有 $maxWidth$ 个字符，且左右两端对齐的文本。\n\n你应该使用「贪心算法」来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 `' '` 填充，使得每行恰好有 $maxWidth$ 个字符。\n\n要求尽可能均匀分配单词间的空格数量。如果某一行单词间的空格不能均匀分配，则左侧放置的空格数要多于右侧的空格数。\n\n文本的最后一行应为左对齐，且单词之间不插入额外的空格。\n\n**说明**：\n\n- 单词是指由非空格字符组成的字符序列。\n- 每个单词的长度大于 $0$，小于等于 $maxWidth$。\n- 输入单词数组 $words$ 至少包含一个单词。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"], maxWidth = 16\n输出:\n[\n   \"This    is    an\",\n   \"example  of text\",\n   \"justification.  \"\n]\n```\n\n- 示例 2：\n\n```python\n输入:words = [\"What\",\"must\",\"be\",\"acknowledgment\",\"shall\",\"be\"], maxWidth = 16\n输出:\n[\n  \"What   must   be\",\n  \"acknowledgment  \",\n  \"shall be        \"\n]\n解释: 注意最后一行的格式应为 \"shall be    \" 而不是 \"shall     be\",\n     因为最后一行应为左对齐，而不是左右两端对齐。       \n     第二行同样为左对齐，这是因为这行只包含一个单词。\n```\n\n## 解题思路\n\n### 思路 1：贪心算法 + 模拟\n\n**核心思想**：\n\n使用贪心算法尽可能多地往每行放置单词，然后根据当前行的单词数量和总长度来分配空格，确保每行恰好有 $maxWidth$ 个字符。\n\n**算法步骤**：\n\n1. **贪心选择单词**：从当前位置开始，尽可能多地选择单词放入当前行，直到无法再放入更多单词。\n2. **计算空格分配**：根据当前行的单词数量 $word_count$ 和总字符长度 $total_length$，计算需要分配的空格数 $spaces_needed = maxWidth - total_length$。\n3. **分配空格**：\n   - 如果只有 $1$ 个单词，所有空格都放在单词后面。\n   - 如果有多个单词，计算基础空格数 $base_spaces = \\lfloor \\frac{spaces_needed}{word_count - 1} \\rfloor$ 和额外空格数 $extra_spaces = spaces_needed \\bmod (word_count - 1)$。\n   - 前 $extra_spaces$ 个单词间隔分配 $base_spaces + 1$ 个空格，其余单词间隔分配 $base_spaces$ 个空格。\n4. **处理最后一行**：最后一行左对齐，单词间只放 $1$ 个空格，剩余空格放在行末。\n\n**关键点**：\n\n- 使用贪心策略尽可能多地放置单词。\n- 均匀分配空格，左侧空格数不少于右侧。\n- 最后一行特殊处理，左对齐即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:\n        \"\"\"\n        文本左右对齐\n        \"\"\"\n        result = []\n        i = 0\n        \n        while i < len(words):\n            # 贪心选择：尽可能多地选择单词放入当前行\n            line_words = []\n            line_length = 0\n            \n            # 选择当前行的单词\n            while i < len(words):\n                word = words[i]\n                # 计算加入当前单词后的长度（包括单词间至少一个空格）\n                if line_words:\n                    # 已有单词，需要至少一个空格\n                    new_length = line_length + 1 + len(word)\n                else:\n                    # 第一个单词，不需要空格\n                    new_length = len(word)\n                \n                # 如果加入当前单词后超过最大宽度，停止选择\n                if new_length > maxWidth:\n                    break\n                \n                line_words.append(word)\n                line_length = new_length\n                i += 1\n            \n            # 处理当前行\n            if i == len(words):\n                # 最后一行：左对齐\n                line = ' '.join(line_words)\n                # 在行末添加剩余空格\n                line += ' ' * (maxWidth - len(line))\n            else:\n                # 非最后一行：两端对齐\n                word_count = len(line_words)\n                if word_count == 1:\n                    # 只有一个单词，所有空格放在后面\n                    line = line_words[0] + ' ' * (maxWidth - len(line_words[0]))\n                else:\n                    # 多个单词，需要分配空格\n                    total_spaces = maxWidth - line_length + word_count - 1\n                    base_spaces = total_spaces // (word_count - 1)\n                    extra_spaces = total_spaces % (word_count - 1)\n                    \n                    # 构建当前行\n                    line_parts = []\n                    for j in range(word_count - 1):\n                        line_parts.append(line_words[j])\n                        # 前 extra_spaces 个间隔多分配一个空格\n                        spaces = base_spaces + (1 if j < extra_spaces else 0)\n                        line_parts.append(' ' * spaces)\n                    \n                    # 添加最后一个单词\n                    line_parts.append(line_words[-1])\n                    line = ''.join(line_parts)\n            \n            result.append(line)\n        \n        return result\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times maxWidth)$，其中 $n$ 是单词的总数。需要遍历所有单词，每行最多处理 $maxWidth$ 个字符。\n- **空间复杂度**：$O(n \\times maxWidth)$，存储结果字符串，最坏情况下每行都是 $maxWidth$ 个字符。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-algonote6-24",
+    "title": "0042. 接雨水",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、数组、双指针、动态规划、单调栈 难度：困难 0042. 接雨水 力扣 描述 ：给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，用数组 height 表示，其中 h",
+    "content": "# 0042. 接雨水\n\n- 标签：栈、数组、双指针、动态规划、单调栈\n- 难度：困难\n\n## 题目链接\n\n- 0042. 接雨水 - 力扣\n\n## 题目大意\n\n**描述**：给定 `n` 个非负整数表示每个宽度为 `1` 的柱子的高度图，用数组 `height` 表示，其中 `height[i]` 表示第 `i` 根柱子的高度。\n\n**要求**：计算按此排列的柱子，下雨之后能接多少雨水。\n\n**说明**：\n\n- $n == height.length$。\n- $1 \\le n \\le 2 * 10^4$。\n- $0 \\le height[i] \\le 10^5$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2018_10_22_rainwatertrap.png)\n\n```python\n输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]\n输出：6\n解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 \n```\n\n- 示例 2：\n\n```python\n输入：height = [4,2,0,3,2,5]\n输出：9\n```\n\n## 解题思路\n\n### 思路 1：单调栈\n\n1. 遍历高度数组 `height`。\n2. 如果当前柱体高度较小，小于等于栈顶柱体的高度，则将当前柱子高度入栈。\n3. 如果当前柱体高度较大，大于栈顶柱体的高度，则一直出栈，直到当前柱体小于等于栈顶柱体的高度。\n4. 假设当前柱体为 `C`，出栈柱体为 `B`，出栈之后新的栈顶柱体为 `A`。则说明：\n   1. 当前柱体 `C` 是出栈柱体 `B` 向右找到的第一个大于当前柱体高度的柱体，那么以出栈柱体 `B`  为中心，可以向右将宽度扩展到当前柱体 `C`。\n   2. 新的栈顶柱体 `A` 是出栈柱体 `B` 向左找到的第一个大于当前柱体高度的柱体，那么以出栈柱体 `B` 为中心，可以向左将宽度扩展到当前柱体 `A`。\n5. 出栈后，以新的栈顶柱体 `A` 为左边界，以当前柱体 `C` 为右边界，以左右边界与出栈柱体 `B` 的高度差为深度，计算可以接到雨水的面积。然后记录并更新累积面积。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def trap(self, height: List[int]) -> int:\n        ans = 0\n        stack = []\n        size = len(height)\n        for i in range(size):\n            while stack and height[i] > height[stack[-1]]:\n                cur = stack.pop(-1)\n                if stack:\n                    left = stack[-1] + 1\n                    right = i - 1\n                    high = min(height[i], height[stack[-1]]) - height[cur]\n                    ans += high * (right - left + 1)\n                else:\n                    break\n            stack.append(i)\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组 `height` 的长度。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-algonote6-25",
+    "title": "0001. 两数之和",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、哈希表 难度：简单 0001. 两数之和 力扣 描述 ：给定一个整数数组 $nums$ 和一个整数目标值 $target$。 要求 ：在该数组中找出和为 $target",
+    "content": "# 0001. 两数之和\n\n- 标签：数组、哈希表\n- 难度：简单\n\n## 题目链接\n\n- 0001. 两数之和 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$ 和一个整数目标值 $target$。\n\n**要求**：在该数组中找出和为 $target$ 的两个整数，并输出这两个整数的下标。可以按任意顺序返回答案。\n\n**说明**：\n\n- $2 \\le nums.length \\le 10^4$。\n- $-10^9 \\le nums[i] \\le 10^9$。\n- $-10^9 \\le target \\le 10^9$。\n- 只会存在一个有效答案。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [2,7,11,15], target = 9\n输出：[0,1]\n解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [3,2,4], target = 6\n输出：[1,2]\n```\n\n## 解题思路\n\n### 思路 1：枚举算法\n\n1. 使用两重循环枚举数组中每一个数 $nums[i]$、$nums[j]$，判断所有的 $nums[i] + nums[j]$ 是否等于 $target$。\n2. 如果出现 $nums[i] + nums[j] == target$，则说明数组中存在和为 $target$ 的两个整数，将两个整数的下标 $i$、$j$ 输出即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        for i in range(len(nums)):\n            for j in range(i + 1, len(nums)):\n                if i != j and nums[i] + nums[j] == target:\n                    return [i, j]\n        return []\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$，其中 $n$ 是数组 $nums$ 的元素数量。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：哈希表\n\n哈希表中键值对信息为 $target-nums[i] ：i，其中 $i$ 为下标。\n\n1. 遍历数组，对于每一个数 $nums[i]$：\n   1. 先查找字典中是否存在 $target - nums[i]$，存在则输出 $target - nums[i]$ 对应的下标和当前数组的下标 $i$。\n   2. 不存在则在字典中存入 $target - nums[i]$ 的下标 $i$。\n\n### 思路 2：代码\n\n```python\ndef twoSum(self, nums: List[int], target: int) -> List[int]:\n    numDict = dict()\n    for i in range(len(nums)):\n        if target-nums[i] in numDict:\n            return numDict[target-nums[i]], i\n        numDict[nums[i]] = i\n    return [0]\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组 $nums$ 的元素数量。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote6-26",
+    "title": "0095. 不同的二叉搜索树 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、二叉搜索树、动态规划、回溯、二叉树 难度：中等 0095. 不同的二叉搜索树 II 力扣 描述 ：给定一个整数 $n$。 要求 ：请生成返回以 $1$ 到 $n$ 为节点",
+    "content": "# 0095. 不同的二叉搜索树 II\n\n- 标签：树、二叉搜索树、动态规划、回溯、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0095. 不同的二叉搜索树 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $n$。\n\n**要求**：请生成返回以 $1$ 到 $n$ 为节点构成的「二叉搜索树」，可以按任意顺序返回答案。\n\n**说明**：\n\n- $1 \\le n \\le 8$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2021_01_18_uniquebstn3.jpg)\n\n```python\n输入：n = 3\n输出：[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]\n```\n\n- 示例 2：\n\n```python\n输入：n = 1\n输出：[[1]]\n```\n\n## 解题思路\n\n### 思路 1：递归遍历\n\n如果根节点为 $i$，则左子树的节点为 $(1, 2, ..., i - 1)$，右子树的节点为 $(i + 1, i + 2, ..., n)$。可以递归的构建二叉树。\n\n定义递归函数 `generateTrees(start, end)`，表示生成 $[left, ..., right]$ 构成的所有可能的二叉搜索树。\n\n- 如果 $start > end$，返回 `[None]`。\n- 初始化存放所有可能二叉搜索树的数组。\n- 遍历 $[left, ..., right]$ 的每一个节点 $i$，将其作为根节点。\n  - 递归构建左右子树。\n  - 将所有符合要求的左右子树组合起来，将其加入到存放二叉搜索树的数组中。\n- 返回存放二叉搜索树的数组。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def generateTrees(self, n: int) -> List[TreeNode]:\n        if n == 0:\n            return []\n\n        def generateTrees(start, end):\n            if start > end:\n                return [None]\n            trees = []\n            for i in range(start, end+1):\n                left_trees = generateTrees(start, i - 1)\n                right_trees = generateTrees(i + 1, end)\n                for left_tree in left_trees:\n                    for right_tree in right_trees:\n                        curr_tree = TreeNode(i)\n                        curr_tree.left = left_tree\n                        curr_tree.right = right_tree\n                        trees.append(curr_tree)\n            return trees\n        return generateTrees(1, n)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(C_n)$，其中 $C_n$ 是第 $n$ 个卡特兰数。\n- **空间复杂度**：$O(C_n)$，其中 $C_n$ 是第 $n$ 个卡特兰数。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote6-27",
+    "title": "0096. 不同的二叉搜索树",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、二叉搜索树、数学、动态规划、二叉树 难度：中等 0096. 不同的二叉搜索树 力扣 描述 ：给定一个整数 $n$。 要求 ：求以 $1$ 到 $n$ 为节点构成的「二叉搜",
+    "content": "# 0096. 不同的二叉搜索树\n\n- 标签：树、二叉搜索树、数学、动态规划、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0096. 不同的二叉搜索树 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $n$。\n\n**要求**：求以 $1$ 到 $n$ 为节点构成的「二叉搜索树」有多少种？\n\n**说明**：\n\n- $1 \\le n \\le 19$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2021_01_18_uniquebstn3.jpg)\n\n```python\n输入：n = 3\n输出：5\n```\n\n- 示例 2：\n\n```python\n输入：n = 1\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n一棵搜索二叉树的左、右子树，要么也是搜索二叉树，要么就是空树。\n\n如果定义 $f[i]$ 表示以 $i$ 为根的二叉搜索树个数，定义 $g(i)$ 表示 $i$ 个节点可以构成的二叉搜索树个数，则有：\n\n- $g(i) = f(1) + f(2) + f(3) + … + f(i)$。\n\n其中当 $i$ 为根节点时，则用 $(1, 2, …, i - 1)$ 共 $i - 1$ 个节点去递归构建左子搜索二叉树，用 $(i + 1, i + 2, …, n)$ 共 $n - i$ 个节点去递归构建右子搜索树。则有：\n\n- $f(i) = g(i - 1) \\times g(n - i)$。\n\n综合上面两个式子 $\\begin{cases} g(i) = f(1) + f(2) + f(3) + … + f(i) \\cr f(i) = g(i - 1) \\times g(n - i) \\end{cases}$ 可得出：\n\n- $g(n) = g(0) \\times g(n - 1) + g(1) \\times g(n - 2) + … + g(n - 1) \\times g(0)$。\n\n将 $n$ 换为 $i$，可变为：\n\n- $g(i) = g(0) \\times g(i - 1) + g(1) \\times g(i - 2) + … + g(i - 1) \\times g(0)$。\n\n再转换一下，可变为：\n\n- $g(i) = \\sum_{1 \\le j \\le i} \\lbrace g(j - 1) \\times g(i - j) \\rbrace$。\n\n则我们可以通过动态规划的方法，递推求解 $g(i)$，并求解出 $g(n)$。具体步骤如下：\n\n###### 1. 阶段划分\n\n按照根节点的编号进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i]$ 表示为： $i$ 个节点可以构成的二叉搜索树个数。\n\n###### 3. 状态转移方程\n\n$dp[i] = \\sum_{1 \\le j \\le i} \\lbrace dp[j - 1] \\times dp[i - j] \\rbrace$\n\n###### 4. 初始条件\n\n- $0$ 个节点可以构成的二叉搜索树个数为 $1$（空树），即 $dp[0] = 1$。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态，$dp[i]$ 表示为： $i$ 个节点可以构成的二叉搜索树个数。。 所以最终结果为 $dp[n]$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def numTrees(self, n: int) -> int:\n        dp = [0 for _ in range(n + 1)]\n        dp[0] = 1\n        for i in range(1, n + 1):\n            for j in range(1, i + 1):\n                dp[i] += dp[j - 1] * dp[i - j]\n        return dp[n]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$。\n- **空间复杂度**：$O(n)$。\n\n## 参考资料\n\n- 【题解】画解算法：96. 不同的二叉搜索树 - 不同的二叉搜索树",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote6-28",
+    "title": "0063. 不同路径 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划、矩阵 难度：中等 0063. 不同路径 II 力扣 描述 ：一个机器人位于一个 $m \\times n$ 网格的左上角。机器人每次只能向下或者向右移动一步。机",
+    "content": "# 0063. 不同路径 II\n\n- 标签：数组、动态规划、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0063. 不同路径 II - 力扣\n\n## 题目大意\n\n**描述**：一个机器人位于一个 $m \\times n$ 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。但是网格中有障碍物，不能通过。\n\n现在给定一个二维数组表示网格，$1$ 代表障碍物，$0$ 表示空位。\n\n**要求**：计算出从左上角到右下角会有多少条不同的路径。\n\n**说明**：\n\n- $m == obstacleGrid.length$。\n- $n == obstacleGrid[i].length$。\n- $1 \\le m, n \\le 100$。\n- $obstacleGrid[i][j]$ 为 $0$ 或 $1$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_11_04_robot1.jpg)\n\n```python\n输入：obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]\n输出：2\n解释：3x3 网格的正中间有一个障碍物。\n从左上角到右下角一共有 2 条不同的路径：\n1. 向右 -> 向右 -> 向下 -> 向下\n2. 向下 -> 向下 -> 向右 -> 向右\n```\n\n- 示例 2：\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2020_11_04_robot2.jpg)\n\n```python\n输入：obstacleGrid = [[0,1],[0,0]]\n输出：1\n```\n\n## 解题思路\n\n###  思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照路径的结尾位置（行位置、列位置组成的二维坐标）进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i][j]$ 表示为：从 $(0, 0)$ 到 $(i, j)$ 的不同路径数。\n\n###### 3. 状态转移方程\n\n因为我们每次只能向右、或者向下移动一步，因此想要走到 $(i, j)$，只能从 $(i - 1, j)$ 向下走一步走过来；或者从 $(i, j - 1)$ 向右走一步走过来。则状态转移方程为：$dp[i][j] = dp[i - 1][j] + dp[i][j - 1]$，其中 $obstacleGrid[i][j] == 0$。\n\n###### 4. 初始条件\n\n- 对于第一行、第一列，因为只能超一个方向走，所以 $dp[i][0] = 1$，$dp[0][j] = 1$。如果在第一行、第一列遇到障碍，则终止赋值，跳出循环。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态，$dp[i][j]$ 表示为：从 $(0, 0)$ 到 $(i, j)$ 的不同路径数。所以最终结果为 $dp[m - 1][n - 1]$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        n = len(obstacleGrid[0])\n        dp = [[0 for _ in range(n)] for _ in range(m)]\n\n        for i in range(m):\n            if obstacleGrid[i][0] == 1:\n                break\n            dp[i][0] = 1\n\n        for j in range(n):\n            if obstacleGrid[0][j] == 1:\n                break\n            dp[0][j] = 1\n\n        for i in range(1, m):\n            for j in range(1, n):\n                if obstacleGrid[i][j] == 1:\n                    continue\n                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n        return dp[m - 1][n - 1]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$。\n- **空间复杂度**：$O(m \\times n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-algonote6-29",
+    "title": "0062. 不同路径",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数学、动态规划、组合数学 难度：中等 0062. 不同路径 力扣 描述 ：给定两个整数 $m$ 和 $n$，代表大小为 $m \\times n$ 的棋盘， 一个机器人位于棋盘",
+    "content": "# 0062. 不同路径\n\n- 标签：数学、动态规划、组合数学\n- 难度：中等\n\n## 题目链接\n\n- 0062. 不同路径 - 力扣\n\n## 题目大意\n\n**描述**：给定两个整数 $m$ 和 $n$，代表大小为 $m \\times n$ 的棋盘， 一个机器人位于棋盘左上角的位置，机器人每次只能向右、或者向下移动一步。\n\n**要求**：计算出机器人从棋盘左上角到达棋盘右下角一共有多少条不同的路径。\n\n**说明**：\n\n- $1 \\le m, n \\le 100$。\n- 题目数据保证答案小于等于 $2 \\times 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：m = 3, n = 7\n输出：28\n```\n\n![](/images/figures/algonote6/ext_assets.leetcode.com__uploads_2018_10_22_robot_maze.png)\n\n- 示例 2：\n\n```python\n输入：m = 3, n = 2\n输出：3\n解释：\n从左上角开始，总共有 3 条路径可以到达右下角。\n1. 向右 -> 向下 -> 向下\n2. 向下 -> 向下 -> 向右\n3. 向下 -> 向右 -> 向下\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照路径的结尾位置（行位置、列位置组成的二维坐标）进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i][j]$ 为：从左上角到达位置 $(i, j)$ 的路径数量。\n\n###### 3. 状态转移方程\n\n因为我们每次只能向右、或者向下移动一步，因此想要走到 $(i, j)$，只能从 $(i - 1, j)$ 向下走一步走过来；或者从 $(i, j - 1)$ 向右走一步走过来。所以可以写出状态转移方程为：$dp[i][j] = dp[i - 1][j] + dp[i][j - 1]$，此时 $i > 0, j > 0$。\n\n###### 4. 初始条件\n\n- 从左上角走到 $(0, 0)$ 只有一种方法，即 $dp[0][0] = 1$。\n- 第一行元素只有一条路径（即只能通过前一个元素向右走得到），所以 $dp[0][j] = 1$。\n- 同理，第一列元素只有一条路径（即只能通过前一个元素向下走得到），所以 $dp[i][0] = 1$。\n\n###### 5. 最终结果\n\n根据状态定义，最终结果为 $dp[m - 1][n - 1]$，即从左上角到达右下角 $(m - 1, n - 1)$ 位置的路径数量为 $dp[m - 1][n - 1]$。\n\n### 思路 1：动态规划代码\n\n```python\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        dp = [[0 for _ in range(n)] for _ in range(m)]\n        \n        for j in range(n):\n            dp[0][j] = 1\n        for i in range(m):\n            dp[i][0] = 1\n\n        for i in range(1, m):\n            for j in range(1, n):\n                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n        \n        return dp[m - 1][n - 1]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$。初始条件赋值的时间复杂度为 $O(m + n)$，两重循环遍历的时间复杂度为 $O(m \\times n)$，所以总体时间复杂度为 $O(m \\times n)$。\n- **空间复杂度**：$O(m \\times n)$。用到了二维数组保存状态，所以总体空间复杂度为 $O(m \\times n)$。因为 $dp[i][j]$ 的状态只依赖于上方值 $dp[i - 1][j]$ 和左侧值 $dp[i][j - 1]$，而我们在进行遍历时的顺序刚好是从上至下、从左到右。所以我们可以使用长度为 $n$ 的一维数组来保存状态，从而将空间复杂度优化到 $O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/8e0bf8f7c4a4fd03.jpg"
+  },
+  {
+    "id": "g-algonote6-30",
+    "title": "0065. 有效数字",
+    "date": "2026-11-25",
+    "category": "算法通关手册 VI",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串 难度：困难 0065. 有效数字 力扣 描述 ： 一般的，一个「有效数字」可以用以下的规则之一定义： 1. 一个「整数」后面跟着一个「可选指数」。 2. 一个「十进制",
+    "content": "# 0065. 有效数字\n\n- 标签：字符串\n- 难度：困难\n\n## 题目链接\n\n- 0065. 有效数字 - 力扣\n\n## 题目大意\n\n**描述**：\n\n一般的，一个「有效数字」可以用以下的规则之一定义：\n\n1. 一个「整数」后面跟着一个「可选指数」。\n2. 一个「十进制数」后面跟着一个「可选指数」。\n\n关于「整数」、「十进制数」、「指数」、「数字」的定义：\n\n- 一个「整数」定义为一个 「可选符号」 `'-'` 或 `'+'` 后面跟着「数字」。\n- 一个「十进制数」定义为一个「可选符号」 `'-'` 或 `'+'` 后面跟着下述规则：\n   1. 「数字」后跟着一个 小数点 `.`。\n   2. 「数字」后跟着一个 小数点 `.` 再跟着「数位」。\n   3. 一个「小数点」 `.` 后跟着「数位」。\n- 「指数」定义为指数符号 `'e'` 或 `'E'`，后面跟着一个 整数。\n- 「数字」定义为一个或多个数位。\n\n例如，下面的都是有效数字：\n\n- `\"2\"`, `\"0089\"`, `\"-0.1\"`, `\"+3.14\"`, `\"4.\"`, `\"-.9\"`, `\"2e10\"`, `\"-90E3\"`, `\"3e+7\"`, `\"+6e-1\"`, `\"53.5e93\"`, `\"-123.456e789\"`，\n\n下面的都不是有效数字：\n\n- `\"abc\"`, `\"1a\"`, `\"1e\"`, `\"e3\"`, `\"99e2.5\"`, `\"--6\"`, `\"-+3\"`, `\"95a54e53\"`。\n\n给定一个字符串 $s$。\n\n**要求**：\n\n返回 $s$ 是否是一个有效数字。\n\n**说明**：\n\n- $1 \\le s.length \\le 20$\n- s 仅含英文字母（大写和小写），数字（0-9），加号 '+' ，减号 '-' ，或者点 '.' 。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"0\"\n\n输出：true\n```\n\n- 示例 2：\n\n```python\n输入：s = \"e\"\n\n输出：false\n```\n\n## 解题思路\n\n### 思路 1：有限状态自动机\n\n**核心思想**：\n\n将有效数字的识别过程建模为一个有限状态自动机（DFA），通过状态转换来判断字符串是否符合有效数字的规则。\n\n**算法步骤**：\n\n1. **定义状态**：定义所有可能的状态，包括开始状态、符号状态、整数部分、小数点、小数部分、指数符号、指数符号、指数整数部分等。\n2. **状态转换**：根据当前字符类型（数字、符号、小数点、指数符号等）和当前状态，确定下一个状态。\n3. **接受状态**：定义哪些状态是有效的结束状态。\n4. **遍历字符串**：逐个字符处理，进行状态转换。\n5. **判断结果**：如果最终状态是接受状态，则字符串是有效数字。\n\n**状态定义**：\n\n- $S_0$：开始状态\n- $S_1$：符号状态（已读取 `+` 或 `-`）\n- $S_2$：整数部分（已读取数字）\n- $S_3$：小数点（已读取 `.`）\n- $S_4$：小数部分（小数点后有数字）\n- $S_5$：指数符号（已读取 `e` / `E`）\n- $S_6$：指数符号（指数部分的 `+` 或 `-`）\n- $S_7$：指数整数部分（指数部分的数字）\n\n**状态转换规则**：\n\n- 从 $S_0$：数字 → $S_2$，符号 → $S_1$，小数点 → $S_3$\n- 从 $S_1$：数字 → $S_2$，小数点 → $S_3$\n- 从 $S_2$：数字 → $S_2$，小数点 → $S_4$，指数符号 → $S_5$\n- 从 $S_3$：数字 → $S_4$\n- 从 $S_4$：数字 → $S_4$，指数符号 → $S_5$\n- 从 $S_5$：数字 → $S_7$，符号 → $S_6$\n- 从 $S_6$：数字 → $S_7$\n- 从 $S_7$：数字 → $S_7$\n\n**接受状态**：$S_2$、$S_4$、$S_7$（分别对应整数、小数、指数形式）\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isNumber(self, s: str) -> bool:\n        \"\"\"\n        使用有限状态自动机判断字符串是否为有效数字\n        \n        Args:\n            s: 待判断的字符串\n            \n        Returns:\n            bool: 是否为有效数字\n        \"\"\"\n        # 定义状态转换表\n        # 状态: 0-开始, 1-符号, 2-整数, 3-小数点, 4-小数, 5-指数符号, 6-指数符号, 7-指数整数\n        # 字符类型: 0-数字, 1-符号, 2-小数点, 3-指数符号, 4-其他\n        transitions = {\n            0: {0: 2, 1: 1, 2: 3, 3: -1, 4: -1},  # 开始状态\n            1: {0: 2, 1: -1, 2: 3, 3: -1, 4: -1},  # 符号状态\n            2: {0: 2, 1: -1, 2: 4, 3: 5, 4: -1},   # 整数部分\n            3: {0: 4, 1: -1, 2: -1, 3: -1, 4: -1}, # 小数点\n            4: {0: 4, 1: -1, 2: -1, 3: 5, 4: -1},  # 小数部分\n            5: {0: 7, 1: 6, 2: -1, 3: -1, 4: -1},  # 指数符号\n            6: {0: 7, 1: -1, 2: -1, 3: -1, 4: -1}, # 指数符号\n            7: {0: 7, 1: -1, 2: -1, 3: -1, 4: -1}  # 指数整数部分\n        }\n        \n        # 接受状态：整数、小数、指数形式\n        accept_states = {2, 4, 7}\n        \n        # 当前状态\n        state = 0\n        \n        # 遍历字符串\n        for char in s:\n            # 确定字符类型\n            if char.isdigit():\n                char_type = 0  # 数字\n            elif char in '+-':\n                char_type = 1  # 符号\n            elif char == '.':\n                char_type = 2  # 小数点\n            elif char in 'eE':\n                char_type = 3  # 指数符号\n            else:\n                char_type = 4  # 其他（无效字符）\n            \n            # 状态转换\n            if state not in transitions or char_type not in transitions[state]:\n                return False\n            \n            state = transitions[state][char_type]\n            \n            # 如果转换到无效状态，直接返回 False\n            if state == -1:\n                return False\n        \n        # 检查最终状态是否为接受状态\n        return state in accept_states\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串的长度。需要遍历字符串一次，每次状态转换的时间复杂度为 $O(1)$。\n- **空间复杂度**：$O(1)$。状态转换表的大小是固定的，不依赖于输入字符串的长度。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-mlint5-1",
+    "title": "895. Maximum Frequency Stack",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum frequency stack/ 时间复杂度：O(1) 空间复杂度：O()",
+    "content": "# 895. Maximum Frequency Stack\n\n`https://leetcode.com/problems/maximum-frequency-stack/`\n\n## solution\n\n```python\nimport collections\n\nclass FreqStack:\n    def __init__(self):\n        self.freq_counter = collections.defaultdict(int)\n        self.freq_key = collections.defaultdict(list)\n        self.max_freq = 0\n\n    def push(self, val: int) -> None:\n        self.freq_counter[val] += 1\n        self.max_freq = max(self.max_freq, self.freq_counter[val])\n        self.freq_key[self.freq_counter[val]].append(val)\n\n    def pop(self) -> int:\n        val = self.freq_key[self.max_freq].pop()\n        self.freq_counter[val] -= 1\n        if not self.freq_key[self.max_freq]:\n            self.max_freq -= 1\n        return val\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-mlint5-2",
+    "title": "973. K Closest Points",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/k closest points to origin/ heap 最小的k个 大顶堆: 堆长度超过k之后, pop出去一",
+    "content": "# 973. K Closest Points\n\n`https://leetcode.com/problems/k-closest-points-to-origin/`\n\n## solution\n\n- heap\n  - 最小的k个\n  - 大顶堆: 堆长度超过k之后, pop出去一个大的, 但python只有小顶堆只能pop出去小的,因此取负数。这样python小顶堆里留下了k个最大的，但其实是最小\n  - 小顶堆: 所有元素入堆之后, pop出k个小的\n\n```python\nclass Solution:\n    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:\n        heap = []\n        for i, point in enumerate(points):\n            dis = self._distance(point, (0, 0))\n            # heappush: inserting an item to a heap of size k take O(logK) time\n            heapq.heappush(heap, (-dis, i))  # 这里也可以换成(-dis, x, y)入堆\n\n            if len(heap) > k:\n                heapq.heappop(heap)\n\n        res = []\n        for dis, i in heap:\n            res.append(points[i])\n        return res\n\n    def _distance(self, point1, point2):\n        x1, y1 = point1\n        x2, y2 = point2\n        return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5\n```\n\n时间复杂度：O(nlogk) <br>\n空间复杂度：O(k)\n\n- quick select\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-mlint5-4",
+    "title": "104. Maximum Depth of Binary Tree",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum depth of binary tree/ 时间复杂度：O(n) 空间复杂度：O(1) 111. Min",
+    "content": "# 104. Maximum Depth of Binary Tree\n\n`https://leetcode.com/problems/maximum-depth-of-binary-tree/`\n\n## solution\n\n```python\nclass Solution:\n    def maxDepth(self, root: Optional[TreeNode]) -> int:\n        if root is None:\n            return 0\n\n        l = self.maxDepth(root.left)\n        r = self.maxDepth(root.right)\n        return max(l, r) + 1\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(1)\n\n## follow-up\n\n111. Minimum Depth of Binary Tree\n\n- BFS\n\n```python\nclass Solution:\n    def minDepth(self, root: Optional[TreeNode]) -> int:\n        if root is None:\n            return 0\n\n        level = [root]\n        depth = 1\n        while level:\n            this_level = []\n            for i in level:\n                if i.left is None and i.right is None:\n                    return depth\n                if i.left:\n                    this_level.append(i.left)\n                if i.right:\n                    this_level.append(i.right)\n            level = this_level\n            depth += 1\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n- DFS\n\n```python\nclass Solution:\n    def minDepth(self, root: Optional[TreeNode]) -> int:\n        if not root:\n            return 0\n\n        if not root.left:\n            return self.minDepth(root.right) + 1\n        if not root.right:\n            return self.minDepth(root.left) + 1\n\n        return min(self.minDepth(root.left), self.minDepth(root.right)) + 1\n```\n\n110. Balanced Binary Tree\n\n```python\n# 类似求树的直径\n\nclass Solution:\n    def __init__(self):\n        self.res = True\n\n    def isBalanced(self, root: Optional[TreeNode]) -> bool:\n        self.dfs(root)\n        return self.res\n\n    def dfs(self, root):\n        if not root:\n            return 0\n\n        l = self.dfs(root.left)\n        r = self.dfs(root.right)\n        if abs(l - r) > 1:\n            self.res = False\n        return max(l, r) + 1\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(h)\n\nBalance a Binary Search Tree",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-mlint5-5",
+    "title": "105. Construct Binary Tree from Preorder and Inorder Traversal",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/construct binary tree from preorder and inorder traversal/ 树",
+    "content": "# 105. Construct Binary Tree from Preorder and Inorder Traversal\n\n`https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/`\n\n## solution\n\n- 树的构建必须从root开始，再递归左右子树，也就是前序遍历形式\n- 注意递归的形式和边界选取\n\n```python\nclass Solution:\n    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:\n        if not preorder:\n            return None\n\n        root_val = preorder[0]\n        root = TreeNode(root_val)\n\n        split = inorder.index(root_val)\n\n        inorder_left = inorder[:split]\n        inorder_right = inorder[split+1:]\n\n        preorder_left = preorder[1: len(inorder_left)+1]\n        preorder_right = preorder[len(inorder_left)+1:]\n\n        root.left = self.buildTree(preorder_left, inorder_left)\n        root.right = self.buildTree(preorder_right, inorder_right)\n        return root\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n106. Construct Binary Tree from Inorder and Postorder Traversal\n\n```python\nclass Solution:\n    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:\n        if not inorder or not postorder:  # 二者输入的长度必须相等\n            return  # 等价于返回None\n\n        root_val = postorder[-1]\n        root = TreeNode(root_val)  # 构建树必须先构建root, 才有left和right\n\n        split = inorder.index(root_val)  # 树的值必须是unique作为题目条件\n        inorder_left = inorder[:split]\n        inorder_right = inorder[split+1:]\n\n        postorder_left = postorder[:len(inorder_left)]\n        postorder_right = postorder[len(inorder_left): len(postorder) - 1]\n        root.left = self.buildTree(inorder_left, postorder_left)\n        root.right = self.buildTree(inorder_right, postorder_right)\n        return root  # 整棵树的根节点最后出栈\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n889. Construct Binary Tree from Preorder and Postorder Traversal\n\n```python\nclass Solution:\n    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:\n        node_count = len(preorder)\n        if node_count == 0:\n            return None\n\n        root = TreeNode(preorder[0])\n        if node_count == 1:\n            return root\n\n        for i in range(node_count - 1):\n            if postorder[i] == preorder[1]:\n                root.left = self.constructFromPrePost(\n                    preorder[1: 1 + i + 1], postorder[:i + 1]\n                )\n                root.right = self.constructFromPrePost(\n                    preorder[1 + i + 1:], postorder[i + 1: -1]\n                )\n                return root\n```\n\n\\*536. Construct Binary Tree from String\n\n```python\n# 树的构造: 就是先从root开始, 再构建左子树、右子树\n# 同时参考 前中序构建二叉树, 394 decode string, 以及计算器题目\n\nclass Solution:\n    def str2tree(self, s: str) -> TreeNode:\n        def dfs(s):\n            if not s:\n                return None\n\n            if '(' not in s:\n                return TreeNode(int(s))\n\n            i = s.index('(')\n            node = TreeNode(int(s[:i]))  # 第一个左括号以左是根节点\n            q = ['(']\n            k = i + 1\n\n            while(q):  # 找到整套的括号作为左子树、右子树的分割点\n                if s[k]=='(':\n                    q.append('(')\n                elif s[k]==')':\n                    q.pop()\n                k += 1\n            node.left, node.right = dfs(s[i+1:k-1]), dfs(s[k+1:-1])\n            return node\n        return dfs(s)\n```\n\n606. Construct String from Binary Tree\n\n```python\n\n```\n\n\\*1485 Clone Binary Tree With Random Pointer\n\n133. Clone Graph\n\n1382. Balance a Binary Search Tree\n\n```python\nclass Solution:\n    def __init__(self):\n        self.node_list = []\n\n    def balanceBST(self, root: TreeNode) -> TreeNode:\n        self.dfs(root)\n        new_root = self.build_tree(self.node_list)\n        return new_root\n\n    def dfs(self, root):\n        if not root:\n            return\n\n        self.dfs(root.left)\n        self.node_list.append(root)\n        self.dfs(root.right)\n\n    def build_tree(self, node_list):\n        if not node_list:\n            return\n\n        mid = len(node_list) // 2\n        root = node_list[mid]\n        root.left = self.build_tree(node_list[:mid])\n        root.right = self.build_tree(node_list[mid+1:])\n        return root\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/3f337e28b2747e24.jpg"
+  },
+  {
+    "id": "g-mlint5-6",
+    "title": "108. Convert Sorted Array to Binary Search Tree",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/convert sorted array to binary search tree/ 时间复杂度：O() 空间复杂度：",
+    "content": "# 108. Convert Sorted Array to Binary Search Tree\n\n`https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/`\n\n## solution\n\n```python\nclass Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        if not nums:\n            return None\n\n        mid = len(nums) // 2\n        root = TreeNode(val=nums[mid])\n        root.left = self.sortedArrayToBST(nums[:mid])\n        root.right = self.sortedArrayToBST(nums[mid+1:])\n        return root\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n\\*426. Convert Binary Search Tree to Sorted Doubly Linked List\n\n```python\n# 中序，记录前一个pre, 以及根节点first\n\nclass Solution:\n    def __init__(self):\n        self.first = None\n        self.pre = None\n\n    def treeToDoublyList(self, root):\n        self.dfs(root)\n\n        self.first.left = self.pre  # 循环链表, dfs后最后一位正是self.pre\n        self.pre.right = self.first\n        return self.first\n\n    def dfs(self, root):\n        if not root:\n            return\n\n        self.dfs(root.left)\n\n        if not self.first:  # 记录首位\n            self.first = root\n\n        if self.pre: # 遍历过程中，一直记录前一位. 每一轮进行指针更新\n            root.left = self.pre\n            self.pre.right = root\n        self.pre = root\n\n        self.dfs(root.right)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(log(n))",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/d7b0011e51ab817d.webp"
+  },
+  {
+    "id": "g-mlint5-8",
+    "title": "1110. Delete Nodes And Return Forest",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/delete nodes and return forest/ 时间复杂度：O(N) 空间复杂度：O(N)",
+    "content": "# 1110. Delete Nodes And Return Forest\n\n`https://leetcode.com/problems/delete-nodes-and-return-forest/`\n\n## solution\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = []\n\n    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:\n        if self.dfs(root, to_delete):\n            self.res.append(root)\n        return self.res\n\n    def dfs(self, root, to_delete):\n        if not root:\n            return\n\n        root.left = self.dfs(root.left, to_delete)\n        root.right = self.dfs(root.right, to_delete)\n\n        if root.val in to_delete:\n            # 通过delete节点返回None来控制初始根节点是否需要添加。因为这里有个返回，导致左右dfs需要在其上面 -> 后序遍历\n            if root.left:\n                self.res.append(root.left)\n            if root.right:\n                self.res.append(root.right)\n            return\n\n        return root\n```\n\n时间复杂度：O(N) <br>\n空间复杂度：O(N)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-mlint5-9",
+    "title": "113. Path Sum II",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/path sum ii/description/ python使用回溯，把path加入到结果时需要 copy 或 : .",
+    "content": "# 113. Path Sum II\n\n`https://leetcode.com/problems/path-sum-ii/description/`\n\n## solution\n\n- python使用回溯，把path加入到结果时需要`copy`或`[:]`. 因为python是引用的形式，pop会删除\n\n```python\nclass Solution:\n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:\n        path = []\n        res = []\n        self.dfs(root, targetSum, path, res)\n        return res\n\n    def dfs(self, root, targetSum, path, res):\n        if not root:\n            return\n\n        path.append(root.val)\n        targetSum -= root.val\n        if root.left is None and root.right is None and targetSum == 0:\n            res.append(path.copy())\n\n        self.dfs(root.left, targetSum, path, res)\n        self.dfs(root.right, targetSum, path, res)\n\n        path.pop()\n```\n\n时间复杂度：O(nlog(n)) <br>\n空间复杂度：O(n)\n\n## follow up-路径类\n\n112. Path Sum\n\n```python\nclass Solution:\n    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:\n        if root is None:\n            return False\n        if root.left is None and root.right is None and targetSum == root.val:\n            return True\n\n        targetSum -= root.val\n        l = self.hasPathSum(root.left, targetSum)\n        r = self.hasPathSum(root.right, targetSum)\n        targetSum += root.val\n        return l or r\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(h)\n\n```python\nclass Solution:\n    def hasPathSum(self, root: TreeNode, sum: int) -> bool:\n        if not root:\n            return False\n        if not root.left and not root.right and root.val == sum:\n            return True\n        return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)\n```\n\n437. Path Sum III\n\n```python\n# 从中间开始，也可以中间结束 -> 可以使用prefix_sum优化\n\nclass Solution:\n    def __init__(self):\n        self.res = 0\n\n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:\n        path = 0\n        self.dfs(root, path, targetSum, True)\n        return self.res\n\n    def dfs(self, root, path, targetSum, start_node):\n        if not root:\n            return 0\n\n        path += root.val\n        if path == targetSum:\n            self.res += 1\n\n        l = self.dfs(root.left, path, targetSum, False)\n        r = self.dfs(root.right, path, targetSum, False)\n\n        # 一开始我的设计不是有个start_node， 而是简单的 path -= root.val\n        if start_node:\n            l = self.dfs(root.left, 0, targetSum, True)\n            r = self.dfs(root.right, 0, targetSum, True)\n```\n\n257. Binary Tree Paths\n\n```python\nclass Solution:\n    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:\n        path = []\n        res = []\n        self.dfs(root, path, res)\n        return res\n\n    def dfs(self, root, path, res):\n        if not root:\n            return\n\n        path.append(root.val)\n        if not root.left and not root.right:\n            res.append('->'.join([str(i) for i in path.copy()]))\n\n        self.dfs(root.left, path, res)  # 相当于回溯模版中的, path选项\n        self.dfs(root.right, path, res)\n        path.pop()  # 回溯\n```\n\n- 前期版本\n\n```python\n# 二叉树的回溯\n\nclass Solution:\n    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:\n        path = []\n        res = []\n        self.dfs(path, res, root)\n        return res\n\n    def dfs(self, path, res, root):\n        if root.left is None and root.right is None:\n            res.append('->'.join(map(str, path + [root.val])))  # 注意加上自己, 或者先path append再加上这一句\n            return\n\n        if not root:\n            return\n\n        path.append(root.val)\n        if root.left:  # 什么时候要加这种判断？\n            self.dfs(path, res, root.left)\n\n        if root.right:\n            self.dfs(path, res, root.right)\n\n        path.pop()  # 那这里？？和下面的129题怎么回事. 因为path append的位置导致pop也需要各种调整\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(h)\n\n129. Sum Root to Leaf Numbers\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = 0\n\n    def sumNumbers(self, root: Optional[TreeNode]) -> int:\n        num = 0\n        self.dfs(root, num)\n        return self.res\n\n    def dfs(self, root, num):\n        if not root:\n            return\n\n        num = num * 10 + root.val\n\n        if root.left is None and root.right is None:\n            self.res += num\n\n        self.dfs(root.left, num)\n        self.dfs(root.right, num)\n```\n\n- 树的直径写法\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = []\n\n    def sumNumbers(self, root: Optional[TreeNode]) -> int:\n        self.dfs(root, 0)\n        return sum(self.res)\n\n    def dfs(self, root, num):\n        if not root:\n            return\n\n        num = num * 10 + root.val\n        if root.left is None and root.right is None:\n            self.res.append(num)\n            return\n\n        self.dfs(root.left, num)\n        self.dfs(root.right, num)\n```\n\n```python\n# 空间可以进一步优化: res += path * 10 + root.val\n\nclass Solution:\n    def sumNumbers(self, root: Optional[TreeNode]) -> int:\n        path = []\n        res = []\n        self.dfs(path, res, root)\n        res = [int(''.join(i)) for i in res]\n        return sum(res)\n\n    def dfs(self, path, res, root):\n        if not root:\n            return\n\n        if not root.left and not root.right:\n            res.append(path.copy() + [str(root.val)])\n            return\n\n        path.append(str(root.val))\n        self.dfs(path, res, root.left)\n        self.dfs(path, res, root.right)\n        path.pop()\n```\n\n- 前期版本\n\n```python\nclass Solution:\n    def sumNumbers(self, root: Optional[TreeNode]) -> int:\n        path = []\n        res = []\n        self.dfs(path, res, root)\n        res = [int(''.join(i)) for i in res]\n        return sum(res)\n\n    def dfs(self, path, res, root):\n        if not root:\n            return\n\n        path.append(str(root.val))\n\n        if not root.left and not root.right:\n            res.append(path.copy())\n            return  # 或者这里不要加return的写法, 会走到pop\n\n        if root.left:  # 树bfs好像才是这种写法，dfs遍历好像不太有这种\n            self.dfs(path, res, root.left)\n            path.pop()  # 注意这里的二叉树回溯写法, 是因为path append在return前面\n\n        if root.right:\n            self.dfs(path, res, root.right)\n            path.pop()\n```\n\n- 空间优化版本\n\n```python\nclass Solution:\n    def sumNumbers(self, root: Optional[TreeNode]) -> int:\n        path = 0\n        self.res = 0  # 注意，只有global才行，否则像回溯一样传入参数导致一直输出0\n        self.dfs(path, root)\n        return self.res\n\n    def dfs(self, path, root):\n        if not root:\n            return\n\n        if not root.left and not root.right:\n            self.res = self.res + path * 10 + root.val\n            return\n\n        self.dfs(path * 10 + root.val, root.left)\n        self.dfs(path * 10 + root.val, root.right)\n```\n\n797. All Paths From Source to Target\n\n124 Binary Tree Maximum Path Sum",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint5-10",
+    "title": "124. Binary Tree Maximum Path Sum",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/binary tree maximum path sum/ 首先计算单个节点的最大路径 val + max(l, r) ",
+    "content": "# 124. Binary Tree Maximum Path Sum\n\n`https://leetcode.com/problems/binary-tree-maximum-path-sum/`\n\n## solution\n\n- 首先计算单个节点的最大路径 val + max(l, r)\n- 但只能发生一次，整体路径最大：max(res, l + r + root.val)\n- 在1的计算过程中，找到2最大的\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = float('-inf')\n\n    def maxPathSum(self, root: Optional[TreeNode]) -> int:\n        self.dfs(root)\n        return self.res\n\n    def dfs(self, root):\n        if root is None:\n            return 0\n\n        l = self.dfs(root.left)\n        r = self.dfs(root.right)\n        self.res = max(self.res, l + r + root.val)\n        return max(root.val + max(l, r), 0)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(h)\n\n## follow up\n\n\\*298. Binary Tree Longest Consecutive Sequence\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = 0\n\n    def longestConsecutive(self, root: Optional[TreeNode]) -> int:\n        self.dfs(root)\n        return self.res\n\n    def dfs(self, root):\n        if not root:\n            return 0\n\n        l = self.dfs(root.left) + 1\n        r = self.dfs(root.right) + 1\n\n        if root.left and root.left.val - root.val != 1:\n            l = 1\n        if root.right and root.right.val - root.val != 1:\n            r = 1\n\n        self.res = max(self.res, max(l, r))\n        return max(l, r)\n```\n\n\\*1120. Maximum Average Subtree\n\n```python\n\n```\n\n\\*1973. Count Nodes Equal to Sum of Descendants\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-mlint5-11",
+    "title": "126. Word Ladder II",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/word ladder ii/ 时间复杂度：O() 空间复杂度：O() 127. Word Ladder",
+    "content": "# 126. Word Ladder II\n\n`https://leetcode.com/problems/word-ladder-ii/`\n\n## solution\n\n```python\n# 1. BFS\n# 2. DFS 回溯记录\nclass Solution:\n    def findLadders(self, start, end, wordList):\n        if end not in wordList:\n            return []\n\n        wordList = set(wordList)\n        queue = set([start])\n        visited = set([start])\n        parent = collections.defaultdict(list)  # 记录了某个单词ladder，能往前走的单词\n\n        while queue:\n            next_queue = set()  # 下一层的queue\n            for node in queue:\n                if node == end:\n                    next_queue = set()\n                    break\n                for i in range(len(node)):\n                    for c in 'abcdefghijklmnopqrstuvwxyz':\n                        newnode = node[:i] + c + node[i+1:]\n                        if newnode not in visited and newnode in wordList:\n                            next_queue.add(newnode)\n                            parent[newnode].append(node)\n\n            queue = next_queue\n            visited = visited | next_queue\n\n        res = []\n        self.getPath(start, parent, [end], end, res)\n        return res\n\n    def getPath(self, start, parent, path, node, res):\n        # 根据parent, 找到从node到start的所有路径\n        if node == start:\n            res.append(path[::-1])\n\n        for p in parent[node]:\n            self.getPath(start, parent, path + [p] , p, res)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n127. Word Ladder",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint5-13",
+    "title": "131. Palindrome Partitioning",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/palindrome partitioning/ 切割问题其实是一种组合问题，但是要理解如何模拟切割。联想：切割一个点，",
+    "content": "# 131. Palindrome Partitioning\n\n`https://leetcode.com/problems/palindrome-partitioning/`\n\n## solution\n\n- 切割问题其实是一种组合问题，但是要理解如何模拟切割。联想：切割一个点，和之前排列组合问题中的取一个树\n- 注意：判断条件的时候，一种是判断整体是否满足条件，还有一种是判断每一步是否符合条件加入\n- 为了不重复切割同一位置，start_index来做标记下一轮递归的起始位置(切割线)\n\n```python\nclass Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        path = []\n        res = []\n        self.dfs(path, res, s, start=0)\n        return res\n\n    def dfs(self, path, res, s, start):\n        if start >= len(s):\n            res.append(path.copy())\n            return\n\n        for i in range(start, len(s)):  # 注意范围\n            if self.is_valid(s, start=start, end=i):  # 左闭右闭\n                path.append(s[start:(i+1)])  # 左闭右开\n                self.dfs(path, res, s, i+1)\n                path.pop()\n\n    def is_valid(self, string, start, end):\n        l = start\n        r = end\n        while r >= l:\n            if string[r] == string[l]:\n                r -= 1\n                l += 1\n            else:\n                return False\n        return True\n\n```\n\n时间复杂度：O(n⋅2^n) <br>\n空间复杂度：O(n⋅2^n)\n\n```python\nclass Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        path = []\n        res = []\n        self.dfs(s, path, res, start=0)\n        return res\n\n    def dfs(self, s, path, res, start):\n        if start >= len(s):\n            res.append(path[:])\n            return\n\n        for i in range(start, len(s)):\n            temp = s[start:i+1]\n            if temp == temp[::-1]:\n                path.append(temp)\n                self.dfs(s, path, res, i+1)\n                path.pop()\n            else:\n                continue\n```\n\n## follow up\n\n132. Palindrome Partitioning II\n\n139 Word Break",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint5-15",
+    "title": "139. Word Break",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/word break/ An n character string has 2^(n–1) different segm",
+    "content": "# 139. Word Break\n\n`https://leetcode.com/problems/word-break/`\n\n## solution\n\n> An n-character string has 2^(n–1) different segmentations (there are n–1 positions between characters, each of which can either be or not be a word boundary).\n\n- 动态规划\n\n```python\n# - 完全背包: dp[i]含义: s[i-1]是否可被word切割\n# - 1维dp: 容量为j的背包，所背的物品价值可以最大为dp[j]\n# - 先物品还是先背包：因为不完全背包1维需要从后往前，\n# - 背后从前到后还是从后到前\n\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        n = len(s)\n        dp = [False] * (n + 1)\n        dp[0] = True\n\n        for i in range(1, n + 1):\n            for j in range(i):\n                # 注意是 s[j:i]\n                if dp[j] and s[j:i] in wordDict:\n                    dp[i] = True\n        return dp[-1]\n```\n\n时间复杂度：O(n^2 \\* k) <br>\n空间复杂度：O(n)\n\n- dfs with memorization\n\n```python\n# 更初始的思路\n\ndef wordBreak(s, wordDict):\n    def dfs(start):\n        # 如果已经到达字符串的末尾，说明所有字符都被成功拆分\n        if start == len(s):\n            return True\n\n        # 尝试从当前位置开始，找到一个字典中的单词\n        for end in range(start + 1, len(s) + 1):\n            if s[start:end] in wordDict:\n                # 如果找到一个单词，继续递归处理剩余的字符串\n                if dfs(end):\n                    return True\n\n        # 如果没有找到任何有效的拆分，返回 False\n        return False\n\n    # 从字符串的第一个字符开始递归\n    return dfs(0)\n```\n\n```python\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        memo = {}\n        wordSet = set(wordDict)\n        return self.dfs(s, wordSet, memo)\n\n    def dfs(self, s, wordSet, memo):\n        if s in memo:\n            return memo[s]\n        if s in wordSet:\n            return True\n        for i in range(1, len(s)):\n            prefix = s[:i]\n            if prefix in wordSet and self.dfs(s[i:], wordSet, memo):\n                memo[s] = True\n                return True\n        memo[s] = False\n        return False\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n140. Word Break II\n\n```python\n# https://leetcode.com/problems/word-break-ii/solutions/44311/python-easy-to-understand-solution/\n\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        wordDict = set(wordDict)\n        path = []\n        res  = []\n        self.backtrack(s, wordDict, start=0, path=path, res=res)\n        return res\n\n    def backtrack(self, s, wordDict, start, path, res):\n        if start == len(s):\n            res.append(' '.join(path))\n            return\n\n        for end in range(start, len(s)):\n            if not s[start:end+1] in wordDict:\n                continue\n\n            path.append(s[start:end+1])\n            self.backtrack(s, wordDict, end+1, path, res)\n            path.pop()\n```\n\n- DFS枚举每次切词的位置，使用Memorization优化(回溯+动态规划思想)，每个字符串只用求一遍\n\n```python\n\"\"\"\ncatsanddog，ans 依次变化：先是dog满足s[i:] in wordDict 出现append给ans, 继续出栈ans变为 'sand dog', 继续出栈'cat sand dog'\n['sand dog']\n['cat sand dog']\n['and dog'] # 另一条s[:i]的支线\n['cat sand dog', 'cats and dog']  # 支线完成，汇到之前已有结果的总线\n\"\"\"\n\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        memory = {}\n        return self.dfs(s, wordDict, memory)\n\n    def dfs(self, s, wordDict, memory):\n        if not s:\n            return []\n\n        if s in memory:\n            return memory[s]\n\n        ans = []\n        if s in wordDict:  # 如果整个s在字符串中, 最后一个传递给ans并返回\n            ans.append(s)\n\n        for i in range(1, len(s)):\n            if s[:i] in wordDict:\n                sub_ans = self.dfs(s[i:], wordDict, memory)\n                for item in sub_ans:\n                    ans.append(s[:i] + ' ' + item)\n\n        memory[s] = ans\n        return ans\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- Trie\n\n```python\n# https://algo.monster/liteproblems/140\n```\n\n472 Concatenated Words\n\nword segmentation by n-gram",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-mlint5-17",
+    "title": "17. Letter Combinations of a Phone Number",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/letter combinations of a phone number/ 回溯 时间复杂度：O(4^n) 空间复杂度",
+    "content": "# 17. Letter Combinations of a Phone Number\n\n`https://leetcode.com/problems/letter-combinations-of-a-phone-number/`\n\n## solution\n\n- 回溯\n\n```python\nclass Solution:\n    def letterCombinations(self, digits: str) -> List[str]:\n        if not digits:\n            return []\n\n        self.maps = {\n            \"2\": \"abc\",\n            \"3\": \"def\",\n            \"4\": \"ghi\",\n            \"5\": \"jkl\",\n            \"6\": \"mno\",\n            \"7\": \"pqrs\",\n            \"8\": \"tuv\",\n            \"9\": \"wxyz\"\n        }\n\n        path = []\n        res = []\n        index = 0\n        self.dfs(path, res, digits, index)\n        return res\n\n    def dfs(self, path, res, digits, index):\n        if len(path) == len(digits):  # 或者 index == len(digits)\n            res.append(\"\".join(path))\n            return\n\n        i = digits[index]\n        letters = self.maps[i]\n\n        for letter in letters:\n            path.append(letter)\n            self.dfs(path, res, digits, index+1)\n            path.pop()\n```\n\n时间复杂度：O(4^n) <br>\n空间复杂度：O(4^n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-mlint5-18",
+    "title": "212. Word Search II",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/word search ii/ trie 79. Word Search",
+    "content": "# 212. Word Search II\n\n`https://leetcode.com/problems/word-search-ii/`\n\n## solution\n\n- trie\n\n```python\n# https://leetcode.com/problems/word-search-ii/solutions/59790/python-dfs-solution-directly-use-trie-implemented/\n\nclass Trie:\n    def __init__(self):\n        self.children = collections.defaultdict(Trie)\n        self.word = \"\"  # 直接在结尾的node标记整个word\n\n    def insert(self, word):  # 插入一个单词\n        cur = self  # 起点从最外面开始\n        for c in word:\n            cur = cur.children[c]\n        # cur.is_word = True\n        cur.word = word\n\nclass Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        trie = Trie()\n        for word in words:\n            trie.insert(word)\n\n        ans = set()\n        m = len(board)\n        n = len(board[0])\n        for i in range(m):\n            for j in range(n):\n                self.dfs(board, i, j, trie, ans)\n        return list(ans)\n\n    def dfs(self, board, i, j, trie, ans):\n        char = board[i][j]\n        cur = trie.children[char]\n\n        if cur.word:\n            ans.add(cur.word)\n\n        board[i][j] = '#'\n        for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:  # 每一个位置可以朝四个方向查找, 如果新的可以从trie中找到则继续递归\n            new_i = i + dx\n            new_j = j + dy\n            if 0 <= new_i < len(board) and 0 <= new_j < len(board[0]) and board[new_i][new_j] in cur.children:\n                self.dfs(board, new_i, new_j, cur, ans)\n\n        board[i][j] = char\n```\n\n## follow up\n\n79. Word Search",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-mlint5-19",
+    "title": "22. Generate Parentheses",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/generate parentheses/ dfs: 回溯从多叉树的角度理解，每个位置都试图增加左括号或右括号 时间复杂",
+    "content": "# 22. Generate Parentheses\n\n`https://leetcode.com/problems/generate-parentheses/`\n\n## solution\n\n- dfs: 回溯从多叉树的角度理解，每个位置都试图增加左括号或右括号\n\n```python\nclass Solution:\n    def generateParenthesis(self, n: int) -> List[str]:\n        path = []\n        res = []\n        self.dfs(0, 0, n, path, res)\n        return res\n\n    def dfs(self, left: int, right:int, n: int, path: List, res: List):\n        if len(path) == 2 * n:\n            res.append(''.join(path))\n            return\n\n        if left < n:  # 左右条件是关键, 普通回溯模版里可能是通过for循环逐个加，但括号只分别考虑左和右\n            path.append('(')\n            self.dfs(left + 1, right, n , path, res)\n            path.pop()  # 这里，为什么在加入右上面就pop. 类似把一般回溯for循环的多个条件分开写\n\n        if right < left:\n            path.append(')')\n            self.dfs(left, right + 1, n , path, res)\n            path.pop()\n```\n\n时间复杂度：O(4^n / sqrt(n)) <br>\n空间复杂度：O(n)\n\n```python\ndef generateParenthesis(self, n: int) -> List[str]:\n\tdef dfs(left, right, s):\n\t\tif len(s) == n * 2:\n\t\t\tres.append(s)\n\t\t\treturn\n\n\t\tif left < n:\n\t\t\tdfs(left + 1, right, s + '(')\n\n\t\tif right < left:\n\t\t\tdfs(left, right + 1, s + ')')\n\n\tres = []\n\tdfs(0, 0, '')\n\treturn res\n```\n\n## follow op\n\n括号类小结\n\n95. Unique Binary Search Trees II\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-mlint5-21",
+    "title": "230. Kth Smallest element in a BST",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/kth smallest element in a bst/description/ 注意递归过程中的返回值 时间复杂度",
+    "content": "# 230. Kth Smallest element in a BST\n\n`https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/`\n\n## solution\n\n```python\n# 如果k作为参数传值，k -=1 并判断k == 0有问题，还是因为k本身是immutable\nclass Solution:\n    def __init__(self):\n        self.rank = 0\n        self.res = 0\n\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        self.dfs(root, k)\n        return self.res\n\n    def dfs(self, root, k):\n        if not root:\n            return\n\n        self.dfs(root.left, k)\n\n        self.rank += 1\n        if self.rank == k:\n            self.res = root.val\n            return\n\n        self.dfs(root.right, k)\n```\n\n- 注意递归过程中的返回值\n\n```python\nclass Solution:\n    def __init__(self):\n        self.res = []\n\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        self.dfs(root, k)\n        return self.res[-1]\n\n    def dfs(self, root, k):\n        if not root:\n            return\n\n        self.dfs(root.left, k)\n\n        if len(self.res) == k:\n            return\n        self.res.append(root.val)\n\n        self.dfs(root.right, k)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-mlint5-23",
+    "title": "236. Lowest Common Ancestor of a Binary Tree",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/lowest common ancestor of a binary tree/ 后续遍历，自底向上的回溯。 沿着树递归",
+    "content": "# 236. Lowest Common Ancestor of a Binary Tree\n\n`https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/`\n\n## solution\n\n- 后续遍历，自底向上的回溯。\n- 沿着树递归，注意如何最终返回最近公共祖先\n- 理解递归终止单个的返回，与数多分支处理的返回\n\n```python\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        if root is None or root == p or root == q:\n            return root\n\n        l = self.lowestCommonAncestor(root.left, p, q)\n        r = self.lowestCommonAncestor(root.right, p, q)\n\n        if l and r:\n            return root\n        if l:\n            return l\n        if r:\n            return r\n```\n\n时间复杂度：O(h) <br>\n空间复杂度：O(h)\n\n```python\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        if not root:\n            return\n\n        if root == p:  # 根据自身节点的性质, 节点返回\n            return p\n\n        if root == q:\n            return q\n\n        l = self.lowestCommonAncestor(root.left, p, q)\n        r = self.lowestCommonAncestor(root.right, p, q)\n\n        if l and r:  # 根据左右子树的结果, 节点返回\n            return root\n        if not l and r:\n            return r\n        if not r and l:\n            return l\n```\n\n- 迭代 iteration\n\n```python\nimport collections\n\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        queue = collections.deque([root])\n        parent = {root: None}\n        ancestors = set()  # p's ancestors\n\n        while p not in parent or q not in parent:\n            root = queue.popleft()\n            if root.left:\n                parent[root.left] = root\n                queue.append(root.left)\n            if root.right:\n                parent[root.right] = root\n                queue.append(root.right)\n\n        while p:\n            ancestors.add(p)\n            p = parent[p]\n\n        while q not in ancestors:\n            q = parent[q]\n        return q\n```\n\n- 返回两个目标node之间的路‍‌径\n  - 分别求从LCA到两个node之间的路径，然后merge\n\n## follow up\n\ntree node 可以直接call parent or child\n\n\\*1644. Lowest Common Ancestor of a Binary Tree II\n\n```python\n# 转化为树直径的结构, init记录两个是否见过p与是否见过q的变量\n\n```\n\n\\*1650. Lowest Common Ancestor of a Binary Tree III\n\n```python\n# 160. Intersection of Two Linked Lists\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\nclass Solution(object):\n    def lowestCommonAncestor(self, p, q):\n        node_set = set()\n        while p:\n            node_set.add(p)\n            p = p.parent\n\n        while q not in node_set:\n            q = q.parent\n\n        return q\n```\n\n```python\n# O(1) space, 类似160的思路\nclass Solution(object):\n    def lowestCommonAncestor(self, p, q):\n        a = p\n        b = q\n\n        while a != b:\n            # If pointer_a has a parent, move to the parent; otherwise, go to the other node's initial position.\n            a = a.parent if a else q\n            b = b.parent if b else p\n        return a\n```\n\n时间复杂度：O(h) <br>\n空间复杂度：O(1)\n\n- 迭代\n\n```python\n\n```\n\n\\*1676. Lowest Common Ancestor of a Binary Tree IV\n\n```python\n\n```\n\n1123. Lowest Common Ancestor of Deepest Leaves\n\n```python\n# 865. Smallest Subtree with all the Deepest Nodes\n# 关键是转化为: 左右节点的性质来判断\n\nclass Solution:\n    def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:\n        max_depth, root = self.dfs(root)\n        return root\n\n    def dfs(self, root):\n        if not root:\n            return 0, None\n\n        left_depth, left_node = self.dfs(root.left)\n        right_depth, right_node = self.dfs(root.right)\n\n        if left_depth == right_depth:\n            return left_depth + 1, root\n        elif left_depth > right_depth:\n            # 因为要返回最深, 如果左边最深，那么就是把左边返回的某parent节点往上传输\n            return left_depth + 1, left_node\n        else:\n            return right_depth + 1, right_node\n```\n\n2096. Step-By-Step Directions From a Binary Tree Node to Another\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-mlint5-24",
+    "title": "270. Closest Binary Search Tree Value",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/closest binary search tree value/ 时间复杂度：O(h) 空间复杂度：O(h) dfs ",
+    "content": "# 270. Closest Binary Search Tree Value\n\n`https://leetcode.com/problems/closest-binary-search-tree-value/`\n\n## solution\n\n```python\nclass Solution:\n    def closestValue(self, root, target):\n        upper = root\n        lower = root\n\n        while root:\n            if root.val > target:\n                upper = root  # 先记录再往后迭代\n                root = root.left\n            elif root.val < target:\n                lower = root\n                root = root.right\n            else:\n                return root.val\n\n        if abs(upper.val - target) > abs(lower.val - target):\n            return lower.val\n        return upper.val\n```\n\n```python\n# 一些BST题目甚至可以先中序存为list, 再从list中找到最近的\n\nclass Solution(object):\n    def closestValue(self, root, target):\n        res = None\n        cur = root\n\n        while cur:\n            # 更直接的思路: 记录遍历过程中距离, 并记录更新距离最小的dian\n            if res is None or abs(res - target) > abs(cur.val - target):\n                res = cur.val\n\n            if cur.val > target:\n                cur = cur.left\n            else:\n                cur = cur.right\n        return res\n```\n\n时间复杂度：O(h) <br>\n空间复杂度：O(h)\n\ndfs\n\n```python\nclass Solution:\n    def __init__(self):\n        self.low = -float('inf')\n        self.high = float('inf')\n\n    def closest_value(self, root: TreeNode, target: float) -> int:\n        if not root:\n            return\n\n        if root.val <= target:\n            self.low = max(self.low, root.val)\n            self.closest_value(root.right, target)\n        else:\n            self.high = min(self.high, root.val)\n            self.closest_value(root.left, target)\n\n        if target - self.low > self.high -target:\n            return self.high\n        else:\n            return self.low\n```\n\n## follow up\n\n272. Closest Binary Search Tree Value II\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/d485940aad69b7a6.jpg"
+  },
+  {
+    "id": "g-mlint5-25",
+    "title": "285. Inorder Successor in BST",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/inorder successor in bst/ 时间复杂度：O(n) 空间复杂度：O(h) \\ 510. Inord",
+    "content": "# 285. Inorder Successor in BST\n\n`https://leetcode.com/problems/inorder-successor-in-bst/`\n\n## solution\n\n```python\n# BST下一个, 也就是找到第一个比p大的节点, 即最后一个访问的左节点\n# 如果存在右节点，则右子树最左边的节点就是其下一个\n# 如果不存在右节点，\n\nclass Solution(object):\n    def inorderSuccessor(self, root, p):\n        if not root:\n            return\n\n        successor = None\n        while root:\n            if root.val > p.val:\n                successor = root\n                root = root.left\n            else:\n                root = root.right\n        return successor\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(h)\n\n```python\n# 如果根节点小于或等于要查找的节点, 直接进入右子树递归;如果根节点大于要查找的节点, 则暂存左子树递归查找的结果, 如果是 null, 则直接返回当前根节点; 反之返回左子树递归查找的结果.\n\nclass Solution:\n    def inorderSuccessor(self, root, p):\n        if root is None:\n            return None\n\n        if root.val <= p.val:\n            return self.inorderSuccessor(root.right, p)\n\n        left = self.inorderSuccessor(root.left, p)\n        if left is None:\n            return root\n        else:\n            return left\n```\n\n## follow up\n\n\\*510. Inorder Successor in BST II\n\n```python\n\n```\n\n173. Binary Search Tree Iterator\n\n```python\nclass BSTIterator:\n    def __init__(self, root: Optional[TreeNode]):\n        self.stack = []\n        while root:\n            self.stack.append(root)\n            root = root.left\n\n    def next(self) -> int:\n        node = self.stack.pop()\n\n        right = node.right\n        while right:\n            self.stack.append(right)\n            right = right.left\n\n        return node.val\n\n    def hasNext(self) -> bool:\n        return len(self.stack) > 0\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-mlint5-27",
+    "title": "301. Remove Invalid Parentheses",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/remove invalid parentheses/ 时间复杂度：O(2^n) 空间复杂度：O(n+ ans ) 括号",
+    "content": "# 301. Remove Invalid Parentheses\n\n`https://leetcode.com/problems/remove-invalid-parentheses/`\n\n## solution\n\n```python\n# 1. 遍历，记录下需要移除的左括号数量和右括号数量\n# 2. DFS/回溯, 每一个新的字符，我们都有两个选择：'留' 或者 '不留'\n\nclass Solution:\n    def removeInvalidParentheses(self, s: str) -> List[str]:\n        l, r = self.get_lr(s)\n        res = []\n        start = 0\n        self.dfs(s, res, start, l, r)\n        return res\n\n    def get_lr(self, s):\n        l, r = 0, 0\n        for char in s:\n            if char == '(':\n                l += 1\n            elif char == ')':\n                if l == 0:\n                    r += 1\n                else:\n                    l -= 1\n        return l, r\n\n    def is_valid(self, s):\n        stack = []\n        for i in range(len(s)):\n            if s[i] == '(':\n                stack.append(i)\n            elif s[i] == ')':\n                if stack:\n                    stack.pop()\n                else:\n                    return False\n        return len(stack) == 0\n\n    def dfs(self, s, res, start, l, r):\n        if l == 0 and r == 0 and self.is_valid(s):\n            res.append(s)\n\n        for i in range(start, len(s)):  # for循环来试图删掉每一个字符, 递归继续往下删除\n            if i > start and s[i] == s[i-1]:  # 重复判断, 无论是左括号还是右括号\n                continue\n            if r > 0 and s[i] == ')':  # 每一个位置，可能是去掉左括号，可能去掉右括号\n                self.dfs(s[:i] + s[i + 1:], res, i, l, r - 1)\n            elif l > 0 and s[i] == '(':\n                self.dfs(s[:i] + s[i + 1:], res, i, l - 1, r)\n```\n\n时间复杂度：O(2^n) <br>\n空间复杂度：O(n+|ans|)\n\n```python\nfrom collections import deque\n\nclass Solution:\n    def removeInvalidParentheses(self, s):\n        if not s:\n            return ['']\n        queue = deque([s])\n        result, visited = [], set([s])\n        found = False\n        while queue:\n            cur = queue.popleft()\n            if self.is_valid_parentheses(cur):\n                found = True\n                result.append(cur)\n            elif not found:\n                for i in range(len(cur)):\n                    if cur[i] == '(' or cur[i] == ')':\n                        t = cur[:i] + cur[i + 1:]\n                        if t not in visited:\n                            queue.append(t)\n                            visited.add(t)\n        return result\n\n    def is_valid_parentheses(self, s):\n        cnt = 0\n        for c in s:\n            if c == '(':\n                cnt += 1\n            elif c == ')':\n                if cnt == 0:\n                    return False\n                cnt -= 1\n        return cnt == 0\n```\n\n## follow op\n\n括号类小结\n\n22 Generate Parentheses",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-mlint5-28",
+    "title": "329. Longest Increasing Path in a Matrix",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/longest increasing path in a matrix/ dfs + dp top down: 周围比自",
+    "content": "# 329. Longest Increasing Path in a Matrix\n\n`https://leetcode.com/problems/longest-increasing-path-in-a-matrix/`\n\n## solution\n\n- dfs + dp\n  - top-down: 周围比自己小的加1, 记忆化搜索\n  - bottem-up: 先排序，再搜索\n\n```python\n# https://blog.csdn.net/u013325815/article/details/105806262\n\nclass Solution:\n    def __init__(self):\n        self.dirs = [[1, 0], [0, 1], [-1, 0], [0, -1]]\n\n    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:\n        if not matrix:\n            return 0\n\n        m = len(matrix)\n        n = len(matrix[0])\n\n        dp = [[0] * n for _ in range(m)]\n        res = 0\n        for i in range(m):\n            for j in range(n):\n                res = max(res, self.dfs(matrix, i, j, dp))\n        return res\n\n    def dfs(self, matrix, i, j, dp):\n        if dp[i][j]:\n            return dp[i][j]\n\n        dp[i][j] = 1\n        for x, y in self.dirs:\n            new_i = i + x\n            new_j = j + y\n            if 0 <= new_i < len(matrix) and 0 <= new_j < len(matrix[0]) and matrix[new_i][new_j] > matrix[i][j]:\n                dp[i][j] = max(dp[i][j], self.dfs(matrix, new_i, new_j, dp) + 1)\n        return dp[i][j]\n```\n\n时间复杂度：O(mn) <br>\n空间复杂度：O(mn)\n\n## follow up\n\n691. Stickers to Spell Word\n\n```python\n# https://zhuanlan.zhihu.com/p/462528746\n\nclass Solution(object):\n    def minStickers(self, stickers, target):\n        m = len(stickers)\n        mp = [[0]*26 for y in range(m)]\n        for i in range(m):\n            for c in stickers[i]:\n                mp[i][ord(c)-ord('a')] += 1\n        dp = {}\n        dp[\"\"] = 0\n\n        def helper(dp, mp, target):\n            if target in dp:\n                return dp[target]\n            n = len(mp)\n            tar = [0]*26\n            for c in target:\n                tar[ord(c)-ord('a')] += 1\n            ans = float('inf')\n            for i in range(n):\n                if mp[i][ord(target[0])-ord('a')] == 0:\n                    continue\n                s = ''\n                for j in range(26):\n                    if tar[j] > mp[i][j]:\n                        s += chr(ord('a')+j)*(tar[j] - mp[i][j])\n                tmp = helper(dp, mp, s)\n                if (tmp != -1):\n                    ans = min(ans, 1+tmp)\n            dp[target] = -1 if ans == float('inf') else ans\n            return dp[target]\n\n        return helper(dp, mp, target)\n```\n\n- 状态压缩BFS(-> 最短路径): 关键在于状态的表征\n\n```python\n# 想拼凑成的target共有n个字符, 从空到完全拼成需要2**n个状态表示.\n\nclass Solution:\n    def minStickers(self, stickers: List[str], target: str) -> int:\n        queue = collections.deque([0])\n        steps = 0\n        n = len(target)\n        visited = [False] * (2 ** n)  # 1 << n, n位字符，全是0到全是1共有2^n个状态\n        visited[0] = True\n\n        while queue:\n            for _ in range(len(queue)):\n                current_state = queue.popleft()\n\n                # 全部位都是1代表已凑成target\n                if current_state == 2 ** n - 1:\n                    return steps\n\n                for sticker in stickers:\n                    next_state = current_state\n                    sticker_count = collections.Counter(sticker)\n\n                    for i, char in enumerate(target):\n                        # If the character at position i is not yet added, and the sticker has the char.\n                        if not (next_state & (1 << i)) and sticker_count[char]:\n                            next_state |= 1 << i  # next_state += 1 << i\n                            sticker_count[char] -= 1\n\n                    # If the next state has not been visited, mark it as visited and add to the queue.\n                    if not visited[next_state]:\n                        visited[next_state] = True\n                        queue.append(next_state)\n            steps += 1\n        return -1\n```\n\n```python\nfrom typing import List\nfrom collections import deque, Counter\n\nclass Solution:\n    def minStickers(self, stickers: List[str], target: str) -> int:\n        n = len(target)\n        state_size = 1 << n  # 2 ** n, 如果target[i]已有，则为1，否则为0\n        q = deque([0])\n        dist = {0: 0}\n\n        while q:\n            now = q.popleft()\n            for sticker in stickers:\n                state = now\n                cnt = Counter(sticker)\n                for i, c in enumerate(target):\n                    if now & (1 << i) == 0 and cnt[c] > 0:\n                        cnt[c] -= 1\n                        state += (1 << i)\n                if state in dist:\n                    continue\n                q.append(state)\n                dist[state] = dist[now] + 1\n                if state == state_size - 1:\n                    return dist[state]\n        return -1\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-mlint5-29",
+    "title": "333. Largest BST Subtree",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 V",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/largest bst subtree/ 时间复杂度：O(n) 空间复杂度：O(n)",
+    "content": "# 333. Largest BST Subtree\n\n`https://leetcode.com/problems/largest-bst-subtree/`\n\n## solution\n\n```python\nimport math\n\nclass Solution:\n    def largestBSTSubtree(self, root: Optional[TreeNode]) -> int:\n        largest_bst_size = 0\n\n        def dfs(root):\n            if not root:\n                return (math.inf, -math.inf, 0)\n\n            left_min, left_max, left_size = dfs(root.left)\n            right_min, right_max, right_size = dfs(root.right)\n\n            nonlocal largest_bst_size\n            if left_max < root.val < right_min:\n                largest_bst_size = max(largest_bst_size, left_size + right_size + 1)\n                return min(left_min, root.val), max(right_max, root.val), left_size + right_size + 1\n            else:\n                return (math.inf, -math.inf, 0)\n\n        dfs(root)\n        return largest_bst_size\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
   }
 ]
