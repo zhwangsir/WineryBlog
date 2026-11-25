@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T09:55:47.248Z",
+ "updatedAt": "2026-11-25T10:36:11.383Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3098,6 +3098,56 @@
    "status": "done",
    "addedAt": "2026-11-25T09:55:47.248Z",
    "note": "continuation: 存量来源深度续收 VII 批"
+  },
+  {
+   "id": "algonote8",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 VIII",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 218
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T10:36:11.383Z",
+   "note": "continuation: 存量来源深度续收 VIII 批"
+  },
+  {
+   "id": "mlint7",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 VII",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 180
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T10:36:11.383Z",
+   "note": "continuation: 存量来源深度续收 VIII 批"
   }
  ]
 }
