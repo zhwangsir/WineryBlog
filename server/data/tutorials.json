@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 502
+      "count": 524
     },
     {
       "id": "security",
@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 25
+      "count": 37
     }
   ],
   "tutorials": [
@@ -33285,6 +33285,550 @@
       ],
       "prereqs": [],
       "href": "/post/g-algonote2-30"
+    },
+    {
+      "id": "g-dailyq2-1",
+      "kind": "collection",
+      "title": "linux 中如何打印所有网络接口",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 31 Author 回答者: shfshany",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-1"
+    },
+    {
+      "id": "g-dailyq2-3",
+      "kind": "collection",
+      "title": "如何获取一个进程的内存并监控",
+      "summary": "更多描述 在编写脚本时，有时会出现内存过大发生 OOM 的事情，那我们如何得知某个进程的内存？另外又如何监控它 Issu",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-3"
+    },
+    {
+      "id": "g-dailyq2-4",
+      "kind": "collection",
+      "title": "什么是 CPU 缓存，如何查看缓存命中率",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 414 Author 回答者: edisonw",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-4"
+    },
+    {
+      "id": "g-dailyq2-6",
+      "kind": "collection",
+      "title": "什么是 exit code",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 424 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-6"
+    },
+    {
+      "id": "g-dailyq2-10",
+      "kind": "collection",
+      "title": "如何用 linux 命令输出文件的特定行",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 71 Author 回答者: shfshany",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-10"
+    },
+    {
+      "id": "g-dailyq2-13",
+      "kind": "collection",
+      "title": "在 linux 中如何查看 cron 执行的情况",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 99 Author 回答者: shfshany",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-13"
+    },
+    {
+      "id": "g-dailyq2-14",
+      "kind": "collection",
+      "title": "TCP 是如何保证可靠性的",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 121 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-14"
+    },
+    {
+      "id": "g-dailyq2-19",
+      "kind": "collection",
+      "title": "简述 TCP 的四次挥手，三次挥手可以吗",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 183 Author 回答者: manondi",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-19"
+    },
+    {
+      "id": "g-dailyq2-23",
+      "kind": "collection",
+      "title": "linux 中如何打印所有网络接口",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 31 Author 回答者: shfshany",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-23"
+    },
+    {
+      "id": "g-dailyq2-24",
+      "kind": "collection",
+      "title": "localhost 与 127.0.0.1 有什么区别",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 365 Author 回答者: nextpro",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-24"
+    },
+    {
+      "id": "g-dailyq2-25",
+      "kind": "collection",
+      "title": "TCP 四次挥手时为什么需要 2MSL",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 381 Author 回答者: zzetao ",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-25"
+    },
+    {
+      "id": "g-dailyq2-28",
+      "kind": "collection",
+      "title": "简述TCP 的三次握手",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 55 Author 回答者: WenHaiYa",
+      "domain": "swe",
+      "category": "大厂面经题库 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "面试",
+        "题库"
+      ],
+      "prereqs": [],
+      "href": "/post/g-dailyq2-28"
+    },
+    {
+      "id": "g-mlint2-1",
+      "kind": "collection",
+      "title": "81. Search in Rotated Sorted Array II",
+      "summary": "https://leetcode.com/problems/search in rotated sorted array",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-1"
+    },
+    {
+      "id": "g-mlint2-5",
+      "kind": "collection",
+      "title": "1456. Maximum Number of Vowels in a Substring of Given Length",
+      "summary": "https://leetcode.com/problems/maximum number of vowels in a ",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-5"
+    },
+    {
+      "id": "g-mlint2-6",
+      "kind": "collection",
+      "title": "15. 3Sum",
+      "summary": "https://leetcode.com/problems/3sum/ 注意去重 时间复杂度：O(n^2) 空间复杂度：",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-6"
+    },
+    {
+      "id": "g-mlint2-7",
+      "kind": "collection",
+      "title": "16. 3Sum Closest",
+      "summary": "https://leetcode.com/problems/3sum closest/ 时间复杂度：O(n^2) 空间复",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-7"
+    },
+    {
+      "id": "g-mlint2-8",
+      "kind": "collection",
+      "title": "1658 Minimum Operations to Reduce X to Zero",
+      "summary": "https://leetcode.com/problems/minimum operations to reduce x",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-8"
+    },
+    {
+      "id": "g-mlint2-10",
+      "kind": "collection",
+      "title": "18. 4Sum",
+      "summary": "https://leetcode.com/problems/4sum/description/ 如何分别对四个指针去重：",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-10"
+    },
+    {
+      "id": "g-mlint2-11",
+      "kind": "collection",
+      "title": "209. Minimum Size Subarray Sum",
+      "summary": "https://leetcode.com/problems/minimum size subarray sum/ 滑动窗",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-11"
+    },
+    {
+      "id": "g-mlint2-12",
+      "kind": "collection",
+      "title": "26. Remove Duplicate Numbers in Array",
+      "summary": "https://leetcode.com/problems/remove duplicates from sorted ",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-12"
+    },
+    {
+      "id": "g-mlint2-14",
+      "kind": "collection",
+      "title": "283. Move Zeroes",
+      "summary": "https://leetcode.com/problems/move zeroes/ 时间复杂度：O(n) 空间复杂度：",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-14"
+    },
+    {
+      "id": "g-mlint2-15",
+      "kind": "collection",
+      "title": "3. Longest Substring Without Repeating Characters",
+      "summary": "https://leetcode.com/problems/longest substring without repe",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-15"
+    },
+    {
+      "id": "g-mlint2-16",
+      "kind": "collection",
+      "title": "340. Longest Substring with At Most K Distinct Characters",
+      "summary": "https://leetcode.com/problems/longest substring with at most",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-16"
+    },
+    {
+      "id": "g-mlint2-17",
+      "kind": "collection",
+      "title": "395. Longest Substring with At Least K Repeating Characters",
+      "summary": "https://leetcode.com/problems/longest substring with at leas",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-17"
+    },
+    {
+      "id": "g-mlint2-19",
+      "kind": "collection",
+      "title": "42. Trapping Rain Water",
+      "summary": "https://leetcode.com/problems/trapping rain water/ 双指针/DP 时间",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-19"
+    },
+    {
+      "id": "g-mlint2-22",
+      "kind": "collection",
+      "title": "5. Longest Palindromic Substring",
+      "summary": "https://leetcode.com/problems/longest palindromic substring/",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-22"
+    },
+    {
+      "id": "g-mlint2-23",
+      "kind": "collection",
+      "title": "647. Palindromic Substrings",
+      "summary": "https://leetcode.com/problems/palindromic substrings/ 双指针: 中",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-23"
+    },
+    {
+      "id": "g-mlint2-24",
+      "kind": "collection",
+      "title": "75. Sort Colors",
+      "summary": "https://leetcode.com/problems/sort colors/ three pointers, 两",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-24"
+    },
+    {
+      "id": "g-mlint2-25",
+      "kind": "collection",
+      "title": "76. Minimum Window Substring",
+      "summary": "https://leetcode.com/problems/minimum window substring/ 时间复杂",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-25"
+    },
+    {
+      "id": "g-mlint2-26",
+      "kind": "collection",
+      "title": "88. Merge Sorted Array",
+      "summary": "https://leetcode.com/problems/merge sorted array/ 双指针 为了在num",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-26"
+    },
+    {
+      "id": "g-mlint2-27",
+      "kind": "collection",
+      "title": "141. Linked List Cycle",
+      "summary": "https://leetcode.com/problems/linked list cycle/ 时间复杂度：O(n) ",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-27"
+    },
+    {
+      "id": "g-mlint2-28",
+      "kind": "collection",
+      "title": "142. Linked List Cycle II",
+      "summary": "https://leetcode.com/problems/linked list cycle ii/ 链表的while",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-28"
+    },
+    {
+      "id": "g-mlint2-29",
+      "kind": "collection",
+      "title": "148. Sort List",
+      "summary": "https://leetcode.com/problems/sort list/ 归并排序 时间复杂度：O() 空间复杂",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-29"
+    },
+    {
+      "id": "g-mlint2-30",
+      "kind": "collection",
+      "title": "160. Intersection of Two Linked Lists",
+      "summary": "https://leetcode.com/problems/intersection of two linked lis",
+      "domain": "ai",
+      "category": "机器学习面试题解 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint2-30"
     }
   ]
 }
