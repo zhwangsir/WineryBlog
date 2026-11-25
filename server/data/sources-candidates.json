@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T02:35:15.272Z",
+ "updatedAt": "2026-11-25T02:55:33.078Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2115,6 +2115,31 @@
    "picks": [
     {
      "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-shfshanyue-daily-question",
+   "repo": "shfshanyue/Daily-Question",
+   "branch": "next",
+   "category": "大厂面经题库",
+   "domain": "swe",
+   "tags": [
+    "devops",
+    "fe-interview",
+    "frontend-interview"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T02:55:29.509Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "pages/base",
      "keywords": [
       ".md"
      ],

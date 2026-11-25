@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 3
+      "count": 15
     }
   ],
   "tutorials": [
@@ -28328,6 +28328,210 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-wethinkin-aigc-interview-book-30"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-1",
+      "kind": "collection",
+      "title": "如何在数组中找出三个数之和为N",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 177 Author 回答者: HNHED 排",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-1"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-2",
+      "kind": "collection",
+      "title": "写一个关于全排列，全组合的函数",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 187 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-2"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-3",
+      "kind": "collection",
+      "title": "大数乘法和大数加法",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 189 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-3"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-4",
+      "kind": "collection",
+      "title": "如何求数组中的 TOP k",
+      "summary": "更多描述 求数组中的前 N 个最大的数 Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 290",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-4"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-5",
+      "kind": "collection",
+      "title": "对以下字符串进行压缩编码",
+      "summary": "更多描述 这是一道大厂常考的代码题 Input: 'aaaabbbccd' Output: 'a4b3c2d1'，代表 ",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-5"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-6",
+      "kind": "collection",
+      "title": "如何实现一个优先级队列",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 49 Author 回答者: hx code ",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-6"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-8",
+      "kind": "collection",
+      "title": "求给定数组中 N 个数相加之和为 sum 所有可能集合",
+      "summary": "更多描述 求给定数组中 N 个数相加之和为 sum 所有可能集合，请补充以下代码 Issue 欢迎在 Gtihub Is",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-8"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-9",
+      "kind": "collection",
+      "title": "求正序增长的正整数数组中，其和为 N 的两个数",
+      "summary": "更多描述 Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 700 Author 回答者: sh",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-9"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-10",
+      "kind": "collection",
+      "title": "100层楼，两个玻璃球，求最少多少次测出能摔碎玻璃球的楼层",
+      "summary": "更多描述 给你两个一摸一样的球，这两个球如果从一定的高度掉到地上有可能就会摔碎，当然，如果在这个高度以下往下扔，怎么都不",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-10"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-11",
+      "kind": "collection",
+      "title": "如何根据 random5 随机生成 [0, 5]，生成一个函数 random7？",
+      "summary": "更多描述 已知有一个函数 叫做 random5 ，执行这个函数会随机返回 0 5 之间任意一个数，概率相同。 根据这个 ",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-11"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-12",
+      "kind": "collection",
+      "title": "如何实现一个 LRU",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 94 Author 回答者: manyyuri",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-12"
+    },
+    {
+      "id": "g-auto-shfshanyue-daily-question-20",
+      "kind": "collection",
+      "title": "文件系统中 mtime、ctime 和 atime 指什么，都有什么不同",
+      "summary": "Issue 欢迎在 Gtihub Issue 中回答此问题: Issue 116 Author 回答者: shfshan",
+      "domain": "swe",
+      "category": "大厂面经题库",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "devops",
+        "fe-interview",
+        "frontend-interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-shfshanyue-daily-question-20"
     }
   ]
 }
