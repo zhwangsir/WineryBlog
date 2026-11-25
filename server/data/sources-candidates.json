@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T11:35:47.745Z",
+ "updatedAt": "2026-11-25T12:15:51.732Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3298,6 +3298,56 @@
    "status": "done",
    "addedAt": "2026-11-25T11:35:47.745Z",
    "note": "continuation: 存量来源深度续收 XI 批"
+  },
+  {
+   "id": "algonote12",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 XII",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 338
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T12:15:51.732Z",
+   "note": "continuation: 存量来源深度续收 XII 批"
+  },
+  {
+   "id": "mlint11",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 XI",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 300
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T12:15:51.732Z",
+   "note": "continuation: 存量来源深度续收 XII 批"
   }
  ]
 }

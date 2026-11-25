@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 536
+      "count": 565
     },
     {
       "id": "system",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 694
+      "count": 698
     },
     {
       "id": "security",
@@ -42901,6 +42901,534 @@
       ],
       "prereqs": [],
       "href": "/post/g-algonote11-29"
+    },
+    {
+      "id": "g-algonote12-1",
+      "kind": "collection",
+      "title": "0233. 数字 1 的个数",
+      "summary": "标签：递归、数学、动态规划 难度：困难 0233. 数字 1 的个数 力扣 描述 ：给定一个整数 $n$。 要求 ：计算",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-1"
+    },
+    {
+      "id": "g-algonote12-2",
+      "kind": "collection",
+      "title": "0200. 岛屿数量",
+      "summary": "标签：深度优先搜索、广度优先搜索、并查集、数组、矩阵 难度：中等 0200. 岛屿数量 力扣 描述 ：给定一个由字符 '",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-2"
+    },
+    {
+      "id": "g-algonote12-3",
+      "kind": "collection",
+      "title": "0276. 栅栏涂色",
+      "summary": "标签：动态规划 难度：中等 0276. 栅栏涂色 力扣 描述 ： 有 $k$ 种颜色的涂料和一个包含 $n$ 个栅栏柱的",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-3"
+    },
+    {
+      "id": "g-algonote12-4",
+      "kind": "collection",
+      "title": "0265. 粉刷房子 II",
+      "summary": "标签：数组、动态规划 难度：困难 0265. 粉刷房子 II 力扣 描述 ： 假如有一排房子共有 $n$ 幢，每个房子可",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-4"
+    },
+    {
+      "id": "g-algonote12-5",
+      "kind": "collection",
+      "title": "0256. 粉刷房子",
+      "summary": "标签：数组、动态规划 难度：中等 0256. 粉刷房子 力扣 描述 ： 假如有一排房子，共 $n$ 个，每个房子可以被粉",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-5"
+    },
+    {
+      "id": "g-algonote12-6",
+      "kind": "collection",
+      "title": "0234. 回文链表",
+      "summary": "标签：栈、递归、链表、双指针 难度：简单 0234. 回文链表 力扣 描述 ：给定一个链表的头节点 head 。 要求 ",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-6"
+    },
+    {
+      "id": "g-algonote12-7",
+      "kind": "collection",
+      "title": "0267. 回文排列 II",
+      "summary": "标签：哈希表、字符串、回溯 难度：中等 0267. 回文排列 II 力扣 描述 ： 给定一个字符串 $s$。 要求 ： ",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-7"
+    },
+    {
+      "id": "g-algonote12-8",
+      "kind": "collection",
+      "title": "0266. 回文排列",
+      "summary": "标签：位运算、哈希表、字符串 难度：简单 0266. 回文排列 力扣 描述 ： 给定一个字符串 $s$。 要求 ： 如果",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-8"
+    },
+    {
+      "id": "g-algonote12-9",
+      "kind": "collection",
+      "title": "0284. 窥视迭代器",
+      "summary": "标签：设计、数组、迭代器 难度：中等 0284. 窥视迭代器 力扣 要求 ： 设计一个迭代器，在集成现有迭代器拥有的 h",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-9"
+    },
+    {
+      "id": "g-algonote12-10",
+      "kind": "collection",
+      "title": "0279. 完全平方数",
+      "summary": "标签：广度优先搜索、数学、动态规划 难度：中等 0279. 完全平方数 力扣 描述 ：给定一个正整数 $n$。从中找到若",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-10"
+    },
+    {
+      "id": "g-algonote12-11",
+      "kind": "collection",
+      "title": "0231. 2 的幂",
+      "summary": "标签：位运算、递归、数学 难度：简单 0231. 2 的幂 力扣 描述 ：给定一个整数 $n$。 要求 ：判断该整数 $",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-11"
+    },
+    {
+      "id": "g-algonote12-12",
+      "kind": "collection",
+      "title": "0238. 除自身以外数组的乘积",
+      "summary": "标签：数组、前缀和 难度：中等 0238. 除自身以外数组的乘积 力扣 描述 ：给定一个数组 nums。 要求 ：返回数",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-12"
+    },
+    {
+      "id": "g-algonote12-13",
+      "kind": "collection",
+      "title": "0223. 矩形面积",
+      "summary": "标签：几何、数学 难度：中等 0223. 矩形面积 力扣 给定两个矩形的左下角坐标、右上角坐标 (ax1, ay1, a",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-13"
+    },
+    {
+      "id": "g-algonote12-14",
+      "kind": "collection",
+      "title": "0203. 移除链表元素",
+      "summary": "标签：递归、链表 难度：简单 0203. 移除链表元素 力扣 描述 ：给定一个链表的头节点 head 和一个值 val ",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-14"
+    },
+    {
+      "id": "g-algonote12-15",
+      "kind": "collection",
+      "title": "0206. 反转链表",
+      "summary": "标签：递归、链表 难度：简单 0206. 反转链表 力扣 描述 ：给定一个单链表的头节点 head 。 要求 ：将该单链",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-15"
+    },
+    {
+      "id": "g-algonote12-16",
+      "kind": "collection",
+      "title": "0240. 搜索二维矩阵 II",
+      "summary": "标签：二分查找、分治算法 难度：中等 0240. 搜索二维矩阵 II 力扣 描述 ：给定一个 $m \\times n$ ",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-16"
+    },
+    {
+      "id": "g-algonote12-17",
+      "kind": "collection",
+      "title": "0297. 二叉树的序列化与反序列化",
+      "summary": "标签：树、深度优先搜索、广度优先搜索、设计、字符串、二叉树 难度：困难 0297. 二叉树的序列化与反序列化 力扣 要求",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-17"
+    },
+    {
+      "id": "g-algonote12-18",
+      "kind": "collection",
+      "title": "0214. 最短回文串",
+      "summary": "标签：字符串、字符串匹配、哈希函数、滚动哈希 难度：困难 0214. 最短回文串 力扣 描述 ： 给定一个字符串 $s$",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-18"
+    },
+    {
+      "id": "g-algonote12-19",
+      "kind": "collection",
+      "title": "0244. 最短单词距离 II",
+      "summary": "标签：设计、数组、哈希表、双指针、字符串 难度：中等 0244. 最短单词距离 II 力扣 要求 ： 请设计一个类，使该",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-19"
+    },
+    {
+      "id": "g-algonote12-20",
+      "kind": "collection",
+      "title": "0245. 最短单词距离 III",
+      "summary": "标签：数组、字符串 难度：中等 0245. 最短单词距离 III 力扣 描述 ： 给定一个字符串数组 $wordsDic",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-20"
+    },
+    {
+      "id": "g-algonote12-21",
+      "kind": "collection",
+      "title": "0243. 最短单词距离",
+      "summary": "标签：数组、字符串 难度：简单 0243. 最短单词距离 力扣 描述 ： 给定一个字符串数组 $wordDict$ 和两",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-21"
+    },
+    {
+      "id": "g-algonote12-22",
+      "kind": "collection",
+      "title": "0260. 只出现一次的数字 III",
+      "summary": "标签：位运算、数组 难度：中等 0260. 只出现一次的数字 III 力扣 描述 ：给定一个整数数组 $nums$。$n",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-22"
+    },
+    {
+      "id": "g-algonote12-23",
+      "kind": "collection",
+      "title": "0239. 滑动窗口最大值",
+      "summary": "标签：队列、数组、滑动窗口、单调队列、堆（优先队列） 难度：困难 0239. 滑动窗口最大值 力扣 描述 ：给定一个整数",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-23"
+    },
+    {
+      "id": "g-algonote12-24",
+      "kind": "collection",
+      "title": "0247. 中心对称数 II",
+      "summary": "标签：递归、数组、字符串 难度：中等 0247. 中心对称数 II 力扣 描述 ： 给定一个整数 $n$。 要求 ： 返",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-24"
+    },
+    {
+      "id": "g-algonote12-25",
+      "kind": "collection",
+      "title": "0248. 中心对称数 III",
+      "summary": "标签：递归、数组、字符串 难度：困难 0248. 中心对称数 III 力扣 描述 ： 给定两个字符串 $low$ 和 $",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-25"
+    },
+    {
+      "id": "g-algonote12-26",
+      "kind": "collection",
+      "title": "0246. 中心对称数",
+      "summary": "标签：哈希表、双指针、字符串 难度：简单 0246. 中心对称数 力扣 描述 ： 中心对称数是指一个数字在旋转了 180",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-26"
+    },
+    {
+      "id": "g-algonote12-27",
+      "kind": "collection",
+      "title": "0228. 汇总区间",
+      "summary": "标签：数组 难度：简单 0228. 汇总区间 力扣 描述 ： 给定一个「无重复元素」的「有序」整数数组 $nums$。 ",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-27"
+    },
+    {
+      "id": "g-algonote12-28",
+      "kind": "collection",
+      "title": "0218. 天际线问题",
+      "summary": "标签：树状数组、线段树、数组、分治、有序集合、扫描线、堆（优先队列） 难度：困难 0218. 天际线问题 力扣 城市的天",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-28"
+    },
+    {
+      "id": "g-algonote12-29",
+      "kind": "collection",
+      "title": "0264. 丑数 II",
+      "summary": "标签：哈希表、数学、动态规划、堆（优先队列） 难度：中等 0264. 丑数 II 力扣 给定一个整数 n 。 要求：找出",
+      "domain": "algo",
+      "category": "算法通关手册 XII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote12-29"
+    },
+    {
+      "id": "g-mlint11-1",
+      "kind": "collection",
+      "title": "359. Logger Rate Limiter",
+      "summary": "https://leetcode.com/problems/logger rate limiter/descriptio",
+      "domain": "ai",
+      "category": "机器学习面试题解 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint11-1"
+    },
+    {
+      "id": "g-mlint11-2",
+      "kind": "collection",
+      "title": "379. Design Phone Directory",
+      "summary": "https://leetcode.com/problems/design phone directory/ 时间复杂度：",
+      "domain": "ai",
+      "category": "机器学习面试题解 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint11-2"
+    },
+    {
+      "id": "g-mlint11-3",
+      "kind": "collection",
+      "title": "588. Design In-Memory File System",
+      "summary": "https://leetcode.com/problems/design in memory file system/ ",
+      "domain": "ai",
+      "category": "机器学习面试题解 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint11-3"
+    },
+    {
+      "id": "g-mlint11-4",
+      "kind": "collection",
+      "title": "307. Range Sum Query - Mutable",
+      "summary": "https://leetcode.com/problems/range sum query mutable/descri",
+      "domain": "ai",
+      "category": "机器学习面试题解 XI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint11-4"
     }
   ]
 }

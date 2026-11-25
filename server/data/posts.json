@@ -41426,5 +41426,500 @@
     "source": "itcharge/AlgoNote",
     "views": 0,
     "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-algonote12-1",
+    "title": "0233. 数字 1 的个数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数学、动态规划 难度：困难 0233. 数字 1 的个数 力扣 描述 ：给定一个整数 $n$。 要求 ：计算所有小于等于 $n$ 的非负整数中数字 $1$ 出现的个数。",
+    "content": "# 0233. 数字 1 的个数\n\n- 标签：递归、数学、动态规划\n- 难度：困难\n\n## 题目链接\n\n- 0233. 数字 1 的个数 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $n$。\n\n**要求**：计算所有小于等于 $n$ 的非负整数中数字 $1$ 出现的个数。\n\n**说明**：\n\n- $0 \\le n \\le 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 13\n输出：6\n```\n\n- 示例 2：\n\n```python\n输入：n = 0\n输出：0\n```\n\n## 解题思路\n\n### 思路 1：动态规划 + 数位 DP\n\n将 $n$ 转换为字符串 $s$，定义递归函数 `def dfs(pos, cnt, isLimit):` 表示构造第 $pos$ 位及之后所有数位中数字 $1$ 出现的个数。接下来按照如下步骤进行递归。\n\n1. 从 `dfs(0, 0, True)` 开始递归。 `dfs(0, 0, True)` 表示：\n   1. 从位置 $0$ 开始构造。\n   2. 初始数字 $1$ 出现的个数为 $0$。\n   3. 开始时受到数字 $n$ 对应最高位数位的约束。\n2. 如果遇到  $pos == len(s)$，表示到达数位末尾，此时：返回数字 $1$ 出现的个数 $cnt$。\n3. 如果 $pos \\ne len(s)$，则定义方案数 $ans$，令其等于 $0$，即：`ans = 0`。\n4. 如果遇到 $isNum == False$，说明之前位数没有填写数字，当前位可以跳过，这种情况下方案数等于 $pos + 1$ 位置上没有受到 $pos$ 位的约束，并且之前没有填写数字时的方案数，即：`ans = dfs(i + 1, state, False, False)`。\n5. 如果 $isNum == True$，则当前位必须填写一个数字。此时：\n   1. 因为不需要考虑前导 $0$ 所以当前位数位所能选择的最小数字（$minX$）为 $0$。\n   2. 根据 $isLimit$ 来决定填当前位数位所能选择的最大数字（$maxX$）。\n   3. 然后根据 $[minX, maxX]$ 来枚举能够填入的数字 $d$。\n   4. 方案数累加上当前位选择 $d$ 之后的方案数，即：`ans += dfs(pos + 1, cnt + (d == 1), isLimit and d == maxX)`。\n      1. `cnt + (d == 1)` 表示之前数字 $1$ 出现的个数加上当前位为数字 $1$ 的个数。\n      2. `isLimit and d == maxX` 表示 $pos + 1$ 位受到之前位 $pos$ 位限制。\n6. 最后的方案数为 `dfs(0, 0, True)`，将其返回即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def countDigitOne(self, n: int) -> int:\n        # 将 n 转换为字符串 s\n        s = str(n)\n        \n        @cache\n        # pos: 第 pos 个数位\n        # cnt: 之前数字 1 出现的个数。\n        # isLimit: 表示是否受到选择限制。如果为真，则第 pos 位填入数字最多为 s[pos]；如果为假，则最大可为 9。\n        def dfs(pos, cnt, isLimit):\n            if pos == len(s):\n                return cnt\n            \n            ans = 0            \n            # 不需要考虑前导 0，则最小可选择数字为 0\n            minX = 0\n            # 如果受到选择限制，则最大可选择数字为 s[pos]，否则最大可选择数字为 9。\n            maxX = int(s[pos]) if isLimit else 9\n            \n            # 枚举可选择的数字\n            for d in range(minX, maxX + 1): \n                ans += dfs(pos + 1, cnt + (d == 1), isLimit and d == maxX)\n            return ans\n    \n        return dfs(0, 0, True)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。\n- **空间复杂度**：$O(\\log n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-algonote12-2",
+    "title": "0200. 岛屿数量",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：深度优先搜索、广度优先搜索、并查集、数组、矩阵 难度：中等 0200. 岛屿数量 力扣 描述 ：给定一个由字符 '1' （陆地）和字符 '0' （水）组成的的二维网格 $gr",
+    "content": "# 0200. 岛屿数量\n\n- 标签：深度优先搜索、广度优先搜索、并查集、数组、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0200. 岛屿数量 - 力扣\n\n## 题目大意\n\n**描述**：给定一个由字符 `'1'`（陆地）和字符 `'0'`（水）组成的的二维网格 $grid$。\n\n**要求**：计算网格中岛屿的数量。\n\n**说明**：\n\n- 岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。\n- 此外，你可以假设该网格的四条边均被水包围。\n- $m == grid.length$。\n- $n == grid[i].length$。\n- $1 \\le m, n \\le 300$。\n- $grid[i][j]$ 的值为 `'0'` 或 `'1'`。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]\n输出：1\n```\n\n- 示例 2：\n\n```python\n输入：grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\n输出：3\n```\n\n## 解题思路\n\n如果把上下左右相邻的字符 `'1'` 看做是 `1` 个连通块，这道题的目的就是求解一共有多少个连通块。\n\n使用深度优先搜索或者广度优先搜索都可以。\n\n### 思路 1：深度优先搜索\n\n1. 遍历 $grid$。\n2. 对于每一个字符为 `'1'` 的元素，遍历其上下左右四个方向，并将该字符置为 `'0'`，保证下次不会被重复遍历。\n3. 如果超出边界，则返回 $0$。\n4. 对于 $(i, j)$ 位置的元素来说，递归遍历的位置就是 $(i - 1, j)$、$(i, j - 1)$、$(i + 1, j)$、$(i, j + 1)$ 四个方向。每次遍历到底，统计数记录一次。\n5. 最终统计出深度优先搜索的次数就是我们要求的岛屿数量。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def dfs(self, grid, i, j):\n        n = len(grid)\n        m = len(grid[0])\n        if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] == '0':\n            return 0\n        grid[i][j] = '0'\n        self.dfs(grid, i + 1, j)\n        self.dfs(grid, i, j + 1)\n        self.dfs(grid, i - 1, j)\n        self.dfs(grid, i, j - 1)\n\n    def numIslands(self, grid: List[List[str]]) -> int:\n        count = 0\n        for i in range(len(grid)):\n            for j in range(len(grid[0])):\n                if grid[i][j] == '1':\n                    self.dfs(grid, i, j)\n                    count += 1\n        return count\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$。其中 $m$ 和 $n$ 分别为行数和列数。\n- **空间复杂度**：$O(m \\times n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-algonote12-3",
+    "title": "0276. 栅栏涂色",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：动态规划 难度：中等 0276. 栅栏涂色 力扣 描述 ： 有 $k$ 种颜色的涂料和一个包含 $n$ 个栅栏柱的栅栏，请你按下述规则为栅栏设计涂色方案： 每个栅栏柱可以用其",
+    "content": "# 0276. 栅栏涂色\n\n- 标签：动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0276. 栅栏涂色 - 力扣\n\n## 题目大意\n\n**描述**：\n\n有 $k$ 种颜色的涂料和一个包含 $n$ 个栅栏柱的栅栏，请你按下述规则为栅栏设计涂色方案：\n\n- 每个栅栏柱可以用其中「一种」颜色进行上色。\n- 相邻的栅栏柱「最多连续两个」颜色相同。\n\n给定两个整数 $k$ 和 $n$。\n\n**要求**：\n\n返回所有有效的涂色「方案数」。\n\n**说明**：\n\n- $1 \\le n \\le 50$。\n- $1 \\le k \\le 10^{5}$。\n- 题目数据保证：对于输入的 $n$ 和 $k$，其答案在范围 $[0, 2^{31} - 1]$ 内。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2021_02_28_paintfenceex1.png)\n\n```python\n输入：n = 3, k = 2\n输出：6\n解释：所有的可能涂色方案如上图所示。注意，全涂红或者全涂绿的方案属于无效方案，因为相邻的栅栏柱 最多连续两个 颜色相同。\n```\n\n- 示例 2：\n\n```python\n输入：n = 1, k = 1\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n这是一个经典的动态规划问题。我们需要计算在相邻栅栏柱最多连续两个颜色相同的约束下，有多少种涂色方案。\n\n核心思想是：\n\n- 定义状态：$dp[i]$ 表示前 $i$ 个栅栏柱的涂色方案数。\n- 状态转移：考虑第 $i$ 个栅栏柱的涂色情况：\n  - 如果第 $i$ 个栅栏柱与第 $i-1$ 个栅栏柱颜色不同，有 $dp[i-1] \\times (k-1)$ 种方案。\n  - 如果第 $i$ 个栅栏柱与第 $i-1$ 个栅栏柱颜色相同，但第 $i-1$ 个与第 $i-2$ 个颜色不同，有 $dp[i-2] \\times (k-1)$ 种方案。\n- 状态转移方程：$dp[i] = dp[i-1] \\times (k-1) + dp[i-2] \\times (k-1) = (dp[i-1] + dp[i-2]) \\times (k-1)$\n\n具体算法步骤：\n\n1. 处理边界情况：如果 $n = 0$，返回 $0$；如果 $n = 1$，返回 $k$；如果 $n = 2$，返回 $k \\times k$。\n2. 初始化状态：$dp[0] = 0$，$dp[1] = k$，$dp[2] = k \\times k$。\n3. 状态转移：对于 $i$ 从 $3$ 到 $n$，计算 $dp[i] = (dp[i-1] + dp[i-2]) \\times (k-1)$。\n4. 返回 $dp[n]$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def numWays(self, n: int, k: int) -> int:\n        # 处理边界情况\n        if n == 0:\n            return 0\n        if n == 1:\n            return k\n        if n == 2:\n            return k * k\n        \n        # 初始化 dp 数组\n        # dp[i] 表示前 i 个栅栏柱的涂色方案数\n        dp = [0] * (n + 1)\n        dp[0] = 0\n        dp[1] = k\n        dp[2] = k * k\n        \n        # 状态转移\n        for i in range(3, n + 1):\n            # 第 i 个栅栏柱的涂色方案数 = (前 i-1 个的方案数 + 前 i-2 个的方案数) × (k-1)\n            # 其中 k-1 表示与前面栅栏柱颜色不同的选择数\n            dp[i] = (dp[i-1] + dp[i-2]) * (k - 1)\n        \n        return dp[n]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是栅栏柱数量。需要遍历 $n$ 个状态进行状态转移。\n- **空间复杂度**：$O(n)$，需要 $O(n)$ 的空间存储 $dp$ 数组。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/d063376796b6be98.jpg"
+  },
+  {
+    "id": "g-algonote12-4",
+    "title": "0265. 粉刷房子 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划 难度：困难 0265. 粉刷房子 II 力扣 描述 ： 假如有一排房子共有 $n$ 幢，每个房子可以被粉刷成 $k$ 种颜色中的一种。房子粉刷成不同颜色的花费",
+    "content": "# 0265. 粉刷房子 II\n\n- 标签：数组、动态规划\n- 难度：困难\n\n## 题目链接\n\n- 0265. 粉刷房子 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n假如有一排房子共有 $n$ 幢，每个房子可以被粉刷成 $k$ 种颜色中的一种。房子粉刷成不同颜色的花费成本也是不同的。你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。\n每个房子粉刷成不同颜色的花费以一个 $n \\times k$ 的矩阵表示。\n\n- 例如，$costs[0][0]$ 表示第 $0$ 幢房子粉刷成 $0$ 号颜色的成本；$costs[1][2]$ 表示第 $1$ 幢房子粉刷成 $2$ 号颜色的成本，以此类推。\n\n**要求**：\n\n返回「粉刷完所有房子的最低成本」。\n\n**说明**：\n\n- $costs.length == n$。\n- $costs[i].length == k$。\n- $1 \\le n \\le 10^{3}$。\n- $2 \\le k \\le 20$。\n- $1 \\le costs[i][j] \\le 20$。\n\n- 进阶：您能否在 $O(n \\times k)$ 的时间复杂度下解决此问题？\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: costs = [[1,5,3],[2,9,4]]\n输出: 5\n解释: \n将房子 0 刷成 0 号颜色，房子 1 刷成 2 号颜色。花费: 1 + 4 = 5; \n或者将 房子 0 刷成 2 号颜色，房子 1 刷成 0 号颜色。花费: 3 + 2 = 5. \n```\n\n- 示例 2：\n\n```python\n输入: costs = [[1,3],[2,4]]\n输出: 5\n```\n\n## 解题思路\n\n### 思路 1：动态规划 + 优化\n\n这是一个经典的动态规划问题。我们需要找到粉刷所有房子的最低成本，且相邻房子颜色不能相同。\n\n核心思想是：\n\n- 定义状态：$dp[i][j]$ 表示第 $i$ 个房子粉刷成第 $j$ 种颜色的最低成本。\n- 状态转移：$dp[i][j] = costs[i][j] + \\min_{k \\neq j} dp[i-1][k]$，即当前房子选择颜色 $j$ 的成本加上前一个房子选择其他颜色的最小成本。\n- 为了优化空间复杂度，我们只需要维护前一个房子的最小成本和次小成本，以及对应的颜色。\n\n具体算法步骤：\n\n1. 处理边界情况：如果只有一个房子，返回所有颜色中的最小成本。\n2. 初始化：记录前一个房子的最小成本 $min1$、次小成本 $min2$ 和对应的颜色 $color1$、$color2$。\n3. 状态转移：对于每个房子，计算选择每种颜色的成本，并更新最小和次小成本。\n4. 返回最后一个房子的最小成本。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def minCostII(self, costs: List[List[int]]) -> int:\n        # 处理空数组情况\n        if not costs or not costs[0]:\n            return 0\n        \n        n, k = len(costs), len(costs[0])\n        \n        # 如果只有一个房子，返回所有颜色中的最小成本\n        if n == 1:\n            return min(costs[0])\n        \n        # 初始化前一个房子的最小成本和次小成本\n        prev_min1 = prev_min2 = 0  # 前一个房子的最小成本和次小成本\n        prev_color1 = -1  # 前一个房子最小成本对应的颜色\n        \n        # 遍历每个房子\n        for i in range(n):\n            # 当前房子的最小成本和次小成本\n            curr_min1 = curr_min2 = float('inf')\n            curr_color1 = -1\n            \n            # 遍历每种颜色\n            for j in range(k):\n                # 计算选择颜色 j 的总成本\n                if j == prev_color1:\n                    # 如果当前颜色与前一个房子的最小成本颜色相同，使用次小成本\n                    cost = costs[i][j] + prev_min2\n                else:\n                    # 否则使用最小成本\n                    cost = costs[i][j] + prev_min1\n                \n                # 更新当前房子的最小和次小成本\n                if cost < curr_min1:\n                    curr_min2 = curr_min1\n                    curr_min1 = cost\n                    curr_color1 = j\n                elif cost < curr_min2:\n                    curr_min2 = cost\n            \n            # 更新前一个房子的状态\n            prev_min1, prev_min2 = curr_min1, curr_min2\n            prev_color1 = curr_color1\n        \n        # 返回最后一个房子的最小成本\n        return prev_min1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times k)$，其中 $n$ 是房子数量，$k$ 是颜色数量。需要遍历每个房子的每种颜色。\n- **空间复杂度**：$O(1)$，只使用了常数个额外变量，不依赖于输入规模。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-algonote12-5",
+    "title": "0256. 粉刷房子",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划 难度：中等 0256. 粉刷房子 力扣 描述 ： 假如有一排房子，共 $n$ 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房",
+    "content": "# 0256. 粉刷房子\n\n- 标签：数组、动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0256. 粉刷房子 - 力扣\n\n## 题目大意\n\n**描述**：\n\n假如有一排房子，共 $n$ 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。\n\n当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 $n \\times 3$ 的正整数矩阵 $costs$ 来表示的。\n\n例如，$costs[0][0]$ 表示第 0 号房子粉刷成红色的成本花费；$costs[1]$[2] 表示第 1 号房子粉刷成绿色的花费，以此类推。\n\n**要求**：\n\n请计算出粉刷完所有房子最少的花费成本。\n\n**说明**：\n\n- $costs.length == n$。\n- $costs[i].length == 3$。\n- $1 \\le n \\le 10^{3}$。\n- $1 \\le costs[i][j] \\le 20$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: costs = [[17,2,17],[16,16,5],[14,3,19]]\n输出: 10\n解释: 将 0 号房子粉刷成蓝色，1 号房子粉刷成绿色，2 号房子粉刷成蓝色。\n     最少花费: 2 + 5 + 3 = 10。\n```\n\n- 示例 2：\n\n```python\n输入: costs = [[7,6,2]]\n输出: 2\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n这是一个经典的动态规划问题。我们需要找到粉刷所有房子的最低成本，且相邻房子颜色不能相同。\n\n核心思想是：\n\n- 定义状态：$dp[i][j]$ 表示第 $i$ 个房子粉刷成第 $j$ 种颜色的最低成本，其中 $j \\in \\{0, 1, 2\\}$ 分别代表红色、蓝色、绿色。\n- 状态转移：$dp[i][j] = costs[i][j] + \\min_{k \\neq j} dp[i-1][k]$，即当前房子选择颜色 $j$ 的成本加上前一个房子选择其他颜色的最小成本。\n- 最终答案：$\\min(dp[n-1][0], dp[n-1][1], dp[n-1][2])$，即最后一个房子选择任意颜色的最小成本。\n\n具体算法步骤：\n\n1. 初始化：$dp[0][j] = costs[0][j]$，第一个房子选择任意颜色的成本就是对应的粉刷成本。\n2. 状态转移：对于每个房子 $i$ 和每种颜色 $j$，计算 $dp[i][j] = costs[i][j] + \\min(dp[i-1][k])$，其中 $k \\neq j$。\n3. 返回结果：$\\min(dp[n-1][0], dp[n-1][1], dp[n-1][2])$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def minCost(self, costs: List[List[int]]) -> int:\n        # 处理空数组情况\n        if not costs:\n            return 0\n        \n        n = len(costs)\n        \n        # 如果只有一个房子，返回所有颜色中的最小成本\n        if n == 1:\n            return min(costs[0])\n        \n        # 初始化 dp 数组，dp[i][j] 表示第 i 个房子选择颜色 j 的最小成本\n        dp = [[0] * 3 for _ in range(n)]\n        \n        # 初始化第一个房子的成本\n        for j in range(3):\n            dp[0][j] = costs[0][j]\n        \n        # 动态规划：计算每个房子选择每种颜色的最小成本\n        for i in range(1, n):\n            for j in range(3):\n                # 当前房子选择颜色 j 的最小成本 = 当前颜色成本 + 前一个房子选择其他颜色的最小成本\n                dp[i][j] = costs[i][j] + min(dp[i-1][k] for k in range(3) if k != j)\n        \n        # 返回最后一个房子选择任意颜色的最小成本\n        return min(dp[n-1])\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是房子数量。需要遍历每个房子，每个房子计算 $3$ 种颜色的成本。\n- **空间复杂度**：$O(n)$，需要 $n \\times 3$ 的 dp 数组存储状态。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-algonote12-6",
+    "title": "0234. 回文链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、递归、链表、双指针 难度：简单 0234. 回文链表 力扣 描述 ：给定一个链表的头节点 head 。 要求 ：判断该链表是否为回文链表。 说明 ： 链表中节点数目在范围",
+    "content": "# 0234. 回文链表\n\n- 标签：栈、递归、链表、双指针\n- 难度：简单\n\n## 题目链接\n\n- 0234. 回文链表 - 力扣\n\n## 题目大意\n\n**描述**：给定一个链表的头节点 `head`。\n\n**要求**：判断该链表是否为回文链表。\n\n**说明**：\n\n- 链表中节点数目在范围 $[1, 10^5]$ 内。\n- $0 \\le Node.val \\le 9$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2021_03_03_pal1linked-list.jpg)\n\n```python\n输入：head = [1,2,2,1]\n输出：True\n```\n\n- 示例 2：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2021_03_03_pal2linked-list.jpg)\n\n```python\n输入：head = [1,2]\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：利用数组 + 双指针\n\n1. 利用数组，将链表元素依次存入。\n2. 然后再使用两个指针，一个指向数组开始位置，一个指向数组结束位置。\n3. 依次判断首尾对应元素是否相等，如果都相等，则为回文链表。如果不相等，则不是回文链表。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isPalindrome(self, head: ListNode) -> bool:\n        nodes = []\n        p1 = head\n        while p1 != None:\n            nodes.append(p1.val)\n            p1 = p1.next\n        return nodes == nodes[::-1]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-algonote12-7",
+    "title": "0267. 回文排列 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、字符串、回溯 难度：中等 0267. 回文排列 II 力扣 描述 ： 给定一个字符串 $s$。 要求 ： 返回「其重新排列组合后可能构成的所有回文字符串，并去除重复的",
+    "content": "# 0267. 回文排列 II\n\n- 标签：哈希表、字符串、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0267. 回文排列 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串 $s$。\n\n**要求**：\n\n返回「其重新排列组合后可能构成的所有回文字符串，并去除重复的组合」。\n\n你可以按任意顺序返回答案。如果 $s$ 不能形成任何回文排列时，则返回一个空列表。\n\n**说明**：\n\n- $1 \\le s.length \\le 16$。\n- $s$ 仅由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: s = \"aabb\"\n输出: [\"abba\", \"baab\"]\n```\n\n- 示例 2：\n\n```python\n输入: s = \"abc\"\n输出: []\n```\n\n## 解题思路\n\n### 思路 1：\n\n先统计每个字符出现次数。记字符串长度为 $n$，各字符计数为 $\\{c_i\\}$。如果出现次数为奇数的字符超过 $1$ 个，则无法构成回文，直接返回空列表。\n\n如果至多 $1$ 个字符出现奇数次：\n\n- 将每个字符取一半次数（即 $\\lfloor c_i/2 \\rfloor$）构造「左半部分」可用的多重集合，记其总长度为 $m = \\sum_i \\lfloor c_i/2 \\rfloor$。\n- 通过回溯在该多重集合上生成所有不重复的半串 $h$（长度为 $m$），回溯过程中对每个字符仅按计数使用，避免因相同字符导致的重复。\n- 若存在奇数计数字符，记其中点字符为 $mid$，否则 `mid = \"\"`。对每个半串 $h$，构造回文 $h + mid + h^R$。\n\n正确性：回文由对称的两半与可选中点构成，穷举半串可唯一确定一个回文。去重依赖「基于计数的回溯」，不会对同一字符的相同选择顺序重复生成。\n\n### 思路 1：代码\n\n```python\nfrom typing import List\nfrom collections import Counter\n\nclass Solution:\n    def generatePalindromes(self, s: str) -> List[str]:\n        # 统计每个字符的频次\n        freq = Counter(s)\n\n        # 检查是否可构成回文：至多 1 个奇数频次\n        odd_chars = [ch for ch, cnt in freq.items() if cnt % 2 == 1]\n        if len(odd_chars) > 1:\n            return []\n\n        # 中间字符（若存在奇数频次）\n        mid = odd_chars[0] if odd_chars else \"\"\n\n        # 半串的可用字符次数（每种字符取一半）\n        half_counts = {ch: cnt // 2 for ch, cnt in freq.items()}\n        target_len = sum(half_counts.values())\n\n        path: List[str] = []  # 当前构造的半串\n        res: List[str] = []   # 结果集合\n\n        # 回溯基于计数，不会产生重复排列\n        def dfs() -> None:\n            if len(path) == target_len:\n                half = \"\".join(path)\n                res.append(half + mid + half[::-1])\n                return\n\n            for ch in sorted(half_counts.keys()):  # 固定遍历顺序，稳定输出\n                if half_counts[ch] == 0:\n                    continue\n                half_counts[ch] -= 1\n                path.append(ch)\n                dfs()\n                path.pop()\n                half_counts[ch] += 1\n\n        dfs()\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：令 $m = \\sum_i \\lfloor c_i/2 \\rfloor$。半串的唯一排列数为 $\\dfrac{m!}{\\prod_i (\\lfloor c_i/2 \\rfloor)!}$。对每个半串构造完整回文需要 $O(n)$ 拼接与拷贝，因此总复杂度为 $O\\!\\left(\\dfrac{m!}{\\prod_i (\\lfloor c_i/2 \\rfloor)!} \\times n\\right)$。在 $n \\le 16$ 的约束下不会超时。\n- **空间复杂度**：回溯深度与路径为 $O(m)$，计数表为 $O(\\Sigma)$（$\\Sigma$ 为字符集大小，这里为小写字母）。不计输出的额外空间为 $O(m + \\Sigma)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote12-8",
+    "title": "0266. 回文排列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、哈希表、字符串 难度：简单 0266. 回文排列 力扣 描述 ： 给定一个字符串 $s$。 要求 ： 如果该字符串的某个排列是「回文串」，则返回 $true$；否则，",
+    "content": "# 0266. 回文排列\n\n- 标签：位运算、哈希表、字符串\n- 难度：简单\n\n## 题目链接\n\n- 0266. 回文排列 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串 $s$。\n\n**要求**：\n\n如果该字符串的某个排列是「回文串」，则返回 $true$；否则，返回 $false$。\n\n**说明**：\n\n- $1 \\le s.length \\le 5000$。\n- $s$ 仅由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"code\"\n输出：false\n```\n\n- 示例 2：\n\n```python\n输入：s = \"aab\"\n输出：true\n```\n\n## 解题思路\n\n### 思路 1：\n\n利用「字符出现次数的奇偶性」判断。记字符串长度为 $n$，字符集为小写字母（至多 $26$ 种）。一个字符串能被重排成回文，当且仅当至多有 $1$ 个字符的出现次数为奇数。\n\n做法：用一个 $26$ 位的位掩码 `mask` 表示每个字符计数的奇偶性。遍历每个字符 $s[i]$：将对应位取反（异或 $1$），遍历完成后：\n\n- 如果 `mask == 0`（所有字符出现偶数次），必然可以构成回文；\n- 如果 `mask` 只有 $1$ 位为 $1$（即 $\\text{popcount}(mask) = 1$），也可构成回文（该字符放在中间）；\n- 否则不行。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        # 位掩码记录每个字符出现次数的奇偶性（仅小写字母）\n        mask = 0\n        base = ord('a')\n        for ch in s:\n            bit = 1 << (ord(ch) - base)\n            mask ^= bit  # 对应位取反：出现一次翻转一次\n\n        # 条件：至多 1 位为 1（允许 0 位）\n        return mask == 0 or (mask & (mask - 1)) == 0\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。单次遍历字符串，每个字符 $O(1)$ 更新位掩码。\n- **空间复杂度**：$O(1)$。仅常数级变量，与 $n$ 和字符集大小无关（字符集固定为 $26$）。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote12-9",
+    "title": "0284. 窥视迭代器",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、数组、迭代器 难度：中等 0284. 窥视迭代器 力扣 要求 ： 设计一个迭代器，在集成现有迭代器拥有的 hasNext 和 next 操作的基础上，还额外支持 pee",
+    "content": "# 0284. 窥视迭代器\n\n- 标签：设计、数组、迭代器\n- 难度：中等\n\n## 题目链接\n\n- 0284. 窥视迭代器 - 力扣\n\n## 题目大意\n\n**要求**：\n\n设计一个迭代器，在集成现有迭代器拥有的 `hasNext` 和 `next` 操作的基础上，还额外支持 `peek` 操作。\n\n实现 `PeekingIterator` 类：\n* `PeekingIterator(Iterator<int> nums)` 使用指定整数迭代器 $nums$ 初始化迭代器。\n* `int next()` 返回数组中的下一个元素，并将指针移动到下个元素处。\n* `bool hasNext()` 如果数组中存在下一个元素，返回 $true$；否则，返回 $false$。\n* `int peek()` 返回数组中的下一个元素，但不移动指针。\n\n**说明**：\n\n- 注意：每种语言可能有不同的构造函数和迭代器 `Iterator`，但均支持 `int next()` 和 `boolean hasNext()` 函数。\n- $1 \\le nums.length \\le 10^{3}$。\n- $1 \\le nums[i] \\le 10^{3}$。\n- 对 `next` 和 `peek` 的调用均有效。\n- `next`、`hasNext` 和 `peek` 最多调用 $10^{3}$ 次。\n\n- 进阶：你将如何拓展你的设计？使之变得通用化，从而适应所有的类型，而不只是整数型？\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：\n[\"PeekingIterator\", \"next\", \"peek\", \"next\", \"next\", \"hasNext\"]\n[[[1, 2, 3]], [], [], [], [], []]\n输出：\n[null, 1, 2, 2, 3, false]\n\n解释：\nPeekingIterator peekingIterator = new PeekingIterator([1, 2, 3]); // [1,2,3]\npeekingIterator.next();    // 返回 1 ，指针移动到下一个元素 [1,2,3]\npeekingIterator.peek();    // 返回 2 ，指针未发生移动 [1,2,3]\npeekingIterator.next();    // 返回 2 ，指针移动到下一个元素 [1,2,3]\npeekingIterator.next();    // 返回 3 ，指针移动到下一个元素 [1,2,3]\npeekingIterator.hasNext(); // 返回 False\n```\n\n- 示例 2：\n\n```python\n输入：\n输出：\n```\n\n## 解题思路\n\n### 思路 1：缓存下一个元素\n\n使用缓存机制来实现 `peek` 操作。我们维护一个变量 $next_val$ 来缓存下一个元素，以及一个布尔变量 $has_next$ 来标记是否还有下一个元素。\n\n具体步骤如下：\n\n1. 在初始化时，调用底层迭代器的 `next()` 方法获取第一个元素，存储在 $next_val$ 中\n2. 如果底层迭代器还有元素，设置 $has_next = true$，否则设置 $has_next = false$\n3. `peek()` 方法直接返回 $next_val$，不移动指针\n4. `next()` 方法返回 $next_val$，然后调用底层迭代器获取下一个元素更新 $next_val$\n5. `hasNext()` 方法返回 $has_next$ 的值\n\n这种方法的时间复杂度为 $O(1)$，空间复杂度为 $O(1)$。\n\n### 思路 1：代码\n\n```python\n# Below is the interface for Iterator, which is already defined for you.\n#\n# class Iterator:\n#     def __init__(self, nums):\n#         \"\"\"\n#         Initializes an iterator object to the beginning of a list.\n#         :type nums: List[int]\n#         \"\"\"\n#\n#     def hasNext(self):\n#         \"\"\"\n#         Returns true if the iteration has more elements.\n#         :rtype: bool\n#         \"\"\"\n#\n#     def next(self):\n#         \"\"\"\n#         Returns the next element in the iteration.\n#         :rtype: int\n#         \"\"\"\n\nclass PeekingIterator:\n    def __init__(self, iterator):\n        \"\"\"\n        Initialize your data structure here.\n        :type iterator: Iterator\n        \"\"\"\n        # 保存底层迭代器\n        self.iterator = iterator\n        # 缓存下一个元素\n        self.next_val = None\n        # 标记是否还有下一个元素\n        self.has_next = False\n        \n        # 初始化时获取第一个元素\n        if self.iterator.hasNext():\n            self.next_val = self.iterator.next()\n            self.has_next = True\n\n    def peek(self):\n        \"\"\"\n        Returns the next element in the iteration without advancing the iterator.\n        :rtype: int\n        \"\"\"\n        return self.next_val\n\n    def next(self):\n        \"\"\"\n        :rtype: int\n        \"\"\"\n        # 保存当前要返回的值\n        result = self.next_val\n        \n        # 获取下一个元素\n        if self.iterator.hasNext():\n            self.next_val = self.iterator.next()\n            self.has_next = True\n        else:\n            self.has_next = False\n            self.next_val = None\n            \n        return result\n\n    def hasNext(self):\n        \"\"\"\n        :rtype: bool\n        \"\"\"\n        return self.has_next\n\n# Your PeekingIterator object will be instantiated and called as such:\n# iter = PeekingIterator(Iterator(nums))\n# while iter.hasNext():\n#     val = iter.peek()   # Get the next element but not advance the iterator.\n#     iter.next()         # Should return the same value as [val].\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(1)$，所有操作（`peek`、`next`、`hasNext`）都是常数时间。\n- **空间复杂度**：$O(1)$，只使用了常数额外空间来存储缓存的下一个元素和状态标志。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-algonote12-10",
+    "title": "0279. 完全平方数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：广度优先搜索、数学、动态规划 难度：中等 0279. 完全平方数 力扣 描述 ：给定一个正整数 $n$。从中找到若干个完全平方数（比如 $1, 4, 9, 16 …$），使得",
+    "content": "# 0279. 完全平方数\n\n- 标签：广度优先搜索、数学、动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0279. 完全平方数 - 力扣\n\n## 题目大意\n\n**描述**：给定一个正整数 $n$。从中找到若干个完全平方数（比如 $1, 4, 9, 16 …$），使得它们的和等于 $n$。\n\n**要求**：返回和为 $n$ 的完全平方数的最小数量。\n\n**说明**：\n\n- $1 \\le n \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 12\n输出：3 \n解释：12 = 4 + 4 + 4\n```\n\n- 示例 2：\n\n```python\n输入：n = 13\n输出：2\n解释：13 = 4 + 9\n```\n\n## 解题思路\n\n暴力枚举思路：对于小于 $n$ 的完全平方数，直接暴力枚举所有可能的组合，并且找到平方数个数最小的一个。\n\n并且对于所有小于 $n$ 的完全平方数（$k = 1, 4, 9, 16, ...$），存在公式：$ans(n) = min(ans(n - k) + 1), k = 1, 4, 9, 16 ...$\n\n即： **n 的完全平方数的最小数量 == n - k 的完全平方数的最小数量 + 1**。\n\n我们可以使用递归解决这个问题。但是因为重复计算了中间解，会产生堆栈溢出。\n\n那怎么解决重复计算问题和避免堆栈溢出？\n\n我们可以转换一下思维。\n\n1. 将 $n$ 作为根节点，构建一棵多叉数。\n2. 从 $n$ 节点出发，如果一个小于 $n$ 的数刚好与 $n$ 相差一个平方数，则以该数为值构造一个节点，与 $n$ 相连。\n\n那么求解和为 $n$ 的完全平方数的最小数量就变成了求解这棵树从根节点 $n$ 到节点 $0$ 的最短路径，或者说树的最小深度。\n\n这个过程可以通过广度优先搜索来做。\n\n### 思路 1：广度优先搜索\n\n1. 定义 $visited$ 为标记访问节点的 set 集合变量，避免重复计算。定义 $queue$ 为存放节点的队列。使用 $count$ 表示为树的最小深度，也就是和为 $n$ 的完全平方数的最小数量。\n2. 首先，我们将 $n$ 标记为已访问，即 `visited.add(n)`。并将其加入队列 $queue$ 中，即 `queue.append(n)`。\n3. 令 $count$ 加 $1$，表示最小深度加 $1$。然后依次将队列中的节点值取出。\n4. 对于取出的节点值 $value$，遍历可能出现的平方数（即遍历 $[1, \\sqrt{value} + 1]$ 中的数）。\n5. 每次从当前节点值减去一个平方数，并将减完的数加入队列。\n   1. 如果此时的数等于 $0$，则满足题意，返回当前树的最小深度。\n   2. 如果此时的数不等于 $0$，则将其加入队列，继续查找。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def numSquares(self, n: int) -> int:\n        if n == 0:\n            return 0\n        \n        visited = set()\n        queue = collections.deque([])\n        \n        visited.add(n)\n        queue.append(n)\n        \n        count = 0\n        while queue:\n            // 最少步数\n            count += 1\n            size = len(queue)\n            for _ in range(size):\n                value = queue.pop()\n                for i in range(1, int(math.sqrt(value)) + 1):\n                    x = value - i * i\n                    if x == 0:\n                        return count\n                    if x not in visited:\n                        queue.appendleft(x)\n                        visited.add(x)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\sqrt{n})$。\n- **空间复杂度**：$O(n)$。\n\n### 思路 2：动态规划\n\n我们可以将这道题转换为「完全背包问题」中恰好装满背包的方案数问题。\n\n1. 将 $k = 1, 4, 9, 16, ...$  看做是 $k$ 种物品，每种物品都可以无限次使用。\n2. 将 $n$ 看做是背包的装载上限。\n3. 这道题就变成了，从 $k$ 种物品中选择一些物品，装入装载上限为 $n$ 的背包中，恰好装满背包最少需要多少件物品。\n\n###### 1. 阶段划分\n\n按照当前背包的载重上限进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[w]$ 表示为：从完全平方数中挑选一些数，使其和恰好凑成 $w$ ，最少需要多少个完全平方数。\n\n###### 3. 状态转移方程\n\n$dp[w] = min \\lbrace dp[w], dp[w - num] + 1$\n\n###### 4. 初始条件\n\n- 恰好凑成和为 $0$，最少需要 $0$ 个完全平方数。\n- 默认情况下，在不使用完全平方数时，都不能恰好凑成和为 $w$ ，此时将状态值设置为一个极大值（比如 $n + 1$），表示无法凑成。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态，$dp[w]$ 表示为：将物品装入装载上限为 $w$ 的背包中，恰好装满背包，最少需要多少件物品。 所以最终结果为 $dp[n]$。\n\n1. 如果 $dp[n] \\ne n + 1$，则说明：$dp[n]$ 为装入装载上限为 $n$ 的背包，恰好装满背包，最少需要的物品数量，则返回 $dp[n]$。\n2. 如果 $dp[n] = n + 1$，则说明：无法恰好装满背包，则返回 $-1$。因为 $n$ 肯定能由 $n$ 个 $1$ 组成，所以这种情况并不会出现。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def numSquares(self, n: int) -> int:\n        dp = [n + 1 for _ in range(n + 1)]\n        dp[0] = 0\n\n        for i in range(1, int(sqrt(n)) + 1):\n            num = i * i\n            for w in range(num, n + 1):\n                dp[w] = min(dp[w], dp[w - num] + 1)\n\n        if dp[n] != n + 1:\n            return dp[n]\n        return -1\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\sqrt{n})$。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-algonote12-11",
+    "title": "0231. 2 的幂",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、递归、数学 难度：简单 0231. 2 的幂 力扣 描述 ：给定一个整数 $n$。 要求 ：判断该整数 $n$ 是否是 $2$ 的幂次方。如果是，返回 True ；否",
+    "content": "# 0231. 2 的幂\n\n- 标签：位运算、递归、数学\n- 难度：简单\n\n## 题目链接\n\n- 0231. 2 的幂 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 $n$。\n\n**要求**：判断该整数 $n$ 是否是 $2$ 的幂次方。如果是，返回 `True`；否则，返回 `False`。\n\n**说明**：\n\n- $-2^{31} \\le n \\le 2^{31} - 1$\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 1\n输出：True\n解释：2^0 = 1\n```\n\n- 示例 2：\n\n```python\n输入：n = 16\n输出：True\n解释：2^4 = 16\n```\n\n## 解题思路\n\n### 思路 1：循环判断\n\n1. 不断判断 $n$ 是否能整除 $2$。\n   1. 如果不能整除，则返回 `False`。\n   2. 如果能整除，则让 $n$ 整除 $2$，直到 $n < 2$。\n2. 如果最后 $n == 1$，则返回 `True`，否则则返回 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isPowerOfTwo(self, n: int) -> bool:\n        if n <= 0:\n            return False\n\n        while n % 2 == 0:\n            n //= 2\n        return n == 1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log_2 n)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：数论判断\n\n因为 $n$ 能取的最大值为 $2^{31}-1$。我们可以计算出：在 $n$ 的范围内，$2$ 的幂次方最大为 $2^{30} = 1073741824$。\n\n因为 $2$ 为质数，则 $2^{30}$ 的除数只有 $2^0, 2^1, …, 2^{30}$。所以如果 $n$ 为 $2$ 的幂次方，则 $2^{30}$ 肯定能被 $n$ 整除，直接判断即可。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def isPowerOfTwo(self, n: int) -> bool:\n        return n > 0 and 1073741824 % n == 0\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(1)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-algonote12-12",
+    "title": "0238. 除自身以外数组的乘积",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、前缀和 难度：中等 0238. 除自身以外数组的乘积 力扣 描述 ：给定一个数组 nums。 要求 ：返回数组 $answer$，其中 $answer i $ 等于 $",
+    "content": "# 0238. 除自身以外数组的乘积\n\n- 标签：数组、前缀和\n- 难度：中等\n\n## 题目链接\n\n- 0238. 除自身以外数组的乘积 - 力扣\n\n## 题目大意\n\n**描述**：给定一个数组 nums。\n\n**要求**：返回数组 $answer$，其中 $answer[i]$ 等于 $nums$ 中除 $nums[i]$ 之外其余各元素的乘积。\n\n**说明**：\n\n- 题目数据保证数组 $nums$ 之中任意元素的全部前缀元素和后缀的乘积都在 $32$ 位整数范围内。\n- 请不要使用除法，且在 $O(n)$ 时间复杂度内解决问题。\n- **进阶**：在 $O(1)$ 的额外空间复杂度内完成这个题目。\n- $2 \\le nums.length \\le 10^5$。\n- $-30 \\le nums[i] \\le 30$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: nums = [1,2,3,4]\n输出: [24,12,8,6]\n```\n\n- 示例 2：\n\n```python\n输入: nums = [-1,1,0,-3,3]\n输出: [0,0,9,0,0]\n```\n\n## 解题思路\n\n### 思路 1：两次遍历\n\n1. 构造一个答案数组 $res$，长度和数组 $nums$ 长度一致。\n2. 先从左到右遍历一遍 $nums$ 数组，将 $nums[i]$ 左侧的元素乘积累积起来，存储到 $res$ 数组中。\n3. 再从右到左遍历一遍，将 $nums[i]$ 右侧的元素乘积累积起来，再乘以原本 $res[i]$ 的值，即为 $nums$ 中除了 $nums[i]$ 之外的其他所有元素乘积。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def productExceptSelf(self, nums: List[int]) -> List[int]:\n        size = len(nums)\n        res = [1 for _ in range(size)]\n\n        left = 1\n        for i in range(size):\n            res[i] *= left\n            left *= nums[i]\n\n        right = 1\n        for i in range(size-1, -1, -1):\n            res[i] *= right\n            right *= nums[i]\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-algonote12-13",
+    "title": "0223. 矩形面积",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：几何、数学 难度：中等 0223. 矩形面积 力扣 给定两个矩形的左下角坐标、右上角坐标 (ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) 。",
+    "content": "# 0223. 矩形面积\n\n- 标签：几何、数学\n- 难度：中等\n\n## 题目链接\n\n- 0223. 矩形面积 - 力扣\n\n## 题目大意\n\n给定两个矩形的左下角坐标、右上角坐标 `(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)`。其中 `(ax1, ay1)` 表示第一个矩形左下角坐标，`(ax2, ay2)` 表示第一个矩形右上角坐标，`(bx1, by1)` 表示第二个矩形左下角坐标，`(bx2, by2)` 表示第二个矩形右上角坐标。\n\n要求：计算出两个矩形覆盖的总面积。\n\n## 解题思路\n\n两个矩形覆盖的总面积 = 第一个矩形面积 + 第二个矩形面积 - 重叠部分面积。\n\n需要分别计算出两个矩形面积，还有求出相交部分的长、宽，并计算出对应重叠部分的面积。\n\n## 代码\n\n```python\nclass Solution:\n    def computeArea(self, ax1: int, ay1: int, ax2: int, ay2: int, bx1: int, by1: int, bx2: int, by2: int) -> int:\n        area_a = (ax2 - ax1) * (ay2 - ay1)\n        area_b = (bx2 - bx1) * (by2 - by1)\n        overlap_width = max(0, min(ax2, bx2) - max(ax1, bx1))\n        overlap_height = max(0, min(ay2, by2) - max(ay1, by1))\n        area_overlap = overlap_width * overlap_height\n\n        return area_a + area_b - area_overlap\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-algonote12-14",
+    "title": "0203. 移除链表元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、链表 难度：简单 0203. 移除链表元素 力扣 描述 ：给定一个链表的头节点 head 和一个值 val 。 要求 ：删除链表中值为 val 的节点，并返回新的链表头",
+    "content": "# 0203. 移除链表元素\n\n- 标签：递归、链表\n- 难度：简单\n\n## 题目链接\n\n- 0203. 移除链表元素 - 力扣\n\n## 题目大意\n\n**描述**：给定一个链表的头节点 `head` 和一个值 `val`。\n\n**要求**：删除链表中值为 `val` 的节点，并返回新的链表头节点。\n\n**说明**：\n\n- 列表中的节点数目在范围 $[0, 10^4]$ 内。\n- $1 \\le Node.val \\le 50$。\n- $0 \\le val \\le 50$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2021_03_06_removelinked-list.jpg)\n\n```python\n输入：head = [1,2,6,3,4,5,6], val = 6\n输出：[1,2,3,4,5]\n```\n\n- 示例 2：\n\n```python\n输入：head = [], val = 1\n输出：[]\n```\n\n## 解题思路\n\n### 思路 1：迭代\n\n- 使用两个指针 `prev` 和 `curr`。`prev` 指向前一节点和当前节点，`curr` 指向当前节点。\n- 从前向后遍历链表，遇到值为 `val` 的节点时，将 `prev` 的 `next` 指针指向当前节点的下一个节点，继续递归遍历。没有遇到则将 `prev` 指针向后移动一步。\n- 向右移动 `curr`，继续遍历。\n\n需要注意的是：因为要删除的节点可能包含了头节点，我们可以考虑在遍历之前，新建一个头节点，让其指向原来的头节点。这样，最终如果删除的是头节点，则直接删除原头节点，然后最后返回新建头节点的下一个节点即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def removeElements(self, head: ListNode, val: int) -> ListNode:\n        newHead = ListNode(0, head)\n        newHead.next = head\n\n        prev, curr = newHead, head\n        while curr:\n            if curr.val == val:\n                prev.next = curr.next\n            else:\n                prev = curr\n            curr = curr.next\n        return newHead.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-algonote12-15",
+    "title": "0206. 反转链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、链表 难度：简单 0206. 反转链表 力扣 描述 ：给定一个单链表的头节点 head 。 要求 ：将该单链表进行反转。可以迭代或递归地反转链表。 说明 ： 链表中节点",
+    "content": "# 0206. 反转链表\n\n- 标签：递归、链表\n- 难度：简单\n\n## 题目链接\n\n- 0206. 反转链表 - 力扣\n\n## 题目大意\n\n**描述**：给定一个单链表的头节点 `head`。\n\n**要求**：将该单链表进行反转。可以迭代或递归地反转链表。\n\n**说明**：\n\n- 链表中节点的数目范围是 $[0, 5000]$。\n- $-5000 \\le Node.val \\le 5000$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：head = [1,2,3,4,5]\n输出：[5,4,3,2,1]\n解释：\n翻转前    1->2->3->4->5->NULL\n反转后    5->4->3->2->1->NULL\n```\n\n## 解题思路\n\n### 思路 1：迭代\n\n1. 使用两个指针 `cur` 和 `pre` 进行迭代。`pre` 指向 `cur` 前一个节点位置。初始时，`pre` 指向 `None`，`cur` 指向 `head`。\n\n2. 将 `pre` 和 `cur` 的前后指针进行交换，指针更替顺序为：\n   1. 使用 `next` 指针保存当前节点 `cur` 的后一个节点，即 `next = cur.next`；\n   2. 断开当前节点 `cur` 的后一节点链接，将 `cur` 的 `next` 指针指向前一节点 `pre`，即 `cur.next = pre`；\n   3. `pre` 向前移动一步，移动到 `cur` 位置，即 `pre = cur`；\n   4. `cur` 向前移动一步，移动到之前 `next` 指针保存的位置，即 `cur = next`。\n3. 继续执行第 2 步中的 1、2、3、4。\n4. 最后等到 `cur` 遍历到链表末尾，即 `cur == None`，时，`pre` 所在位置就是反转后链表的头节点，返回新的头节点 `pre`。\n\n使用迭代法反转链表的示意图如下所示：\n\n![迭代法反转链表](/images/figures/algonote12/ext_qcdn.itcharge.cn__images_20220111133639.png)\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        pre = None\n        cur = head\n        while cur != None:\n            next = cur.next\n            cur.next = pre\n            pre = cur\n            cur = next\n        return pre\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。\n\n### 思路 2：递归\n\n具体做法如下：\n\n1. 首先定义递归函数含义为：将链表反转，并返回反转后的头节点。\n2. 然后从 `head.next` 的位置开始调用递归函数，即将 `head.next` 为头节点的链表进行反转，并返回该链表的头节点。\n3. 递归到链表的最后一个节点，将其作为最终的头节点，即为 `new_head`。\n4. 在每次递归函数返回的过程中，改变 `head` 和 `head.next` 的指向关系。也就是将 `head.next` 的`next` 指针先指向当前节点 `head`，即 `head.next.next = head `。\n5. 然后让当前节点 `head` 的 `next` 指针指向 `None`，从而实现从链表尾部开始的局部反转。\n6. 当递归从末尾开始顺着递归栈的退出，从而将整个链表进行反转。\n7. 最后返回反转后的链表头节点 `new_head`。\n\n使用递归法反转链表的示意图如下所示：\n\n![递归法反转链表](/images/figures/algonote12/ext_qcdn.itcharge.cn__images_20220111134246.png)\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        if head == None or head.next == None:\n            return head\n        new_head = self.reverseList(head.next)\n        head.next.next = head\n        head.next = None\n        return new_head\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$\n- **空间复杂度**：$O(n)$。最多需要 $n$ 层栈空间。\n\n## 参考资料\n\n- 【题解】反转链表 - 反转链表 - 力扣\n- 【题解】【反转链表】：双指针，递归，妖魔化的双指针 - 反转链表 - 力扣（LeetCode）",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-algonote12-16",
+    "title": "0240. 搜索二维矩阵 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：二分查找、分治算法 难度：中等 0240. 搜索二维矩阵 II 力扣 描述 ：给定一个 $m \\times n$ 大小的有序整数矩阵 $matrix$。$matrix$ 中的",
+    "content": "# 0240. 搜索二维矩阵 II\n\n- 标签：二分查找、分治算法\n- 难度：中等\n\n## 题目链接\n\n- 0240. 搜索二维矩阵 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个 $m \\times n$ 大小的有序整数矩阵 $matrix$。$matrix$ 中的每行元素从左到右升序排列，每列元素从上到下升序排列。再给定一个目标值 $target$。\n\n**要求**：判断矩阵中是否可以找到 $target$，如果可以找到 $target$，返回 `True`，否则返回 `False`。\n\n**说明**：\n\n- $m == matrix.length$。\n- $n == matrix[i].length$。\n- $1 \\le n, m \\le 300$。\n- $-10^9 \\le matrix[i][j] \\le 10^9$。\n- 每行的所有元素从左到右升序排列。\n- 每列的所有元素从上到下升序排列。\n- $-10^9 \\le target \\le 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n![img](/images/figures/algonote12/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2020_11_25_searchgrid2.jpg)\n\n```python\n输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5\n输出：True\n```\n\n- 示例 2：\n\n![](/images/figures/algonote12/ext_assets.leetcode-cn.com__aliyun-lc-upload_uploads_2020_11_25_searchgrid.jpg)\n\n```python\n输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20\n输出：False\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n矩阵是有序的，可以考虑使用二分查找来做。\n\n1. 迭代对角线元素，假设对角线元素的坐标为 $(row, col)$。把数组元素按对角线分为右上角部分和左下角部分。\n2. 对于当前对角线元素右侧第 $row$ 行、对角线元素下侧第 $col$ 列分别进行二分查找。\n   1. 如果找到目标，直接返回 `True`。\n   2. 如果找不到目标，则缩小范围，继续查找。\n   3. 直到所有对角线元素都遍历完，依旧没找到，则返回 `False`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def diagonalBinarySearch(self, matrix, diagonal, target):\n        left = 0\n        right = diagonal\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[mid][mid] < target:\n                left = mid + 1\n            else:\n                right = mid\n        return left\n\n    def rowBinarySearch(self, matrix, begin, cols, target):\n        left = begin\n        right = cols\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[begin][mid] < target:\n                left = mid + 1\n            elif matrix[begin][mid] > target:\n                right = mid - 1\n            else:\n                left = mid\n                break\n        return begin <= left <= cols and matrix[begin][left] == target\n\n    def colBinarySearch(self, matrix, begin, rows, target):\n        left = begin + 1\n        right = rows\n        while left < right:\n            mid = left + (right - left) // 2\n            if matrix[mid][begin] < target:\n                left = mid + 1\n            elif matrix[mid][begin] > target:\n                right = mid - 1\n            else:\n                left = mid\n                break\n        return begin <= left <= rows and matrix[left][begin] == target\n\n    def searchMatrix(self, matrix, target: int) -> bool:\n        rows = len(matrix)\n        if rows == 0:\n            return False\n        cols = len(matrix[0])\n        if cols == 0:\n            return False\n\n        min_val = min(rows, cols)\n        index = self.diagonalBinarySearch(matrix, min_val - 1, target)\n        if matrix[index][index] == target:\n            return True\n        for i in range(index + 1):\n            row_search = self.rowBinarySearch(matrix, i, cols - 1, target)\n            col_search = self.colBinarySearch(matrix, i, rows - 1, target)\n            if row_search or col_search:\n                return True\n        return False\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(min(m, n) \\times (\\log_2 m + \\log_2 n))$，其中 $m$ 是矩阵的行数，$n$ 是矩阵的列数。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-algonote12-17",
+    "title": "0297. 二叉树的序列化与反序列化",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、广度优先搜索、设计、字符串、二叉树 难度：困难 0297. 二叉树的序列化与反序列化 力扣 要求 ：设计一个算法，来实现二叉树的序列化与反序列化。 说明 ：",
+    "content": "# 0297. 二叉树的序列化与反序列化\n\n- 标签：树、深度优先搜索、广度优先搜索、设计、字符串、二叉树\n- 难度：困难\n\n## 题目链接\n\n- 0297. 二叉树的序列化与反序列化 - 力扣\n\n## 题目大意\n\n**要求**：设计一个算法，来实现二叉树的序列化与反序列化。\n\n**说明**：\n\n- 不限定序列化 / 反序列化算法执行逻辑，只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。\n- 树中结点数在范围 $[0, 10^4]$ 内。\n- $-1000 \\le Node.val \\le 1000$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2020_09_15_serdeser.jpg)\n\n```python\n输入：root = [1,2,3,null,null,4,5]\n输出：[1,2,3,null,null,4,5]\n```\n\n- 示例 2：\n\n```python\n输入：root = [1,2]\n输出：[1,2]\n```\n\n## 解题思路\n\n### 思路 1：深度优先搜索\n\n#### 1. 序列化：将二叉树转为字符串数据表示\n\n1. 按照前序顺序递归遍历二叉树，并将根节点跟左右子树的值链接起来（中间用 `,` 隔开）。\n\n> 注意：如果遇到空节点，则将其标记为 `None`，这样在反序列化时才能唯一确定一棵二叉树。\n\n#### 2. 反序列化：将字符串数据转为二叉树结构\n\n1. 先将字符串按 `,` 分割成数组。然后递归处理每一个元素。\n2. 从数组左侧取出一个元素。\n   1. 如果当前元素为 `None`，则返回 `None`。\n   2. 如果当前元素不为空，则新建一个二叉树节点作为根节点，保存值为当前元素值。并递归遍历左右子树，不断重复从数组中取出元素，进行判断。\n3. 最后返回当前根节点。\n\n### 思路 1：代码\n\n```python\nclass Codec:\n\n    def serialize(self, root):\n        \"\"\"Encodes a tree to a single string.\n        \n        :type root: TreeNode\n        :rtype: str\n        \"\"\"\n        if not root:\n            return 'None'\n        return str(root.val) + ',' + str(self.serialize(root.left)) + ',' + str(self.serialize(root.right))\n\n    def deserialize(self, data):\n        \"\"\"Decodes your encoded data to tree.\n        \n        :type data: str\n        :rtype: TreeNode\n        \"\"\"\n        def dfs(datalist):\n            val = datalist.pop(0)\n            if val == 'None':\n                return None\n            root = TreeNode(int(val))\n            root.left = dfs(datalist)\n            root.right = dfs(datalist)\n            return root\n\n        datalist = data.split(',')\n        return dfs(datalist)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为二叉树的节点数。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-algonote12-18",
+    "title": "0214. 最短回文串",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串、字符串匹配、哈希函数、滚动哈希 难度：困难 0214. 最短回文串 力扣 描述 ： 给定一个字符串 $s$，你可以通过在字符串前面添加字符将其转换为回文串。 要求 ：",
+    "content": "# 0214. 最短回文串\n\n- 标签：字符串、字符串匹配、哈希函数、滚动哈希\n- 难度：困难\n\n## 题目链接\n\n- 0214. 最短回文串 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串 $s$，你可以通过在字符串前面添加字符将其转换为回文串。\n\n**要求**：\n\n找到并返回可以用这种方式转换的最短回文串。\n\n**说明**：\n\n- $0 \\le s.length \\le 5 \\times 10^{4}$。\n- s 仅由小写英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"aacecaaa\"\n输出：\"aaacecaaa\"\n```\n\n- 示例 2：\n\n```python\n输入：s = \"abcd\"\n输出：\"dcbabcd\"\n```\n\n## 解题思路\n\n### 思路 1：KMP 算法\n\n这道题的关键在于找到字符串 $s$ 的最长回文前缀。如果我们能找到字符串 $s$ 的最长回文前缀，那么剩余部分的反转就是我们需要添加的前缀。\n\n具体思路如下：\n\n1. **构造新字符串**：将字符串 $s$ 和其反转字符串 $s'$ 用特殊字符连接，构造新字符串 `pattern = s + '\\#' + s'`。\n2. **使用 KMP 算法**：对新字符串 $pattern$ 计算 next 数组，找到最长公共前后缀。\n3. **找到最长回文前缀**：next 数组的最后一个值 $next[len-1]$ 就是字符串 $s$ 的最长回文前缀长度。\n4. **构造结果**：将 $s$ 中非回文前缀部分反转后添加到 $s$ 前面。\n\n算法步骤：\n- 设字符串 $s$ 的长度为 $n$，最长回文前缀长度为 $k$。\n- 需要添加的字符为 $s[n-1:n-k-1:-1]$（即从第 $n-k-1$ 个字符到第 $n-1$ 个字符的反转）。\n- 最终结果为 $s[n-1:n-k-1:-1] + s$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def shortestPalindrome(self, s: str) -> str:\n        if not s:\n            return \"\"\n        \n        # 构造新字符串：s + '#' + s的反转\n        reversed_s = s[::-1]\n        pattern = s + '#' + reversed_s\n        \n        # 计算 next 数组（KMP 算法）\n        n = len(pattern)\n        next_array = [0] * n\n        \n        # 计算 next 数组\n        for i in range(1, n):\n            j = next_array[i - 1]\n            # 如果不匹配，回退到前一个匹配位置\n            while j > 0 and pattern[i] != pattern[j]:\n                j = next_array[j - 1]\n            # 如果匹配，next 值加 1\n            if pattern[i] == pattern[j]:\n                j += 1\n            next_array[i] = j\n        \n        # next_array[n-1] 就是 s 的最长回文前缀长度\n        max_palindrome_length = next_array[n - 1]\n        \n        # 构造最短回文串\n        # 将非回文前缀部分反转后添加到前面\n        return s[max_palindrome_length:][::-1] + s\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串 $s$ 的长度。KMP 算法计算 $next$ 数组的时间复杂度为 $O(n)$。\n- **空间复杂度**：$O(n)$，需要额外的 $O(n)$ 空间存储 $next$ 数组和构造的新字符串。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote12-19",
+    "title": "0244. 最短单词距离 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：设计、数组、哈希表、双指针、字符串 难度：中等 0244. 最短单词距离 II 力扣 要求 ： 请设计一个类，使该类的构造函数能够接收一个字符串数组。然后再实现一个方法，该方",
+    "content": "# 0244. 最短单词距离 II\n\n- 标签：设计、数组、哈希表、双指针、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0244. 最短单词距离 II - 力扣\n\n## 题目大意\n\n**要求**：\n\n请设计一个类，使该类的构造函数能够接收一个字符串数组。然后再实现一个方法，该方法能够分别接收两个单词，并返回列表中这两个单词之间的最短距离。\n\n实现 `WordDistanc` 类:\n\n- `WordDistance(String[] wordsDict)` 用字符串数组 $wordsDict$ 初始化对象。\n* `int shortest(String word1, String word2)` 返回数组 $worddict$ 中 $word1$ 和 $word2$ 之间的最短距离。\n\n**说明**：\n\n- $1 \\le wordsDict.length <= 3 \\times 10^{4}$\n- $1 \\le wordsDict[i].length \\le 10$。\n* $wordsDict[i]$ 由小写英文字母组成。\n* $word1$ 和 $word2$ 在数组 $wordsDict$ 中。\n* $word1 \\ne word2$。\n* `shortest` 操作次数不大于 $5000$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: \n[\"WordDistance\", \"shortest\", \"shortest\"]\n[[[\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]], [\"coding\", \"practice\"], [\"makes\", \"coding\"]]\n输出:\n[null, 3, 1]\n\n解释：\nWordDistance wordDistance = new WordDistance([\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]);\nwordDistance.shortest(\"coding\", \"practice\"); // 返回 3\nwordDistance.shortest(\"makes\", \"coding\");    // 返回 1\n```\n\n## 解题思路\n\n### 思路 1：哈希表 + 双指针\n\n由于 `shortest` 方法会被多次调用，我们需要在构造函数中预处理数据，将每个单词的所有位置索引存储起来，这样在查询时可以快速找到两个单词的所有位置，然后使用双指针方法计算最短距离。\n\n具体步骤如下：\n\n1. 在构造函数中，遍历 $wordsDict$ 数组，使用哈希表 $word_positions$ 记录每个单词 $word$ 在数组中的所有位置索引。\n2. 在 `shortest` 方法中，获取 $word1$ 和 $word2$ 的所有位置列表 $positions1$ 和 $positions2$。\n3. 使用双指针 $i$ 和 $j$ 分别指向 $positions1$ 和 $positions2$ 的当前位置。\n4. 比较 $positions1[i]$ 和 $positions2[j]$ 的距离，移动较小位置的指针。\n5. 重复步骤 4 直到遍历完所有位置，返回最小距离。\n\n这种方法的时间复杂度为 $O(m + n)$，其中 $m$ 和 $n$ 分别是 $word1$ 和 $word2$ 在数组中的出现次数。\n\n### 思路 1：代码\n\n```python\nclass WordDistance:\n    def __init__(self, wordsDict: List[str]):\n        # 使用哈希表存储每个单词的所有位置索引\n        self.word_positions = {}\n        \n        # 遍历数组，记录每个单词的位置\n        for i, word in enumerate(wordsDict):\n            if word not in self.word_positions:\n                self.word_positions[word] = []\n            self.word_positions[word].append(i)\n\n    def shortest(self, word1: str, word2: str) -> int:\n        # 获取两个单词的所有位置列表\n        positions1 = self.word_positions[word1]\n        positions2 = self.word_positions[word2]\n        \n        # 初始化双指针和最小距离\n        i, j = 0, 0\n        min_distance = float('inf')\n        \n        # 使用双指针遍历两个位置列表\n        while i < len(positions1) and j < len(positions2):\n            # 计算当前位置的距离\n            distance = abs(positions1[i] - positions2[j])\n            min_distance = min(min_distance, distance)\n            \n            # 移动较小位置的指针\n            if positions1[i] < positions2[j]:\n                i += 1\n            else:\n                j += 1\n        \n        return min_distance\n\n# Your WordDistance object will be instantiated and called as such:\n# obj = WordDistance(wordsDict)\n# param_1 = obj.shortest(word1,word2)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：\n  - 构造函数：$O(n)$，其中 $n$ 是 $wordsDict$ 的长度。\n  - `shortest` 方法：$O(m + n)$，其中 $m$ 和 $n$ 分别是 $word1$ 和 $word2$ 在数组中的出现次数。\n- **空间复杂度**：$O(n)$，用于存储每个单词的位置索引。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote12-20",
+    "title": "0245. 最短单词距离 III",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、字符串 难度：中等 0245. 最短单词距离 III 力扣 描述 ： 给定一个字符串数组 $wordsDict$ 和两个字符串 $word1$ 和 $word2$。 要",
+    "content": "# 0245. 最短单词距离 III\n\n- 标签：数组、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0245. 最短单词距离 III - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串数组 $wordsDict$ 和两个字符串 $word1$ 和 $word2$。\n\n**要求**：\n\n返回这两个单词在列表中出现的最短距离。\n\n**说明**：\n\n- 注意：$word1$ 和 $word2$ 是有可能相同的，并且它们将分别表示为列表中两个独立的单词。\n- $1 \\le wordsDict.length \\le 10^{5}$。\n- $1 \\le wordsDict[i].length \\le 10$。\n- $wordsDict[i]$ 由小写英文字母组成。\n- $word1$ 和 $word2$ 都在 $wordsDict$ 中。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"coding\"\n输出：1\n```\n\n- 示例 2：\n\n```python\n输入：wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"makes\"\n输出：3\n```\n\n## 解题思路\n\n### 思路 1：双指针\n\n这道题与前面两题的区别在于 $word1$ 和 $word2$ 可能相同。当两个单词相同时，我们需要找到同一个单词在数组中的两个不同位置之间的最短距离。\n\n具体步骤如下：\n\n1. 遍历数组 $wordsDict$，维护两个指针 $index1$ 和 $index2$ 分别记录 $word1$ 和 $word2$ 的最新位置。\n2. 当遇到 $word1$ 时：\n   - 如果 $word1 \\neq word2$，直接更新 $index1$ 为当前位置。\n   - 如果 $word1 = word2$，需要特殊处理：先将 $index2$ 更新为之前的 $index1$，再将 $index1$ 更新为当前位置。\n3. 当遇到 $word2$ 且 $word1 \\neq word2$ 时，更新 $index2$ 为当前位置。\n4. 当 $index1$ 和 $index2$ 都有效且 $index1 \\neq index2$ 时，计算距离 $|index1 - index2|$ 并更新最小距离。\n5. 最终返回最小距离。\n\n这种方法只需要遍历一次数组，时间复杂度为 $O(n)$，空间复杂度为 $O(1)$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        # 初始化两个指针，-1 表示还未找到对应的单词\n        index1, index2 = -1, -1\n        # 初始化最小距离为数组长度\n        min_distance = len(wordsDict)\n        \n        # 遍历数组\n        for i in range(len(wordsDict)):\n            # 如果当前单词是 word1\n            if wordsDict[i] == word1:\n                # 如果 word1 和 word2 相同，需要特殊处理\n                if word1 == word2:\n                    # 先更新 index2 为之前的 index1，再更新 index1 为当前位置\n                    if index1 != -1:\n                        index2 = index1\n                    index1 = i\n                else:\n                    # 如果不同，直接更新 index1\n                    index1 = i\n            # 如果当前单词是 word2 且与 word1 不同\n            elif wordsDict[i] == word2:\n                index2 = i\n            \n            # 如果两个单词都找到了且不是同一个位置，计算距离并更新最小值\n            if index1 != -1 and index2 != -1 and index1 != index2:\n                min_distance = min(min_distance, abs(index1 - index2))\n        \n        return min_distance\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组 $wordsDict$ 的长度。我们只需要遍历一次数组。\n- **空间复杂度**：$O(1)$。只使用了常数个额外变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/49e24e82f9eb00b1.webp"
+  },
+  {
+    "id": "g-algonote12-21",
+    "title": "0243. 最短单词距离",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、字符串 难度：简单 0243. 最短单词距离 力扣 描述 ： 给定一个字符串数组 $wordDict$ 和两个已经存在于该数组中的不同的字符串 $word1$ 和 $w",
+    "content": "# 0243. 最短单词距离\n\n- 标签：数组、字符串\n- 难度：简单\n\n## 题目链接\n\n- 0243. 最短单词距离 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个字符串数组 $wordDict$ 和两个已经存在于该数组中的不同的字符串 $word1$ 和 $word2$。\n\n**要求**：\n\n返回列表中这两个单词之间的最短距离。\n\n**说明**：\n\n- $1 \\le wordsDict.length \\le 3 \\times 10^{4}$。\n- $1 \\le wordsDict[i].length \\le 10$。\n- $wordsDict[i]$ 由小写英文字母组成。\n- $word1$ 和 $word2$ 在 $wordsDict$ 中。\n- $word1 \\ne word2$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"coding\", word2 = \"practice\"\n输出: 3\n```\n\n- 示例 2：\n\n```python\n输入: wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"coding\"\n输出: 1\n```\n\n## 解题思路\n\n### 思路 1：双指针\n\n使用双指针的方法来解决这个问题。我们可以维护两个指针 $i$ 和 $j$，分别指向 $word1$ 和 $word2$ 在数组中的位置。\n\n具体步骤如下：\n1. 遍历数组 $wordsDict$，当遇到 $word1$ 时，更新指针 $i$ 为当前位置\n2. 当遇到 $word2$ 时，更新指针 $j$ 为当前位置  \n3. 当 $i$ 和 $j$ 都有效时（即 $i \\neq -1$ 且 $j \\neq -1$），计算距离 $|i - j|$ 并更新最小距离\n4. 最终返回最小距离\n\n这种方法只需要遍历一次数组，时间复杂度为 $O(n)$，空间复杂度为 $O(1)$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        # 初始化两个指针，-1 表示还未找到对应的单词\n        index1, index2 = -1, -1\n        # 初始化最小距离为数组长度\n        min_distance = len(wordsDict)\n        \n        # 遍历数组\n        for i in range(len(wordsDict)):\n            # 如果当前单词是 word1，更新 index1\n            if wordsDict[i] == word1:\n                index1 = i\n            # 如果当前单词是 word2，更新 index2  \n            elif wordsDict[i] == word2:\n                index2 = i\n            \n            # 如果两个单词都找到了，计算距离并更新最小值\n            if index1 != -1 and index2 != -1:\n                min_distance = min(min_distance, abs(index1 - index2))\n        \n        return min_distance\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是数组 $wordsDict$ 的长度。我们只需要遍历一次数组。\n- **空间复杂度**：$O(1)$。只使用了常数个额外变量。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
+  },
+  {
+    "id": "g-algonote12-22",
+    "title": "0260. 只出现一次的数字 III",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：位运算、数组 难度：中等 0260. 只出现一次的数字 III 力扣 描述 ：给定一个整数数组 $nums$。$nums$ 中恰好有两个元素只出现一次，其余所有元素均出现两次",
+    "content": "# 0260. 只出现一次的数字 III\n\n- 标签：位运算、数组\n- 难度：中等\n\n## 题目链接\n\n- 0260. 只出现一次的数字 III - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$。$nums$ 中恰好有两个元素只出现一次，其余所有元素均出现两次。\n\n**要求**：找出只出现一次的那两个元素。可以按任意顺序返回答案。要求时间复杂度是 $O(n)$，空间复杂度是 $O(1)$。\n\n**说明**：\n\n- $2 \\le nums.length \\le 3 \\times 10^4$。\n- $-2^{31} \\le nums[i] \\le 2^{31} - 1$。\n- 除两个只出现一次的整数外，$nums$ 中的其他数字都出现两次。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,1,3,2,5]\n输出：[3,5]\n解释：[5, 3] 也是有效的答案。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [-1,0]\n输出：[-1,0]\n```\n\n## 解题思路\n\n### 思路 1：位运算\n\n求解这道题之前，我们先来看看如何求解「一个数组中除了某个元素只出现一次以外，其余每个元素均出现两次。」即「136. 只出现一次的数字」问题。\n\n我们可以对所有数不断进行异或操作，最终可得到单次出现的元素。\n\n下面我们再来看这道题。\n\n如果数组中有两个数字只出现一次，其余每个元素均出现两次。那么经过全部异或运算。我们可以得到只出现一次的两个数字的异或结果。\n\n根据异或结果的性质，异或运算中如果某一位上为 $1$，则说明异或的两个数在该位上是不同的。根据这个性质，我们将数字分为两组：\n\n1. 一组是和该位为 $0$ 的数字，\n2. 一组是该位为 $1$ 的数字。\n\n然后将这两组分别进行异或运算，就可以得到最终要求的两个数字。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def singleNumbers(self, nums: List[int]) -> List[int]:\n        all_xor = 0\n        for num in nums:\n            all_xor ^= num\n        # 获取所有异或中最低位的 1\n        mask = 1\n        while all_xor & mask == 0:\n            mask <<= 1\n\n        a_xor, b_xor = 0, 0\n        for num in nums:\n            if num & mask == 0:\n                a_xor ^= num\n            else:\n                b_xor ^= num\n\n        return a_xor, b_xor\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为数组 $nums$ 中的元素个数。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote12-23",
+    "title": "0239. 滑动窗口最大值",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：队列、数组、滑动窗口、单调队列、堆（优先队列） 难度：困难 0239. 滑动窗口最大值 力扣 描述 ：给定一个整数数组 nums ，再给定一个整数 k ，表示为大小为 k 的",
+    "content": "# 0239. 滑动窗口最大值\n\n- 标签：队列、数组、滑动窗口、单调队列、堆（优先队列）\n- 难度：困难\n\n## 题目链接\n\n- 0239. 滑动窗口最大值 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 `nums`，再给定一个整数 `k`，表示为大小为 `k` 的滑动窗口从数组的最左侧移动到数组的最右侧。我们只能看到滑动窗口内的 `k` 个数字，滑动窗口每次只能向右移动一位。\n\n**要求**：返回滑动窗口中的最大值。\n\n**说明**：\n\n- $1 \\le nums.length \\le 10^5$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n- $1 \\le k \\le nums.length$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,3,-1,-3,5,3,6,7], k = 3\n输出：[3,3,5,5,6,7]\n解释：\n滑动窗口的位置                最大值\n---------------               -----\n[1  3  -1] -3  5  3  6  7       3\n 1 [3  -1  -3] 5  3  6  7       3\n 1  3 [-1  -3  5] 3  6  7       5\n 1  3  -1 [-3  5  3] 6  7       5\n 1  3  -1  -3 [5  3  6] 7       6\n 1  3  -1  -3  5 [3  6  7]      7\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1], k = 1\n输出：[1]\n```\n\n## 解题思路\n\n暴力求解的话，需要使用二重循环遍历，其时间复杂度为 $O(n * k)$。根据题目给定的数据范围，肯定会超时。\n\n我们可以使用优先队列来做。\n\n### 思路 1：优先队列\n\n1. 初始的时候将前 `k` 个元素加入优先队列的二叉堆中。存入优先队列的是数组值与索引构成的元组。优先队列将数组值作为优先级。\n2. 然后滑动窗口从第 `k` 个元素开始遍历，将当前数组值和索引的元组插入到二叉堆中。\n3. 当二叉堆堆顶元素的索引已经不在滑动窗口的范围中时，即 `q[0][1] <= i - k` 时，不断删除堆顶元素，直到最大值元素的索引在滑动窗口的范围中。\n4. 将最大值加入到答案数组中，继续向右滑动。\n5. 滑动结束时，输出答案数组。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        size = len(nums)\n        q = [(-nums[i], i) for i in range(k)]\n        heapq.heapify(q)\n        res = [-q[0][0]]\n\n        for i in range(k, size):\n            heapq.heappush(q, (-nums[i], i))\n            while q[0][1] <= i - k:\n                heapq.heappop(q)\n            res.append(-q[0][0])\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log_2n)$。\n- **空间复杂度**：$O(k)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-algonote12-24",
+    "title": "0247. 中心对称数 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数组、字符串 难度：中等 0247. 中心对称数 II 力扣 描述 ： 给定一个整数 $n$。 要求 ： 返回所有长度为 $n$ 的「中心对称数」。你可以以任何顺序返回",
+    "content": "# 0247. 中心对称数 II\n\n- 标签：递归、数组、字符串\n- 难度：中等\n\n## 题目链接\n\n- 0247. 中心对称数 II - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个整数 $n$。\n\n**要求**：\n\n返回所有长度为 $n$ 的「中心对称数」。你可以以任何顺序返回答案。\n\n**说明**：\n\n- 中心对称数：指一个数字在旋转了 180 度之后看起来依旧相同的数字（或者上下颠倒地看）。\n- $1 \\le n \\le 14$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 2\n输出：[\"11\",\"69\",\"88\",\"96\"]\n```\n\n- 示例 2：\n\n```python\n输入：n = 1\n输出：[\"0\",\"1\",\"8\"]\n```\n\n## 解题思路\n\n### 思路 1：递归构建\n\n中心对称数是指旋转 180 度后看起来相同的数字。只有特定的数字可以构成中心对称数：\n\n- $0$ 旋转后还是 $0$。\n- $1$ 旋转后还是 $1$。\n- $6$ 旋转后变成 $9$。\n- $8$ 旋转后还是 $8$。\n- $9$ 旋转后变成 $6$。\n\n使用递归方法从外向内构建中心对称数：\n\n- 对于长度为 $n$ 的中心对称数，我们从两端开始构建。\n- 每次选择一对可以相互旋转的数字 $(a, b)$，其中 $a$ 旋转后变成 $b$。\n- 递归处理中间部分，直到构建完成。\n- 特殊情况：当 $n$ 为奇数时，中间位置只能放置 $0, 1, 8$；当 $n$ 为偶数时，从空字符串开始构建。\n- 注意：不能以 $0$ 开头（除非 $n = 1$）。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def findStrobogrammatic(self, n: int) -> List[str]:\n        # 定义中心对称数字的映射关系\n        strobogrammatic_pairs = [\n            ('0', '0'), ('1', '1'), ('6', '9'), \n            ('8', '8'), ('9', '6')\n        ]\n        \n        def build_strobogrammatic(m):\n            # 递归构建长度为 m 的中心对称数\n            if m == 0:\n                return [\"\"]  # 空字符串\n            if m == 1:\n                return [\"0\", \"1\", \"8\"]  # 单个数字的情况\n            \n            # 递归构建中间部分\n            inner = build_strobogrammatic(m - 2)\n            result = []\n            \n            for pair in strobogrammatic_pairs:\n                left, right = pair\n                for inner_str in inner:\n                    # 构建完整的中心对称数\n                    result.append(left + inner_str + right)\n            \n            return result\n        \n        # 获取所有可能的中心对称数\n        candidates = build_strobogrammatic(n)\n        \n        # 过滤掉以 0 开头的数字（除非 n = 1）\n        if n == 1:\n            return candidates\n        else:\n            return [num for num in candidates if not num.startswith('0')]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(5^{n/2} \\times n)$，其中 $n$ 是目标长度。每次递归有 5 种选择，递归深度为 $n/2$，每个结果字符串长度为 $n$。\n- **空间复杂度**：$O(5^{n/2} \\times n)$，存储所有可能的中心对称数结果。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-algonote12-25",
+    "title": "0248. 中心对称数 III",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数组、字符串 难度：困难 0248. 中心对称数 III 力扣 描述 ： 给定两个字符串 $low$ 和 $high$ 表示两个整数 $low$ 和 $high$，其中",
+    "content": "# 0248. 中心对称数 III\n\n- 标签：递归、数组、字符串\n- 难度：困难\n\n## 题目链接\n\n- 0248. 中心对称数 III - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定两个字符串 $low$ 和 $high$ 表示两个整数 $low$ 和 $high$，其中 $low \\le high$。\n\n**要求**：\n\n返回范围 $[low, high]$ 内的「中心对称数」总数。\n\n**说明**：\n\n- 中心对称数：指一个数字在旋转了 180 度之后看起来依旧相同的数字（或者上下颠倒地看）。\n- $1 \\le low.length, high.length \\le 15$。\n- low 和 high 只包含数字。\n- $low \\le high$。\n- $low$ 和 $high$ 不包含任何前导零，除了零本身。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: low = \"50\", high = \"100\"\n输出: 3\n```\n\n- 示例 2：\n\n```python\n输入: low = \"0\", high = \"0\"\n输出: 1\n```\n\n## 解题思路\n\n### 思路 1：递归生成 + 计数\n\n中心对称数只能由数字 $\\{0, 1, 6, 8, 9\\}$ 组成，其中：\n\n- $0$ 旋转后还是 $0$。\n- $1$ 旋转后还是 $1$。\n- $6$ 旋转后变成 $9$。\n- $8$ 旋转后还是 $8$。\n- $9$ 旋转后变成 $6$。\n\n对于长度为 $n$ 的中心对称数，我们可以递归生成：\n\n- 当 $n = 0$ 时：返回空字符串\n- 当 $n = 1$ 时：只能是 $\\{0, 1, 8\\}$\n- 当 $n > 1$ 时：\n  - 外层可以是 $\\{0, 1, 6, 8, 9\\}$，但最外层不能是 $0$（避免前导零）\n  - 内层递归生成长度为 $n-2$ 的中心对称数\n\n算法步骤：\n\n1. 生成所有长度在 $[\\text{len}(low), \\text{len}(high)]$ 范围内的中心对称数\n2. 过滤出在 $[low, high]$ 范围内的数字\n3. 返回符合条件的数字个数\n\n关键点：\n\n- 最外层不能是 $0$，避免生成前导零。\n- 内层可以是 $0$，如 `\"1001\"` 是有效的中心对称数。\n- 对于数字字符串的比较，需要先比较长度，再比较字典序。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def strobogrammaticInRange(self, low: str, high: str) -> int:\n        # 定义中心对称数字的映射关系\n        strobogrammatic_map = {\n            '0': '0',\n            '1': '1', \n            '6': '9',\n            '8': '8',\n            '9': '6'\n        }\n        \n        def generate_strobogrammatic(n, length):\n            \"\"\"递归生成长度为 n 的中心对称数，length 表示目标长度\"\"\"\n            if n == 0:\n                return [\"\"]\n            if n == 1:\n                return [\"0\", \"1\", \"8\"]\n            \n            # 递归生成长度为 n-2 的中心对称数\n            shorter = generate_strobogrammatic(n - 2, length)\n            result = []\n            \n            for s in shorter:\n                # 对于中间的数字，可以是 0, 1, 6, 8, 9\n                for outer in ['0', '1', '6', '8', '9']:\n                    # 如果是最外层且长度 > 1，外层不能是 0（避免前导零）\n                    if n != length or outer != '0':\n                        result.append(outer + s + strobogrammatic_map[outer])\n            \n            return result\n        \n        def is_in_range(num_str, low, high):\n            \"\"\"判断数字是否在指定范围内\"\"\"\n            # 先比较长度，再比较字符串内容\n            if len(num_str) < len(low) or len(num_str) > len(high):\n                return False\n            \n            # 如果长度在中间，肯定在范围内\n            if len(num_str) > len(low) and len(num_str) < len(high):\n                return True\n            \n            # 长度相等时，直接比较字符串\n            if len(num_str) == len(low) and len(num_str) == len(high):\n                return low <= num_str <= high\n            elif len(num_str) == len(low):\n                return num_str >= low\n            elif len(num_str) == len(high):\n                return num_str <= high\n            \n            return False\n        \n        count = 0\n        low_len, high_len = len(low), len(high)\n        \n        # 生成所有长度在 [low_len, high_len] 范围内的中心对称数\n        for length in range(low_len, high_len + 1):\n            strobogrammatic_nums = generate_strobogrammatic(length, length)\n            \n            for num in strobogrammatic_nums:\n                if is_in_range(num, low, high):\n                    count += 1\n        \n        return count\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(5^{n/2} \\times n)$，其中 $n$ 是最大长度。递归生成所有可能的中心对称数，每个数字需要 $O(n)$ 时间进行范围检查。\n- **空间复杂度**：$O(5^{n/2} \\times n)$，存储所有生成的中心对称数。\n\n具体分析：\n- 对于长度为 $k$ 的中心对称数，有 $5^{k/2}$ 个（外层 4 种选择，内层 5 种选择）。\n- 总共有 $\\sum_{k=\\text{len}(low)}^{\\text{len}(high)} 5^{k/2}$ 个中心对称数。\n- 每个数字的字符串比较需要 $O(k)$ 时间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote12-26",
+    "title": "0246. 中心对称数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、双指针、字符串 难度：简单 0246. 中心对称数 力扣 描述 ： 中心对称数是指一个数字在旋转了 180 度之后看起来依旧相同的数字（或者上下颠倒地看）。 要求 ：",
+    "content": "# 0246. 中心对称数\n\n- 标签：哈希表、双指针、字符串\n- 难度：简单\n\n## 题目链接\n\n- 0246. 中心对称数 - 力扣\n\n## 题目大意\n\n**描述**：\n\n中心对称数是指一个数字在旋转了 180 度之后看起来依旧相同的数字（或者上下颠倒地看）。\n\n**要求**：\n\n写一个函数来判断该数字是否是中心对称数，其输入将会以一个字符串的形式来表达数字。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入: num = \"69\"\n输出: true\n```\n\n- 示例 2：\n\n```python\n输入: num = \"88\"\n输出: true\n```\n\n## 解题思路\n\n### 思路 1：哈希表 + 双指针\n\n中心对称数是指旋转 180 度后看起来相同的数字。只有特定的数字在旋转后有意义：\n- $0$ 旋转后还是 $0$。\n- $1$ 旋转后还是 $1$。\n- $6$ 旋转后变成 $9$。\n- $8$ 旋转后还是 $8$。\n- $9$ 旋转后变成 $6$。\n\n其他数字（如 $2, 3, 4, 5, 7$）旋转后没有意义。\n\n使用哈希表存储每个数字的旋转对应关系，然后用双指针从两端向中间检查：\n\n- 如果字符串中包含不能旋转的数字，直接返回 $false$。\n- 如果两端字符的旋转对应关系不匹配，返回 $false$。\n- 如果所有字符都满足中心对称条件，返回 $true$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def isStrobogrammatic(self, num: str) -> bool:\n        # 定义中心对称数字的映射关系\n        strobogrammatic_map = {\n            '0': '0',\n            '1': '1', \n            '6': '9',\n            '8': '8',\n            '9': '6'\n        }\n        \n        # 双指针从两端向中间检查\n        left, right = 0, len(num) - 1\n        \n        while left <= right:\n            # 如果当前字符不能旋转，返回 False\n            if num[left] not in strobogrammatic_map:\n                return False\n            if num[right] not in strobogrammatic_map:\n                return False\n            \n            # 检查旋转后的对应关系\n            if strobogrammatic_map[num[left]] != num[right]:\n                return False\n            \n            left += 1\n            right -= 1\n        \n        return True\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是字符串长度。需要遍历字符串一次。\n- **空间复杂度**：$O(1)$。哈希表大小固定为 $5$，不随输入规模变化。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-algonote12-27",
+    "title": "0228. 汇总区间",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组 难度：简单 0228. 汇总区间 力扣 描述 ： 给定一个「无重复元素」的「有序」整数数组 $nums$。 区间 $ a, b $ 是从 $a$ 到 $b$（包含）的所",
+    "content": "# 0228. 汇总区间\n\n- 标签：数组\n- 难度：简单\n\n## 题目链接\n\n- 0228. 汇总区间 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个「无重复元素」的「有序」整数数组 $nums$。\n\n区间 $[a, b]$ 是从 $a$ 到 $b$（包含）的所有整数的集合。\n\n**要求**：\n\n返回「恰好覆盖数组中所有数字」的「最小有序」区间范围列表。也就是说，$nums$ 的每个元素都恰好被某个区间范围所覆盖，并且不存在属于某个区间但不属于 $nums$ 的数字 $x$。\n\n列表中的每个区间范围 [a,$b$] 应该按如下格式输出：\n\n- `\"a->b\"` ，如果 $a \\ne b$。\n- `\"a\"`，如果 $a == b$。\n\n**说明**：\n\n- $0 \\le nums.length \\le 20$。\n- $-2^{31} \\le nums[i] \\le 2^{31} - 1$。\n- $nums$ 中的所有值都 互不相同。\n- $nums$ 按升序排列。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [0,1,2,4,5,7]\n输出：[\"0->2\",\"4->5\",\"7\"]\n解释：区间范围是：\n[0,2] --> \"0->2\"\n[4,5] --> \"4->5\"\n[7,7] --> \"7\"\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,2,3,4,6,8,9]\n输出：[\"0\",\"2->4\",\"6\",\"8->9\"]\n解释：区间范围是：\n[0,0] --> \"0\"\n[2,4] --> \"2->4\"\n[6,6] --> \"6\"\n[8,9] --> \"8->9\"\n```\n\n## 解题思路\n\n### 思路 1：双指针\n\n使用双指针遍历数组，找到连续区间的起始和结束位置。\n\n具体步骤：\n\n1. 初始化结果列表 $res$ 和双指针 $i = 0$。\n2. 遍历数组，对于每个位置 $i$：\n   - 记录当前区间的起始位置 $start = nums[i]$。\n   - 移动指针 $j$ 直到 $nums[j + 1] \\neq nums[j] + 1$ 或到达数组末尾。\n   - 记录当前区间的结束位置 $end = nums[j]$。\n   - 根据 $start$ 和 $end$ 的关系生成区间字符串：\n     - 如果 $start = end$，添加 $\"start\"$。\n     - 否则，添加 $\"start->end\"$。\n   - 更新 $i = j + 1$ 继续处理下一个区间。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def summaryRanges(self, nums: List[int]) -> List[str]:\n        if not nums:\n            return []\n        \n        res = []\n        i = 0\n        n = len(nums)\n        \n        while i < n:\n            # 记录当前区间的起始位置\n            start = nums[i]\n            \n            # 找到连续区间的结束位置\n            j = i\n            while j + 1 < n and nums[j + 1] == nums[j] + 1:\n                j += 1\n            \n            # 记录当前区间的结束位置\n            end = nums[j]\n            \n            # 根据起始和结束位置生成区间字符串\n            if start == end:\n                res.append(str(start))\n            else:\n                res.append(f\"{start}->{end}\")\n            \n            # 移动到下一个区间的起始位置\n            i = j + 1\n        \n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。每个元素最多被访问两次（作为区间起点和终点），总体时间复杂度为 $O(n)$。\n- **空间复杂度**：$O(1)$。除了结果数组外，只使用了常数级别的额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-algonote12-28",
+    "title": "0218. 天际线问题",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树状数组、线段树、数组、分治、有序集合、扫描线、堆（优先队列） 难度：困难 0218. 天际线问题 力扣 城市的天际线是从远处观看该城市中所有建筑物形成的轮廓的外部轮廓。 给",
+    "content": "# 0218. 天际线问题\n\n- 标签：树状数组、线段树、数组、分治、有序集合、扫描线、堆（优先队列）\n- 难度：困难\n\n## 题目链接\n\n- 0218. 天际线问题 - 力扣\n\n## 题目大意\n\n城市的天际线是从远处观看该城市中所有建筑物形成的轮廓的外部轮廓。\n\n给定所有建筑物的位置和高度所组成的数组 `buildings`。其中三元素 `buildings[i] = [left_i, right_i, height_i]` 表示 `left_i` 是第 `i` 座建筑物左边界的 `x` 坐标。`right_i` 是第 `i` 座建筑物右边界的 `x` 坐标，`height_i` 是第 `i` 做建筑物的高度。\n\n要求：返回由这些建筑物形成的天际线 。\n\n- 天际线：由 “关键点” 组成的列表，格式 `[[x1, y1], [x2, y2], [x3, y3], ...]`，并按 `x` 坐标进行排序。\n- 关键点：水平线段的左端点。列表中最后一个点是最右侧建筑物的终点，`y` 坐标始终为 `0`，仅用于标记天际线的终点。此外，任何两个相邻建筑物之间的地面都应被视为天际线轮廓的一部分。\n\n注意：输出天际线中不得有连续的相同高度的水平线。\n\n- 例如 `[..., [2 3], [4 5], [7 5], [11 5], [12 7], ...]` 是不正确的答案；三条高度为 `5` 的线应该在最终输出中合并为一个：`[..., [2 3], [4 5], [12 7], ...]`。\n\n示例：\n\n![](/images/figures/algonote12/ext_assets.leetcode.com__uploads_2020_12_01_merged.jpg)\n\n- 图 A 显示输入的所有建筑物的位置和高度。\n- 图 B 显示由这些建筑物形成的天际线。图 B 中的红点表示输出列表中的关键点。\n\n## 解题思路\n\n可以看出来：关键点的横坐标都在建筑物的左右边界上。\n\n我们可以将左右边界最高处的坐标存入 `points` 数组中，然后按照建筑物左边界、右边界的高度进行排序。\n\n然后用一条条「垂直于 x 轴的扫描线」，从所有建筑物的最左侧依次扫描到最右侧。从而将建筑物分割成规则的矩形。\n\n不难看出：相邻的两个坐标的横坐标与矩形所能达到的最大高度构成了一个矩形。相邻两个坐标的横坐标可以从排序过的 `points` 数组中依次获取，矩形所能达到的最大高度可以用一个优先队列（堆）`max_heap` 来维护。使用数组 `ans` 来作为答案答案。\n\n在依次从左到右扫描坐标时：\n\n- 当扫描到建筑物的左边界时，说明必然存在一条向右延伸的边。此时将高度加入到优先队列中。\n- 当扫描到建筑物的右边界时，说明从之前的左边界延伸的边结束了，此时将高度从优先队列中移除。\n\n因为三条高度相同的线应该合并为一个，所以我们用 `prev` 来记录之前上一个矩形高度。\n\n- 如果当前矩形高度 `curr` 与之前矩形高度 `prev` 相同，则跳过。\n- 如果当前矩形高度 `curr` 与之前矩形高度 `prev `不相同，则将其加入到答案数组中，并更新上一矩形高度 `prev` 的值。\n\n最后，输出答案 `ans`。\n\n## 代码\n\n```python\nfrom sortedcontainers import SortedList\n\nclass Solution:\n    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        ans = []\n        points = []\n        for building in buildings:\n            left, right, hight = building[0], building[1], building[2]\n            points.append([left, -hight])\n            points.append([right, hight])\n        points.sort(key=lambda x:(x[0], x[1]))\n\n        prev = 0\n        max_heap = SortedList([prev])\n\n        for point in points:\n            x, height = point[0], point[1]\n            if height < 0:\n                max_heap.add(-height)\n            else:\n                max_heap.remove(height)\n\n            curr = max_heap[-1]\n            if curr != prev:\n                ans.append([x, curr])\n                prev = curr\n        return ans\n```\n\n## 参考资料\n\n- 【题解】【宫水三叶】扫描线算法基本思路 & 优先队列维护当前最大高度 - 天际线问题 - 力扣",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-algonote12-29",
+    "title": "0264. 丑数 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 XII",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、数学、动态规划、堆（优先队列） 难度：中等 0264. 丑数 II 力扣 给定一个整数 n 。 要求：找出并返回第 n 个丑数。 丑数：只包含质因数 2 、 3 、 ",
+    "content": "# 0264. 丑数 II\n\n- 标签：哈希表、数学、动态规划、堆（优先队列）\n- 难度：中等\n\n## 题目链接\n\n- 0264. 丑数 II - 力扣\n\n## 题目大意\n\n给定一个整数 `n`。\n\n要求：找出并返回第 `n` 个丑数。\n\n- 丑数：只包含质因数 `2`、`3`、`5` 的正整数。\n\n## 解题思路\n\n动态规划求解。\n\n定义状态 `dp[i]` 表示第 `i` 个丑数。\n\n状态转移方程为：`dp[i] = min(dp[p2] * 2, dp[p3] * 3, dp[p5] * 5)` ，其中 `p2`、`p3`、`p5` 分别表示当前 `i` 中  `2`、`3`、`5` 的质因子数量。\n\n## 代码\n\n```python\nclass Solution:\n    def nthUglyNumber(self, n: int) -> int:\n        dp = [1 for _ in range(n)]\n        p2, p3, p5 = 0, 0, 0\n        for i in range(1, n):\n            dp[i] = min(dp[p2] * 2, dp[p3] * 3, dp[p5] * 5)\n            if dp[i] == dp[p2] * 2:\n                p2 += 1\n            if dp[i] == dp[p3] * 3:\n                p3 += 1\n            if dp[i] == dp[p5] * 5:\n                p5 += 1\n        return dp[n - 1]\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-mlint11-1",
+    "title": "359. Logger Rate Limiter",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 XI",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/logger rate limiter/description/ 时间复杂度：O(n) 空间复杂度：O(n) 给定一个公",
+    "content": "# 359. Logger Rate Limiter\n\n`https://leetcode.com/problems/logger-rate-limiter/description/`\n\n## solution\n\n```python\n# hashmap 做一个类似 inverted index 功能\n\nclass Logger:\n    def __init__(self):\n        self.messageQueue = collections.deque()\n        self.messageSet = set()\n\n    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:\n        while self.messageQueue:\n            headTimestamp, headMessage = self.messageQueue[0]\n            if timestamp < headTimestamp + 10:\n                break\n            # 大于10秒的去掉\n            self.messageQueue.popleft()\n            self.messageSet.remove(headMessage)\n\n        if message in self.messageSet:\n            return False\n        self.messageQueue.append((timestamp, message))\n        self.messageSet.add(message)\n        return True\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n给定一个公共API，限制每个用户每秒只能调用1000次，如何实现？\n\n- counter\n- Token Bucket\n- Leak Bucket\n- `https://zhuanlan.zhihu.com/p/20872901`",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-mlint11-2",
+    "title": "379. Design Phone Directory",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 XI",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design phone directory/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 379. Design Phone Directory\n\n`https://leetcode.com/problems/design-phone-directory/`\n\n## solution\n\n```python\nfrom heapq import heappop, heappush\n\nclass PhoneDirectory:\n    def __init__(self, maxNumbers: int):\n        self.used = set()  # 记录已被使用的编号\n        self.heap = []  # 按照号码的值由小到大进行分配\n        self.next = 0\n        self.k = maxNumbers  # 电话目录的最大编号\n\n    def get(self) -> int:\n        ans = -1\n        if len(self.used) == self.k:\n            return ans\n        if self.heap:\n            ans = heappop(self.heap)\n        else:\n            ans, self.next = self.next, self.next+1\n        self.used.add(ans)\n        return ans\n\n    def check(self, n: int) -> bool:\n        return n < self.k and n not in self.used\n\n    def release(self, n: int):\n        if n in self.used:\n            self.used.remove(n)\n            heappush(self.heap, n)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-mlint11-3",
+    "title": "588. Design In-Memory File System",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 XI",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design in memory file system/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 588. Design In-Memory File System\n\n`https://leetcode.com/problems/design-in-memory-file-system/`\n\n## solution\n\n```python\n# https://zhuanlan.zhihu.com/p/601806380\n\nclass TrieNode:\n    def __init__(self):\n        self.name = None\n        self.is_file = False\n        self.content = []\n        self.children = {}\n\n    def insert(self, path: str, is_file: bool) -> 'TrieNode':\n        # Insert a path into the Trie and return the final node\n        node = self\n        parts = path.split('/')\n        for part in parts[1:]:  # Skip empty root part\n            if part not in node.children:\n                node.children[part] = TrieNode()\n            node = node.children[part]\n        node.is_file = is_file\n        if is_file:\n            node.name = parts[-1]\n        return node\n\n    def search(self, path: str) -> 'TrieNode':\n        # Search for a node given a path in the Trie\n        node = self\n        if path == '/':\n            return node\n        parts = path.split('/')\n        for part in parts[1:]: # Skip empty root part\n            if part not in node.children:\n                return None\n            node = node.children[part]\n        return node\n\nclass FileSystem:\n    def __init__(self):\n        self.root = TrieNode()\n\n    def ls(self, path: str) -> List[str]:\n        # List directory or file\n        node = self.root.search(path)\n        if node is None:\n            return []\n        if node.is_file:\n            # If it's a file, return a list with its name\n            return [node.name]\n        # If it's a directory, return the sorted list of children's names\n        return sorted(node.children.keys())\n\n    def mkdir(self, path: str) -> None:\n        # Create a directory given a path\n        self.root.insert(path, False)\n\n    def addContentToFile(self, filePath: str, content: str) -> None:\n        # Add content to a file, creating the file if it doesn't exist\n        node = self.root.insert(filePath, True)\n        node.content.append(content)\n\n    def readContentFromFile(self, filePath: str) -> str:\n        # Read content from a file\n        node = self.root.search(filePath)\n        if node is None or not node.is_file:\n            raise FileNotFoundError(f\"File not found: {filePath}\")\n        return ''.join(node.content)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-mlint11-4",
+    "title": "307. Range Sum Query - Mutable",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 XI",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/range sum query mutable/description 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 307. Range Sum Query - Mutable\n\n`https://leetcode.com/problems/range-sum-query-mutable/description`\n\n## solution\n\n```python\n\"\"\"\nThe idea here is to build a segment tree. Each node stores the left and right endpoint of an interval and\nthe sum of that interval. All of the leaves will store elements of the array and each internal node will store\nsum of leaves under it. Creating the tree takes O(n) time. Query and updates are both O(log n).\n\"\"\"\n\nclass TreeNode:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n        self.left = None\n        self.right = None\n        self.sum = 0\n\nclass FenwichTree:\n    def __init__(self, arr):\n        self.root = self.buildTree(arr, 0, len(arr)-1)\n\n    def buildTree(self, arr, l, r):\n        if l > r:\n            return None\n        root = TreeNode(l, r)\n        if l == r:\n            root.sum = arr[l]\n            return root\n        m = l + (r - l) // 2\n        root.left = self.buildTree(arr, l, m)\n        root.right = self.buildTree(arr, m+1, r)\n        root.sum = root.left.sum + root.right.sum\n        return root\n\n    def update(self, index, val, node=None):\n        if node is None:\n            node = self.root\n\n        if node.start == node.end:\n            node.sum = val\n            return\n\n        m = node.start + (node.end - node.start) // 2\n        if index <= m:\n            self.update(index, val, node.left)\n        else:\n            self.update(index, val, node.right)\n        node.sum = node.left.sum + node.right.sum\n\n    def sumRange(self, st, end, node=None):\n        if node is None:\n            node = self.root\n        if node.start == st and node.end == end:\n            return node.sum\n        m = node.start + (node.end - node.start) // 2\n        if end <= m:\n            return self.sumRange(st, end, node.left)\n        if st >= m+1:\n            return self.sumRange(st, end, node.right)\n        return self.sumRange(st, m, node.left) + self.sumRange(m+1, end, node.right)\n\nclass NumArray:\n    def __init__(self, nums: List[int]):\n        self.tree = FenwichTree(nums)\n\n    def update(self, i: int, val: int) -> None:\n        self.tree.update(i, val)\n\n    def sumRange(self, i: int, j: int) -> int:\n        return self.tree.sumRange(i, j)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
   }
 ]
