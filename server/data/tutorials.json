@@ -17,14 +17,14 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 241
+      "count": 264
     },
     {
       "id": "algo",
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 278
+      "count": 307
     },
     {
       "id": "system",
@@ -33829,6 +33829,838 @@
       ],
       "prereqs": [],
       "href": "/post/g-mlint2-30"
+    },
+    {
+      "id": "g-waytogo3-1",
+      "kind": "collection",
+      "title": "8.4 map 类型的切片",
+      "summary": "假设我们想获取一个 map 类型的切片，我们必须使用两次 make() 函数，第一次分配切片，第二次分配切片中每个 ma",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-1"
+    },
+    {
+      "id": "g-waytogo3-2",
+      "kind": "collection",
+      "title": "8.5 map 的排序",
+      "summary": "map 默认是无序的，不管是按照 key 还是按照 value 默认都不排序（详见第 8.3 节）。 如果你想为 map",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-2"
+    },
+    {
+      "id": "g-waytogo3-3",
+      "kind": "collection",
+      "title": "8.6 将 map 的键值对调",
+      "summary": "这里对调是指调换 key 和 value。如果 map 的值类型可以作为 key 且所有的 value 是唯一的，那么通",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-3"
+    },
+    {
+      "id": "g-waytogo3-5",
+      "kind": "collection",
+      "title": "9.1 标准库概述",
+      "summary": "像 fmt 、 os 等这样具有常用功能的内置包在 Go 语言中有 150 个以上，它们被称为标准库，大部分(一些底层的",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-5"
+    },
+    {
+      "id": "g-waytogo3-8",
+      "kind": "collection",
+      "title": "9.2 regexp 包",
+      "summary": "正则表达式语法和使用的详细信息请参考 维基百科。 在下面的程序里，我们将在字符串中对正则表达式模式 (pattern) ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-8"
+    },
+    {
+      "id": "g-waytogo3-9",
+      "kind": "collection",
+      "title": "9.3 锁和 sync 包",
+      "summary": "在一些复杂的程序中，通常通过不同线程执行不同应用来实现程序的并发。当不同线程要使用同一个变量时，经常会出现一个问题：无法",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-9"
+    },
+    {
+      "id": "g-waytogo3-10",
+      "kind": "collection",
+      "title": "9.4 精密计算和 big 包",
+      "summary": "我们知道有些时候通过编程的方式去进行计算是不精确的。如果你使用 Go 语言中的 float64 类型进行浮点运算，返回结",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-10"
+    },
+    {
+      "id": "g-waytogo3-11",
+      "kind": "collection",
+      "title": "9.5 自定义包和可见性",
+      "summary": "包是 Go 语言中代码组织和代码编译的主要方式。关于它们的很多基本信息已经在 4.2 章节中给出，最引人注目的便是可见性",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-11"
+    },
+    {
+      "id": "g-waytogo3-12",
+      "kind": "collection",
+      "title": "9.6 为自定义包使用 godoc",
+      "summary": "godoc 工具（第 3.6 节）在显示自定义包中的注释也有很好的效果：注释必须以 // 开始并无空行放在声明（包，类型",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-12"
+    },
+    {
+      "id": "g-waytogo3-13",
+      "kind": "collection",
+      "title": "9.7 使用 go install 安装自定义包",
+      "summary": "go install 是 Go 中自动包安装工具：如需要将包安装到本地它会从远端仓库下载包：检出、编译和安装一气呵成。 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-13"
+    },
+    {
+      "id": "g-waytogo3-14",
+      "kind": "collection",
+      "title": "9.8 自定义包的目录结构、go install 和 go test",
+      "summary": "为了示范，我们创建了一个名为 uc 的简单包，它含有一个 UpperCase 函数将字符串的所有字母转换为大写。当然这并",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-14"
+    },
+    {
+      "id": "g-waytogo3-15",
+      "kind": "collection",
+      "title": "9.9 通过 Git 打包和安装",
+      "summary": "以上的方式对于本地包来说是可以的，但是我们如何打包代码到开发者圈子呢？那么我们需要一个云端的源码的版本控制系统，比如著名",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-15"
+    },
+    {
+      "id": "g-waytogo3-17",
+      "kind": "collection",
+      "title": "10.1 结构体定义",
+      "summary": "结构体定义的一般方式如下： type T struct a, b int 也是合法的语法，它更适用于简单的结构体。 结构",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-17"
+    },
+    {
+      "id": "g-waytogo3-18",
+      "kind": "collection",
+      "title": "10.2 使用工厂方法创建结构体实例",
+      "summary": "Go 语言不支持面向对象编程语言中那样的构造子方法，但是可以很容易的在 Go 中实现 “构造子工厂”方法。为了方便通常会",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-18"
+    },
+    {
+      "id": "g-waytogo3-20",
+      "kind": "collection",
+      "title": "10.4 带标签的结构体",
+      "summary": "结构体中的字段除了有名字和类型外，还可以有一个可选的标签 (tag)：它是一个附属于字段的字符串，可以是文档或其他的重要",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-20"
+    },
+    {
+      "id": "g-waytogo3-21",
+      "kind": "collection",
+      "title": "10.5 匿名字段和内嵌结构体",
+      "summary": "结构体可以包含一个或多个 匿名（或内嵌）字段 ，即这些字段没有显式的名字，只有字段的类型是必须的，此时类型就是字段的名字",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-21"
+    },
+    {
+      "id": "g-waytogo3-22",
+      "kind": "collection",
+      "title": "10.6 方法",
+      "summary": "在 Go 语言中，结构体就像是类的一种简化形式，那么面向对象程序员可能会问：类的方法在哪里呢？在 Go 中有一个概念，它",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-22"
+    },
+    {
+      "id": "g-waytogo3-23",
+      "kind": "collection",
+      "title": "10.7 类型的 String() 方法和格式化描述符",
+      "summary": "当定义了一个有很多方法的类型时，十之八九你会使用 String() 方法来定制类型的字符串形式的输出，换句话说：一种可阅",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-23"
+    },
+    {
+      "id": "g-waytogo3-24",
+      "kind": "collection",
+      "title": "10.8 垃圾回收和 SetFinalizer",
+      "summary": "Go 开发者不需要写代码来释放程序中不再使用的变量和结构占用的内存，在 Go 运行时中有一个独立的进程，即垃圾收集器 (",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-24"
+    },
+    {
+      "id": "g-waytogo3-26",
+      "kind": "collection",
+      "title": "11.1 接口是什么",
+      "summary": "Go 语言不是一种 “传统” 的面向对象编程语言：它里面没有类和继承的概念。 但是 Go 语言里有非常灵活的 接口 概念",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-26"
+    },
+    {
+      "id": "g-waytogo3-27",
+      "kind": "collection",
+      "title": "11.10 反射包",
+      "summary": "在 10.4 节我们看到可以通过反射来分析一个结构体。本节我们进一步探讨强大的反射功能。反射是用程序检查其所拥有的结构，",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-27"
+    },
+    {
+      "id": "g-waytogo3-28",
+      "kind": "collection",
+      "title": "11.11 Printf() 和反射",
+      "summary": "在 Go 语言的标准库中，前几节所述的反射的功能被大量地使用。举个例子， fmt 包中的 Printf() （以及其他格",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-28"
+    },
+    {
+      "id": "g-waytogo3-29",
+      "kind": "collection",
+      "title": "11.12 接口与动态类型",
+      "summary": "在经典的面向对象语言（像 C++，Java 和 C ）中数据和方法被封装为 类 的概念：类包含它们两者，并且不能剥离。 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 III",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo3-29"
+    },
+    {
+      "id": "g-algonote3-1",
+      "kind": "collection",
+      "title": "0610graphthesecondshortestpath",
+      "summary": "次短路径（Second Shortest Path） ：指从起点到终点的所有简单路径中，路径总权值严格大于最短路径、且在",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-1"
+    },
+    {
+      "id": "g-algonote3-2",
+      "kind": "collection",
+      "title": "0611graphbipartitebasic",
+      "summary": "二分图（Bipartite Graph） ：又称「二部图」，是一类特殊的无向图。其顶点集可以被划分为两个互不重叠的子集，",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-2"
+    },
+    {
+      "id": "g-algonote3-3",
+      "kind": "collection",
+      "title": "0612graphbipartitematching",
+      "summary": "二分图最大匹配（Maximum Bipartite Matching） ：图论中的一个基础且重要的问题。其目标是在一个二",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-3"
+    },
+    {
+      "id": "g-algonote3-4",
+      "kind": "collection",
+      "title": "0701enumerationalgorithm",
+      "summary": "枚举算法（Enumeration Algorithm） ，又称穷举算法，是指根据问题的特点，逐一列出所有可能的解，并与目",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-4"
+    },
+    {
+      "id": "g-algonote3-5",
+      "kind": "collection",
+      "title": "0702recursivealgorithm",
+      "summary": "递归（Recursion） ：是一种将复杂问题分解为与原问题结构相同的子问题，并通过重复求解这些子问题来获得最终解答的方",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-5"
+    },
+    {
+      "id": "g-algonote3-6",
+      "kind": "collection",
+      "title": "0703divideandconqueralgorithm",
+      "summary": "分治算法（Divide and Conquer） ：即「分而治之」，把一个复杂问题拆分成多个相同或相似的子问题，递归分解",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-6"
+    },
+    {
+      "id": "g-algonote3-7",
+      "kind": "collection",
+      "title": "调用回溯函数，开始搜索",
+      "summary": "回溯算法（Backtracking） ：回溯算法是一种系统地搜索所有可能解的算法，通过递归和试错的方式逐步构建解的过程。",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-7"
+    },
+    {
+      "id": "g-algonote3-8",
+      "kind": "collection",
+      "title": "0705greedyalgorithm",
+      "summary": "贪心算法（Greedy Algorithm） ：每一步都选择当前最优（看起来最好的）方案，期望通过一系列局部最优，最终获",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-8"
+    },
+    {
+      "id": "g-algonote3-9",
+      "kind": "collection",
+      "title": "0706bitoperation",
+      "summary": "位运算（Bit Operation） ：计算机内部所有数据均以「二进制（Binary）」形式存储。位运算是直接对二进制位",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-9"
+    },
+    {
+      "id": "g-algonote3-10",
+      "kind": "collection",
+      "title": "0801dynamicprogrammingbasic",
+      "summary": "动态规划（Dynamic Programming，DP） ：是一种求解多阶段决策过程最优化问题的方法。在动态规划中，通过",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-10"
+    },
+    {
+      "id": "g-algonote3-11",
+      "kind": "collection",
+      "title": "0802memoizationsearch",
+      "summary": "记忆化搜索（Memoization Search） ：是一种通过存储已经遍历过的状态信息，从而避免对同一状态重复遍历的搜",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-11"
+    },
+    {
+      "id": "g-algonote3-12",
+      "kind": "collection",
+      "title": "0803lineardp01",
+      "summary": "线性动态规划（线性 DP） ：指的是将问题的阶段按线性顺序划分，并基于此进行状态转移的动态规划方法。如下图所示： 即使状",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-12"
+    },
+    {
+      "id": "g-algonote3-13",
+      "kind": "collection",
+      "title": "0804lineardp02",
+      "summary": "双串线性 DP 问题 ：指输入为两个数组或两个字符串的线性动态规划问题。常见的状态定义为 $dp i j $，其含义主要",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-13"
+    },
+    {
+      "id": "g-algonote3-14",
+      "kind": "collection",
+      "title": "0805lineardp03",
+      "summary": "矩阵线性 DP 问题 ：是指输入为二维矩阵的动态规划问题。常见的状态定义为 $dp i j $，表示从起点「$(0, 0",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-14"
+    },
+    {
+      "id": "g-algonote3-15",
+      "kind": "collection",
+      "title": "0806knapsackproblem01",
+      "summary": "背包问题 ：背包问题是线性 DP 问题中一类经典模型。其基本描述为：给定若干物品，每种物品有各自的重量、价值和数量限制，",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-15"
+    },
+    {
+      "id": "g-algonote3-16",
+      "kind": "collection",
+      "title": "0807knapsackproblem02",
+      "summary": "完全背包问题 ：给定 $n$ 种物品和一个最大承重为 $W$ 的背包。每种物品的重量为 $weight i $，价值为 ",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-16"
+    },
+    {
+      "id": "g-algonote3-17",
+      "kind": "collection",
+      "title": "0808knapsackproblem03",
+      "summary": "多重背包问题 ：有 $n$ 种物品和一个最多能装重量为 $W$ 的背包，第 $i$ 种物品的重量为 $weight i ",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-17"
+    },
+    {
+      "id": "g-algonote3-18",
+      "kind": "collection",
+      "title": "0809knapsackproblem04",
+      "summary": "混合背包问题 ：有 $n$ 种物品和一个最多能装重量为 $W$ 的背包，第 $i$ 种物品的重量为 $weight i ",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-18"
+    },
+    {
+      "id": "g-algonote3-19",
+      "kind": "collection",
+      "title": "0810knapsackproblem05",
+      "summary": "背包问题求恰好装满背包的最大价值 ：在给定背包重量 $W$，每件物品重量 $weight i $，物品间相互关系（分组、",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-19"
+    },
+    {
+      "id": "g-algonote3-20",
+      "kind": "collection",
+      "title": "0811intervaldp",
+      "summary": "区间动态规划（区间 DP） ：是一类以区间为阶段、以区间的左右端点为状态的动态规划方法。它常用于解决「在一段区间内进行某",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-20"
+    },
+    {
+      "id": "g-algonote3-21",
+      "kind": "collection",
+      "title": "Definition for a binary tree node.",
+      "summary": "树形动态规划 ：简称为「树形 DP」，是一种在树形结构上进行推导的动态规划方法。如下图所示，树形 DP 的求解过程一般以",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-21"
+    },
+    {
+      "id": "g-algonote3-22",
+      "kind": "collection",
+      "title": "0813statecompressiondp",
+      "summary": "状态压缩动态规划（状压 DP） ：是一种适用于「小规模数据」的数组或字符串问题的动态规划方法。它利用二进制的特性，将集合",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-22"
+    },
+    {
+      "id": "g-algonote3-23",
+      "kind": "collection",
+      "title": "0814countingdp",
+      "summary": "计数问题 ：计算满足特定条件下的可行方案数目的问题。 这里的「可行方案数目」指的是某个问题一共有多少种方法。 「计数问题",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-23"
+    },
+    {
+      "id": "g-algonote3-24",
+      "kind": "collection",
+      "title": "0815digitdp",
+      "summary": "数位动态规划 ：简称为「数位 DP」，是一种与数位相关的一类计数类动态规划问题，即在数位上进行动态规划。这里的数位指的是",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-24"
+    },
+    {
+      "id": "g-algonote3-25",
+      "kind": "collection",
+      "title": "0816probabilitydp",
+      "summary": "概率 DP ：一类使用动态规划方法来求解概率与期望的问题，也可以分别叫做「概率 DP」、「期望 DP」。由于概率和期望具",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-25"
+    },
+    {
+      "id": "g-algonote3-27",
+      "kind": "collection",
+      "title": "updatetime",
+      "summary": "2026 01 16 完成「第 1 1000 题」的题目解析 2026 01 15 补充第 600 699 题的题目解析",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-27"
+    },
+    {
+      "id": "g-algonote3-28",
+      "kind": "collection",
+      "title": "0016. 最接近的三数之和",
+      "summary": "标签：数组、双指针、排序 难度：中等 0016. 最接近的三数之和 力扣 描述 ：给定一个整数数组 $nums$ 和 一",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-28"
+    },
+    {
+      "id": "g-algonote3-29",
+      "kind": "collection",
+      "title": "0015. 三数之和",
+      "summary": "标签：数组、双指针、排序 难度：中等 0015. 三数之和 力扣 描述 ：给定一个整数数组 $nums$。 要求 ：判断",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-29"
+    },
+    {
+      "id": "g-algonote3-30",
+      "kind": "collection",
+      "title": "0018. 四数之和",
+      "summary": "标签：数组、双指针、排序 难度：中等 0018. 四数之和 力扣 描述 ：给定一个整数数组 $nums$ 和一个目标值 ",
+      "domain": "algo",
+      "category": "算法通关手册 III",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote3-30"
     }
   ]
 }

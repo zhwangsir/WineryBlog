@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T06:16:05.890Z",
+ "updatedAt": "2026-11-25T07:15:43.876Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2622,6 +2622,107 @@
    "status": "done",
    "addedAt": "2026-11-25T06:16:05.890Z",
    "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "waytogo3",
+   "repo": "Unknwon/the-way-to-go_ZH_CN",
+   "branch": "master",
+   "category": "The Way to Go 中文版 III",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "入门"
+   ],
+   "picks": [
+    {
+     "dir": "eBook",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 60
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T07:15:43.876Z",
+   "note": "continuation: 存量来源深度续收 III 批"
+  },
+  {
+   "id": "algonote3",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 III",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 68
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T07:15:43.876Z",
+   "note": "continuation: 存量来源深度续收 III 批"
+  },
+  {
+   "id": "goweb2",
+   "repo": "astaxie/build-web-application-with-golang",
+   "branch": "master",
+   "category": "Go Web 编程 II",
+   "domain": "backend",
+   "tags": [
+    "Go",
+    "Web"
+   ],
+   "picks": [
+    {
+     "dir": "zh",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T07:15:43.876Z",
+   "note": "continuation: 存量来源深度续收 III 批"
+  },
+  {
+   "id": "codehunter2",
+   "repo": "doocs/source-code-hunter",
+   "branch": "main",
+   "category": "源码学习笔记 II",
+   "domain": "backend",
+   "tags": [
+    "Spring",
+    "Netty",
+    "源码"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true,
+     "skip": 20
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T07:15:43.876Z",
+   "note": "continuation: 存量来源深度续收 III 批"
   }
  ]
 }
