@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 320
+      "count": 319
     },
     {
       "id": "algo",
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 196
+      "count": 195
     },
     {
       "id": "backend",
@@ -38551,22 +38551,6 @@
       "href": "/post/g-mlint5-29"
     },
     {
-      "id": "g-opencvtut3-1",
-      "kind": "collection",
-      "title": "图像入门",
-      "summary": "学习读取视频，显示视频和保存视频。 学习从相机捕捉并显示它。 你将学习以下功能： cv.VideoCapture ()，",
-      "domain": "langs",
-      "category": "OpenCV-Python 中文教程 III",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "OpenCV",
-        "图像处理"
-      ],
-      "prereqs": [],
-      "href": "/post/g-opencvtut3-1"
-    },
-    {
       "id": "g-opencvtut3-2",
       "kind": "collection",
       "title": "OpenCV中的绘图功能",
@@ -38629,22 +38613,6 @@
       ],
       "prereqs": [],
       "href": "/post/g-opencvtut3-5"
-    },
-    {
-      "id": "g-mqblog2-1",
-      "kind": "collection",
-      "title": "JavaScript深入之执行上下文",
-      "summary": "JavaScript深入系列第七篇，结合之前所讲的四篇文章，以权威指南的demo为例，具体讲解当函数执行的时候，执行上下",
-      "domain": "frontend",
-      "category": "深入 ES 系列 II",
-      "difficulty": "进阶",
-      "minutes": 5,
-      "tags": [
-        "JavaScript",
-        "ES6"
-      ],
-      "prereqs": [],
-      "href": "/post/g-mqblog2-1"
     },
     {
       "id": "g-mqblog2-2",

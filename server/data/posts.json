@@ -37348,21 +37348,6 @@
     "cover": "/images/acg/237fb9935816f48a.jpg"
   },
   {
-    "id": "g-opencvtut3-1",
-    "title": "图像入门",
-    "date": "2026-11-25",
-    "category": "OpenCV-Python 中文教程 III",
-    "tags": [
-      "OpenCV",
-      "图像处理"
-    ],
-    "excerpt": "学习读取视频，显示视频和保存视频。 学习从相机捕捉并显示它。 你将学习以下功能： cv.VideoCapture ()， cv.VideoWriter () 通常情况下，我们必须用",
-    "content": "# 图像入门\n\n###### 作者|OpenCV-Python Tutorials \n###### 编译|Vincent\n###### 来源|OpenCV-Python Tutorials \n\n### 目标\n- 学习读取视频，显示视频和保存视频。\n- 学习从相机捕捉并显示它。\n- 你将学习以下功能：**cv.VideoCapture**()，**cv.VideoWriter**()\n\n### 从相机中读取视频\n\n通常情况下，我们必须用摄像机捕捉实时画面。提供了一个非常简单的界面。让我们从摄像头捕捉一段视频(我使用的是我笔记本电脑内置的网络摄像头) ，将其转换成灰度视频并显示出来。只是一个简单的任务开始。\n\n要捕获视频，你需要创建一个 **VideoCapture** 对象。它的参数可以是设备索引或视频文件的名称。设备索引就是指定哪个摄像头的数字。正常情况下，一个摄像头会被连接(就像我的情况一样)。所以我简单地传0(或-1)。你可以通过传递1来选择第二个相机，以此类推。在此之后，你可以逐帧捕获。但是在最后，不要忘记释放俘虏。\n\n```python\nimport numpy as np\nimport cv2 as cv\ncap = cv.VideoCapture(0)\nif not cap.isOpened():\n    print(\"Cannot open camera\")\n    exit()\nwhile True:\n    # 逐帧捕获\n    ret, frame = cap.read()\n    # 如果正确读取帧，ret为True\n    if not ret:\n        print(\"Can't receive frame (stream end?). Exiting ...\")\n        break\n    # 我们在框架上的操作到这里\n    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)\n    # 显示结果帧e\n    cv.imshow('frame', gray)\n    if cv.waitKey(1) == ord('q'):\n        break\n# 完成所有操作后，释放捕获器\ncap.release()\ncv.destroyAllWindows()\n```\n\n`cap.read()`返回布尔值(`True`/ `False`)。如果正确读取了帧，它将为`True`。因此，你可以通过检查此返回值来检查视频的结尾。\n\n有时，cap可能尚未初始化捕获。在这种情况下，此代码显示错误。你可以通过**cap.isOpened**()方法检查它是否已初始化。如果是`True`，那么确定。否则，使用**cap.open**()打开它。\n\n你还可以使用`cap.get(propId)`方法访问该视频的某些功能，其中propId是0到18之间的一个数字。每个数字表示视频的属性（如果适用于该视频），并且可以显示完整的详细信息在这里看到：**cv::VideoCapture::get()**。其中一些值可以使用`cap.set(propId，value)`进行修改。`value`是你想要的新值。\n\n例如，我可以通过`cap.get(cv.CAP_PROP_FRAME_WIDTH)`和`cap.get(cv.CAP_PROP_FRAME_HEIGHT)`检查框架的宽度和高度。默认情况下，它的分辨率为640x480。但我想将其修改为320x240。只需使用和即可。`ret = cap.set(cv.CAP_PROP_FRAME_WIDTH,320)` and `ret = cap.set(cv.CAP_PROP_FRAME_HEIGHT,240)`.\n\n> **注意**\n  如果出现错误，请确保使用任何其他相机应用程序(例如Linux中的Cheese)都可以正常使用相机。\n\n### 从文件播放视频\n\n它与从相机捕获相同，只是用视频文件名更改摄像机索引。另外，在显示框架时，请使用适当的时间`cv.waitKey()`。如果太小，则视频将非常快，而如果太大，则视频将变得很慢（嗯，这就是显示慢动作的方式）。正常情况下25毫秒就可以了。\n\n```python\nimport numpy as np\nimport cv2 as cv\ncap = cv.VideoCapture('vtest.avi')\nwhile cap.isOpened():\n    ret, frame = cap.read()\n    # 如果正确读取帧，ret为True\n    if not ret:\n        print(\"Can't receive frame (stream end?). Exiting ...\")\n        break\n    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)\n    cv.imshow('frame', gray)\n    if cv.waitKey(1) == ord('q'):\n        break\ncap.release()\ncv.destroyAllWindows()\n```\n\n> **注意**\n确保安装了正确的 ffmpeg 或 gstreamer 版本。有时，使用视频捕获(Video Capture)是一件令人头疼的事情，主要原因是错误地安装了 ffmpeg / gstreamer。\n\n### 保存视频\n所以我们捕捉一个视频，一帧一帧地处理，我们想要保存这个视频。对于图像，它非常简单，只需使用 **cv.imwrite**()。这里还需要做一些工作。\n\n这次我们创建一个 **VideoWriter** 对象。我们应该指定输出文件名(例如: output.avi)。然后我们应该指定 **FourCC** 代码(详见下一段)。然后传递帧率的数量和帧大小。最后一个是颜色标志。如果为 `True`，编码器期望颜色帧，否则它与灰度帧一起工作。\n\nFourCC：`http://en.wikipedia.org/wiki/FourCC` 是用于指定视频编解码器的4字节代码。可用代码列表可在fourcc.org中:`http://www.fourcc.org/codecs.php` 找到。它取决于平台。遵循编解码器对我来说效果很好。\n\n- 在Fedora中：DIVX，XVID，MJPG，X264，WMV1，WMV2。（最好使用XVID。MJPG会生成大尺寸的视频。X264会生成非常小的尺寸的视频）\n- 在Windows中：DIVX（尚待测试和添加）\n- 在OSX中：MJPG（.mp4），DIVX（.avi），X264（.mkv）。\n\nFourCC代码作为MJPG的`cv.VideoWriter_fourcc（'M'，'J'，'P'，'G'）`or `cv.VideoWriter_fourcc（*'MJPG'）`传递。\n\n在从摄像机捕获的代码下面，沿垂直方向翻转每一帧并保存。\n\n```python\nimport numpy as np\nimport cv2 as cv\ncap = cv.VideoCapture(0)\n# 定义编解码器并创建VideoWriter对象\nfourcc = cv.VideoWriter_fourcc(*'XVID')\nout = cv.VideoWriter('output.avi', fourcc, 20.0, (640,  480))\nwhile cap.isOpened():\n    ret, frame = cap.read()\n    if not ret:\n        print(\"Can't receive frame (stream end?). Exiting ...\")\n        break\n    frame = cv.flip(frame, 0)\n    # 写翻转的框架\n    out.write(frame)\n    cv.imshow('frame', frame)\n    if cv.waitKey(1) == ord('q'):\n        break\n# 完成工作后释放所有内容\ncap.release()\nout.release()\ncv.destroyAllWindows()\n```\n\n### 其他资源\n\n#### 练习题",
-    "source": "fendouai/OpenCVTutorials",
-    "views": 0,
-    "cover": "/images/acg/3f337e28b2747e24.jpg"
-  },
-  {
     "id": "g-opencvtut3-2",
     "title": "OpenCV中的绘图功能",
     "date": "2026-11-25",
@@ -37421,21 +37406,6 @@
     "source": "fendouai/OpenCVTutorials",
     "views": 0,
     "cover": "/images/scenery/d485940aad69b7a6.jpg"
-  },
-  {
-    "id": "g-mqblog2-1",
-    "title": "JavaScript深入之执行上下文",
-    "date": "2026-11-25",
-    "category": "深入 ES 系列 II",
-    "tags": [
-      "JavaScript",
-      "ES6"
-    ],
-    "excerpt": "JavaScript深入系列第七篇，结合之前所讲的四篇文章，以权威指南的demo为例，具体讲解当函数执行的时候，执行上下文栈、变量对象、作用域链是如何变化的。 在《JavaScri",
-    "content": "# JavaScript深入之执行上下文\n\n>JavaScript深入系列第七篇，结合之前所讲的四篇文章，以权威指南的demo为例，具体讲解当函数执行的时候，执行上下文栈、变量对象、作用域链是如何变化的。\n\n# 前言\n\n在《JavaScript深入之执行上下文栈》中讲到，当 JavaScript 代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution contexts)。\n\n对于每个执行上下文，都有三个重要属性：\n\n* 变量对象(Variable object，VO)\n* 作用域链(Scope chain)\n* this\n\n然后分别在《JavaScript深入之变量对象》、《JavaScript深入之作用域链》、《JavaScript深入之从ECMAScript规范解读this》中讲解了这三个属性。\n\n阅读本文前，如果对以上的概念不是很清楚，希望先阅读这些文章。\n\n因为，这一篇，我们会结合着所有内容，讲讲执行上下文的具体处理过程。\n\n## 思考题\n\n在《JavaScript深入之词法作用域和动态作用域》中，提出这样一道思考题：\n\n```js\nvar scope = \"global scope\";\nfunction checkscope(){\n    var scope = \"local scope\";\n    function f(){\n        return scope;\n    }\n    return f();\n}\ncheckscope();\n```\n\n```js\nvar scope = \"global scope\";\nfunction checkscope(){\n    var scope = \"local scope\";\n    function f(){\n        return scope;\n    }\n    return f;\n}\ncheckscope()();\n```\n\n两段代码都会打印'local scope'。虽然两段代码执行的结果一样，但是两段代码究竟有哪些不同呢？\n\n紧接着就在下一篇《JavaScript深入之执行上下文栈》中，讲到了两者的区别在于执行上下文栈的变化不一样，然而，如果是这样笼统的回答，依然显得不够详细，本篇就会详细的解析执行上下文栈和执行上下文的具体变化过程。\n\n## 具体执行分析\n\n我们分析第一段代码：\n\n```js\nvar scope = \"global scope\";\nfunction checkscope(){\n    var scope = \"local scope\";\n    function f(){\n        return scope;\n    }\n    return f();\n}\ncheckscope();\n```\n\n执行过程如下：\n\n1.执行全局代码，创建全局执行上下文，全局上下文被压入执行上下文栈\n\n```js\n    ECStack = [\n        globalContext\n    ];\n```\n\n2.全局上下文初始化\n\n```js\n    globalContext = {\n        VO: [global, scope, checkscope],\n        Scope: [globalContext.VO],\n        this: globalContext.VO\n    }\n```\n\n2.初始化的同时，checkscope 函数被创建，保存作用域链到函数的内部属性[[scope]]\n\n```js\n    checkscope.[[scope]] = [\n      globalContext.VO\n    ];\n```\n\n3.执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 函数执行上下文被压入执行上下文栈\n\n```js\n    ECStack = [\n        checkscopeContext,\n        globalContext\n    ];\n```\n\n4.checkscope 函数执行上下文初始化：\n\n1. 复制函数 [[scope]] 属性创建作用域链，\n2. 用 arguments 创建活动对象，\n3. 初始化活动对象，即加入形参、函数声明、变量声明，\n4. 将活动对象压入 checkscope 作用域链顶端。\n\n同时 f 函数被创建，保存作用域链到 f 函数的内部属性[[scope]]\n\n```js\n    checkscopeContext = {\n        AO: {\n            arguments: {\n                length: 0\n            },\n            scope: undefined,\n            f: reference to function f(){}\n        },\n        Scope: [AO, globalContext.VO],\n        this: undefined\n    }\n```\n\n5.执行 f 函数，创建 f 函数执行上下文，f 函数执行上下文被压入执行上下文栈\n\n```js\n    ECStack = [\n        fContext,\n        checkscopeContext,\n        globalContext\n    ];\n```\n\n6.f 函数执行上下文初始化, 以下跟第 4 步相同：\n\n1. 复制函数 [[scope]] 属性创建作用域链\n2. 用 arguments 创建活动对象\n3. 初始化活动对象，即加入形参、函数声明、变量声明\n4. 将活动对象压入 f 作用域链顶端\n\n```js\n    fContext = {\n        AO: {\n            arguments: {\n                length: 0\n            }\n        },\n        Scope: [AO, checkscopeContext.AO, globalContext.VO],\n        this: undefined\n    }\n```\n\n7.f 函数执行，沿着作用域链查找 scope 值，返回 scope 值\n\n8.f 函数执行完毕，f 函数上下文从执行上下文栈中弹出\n\n```js\n    ECStack = [\n        checkscopeContext,\n        globalContext\n    ];\n```\n\n9.checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出\n\n```js\n    ECStack = [\n        globalContext\n    ];\n```\n\n第二段代码就留给大家去尝试模拟它的执行过程。\n\n```js\nvar scope = \"global scope\";\nfunction checkscope(){\n    var scope = \"local scope\";\n    function f(){\n        return scope;\n    }\n    return f;\n}\ncheckscope()();\n```\n\n不过，在下一篇《JavaScript深入之闭包》中也会提及这段代码的执行过程。\n\n## 下一篇文章\n\n《JavaScript深入之闭包》\n\n## 相关链接\n\n《JavaScript深入之词法作用域和动态作用域》\n\n《JavaScript深入之执行上下文栈》\n\n《JavaScript深入之变量对象》\n\n《JavaScript深入之作用域链》\n\n《JavaScript深入之从ECMAScript规范解读this》\n\n## 重要参考\n\n《一道js面试题引发的思考》\n\n本文写的太好，给了我很多启发。感激不尽！\n\n## 深入系列\n\nJavaScript深入系列目录地址：`https://github.com/mqyqingfeng/Blog。`\n\nJavaScript深入系列预计写十五篇左右，旨在帮大家捋顺JavaScript底层知识，重点讲解如原型、作用域、执行上下文、变量对象、this、闭包、按值传递、call、apply、bind、new、继承等难点概念。\n\n如果有错误或者不严谨的地方，请务必给予指正，十分感谢。如果喜欢或者有所启发，欢迎star，对作者也是一种鼓励。",
-    "source": "mqyqingfeng/Blog",
-    "views": 0,
-    "cover": "/images/acg/aa4534d1df6b6d5d.webp"
   },
   {
     "id": "g-mqblog2-2",
