@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 248
+      "count": 278
     },
     {
       "id": "system",
@@ -38,7 +38,7 @@
       "name": "Web 前端",
       "icon": "Monitor",
       "blurb": "HTML/CSS/JS、React/Vue、工程化与性能",
-      "count": 183
+      "count": 190
     },
     {
       "id": "backend",
@@ -32693,6 +32693,598 @@
       ],
       "prereqs": [],
       "href": "/post/g-waytogo2-30"
+    },
+    {
+      "id": "g-es6tut2-1",
+      "kind": "collection",
+      "title": "SIMD",
+      "summary": "SIMD（发音 /sim dee/ ）是“Single Instruction/Multiple Data”的缩写，意为",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-1"
+    },
+    {
+      "id": "g-es6tut2-2",
+      "kind": "collection",
+      "title": "读懂 ECMAScript 规格",
+      "summary": "规格文件是计算机语言的官方标准，详细描述语法规则和实现方法。 一般来说，没有必要阅读规格，除非你要写编译器。因为规格写得",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-2"
+    },
+    {
+      "id": "g-es6tut2-3",
+      "kind": "collection",
+      "title": "字符串的新增方法",
+      "summary": "本章介绍字符串对象的新增方法。 ES5 提供 String.fromCharCode() 方法，用于从 Unicode ",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-3"
+    },
+    {
+      "id": "g-es6tut2-4",
+      "kind": "collection",
+      "title": "字符串的扩展",
+      "summary": "本章介绍 ES6 对字符串的改造和增强，下一章介绍字符串对象的新增方法。 ES6 加强了对 Unicode 的支持，允许",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-4"
+    },
+    {
+      "id": "g-es6tut2-5",
+      "kind": "collection",
+      "title": "编程风格",
+      "summary": "本章探讨如何将 ES6 的新语法，运用到编码实践之中，与传统的 JavaScript 语法结合在一起，写出合理的、易于阅",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-5"
+    },
+    {
+      "id": "g-es6tut2-6",
+      "kind": "collection",
+      "title": "Symbol",
+      "summary": "ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-6"
+    },
+    {
+      "id": "g-es6tut2-7",
+      "kind": "collection",
+      "title": "Temporal API",
+      "summary": "Temporal 是一个表示时间日期的全新 API，对目前的 Date API 的诸多问题进行修正。 它包含了许多与时间",
+      "domain": "frontend",
+      "category": "ES6 教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "JavaScript",
+        "ES6"
+      ],
+      "prereqs": [],
+      "href": "/post/g-es6tut2-7"
+    },
+    {
+      "id": "g-algonote2-1",
+      "kind": "collection",
+      "title": "0304priorityqueue",
+      "summary": "优先队列（Priority Queue） ：是一种为每个元素分配优先级的特殊队列结构。每次访问或移除元素时，总是优先处理",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-1"
+    },
+    {
+      "id": "g-algonote2-2",
+      "kind": "collection",
+      "title": "0305bidirectionalqueue",
+      "summary": "双向队列（Deque，Double Ended Queue） ：一种线性表数据结构，允许在队列的两端进行插入和删除操作，",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-2"
+    },
+    {
+      "id": "g-algonote2-3",
+      "kind": "collection",
+      "title": "0306hashtable",
+      "summary": "哈希表（Hash Table） ，又称散列表，是一种能通过关键码（Key）直接访问数据的结构。 哈希表利用「键 $key",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-3"
+    },
+    {
+      "id": "g-algonote2-4",
+      "kind": "collection",
+      "title": "0401stringbasic",
+      "summary": "字符串（String） ：简称为串，由零个或多个字符组成的有限序列，常记为 $s = a 1a 2…a n(0 \\le ",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-4"
+    },
+    {
+      "id": "g-algonote2-5",
+      "kind": "collection",
+      "title": "0402stringbruteforce",
+      "summary": "Brute Force 算法 ：简称为 BF 算法，也可以叫做「朴素匹配算法」。 Brute Force 算法核心思想 ",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-5"
+    },
+    {
+      "id": "g-algonote2-6",
+      "kind": "collection",
+      "title": "T: 文本串，p: 模式串，d: 字符集大小（基数），q: 模数（质数）",
+      "summary": "Rabin Karp（RK）算法 ：由 Michael Oser Rabin 与 Richard Manning Kar",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-6"
+    },
+    {
+      "id": "g-algonote2-7",
+      "kind": "collection",
+      "title": "生成 next 数组",
+      "summary": "KMP 算法 （全称 Knuth Morris Pratt 算法 ）：由 Donald Knuth、James H. M",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-7"
+    },
+    {
+      "id": "g-algonote2-8",
+      "kind": "collection",
+      "title": "生成坏字符位置表",
+      "summary": "Boyer Moore 算法（BM 算法） ：由 Robert S. Boyer 和 J Strother Moore ",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-8"
+    },
+    {
+      "id": "g-algonote2-9",
+      "kind": "collection",
+      "title": "生成后移位数表",
+      "summary": "Horspool 算法 ：由 Nigel Horspool 教授于 1980 年提出，是对 Boyer Moore 算法",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-9"
+    },
+    {
+      "id": "g-algonote2-10",
+      "kind": "collection",
+      "title": "生成 Sunday 算法的后移位数表",
+      "summary": "Sunday 算法 ：Sunday 算法是一种高效的字符串查找算法，由 Daniel M. Sunday 于 1990 ",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-10"
+    },
+    {
+      "id": "g-algonote2-11",
+      "kind": "collection",
+      "title": "向字典树中插入一个单词",
+      "summary": "字典树（Trie） ，又称前缀树，是一种高效存储和查找字符串集合的树形结构。可以把它想象成一本「分层字典」：每个单词从根",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-11"
+    },
+    {
+      "id": "g-algonote2-12",
+      "kind": "collection",
+      "title": "0409acautomaton",
+      "summary": "AC 自动机（Aho Corasick Automaton） ：由 Alfred V. Aho 和 Margaret J",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-12"
+    },
+    {
+      "id": "g-algonote2-13",
+      "kind": "collection",
+      "title": "朴素法构建后缀数组",
+      "summary": "后缀数组（Suffix Array） ：是一种高效处理字符串后缀相关问题的数据结构。它将字符串的所有后缀按字典序排序，并",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-13"
+    },
+    {
+      "id": "g-algonote2-14",
+      "kind": "collection",
+      "title": "0501treebasic",
+      "summary": "树（Tree） ：由 $n \\ge 0$ 个节点及其相互之间的关系组成的有限集合。当 $n = 0$ 时称为空树，$n ",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-14"
+    },
+    {
+      "id": "g-algonote2-15",
+      "kind": "collection",
+      "title": "0502binarytreetraverse",
+      "summary": "二叉树的遍历 ：是指从根节点出发，按照特定顺序依次访问二叉树中的所有节点，确保每个节点被且仅被访问一次。 在实际应用中，",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-15"
+    },
+    {
+      "id": "g-algonote2-16",
+      "kind": "collection",
+      "title": "0503binarytreereduction",
+      "summary": "二叉树的还原 ：指通过已知的二叉树遍历序列，重建出原始的二叉树结构。 我们知道，对于一棵非空二叉树，其前序、中序、后序遍",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-16"
+    },
+    {
+      "id": "g-algonote2-17",
+      "kind": "collection",
+      "title": "0504binarysearchtree",
+      "summary": "二叉搜索树（Binary Search Tree, BST） ，又称二叉查找树、有序二叉树或排序二叉树，是一种特殊的二叉",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-17"
+    },
+    {
+      "id": "g-algonote2-18",
+      "kind": "collection",
+      "title": "线段树的节点类",
+      "summary": "线段树（Segment Tree） ：一种用于高效处理区间查询和区间修改的二叉树结构。它将一个区间不断二分，每个节点管理",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 11,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-18"
+    },
+    {
+      "id": "g-algonote2-19",
+      "kind": "collection",
+      "title": "动态开点线段树节点类",
+      "summary": "线段树是一种高效的数据结构，常用于处理区间相关的查询与修改。以下是线段树常见的几类题型及其简要说明： RMQ（Range",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-19"
+    },
+    {
+      "id": "g-algonote2-20",
+      "kind": "collection",
+      "title": "使用示例",
+      "summary": "树状数组（Binary Indexed Tree） ：也因其发明者命名为 Fenwick 树，最早 Peter M. F",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-20"
+    },
+    {
+      "id": "g-algonote2-21",
+      "kind": "collection",
+      "title": "0508unionfind",
+      "summary": "并查集（Union Find） ：一种高效的数据结构，常用于处理若干不相交集合（Disjoint Sets）的合并与查询",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-21"
+    },
+    {
+      "id": "g-algonote2-22",
+      "kind": "collection",
+      "title": "0601graphbasic",
+      "summary": "图（Graph） ：由顶点集合 $V$ 和边集合 $E$（即顶点之间的连接关系）组成的数据结构，通常记作 $G = (V",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-22"
+    },
+    {
+      "id": "g-algonote2-23",
+      "kind": "collection",
+      "title": "示例：构建一个有向带权图，并进行查询与打印",
+      "summary": "图是一种由顶点和边构成的复杂数据结构，通常包含若干（有限个）顶点，任意两个顶点之间都可能通过边相连。在实现图的存储时，关",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-23"
+    },
+    {
+      "id": "g-algonote2-24",
+      "kind": "collection",
+      "title": "示例图（邻接表形式，节点为字符串，边为无向边）",
+      "summary": "深度优先搜索算法（Depth First Search，简称 DFS） ：是一种用于遍历或搜索树、图等结构的经典算法。其",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-24"
+    },
+    {
+      "id": "g-algonote2-25",
+      "kind": "collection",
+      "title": "基于队列实现的广度优先搜索",
+      "summary": "广度优先搜索算法（Breadth First Search，简称 BFS） ：是一种用于遍历或搜索树、图等结构的经典算法",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-25"
+    },
+    {
+      "id": "g-algonote2-26",
+      "kind": "collection",
+      "title": "0605graphtopologicalsorting",
+      "summary": "拓扑排序（Topological Sorting） ：是一种针对有向无环图（DAG）的排序方法。它将图中的所有顶点排成一",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-26"
+    },
+    {
+      "id": "g-algonote2-27",
+      "kind": "collection",
+      "title": "示例：使用 Prim 算法计算最小生成树的权值和",
+      "summary": "在介绍「最小生成树」之前，先来理解什么是「生成树」。 生成树（Spanning Tree） ：对于一个无向连通图 $G$",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-27"
+    },
+    {
+      "id": "g-algonote2-28",
+      "kind": "collection",
+      "title": "使用示例",
+      "summary": "单源最短路径（Single Source Shortest Path） ：在一个带权图 $G = (V, E)$ 中，给",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-28"
+    },
+    {
+      "id": "g-algonote2-29",
+      "kind": "collection",
+      "title": "0608graphshortestpath02",
+      "summary": "Bellman Ford 算法 ：一种可以处理带有负权边的单源最短路径算法，还能检测图中是否存在负权环。 Bellman",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-29"
+    },
+    {
+      "id": "g-algonote2-30",
+      "kind": "collection",
+      "title": "0609graphmultisourceshortestpath",
+      "summary": "多源最短路径（All Pairs Shortest Paths） ：指的是在一个带权图 $G = (V, E)$ 中，计",
+      "domain": "algo",
+      "category": "算法通关手册 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote2-30"
     }
   ]
 }
