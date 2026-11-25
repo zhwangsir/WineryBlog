@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T03:55:16.836Z",
+ "updatedAt": "2026-11-25T04:15:05.644Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2252,6 +2252,46 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "auto-cosen1024-java-interview",
+   "repo": "cosen1024/Java-Interview",
+   "branch": "main",
+   "category": "Java 面试小抄",
+   "domain": "backend",
+   "tags": [
+    "dubbo",
+    "interview",
+    "java"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T04:15:04.447Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 27,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-ooboqoo-shiping",
+   "repo": "ooboqoo/shiping",
+   "branch": "main",
+   "category": "识屏 Shiping：截屏 +",
+   "domain": "ai",
+   "tags": [
+    "ai-assistant",
+    "coding-interview",
+    "deepseek"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T04:15:05.644Z",
+   "note": "截屏工具产品仓库：md 为内置 AGENTS/CLAUDE 配置与应用内提示词，非教程内容"
   }
  ]
 }

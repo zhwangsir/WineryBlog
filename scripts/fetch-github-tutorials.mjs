@@ -494,7 +494,7 @@ for (const src of sourceList) {
     const tree = JSON.parse(treeRaw);
     if (!tree.tree) throw new Error('tree api failed: ' + treeRaw.slice(0, 120));
     const allMd = tree.tree.filter(t =>
-      t.type === 'blob' && /\.md$/i.test(t.path) && !/node_modules|\.github|\.claude|\.cursor|\.vscode|CHANGELOG|CODE_OF|CONTRIBUTING|LICENSE|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)
+      t.type === 'blob' && /\.md$/i.test(t.path) && !/node_modules|\.github|\.claude|\.cursor|\.vscode|CHANGELOG|CODE_OF|CONTRIBUTING|LICENSE|AGENTS|CLAUDE|_style|_coverpage|_404|ISSUE_TEMPLATE|PULL_REQUEST|README|_FR|french|errata|勘误|\.en\.md|(^|\/)index\.md$/i.test(t.path)
     );
 
     // 按 picks 选文件
