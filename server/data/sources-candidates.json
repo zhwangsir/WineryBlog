@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T05:15:07.335Z",
+ "updatedAt": "2026-11-25T05:35:07.811Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2419,6 +2419,56 @@
       ".md"
      ],
      "max": 23,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-cheng-liang1-real-company-interview-ai-coding-pr",
+   "repo": "CHENG-LIANG1/real-company-interview-ai-coding-projects",
+   "branch": "main",
+   "category": "AI Coding 面试实战",
+   "domain": "swe",
+   "tags": [
+    "agent",
+    "ai-coding",
+    "documentation"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T05:35:06.324Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 5,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-longxingtan-machine-learning-interview",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解",
+   "domain": "ai",
+   "tags": [
+    "ai-engineer",
+    "behavior-questions",
+    "deep-learning"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T05:35:07.810Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
      "recursive": true
     }
    ]

@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 481
+      "count": 502
     },
     {
       "id": "security",
@@ -101,7 +101,7 @@
       "name": "软件工程",
       "icon": "Blocks",
       "blurb": "设计模式、重构、架构风格——把代码变成工程（CS2023 SE）",
-      "count": 20
+      "count": 25
     }
   ],
   "tutorials": [
@@ -31371,6 +31371,448 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-icofans-ios-interview-questions-22"
+    },
+    {
+      "id": "g-auto-cheng-liang1-real-company-interview-ai-coding-pr-1",
+      "kind": "collection",
+      "title": "题目一：Computer Use Agent Dashboard",
+      "summary": "ai agent dashboard 这是我针对本题完成的个人实现，重点展示多桌面会话、真实 Computer Use ",
+      "domain": "swe",
+      "category": "AI Coding 面试实战",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-coding",
+        "documentation"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-cheng-liang1-real-company-interview-ai-coding-pr-1"
+    },
+    {
+      "id": "g-auto-cheng-liang1-real-company-interview-ai-coding-pr-2",
+      "kind": "collection",
+      "title": "题目二：React Native 截图行动 Agent",
+      "summary": "ContactFlow 这是我针对本题完成的个人实现，打通聊天截图、多模态分析、可编辑 Action Card、用户确认",
+      "domain": "swe",
+      "category": "AI Coding 面试实战",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-coding",
+        "documentation"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-cheng-liang1-real-company-interview-ai-coding-pr-2"
+    },
+    {
+      "id": "g-auto-cheng-liang1-real-company-interview-ai-coding-pr-3",
+      "kind": "collection",
+      "title": "题目三：Jira 风格任务管理系统",
+      "summary": "ForceTrack 这是我针对本题完成的个人实现，覆盖任务 CRUD、看板拖拽、本地持久化、Backlog、Sprin",
+      "domain": "swe",
+      "category": "AI Coding 面试实战",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "agent",
+        "ai-coding",
+        "documentation"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-cheng-liang1-real-company-interview-ai-coding-pr-3"
+    },
+    {
+      "id": "g-auto-cheng-liang1-real-company-interview-ai-coding-pr-4",
+      "kind": "collection",
+      "title": "AI Coding 项目通用解法",
+      "summary": "AI Coding 笔试通常同时考察六件事： 1. 需求理解 ：能否把模糊题面变成清晰范围； 2. 产品判断 ：能否找到",
+      "domain": "swe",
+      "category": "AI Coding 面试实战",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-coding",
+        "documentation"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-cheng-liang1-real-company-interview-ai-coding-pr-4"
+    },
+    {
+      "id": "g-auto-cheng-liang1-real-company-interview-ai-coding-pr-5",
+      "kind": "collection",
+      "title": "ForceTrack：真实 AI Coding 对话历史",
+      "summary": "下面这段记录整理自 原始对话截图（飞书权限可见），按真实开发顺序呈现 ForceTrack 从一句需求到可交付产品的过程",
+      "domain": "swe",
+      "category": "AI Coding 面试实战",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agent",
+        "ai-coding",
+        "documentation"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-cheng-liang1-real-company-interview-ai-coding-pr-5"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-2",
+      "kind": "collection",
+      "title": "215. Kth Largest Element",
+      "summary": "https://leetcode.com/problems/kth largest element in an arra",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-2"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-3",
+      "kind": "collection",
+      "title": "2348. Number of Zero-Filled Subarrays",
+      "summary": "https://leetcode.com/problems/number of zero filled subarray",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-3"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-4",
+      "kind": "collection",
+      "title": "31. Next Permutation",
+      "summary": "https://leetcode.com/problems/next permutation/ Find the bre",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-4"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-5",
+      "kind": "collection",
+      "title": "59. Spiral Matrix II",
+      "summary": "https://leetcode.com/problems/spiral matrix ii/ 循环不变量，矩阵四条边都",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-5"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-7",
+      "kind": "collection",
+      "title": "665. Non-decreasing Array",
+      "summary": "https://leetcode.com/problems/non decreasing array/descripti",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-7"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-8",
+      "kind": "collection",
+      "title": "912. Sort an Array",
+      "summary": "https://leetcode.com/problems/sort an array/ 插入排序: 算法导论中的扑克牌",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-8"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-9",
+      "kind": "collection",
+      "title": "977. Squares of a Sorted Array",
+      "summary": "https://leetcode.com/problems/squares of a sorted array/ 直接法",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-9"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-10",
+      "kind": "collection",
+      "title": "1011. Capacity To Ship Packages Within D Days",
+      "summary": "https://leetcode.com/problems/capacity to ship packages with",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-10"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-11",
+      "kind": "collection",
+      "title": "1044. Longest Duplicate Substring",
+      "summary": "https://leetcode.com/problems/longest duplicate substring/de",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-11"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-14",
+      "kind": "collection",
+      "title": "1095. Find in Mountain Array",
+      "summary": "https://leetcode.com/problems/find in mountain array/ 时间复杂度：",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-14"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-15",
+      "kind": "collection",
+      "title": "1300. Sum of Mutated Array Closest to Target",
+      "summary": "https://leetcode.com/problems/sum of mutated array closest t",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-15"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-16",
+      "kind": "collection",
+      "title": "162. Find Peak Element",
+      "summary": "https://leetcode.com/problems/find peak element/description/",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-16"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-18",
+      "kind": "collection",
+      "title": "2055. Plates Between Candles",
+      "summary": "https://leetcode.com/problems/plates between candles/descrip",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-18"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-21",
+      "kind": "collection",
+      "title": "33. Search in Rotated Sorted Array",
+      "summary": "https://leetcode.com/problems/search in rotated sorted array",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-21"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-22",
+      "kind": "collection",
+      "title": "34. Find First and Last Position of Element in Sorted Array",
+      "summary": "https://leetcode.com/problems/find first and last position o",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-22"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-23",
+      "kind": "collection",
+      "title": "4. Median of Two Sorted Arrays",
+      "summary": "https://leetcode.com/problems/median of two sorted arrays/ m",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-23"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-24",
+      "kind": "collection",
+      "title": "410. Split Array Largest Sum",
+      "summary": "https://leetcode.com/problems/split array largest sum/ Binar",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-24"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-25",
+      "kind": "collection",
+      "title": "528. Random Pick with Weight",
+      "summary": "https://leetcode.com/problems/random pick with weight/ 时间复杂度",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-25"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-27",
+      "kind": "collection",
+      "title": "644. Maximum Average Subarray II",
+      "summary": "https://leetcode.com/problems/maximum average subarray ii/ 时",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-27"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-29",
+      "kind": "collection",
+      "title": "704. Binary Search",
+      "summary": "https://leetcode.com/problems/binary search/ 左闭右闭 时间复杂度：O(lo",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-29"
+    },
+    {
+      "id": "g-auto-longxingtan-machine-learning-interview-30",
+      "kind": "collection",
+      "title": "74. Search a 2D Matrix",
+      "summary": "https://leetcode.com/problems/search a 2d matrix/ 二分法: 2D ar",
+      "domain": "ai",
+      "category": "机器学习面试题解",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "ai-engineer",
+        "behavior-questions",
+        "deep-learning"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-longxingtan-machine-learning-interview-30"
     }
   ]
 }
