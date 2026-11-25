@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T13:56:14.251Z",
+ "updatedAt": "2026-11-25T14:16:05.691Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -3601,6 +3601,57 @@
    "status": "done",
    "addedAt": "2026-11-25T13:56:14.251Z",
    "note": "continuation: 存量来源深度续收 XVII 批"
+  },
+  {
+   "id": "algonote18",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 XVIII",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 518
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T14:16:05.691Z",
+   "note": "continuation: 存量来源深度续收 XVIII 批"
+  },
+  {
+   "id": "codehunter6",
+   "repo": "doocs/source-code-hunter",
+   "branch": "main",
+   "category": "源码学习笔记 VI",
+   "domain": "backend",
+   "tags": [
+    "Spring",
+    "Netty",
+    "源码"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true,
+     "skip": 100
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T14:16:05.691Z",
+   "note": "continuation: 存量来源深度续收 XVIII 批"
   }
  ]
 }

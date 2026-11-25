@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 710
+      "count": 740
     },
     {
       "id": "system",
@@ -45,7 +45,7 @@
       "name": "后端开发",
       "icon": "ServerCog",
       "blurb": "API 设计、框架、微服务、消息队列",
-      "count": 365
+      "count": 383
     },
     {
       "id": "data",
@@ -46966,6 +46966,792 @@
       ],
       "prereqs": [],
       "href": "/post/g-codehunter5-20"
+    },
+    {
+      "id": "g-algonote18-1",
+      "kind": "collection",
+      "title": "0424. 替换后的最长重复字符",
+      "summary": "标签：哈希表、字符串、滑动窗口 难度：中等 0424. 替换后的最长重复字符 力扣 描述 ：给定一个仅由大写英文字母组成",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-1"
+    },
+    {
+      "id": "g-algonote18-2",
+      "kind": "collection",
+      "title": "0481. 神奇字符串",
+      "summary": "标签：双指针、字符串 难度：中等 0481. 神奇字符串 力扣 描述 ： 神奇字符串 $s$ 仅由 '1' 和 '2' ",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-2"
+    },
+    {
+      "id": "g-algonote18-3",
+      "kind": "collection",
+      "title": "0473. 火柴拼正方形",
+      "summary": "标签：位运算、数组、动态规划、回溯、状态压缩 难度：中等 0473. 火柴拼正方形 力扣 描述 ：给定一个表示火柴长度的",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-3"
+    },
+    {
+      "id": "g-algonote18-4",
+      "kind": "collection",
+      "title": "0487. 最大连续1的个数 II",
+      "summary": "标签：数组、动态规划、滑动窗口 难度：中等 0487. 最大连续1的个数 II 力扣 描述 ：给定一个二进制数组 $nu",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-4"
+    },
+    {
+      "id": "g-algonote18-5",
+      "kind": "collection",
+      "title": "0485. 最大连续 1 的个数",
+      "summary": "标签：数组 难度：简单 0485. 最大连续 1 的个数 力扣 描述 ：给定一个二进制数组 $nums$， 数组中只包含",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-5"
+    },
+    {
+      "id": "g-algonote18-6",
+      "kind": "collection",
+      "title": "0421. 数组中两个数的最大异或值",
+      "summary": "标签：位运算、字典树、数组、哈希表 难度：中等 0421. 数组中两个数的最大异或值 力扣 给定一个整数数组 nums ",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-6"
+    },
+    {
+      "id": "g-algonote18-7",
+      "kind": "collection",
+      "title": "0433. 最小基因变化",
+      "summary": "标签：广度优先搜索、哈希表、字符串 难度：中等 0433. 最小基因变化 力扣 描述 ： 基因序列可以表示为一条由 $8",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-7"
+    },
+    {
+      "id": "g-algonote18-8",
+      "kind": "collection",
+      "title": "0462. 最小操作次数使数组元素相等 II",
+      "summary": "标签：数组、数学、排序 难度：中等 0462. 最小操作次数使数组元素相等 II 力扣 描述 ： 给定一个长度为 $n$",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-8"
+    },
+    {
+      "id": "g-algonote18-9",
+      "kind": "collection",
+      "title": "0453. 最小操作次数使数组元素相等",
+      "summary": "标签：数组、数学 难度：中等 0453. 最小操作次数使数组元素相等 力扣 描述 ： 给定一个长度为 $n$ 的整数数组",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-9"
+    },
+    {
+      "id": "g-algonote18-10",
+      "kind": "collection",
+      "title": "0452. 用最少数量的箭引爆气球",
+      "summary": "标签：贪心、数组、排序 难度：中等 0452. 用最少数量的箭引爆气球 力扣 描述 ：在一个坐标系中有许多球形的气球。对",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-10"
+    },
+    {
+      "id": "g-algonote18-11",
+      "kind": "collection",
+      "title": "0411. 最短独占单词缩写",
+      "summary": "标签：位运算、数组、字符串、回溯 难度：困难 0411. 最短独占单词缩写 力扣 描述 ： 给定目标单词 $target",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-11"
+    },
+    {
+      "id": "g-algonote18-12",
+      "kind": "collection",
+      "title": "0429. N 叉树的层序遍历",
+      "summary": "标签：树、广度优先搜索 难度：中等 0429. N 叉树的层序遍历 力扣 给定一个 N 叉树的根节点 root 。 要求",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-12"
+    },
+    {
+      "id": "g-algonote18-13",
+      "kind": "collection",
+      "title": "0496. 下一个更大元素 I",
+      "summary": "标签：栈、数组、哈希表、单调栈 难度：简单 0496. 下一个更大元素 I 力扣 描述 ：给定两个没有重复元素的数组 n",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-13"
+    },
+    {
+      "id": "g-algonote18-14",
+      "kind": "collection",
+      "title": "0491. 非递减子序列",
+      "summary": "标签：位运算、数组、哈希表、回溯 难度：中等 0491. 非递减子序列 力扣 给定一个整数数组 nums ，找出并返回该",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-14"
+    },
+    {
+      "id": "g-algonote18-15",
+      "kind": "collection",
+      "title": "0435. 无重叠区间",
+      "summary": "标签：贪心、数组、动态规划、排序 难度：中等 0435. 无重叠区间 力扣 描述 ：给定一个区间的集合 interval",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-15"
+    },
+    {
+      "id": "g-algonote18-16",
+      "kind": "collection",
+      "title": "0400. 第 N 位数字",
+      "summary": "标签：数学、二分查找 难度：中等 0400. 第 N 位数字 力扣 描述 ：给你一个整数 $n$。 要求 ：在无限的整数",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-16"
+    },
+    {
+      "id": "g-algonote18-17",
+      "kind": "collection",
+      "title": "0476. 数字的补数",
+      "summary": "标签：位运算 难度：简单 0476. 数字的补数 力扣 描述 ： 对整数的二进制表示取反（$0$ 变 $1$，$1$ 变",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-17"
+    },
+    {
+      "id": "g-algonote18-18",
+      "kind": "collection",
+      "title": "0447. 回旋镖的数量",
+      "summary": "标签：数组、哈希表、数学 难度：中等 0447. 回旋镖的数量 力扣 给定平面上点坐标的数组 points，其中 $po",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-18"
+    },
+    {
+      "id": "g-algonote18-19",
+      "kind": "collection",
+      "title": "0434. 字符串中的单词数",
+      "summary": "标签：字符串 难度：简单 0434. 字符串中的单词数 力扣 描述 ： 给定字符串 $s$。 要求 ： 统计字符串中的单",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-19"
+    },
+    {
+      "id": "g-algonote18-20",
+      "kind": "collection",
+      "title": "0474. 一和零",
+      "summary": "标签：数组、字符串、动态规划 难度：中等 0474. 一和零 力扣 描述 ：给定一个二进制字符串数组 $strs$，以及",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-20"
+    },
+    {
+      "id": "g-algonote18-21",
+      "kind": "collection",
+      "title": "0465. 最优账单平衡",
+      "summary": "标签：位运算、数组、动态规划、回溯、状态压缩 难度：困难 0465. 最优账单平衡 力扣 描述 ： 给定一组交易记录 $",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-21"
+    },
+    {
+      "id": "g-algonote18-22",
+      "kind": "collection",
+      "title": "0417. 太平洋大西洋水流问题",
+      "summary": "标签：深度优先搜索、广度优先搜索、数组、矩阵 难度：中等 0417. 太平洋大西洋水流问题 力扣 描述 ：给定一个 m ",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-22"
+    },
+    {
+      "id": "g-algonote18-23",
+      "kind": "collection",
+      "title": "0416. 分割等和子集",
+      "summary": "标签：数组、动态规划 难度：中等 0416. 分割等和子集 力扣 描述 ：给定一个只包含正整数的非空数组 $nums$。",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-23"
+    },
+    {
+      "id": "g-algonote18-24",
+      "kind": "collection",
+      "title": "0437. 路径总和 III",
+      "summary": "标签：树、深度优先搜索、二叉树 难度：中等 0437. 路径总和 III 力扣 给定一个二叉树的根节点 root ，和一",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-24"
+    },
+    {
+      "id": "g-algonote18-25",
+      "kind": "collection",
+      "title": "0458. 可怜的小猪",
+      "summary": "标签：数学、动态规划、组合数学 难度：困难 0458. 可怜的小猪 力扣 描述 ： 有 $buckets$ 桶液体，其中",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-25"
+    },
+    {
+      "id": "g-algonote18-26",
+      "kind": "collection",
+      "title": "0486. 预测赢家",
+      "summary": "标签：递归、数组、数学、动态规划、博弈 难度：中等 0486. 预测赢家 力扣 描述 ：给定搞一个整数数组 $nums$",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-26"
+    },
+    {
+      "id": "g-algonote18-27",
+      "kind": "collection",
+      "title": "0406. 根据身高重建队列",
+      "summary": "标签：贪心、树状数组、线段树、数组、排序 难度：中等 0406. 根据身高重建队列 力扣 n 个人打乱顺序排成一排，给定",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-27"
+    },
+    {
+      "id": "g-algonote18-28",
+      "kind": "collection",
+      "title": "0497. 非重叠矩形中的随机点",
+      "summary": "标签：水塘抽样、数组、数学、二分查找、有序集合、前缀和、随机化 难度：中等 0497. 非重叠矩形中的随机点 力扣 描述",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-28"
+    },
+    {
+      "id": "g-algonote18-29",
+      "kind": "collection",
+      "title": "0423. 从英文中重建数字",
+      "summary": "标签：哈希表、数学、字符串 难度：中等 0423. 从英文中重建数字 力扣 描述 ： 给定一个字符串 $s$，其中包含字",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-29"
+    },
+    {
+      "id": "g-algonote18-30",
+      "kind": "collection",
+      "title": "0402. 移掉 K 位数字",
+      "summary": "标签：栈、贪心、字符串、单调栈 难度：中等 0402. 移掉 K 位数字 力扣 描述 ： 给定一个以字符串表示的非负整数",
+      "domain": "algo",
+      "category": "算法通关手册 XVIII",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote18-30"
+    },
+    {
+      "id": "g-codehunter6-1",
+      "kind": "collection",
+      "title": "1、BeanDefinition的资源定位过程",
+      "summary": "之前一直想系统的拜读一下 spring 的源码，看看它到底是如何吸引身边的大神们对它的设计赞不绝口，虽然每天工作很忙，每",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-1"
+    },
+    {
+      "id": "g-codehunter6-2",
+      "kind": "collection",
+      "title": "2、将bean解析封装成BeanDefinition",
+      "summary": "接着上一篇的 BeanDefinition 资源定位开始讲。Spring IoC 容器 BeanDefinition 解",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-2"
+    },
+    {
+      "id": "g-codehunter6-3",
+      "kind": "collection",
+      "title": "3、将BeanDefinition注册进IoC容器",
+      "summary": "这篇文章分享一下 spring IoC 容器初始化第三部分的代码，也就是将前面解析出来的 BeanDefinition ",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-3"
+    },
+    {
+      "id": "g-codehunter6-4",
+      "kind": "collection",
+      "title": "4、依赖注入(DI)",
+      "summary": "前面我们主要分析了 FileSystemXmlApplicationContext 这个具体的 IoC 容器实现类 的初",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 21,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-4"
+    },
+    {
+      "id": "g-codehunter6-5",
+      "kind": "collection",
+      "title": "BeanFactoryPostProcessor 源码分析",
+      "summary": "BeanFactoryPostProcessor 是当 BeanDefinition 读取完元数据（也就是从任意资源中定",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-5"
+    },
+    {
+      "id": "g-codehunter6-6",
+      "kind": "collection",
+      "title": "BeanPostProcessor 源码分析",
+      "summary": "BeanPostProcessor 接口也叫 Bean 后置处理器，作用是在 Bean 对象实例化和依赖注入完成后，在配",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-6"
+    },
+    {
+      "id": "g-codehunter6-7",
+      "kind": "collection",
+      "title": "循环依赖",
+      "summary": "一个对象依赖对象闭环到自己 A B .... A tip: 不涉及代理对象问题 解决方法：当一个对象已经实例化完毕了，还",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-7"
+    },
+    {
+      "id": "g-codehunter6-9",
+      "kind": "collection",
+      "title": "Spring RMI",
+      "summary": "Author: HuiFer 源码阅读仓库: SourceHot Spring Spring 远程服务调用 服务提供方需",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-9"
+    },
+    {
+      "id": "g-codehunter6-10",
+      "kind": "collection",
+      "title": "Spring5 新特性 - spring.components",
+      "summary": "Author: HuiFer 源码阅读仓库: SourceHot Spring 相关类: org.springframe",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-10"
+    },
+    {
+      "id": "g-codehunter6-11",
+      "kind": "collection",
+      "title": "IoC容器在Web环境中的启动",
+      "summary": "在 Web 环境 中，SpringMVC 是建立在 IoC 容器 基础上的。了解 SpringMVC，首先要了解 Spr",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-11"
+    },
+    {
+      "id": "g-codehunter6-12",
+      "kind": "collection",
+      "title": "Spring-MVC 跨域",
+      "summary": "通过注解设置跨域 demo 如下 切入点: org.springframework.web.servlet.handle",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-12"
+    },
+    {
+      "id": "g-codehunter6-13",
+      "kind": "collection",
+      "title": "SpringMVC的设计与实现",
+      "summary": "在使用 SpringMVC 时，除了要在 web.xml 中配置 ContextLoaderListener 外，还要对",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-13"
+    },
+    {
+      "id": "g-codehunter6-15",
+      "kind": "collection",
+      "title": "Spring与事务处理",
+      "summary": "JavaEE 应用中的事务处理是一个重要并且涉及范围很广的领域。事务管理的实现往往涉及并发和数据一致性方面的问题。作为应",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-15"
+    },
+    {
+      "id": "g-codehunter6-16",
+      "kind": "collection",
+      "title": "Spring事务处理的设计与实现",
+      "summary": "在使用编程式事务处理的过程中，利用 DefaultTransactionDefinition 对象 来持有事务处理属性。",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-16"
+    },
+    {
+      "id": "g-codehunter6-17",
+      "kind": "collection",
+      "title": "Spring事务管理器的设计与实现",
+      "summary": "下面，我们以 DataSourceTransactionManager 事务管理器 为例，看一下在具体的事务管理器中如何",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-17"
+    },
+    {
+      "id": "g-codehunter6-18",
+      "kind": "collection",
+      "title": "Spring声明式事务处理",
+      "summary": "在使用 Spring 声明式事务处理 的时候，一种常用的方法是结合 IoC 容器 和 Spring 已有的 Transa",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-18"
+    },
+    {
+      "id": "g-codehunter6-19",
+      "kind": "collection",
+      "title": "16张图解锁Spring的整体脉络",
+      "summary": "作者: Java4ye 本文将讲解 Spring 的原理，看看一个 Bean 是怎么被创建出来的，中间经历过那几道工序加",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-19"
+    },
+    {
+      "id": "g-codehunter6-20",
+      "kind": "collection",
+      "title": "引言：庞大的代码量让人心生怠倦，有趣的故事让技术也疯狂",
+      "summary": "大家好，我是 IoC 容器家族的第 17 代传人，我们家族世世代代在 spring 商业街上卖烤面筋，大家都叫我“面筋哥",
+      "domain": "backend",
+      "category": "源码学习笔记 VI",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Spring",
+        "Netty",
+        "源码"
+      ],
+      "prereqs": [],
+      "href": "/post/g-codehunter6-20"
     }
   ]
 }
