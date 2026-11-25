@@ -24,7 +24,7 @@
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 335
+      "count": 363
     },
     {
       "id": "system",
@@ -36469,6 +36469,454 @@
       ],
       "prereqs": [],
       "href": "/post/g-waytogo4-30"
+    },
+    {
+      "id": "g-algonote5-1",
+      "kind": "collection",
+      "title": "0085. 最大矩形",
+      "summary": "标签：栈、数组、动态规划、矩阵、单调栈 难度：困难 0085. 最大矩形 力扣 描述 ： 给定一个仅包含 $0$ 和 $",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-1"
+    },
+    {
+      "id": "g-algonote5-2",
+      "kind": "collection",
+      "title": "0053. 最大子数组和",
+      "summary": "标签：数组、分治、动态规划 难度：中等 0053. 最大子数组和 力扣 描述 ：给定一个整数数组 $nums$。 要求 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-2"
+    },
+    {
+      "id": "g-algonote5-3",
+      "kind": "collection",
+      "title": "0004. 寻找两个正序数组的中位数",
+      "summary": "标签：数组、二分查找、分治 难度：困难 0004. 寻找两个正序数组的中位数 力扣 描述 ：给定两个正序（从小到大排序）",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-3"
+    },
+    {
+      "id": "g-algonote5-4",
+      "kind": "collection",
+      "title": "0056. 合并区间",
+      "summary": "标签：数组、排序 难度：中等 0056. 合并区间 力扣 描述 ：给定数组 intervals 表示若干个区间的集合，其",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-4"
+    },
+    {
+      "id": "g-algonote5-5",
+      "kind": "collection",
+      "title": "0023. 合并 K 个升序链表",
+      "summary": "标签：链表、分治、堆（优先队列）、归并排序 难度：困难 0023. 合并 K 个升序链表 力扣 描述 ：给定一个链表数组",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-5"
+    },
+    {
+      "id": "g-algonote5-6",
+      "kind": "collection",
+      "title": "0088. 合并两个有序数组",
+      "summary": "标签：数组、双指针、排序 难度：简单 0088. 合并两个有序数组 力扣 描述 ：给定两个有序数组 $nums1$、$n",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-6"
+    },
+    {
+      "id": "g-algonote5-8",
+      "kind": "collection",
+      "title": "0064. 最小路径和",
+      "summary": "标签：数组、动态规划、矩阵 难度：中等 0064. 最小路径和 力扣 描述 ：给定一个包含非负整数的 $m \\times",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-8"
+    },
+    {
+      "id": "g-algonote5-9",
+      "kind": "collection",
+      "title": "0076. 最小覆盖子串",
+      "summary": "标签：哈希表、字符串、滑动窗口 难度：困难 0076. 最小覆盖子串 力扣 描述 ：给定一个字符串 s 、一个字符串 t",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-9"
+    },
+    {
+      "id": "g-algonote5-11",
+      "kind": "collection",
+      "title": "0052. N 皇后 II",
+      "summary": "标签：回溯 难度：困难 0052. N 皇后 II 力扣 描述 ：给定一个整数 n 。 要求 ：返回「 n 皇后问题」不",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-11"
+    },
+    {
+      "id": "g-algonote5-12",
+      "kind": "collection",
+      "title": "0051. N 皇后",
+      "summary": "标签：数组、回溯 难度：困难 0051. N 皇后 力扣 描述 ：给定一个整数 n 。 要求 ：返回所有不同的「 n 皇",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-12"
+    },
+    {
+      "id": "g-algonote5-13",
+      "kind": "collection",
+      "title": "0031. 下一个排列",
+      "summary": "标签：数组、双指针 难度：中等 0031. 下一个排列 力扣 描述 ： 整数数组的一个「排列」就是将其所有成员以序列或线",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-13"
+    },
+    {
+      "id": "g-algonote5-14",
+      "kind": "collection",
+      "title": "0009. 回文数",
+      "summary": "标签：数学 难度：简单 0009. 回文数 力扣 给定整数 x，判断 x 是否是回文数。要求不能用整数转为字符串的方式来",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-14"
+    },
+    {
+      "id": "g-algonote5-15",
+      "kind": "collection",
+      "title": "0086. 分隔链表",
+      "summary": "标签：链表、双指针 难度：中等 0086. 分隔链表 力扣 描述 ： 给定一个链表的头节点 $head$ 和一个特定值 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-15"
+    },
+    {
+      "id": "g-algonote5-16",
+      "kind": "collection",
+      "title": "0060. 排列序列",
+      "summary": "标签：递归、数学 难度：困难 0060. 排列序列 力扣 描述 ： 给出集合 $ 1,2,3,...,n $，其所有元素",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-16"
+    },
+    {
+      "id": "g-algonote5-17",
+      "kind": "collection",
+      "title": "0047. 全排列 II",
+      "summary": "标签：数组、回溯 难度：中等 0047. 全排列 II 力扣 描述 ：给定一个可包含重复数字的序列 nums 。 要求 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-17"
+    },
+    {
+      "id": "g-algonote5-18",
+      "kind": "collection",
+      "title": "0046. 全排列",
+      "summary": "标签：数组、回溯 难度：中等 0046. 全排列 力扣 描述 ：给定一个不含重复数字的数组 nums 。 要求 ：返回其",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-18"
+    },
+    {
+      "id": "g-algonote5-19",
+      "kind": "collection",
+      "title": "0066. 加一",
+      "summary": "标签：数组、数学 难度：简单 0066. 加一 力扣 描述 ：给定一个非负整数数组，数组每一位对应整数的一位数字。 要求",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-19"
+    },
+    {
+      "id": "g-algonote5-20",
+      "kind": "collection",
+      "title": "0050. Pow(x, n)",
+      "summary": "标签：递归、数学 难度：中等 0050. Pow(x, n) 力扣 描述 ：给定浮点数 $x$ 和整数 $n$。 要求 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-20"
+    },
+    {
+      "id": "g-algonote5-21",
+      "kind": "collection",
+      "title": "0099. 恢复二叉搜索树",
+      "summary": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0099. 恢复二叉搜索树 力扣 描述 ： 给你二叉搜索树的根节",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-21"
+    },
+    {
+      "id": "g-algonote5-22",
+      "kind": "collection",
+      "title": "0010. 正则表达式匹配",
+      "summary": "标签：递归、字符串、动态规划 难度：困难 0010. 正则表达式匹配 力扣 描述 ：给定一个字符串 s 和一个字符模式串",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-22"
+    },
+    {
+      "id": "g-algonote5-23",
+      "kind": "collection",
+      "title": "0080. 删除有序数组中的重复项 II",
+      "summary": "标签：数组、双指针 难度：中等 0080. 删除有序数组中的重复项 II 力扣 描述 ：给定一个有序数组 $nums$。",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-23"
+    },
+    {
+      "id": "g-algonote5-24",
+      "kind": "collection",
+      "title": "0026. 删除有序数组中的重复项",
+      "summary": "标签：数组、双指针 难度：简单 0026. 删除有序数组中的重复项 力扣 描述 ：给定一个有序数组 nums 。 要求 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-24"
+    },
+    {
+      "id": "g-algonote5-25",
+      "kind": "collection",
+      "title": "0082. 删除排序链表中的重复元素 II",
+      "summary": "标签：链表、双指针 难度：中等 0082. 删除排序链表中的重复元素 II 力扣 描述 ：给定一个已排序的链表的头 $h",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-25"
+    },
+    {
+      "id": "g-algonote5-26",
+      "kind": "collection",
+      "title": "0083. 删除排序链表中的重复元素",
+      "summary": "标签：链表 难度：简单 0083. 删除排序链表中的重复元素 力扣 描述 ：给定一个已排序的链表的头 $head$。 要",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-26"
+    },
+    {
+      "id": "g-algonote5-27",
+      "kind": "collection",
+      "title": "0027. 移除元素",
+      "summary": "标签：数组、双指针 难度：简单 0027. 移除元素 力扣 描述 ： 给定一个数组 $nums$，和一个值 $val$。",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-27"
+    },
+    {
+      "id": "g-algonote5-28",
+      "kind": "collection",
+      "title": "0019. 删除链表的倒数第 N 个结点",
+      "summary": "标签：链表、双指针 难度：中等 0019. 删除链表的倒数第 N 个结点 力扣 描述 ：给定一个链表的头节点 head ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-28"
+    },
+    {
+      "id": "g-algonote5-29",
+      "kind": "collection",
+      "title": "0093. 复原 IP 地址",
+      "summary": "标签：字符串、回溯 难度：中等 0093. 复原 IP 地址 力扣 描述 ：给定一个只包含数字的字符串 s ，用来表示一",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-29"
+    },
+    {
+      "id": "g-algonote5-30",
+      "kind": "collection",
+      "title": "0007. 整数反转",
+      "summary": "标签：数学 难度：中等 0007. 整数反转 力扣 给定一个 32 位有符号整数 x，将 x 进行反转。 x 的范围为 ",
+      "domain": "algo",
+      "category": "算法通关手册 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "算法",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-algonote5-30"
     }
   ]
 }

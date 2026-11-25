@@ -35396,5 +35396,425 @@
     "source": "Unknwon/the-way-to-go_ZH_CN",
     "views": 0,
     "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-algonote5-1",
+    "title": "0085. 最大矩形",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：栈、数组、动态规划、矩阵、单调栈 难度：困难 0085. 最大矩形 力扣 描述 ： 给定一个仅包含 $0$ 和 $1$ 、大小为 $rows \\times cols$ 的二维",
+    "content": "# 0085. 最大矩形\n\n- 标签：栈、数组、动态规划、矩阵、单调栈\n- 难度：困难\n\n## 题目链接\n\n- 0085. 最大矩形 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个仅包含 $0$ 和 $1$ 、大小为 $rows \\times cols$ 的二维二进制矩阵。\n\n**要求**：\n\n找出只包含 $1$ 的最大矩形，并返回其面积。\n\n**说明**：\n\n- $rows == matrix$.length$。\n- $cols == matrix$[0].length$。\n- $1 \\le row, cols \\le 200$。\n- $matrix[i][j]$ 为 '0' 或 '1'。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote5/ext_pic.leetcode.cn__1722912576-boIxpm-image.png)\n\n```python\n输入：matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\n输出：6\n解释：最大矩形如上图所示。\n```\n\n- 示例 2：\n\n```python\n输入：matrix = [[\"0\"]]\n输出：0\n```\n\n## 解题思路\n\n### 思路 1：动态规划 + 单调栈\n\n**核心思想**：将二维矩阵问题转化为一维直方图问题，然后使用单调栈求解最大矩形面积。\n\n**算法步骤**：\n\n1. **构建高度数组**：对于矩阵的每一行，计算以该行为底部的连续1的高度\n2. **转化为直方图问题**：每一行的高度数组就相当于一个直方图\n3. **使用单调栈求解**：对每个直方图使用单调栈算法求解最大矩形面积\n4. **更新全局最大值**：记录所有行中的最大矩形面积\n\n**关键点**：\n\n- 对于每一行，如果当前元素是 `'1'`，则高度 $+1$；如果是 `'0'`，则高度重置为 $0$。\n- 使用单调栈维护递增的高度序列，当遇到较小高度时，计算之前所有较大高度能形成的最大矩形。\n- 在高度数组末尾添加 $0$，确保所有高度都能被处理。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        # 在高度数组末尾添加 0，确保所有高度都能被处理\n        heights.append(0)\n        ans = 0\n        stack = []  # 单调栈，存储高度数组的索引\n        \n        for i in range(len(heights)):\n            # 当栈不为空且当前高度小于等于栈顶高度时\n            while stack and heights[stack[-1]] >= heights[i]:\n                # 弹出栈顶元素，计算以该高度为矩形高度的最大面积\n                cur = stack.pop()\n                # 计算矩形的左边界：栈中下一个元素的索引+1，如果栈为空则为 0\n                left = stack[-1] + 1 if stack else 0\n                # 计算矩形的右边界：当前索引 -1\n                right = i - 1\n                # 计算矩形面积：宽度 × 高度\n                ans = max(ans, (right - left + 1) * heights[cur])\n            # 将当前索引压入栈中\n            stack.append(i)\n        return ans\n\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        # 处理空矩阵的情况\n        if not matrix or not matrix[0]:\n            return 0\n            \n        rows, cols = len(matrix), len(matrix[0])\n        # 高度数组，记录以当前行为底部的连续 1 的高度\n        heights = [0] * cols\n        max_area = 0\n        \n        # 遍历矩阵的每一行\n        for row in range(rows):\n            # 更新高度数组\n            for col in range(cols):\n                if matrix[row][col] == '1':\n                    # 如果当前元素是 '1'，高度 +1\n                    heights[col] += 1\n                else:\n                    # 如果当前元素是 '0'，高度重置为 0\n                    heights[col] = 0\n            \n            # 对当前行的高度数组使用单调栈算法计算最大矩形面积\n            max_area = max(max_area, self.largestRectangleArea(heights[:]))\n        \n        return max_area\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m \\times n)$，其中 $m$ 是矩阵的行数，$n$ 是矩阵的列数。需要遍历矩阵的每个元素，对每一行使用单调栈的时间复杂度是 $O(n)$。\n- **空间复杂度**：$O(n)$，其中 $n$ 是矩阵的列数。需要维护高度数组和单调栈，空间复杂度为 $O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-algonote5-2",
+    "title": "0053. 最大子数组和",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、分治、动态规划 难度：中等 0053. 最大子数组和 力扣 描述 ：给定一个整数数组 $nums$。 要求 ：找到一个具有最大和的连续子数组（子数组最少包含一个元素），",
+    "content": "# 0053. 最大子数组和\n\n- 标签：数组、分治、动态规划\n- 难度：中等\n\n## 题目链接\n\n- 0053. 最大子数组和 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数数组 $nums$。\n\n**要求**：找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。\n\n**说明**：\n\n- **子数组**：指的是数组中的一个连续部分。\n- $1 \\le nums.length \\le 10^5$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [-2,1,-3,4,-1,2,1,-5,4]\n输出：6\n解释：连续子数组 [4,-1,2,1] 的和最大，为 6。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1]\n输出：1\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照连续子数组的结束位置进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i]$ 为：以第 $i$ 个数结尾的连续子数组的最大和。\n\n###### 3. 状态转移方程\n\n状态 $dp[i]$ 为：以第 $i$ 个数结尾的连续子数组的最大和。则我们可以从「第 $i - 1$ 个数结尾的连续子数组的最大和」，以及「第 $i$ 个数的值」来讨论 $dp[i]$。\n\n- 如果 $dp[i - 1] < 0$，则「第 $i - 1$ 个数结尾的连续子数组的最大和」+「第 $i$  个数的值」<「第 $i$ 个数的值」，即：$dp[i - 1] + nums[i] < nums[i]$。所以，此时 $dp[i]$ 应取「第 $i$ 个数的值」，即 $dp[i] = nums[i]$。\n- 如果 $dp[i - 1] \\ge 0$，则「第 $i - 1$ 个数结尾的连续子数组的最大和」 +「第 $i$  个数的值」 >= 第 $i$ 个数的值，即：$dp[i - 1] + nums[i] \\ge nums[i]$。所以，此时 $dp[i]$  应取「第 $i - 1$ 个数结尾的连续子数组的最大和」+「 第 $i$  个数的值」，即 $dp[i] = dp[i - 1] + nums[i]$。\n\n归纳一下，状态转移方程为：\n\n$dp[i] = \\begin{cases} nums[i], &  dp[i - 1] < 0 \\cr dp[i - 1] + nums[i] & dp[i - 1] \\ge 0 \\end{cases}$\n\n###### 4. 初始条件\n\n- 第 $0$ 个数结尾的连续子数组的最大和为 $nums[0]$，即 $dp[0] = nums[0]$。\n\n###### 5. 最终结果\n\n根据状态定义，$dp[i]$ 为：以第 $i$ 个数结尾的连续子数组的最大和。则最终结果应为所有 $dp[i]$ 的最大值，即 $max(dp)$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        size = len(nums)\n        dp = [0 for _ in range(size)]\n\n        dp[0] = nums[0]\n        for i in range(1, size):\n            if dp[i - 1] < 0:\n                dp[i] = nums[i]\n            else:\n                dp[i] = dp[i - 1] + nums[i]\n        return max(dp)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为数组 $nums$ 的元素个数。\n- **空间复杂度**：$O(n)$。\n\n### 思路 2：动态规划 + 滚动优化\n\n因为 $dp[i]$ 只和 $dp[i - 1]$ 和当前元素 $nums[i]$ 相关，我们也可以使用一个变量 $subMax$ 来表示以第 $i$ 个数结尾的连续子数组的最大和。然后使用 $ansMax$ 来保存全局中最大值。\n\n### 思路 2：代码\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        size = len(nums)\n        subMax = nums[0]\n        ansMax = nums[0]\n\n        for i in range(1, size):\n            if subMax < 0:\n                subMax = nums[i]\n            else:\n                subMax += nums[i]\n            ansMax = max(ansMax, subMax)\n        return ansMax\n```\n\n### 思路 2：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 为数组 $nums$ 的元素个数。\n- **空间复杂度**：$O(1)$。\n\n### 思路 3：分治算法\n\n我们将数组 $nums$ 根据中心位置分为左右两个子数组。则具有最大和的连续子数组可能存在以下 $3$ 种情况：\n\n1. 具有最大和的连续子数组在左子数组中。\n2. 具有最大和的连续子数组在右子数组中。\n3. 具有最大和的连续子数组跨过中心位置，一部分在左子数组中，另一部分在右子树组中。\n\n那么我们要求出具有最大和的连续子数组的最大和，则分别对上面 $3$ 种情况求解即可。具体步骤如下：\n\n1. 将数组 $nums$ 根据中心位置递归分为左右两个子数组，直到所有子数组长度为 $1$。\n2. 长度为 $1$ 的子数组最大和肯定是数组中唯一的数，将其返回即可。\n3. 求出左子数组的最大和 $leftMax$。\n4. 求出右子树组的最大和 $rightMax$。\n5. 求出跨过中心位置，一部分在左子数组中，另一部分在右子树组的子数组最大和 $leftTotal + rightTotal$。\n6. 求出 $3$、$4$、$5$ 中的最大值，即为当前数组的最大和，将其返回即可。\n\n### 思路 3：代码\n\n```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        def max_sub_array(low, high):\n            if low == high:\n                return nums[low]\n\n            mid = low + (high - low) // 2\n            leftMax = max_sub_array(low, mid)\n            rightMax = max_sub_array(mid + 1, high)\n\n            total = 0\n            leftTotal = -inf\n            for i in range(mid, low - 1, -1):\n                total += nums[i]\n                leftTotal = max(leftTotal, total)\n            \n            total = 0\n            rightTotal = -inf\n            for i in range(mid + 1, high + 1):\n                total += nums[i]\n                rightTotal = max(rightTotal, total)\n            \n            return max(leftMax, rightMax, leftTotal + rightTotal)\n        \n        return max_sub_array(0, len(nums) - 1)\n```\n\n### 思路 3：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(\\log n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote5-3",
+    "title": "0004. 寻找两个正序数组的中位数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、二分查找、分治 难度：困难 0004. 寻找两个正序数组的中位数 力扣 描述 ：给定两个正序（从小到大排序）数组 $nums1$、$nums2$。 要求 ：找出并返回这",
+    "content": "# 0004. 寻找两个正序数组的中位数\n\n- 标签：数组、二分查找、分治\n- 难度：困难\n\n## 题目链接\n\n- 0004. 寻找两个正序数组的中位数 - 力扣\n\n## 题目大意\n\n**描述**：给定两个正序（从小到大排序）数组 $nums1$、$nums2$。\n\n**要求**：找出并返回这两个正序数组的中位数。\n\n**说明**：\n\n- 算法的时间复杂度应该为 $O(\\log (m + n))$ 。\n- $nums1.length == m$。\n- $nums2.length == n$。\n- $0 \\le m \\le 1000$。\n- $0 \\le n \\le 1000$。\n- $1 \\le m + n \\le 2000$。\n- $-10^6 \\le nums1[i], nums2[i] \\le 10^6$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums1 = [1,2], nums2 = [3,4]\n输出：2.50000\n解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5\n```\n\n- 示例 2：\n\n```python\n输入：nums1 = [1,2], nums2 = [3,4]\n输出：2.50000\n解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5\n```\n\n## 解题思路\n\n### 思路 1：二分查找\n\n单个有序数组的中位数是中间元素位置的元素。如果中间元素位置有两个元素，则为两个元素的平均数。如果是两个有序数组，则可以使用归并排序的方式将两个数组拼接为一个大的有序数组。合并后有序数组中间位置的元素，即为中位数。\n\n当然不合并的话，我们只需找到中位数的位置即可。我们用 $n1$、$n2$ 来表示数组 $nums1$、$nums2$ 的长度，则合并后的大的有序数组长度为 $(n1 + n2)$。\n\n我们可以发现：**中位数把数组分割成了左右两部分，并且左右两部分元素个数相等。**\n\n- 如果 $(n1 + n2)$ 是奇数时，中位数是大的有序数组中第 $\\lfloor \\frac{(n1 + n2)}{2} \\rfloor + 1$  的元素，单侧元素个数为 $\\lfloor \\frac{(n1 + n2)}{2} \\rfloor + 1$ 个（包含中位数）。\n- 如果 $(n1 + n2)$ 是偶数时，中位数是第 $\\lfloor \\frac{(n1 + n2)}{2} \\rfloor$ 的元素和第 $\\lfloor \\frac{(n1 + n2)}{2} \\rfloor + 1$ 的元素的平均值，单侧元素个数为 $\\lfloor \\frac{(n1 + n2)}{2} \\rfloor$ 个。\n\n因为是向下取整，上面两种情况综合可以写为：单侧元素个数为：$\\lfloor \\frac{(n1 + n2 + 1)}{2} \\rfloor$ 个。\n\n我们用 $k$ 来表示 $\\lfloor \\frac{(n1 + n2 + 1)}{2} \\rfloor$ 。现在的问题就变为了：**如何在两个有序数组中找到前 k 小的元素位置？**\n\n如果我们从 $nums1$ 数组中取出前 $m1(m1 \\le k)$ 个元素，那么从 $nums2$ 就需要取出前 $m2  = k - m1$ 个元素。\n\n并且如果我们在 $nums1$ 数组中找到了合适的 $m1$ 位置，则 $m2$ 的位置也就确定了。\n\n问题就可以进一步转换为：**如何从 $nums1$ 数组中取出前 $m1$ 个元素，使得 $nums1$ 第 $m1$ 个元素或者 $nums2$ 第 $m2 = k - m1$ 个元素为中位线位置**。\n\n我们可以通过「二分查找」的方法，在数组 $nums1$ 中找到合适的 $m1$ 位置，具体做法如下：\n\n1. 让 $left$ 指向 $nums1$ 的头部位置 $0$，$right$ 指向 $nums1$ 的尾部位置 $n1$。\n2. 每次取中间位置作为 $m1$，则 $m2 = k - m1$。然后判断 $nums1$ 第 $m1$ 位置上元素和 $nums2$ 第 $m2 - 1$ 位置上元素之间的关系，即 $nums1[m1]$ 和 $nums2[m2 - 1]$ 的关系。\n   1. 如果 $nums1[m1] < nums2[m2 - 1]$，则 $nums1$ 的前 $m1$ 个元素都不可能是第 $k$ 个元素。说明 $m1$ 取值有点小了，应该将 $m1$ 进行右移操作，即 $left = m1 + 1$。\n   2. 如果 $nums1[m1] \\ge nums2[m2 - 1]$，则说明 $m1$ 取值可能有点大了，应该将 $m1$ 进行左移。根据二分查找排除法的思路（排除一定不存在的区间，在剩下区间中继续查找），这里应取 $right = m1$。\n3. 找到 $m1$ 的位置之后，还要根据两个数组长度和 $(n1 + n2)$ 的奇偶性，以及边界条件来计算对应的中位数。\n\n---\n\n上面之所以要判断 $nums1[m1]$ 和 $nums2[m2 - 1]$ 的关系是因为：\n\n> 如果 $nums1[m1] < nums2[m2 - 1]$，则说明：\n>\n> - 最多有 $m1 + m2 - 1 = k - 1$  个元素比 $nums1[m1]$ 小，所以 $nums1[m1]$ 左侧的 $m1$ 个元素都不可能是第 $k$ 个元素。可以将 $m1$ 左侧的元素全部排除，然后将 $m1$ 进行右移。\n\n推理过程：\n\n如果 $nums1[m1] < nums2[m2 - 1]$，则：\n\n1. $nums1[m1]$ 左侧比 $nums1[m1]$ 小的一共有 $m1$ 个元素（$nums1[0] ... nums1[m1 -  1]$ 共 $m1$ 个）。\n2. $nums2$ 数组最多有 $m2 - 1$ 个元素比 $nums1[m1]$ 小（即便是 $nums2[m2 - 1]$ 左侧所有元素都比 $nums1[m1]$ 小，也只有 $m2 - 1$ 个）。\n3. 综上所述，$nums1$、$nums2$ 数组中最多有 $m1 + m2 - 1 = k - 1$ 个元素比 $nums1[m1]$ 小。\n4. 所以 $nums1[m1]$ 左侧的 $m1$ 个元素（$nums1[0] ... nums1[m1 -  1]$）都不可能是第 $k$ 个元素。可以将 $m1$ 左侧的元素全部排除，然后将 $m1$ 进行右移。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        n1 = len(nums1)\n        n2 = len(nums2)\n        if n1 > n2:\n            return self.findMedianSortedArrays(nums2, nums1)\n\n        k = (n1 + n2 + 1) // 2\n        left = 0\n        right = n1\n        while left < right:\n            m1 = left + (right - left) // 2    # 在 nums1 中取前 m1 个元素\n            m2 = k - m1                        # 在 nums2 中取前 m2 个元素\n            if nums1[m1] < nums2[m2 - 1]:      # 说明 nums1 中所元素不够多，\n                left = m1 + 1\n            else:\n                right = m1\n\n        m1 = left\n        m2 = k - m1\n        \n        c1 = max(float('-inf') if m1 <= 0 else nums1[m1 - 1], float('-inf') if m2 <= 0 else nums2[m2 - 1])\n        if (n1 + n2) % 2 == 1:\n            return c1\n\n        c2 = min(float('inf') if m1 >= n1 else nums1[m1], float('inf') if m2 >= n2 else nums2[m2])\n\n        return (c1 + c2) / 2\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log  (m + n))$ 。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote5-4",
+    "title": "0056. 合并区间",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、排序 难度：中等 0056. 合并区间 力扣 描述 ：给定数组 intervals 表示若干个区间的集合，其中单个区间为 intervals i = starti, e",
+    "content": "# 0056. 合并区间\n\n- 标签：数组、排序\n- 难度：中等\n\n## 题目链接\n\n- 0056. 合并区间 - 力扣\n\n## 题目大意\n\n**描述**：给定数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。\n\n**要求**：合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。\n\n**说明**：\n\n- $1 \\le intervals.length \\le 10^4$。\n- $intervals[i].length == 2$。\n- $0 \\le starti \\le endi \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：intervals = [[1,3],[2,6],[8,10],[15,18]]\n输出：[[1,6],[8,10],[15,18]]\n解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].\n```\n\n- 示例 2：\n\n```python\n输入：intervals = [[1,4],[4,5]]\n输出：[[1,5]]\n解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。\n```\n\n## 解题思路\n\n### 思路 1：排序\n\n1. 设定一个数组 `ans` 用于表示最终不重叠的区间数组，然后对原始区间先按照区间左端点大小从小到大进行排序。\n2. 遍历所有区间。\n3. 先将第一个区间加入 `ans` 数组中。\n4. 然后依次考虑后边的区间：\n   1. 如果第 `i` 个区间左端点在前一个区间右端点右侧，则这两个区间不会重合，直接将该区间加入 `ans` 数组中。\n   2. 否则的话，这两个区间重合，判断一下两个区间的右区间值，更新前一个区间的右区间值为较大值，然后继续考虑下一个区间，以此类推。\n5. 最后返回数组 `ans`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        intervals.sort(key=lambda x: x[0])\n\n        ans = []\n        for interval in intervals:\n            if not ans or ans[-1][1] < interval[0]:\n                ans.append(interval)\n            else:\n                ans[-1][1] = max(ans[-1][1], interval[1])\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times \\log_2 n)$。其中 $n$ 为区间数量。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote5-5",
+    "title": "0023. 合并 K 个升序链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表、分治、堆（优先队列）、归并排序 难度：困难 0023. 合并 K 个升序链表 力扣 描述 ：给定一个链表数组，每个链表都已经按照升序排列。 要求 ：将所有链表合并到一个",
+    "content": "# 0023. 合并 K 个升序链表\n\n- 标签：链表、分治、堆（优先队列）、归并排序\n- 难度：困难\n\n## 题目链接\n\n- 0023. 合并 K 个升序链表 - 力扣\n\n## 题目大意\n\n**描述**：给定一个链表数组，每个链表都已经按照升序排列。\n\n**要求**：将所有链表合并到一个升序链表中，返回合并后的链表。\n\n**说明**：\n\n- $k == lists.length$。\n- $0 \\le k \\le 10^4$。\n- $0 \\le lists[i].length \\le 500$。\n- $-10^4 \\le lists[i][j] \\le 10^4$。\n- $lists[i]$ 按升序排列。\n- $lists[i].length$ 的总和不超过 $10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：lists = [[1,4,5],[1,3,4],[2,6]]\n输出：[1,1,2,3,4,4,5,6]\n解释：链表数组如下：\n[\n  1->4->5,\n  1->3->4,\n  2->6\n]\n将它们合并到一个有序链表中得到。\n1->1->2->3->4->4->5->6\n```\n\n- 示例 2：\n\n```python\n输入：lists = []\n输出：[]\n```\n\n## 解题思路\n\n### 思路 1：分治算法\n\n分而治之的思想。将链表数组不断二分，转为规模为二分之一的子问题，然后再进行归并排序。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def merge_sort(self, lists: List[ListNode], left: int, right: int) -> ListNode:\n        if left == right:\n            return lists[left]\n        mid = left + (right - left) // 2\n        node_left = self.merge_sort(lists, left, mid)\n        node_right = self.merge_sort(lists, mid + 1, right)\n        return self.merge(node_left, node_right)\n\n    def merge(self, a: ListNode, b: ListNode) -> ListNode:\n        root = ListNode(-1)\n        cur = root\n        while a and b:\n            if a.val < b.val:\n                cur.next = a\n                a = a.next\n            else:\n                cur.next = b\n                b = b.next\n            cur = cur.next\n        if a:\n            cur.next = a\n        if b:\n            cur.next = b\n        return root.next\n\n    def mergeKLists(self, lists: List[ListNode]) -> ListNode:\n        if not lists:\n            return None\n        size = len(lists)\n        return self.merge_sort(lists, 0, size - 1)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(k \\times n \\times \\log_2k)$。\n- **空间复杂度**：$O(\\log_2k)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote5-6",
+    "title": "0088. 合并两个有序数组",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针、排序 难度：简单 0088. 合并两个有序数组 力扣 描述 ：给定两个有序数组 $nums1$、$nums2$。 要求 ：将 $nums2$ 合并到 $nums",
+    "content": "# 0088. 合并两个有序数组\n\n- 标签：数组、双指针、排序\n- 难度：简单\n\n## 题目链接\n\n- 0088. 合并两个有序数组 - 力扣\n\n## 题目大意\n\n**描述**：给定两个有序数组 $nums1$、$nums2$。\n\n**要求**：将 $nums2$ 合并到 $nums1$ 中，使 $nums1$ 成为一个有序数组。\n\n**说明**：\n\n- 给定数组 $nums1$ 空间大小为$ m + n$ 个，其中前 $m$ 个为 $nums1$ 的元素。$nums2$ 空间大小为 $n$。这样可以用 $nums1$ 的空间来存储最终的有序数组。\n- $nums1.length == m + n$。\n- $nums2.length == n$。\n- $0 \\le m, n \\le 200$。\n- $1 \\le m + n \\le 200$。\n- $-10^9 \\le nums1[i], nums2[j] \\le 10^9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3\n输出：[1,2,2,3,5,6]\n解释：需要合并 [1,2,3] 和 [2,5,6] 。\n合并结果是 [1,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。\n```\n\n- 示例 2：\n\n```python\n输入：nums1 = [1], m = 1, nums2 = [], n = 0\n输出：[1]\n解释：需要合并 [1] 和 [] 。\n合并结果是 [1] 。\n```\n\n## 解题思路\n\n### 思路 1：快慢指针\n\n1. 将两个指针 $index1$、$index2$ 分别指向 $nums1$、$nums2$ 数组的尾部，再用一个指针 $index$ 指向数组 $nums1$ 的尾部。\n2. 从后向前判断当前指针下 $nums1[index1]$ 和 $nums[index2]$ 的值大小，将较大值存入 $num1[index]$ 中，然后继续向前遍历。\n3. 最后再将 $nums2$ 中剩余元素赋值到 $num1$ 前面对应位置上。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        index1 = m - 1\n        index2 = n - 1\n        index = m + n - 1\n        while index1 >= 0 and index2 >= 0:\n            if nums1[index1] < nums2[index2]:\n                nums1[index] = nums2[index2]\n                index2 -= 1\n            else:\n                nums1[index] = nums1[index1]\n                index1 -= 1\n            index -= 1\n\n        nums1[:index2+1] = nums2[:index2+1]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m + n)$。\n- **空间复杂度**：$O(m + n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote5-8",
+    "title": "0064. 最小路径和",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、动态规划、矩阵 难度：中等 0064. 最小路径和 力扣 描述 ：给定一个包含非负整数的 $m \\times n$ 大小的网格 $grid$。 要求 ：找出一条从左上角",
+    "content": "# 0064. 最小路径和\n\n- 标签：数组、动态规划、矩阵\n- 难度：中等\n\n## 题目链接\n\n- 0064. 最小路径和 - 力扣\n\n## 题目大意\n\n**描述**：给定一个包含非负整数的 $m \\times n$  大小的网格 $grid$。\n\n**要求**：找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。\n\n**说明**：\n\n- 每次只能向下或者向右移动一步。\n- $m == grid.length$。\n- $n == grid[i].length$。\n- $1 \\le m, n \\le 200$。\n- $0 \\le grid[i][j] \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_11_05_minpath.jpg)\n\n```python\n输入：grid = [[1,3,1],[1,5,1],[4,2,1]]\n输出：7\n解释：因为路径 1→3→1→1→1 的总和最小。\n```\n\n- 示例 2：\n\n```python\n输入：grid = [[1,2,3],[4,5,6]]\n输出：12\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照路径的结尾位置（行位置、列位置组成的二维坐标）进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 $dp[i][j]$ 为：从左上角到达 $(i, j)$ 位置的最小路径和。\n\n###### 3. 状态转移方程\n\n当前位置 $(i, j)$ 只能从左侧位置 $(i, j - 1)$ 或者上方位置 $(i - 1, j)$ 到达。为了使得从左上角到达 $(i, j)$ 位置的最小路径和最小，应从 $(i, j - 1)$ 位置和 $(i - 1, j)$ 位置选择路径和最小的位置达到 $(i, j)$。\n\n即状态转移方程为：$dp[i][j] = min(dp[i][j - 1], dp[i - 1][j]) + grid[i][j]$。\n\n###### 4. 初始条件\n\n- 当左侧和上方是矩阵边界时（即 $i = 0, j = 0$），$dp[i][j] = grid[i][j]$。\n- 当只有左侧是矩阵边界时（即 $i \\ne 0, j = 0$），只能从上方到达，$dp[i][j] = dp[i - 1][j] + grid[i][j]$。\n- 当只有上方是矩阵边界时（即 $i = 0, j \\ne 0$），只能从左侧到达，$dp[i][j] = dp[i][j - 1] + grid[i][j]$。\n\n###### 5. 最终结果\n\n根据状态定义，最后输出 $dp[rows - 1][cols - 1]$（即从左上角到达 $(rows - 1, cols - 1)$ 位置的最小路径和）即可。其中 $rows$、$cols$ 分别为 $grid$ 的行数、列数。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def minPathSum(self, grid: List[List[int]]) -> int:\n        rows, cols = len(grid), len(grid[0])\n        dp = [[0 for _ in range(cols)] for _ in range(rows)]\n\n        dp[0][0] = grid[0][0]\n        \n        for i in range(1, rows):\n            dp[i][0] = dp[i - 1][0] + grid[i][0]\n        \n        for j in range(1, cols):\n            dp[0][j] = dp[0][j - 1] + grid[0][j]\n\n        for i in range(1, rows):\n            for j in range(1, cols):\n                dp[i][j] = min(dp[i][j - 1], dp[i - 1][j]) + grid[i][j]\n            \n        return dp[rows - 1][cols - 1]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m * n)$，其中 $m$、$n$ 分别为 $grid$ 的行数和列数。\n- **空间复杂度**：$O(m * n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/f27bd2d1151dfd8e.webp"
+  },
+  {
+    "id": "g-algonote5-9",
+    "title": "0076. 最小覆盖子串",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：哈希表、字符串、滑动窗口 难度：困难 0076. 最小覆盖子串 力扣 描述 ：给定一个字符串 s 、一个字符串 t 。 要求 ：返回 s 中涵盖 t 所有字符的最小子串。如果",
+    "content": "# 0076. 最小覆盖子串\n\n- 标签：哈希表、字符串、滑动窗口\n- 难度：困难\n\n## 题目链接\n\n- 0076. 最小覆盖子串 - 力扣\n\n## 题目大意\n\n**描述**：给定一个字符串 `s`、一个字符串 `t`。\n\n**要求**：返回 `s` 中涵盖 `t` 所有字符的最小子串。如果 `s` 中不存在涵盖 `t` 所有字符的子串，则返回空字符串 `\"\"`。\n\n**说明**：\n\n- $1 \\le s.length, t.length \\le 10^5$。\n- `s` 和 `t` 由英文字母组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"ADOBECODEBANC\", t = \"ABC\"\n输出：\"BANC\"\n```\n\n- 示例 2：\n\n```python\n输入：s = \"a\", t = \"a\"\n输出：\"a\"\n```\n\n## 解题思路\n\n### 思路 1：滑动窗口\n\n1. `left`、`right` 表示窗口的边界，一开始都位于下标 `0` 处。`need` 用于记录短字符串需要的字符数。`window` 记录当前窗口内的字符数。\n2. 将 `right` 右移，直到出现了 `t` 中全部字符，开始右移 `left`，减少滑动窗口的大小，并记录下最小覆盖子串的长度和起始位置。\n3. 最后输出结果。\n\n### 思路 1：代码\n\n```python\nimport collections\n\nclass Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        need = collections.defaultdict(int)\n        window = collections.defaultdict(int)\n        for ch in t:\n            need[ch] += 1\n\n        left, right = 0, 0\n        valid = 0\n        start = 0\n        size = len(s) + 1\n\n        while right < len(s):\n            insert_ch = s[right]\n            right += 1\n\n            if insert_ch in need:\n                window[insert_ch] += 1\n                if window[insert_ch] == need[insert_ch]:\n                    valid += 1\n\n            while valid == len(need):\n                if right - left < size:\n                    start = left\n                    size = right - left\n                remove_ch = s[left]\n                left += 1\n                if remove_ch in need:\n                    if window[remove_ch] == need[remove_ch]:\n                        valid -= 1\n                    window[remove_ch] -= 1\n        if size == len(s) + 1:\n            return ''\n        return s[start:start+size]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 是字符串 $s$ 的长度。\n- **空间复杂度**：$O(| \\sum |)$。$| \\sum |$  是 $s$ 和 $t$ 的字符集大小。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/7508d797f8854870.webp"
+  },
+  {
+    "id": "g-algonote5-11",
+    "title": "0052. N 皇后 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：回溯 难度：困难 0052. N 皇后 II 力扣 描述 ：给定一个整数 n 。 要求 ：返回「 n 皇后问题」不同解决方案的数量。 说明 ： n 皇后问题 ：将 n 个皇后",
+    "content": "# 0052. N 皇后 II\n\n- 标签：回溯\n- 难度：困难\n\n## 题目链接\n\n- 0052. N 皇后 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 `n`。\n\n**要求**：返回「`n` 皇后问题」不同解决方案的数量。\n\n**说明**：\n\n- **n 皇后问题**：将 `n` 个皇后放置在 `n * n` 的棋盘上，并且使得皇后彼此之间不能攻击。\n- **皇后彼此不能相互攻击**：指的是任何两个皇后都不能处于同一条横线、纵线或者斜线上。\n- $1 \\le n \\le 9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 4\n输出：2\n解释：如下图所示，4 皇后问题存在两个不同的解法。\n```\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_11_13_queens.jpg)\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n和「51. N 皇后 - 力扣」做法一致。区别在于「51. N 皇后 - 力扣」需要返回所有解决方案，而这道题只需要得到所有解决方案的数量即可。下面来说一下这道题的解题思路。\n\n我们可以按照行序来放置皇后，也就是先放第一行，再放第二行 …… 一直放到最后一行。\n\n对于 `n * n` 的棋盘来说，每一行有 `n`  列，也就有 `n` 种放法可供选择。我们可以尝试选择其中一列，查看是否与之前放置的皇后有冲突，如果没有冲突，则继续在下一行放置皇后。依次类推，直到放置完所有皇后，并且都不发生冲突时，就得到了一个合理的解。\n\n并且在放置完之后，通过回溯的方式尝试其他可能的分支。\n\n下面我们根据回溯算法三步走，写出对应的回溯算法。\n\n![N 皇后问题的解题流程](/images/figures/algonote5/ext_qcdn.itcharge.cn__images_20220426095225.png)\n\n1. **明确所有选择**：根据棋盘中当前行的所有列位置上是否选择放置皇后，画出决策树，如上图所示。\n2. **明确终止条件**：\n   - 当遍历到决策树的叶子节点时，就终止了。也就是在最后一行放置完皇后时，递归终止。\n3. **将决策树和终止条件翻译成代码**：\n   1. 定义回溯函数：\n      - 首先我们先使用一个 $n \\times n$ 大小的二维矩阵 `chessboard` 来表示当前棋盘，`chessboard` 中的字符 `Q` 代表皇后，`.` 代表空位，初始都为 `.`。\n      - 然后定义回溯函数 `backtrack(chessboard, row): ` 函数的传入参数是 `chessboard`（棋盘数组）和 `row`（代表当前正在考虑放置第 `row` 行皇后），全局变量是 `ans`（所有可行方案的数量）。\n      - `backtrack(chessboard, row):` 函数代表的含义是：在放置好第 `row` 行皇后的情况下，递归放置剩下行的皇后。\n   2. 书写回溯函数主体（给出选择元素、递归搜索、撤销选择部分）。\n      - 枚举出当前行所有的列。对于每一列位置：\n        - 约束条件：定义一个判断方法，先判断一下当前位置是否与之前棋盘上放置的皇后发生冲突，如果不发生冲突则继续放置，否则则继续向后遍历判断。\n        - 选择元素：选择 `row, col` 位置放置皇后，将其棋盘对应位置设置为 `Q`。\n        - 递归搜索：在该位置放置皇后的情况下，继续递归考虑下一行。\n        - 撤销选择：将棋盘上 `row, col` 位置设置为 `.`。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    # 判断当前位置 row, col 是否与之前放置的皇后发生冲突\n    def isValid(self, n: int, row: int, col: int, chessboard: List[List[str]]):\n        for i in range(row):\n            if chessboard[i][col] == 'Q':\n                return False\n\n        i, j = row - 1, col - 1\n        while i >= 0 and j >= 0:\n            if chessboard[i][j] == 'Q':\n                return False\n            i -= 1\n            j -= 1\n        i, j = row - 1, col + 1\n        while i >= 0 and j < n:\n            if chessboard[i][j] == 'Q':\n                return False\n            i -= 1\n            j += 1\n\n        return True\n\n    def totalNQueens(self, n: int) -> int:\n        chessboard = [['.' for _ in range(n)] for _ in range(n)]    # 棋盘初始化\n        \n        ans = 0\n        def backtrack(chessboard: List[List[str]], row: int):                     # 正在考虑放置第 row 行的皇后\n            if row == n:                                    # 遇到终止条件\n                nonlocal ans\n                ans += 1\n                return\n\n            for col in range(n):                            # 枚举可放置皇后的列\n                if self.isValid(n, row, col, chessboard):   # 如果该位置与之前放置的皇后不发生冲突\n                    chessboard[row][col] = 'Q'              # 选择 row, col 位置放置皇后\n                    backtrack(chessboard, row + 1)          # 递归放置 row + 1 行之后的皇后\n                    chessboard[row][col] = '.'              # 撤销选择 row, col 位置\n\n        backtrack(chessboard, 0)\n\n        return ans\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n!)$，其中 $n$ 是皇后数量。\n- **空间复杂度**：$O(n^2)$，其中 $n$ 是皇后数量。递归调用层数不会超过 $n$，每个棋盘的空间复杂度为 $O(n^2)$，所以空间复杂度为 $O(n^2)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-algonote5-12",
+    "title": "0051. N 皇后",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、回溯 难度：困难 0051. N 皇后 力扣 描述 ：给定一个整数 n 。 要求 ：返回所有不同的「 n 皇后问题」的解决方案。每一种解法包含一个不同的「 n 皇后问题",
+    "content": "# 0051. N 皇后\n\n- 标签：数组、回溯\n- 难度：困难\n\n## 题目链接\n\n- 0051. N 皇后 - 力扣\n\n## 题目大意\n\n**描述**：给定一个整数 `n`。\n\n**要求**：返回所有不同的「`n` 皇后问题」的解决方案。每一种解法包含一个不同的「`n` 皇后问题」的棋子放置方案，该方案中的 `Q` 和 `.` 分别代表了皇后和空位。\n\n**说明**：\n\n- **n 皇后问题**：将 `n` 个皇后放置在 `n * n` 的棋盘上，并且使得皇后彼此之间不能攻击。\n- **皇后彼此不能相互攻击**：指的是任何两个皇后都不能处于同一条横线、纵线或者斜线上。\n- $1 \\le n \\le 9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 4\n输出：[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]\n解释：如下图所示，4 皇后问题存在 2 个不同的解法。\n```\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_11_13_queens.jpg)\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n这道题是经典的回溯问题。我们可以按照行序来放置皇后，也就是先放第一行，再放第二行 …… 一直放到最后一行。\n\n对于 `n * n` 的棋盘来说，每一行有 `n`  列，也就有 `n` 种放法可供选择。我们可以尝试选择其中一列，查看是否与之前放置的皇后有冲突，如果没有冲突，则继续在下一行放置皇后。依次类推，直到放置完所有皇后，并且都不发生冲突时，就得到了一个合理的解。\n\n并且在放置完之后，通过回溯的方式尝试其他可能的分支。\n\n下面我们根据回溯算法三步走，写出对应的回溯算法。\n\n![N 皇后问题的解题流程](/images/figures/algonote5/ext_qcdn.itcharge.cn__images_20220426095225.png)\n\n1. **明确所有选择**：根据棋盘中当前行的所有列位置上是否选择放置皇后，画出决策树，如上图所示。\n2. **明确终止条件**：\n   - 当遍历到决策树的叶子节点时，就终止了。也就是在最后一行放置完皇后时，递归终止。\n3. **将决策树和终止条件翻译成代码**：\n   1. 定义回溯函数：\n      - 首先我们先使用一个 $n \\times n$ 大小的二维矩阵 `chessboard` 来表示当前棋盘，`chessboard` 中的字符 `Q` 代表皇后，`.` 代表空位，初始都为 `.`。\n      - 然后定义回溯函数 `backtrack(chessboard, row): ` 函数的传入参数是 `chessboard`（棋盘数组）和 `row`（代表当前正在考虑放置第 `row` 行皇后），全局变量是 `res`（存放所有符合条件结果的集合数组）。\n      - `backtrack(chessboard, row):` 函数代表的含义是：在放置好第 `row` 行皇后的情况下，递归放置剩下行的皇后。\n   2. 书写回溯函数主体（给出选择元素、递归搜索、撤销选择部分）。\n      - 枚举出当前行所有的列。对于每一列位置：\n        - 约束条件：定义一个判断方法，先判断一下当前位置是否与之前棋盘上放置的皇后发生冲突，如果不发生冲突则继续放置，否则则继续向后遍历判断。\n        - 选择元素：选择 `row, col` 位置放置皇后，将其棋盘对应位置设置为 `Q`。\n        - 递归搜索：在该位置放置皇后的情况下，继续递归考虑下一行。\n        - 撤销选择：将棋盘上 `row, col` 位置设置为 `.`。\n\n   ```python\n   # 判断当前位置 row, col 是否与之前放置的皇后发生冲突\n   def isValid(self, n: int, row: int, col: int, chessboard: List[List[str]]):\n       for i in range(row):\n           if chessboard[i][col] == 'Q':\n               return False\n   \n       i, j = row - 1, col - 1\n       while i >= 0 and j >= 0:\n           if chessboard[i][j] == 'Q':\n               return False\n           i -= 1\n           j -= 1\n       i, j = row - 1, col + 1\n       while i >= 0 and j < n:\n           if chessboard[i][j] == 'Q':\n               return False\n           i -= 1\n           j += 1\n   \n       return True\n   ```\n\n    ```python\n   for col in range(n):                            # 枚举可放置皇后的列\n       if self.isValid(n, row, col, chessboard):   # 如果该位置与之前放置的皇后不发生冲突\n           chessboard[row][col] = 'Q'              # 选择 row, col 位置放置皇后\n           backtrack(row + 1, chessboard)          # 递归放置 row + 1 行之后的皇后\n           chessboard[row][col] = '.'              # 撤销选择 row, col 位置\n    ```\n\n   3. 明确递归终止条件（给出递归终止条件，以及递归终止时的处理方法）。\n      - 当遍历到决策树的叶子节点时，就终止了。也就是在最后一行放置完皇后（即 `row == n`）时，递归停止。\n      - 递归停止时，将当前符合条件的棋盘转换为答案需要的形式，然后将其存入答案数组 `res` 中即可。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    res = []\n    def backtrack(self, n: int, row: int, chessboard: List[List[str]]):\n        if row == n:\n            temp_res = []\n            for temp in chessboard:\n                temp_str = ''.join(temp)\n                temp_res.append(temp_str)\n            self.res.append(temp_res)\n            return\n        for col in range(n):\n            if self.isValid(n, row, col, chessboard):\n                chessboard[row][col] = 'Q'\n                self.backtrack(n, row + 1, chessboard)\n                chessboard[row][col] = '.'\n\n    def isValid(self, n: int, row: int, col: int, chessboard: List[List[str]]):\n        for i in range(row):\n            if chessboard[i][col] == 'Q':\n                return False\n\n        i, j = row - 1, col - 1\n        while i >= 0 and j >= 0:\n            if chessboard[i][j] == 'Q':\n                return False\n            i -= 1\n            j -= 1\n        i, j = row - 1, col + 1\n        while i >= 0 and j < n:\n            if chessboard[i][j] == 'Q':\n                return False\n            i -= 1\n            j += 1\n\n        return True\n\n    def solveNQueens(self, n: int) -> List[List[str]]:\n        self.res.clear()\n        chessboard = [['.' for _ in range(n)] for _ in range(n)]\n        self.backtrack(n, 0, chessboard)\n        return self.res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n!)$，其中 $n$ 是皇后数量。\n- **空间复杂度**：$O(n^2)$，其中 $n$ 是皇后数量。递归调用层数不会超过 $n$，每个棋盘的空间复杂度为 $O(n^2)$，所以空间复杂度为 $O(n^2)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote5-13",
+    "title": "0031. 下一个排列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针 难度：中等 0031. 下一个排列 力扣 描述 ： 整数数组的一个「排列」就是将其所有成员以序列或线性顺序排列。 例如，$arr = 1,2,3 $，以下这些都",
+    "content": "# 0031. 下一个排列\n\n- 标签：数组、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0031. 下一个排列 - 力扣\n\n## 题目大意\n\n**描述**：\n\n整数数组的一个「排列」就是将其所有成员以序列或线性顺序排列。\n\n- 例如，$arr = [1,2,3]$，以下这些都可以视作 $arr$ 的排列：$[1,2,3]$、$[1,3,2]$、$[3,1,2]$、$[2,3,1]$。\n\n整数数组的 下一个排列 是指其整数的下一个字典序更大的排列。更正式地，如果数组的所有排列根据其字典顺序从小到大排列在一个容器中，那么数组的 下一个排列 就是在这个有序容器中排在它后面的那个排列。如果不存在下一个更大的排列，那么这个数组必须重排为字典序最小的排列（即，其元素按升序排列）。\n\n- 例如，$arr = [1,2,3]$ 的下一个排列是 $[1,3,2]$。\n- 类似地，$arr = [2,3,1]$ 的下一个排列是 $[3,1,2]$。\n- 而 $arr = [3,2,1]$ 的下一个排列是 $[1,2,3]$，因为 $[3,2,1]$ 不存在一个字典序更大的排列。\n\n给定一个整数数组 $nums$。\n\n**要求**：\n\n找出 $nums$ 的下一个排列。\n\n**说明**：\n\n- $1 \\le nums.length \\le 100$。\n- $0 \\le nums[i] \\le 100$。\n- 必须原地修改，只允许使用额外常数空间。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,3]\n输出：[1,3,2]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [3,2,1]\n输出：[1,2,3]\n```\n\n## 解题思路\n\n### 思路 1：暴力搜索\n\n**核心思想**：从右向左遍历数组，找到第一个可以交换的位置，然后交换并排序剩余部分。\n\n**算法步骤**：\n\n1. 从数组末尾开始向前遍历，找到第一个 $nums[i] < nums[j]$ 的位置（其中 $j > i$）。\n2. 找到这个位置后，交换 $nums[i]$ 和 $nums[j]$。\n3. 将 $nums[i+1:]$ 部分进行排序，得到字典序最小的排列。\n4. 如果找不到这样的位置，说明当前排列已经是最大排列，直接对整个数组排序得到最小排列。\n\n**关键点**：\n\n- 从右向左遍历确保找到的是最右边的可交换位置。\n- 交换后对剩余部分排序，保证得到的是下一个字典序排列。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def nextPermutation(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        size = len(nums)\n        for i in range(size - 1, -1, -1):\n            for j in range(size - 1, i, -1):\n                if nums[i] < nums[j]:\n                    nums[i], nums[j] = nums[j], nums[i]\n                    nums[i + 1: ] = sorted(nums[i + 1:])\n                    return\n        nums.sort()\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$，其中 $n$ 是数组长度。最坏情况下需要遍历所有位置，每次遍历需要 $O(n)$ 时间，排序需要 $O(n \\log n)$ 时间。\n- **空间复杂度**：$O(1)$，只使用了常数额外空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote5-14",
+    "title": "0009. 回文数",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数学 难度：简单 0009. 回文数 力扣 给定整数 x，判断 x 是否是回文数。要求不能用整数转为字符串的方式来解决这个问题。 回文数指的是正序（从左向右）和倒序（从右向左",
+    "content": "# 0009. 回文数\n\n- 标签：数学\n- 难度：简单\n\n## 题目链接\n\n- 0009. 回文数 - 力扣\n\n## 题目大意\n\n给定整数 x，判断 x 是否是回文数。要求不能用整数转为字符串的方式来解决这个问题。\n\n回文数指的是正序（从左向右）和倒序（从右向左）读都是一样的整数。比如 12321。\n\n## 解题思路\n\n- 首先，负数，10 的倍数都不是回文数，可以直接排除。\n- 然后将原数进行按位取余，并按位反转，如果与原数完全相等，则原数为回文数。\n- 其实，第二步在反转到一半的时候，就可以进行判断了。因为原数是回文数，那么在反转到中间的时候，留下的前半部分，应该与转换好的后半部分倒转过来相等。比如：1221，转换到一半，原数变为 12，转换好的数变为 12，则说明原数就是回文数。如果原数为奇数，比如：12321，转换到一半，原数变为 12，转换好的数变为 123，则应该将原数与 转换好的数对 10 取余的部分进行比较。\n\n## 代码\n\n```python\nclass Solution:\n    def isPalindrome(self, x: int) -> bool:\n        if x < 0 or (x % 10 == 0 and x != 0):\n            return False\n\n        res = 0\n        while x > res:\n            res = res * 10 + x % 10\n            x = x // 10\n        return x == res or x == res // 10\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-algonote5-15",
+    "title": "0086. 分隔链表",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表、双指针 难度：中等 0086. 分隔链表 力扣 描述 ： 给定一个链表的头节点 $head$ 和一个特定值 $x$。 要求 ： 对链表进行分隔，使得所有「小于 $x$ ",
+    "content": "# 0086. 分隔链表\n\n- 标签：链表、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0086. 分隔链表 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个链表的头节点 $head$ 和一个特定值 $x$。\n\n**要求**：\n\n对链表进行分隔，使得所有「小于 $x$ 的节点」都出现在「大于或等于 $x$ 的节点」之前。 \n\n**说明**：\n\n- 链表中节点的数目在范围 [0, 200] 内。\n- $-100 \\le Node.val \\le 100$。\n- $-200 \\le x \\le 200$。\n- 你应当保留两个分区中每个节点的初始相对位置。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2021_01_04_partition.jpg)\n\n```python\n输入：head = [1,4,3,2,5,2], x = 3\n输出：[1,2,2,4,3,5]\n```\n\n- 示例 2：\n\n```python\n输入：head = [2,1], x = 2\n输出：[1,2]\n```\n\n## 解题思路\n\n### 思路 1：双指针 + 虚拟头节点\n\n**核心思想**：\n\n使用两个虚拟头节点分别构建小于x的链表和大于等于x的链表，然后遍历原链表，根据节点值的大小分别连接到对应的链表中，最后将两个链表合并。\n\n**算法步骤**：\n\n1. **创建虚拟头节点**：创建两个虚拟头节点 $small_dummy$ 和 $large_dummy$，分别用于构建小于x和大于等于 $x$ 的链表。\n2. **创建指针**：为两个链表分别创建尾指针 $small_tail$ 和 $large_tail$\n3. **遍历原链表**：从头节点开始遍历原链表。\n4. **分类连接**：\n   - 如果当前节点值 < x，将其连接到 $small_tail$ 后面，并更新 $small_tail$。\n   - 如果当前节点值 >= x，将其连接到 $large_tail$ 后面，并更新 $large_tail$。\n5. **合并链表**：将 $small_tail$ 的 $next$ 指向 $large_dummy.next$，将 $large_tail$ 的 $next$ 设为 $None$。\n6. **返回结果**：返回 $small_dummy.next$。\n\n**关键点**：\n\n- 使用虚拟头节点简化边界处理。\n- 保持原链表中节点的相对位置。\n- 最后需要将 $large_tail.next$ 设为 $None$，避免形成环。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:\n        # 创建两个虚拟头节点\n        small_dummy = ListNode(0)  # 小于x的链表虚拟头\n        large_dummy = ListNode(0)  # 大于等于x的链表虚拟头\n        \n        # 创建两个尾指针\n        small_tail = small_dummy\n        large_tail = large_dummy\n        \n        # 遍历原链表\n        current = head\n        while current:\n            if current.val < x:\n                # 小于x的节点连接到small链表\n                small_tail.next = current\n                small_tail = small_tail.next\n            else:\n                # 大于等于x的节点连接到large链表\n                large_tail.next = current\n                large_tail = large_tail.next\n            \n            # 移动到下一个节点\n            current = current.next\n        \n        # 合并两个链表\n        small_tail.next = large_dummy.next  # 连接两个链表\n        large_tail.next = None  # 避免形成环\n        \n        # 返回结果\n        return small_dummy.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是链表的长度。需要遍历链表一次，每个节点只访问一次。\n- **空间复杂度**：$O(1)$，只使用了常数个额外的指针变量，没有使用额外的数据结构。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-algonote5-16",
+    "title": "0060. 排列序列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数学 难度：困难 0060. 排列序列 力扣 描述 ： 给出集合 $ 1,2,3,...,n $，其所有元素共有 $n!$ 种排列。 按大小顺序列出所有排列情况，并一一",
+    "content": "# 0060. 排列序列\n\n- 标签：递归、数学\n- 难度：困难\n\n## 题目链接\n\n- 0060. 排列序列 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给出集合 $[1,2,3,...,n]$，其所有元素共有 $n!$ 种排列。\n\n按大小顺序列出所有排列情况，并一一标记，当 $n = 3$ 时, 所有排列如下：\n\n1. `\"123\"`\n2. `\"132\"`\n3. `\"213\"`\n4. `\"231\"`\n5. `\"312\"`\n6. `\"321\"`\n\n给定 $n$ 和 $k$。\n\n**要求**：\n\n返回第 $k$ 个排列。\n\n**说明**：\n\n- $1 \\le n \\le 9$。\n- $1 <= k <= n!$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：n = 3, k = 3\n输出：\"213\"\n```\n\n- 示例 2：\n\n```python\n输入：n = 4, k = 9\n输出：\"2314\"\n```\n\n## 解题思路\n\n### 思路 1：数学计算\n\n**核心思想**：\n\n通过数学计算直接确定第 $k$ 个排列中每个位置上的数字，而不需要生成所有排列。\n\n**算法步骤**：\n\n1. **初始化**：创建候选数字列表 $candidates = [1, 2, 3, ..., n]$ 和结果字符串 $result$。\n2. **计算阶乘**：预计算 $factorial[i] = i!$，用于快速计算每个位置可能的排列数。\n3. **逐位确定**：对于第 $i$ 位（从 0 开始）：\n   - 计算剩余 $n-i$ 个数字的排列数：$factorial[n-i-1]$。\n   - 确定当前位应该选择第几个数字：$index = (k-1) // factorial[n-i-1]$。\n   - 将选中的数字添加到结果中，并从候选列表中移除。\n   - 更新 $k$：$k = k - index \\times factorial[n-i-1]$。\n4. **返回结果**：当所有位置都确定后，返回结果字符串。\n\n**关键点**：\n\n- 使用 $k-1$ 是因为题目中的 $k$ 从 $1$ 开始，而数组索引从 $0$ 开始。\n- 每次确定一位后，需要从候选列表中移除已使用的数字。\n- 通过数学计算避免了生成所有排列，大大提高了效率。\n\n**数学原理**：\n\n对于 $n$ 个数字的排列，第 $i$ 位确定后，剩余 $n - i$ 个数字有 $(n - i)!$ 种排列方式。因此，第 $i$ 位选择第 $j$ 个候选数字时，会跳过 $j \\times (n - i)!$ 个排列。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def getPermutation(self, n: int, k: int) -> str:\n        # 预计算阶乘数组\n        factorial = [1] * n\n        for i in range(1, n):\n            factorial[i] = factorial[i - 1] * i\n        \n        # 创建候选数字列表\n        candidates = [str(i) for i in range(1, n + 1)]\n        result = []\n        k -= 1  # 转换为从 0 开始的索引\n        \n        # 逐位确定每个位置的数字\n        for i in range(n):\n            # 计算当前位应该选择第几个候选数字\n            index = k // factorial[n - i - 1]\n            # 将选中的数字添加到结果中\n            result.append(candidates[index])\n            # 从候选列表中移除已使用的数字\n            candidates.pop(index)\n            # 更新k\n            k -= index * factorial[n - i - 1]\n        \n        return ''.join(result)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n^2)$，其中 $n$ 是数字的个数。需要遍历 $n$ 次，每次需要 $O(n)$ 时间从候选列表中移除元素，因此总时间复杂度为 $O(n^2)$。\n- **空间复杂度**：$O(n)$，需要 $O(n)$ 空间存储阶乘数组、候选数字列表和结果列表。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-algonote5-17",
+    "title": "0047. 全排列 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、回溯 难度：中等 0047. 全排列 II 力扣 描述 ：给定一个可包含重复数字的序列 nums 。 要求 ：按任意顺序返回所有不重复的全排列。 说明 ： $1 \\le",
+    "content": "# 0047. 全排列 II\n\n- 标签：数组、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0047. 全排列 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个可包含重复数字的序列 `nums`。\n\n**要求**：按任意顺序返回所有不重复的全排列。\n\n**说明**：\n\n- $1 \\le nums.length \\le 8$。\n- $-10 \\le nums[i] \\le 10$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,1,2]\n输出：[[1,1,2],[1,2,1],[2,1,1]]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [1,2,3]\n输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n这道题跟「0046. 全排列」不一样的地方在于增加了序列中的元素可重复这一条件。这就涉及到了如何去重。\n\n我们可以先对数组 `nums` 进行排序，然后使用一个数组 `visited` 标记该元素在当前排列中是否被访问过。\n\n如果未被访问过则将其加入排列中，并在访问后将该元素变为未访问状态。\n\n然后再递归遍历下一层元素之前，增加一句语句进行判重：`if i > 0 and nums[i] == nums[i - 1] and not visited[i - 1]: continue`。\n\n然后再进行回溯遍历。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    res = []\n    path = []\n    def backtrack(self, nums: List[int], visited: List[bool]):\n        if len(self.path) == len(nums):\n            self.res.append(self.path[:])\n            return\n        for i in range(len(nums)):\n            if i > 0 and nums[i] == nums[i - 1] and not visited[i - 1]:\n                continue\n\n            if not visited[i]:\n                visited[i] = True\n                self.path.append(nums[i])\n                self.backtrack(nums, visited)\n                self.path.pop()\n                visited[i] = False\n\n    def permuteUnique(self, nums: List[int]) -> List[List[int]]:\n        self.res.clear()\n        self.path.clear()\n        nums.sort()\n        visited = [False for _ in range(len(nums))]\n        self.backtrack(nums, visited)\n        return self.res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times n!)$，其中 $n$ 为数组 `nums` 的元素个数。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-algonote5-18",
+    "title": "0046. 全排列",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、回溯 难度：中等 0046. 全排列 力扣 描述 ：给定一个不含重复数字的数组 nums 。 要求 ：返回其有可能的全排列。 说明 ： $1 \\le nums.leng",
+    "content": "# 0046. 全排列\n\n- 标签：数组、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0046. 全排列 - 力扣\n\n## 题目大意\n\n**描述**：给定一个不含重复数字的数组 `nums`。\n\n**要求**：返回其有可能的全排列。\n\n**说明**：\n\n- $1 \\le nums.length \\le 6$\n- $-10 \\le nums[i] \\le 10$。\n- `nums` 中的所有整数互不相同。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,2,3]\n输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,1]\n输出：[[0,1],[1,0]]\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n根据回溯算法三步走，写出对应的回溯算法。\n\n![全排列回溯算法](/images/figures/algonote5/ext_qcdn.itcharge.cn__images_20220425102048.png)\n\n1. **明确所有选择**：全排列中每个位置上的元素都可以从剩余可选元素中选出，对此画出决策树，如上图所示。\n2. **明确终止条件**：\n   - 当遍历到决策树的叶子节点时，就终止了。即当前路径搜索到末尾时，递归终止。\n3. **将决策树和终止条件翻译成代码：**\n   1. 定义回溯函数：\n      - `backtracking(nums):` 函数的传入参数是 `nums`（可选数组列表），全局变量是 `res`（存放所有符合条件结果的集合数组）和 `path`（存放当前符合条件的结果）。\n      - `backtracking(nums):` 函数代表的含义是：递归在 `nums` 中选择剩下的元素。\n   2. 书写回溯函数主体（给出选择元素、递归搜索、撤销选择部分）。\n      - 从当前正在考虑元素，到数组结束为止，枚举出所有可选的元素。对于每一个可选元素：\n        - 约束条件：之前已经选择的元素不再重复选用，只能从剩余元素中选择。\n        - 选择元素：将其添加到当前子集数组 `path` 中。\n        - 递归搜索：在选择该元素的情况下，继续递归选择剩下元素。\n        - 撤销选择：将该元素从当前结果数组 `path` 中移除。\n    ```python\n    for i in range(len(nums)):          # 枚举可选元素列表\n        if nums[i] not in path:         # 从当前路径中没有出现的数字中选择\n            path.append(nums[i])        # 选择元素\n            backtracking(nums)          # 递归搜索\n            path.pop()                  # 撤销选择\n    ```\n   3. 明确递归终止条件（给出递归终止条件，以及递归终止时的处理方法）。\n      - 当遍历到决策树的叶子节点时，就终止了。也就是存放当前结果的数组 `path` 的长度等于给定数组 `nums` 的长度（即 `len(path) == len(nums)`）时，递归停止。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def permute(self, nums: List[int]) -> List[List[int]]:\n        res = []    # 存放所有符合条件结果的集合\n        path = []   # 存放当前符合条件的结果\n        def backtracking(nums):             # nums 为选择元素列表\n            if len(path) == len(nums):      # 说明找到了一组符合条件的结果\n                res.append(path[:])         # 将当前符合条件的结果放入集合中\n                return\n\n            for i in range(len(nums)):      # 枚举可选元素列表\n                if nums[i] not in path:     # 从当前路径中没有出现的数字中选择\n                    path.append(nums[i])    # 选择元素\n                    backtracking(nums)      # 递归搜索\n                    path.pop()              # 撤销选择\n\n        backtracking(nums)\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n \\times n!)$，其中 $n$ 为数组 `nums` 的元素个数。\n- **空间复杂度**：$O(n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-algonote5-19",
+    "title": "0066. 加一",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、数学 难度：简单 0066. 加一 力扣 描述 ：给定一个非负整数数组，数组每一位对应整数的一位数字。 要求 ：计算整数加 $1$ 后的结果。 说明 ： $1 \\le ",
+    "content": "# 0066. 加一\n\n- 标签：数组、数学\n- 难度：简单\n\n## 题目链接\n\n- 0066. 加一 - 力扣\n\n## 题目大意\n\n**描述**：给定一个非负整数数组，数组每一位对应整数的一位数字。\n\n**要求**：计算整数加 $1$ 后的结果。\n\n**说明**：\n\n- $1 \\le digits.length \\le 100$。\n- $0 \\le digits[i] \\le 9$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：digits = [1,2,3]\n输出：[1,2,4]\n解释：输入数组表示数字 123，加 1 之后为 124。\n```\n\n- 示例 2：\n\n```python\n输入：digits = [4,3,2,1]\n输出：[4,3,2,2]\n解释：输入数组表示数字 4321。\n```\n\n## 解题思路\n\n### 思路 1：模拟\n\n这道题把整个数组看成了一个整数，然后个位数加 $1$。问题的实质是利用数组模拟加法运算。\n\n如果个位数不为 $9$ 的话，直接把个位数加 $1$ 就好。如果个位数为 $9$ 的话，还要考虑进位。\n\n具体步骤：\n\n1. 数组前补 $0$ 位。\n2. 将个位数字进行加 $1$ 计算。\n3. 遍历数组\n   1. 如果该位数字大于等于 $10$，则向下一位进 $1$，继续下一位判断进位。\n   2. 如果该位数字小于 $10$，则跳出循环。\n\n### 思路 1：代码\n\n```python\ndef plusOne(self, digits: List[int]) -> List[int]:\n    digits = [0] + digits\n    digits[len(digits) - 1] += 1\n    for i in range(len(digits)-1, 0, -1):\n        if digits[i] != 10:\n            break\n        else:\n            digits[i] = 0\n            digits[i - 1] += 1\n        \n    if digits[0] == 0:\n        return digits[1:] \n    else:\n        return digits\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。一重循环遍历的时间复杂度为 $O(n)$ 。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/1869a294d2f8f1e3.jpg"
+  },
+  {
+    "id": "g-algonote5-20",
+    "title": "0050. Pow(x, n)",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、数学 难度：中等 0050. Pow(x, n) 力扣 描述 ：给定浮点数 $x$ 和整数 $n$。 要求 ：计算 $x$ 的 $n$ 次方（即 $x^n$）。 说明 ",
+    "content": "# 0050. Pow(x, n)\n\n- 标签：递归、数学\n- 难度：中等\n\n## 题目链接\n\n- 0050. Pow(x, n) - 力扣\n\n## 题目大意\n\n**描述**：给定浮点数 $x$ 和整数 $n$。\n\n**要求**：计算 $x$ 的 $n$ 次方（即 $x^n$）。\n\n**说明**：\n\n- $-100.0 < x < 100.0$。\n- $-2^{31} \\le n \\le 2^{31} - 1$。\n- $n$ 是一个整数。\n- $-10^4 \\le x^n \\le 10^4$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：x = 2.00000, n = 10\n输出：1024.00000\n```\n\n- 示例 2：\n\n```python\n输入：x = 2.00000, n = -2\n输出：0.25000\n解释：2-2 = 1/22 = 1/4 = 0.25\n```\n\n## 解题思路\n\n### 思路 1：分治算法\n\n常规方法是直接将 $x$ 累乘 $n$ 次得出结果，时间复杂度为 $O(n)$。\n\n我们可以利用分治算法来减少时间复杂度。\n\n根据 $n$ 的奇偶性，我们可以得到以下结论：\n\n1. 如果 $n$ 为偶数，$x^n = x^{n / 2} \\times x^{n / 2}$。\n2. 如果 $n$ 为奇数，$x^n = x \\times x^{(n - 1) / 2} \\times x^{(n - 1) / 2}$。\n\n$x^{(n / 2)}$ 或 $x^{(n - 1) / 2}$ 又可以继续向下递归划分。\n\n则我们可以利用低纬度的幂计算结果，来得到高纬度的幂计算结果。\n\n这样递归求解，时间复杂度为 $O(\\log n)$，并且递归也可以转为递推来做。\n\n需要注意如果 $n$ 为负数，可以转换为 $\\frac{1}{x} ^{(-n)}$。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if x == 0.0:\n            return 0.0\n        res = 1\n        if n < 0:\n            x = 1/x\n            n = -n\n        while n:\n            if n & 1:\n                res *= x\n            x *= x\n            n >>= 1\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(\\log n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/cf43d9d86231ae99.jpg"
+  },
+  {
+    "id": "g-algonote5-21",
+    "title": "0099. 恢复二叉搜索树",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：树、深度优先搜索、二叉搜索树、二叉树 难度：中等 0099. 恢复二叉搜索树 力扣 描述 ： 给你二叉搜索树的根节点 $root$，该树中恰好两个节点的值被错误地交换。 要求",
+    "content": "# 0099. 恢复二叉搜索树\n\n- 标签：树、深度优先搜索、二叉搜索树、二叉树\n- 难度：中等\n\n## 题目链接\n\n- 0099. 恢复二叉搜索树 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给你二叉搜索树的根节点 $root$，该树中恰好两个节点的值被错误地交换。\n\n**要求**：\n\n请在不改变其结构的情况下，恢复这棵树。\n\n**说明**：\n\n- 树上节点的数目在范围 $[2, 1000]$ 内。\n- $-2^{31} \\le Node.val \\le 2^{31} - 1$。\n\n- 进阶：使用 $O(n)$ 空间复杂度的解法很容易实现。你能想出一个只使用 $O(1)$ 空间的解决方案吗？\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_10_28_recover1.jpg)\n\n```python\n输入：root = [1,3,null,null,2]\n输出：[3,1,null,null,2]\n解释：3 不能是 1 的左孩子，因为 3 > 1 。交换 1 和 3 使二叉搜索树有效。\n```\n\n- 示例 2：\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_10_28_recover2.jpg)\n\n```python\n输入：root = [3,1,4,null,null,2]\n输出：[2,1,4,null,null,3]\n解释：2 不能在 3 的右子树中，因为 2 < 3 。交换 2 和 3 使二叉搜索树有效。\n```\n\n## 解题思路\n\n### 思路 1：中序遍历 + 数组存储\n\n**核心思想**：\n\n利用二叉搜索树中序遍历得到有序序列的性质，通过中序遍历找到被错误交换的两个节点，然后交换它们的值。\n\n**算法步骤**：\n\n1. **中序遍历**：对二叉搜索树进行中序遍历，将遍历结果存储在数组 $nodes$ 中。\n2. **查找错误节点**：遍历数组 $nodes$，找到第一个 $nodes[i] > nodes[i+1]$ 的位置，此时 $nodes[i]$ 是第一个错误节点。\n3. **查找第二个错误节点**：继续遍历，找到最后一个 $nodes[j] < nodes[j-1]$ 的位置，此时 $nodes[j]$ 是第二个错误节点。\n4. **交换节点值**：交换这两个节点的值。\n\n**关键点**：\n\n- 二叉搜索树的中序遍历结果应该是严格递增的序列。\n- 当两个相邻节点被交换时，会出现两个逆序对：$(nodes[i], nodes[i+1])$ 和 $(nodes[j-1], nodes[j])$。\n- 第一个错误节点是第一个逆序对中的较大值，第二个错误节点是最后一个逆序对中的较小值。\n- 时间复杂度为 $O(n)$，空间复杂度为 $O(n)$。\n\n### 思路 1：代码\n\n```python\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def recoverTree(self, root: Optional[TreeNode]) -> None:\n        \"\"\"\n        Do not return anything, modify root in-place instead.\n        \"\"\"\n        # 存储中序遍历的节点值\n        nodes = []\n        \n        def inorder_traversal(node):\n            \"\"\"中序遍历，将节点值存储到数组中\"\"\"\n            if not node:\n                return\n            inorder_traversal(node.left)\n            nodes.append(node.val)\n            inorder_traversal(node.right)\n        \n        # 执行中序遍历\n        inorder_traversal(root)\n        \n        # 找到两个错误的位置\n        first_error = -1  # 第一个错误节点的索引\n        second_error = -1  # 第二个错误节点的索引\n        \n        # 找到第一个错误位置：nodes[i] > nodes[i+1]\n        for i in range(len(nodes) - 1):\n            if nodes[i] > nodes[i + 1]:\n                first_error = i\n                break\n        \n        # 找到第二个错误位置：从第一个错误位置之后开始找\n        for i in range(first_error + 1, len(nodes) - 1):\n            if nodes[i] > nodes[i + 1]:\n                second_error = i + 1\n                break\n        \n        # 如果只找到一个错误位置，说明两个错误节点相邻\n        if second_error == -1:\n            second_error = first_error + 1\n        \n        # 存储需要交换的两个值\n        first_val = nodes[first_error]\n        second_val = nodes[second_error]\n        \n        # 再次遍历树，交换这两个值\n        def swap_values(node):\n            \"\"\"在树中找到并交换两个错误的值\"\"\"\n            if not node:\n                return\n            swap_values(node.left)\n            if node.val == first_val:\n                node.val = second_val\n            elif node.val == second_val:\n                node.val = first_val\n            swap_values(node.right)\n        \n        # 执行值交换\n        swap_values(root)\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$，其中 $n$ 是树中节点的数量。需要执行两次完整的中序遍历：一次收集节点值，一次交换值。\n- **空间复杂度**：$O(n)$，需要存储所有节点的值，以及递归调用栈的空间。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/237fb9935816f48a.jpg"
+  },
+  {
+    "id": "g-algonote5-22",
+    "title": "0010. 正则表达式匹配",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：递归、字符串、动态规划 难度：困难 0010. 正则表达式匹配 力扣 描述 ：给定一个字符串 s 和一个字符模式串 p 。 要求 ：实现一个支持 '.' 和 ' ' 的正则表",
+    "content": "# 0010. 正则表达式匹配\n\n- 标签：递归、字符串、动态规划\n- 难度：困难\n\n## 题目链接\n\n- 0010. 正则表达式匹配 - 力扣\n\n## 题目大意\n\n**描述**：给定一个字符串 `s` 和一个字符模式串 `p`。\n\n**要求**：实现一个支持 `'.'` 和 `'*'` 的正则表达式匹配。两个字符串完全匹配才算匹配成功。如果匹配成功，则返回 `True`，否则返回 `False`。\n\n- `'.'` 匹配任意单个字符。\n- `'*'` 匹配零个或多个前面的那一个元素。\n\n**说明**：\n\n- $1 \\le s.length \\le 20$。\n- $1 \\le p.length \\le 30$。\n- `s` 只包含从 `a` ~ `z` 的小写字母。\n- `p` 只包含从 `a` ~ `z` 的小写字母，以及字符 `.` 和 `*`。\n- 保证每次出现字符 `*` 时，前面都匹配到有效的字符。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"aa\", p = \"a*\"\n输出：True\n解释：因为 '*' 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 'a'。因此，字符串 \"aa\" 可被视为 'a' 重复了一次。\n```\n\n- 示例 2：\n\n```python\n输入：s = \"aa\", p = \"a\"\n输出：False\n解释：\"a\" 无法匹配 \"aa\" 整个字符串。\n```\n\n## 解题思路\n\n### 思路 1：动态规划\n\n###### 1. 阶段划分\n\n按照两个字符串的结尾位置进行阶段划分。\n\n###### 2. 定义状态\n\n定义状态 `dp[i][j]` 表示为：字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配。\n\n###### 3. 状态转移方程\n\n- 如果 `s[i - 1] == p[j - 1]`，则字符串 `s` 的第 `i` 个字符与字符串 `p` 的第 `j` 个字符是匹配的。此时「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」取决于「字符串 `s` 的前 `i - 1` 个字符与字符串 `p` 的前 `j - 1` 个字符是否匹配」。即 `dp[i][j] = dp[i - 1][j - 1] `。\n- 如果 `p[j - 1] == '.'`，则字符串 `s` 的第 `i` 个字符与字符串 `p` 的第 `j` 个字符是匹配的（同上）。此时 `dp[i][j] = dp[i - 1][j - 1] `。\n- 如果 `p[j - 1] == '*'`，则我们可以对字符 `p[j - 2]` 进行 `0` ~ 若干次数的匹配。\n  - 如果 `s[i - 1] != p[j - 2]` 并且 `p[j - 2] != '.'`，则说明当前星号匹配不上，只能匹配 `0` 次（即匹配空字符串），则「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」取决于「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j - 2` 个字符是否匹配」，即 `dp[i][j] = dp[i][j - 2] `。\n  - 如果 `s[i - 1] == p[j - 2]` 或者 `p[j - 2] == '.'`，则说明当前星号前面的字符 `p[j - 2]` 可以匹配 `s[i - 1]`。\n    - 如果匹配 `0` 个，则「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」取决于「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j - 2` 个字符是否匹配」。即 `dp[i][j] = dp[i][j - 2]`。\n    - 如果匹配 `1` 个，则「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」取决于「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j - 1` 个字符是否匹配」。即 `dp[i][j] = dp[i][j - 1] `。\n    - 如果匹配多个，则「字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」取决于「字符串 `s` 的前 `i - 1` 个字符与字符串 `p` 的前 `j` 个字符是否匹配」。即 `dp[i][j] = dp[i - 1][j]`。\n\n###### 4. 初始条件\n\n- 默认状态下，两个空字符串是匹配的，即 `dp[0][0] = True`。\n- 当字符串 `s` 为空，字符串 `p` 右端有 `*` 时，想要匹配，则如果「空字符串」与「去掉字符串 `p` 右端的 `*` 和 `*` 之前的字符之后的字符串」匹配的话，则空字符串与字符串 `p` 匹配。也就是说如果 `p[j - 1] == '*'`，则 `dp[0][j] = dp[0][j - 2]`。\n\n###### 5. 最终结果\n\n根据我们之前定义的状态， `dp[i][j]` 表示为：字符串 `s` 的前 `i` 个字符与字符串 `p` 的前 `j` 个字符是否匹配。则最终结果为 `dp[size_s][size_p]`，其实 `size_s` 是字符串 `s` 的长度，`size_p` 是字符串 `p` 的长度。\n\n### 思路 1：动态规划代码\n\n```python\nclass Solution:\n    def isMatch(self, s: str, p: str) -> bool:\n        size_s, size_p = len(s), len(p)\n        dp = [[False for _ in range(size_p + 1)] for _ in range(size_s + 1)]\n        \n        dp[0][0] = True\n        for j in range(1, size_p + 1):\n            if p[j - 1] == '*':\n                dp[0][j] = dp[0][j - 2]\n\n        for i in range(1, size_s + 1):\n            for j in range(1, size_p + 1):\n                if s[i - 1] == p[j - 1] or p[j - 1] == '.':\n                    dp[i][j] = dp[i - 1][j - 1]\n                elif p[j - 1] == '*':\n                    if s[i - 1] != p[j - 2] and p[j - 2] != '.':\n                        dp[i][j] = dp[i][j - 2]\n                    else:\n                        dp[i][j] = dp[i][j - 1] or dp[i][j - 2] or dp[i - 1][j]\n\n        return dp[size_s][size_p]\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(m n)$，其中 $m$ 是字符串 `s` 的长度，$n$ 是字符串 `p` 的长度。使用了两重循环，外层循环遍历的时间复杂度是 $O(m)$，内层循环遍历的时间复杂度是 $O(n)$，所以总体的时间复杂度为 $O(m n)$。\n- **空间复杂度**：$O(m n)$，其中 $m$ 是字符串 `s` 的长度，$n$ 是字符串 `p` 的长度。使用了二维数组保存状态，且第一维的空间复杂度为 $O(m)$，第二位的空间复杂度为 $O(n)$，所以总体的空间复杂度为 $O(m n)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-algonote5-23",
+    "title": "0080. 删除有序数组中的重复项 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针 难度：中等 0080. 删除有序数组中的重复项 II 力扣 描述 ：给定一个有序数组 $nums$。 要求 ：在原数组空间基础上删除重复出现 $2$ 次以上的元",
+    "content": "# 0080. 删除有序数组中的重复项 II\n\n- 标签：数组、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0080. 删除有序数组中的重复项 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个有序数组 $nums$。\n\n**要求**：在原数组空间基础上删除重复出现 $2$ 次以上的元素，并返回删除后数组的新长度。\n\n**说明**：\n\n- $1 \\le nums.length \\le 3 * 10^4$。\n- $-10^4 \\le nums[i] \\le 10^4$。\n- $nums$ 已按升序排列。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,1,1,2,2,3]\n输出：5, nums = [1,1,2,2,3]\n解释：函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3。 不需要考虑数组中超出新长度后面的元素。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,0,1,1,1,1,2,3,3]\n输出：7, nums = [0,0,1,1,2,3,3]\n解释：函数应返回新长度 length = 7, 并且原数组的前五个元素被修改为 0, 0, 1, 1, 2, 3, 3。 不需要考虑数组中超出新长度后面的元素。\n```\n\n## 解题思路\n\n### 思路 1：快慢指针\n\n因为数组是有序的，所以重复元素必定是连续的。可以使用快慢指针来解决。具体做法如下：\n\n1. 使用两个指针 $slow$，$fast$。$slow$ 指针指向即将放置元素的位置，$fast$ 指针指向当前待处理元素。\n2. 本题要求相同元素最多出现 $2$ 次，并且 $slow - 2$ 是上上次放置了元素的位置。则应该检查 $nums[slow - 2]$ 和当前待处理元素 $nums[fast]$ 是否相同。\n   1. 如果 $nums[slow - 2] == nums[fast]$ 时，此时必有 $nums[slow - 2] == nums[slow - 1] == nums[fast]$，则当前 $nums[fast]$ 不保留，直接向右移动快指针 $fast$。\n   2. 如果 $nums[slow - 2] \\ne nums[fast]$ 时，则保留 $nums[fast]$。将 $nums[fast]$ 赋值给 $nums[slow]$ ，同时将 $slow$ 右移。然后再向右移动快指针 $fast$。\n3. 这样 $slow$ 指针左边均为处理好的数组元素，而从 $slow$ 指针指向的位置开始， $fast$ 指针左边都为舍弃的重复元素。\n4. 遍历结束之后，此时 $slow$ 就是新数组的长度。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        size = len(nums)\n        if size <= 2:\n            return size\n        slow, fast = 2, 2\n        while (fast < size):\n            if nums[slow - 2] != nums[fast]:\n                nums[slow] = nums[fast]\n                slow += 1\n            fast += 1\n        return slow\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/08532992db70d505.jpg"
+  },
+  {
+    "id": "g-algonote5-24",
+    "title": "0026. 删除有序数组中的重复项",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针 难度：简单 0026. 删除有序数组中的重复项 力扣 描述 ：给定一个有序数组 nums 。 要求 ：删除数组 nums 中的重复元素，使每个元素只出现一次。并",
+    "content": "# 0026. 删除有序数组中的重复项\n\n- 标签：数组、双指针\n- 难度：简单\n\n## 题目链接\n\n- 0026. 删除有序数组中的重复项 - 力扣\n\n## 题目大意\n\n**描述**：给定一个有序数组 `nums`。\n\n**要求**：删除数组 `nums` 中的重复元素，使每个元素只出现一次。并输出去除重复元素之后数组的长度。\n\n**说明**：\n\n- 不能使用额外的数组空间，在原地修改数组，并在使用 $O(1)$ 额外空间的条件下完成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [1,1,2]\n输出：2, nums = [1,2,_]\n解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,0,1,1,1,2,2,3,3,4]\n输出：5, nums = [0,1,2,3,4]\n解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。\n```\n\n## 解题思路\n\n### 思路 1：快慢指针\n\n因为数组是有序的，那么重复的元素一定会相邻。\n\n删除重复元素，实际上就是将不重复的元素移到数组左侧。考虑使用双指针。具体算法如下：\n\n1. 定义两个快慢指针 `slow`，`fast`。其中 `slow` 指向去除重复元素后的数组的末尾位置。`fast` 指向当前元素。\n2. 令 `slow` 在后， `fast` 在前。令 `slow = 0`，`fast = 1`。\n3. 比较 `slow` 位置上元素值和 `fast` 位置上元素值是否相等。\n   - 如果不相等，则将 `slow` 后移一位，将 `fast` 指向位置的元素复制到 `slow` 位置上。\n4. 将 `fast` 右移 `1` 位。\n5. 重复上述 3 ~ 4 步，直到 `fast` 等于数组长度。\n6. 返回 `slow + 1` 即为新数组长度。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        if len(nums) <= 1:\n            return len(nums)\n        \n        slow, fast = 0, 1\n\n        while (fast < len(nums)):\n            if nums[slow] != nums[fast]:\n                slow += 1\n                nums[slow] = nums[fast]\n            fast += 1\n            \n        return slow + 1\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-algonote5-25",
+    "title": "0082. 删除排序链表中的重复元素 II",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表、双指针 难度：中等 0082. 删除排序链表中的重复元素 II 力扣 描述 ：给定一个已排序的链表的头 $head$。 要求 ：删除原始链表中所有重复数字的节点，只留下",
+    "content": "# 0082. 删除排序链表中的重复元素 II\n\n- 标签：链表、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0082. 删除排序链表中的重复元素 II - 力扣\n\n## 题目大意\n\n**描述**：给定一个已排序的链表的头 $head$。\n\n**要求**：删除原始链表中所有重复数字的节点，只留下不同的数字。返回已排序的链表。\n\n**说明**：\n\n- 链表中节点数目在范围 $[0, 300]$ 内。\n- $-100 \\le Node.val \\le 100$。\n- 题目数据保证链表已经按升序排列。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：head = [1,2,3,3,4,4,5]\n输出：[1,2,5]\n```\n\n## 解题思路\n\n### 思路 1：遍历\n\n这道题的题意是需要保留所有不同数字，而重复出现的所有数字都要删除。因为给定的链表是升序排列的，所以我们要删除的重复元素在链表中的位置是连续的。所以我们可以对链表进行一次遍历，然后将连续的重复元素从链表中删除即可。具体步骤如下：\n\n- 先使用哑节点 $dummy_head$ 构造一个指向 $head$ 的指针，使得可以防止从 $head$ 开始就是重复元素。\n- 然后使用指针 $cur$ 表示链表中当前元素，从 $head$ 开始遍历。\n- 当指针 $cur$ 的下一个元素和下下一个元素存在时：\n  - 如果下一个元素值和下下一个元素值相同，则我们使用指针 $temp$ 保存下一个元素，并使用 $temp$ 向后遍历，跳过所有重复元素，然后令 $cur$ 的下一个元素指向 $temp$ 的下一个元素，继续向后遍历。\n  - 如果下一个元素值和下下一个元素值不同，则令 $cur$ 向右移动一位，继续向后遍历。\n- 当指针 $cur$ 的下一个元素或者下下一个元素不存在时，说明已经遍历完，则返回哑节点 $dummy_head$ 的下一个节点作为头节点。\n\n### 思路 1：代码\n\n```python\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def deleteDuplicates(self, head: ListNode) -> ListNode:\n        dummy_head = ListNode(-1)\n        dummy_head.next = head\n\n        cur = dummy_head\n        while cur.next and cur.next.next:\n            if cur.next.val == cur.next.next.val:\n                temp = cur.next\n                while temp and temp.next and temp.val == temp.next.val:\n                    temp = temp.next\n                cur.next = temp.next\n            else:\n                cur = cur.next\n        return dummy_head.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 为链表长度。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-algonote5-26",
+    "title": "0083. 删除排序链表中的重复元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表 难度：简单 0083. 删除排序链表中的重复元素 力扣 描述 ：给定一个已排序的链表的头 $head$。 要求 ：删除所有重复的元素，使每个元素只出现一次。返回已排序的",
+    "content": "# 0083. 删除排序链表中的重复元素\n\n- 标签：链表\n- 难度：简单\n\n## 题目链接\n\n- 0083. 删除排序链表中的重复元素 - 力扣\n\n## 题目大意\n\n**描述**：给定一个已排序的链表的头 $head$。\n\n**要求**：删除所有重复的元素，使每个元素只出现一次。返回已排序的链表。\n\n**说明**：\n\n- 链表中节点数目在范围 $[0, 300]$ 内。\n- $-100 \\le Node.val \\le 100$。\n- 题目数据保证链表已经按升序排列。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：head = [1,1,2,3,3]\n输出：[1,2,3]\n```\n\n## 解题思路\n\n### 思路 1：遍历\n\n- 使用指针 $curr$ 遍历链表，先将 $head$ 保存到 $curr$ 指针。\n- 判断当前元素的值和当前元素下一个节点元素值是否相等。\n- 如果相等，则让当前指针指向当前指针下两个节点。\n- 否则，让 $curr$ 继续向后遍历。\n- 遍历完之后返回头节点 $head$。\n\n### 思路 1：遍历代码\n\n```python\nclass Solution:\n    def deleteDuplicates(self, head: ListNode) -> ListNode:\n        if head == None:\n            return head\n\n        curr = head\n        while curr.next:\n            if curr.val == curr.next.val:\n                curr.next = curr.next.next\n            else:\n                curr = curr.next\n        return head\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。其中 $n$ 为链表长度。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-algonote5-27",
+    "title": "0027. 移除元素",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数组、双指针 难度：简单 0027. 移除元素 力扣 描述 ： 给定一个数组 $nums$，和一个值 $val$。 要求 ： 不使用额外数组空间，将数组中所有数值等于 $va",
+    "content": "# 0027. 移除元素\n\n- 标签：数组、双指针\n- 难度：简单\n\n## 题目链接\n\n- 0027. 移除元素 - 力扣\n\n## 题目大意\n\n**描述**：\n\n给定一个数组 $nums$，和一个值 $val$。\n\n**要求**：\n\n不使用额外数组空间，将数组中所有数值等于 $val$ 值的元素移除掉，并且返回新数组的长度。\n\n**说明**：\n\n- $0 \\le nums.length \\le 100$。\n- $0 \\le nums[i] \\le 50$。\n- $0 \\le val \\le 100$。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：nums = [3,2,2,3], val = 3\n输出：2, nums = [2,2]\n解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。\n```\n\n- 示例 2：\n\n```python\n输入：nums = [0,1,2,2,3,0,4,2], val = 2\n输出：5, nums = [0,1,4,0,3]\n解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。\n```\n\n## 解题思路\n\n### 思路 1：快慢指针\n\n1. 使用两个指针 $slow$，$fast$。$slow$ 指向处理好的非 $val$ 值元素数组的尾部，$fast$ 指针指向当前待处理元素。\n2. 不断向右移动 $fast$ 指针，每次移动到非 $val$ 值的元素，则将左右指针对应的数交换，交换同时将 $slow$ 右移。\n3. 这样就将非 $val$ 值的元素进行前移，$slow$ 指针左边均为处理好的非 $val$ 值元素，而从 $slow$ 指针指向的位置开始，$fast$ 指针左边都为 $val$ 值。\n4. 遍历结束之后，则所有 $val$ 值元素都移动到了右侧，且保持了非零数的相对位置。此时 $slow$ 就是新数组的长度。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def removeElement(self, nums: List[int], val: int) -> int:\n        slow = 0\n        fast = 0\n        while fast < len(nums):\n            if nums[fast] != val:\n                nums[slow], nums[fast] = nums[fast], nums[slow]\n                # 此处也可以直接赋值，因为最终 nums[fast] 会被移除掉\n                # nums[slow] = nums[fast]\n                slow += 1\n            fast += 1\n        return slow\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-algonote5-28",
+    "title": "0019. 删除链表的倒数第 N 个结点",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：链表、双指针 难度：中等 0019. 删除链表的倒数第 N 个结点 力扣 描述 ：给定一个链表的头节点 head 。 要求 ：删除链表的倒数第 n 个节点，并且返回链表的头节",
+    "content": "# 0019. 删除链表的倒数第 N 个结点\n\n- 标签：链表、双指针\n- 难度：中等\n\n## 题目链接\n\n- 0019. 删除链表的倒数第 N 个结点 - 力扣\n\n## 题目大意\n\n**描述**：给定一个链表的头节点 `head`。\n\n**要求**：删除链表的倒数第 `n` 个节点，并且返回链表的头节点。\n\n**说明**：\n\n- 要求使用一次遍历实现。\n- 链表中结点的数目为 `sz`。\n- $1 \\le sz \\le 30$。\n- $0 \\le Node.val \\le 100$。\n- $1 \\le n \\le sz$。\n\n**示例**：\n\n- 示例 1：\n\n![](/images/figures/algonote5/ext_assets.leetcode.com__uploads_2020_10_03_remove_ex1.jpg)\n\n```python\n输入：head = [1,2,3,4,5], n = 2\n输出：[1,2,3,5]\n```\n\n- 示例 2：\n\n```python\n输入：head = [1], n = 1\n输出：[]\n```\n\n## 解题思路\n\n### 思路 1：快慢指针\n\n常规思路是遍历一遍链表，求出链表长度，再遍历一遍到对应位置，删除该位置上的节点。\n\n如果用一次遍历实现的话，可以使用快慢指针。让快指针先走 `n` 步，然后快慢指针、慢指针再同时走，每次一步，这样等快指针遍历到链表尾部的时候，慢指针就刚好遍历到了倒数第 `n` 个节点位置。将该位置上的节点删除即可。\n\n需要注意的是要删除的节点可能包含了头节点。我们可以考虑在遍历之前，新建一个头节点，让其指向原来的头节点。这样，最终如果删除的是头节点，则删除原头节点即可。返回结果的时候，可以直接返回新建头节点的下一位节点。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:\n        newHead = ListNode(0, head)\n        fast = head\n        slow = newHead\n        while n:\n            fast = fast.next\n            n -= 1\n        while fast:\n            fast = fast.next\n            slow = slow.next\n        slow.next = slow.next.next\n        return newHead.next\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(n)$。\n- **空间复杂度**：$O(1)$。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-algonote5-29",
+    "title": "0093. 复原 IP 地址",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：字符串、回溯 难度：中等 0093. 复原 IP 地址 力扣 描述 ：给定一个只包含数字的字符串 s ，用来表示一个 IP 地址 要求 ：返回所有由 s 构成的有效 IP 地",
+    "content": "# 0093. 复原 IP 地址\n\n- 标签：字符串、回溯\n- 难度：中等\n\n## 题目链接\n\n- 0093. 复原 IP 地址 - 力扣\n\n## 题目大意\n\n**描述**：给定一个只包含数字的字符串 `s`，用来表示一个 IP 地址\n\n**要求**：返回所有由 `s` 构成的有效 IP 地址，这些地址可以通过在 `s` 中插入 `'.'` 来形成。不能重新排序或删除 `s` 中的任何数字。可以按任何顺序返回答案。\n\n**说明**：\n\n- **有效 IP 地址**：正好由四个整数（每个整数由 $0 \\sim 255$ 的数构成，且不能含有前导 0），整数之间用 `.` 分割。\n- $1 \\le s.length \\le 20$。\n- `s` 仅由数字组成。\n\n**示例**：\n\n- 示例 1：\n\n```python\n输入：s = \"25525511135\"\n输出：[\"255.255.11.135\",\"255.255.111.35\"]\n```\n\n- 示例 2：\n\n```python\n输入：s = \"0000\"\n输出：[\"0.0.0.0\"]\n```\n\n## 解题思路\n\n### 思路 1：回溯算法\n\n一个有效 IP 地址由四个整数构成，中间用 $3$ 个点隔开。现在给定的是无分隔的整数字符串，我们可以通过在整数字符串中间的不同位置插入 $3$ 个点来生成不同的 IP 地址。这个过程可以通过回溯算法来生成。\n\n根据回溯算法三步走，写出对应的回溯算法。\n\n1. **明确所有选择**：全排列中每个位置上的元素都可以从剩余可选元素中选出。\n2. **明确终止条件**：\n   - 当遍历到决策树的叶子节点时，就终止了。即当前路径搜索到末尾时，递归终止。\n3. **将决策树和终止条件翻译成代码**：\n   1. 定义回溯函数：\n      - `backtracking(index):` 函数的传入参数是 `index`（剩余字符开始位置），全局变量是 `res`（存放所有符合条件结果的集合数组）和 `path`（存放当前符合条件的结果）。\n      - `backtracking(index):` 函数代表的含义是：递归从 `index` 位置开始，从剩下字符中，选择当前子段的值。\n   2. 书写回溯函数主体（给出选择元素、递归搜索、撤销选择部分）。\n      - 从当前正在考虑的字符，到字符串结束为止，枚举出所有可作为当前子段值的字符。对于每一个子段值：\n        - 约束条件：只能从 `index` 位置开始选择，并且要符合规则要求。\n        - 选择元素：将其添加到当前子集数组 `path` 中。\n        - 递归搜索：在选择该子段值的情况下，继续递归从剩下字符中，选择下一个子段值。\n        - 撤销选择：将该子段值从当前结果数组 `path` 中移除。\n    ```python\n    for i in range(index, len(s)):    # 枚举可选元素列表\n        sub = s[index: i + 1]\n        # 如果当前值不在 0 ~ 255 之间，直接跳过\n        if int(sub) > 255:\n            continue\n        # 如果当前值为 0，但不是单个 0（\"00...\"），直接跳过\n        if int(sub) == 0 and i != index:\n            continue\n        # 如果当前值大于 0，但是以 0 开头（\"0XX...\"），直接跳过\n        if int(sub) > 0 and s[index] == '0':\n            continue\n                    \n        path.append(sub)              # 选择元素\n        backtracking(i + 1)           # 递归搜索\n        path.pop()                    # 撤销选择\n    ```\n   3. 明确递归终止条件（给出递归终止条件，以及递归终止时的处理方法）。\n      - 当遍历到决策树的叶子节点时，就终止了。也就是存放当前结果的数组 `path` 的长度等于 $4$，并且剩余字符开始位置为字符串结束位置（即 `len(path) == 4 and index == len(s)`）时，递归停止。\n      - 如果回溯过程中，切割次数大于 4（即 `len(path) > 4`），递归停止，直接返回。\n\n### 思路 1：代码\n\n```python\nclass Solution:\n    def restoreIpAddresses(self, s: str) -> List[str]:\n        res = []\n        path = []\n        def backtracking(index):\n            # 如果切割次数大于 4，直接返回\n            if len(path) > 4:            \n                return\n\n            # 切割完成，将当前结果加入答案结果数组中\n            if len(path) == 4 and index == len(s):\n                res.append('.'.join(path))\n                return\n            \n            for i in range(index, len(s)):\n                sub = s[index: i + 1]\n                # 如果当前值不在 0 ~ 255 之间，直接跳过\n                if int(sub) > 255:\n                    continue\n                # 如果当前值为 0，但不是单个 0（\"00...\"），直接跳过\n                if int(sub) == 0 and i != index:\n                    continue\n                # 如果当前值大于 0，但是以 0 开头（\"0XX...\"），直接跳过\n                if int(sub) > 0 and s[index] == '0':\n                    continue\n                \n                path.append(sub)\n                backtracking(i + 1)\n                path.pop()\n\n            \n        backtracking(0)\n        return res\n```\n\n### 思路 1：复杂度分析\n\n- **时间复杂度**：$O(3^4 \\times |s|)$，其中 $|s|$ 是字符串 `s` 的长度。由于 IP 地址的每一子段位数不会超过 $3$，因此在递归时，我们最多只会深入到下一层中的 $3$ 种情况。而 IP 地址由 $4$ 个子段构成，所以递归的最大层数为 $4$ 层，则递归的时间复杂度为 $O(3^4)$。而每次将有效的 IP 地址添加到答案数组的时间复杂度为 $|s|$，所以总的时间复杂度为 $3^4 \\times |s|$。\n- **空间复杂度**：$O(|s|)$，只记录除了用来存储答案数组之外的空间复杂度。",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-algonote5-30",
+    "title": "0007. 整数反转",
+    "date": "2026-11-25",
+    "category": "算法通关手册 V",
+    "tags": [
+      "算法",
+      "LeetCode"
+    ],
+    "excerpt": "标签：数学 难度：中等 0007. 整数反转 力扣 给定一个 32 位有符号整数 x，将 x 进行反转。 x 的范围为 $ 2^ 31 , 2^ 31 1 $，即 $ 214748",
+    "content": "# 0007. 整数反转\n\n- 标签：数学\n- 难度：中等\n\n## 题目链接\n\n- 0007. 整数反转 - 力扣\n\n## 题目大意\n\n给定一个 32 位有符号整数 x，将 x 进行反转。\n\n## 解题思路\n\nx 的范围为 $[-2^{31}, 2^{31}-1]$，即 $[-2147483648 ,2147483647]$。\n\n反转的步骤就是让 x 不断对 10 取余，再除以 10，得到每一位的数字，同时累积结果。\n\n注意累积结果的时候需要判断是否溢出。\n\n当 ans * 10 + pop > INT_MAX  ，或者 ans * 10 + pop < INT_MIN 时就会溢出。\n\n按题设要求，无法在溢出之后对其判断。那么如何在进行累积操作之前判断溢出呢？\n\nans * 10 + pop > INT_MAX 有两种情况：\n\n1. ans > INT_MAX / 10，这种情况下，无论是否考虑 pop 进位都会溢出；\n2. ans == INT_MAX / 10，这种情况下，考虑进位，如果 pop 大于 IN_MAX 的个位数，就会导致溢出。\n\n同理   ans * 10 + pop < INT_MIN 也有两种情况：\n\n1. ans < INT_MIN / 10\n2. ans == INT_MIN / 10 且 pop < INT_MIN 的个位数，就会导致溢出\n\n## 代码\n\n```python\nclass Solution:\n    def reverse(self, x: int) -> int:\n        INT_MAX_10 = (1<<31)//10\n        INT_MIN_10 = int((-1<<31)/10)\n        INT_MAX_LAST = (1<<31) % 10\n        INT_MIN_LAST = (-1<<31) % -10\n        ans = 0\n        while x:\n            pop = x % 10 if x > 0 else x % -10\n            x = x // 10 if x > 0 else int(x / 10)\n            if ans > INT_MAX_10 or (ans == INT_MAX_10 and pop > INT_MAX_LAST):\n                return 0\n            if ans < INT_MIN_10 or (ans == INT_MIN_10 and pop < INT_MIN_LAST):\n                return 0\n            ans = ans*10+pop\n        return ans\n```",
+    "source": "itcharge/AlgoNote",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
   }
 ]

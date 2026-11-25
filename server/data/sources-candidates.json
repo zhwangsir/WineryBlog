@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T07:55:33.075Z",
+ "updatedAt": "2026-11-25T08:35:46.846Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2823,6 +2823,106 @@
    "status": "done",
    "addedAt": "2026-11-25T07:55:33.075Z",
    "note": "continuation: 存量来源深度续收 IV 批"
+  },
+  {
+   "id": "dailyq4",
+   "repo": "shfshanyue/Daily-Question",
+   "branch": "next",
+   "category": "大厂面经题库 IV",
+   "domain": "swe",
+   "tags": [
+    "面试",
+    "题库"
+   ],
+   "picks": [
+    {
+     "dir": "pages/base",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 90
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T08:35:46.846Z",
+   "note": "continuation: 存量来源深度续收 V 批"
+  },
+  {
+   "id": "algonote5",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 V",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 128
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T08:35:46.846Z",
+   "note": "continuation: 存量来源深度续收 V 批"
+  },
+  {
+   "id": "mlint4",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 IV",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 90
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T08:35:46.846Z",
+   "note": "continuation: 存量来源深度续收 V 批"
+  },
+  {
+   "id": "waytogo5",
+   "repo": "Unknwon/the-way-to-go_ZH_CN",
+   "branch": "master",
+   "category": "The Way to Go 中文版 V",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "入门"
+   ],
+   "picks": [
+    {
+     "dir": "eBook",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 120
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T08:35:46.846Z",
+   "note": "continuation: 存量来源深度续收 V 批"
   }
  ]
 }
