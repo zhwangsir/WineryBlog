@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 289
+      "count": 315
     },
     {
       "id": "algo",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 542
+      "count": 567
     },
     {
       "id": "security",
@@ -36917,6 +36917,822 @@
       ],
       "prereqs": [],
       "href": "/post/g-algonote5-30"
+    },
+    {
+      "id": "g-mlint4-1",
+      "kind": "collection",
+      "title": "155. Min Stack",
+      "summary": "https://leetcode.com/problems/min stack/ 维护每个数入栈时的最小值，即另一个栈m",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-1"
+    },
+    {
+      "id": "g-mlint4-2",
+      "kind": "collection",
+      "title": "20. Valid Parentheses",
+      "summary": "https://leetcode.com/problems/valid parentheses/ 括号合理: 任一位置，",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-2"
+    },
+    {
+      "id": "g-mlint4-3",
+      "kind": "collection",
+      "title": "224. Basic Calculator",
+      "summary": "https://leetcode.com/problems/basic calculator/ 时间复杂度：O(n) 空",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-3"
+    },
+    {
+      "id": "g-mlint4-4",
+      "kind": "collection",
+      "title": "225. Implement Stack using Queues",
+      "summary": "https://leetcode.com/problems/implement stack using queues/d",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-4"
+    },
+    {
+      "id": "g-mlint4-5",
+      "kind": "collection",
+      "title": "232. Implement Queue using Stacks",
+      "summary": "https://leetcode.com/problems/implement queue using stacks/ ",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-5"
+    },
+    {
+      "id": "g-mlint4-6",
+      "kind": "collection",
+      "title": "239. Sliding Window Maximum",
+      "summary": "https://leetcode.com/problems/sliding window maximum/descrip",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-6"
+    },
+    {
+      "id": "g-mlint4-7",
+      "kind": "collection",
+      "title": "281. Zigzag Iterator",
+      "summary": "https://leetcode.com/problems/zigzag iterator/ 时间复杂度：O() 空间复",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-7"
+    },
+    {
+      "id": "g-mlint4-8",
+      "kind": "collection",
+      "title": "346. Moving Average from Data Stream",
+      "summary": "https://leetcode.com/problems/moving average from data strea",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-8"
+    },
+    {
+      "id": "g-mlint4-9",
+      "kind": "collection",
+      "title": "362. Design Hit Counter",
+      "summary": "https://leetcode.com/problems/design hit counter/ clarificat",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-9"
+    },
+    {
+      "id": "g-mlint4-11",
+      "kind": "collection",
+      "title": "54. Spiral Matrix",
+      "summary": "https://leetcode.com/problems/spiral matrix/ 时间复杂度：O() 空间复杂度",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-11"
+    },
+    {
+      "id": "g-mlint4-13",
+      "kind": "collection",
+      "title": "736. Parse Lisp Expression",
+      "summary": "https://leetcode.com/problems/parse lisp expression/descript",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-13"
+    },
+    {
+      "id": "g-mlint4-14",
+      "kind": "collection",
+      "title": "739. Daily Temperatures",
+      "summary": "https://leetcode.com/problems/daily temperatures/ 暴力 时间复杂度：O",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-14"
+    },
+    {
+      "id": "g-mlint4-15",
+      "kind": "collection",
+      "title": "84 Largest Rectangle in Histogram",
+      "summary": "https://leetcode.com/problems/largest rectangle in histogram",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-15"
+    },
+    {
+      "id": "g-mlint4-16",
+      "kind": "collection",
+      "title": "85 Maximum Rectangle",
+      "summary": "https://leetcode.com/problems/maximal rectangle/ 单调栈: 按行迭代，每",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-16"
+    },
+    {
+      "id": "g-mlint4-18",
+      "kind": "collection",
+      "title": "907. Sum of Subarray Minimums",
+      "summary": "https://leetcode.com/problems/sum of subarray minimums/ 单调栈 ",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-18"
+    },
+    {
+      "id": "g-mlint4-20",
+      "kind": "collection",
+      "title": "1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+      "summary": "https://leetcode.com/problems/longest continuous subarray wi",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-20"
+    },
+    {
+      "id": "g-mlint4-22",
+      "kind": "collection",
+      "title": "1845. Seat Reservation Manager",
+      "summary": "https://leetcode.com/problems/seat reservation manager/descr",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-22"
+    },
+    {
+      "id": "g-mlint4-23",
+      "kind": "collection",
+      "title": "23. Merge K Sorted Lists",
+      "summary": "https://leetcode.com/problems/merge k sorted lists/ 时间复杂度：O(",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-23"
+    },
+    {
+      "id": "g-mlint4-24",
+      "kind": "collection",
+      "title": "2542. Maximum Subsequence Score",
+      "summary": "https://leetcode.com/problems/maximum subsequence score/desc",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-24"
+    },
+    {
+      "id": "g-mlint4-25",
+      "kind": "collection",
+      "title": "264. Ugly Number II",
+      "summary": "https://leetcode.com/problems/ugly number ii/ heap: python小顶",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-25"
+    },
+    {
+      "id": "g-mlint4-26",
+      "kind": "collection",
+      "title": "295. Find Median from Data Stream",
+      "summary": "https://leetcode.com/problems/find median from data stream/ ",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-26"
+    },
+    {
+      "id": "g-mlint4-27",
+      "kind": "collection",
+      "title": "347. Top K Frequent Elements",
+      "summary": "https://leetcode.com/problems/top k frequent elements/ 直接法 时",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-27"
+    },
+    {
+      "id": "g-mlint4-28",
+      "kind": "collection",
+      "title": "378. Kth Smallest Element in a Sorted Matrix",
+      "summary": "https://leetcode.com/problems/kth smallest element in a sort",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-28"
+    },
+    {
+      "id": "g-mlint4-29",
+      "kind": "collection",
+      "title": "692. Top K Frequent Words",
+      "summary": "https://leetcode.com/problems/top k frequent words/ hash 时间复",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-29"
+    },
+    {
+      "id": "g-mlint4-30",
+      "kind": "collection",
+      "title": "767. Reorganize String",
+      "summary": "https://leetcode.com/problems/reorganize string/ 大顶堆，堆中的元素是(",
+      "domain": "ai",
+      "category": "机器学习面试题解 IV",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "机器学习",
+        "LeetCode"
+      ],
+      "prereqs": [],
+      "href": "/post/g-mlint4-30"
+    },
+    {
+      "id": "g-waytogo5-1",
+      "kind": "collection",
+      "title": "13.7 Go 中的单元测试和基准测试",
+      "summary": "首先所有的包都应该有一定的必要文档，然后同样重要的是对包的测试。 在第 3 章中提到了 Go 的测试工具 gotest，",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-1"
+    },
+    {
+      "id": "g-waytogo5-2",
+      "kind": "collection",
+      "title": "13.8 测试的具体例子",
+      "summary": "在练习 9.4 中你写了一个叫 main oddeven.go 的程序用来测试前 100 个整数是否是偶数。这个函数属于",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-2"
+    },
+    {
+      "id": "g-waytogo5-3",
+      "kind": "collection",
+      "title": "13.9 用（测试数据）表驱动测试",
+      "summary": "编写测试代码时，一个较好的办法是把测试的输入数据和期望的结果写在一起组成一个数据表：表中的每条记录都是一个含有输入和期望",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-3"
+    },
+    {
+      "id": "g-waytogo5-5",
+      "kind": "collection",
+      "title": "14.1 并发、并行和协程",
+      "summary": "一个应用程序是运行在机器上的一个进程；进程是一个运行在自己内存地址空间里的独立执行体。一个进程由一个或多个操作系统线程组",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-5"
+    },
+    {
+      "id": "g-waytogo5-6",
+      "kind": "collection",
+      "title": "14.10 复用",
+      "summary": "客户端 服务器应用正是 goroutines 和 channels 的亮点所在。 客户端 (Client) 可以是运行在",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-6"
+    },
+    {
+      "id": "g-waytogo5-7",
+      "kind": "collection",
+      "title": "14.11 限制同时处理的请求数",
+      "summary": "使用带缓冲区的通道很容易实现这一点（参见 14.2.5），其缓冲区容量就是同时处理请求的最大数量。程序 max task",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-7"
+    },
+    {
+      "id": "g-waytogo5-8",
+      "kind": "collection",
+      "title": "14.12 链式协程",
+      "summary": "下面的演示程序 chaining.go 再次展示了启动巨量的 Go 协程是多么容易。这些协程已全部在 main() 函数",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-8"
+    },
+    {
+      "id": "g-waytogo5-9",
+      "kind": "collection",
+      "title": "14.13 在多核心上并行计算",
+      "summary": "假设我们有 NCPU 个 CPU 核心： const NCPU = 4 //对应一个四核处理器 然后我们想把计算量分成 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-9"
+    },
+    {
+      "id": "g-waytogo5-10",
+      "kind": "collection",
+      "title": "14.14 并行化大量数据的计算",
+      "summary": "假设我们需要处理一些数量巨大且互不相关的数据项，它们从一个 in 通道被传递进来，当我们处理完以后又要将它们放入另一个 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-10"
+    },
+    {
+      "id": "g-waytogo5-11",
+      "kind": "collection",
+      "title": "14.15 漏桶算法",
+      "summary": "（译者注：翻译遵照原文，但是对于完全没听过这个算法的人来说比较晦涩，请配合代码片段理解） 考虑以下的客户端 服务器结构：",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-11"
+    },
+    {
+      "id": "g-waytogo5-12",
+      "kind": "collection",
+      "title": "14.16 对 Go 协程进行基准测试",
+      "summary": "在 13.7 节 我们提到了在 Go 语言中对你的函数进行基准测试。在此我们将其应用到一个用协程向通道写入整数再读出的实",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-12"
+    },
+    {
+      "id": "g-waytogo5-13",
+      "kind": "collection",
+      "title": "14.17 使用通道并发访问对象",
+      "summary": "为了保护对象被并发访问修改，我们可以使用协程在后台顺序执行匿名函数来替代使用同步互斥锁。在下面的程序中我们有一个类型 P",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-13"
+    },
+    {
+      "id": "g-waytogo5-14",
+      "kind": "collection",
+      "title": "14.2 协程间的信道",
+      "summary": "在第一个例子中，协程是独立执行的，他们之间没有通信。他们必须通信才会变得更有用：彼此之间发送和接收信息并且协调/同步他们",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-14"
+    },
+    {
+      "id": "g-waytogo5-15",
+      "kind": "collection",
+      "title": "14.3 协程的同步：关闭通道-测试阻塞的通道",
+      "summary": "通道可以被显式的关闭；尽管它们和文件不同：不必每次都关闭。只有在当需要告诉接收者不会再提供新的值的时候，才需要关闭通道。",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-15"
+    },
+    {
+      "id": "g-waytogo5-16",
+      "kind": "collection",
+      "title": "14.4 使用 select 切换协程",
+      "summary": "从不同的并发执行的协程中获取值可以通过关键字 select 来完成，它和 switch 控制语句非常相似（章节 5.3）",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-16"
+    },
+    {
+      "id": "g-waytogo5-17",
+      "kind": "collection",
+      "title": "14.5 通道、超时和计时器（Ticker）",
+      "summary": "time 包中有一些有趣的功能可以和通道组合使用。 其中就包含了 time.Ticker 结构体，这个对象以指定的时间间",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-17"
+    },
+    {
+      "id": "g-waytogo5-18",
+      "kind": "collection",
+      "title": "14.6 协程和恢复 (recover)",
+      "summary": "一个用到 recover() 的程序（参见第 13.3 节停掉了服务器内部一个失败的协程而不影响其他协程的工作。 上边的",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-18"
+    },
+    {
+      "id": "g-waytogo5-19",
+      "kind": "collection",
+      "title": "14.7 新旧模型对比：任务和 worker",
+      "summary": "假设我们需要处理很多任务；一个 worker 处理一项任务。任务可以被定义为一个结构体（具体的细节在这里并不重要）： 旧",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-19"
+    },
+    {
+      "id": "g-waytogo5-20",
+      "kind": "collection",
+      "title": "14.8 惰性生成器的实现",
+      "summary": "生成器是指当被调用时返回一个序列中下一个值的函数，例如： 生成器每次返回的是序列中下一个值而非整个序列；这种特性也称之为",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-20"
+    },
+    {
+      "id": "g-waytogo5-21",
+      "kind": "collection",
+      "title": "14.9 实现 Futures 模式",
+      "summary": "所谓 Futures 就是指：有时候在你使用某一个值之前需要先对其进行计算。这种情况下，你就可以在另一个处理器上进行该值",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-21"
+    },
+    {
+      "id": "g-waytogo5-23",
+      "kind": "collection",
+      "title": "15.1 tcp 服务器",
+      "summary": "这部分我们将使用 TCP 协议和在 14 章讲到的协程范式编写一个简单的客户端 服务器应用，一个 (web) 服务器应用",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-23"
+    },
+    {
+      "id": "g-waytogo5-24",
+      "kind": "collection",
+      "title": "15.10 基于网络的通道 netchan",
+      "summary": "备注：Go 团队决定改进并重新打造 netchan 包的现有版本，它已被移至 old/netchan 。 old/ 目录",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-24"
+    },
+    {
+      "id": "g-waytogo5-25",
+      "kind": "collection",
+      "title": "15.11 与 websocket 通信",
+      "summary": "备注：Go 团队决定从 Go 1 起，将 websocket 包移出 Go 标准库，转移到 code.google.co",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-25"
+    },
+    {
+      "id": "g-waytogo5-26",
+      "kind": "collection",
+      "title": "15.12 用 smtp 发送邮件",
+      "summary": "smtp 包实现了用于发送邮件的“简单邮件传输协议”（Simple Mail Transfer Protocol）。它有",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-26"
+    },
+    {
+      "id": "g-waytogo5-27",
+      "kind": "collection",
+      "title": "15.2 一个简单的 web 服务器",
+      "summary": "http 是比 tcp 更高层的协议，它描述了网页服务器如何与客户端浏览器进行通信。Go 提供了 net/http 包，",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-27"
+    },
+    {
+      "id": "g-waytogo5-28",
+      "kind": "collection",
+      "title": "15.3 访问并读取页面数据",
+      "summary": "在下边这个程序中，数组中的 url 都将被访问：会发送一个简单的 http.Head() 请求查看返回值；它的声明如下：",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 V",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo5-28"
     }
   ]
 }

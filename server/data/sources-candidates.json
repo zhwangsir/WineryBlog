@@ -2895,7 +2895,7 @@
      "skip": 90
     }
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T08:35:46.846Z",
    "note": "continuation: 存量来源深度续收 V 批"
   },
@@ -2920,7 +2920,7 @@
      "skip": 120
     }
    ],
-   "status": "pending",
+   "status": "done",
    "addedAt": "2026-11-25T08:35:46.846Z",
    "note": "continuation: 存量来源深度续收 V 批"
   }

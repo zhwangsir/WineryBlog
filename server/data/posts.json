@@ -35816,5 +35816,770 @@
     "source": "itcharge/AlgoNote",
     "views": 0,
     "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-mlint4-1",
+    "title": "155. Min Stack",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/min stack/ 维护每个数入栈时的最小值，即另一个栈min stack. 利用其特点，当前加入时的最小值为自己或之",
+    "content": "# 155. Min Stack\n\n`https://leetcode.com/problems/min-stack/`\n\n## solution\n\n- 维护每个数入栈时的最小值，即另一个栈min_stack. 利用其特点，当前加入时的最小值为自己或之前更早的元素，保证pop时小的不会pop出去而无法更新\n\n```python\nclass MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n\n    def push(self, val: int) -> None:\n        self.stack.append(val)\n        if not self.min_stack or val < self.min_stack[-1]:\n            self.min_stack.append(val)\n        else:\n            self.min_stack.append(self.min_stack[-1])\n\n    def pop(self) -> None:\n        self.min_stack.pop()\n        return self.stack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def getMin(self) -> int:\n        return self.min_stack[-1]\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O(n)\n\n## follow up\n\n\\*716. Max Stack\n\n```python\n\n```\n\n622. Design Circular Queue\n\n```python\n# 关键是记录head_index和count，从一段空间中确定时间的queue. 整个空间其他的还可以记录\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-mlint4-2",
+    "title": "20. Valid Parentheses",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/valid parentheses/ 括号合理: 任一位置，左括号数量大于等于右括号数量；最后位置，左等于右 时间复杂度",
+    "content": "# 20. Valid Parentheses\n\n`https://leetcode.com/problems/valid-parentheses/`\n\n## solution\n\n- 括号合理: 任一位置，左括号数量大于等于右括号数量；最后位置，左等于右\n\n```python\nclass Solution:\n    def isValid(self, s: str) -> bool:\n        anchor = {\n            \")\": \"(\",\n            \"]\": \"[\",\n            \"}\": \"{\"\n        }\n\n        stack = []\n        for sub in s:\n            if sub in ['(', '[', '{']:\n                stack.append(sub)\n            else:\n                if not stack or anchor[sub] != stack.pop(-1):\n                    return False\n                else:\n                    continue\n\n        if not stack:\n            return True\n        else:\n            return False\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up-括号类\n\n241. Different Ways to Add Parentheses\n\n```python\nclass Solution:\n    def diffWaysToCompute(self, expression: str) -> List[int]:\n        # 每次遇到符号，对左右分而治之\n        if expression.isdigit():\n            return [int(expression)]  # 对结果进行循环，返回的是list\n\n        res = []\n        for i in range(len(expression)):\n            if expression[i] in \"-+*\":\n                left = self.diffWaysToCompute(expression[:i])\n                right = self.diffWaysToCompute(expression[i+1:])\n                for l in left:\n                    for r in right:\n                        if expression[i] == '+':\n                            res.append(l+r)\n                        elif expression[i] == '-':\n                            res.append(l-r)\n                        elif expression[i] == '*':\n                            res.append(l*r)\n        return res\n```\n\n```python\nclass Solution(object):\n    def diffWaysToCompute(self, input):\n        m = {}\n        return self.dfs(input, m)\n\n    def dfs(self, input, m):\n        if input in m:\n            return m[input]\n        if input.isdigit():\n            m[input] = int(input)\n            return [int(input)]\n\n        ret = []\n        for i, c in enumerate(input):\n            if c in \"+-*\":\n                l = self.diffWaysToCompute(input[:i])\n                r = self.diffWaysToCompute(input[i+1:])\n                ret.extend(eval(str(x)+c+str(y)) for x in l for y in r)\n        m[input] = ret\n        return ret\n```\n\n282. Expression Add Operators\n\n```python\n# for循环尝试在每个位置增加运算符, 得到一层结果后续递归添加后续的运算符.\n\n```\n\n301 Remove Invalid Parentheses\n\n1249. Minimum Remove to Make Valid Parentheses\n\n921. Minimum Add to Make Parentheses Valid\n\n```python\n# 与1249镜像题目, one-pass, 只有左括号入栈.\n# 可以进一步优化空间O(1), 不使用栈\nclass Solution:\n    def minAddToMakeValid(self, s: str) -> int:\n        res = 0\n        stack = []\n        s = list(s)  # 转化为list\n        for i, char in enumerate(s):\n            if char == '(':\n                stack.append(i)  # 入栈参数无所谓\n            elif char == ')':\n                if stack:\n                    stack.pop()\n                else:\n                    res += 1\n\n        while stack:\n            stack.pop()\n            res += 1\n        return res\n```\n\n32. Longest Valid Parentheses\n\n22 Generate Parentheses\n\n636. Exclusive Time of Functions\n\n```python\nclass Solution:\n    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:\n        res_dict = [0] * n\n\n        prev_time = 0  # 定义一个时间对解决问题很关键\n        history = []\n\n        for log in logs:\n            id, status, start_time = log.split(':')\n            # 最好一开始就把start_time转为int\n            id = int(id)\n            start_time = int(start_time)\n\n            if status == 'start':\n                if history:\n                    # 此时不能pop，但需要加一段完成时间\n                    res_dict[history[-1]] += start_time - prev_time\n\n                history.append(id)\n                # 注意, 2开始, 意味着上一个1结束; 5结束, 意味着下一个6开始\n                prev_time = start_time\n            else:\n                history.pop()\n                res_dict[id] += start_time - prev_time + 1\n                prev_time = start_time + 1\n\n        return res_dict\n```\n\n```python\nclass Solution:\n    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:\n        mydict = collections.defaultdict(int)\n        current = 0\n        stack = []\n\n        for log in logs:\n            id, status, time = log.split(':')\n            time = int(time)\n            id = int(id)\n\n            if status == 'start':\n                if stack:\n                    mydict[stack[-1]] += int(time) - int(current)\n\n                stack.append(id)\n                current = time\n            else:\n                stack.pop()\n                mydict[id] += int(time) - int(current) + 1\n                current = time + 1\n\n        # 如果id不转化为int的话，就会因为按照字母排序把10排在2前面而出现问题\n        return [mydict[i] for i in sorted(mydict)]\n```\n\nmulti thread版本\n\n- 改成一个hashmap of stacks, key=thread_id, value=stack of events and timestamps, reduce到同一个function\n\n591. Tag Validator\n\n```python\n\n```\n\n678. Valid Parenthesis String\n\n```python\nclass Solution:\n    def checkValidString(self, s: str) -> bool:\n        stack = []\n        star = []\n\n        for index, char in enumerate(s):\n            if char == '(':\n                stack.append(index)\n            elif char == ')':\n                if stack:\n                    stack.pop()\n                elif star:\n                    star.pop()\n                else:\n                    return False\n            else:\n                star.append(index)\n\n        while stack:\n            if star and stack[-1] < star[-1]:\n                stack.pop()\n                star.pop()\n            else:\n                return False\n        return True\n```\n\n- 错误方案, 想通过大小比较。相当于中间漏掉了每一个\\*的具体变换，有的case不通过\n\n```python\nclass Solution:\n    def checkValidString(self, s: str) -> bool:\n        counter = collections.defaultdict(int)\n        for char in s:\n            counter[char] += 1\n            if counter['('] + counter['*'] < counter[')']:\n                return False\n\n        if counter['('] > counter['*'] + counter[')'] or counter[')'] > counter['*'] + counter['(']:\n            return False\n\n        return True\n```\n\n1541. Minimum Insertions to Balance a Parentheses String\n\n```python\nclass Solution:\n    def minInsertions(self, s: str) -> int:\n        num_left = 0\n        res = 0\n        i = 0\n\n        while i < len(s):\n            if s[i] == '(':\n                num_left += 1\n            else:\n                if num_left > 0:\n                    num_left -= 1\n                else:\n                    res += 1\n                if i < len(s) - 1 and s[i+1] == ')':\n                    i += 1\n                else:\n                    res += 1\n\n            i += 1\n        return res + num_left * 2\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/acf22ac102ef5edb.jpg"
+  },
+  {
+    "id": "g-mlint4-3",
+    "title": "224. Basic Calculator",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/basic calculator/ 时间复杂度：O(n) 空间复杂度：O(n) 227. Basic Calculato",
+    "content": "# 224. Basic Calculator\n\n`https://leetcode.com/problems/basic-calculator/`\n\n## solution\n\n```python\nclass Solution:\n    def calculate(self, s: str) -> int:\n        stack= []\n        res = 0\n        sign = 1\n        i = 0\n        while i < len(s):  # 使用while是因为遇到数字本该计算 res += sign * num, 但num可能是多位数字\n            if s[i].isdigit():\n                tmp = int(s[i])\n                i += 1\n                while i < len(s) and s[i].isdigit():\n                    tmp = tmp * 10 + int(s[i])\n                    i += 1\n                res += sign * tmp  # 没有括号的加减通过sign在这里实现\n            elif s[i] == '+':\n                sign = 1\n                i += 1\n            elif s[i] == '-':\n                sign = -1\n                i += 1\n            elif s[i] == '(':\n                stack.append(res)\n                stack.append(sign)\n                res, sign = 0, 1\n                i += 1\n            elif s[i] == ')':\n                res *= stack.pop()  # 符号, 和decoder string一样保存多信息在stack\n                res += stack.pop()  # 数字\n                i += 1\n            else:  # 字符串，总会遇到空格等其他问题字符\n                i += 1\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow-up\n\n227. Basic Calculator II\n\n```python\n# 空间可以进一步优化为O(1)\n\nclass Solution:\n    def calculate(self, s: str) -> int:\n        s += \"+\"  # 注意trick, 符号会触发上一个符号的运算, 所以 sum(stack) + num结果. 另一种思路是else那里多加一个条件\n        num = 0  # num和op的含义非常重要，num代表了本次的数，入栈了则代表之前的数\n        last_op = '+'\n        stack = []\n        for char in s:\n            if '0' <= char <= '9':\n                num = num * 10 + int(char)  # 类型\n            elif char == ' ':  # 重要corner case, 除了数字、字母还存在空格\n                pass\n            else:\n                # 注意判断的是last_op (上一个运算). 遇到本次运算符，上个运算需要的元素才备齐(一个元素在stack, 一个是num, 以及last_op)\n                # 由此也导致了最后一个元素没有入栈\n                if last_op == '+':\n                    stack.append(num)\n                elif last_op == '-':\n                    stack.append(-num)\n                elif last_op == '*':\n                    stack[-1] *= num\n                elif last_op == '/':  # python负数向下取整\n                    stack[-1] = int(stack[-1] / num)\n\n                num = 0  # 注意num的更新\n                last_op = char\n        return sum(stack)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n\\* 772. Basic Calculator III\n\n```python\n# 遇到左括号时，进入递归，遇到右括号时退出.\n\nclass Solution:\n    def __init__(self) :\n        self.i = 0\n\n    def calculate(self, s):\n        return self.parse_expr(s)\n\n    def parse_expr(self ,s) :\n        nums = []\n        op = '+'\n        while self.i < len(s) and op != ')':  # 遇到右括号退出递归\n            if s[self.i] == ' ' :\n                self.i += 1\n                continue\n\n            if s[self.i] == '(': # 遇到左括号进入递归\n                self.i += 1\n                n = self.parse_expr(s)\n\n            else:\n                # 字符串转化数字\n                n = 0\n                while self.i < len(s) and s[self.i] >= '0' and s[self.i] <='9' :\n                    n = ord(s[self.i]) - ord('0') + 10 * n\n                    self.i += 1\n\n            if op == '+' :\n                nums.append(n)\n            elif op == '-' :\n                nums.append(-n)\n            elif op == '*' :\n                nums[-1] *= n\n            elif op == '/' :\n                nums[-1] //= n\n            if self.i >= len(s) :\n                break\n            op = s[self.i]\n            self.i += 1\n\n        res = 0\n        for n in nums:\n            res += n\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n\\*408. Valid Word Abbreviation\n\n```python\n# follow up: 2060. Check if an Original String Exists Given Two Encoded Strings\n\nclass Solution:\n    def valid_word_abbreviation(self, word: str, abbr: str) -> bool:\n        i = 0\n        j = 0\n        while i < len(word) and j < len(abbr):\n            if word[i] == abbr[j]:\n                i += 1\n                j += 1\n\n            elif abbr[j].isdigit() and abbr[j] != '0':  # 注意j的条件, 以及j是代表的数字, j不等于字符串0\n                start = j\n                while j < len(abbr) and abbr[j].isdigit():\n                    j += 1\n                i += int(abbr[start:j])\n            else:\n                return False\n        return i == len(word) and j == len(abbr)\n```\n\n时间复杂度：O(m+1) <br>\n空间复杂度：O(1)\n\n```python\nclass Solution:\n    def valid_word_abbreviation(self, word: str, abbr: str) -> bool:\n        i = 0\n        j = 0\n\n        num = 0\n        while i < len(word) and j < len(abbr):\n            if not abbr[j].isdigit():\n                if abbr[j] != word[i]:\n                    return False\n                i += 1\n                j += 1\n            else:\n                if abbr[j] == '0':\n                    return False\n\n                while j < len(abbr) and abbr[j].isdigit():\n                    num = num * 10 + int(abbr[j])\n                    j += 1\n\n                i += num\n                num = 0  # num重置\n\n        return i == len(word) and j == len(abbr)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/7b0bcad5da7748c0.jpg"
+  },
+  {
+    "id": "g-mlint4-4",
+    "title": "225. Implement Stack using Queues",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/implement stack using queues/description/ 时间复杂度：O() 空间复杂度：O(",
+    "content": "# 225. Implement Stack using Queues\n\n`https://leetcode.com/problems/implement-stack-using-queues/description/`\n\n## solution\n\n```python\nclass MyStack:\n    def __init__(self):\n        self.q1 = []\n        self.q2 = []\n\n    def push(self, x: int) -> None:\n        self.q1.append(x)\n\n    def pop(self) -> int:\n        if self.empty():\n            return None\n\n        for i in range(len(self.q1) - 1):\n            self.q2.append(self.q1.pop(0))\n        self.q1, self.q2 = self.q2, self.q1\n        return self.q2.pop(0)\n\n    def top(self) -> int:\n        if self.q1:\n            return self.q1[-1]\n\n    def empty(self) -> bool:\n        if self.q1:\n            return False\n        else:\n            return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-mlint4-5",
+    "title": "232. Implement Queue using Stacks",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/implement queue using stacks/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 232. Implement Queue using Stacks\n\n`https://leetcode.com/problems/implement-queue-using-stacks/`\n\n## solution\n\n```python\nclass MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n\n    def push(self, x: int) -> None:\n        self.stack1.append(x)\n\n    def pop(self) -> int:\n        if self.stack2:\n            return self.stack2.pop()\n        elif self.stack1:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop(-1))\n            return self.stack2.pop(-1)\n        else:\n            return\n\n    def peek(self) -> int:\n        if self.stack2:\n            return self.stack2[-1]\n        elif self.stack1:\n            return self.stack1[0]\n        else:\n            return\n\n    def empty(self) -> bool:\n        if len(self.stack1) + len(self.stack2) > 0:\n            return False\n        else:\n            return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-mlint4-6",
+    "title": "239. Sliding Window Maximum",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/sliding window maximum/description/ 暴力法 时间复杂度：O(n × k) 空间复杂度",
+    "content": "# 239. Sliding Window Maximum\n\n`https://leetcode.com/problems/sliding-window-maximum/description/`\n\n## solution\n\n- 暴力法\n\n```python\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        if len(nums) < k:\n            return None\n\n        res = []\n        for i in range(k, len(nums)+1):\n            res.append(max(nums[i-k: i]))\n        return res\n```\n\n时间复杂度：O(n × k) <br>\n空间复杂度：O()\n\n- 单调队列 Monotonic Queue\n\n```python\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        q = collections.deque()  # 和单调栈一样，队列中保存的是indices\n        res = []\n        for i, cur in enumerate(nums):\n            while q and nums[q[-1]] <= cur:  # 因为迭代前面已有保证，这次把queue右边比自己小的没用了，可以pop出去\n                q.pop()\n            q.append(i)\n\n            # 特别之处在这里: 超过滑动滑口的部分pop出去, 在已有迭代基础上 每次pop一个即可\n            if q[0] == i - k:\n                q.popleft()\n\n            # 如果窗口已经达到k的大小，记录最大值. 不够k的window不算\n            if i >= k - 1:\n                res.append(nums[q[0]])\n        return res\n```\n\n```python\nclass MyQueue(object):\n    def __init__(self):\n        self.q = collections.deque()\n\n    def pop(self, value):\n        # 保证队列里是单调的，非空且等于出口时弹出\n        # 这里是if 和 q[0]，我自己写的while 和 q[-1], 这里多写大于等于更是问题了\n        if self.q and value == self.q[0]:\n            self.q.popleft()\n\n    def push(self, value):\n        # 非空，push的值大于最小值时，一直弹出\n        # 该value位置之前比他小的肯定是没用的了, 注意是>。等于的先留着？\n        while self.q and value > self.q[-1]:\n            self.q.pop()\n        self.q.append(value)\n\n    @property\n    def front(self):  # 当前队列最大值, 第0\n        return self.q[0]\n\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        q = MyQueue()\n        res = []\n        for i in range(k):\n            q.push(nums[i])\n\n        res.append(q.front)\n        for i in range(k, len(nums)):\n            q.pop(nums[i - k])  # 关键思路，所以单调队列的pop是带元素的\n            q.push(nums[i])\n            res.append(q.front)\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O()\n\n- 堆(X)\n  > 由于该滑动窗口的窗口值是固定的，因此曾想过用堆来做。问题是这个窗口是移动的，而大顶堆每次只能弹出最大值，我们无法移除其他数值，这样就造成大顶堆维护的不是滑动窗口里面的数值了。不能用大顶堆\n\n## follow up\n\n480. Sliding Window Median",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint4-7",
+    "title": "281. Zigzag Iterator",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/zigzag iterator/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 281. Zigzag Iterator\n\n`https://leetcode.com/problems/zigzag-iterator/`\n\n## solution\n\n```python\nclass ZigzagIterator:\n    def __init__(self, v1: List[int], v2: List[int]):\n        self.current = 0\n        self.size = 2\n        self.indices = [0] * self.size\n        self.vectors = [v1, v2]\n\n    def next(self) -> int:\n        vector = self.vectors[self.current]\n        index = self.indices[self.current]\n        result = vector[index]\n        self.indices[self.current] = index + 1\n        self.current = (self.current + 1) % self.size\n        return result\n\n    def hasNext(self) -> bool:\n        start = self.current\n        while self.indices[self.current] == len(self.vectors[self.current]):\n            self.current = (self.current + 1) % self.size\n            if self.current == start:\n                return False\n        return True\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/40540d8c6a3a9e6f.jpg"
+  },
+  {
+    "id": "g-mlint4-8",
+    "title": "346. Moving Average from Data Stream",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/moving average from data stream/ 双端队列 时间复杂度：O(1) 空间复杂度：O(n) ",
+    "content": "# 346. Moving Average from Data Stream\n\n`https://leetcode.com/problems/moving-average-from-data-stream/`\n\n## solution\n\n- 双端队列\n\n```python\nfrom collections import deque\n\nclass MovingAverage:\n    def __init__(self, size: int):\n        self.size = size\n        self.queue = deque()\n        self.sum = 0\n\n    def next(self, val: int) -> float:\n        if len(self.queue) == self.size:\n            left_val = self.queue.popleft()\n            self.sum -= left_val\n\n        self.queue.append(val)\n        self.sum += val\n        return self.sum / len(self.queue)\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O(n)\n\n- 列表\n\n```python\nclass MovingAverage:\n    def __init__(self, size: int):\n        self.size = size\n        self.nums = []\n        self.sum = 0\n\n    def next(self, val: int) -> float:\n        self.nums.append(val)\n        self.sum += val\n        if len(self.nums) > self.size:\n            self.sum -= self.nums.pop(0)\n        return self.sum / len(self.nums)\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/054e377458781424.jpg"
+  },
+  {
+    "id": "g-mlint4-9",
+    "title": "362. Design Hit Counter",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/design hit counter/ clarification the data comes in unordere",
+    "content": "# 362. Design Hit Counter\n\n`https://leetcode.com/problems/design-hit-counter/`\n\n## solution\n\nclarification\n\n- the data comes in unordered? several hits carry the same timestamp?\n\n```python\n# https://www.geeksforgeeks.org/design-a-hit-counter/\n\nclass HitCounter:\n    def __init__(self):\n        # 过去5分钟敲击\n        self.timestamps = [0] * 300\n        self.hits = [0] * 300\n\n    def hit(self, timestamp: int) -> None:\n        i = timestamp % 300\n        if self.timestamps[i] == timestamp:\n            self.hits[i] += 1\n        else:\n            self.timestamps[i] = timestamp\n            self.hits[i] = 1\n\n    def getHits(self, timestamp: int) -> int:\n        res = 0\n        for t, h in zip(self.timestamps, self.hits):\n            if timestamp - t < 300:  # 5分钟以内\n                res += h\n        return res\n```\n\n时间复杂度：O(1) <br>\n空间复杂度：O(1)\n\n## follow up\n\n- Most Efficient Way: TreeMap\n- concurrency\n  - Major issue on scaling the hit counter is concurrency calls. When two hits write to the array at the same time, possibly one of them gets lost. A **write lock** protects the system from losing hits, but it slows down the process. This works pretty well when you don’t have a large volume of requests or performance is not a concern\n  - In order to quickly handle a large number of requests, move the hit counter to a distributed system and have several machines counting together. Hash the userID to assign them to different hosts. Add load balancer on top to make sure requests gets allocated evenly.\n  - On each individual machine, take the approach in solution to gather the counts.\n  - Upon reading, sum up the count across all machines. For a read-heavy application, put a cache on top so that multiple read requests that take place in the same second does not incur unnecessary cross-node communications.",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-mlint4-11",
+    "title": "54. Spiral Matrix",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/spiral matrix/ 时间复杂度：O() 空间复杂度：O()",
+    "content": "# 54. Spiral Matrix\n\n`https://leetcode.com/problems/spiral-matrix/`\n\n## solution\n\n```python\nclass Solution:\n    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:\n        if not matrix:\n            return []\n\n        start_col = 0\n        start_row = 0\n        n_col = len(matrix[0]) - 1\n        n_row = len(matrix) - 1\n\n        res = []  # [[0 for _ in range(n_row)] for _ in range(n_col)]\n\n        while start_col <= n_col and start_row <= n_row:\n            for i in range(start_col, n_col+1):\n                res.append(matrix[start_row][i])\n            start_row += 1\n\n            for i in range(start_row, n_row+1):\n                res.append(matrix[i][n_col])\n            n_col -= 1\n\n            if start_row <= n_row:\n                for i in range(n_col, start_col - 1, -1):\n                    res.append(matrix[n_row][i])\n                n_row -= 1\n\n            if start_col <= n_col:\n                for i in range(n_row, start_row - 1, -1):\n                    res.append(matrix[i][start_col])\n                start_col += 1\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:\n        m = len(matrix)\n        n = len(matrix[0])\n\n        dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]\n\n        row = col = dir_idx = 0\n        res = []\n        visited = set()\n\n        for _ in range(m * n):\n            res.append(matrix[row][col])\n            visited.add((row, col))\n\n            # 可能要换方向, 根据下面条件确定是否换\n            next_row, next_col = row + dirs[dir_idx][0], col + dirs[dir_idx][1]\n\n            if not 0 <= next_row < m or not 0 <= next_col < n or (next_row, next_col) in visited:\n                dir_idx = (dir_idx + 1) % 4\n\n            # 实际的下一个\n            row += dirs[dir_idx][0]\n            col += dirs[dir_idx][1]\n        return res\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/334388ae1d5666aa.jpg"
+  },
+  {
+    "id": "g-mlint4-13",
+    "title": "736. Parse Lisp Expression",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/parse lisp expression/description/ 花花酱 LeetCode 736",
+    "content": "# 736. Parse Lisp Expression\n\n`https://leetcode.com/problems/parse-lisp-expression/description/`\n\n## solution\n\n- 花花酱 LeetCode 736\n\n```python\nclass Solution:\n    def evaluate(self, expression):\n        tokens = collections.deque(expression.replace('(', ' ( ').replace(')', ' ) ').split())\n        variables = collections.defaultdict(list)  # 作用域\n\n        def recur(tokens):\n            stack = []\n            x = tokens.popleft()\n            if x != '(':  # This is a value or variable name\n                try:\n                    return int(x)\n                except:\n                    return variables[x][-1]\n\n            # Else this is a complex expression. 三个函数let add mult左边一定是左括号\n            command = tokens.popleft()\n            if command == 'let':\n                while tokens:\n                    if tokens[0] == '(' or tokens[1] == ')': # This is the last token of let expression; line <1>\n                        value = recur(tokens)\n                        tokens.popleft() # get rid of ending )\n                        while stack:\n                            variables[stack.pop()].pop() # Clean up; remove all local defined variables; line <2>\n                        return value\n\n                    # The current t=tokens[0] is a variable name\n                    var = tokens.popleft()\n                    value = recur(tokens)\n                    stack.append(var)\n                    variables[var].append(value)\n            else:\n                if command == 'add':\n                    result = recur(tokens) + recur(tokens)  # add和mult的两个expression递归得到\n                else:\n                    result = recur(tokens) * recur(tokens)\n\n                tokens.popleft()  # get rid of ending )\n                return result\n        return recur(tokens)\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-mlint4-14",
+    "title": "739. Daily Temperatures",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/daily temperatures/ 暴力 时间复杂度：O(n^2) 空间复杂度：O() 单调栈 时间复杂度：O(n)",
+    "content": "# 739. Daily Temperatures\n\n`https://leetcode.com/problems/daily-temperatures/`\n\n## solution\n\n- 暴力\n\n```python\nclass Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        res = []\n        for i in range(len(temperatures)):\n            greater = False\n            for j in range(i+1, len(temperatures)):\n                if temperatures[j] > temperatures[i]:\n                    res.append(j-i)\n                    greater = True\n                    break\n            if not greater:\n                res.append(0)\n        return res\n```\n\n时间复杂度：O(n^2) <br>\n空间复杂度：O()\n\n- 单调栈\n\n```python\nclass Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        res = [0] * len(temperatures)\n        stack = []\n\n        for i, temp in enumerate(temperatures):\n            # 求下一个更大: 单调栈保存的index递增，但index值递减。遇到大的，pop出来，同时更新pop index的结果\n            while stack and temp > temperatures[stack[-1]]:\n                j = stack.pop()\n                res[j] = i - j\n            stack.append(i)\n        return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n```python\nclass Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        res = [0] * len(temperatures)  # 初始化一个默认值, 当不更新为自己, 因此初始化0\n        stack = [0]  # 递增栈，对于第一个元素的判断，初始化一个比所有元素都小的\n\n        for i in range(1, len(temperatures)):\n            if temperatures[i] <= temperatures[stack[-1]]:\n                stack.append(i)\n            else:  # 注意 while\n                while len(stack) != 0 and temperatures[i] > temperatures[stack[-1]]:\n                    res[stack[-1]] = i - stack[-1]\n                    stack.pop()\n                stack.append(i)\n        return res\n```\n\n## follow up\n\n84 Largest Rectangle in Histogram\n\n1019. Next Greater Node In Linked List\n\n```python\nclass Solution:\n    def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:\n        ans = []\n        stack = []\n\n        while head:\n            while stack and head.val > ans[stack[-1]]:\n                idx = stack.pop()\n                ans[idx] = head.val\n\n            stack.append(len(ans))\n            ans.append(head.val)  # 由于整体大小不知道, 每次ans也append. 在单调栈while时进行合理修改\n            head = head.next\n\n        for i in stack:\n            ans[i] = 0\n        return ans\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/54b0cd8aa91d6c0f.jpg"
+  },
+  {
+    "id": "g-mlint4-15",
+    "title": "84 Largest Rectangle in Histogram",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/largest rectangle in histogram/ 单调栈: 寻找左右两边第一个比自己小的柱子。右边通过单调",
+    "content": "# 84 Largest Rectangle in Histogram\n\n`https://leetcode.com/problems/largest-rectangle-in-histogram/`\n\n## solution\n\n- 单调栈: 寻找左右两边第一个比自己小的柱子。右边通过单调栈外的元素实现，左边通过单调栈里的元素实现。栈顶，栈顶的下一个元素，即将入栈的元素：这三个元素组成了最大面积的高度和宽度\n  - 迭代的时候，当一个小的高度出现时，可以更新比他大的柱子和他自己构成的矩形面积了，此时把栈保存的pop出来计算\n\n```python\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        # 输入数组首尾各补上一个0\n        heights = [0] + heights + [0]\n        stack = [0]\n        result = 0\n        for i in range(1, len(heights)):\n            # 单调栈: 找左右第一个比自己小的. 更新过程中，作为右边，如果比栈顶左边的元素小，则出栈计算结果\n            while stack and heights[i] < heights[stack[-1]]:\n                mid_height = heights[stack[-1]]\n                stack.pop()\n                if stack:\n                    # 左边比自己小的，则是剩余栈里的栈顶\n                    area = (i - stack[-1] - 1) * mid_height\n                    result = max(area, result)\n            stack.append(i)\n        return result\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n```python\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n = len(heights)\n        stack = []  # 单调栈\n        next_smaller_left = [0] * n\n        for i in range(n):\n            while stack and heights[stack[-1]] >= heights[i]:\n                stack.pop()\n            if stack:\n                next_smaller_left[i] = stack[-1] + 1\n            stack.append(i)\n\n        stack = []\n        next_smaller_right = [n - 1] * n\n        for i in range(n-1, -1, -1):\n            while stack and heights[stack[-1]] >= heights[i]:\n                stack.pop()\n            if stack:\n                next_smaller_right[i] = stack[-1] - 1\n            stack.append(i)\n\n        res = heights[0]\n        for i in range(n):\n            height = heights[i]\n            width = next_smaller_right[i] - next_smaller_left[i] + 1\n            area = height * width\n            res = max(res, area)\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 双指针: 找每个柱子左右两边第一个小于该柱子的柱子\n\n```python\n\n```\n\n## follow up\n\n42. Trapping Rain Water\n\n1856. Maximum Subarray Min-Product",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/dcf8dd993c4027d6.jpg"
+  },
+  {
+    "id": "g-mlint4-16",
+    "title": "85 Maximum Rectangle",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximal rectangle/ 单调栈: 按行迭代，每一行都视为柱状图的底部，对每一行求柱状图的最大面积 时间复杂",
+    "content": "# 85 Maximum Rectangle\n\n`https://leetcode.com/problems/maximal-rectangle/`\n\n## solution\n\n- 单调栈: 按行迭代，每一行都视为柱状图的底部，对每一行求柱状图的最大面积\n\n```python\nclass Solution:\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        if not matrix:\n            return 0\n\n        n = len(matrix[0])\n        heights = [0] * (n + 1)\n        max_area = 0\n\n        for row in matrix:\n            # 构建如84题的高度\n            for i in range(n):\n                heights[i] = heights[i] + 1 if row[i] == \"1\" else 0\n\n            stack = [-1]\n            for i in range(n + 1):\n                # 单调栈: 右边第一个高度比自己小的index构成矩形\n                while heights[i] < heights[stack[-1]]:\n                    h = heights[stack.pop()]\n                    w = i - stack[-1] - 1  # 左右两边第一个比自己小\n                    max_area = max(max_area, h * w)\n                stack.append(i)\n\n        return max_area\n```\n\n时间复杂度：O(mn) <br>\n空间复杂度：O(n)\n\n- 动态规划: 一开始想到的dp没法处理前面一个单元是正方形，后面连着的只是单个\n\n```python\nclass Solution:\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        m, n = len(matrix), len(matrix[0])\n        ans = 0\n        dp = {}\n\n        for i in range(m):\n            for j in range(n):\n                if matrix[i][j] == '0':\n                    dp[(i,j)] = (0,0)\n                else:\n                    x = dp[(i, j-1)][0]+1 if j>0 else 1\n                    y = dp[(i-1, j)][1]+1 if i>0 else 1\n                    dp[(i, j)] = (x, y)\n                    ans = max(x, y, ans)\n                    minWidth = x\n                    # vertical max possible\n                    for r in range(i-1, i-y, -1):\n                        minWidth = min(minWidth, dp[(r, j)][0])\n                        ans = max(ans, minWidth * (i-r+1))\n        return ans\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n## follow up\n\n84 Largest Rectangle in Histogram\n\n221 Maximal Square",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/cf953911b8bf55fc.webp"
+  },
+  {
+    "id": "g-mlint4-18",
+    "title": "907. Sum of Subarray Minimums",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/sum of subarray minimums/ 单调栈 时间复杂度：O() 空间复杂度：O() 暴力解法超时",
+    "content": "# 907. Sum of Subarray Minimums\n\n`https://leetcode.com/problems/sum-of-subarray-minimums/`\n\n## solution\n\n- 单调栈\n\n```python\nclass Solution:\n    def sumSubarrayMins(self, arr: List[int]) -> int:\n        n = len(arr)\n        left = [-1] * n\n        right = [n] * n\n        stack = []\n\n        for i, value in enumerate(arr):\n            while stack and arr[stack[-1]] >= value:\n                stack.pop()\n            if stack:\n                left[i] = stack[-1]\n            stack.append(i)\n\n        stack = []\n\n        for i in range(n - 1, -1, -1):\n            while stack and arr[stack[-1]] > arr[i]:\n                stack.pop()\n            if stack:\n                right[i] = stack[-1]\n            stack.append(i)\n\n        mod = 10**9 + 7\n        result = sum((i - left[i]) * (right[i] - i) * value for i, value in enumerate(arr)) % mod\n        return result\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 暴力解法超时\n\n```python\nclass Solution:\n    def sumSubarrayMins(self, arr: List[int]) -> int:\n        res_list = []\n        for i in range(len(arr)):\n            for j in range(i+1, len(arr)+1):  # 注意边界\n                res_list.append(min(arr[i:j]))\n\n        mod = 10**9 + 7\n        return sum(res_list) % mod\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/fa4caeb13b1b25d9.jpg"
+  },
+  {
+    "id": "g-mlint4-20",
+    "title": "1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/longest continuous subarray with absolute diff less than or ",
+    "content": "# 1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit\n\n`https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/`\n\n## solution\n\n```python\nclass Solution:\n    def longestSubarray(self, nums: List[int], limit: int) -> int:\n        res = 1\n        for i in range(len(nums)):\n            max_heap = [-nums[i]]  # 大堆，小堆保证新加入的不超过上限limit, 也不超过下限limit\n            min_heap = [nums[i]]\n\n            for j in range(i+1, len(nums)):\n                # 两个堆主要是方便确认limit\n                if abs(-max_heap[0] - nums[j]) <= limit and abs(min_heap[0] - nums[j]) <= limit:\n                    heapq.heappush(max_heap, -nums[j])\n                    heapq.heappush(min_heap, nums[j])\n                else:\n                    break\n\n                res = max(res, len(max_heap))\n        return res\n```\n\n- 双heap\n\n```python\n# https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/\nimport heapq\nclass Solution:\n    def longestSubarray(self, nums: List[int], limit: int) -> int:\n        max_length = 1\n        left = 0\n        min_heap = []\n        max_heap = []\n        for right in range(len(nums)):\n            heapq.heappush(min_heap, (nums[right], right))\n            heapq.heappush(max_heap, (-nums[right], right))\n\n            while min_heap[0][1] < left:\n                heapq.heappop(min_heap)\n            while max_heap[0][1] < left:\n                heapq.heappop(max_heap)\n\n            if -max_heap[0][0] - min_heap[0][0] <= limit:\n                max_length = max(max_length, right - left + 1)\n            else:\n                left += 1\n        return max_length\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- TreeMap\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 单调双端队列\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-mlint4-22",
+    "title": "1845. Seat Reservation Manager",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/seat reservation manager/description/ 时间复杂度：O(log(n)) 空间复杂度：",
+    "content": "# 1845. Seat Reservation Manager\n\n`https://leetcode.com/problems/seat-reservation-manager/description/`\n\n## solution\n\n```python\nclass SeatManager:\n    def __init__(self, n: int):\n        self.seats = [i+1 for i in range(n)]\n\n    def reserve(self) -> int:\n        return heapq.heappop(self.seats)\n\n    def unreserve(self, seatNumber: int) -> None:\n        heapq.heappush(self.seats, seatNumber)\n```\n\n时间复杂度：O(log(n)) <br>\n空间复杂度：O(n)\n\n- 超时（进一步优化，如何想到用heap）\n\n```python\nclass SeatManager:\n    def __init__(self, n: int):\n        self.n = n\n        self.seats = [0] * (n + 1)\n\n    def reserve(self) -> int:\n        for i in range(1, self.n+1):\n            if self.seats[i] == 0:\n                self.seats[i] = 1\n                return i\n\n    def unreserve(self, seatNumber: int) -> None:\n        self.seats[seatNumber] = 0\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/d4c92968155321e9.jpg"
+  },
+  {
+    "id": "g-mlint4-23",
+    "title": "23. Merge K Sorted Lists",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/merge k sorted lists/ 时间复杂度：O(n k log k) 空间复杂度：O(k) Sorted I",
+    "content": "# 23. Merge K Sorted Lists\n\n`https://leetcode.com/problems/merge-k-sorted-lists/`\n\n## solution\n\n```python\nclass Solution:\n    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n        # ListNode.__lt__ = lambda self, other: self.val < other.val  # 最简洁的做法是增加属性, 可以把node直接push进heap\n\n        heap = []\n        for i, l in enumerate(lists):\n            # 注意: 每个list只有head进入heap\n            if l:\n                heapq.heappush(heap, (l.val, i, l))  # python3 heap中前一个相等就会判断下一个, 由于node.val可能相等, 需要3个元素或index\n\n        dummy = head = ListNode()\n        while heap:\n            val, i, node = heapq.heappop(heap)\n            head.next = node\n            head = head.next\n\n            if node.next:\n                heapq.heappush(heap, (node.next.val, i, node.next))\n\n        return dummy.next\n```\n\n时间复杂度：O(n*k*log k) <br>\n空间复杂度：O(k)\n\n## follow up\n\nSorted Iterator\n\n88. Merge Sorted Array\n\n632. Smallest Range Covering Elements from K Lists\n\n```python\n# 堆一直保存k个数(每个list仅保留一个), 最小的pop后, 相应的list往右移一位, 记录移动过程中heap中最小的范围\n\nclass Solution:\n    def smallestRange(self, nums: List[List[int]]) -> List[int]:\n        heap = [(row[0], i, 0) for i, row in enumerate(nums)]\n        heapq.heapify(heap)\n\n        max_value = max([row[0] for row in heap])\n        min_value = min([row[0] for row in heap])\n\n        ans = [min_value, max_value]\n\n        while len(heap) == len(nums):\n            num, r, c = heapq.heappop(heap)\n            if c + 1 < len(nums[r]):\n                heapq.heappush(heap, (nums[r][c + 1], r, c + 1))\n\n                max_value = max(max_value, nums[r][c + 1])\n                min_value = heapq.nsmallest(1, heap)[0][0]\n                if max_value - min_value < ans[1] - ans[0]:\n                    ans = [min_value, max_value]\n        return ans\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/36cffb8381ab0846.jpg"
+  },
+  {
+    "id": "g-mlint4-24",
+    "title": "2542. Maximum Subsequence Score",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/maximum subsequence score/description/ 思路比较巧妙 857. Minimum C",
+    "content": "# 2542. Maximum Subsequence Score\n\n`https://leetcode.com/problems/maximum-subsequence-score/description/`\n\n## solution\n\n- 思路比较巧妙\n\n```python\nclass Solution:\n    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:\n        res = 0\n        prefix = 0\n        heap = []\n\n        for x, y in sorted(list(zip(nums1, nums2)), key= lambda x: x[1], reverse=True):\n            prefix += x\n            heapq.heappush(heap, x)\n            if len(heap) == k:\n                # 已经按顺序排序了，每次到的y都是当时最小的\n                res = max(res, prefix * y)\n                v = heapq.heappop(heap)\n                prefix -= v\n        return res\n```\n\n## follow up\n\n857. Minimum Cost to Hire K Workers\n\n```python\n\n```\n\n1383. Maximum Performance of a Team\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-mlint4-25",
+    "title": "264. Ugly Number II",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/ugly number ii/ heap: python小顶堆, 每次pop出来最小的 时间复杂度：O() 空间复杂度：",
+    "content": "# 264. Ugly Number II\n\n`https://leetcode.com/problems/ugly-number-ii/`\n\n## solution\n\n- heap: python小顶堆, 每次pop出来最小的\n\n```python\nclass Solution:\n    def nthUglyNumber(self, n: int) -> int:\n        heap = [1]\n        start = 1\n        s = set()\n\n        for _ in range(n):\n            while start in s:\n                start = heapq.heappop(heap)\n            s.add(start)\n            for i in [2, 3, 5]:\n                heapq.heappush(heap, i * start)\n        return start\n```\n\n时间复杂度：O()\n空间复杂度：O()\n\n- 动态规划\n  - 从2、3、5三个序列中取最小，像一个三指针\n  - 注意重复值，通过三个并列的if，如果if else则会导致重复\n\n```python\nclass Solution:\n    def nthUglyNumber(self, n: int) -> int:\n        res = [0] * n\n        i2 = i3 = i5 = 0\n        res[0] = 1\n\n        for i in range(1, n):\n            res[i] = min(res[i2] * 2, res[i3] * 3, res[i5] * 5)\n\n            if res[i] == res[i2] * 2:\n                i2 += 1\n            if res[i] == res[i3] * 3:\n                i3 += 1\n            if res[i] == res[i5] * 5:\n                i5 += 1\n        return res[n-1]\n```\n\n## follow up\n\n263. Ugly Number\n\n```python\nclass Solution:\n    def isUgly(self, n: int) -> bool:\n        if n == 0:\n            return False\n\n        while n % 2 == 0:\n            n /= 2\n        while n % 3 == 0:\n            n /= 3\n        while n % 5 == 0:\n            n /= 5\n        return n == 1\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n1405. Longest Happy String\n\n- 与括号生成都是生成类\n- 通过heap来回的pop, push过程中调整结果的一类题目\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-mlint4-26",
+    "title": "295. Find Median from Data Stream",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/find median from data stream/ 双heap 一个最小堆，一个最大堆。数据分成两部分，中位数就",
+    "content": "# 295. Find Median from Data Stream\n\n`https://leetcode.com/problems/find-median-from-data-stream/`\n\n## solution\n\n- 双heap\n  - 一个最小堆，一个最大堆。数据分成两部分，中位数就是前半部分的最大值，后半部分的最小值\n  - 新加入元素，先判断该加入小堆还是大堆，再调整维持平衡\n  - 总个数为奇数时，放在哪个堆里可以提前定义好\n\n```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        self.max_heap = []  # 极大堆(python都是极小堆，因此是负数进入). 数据中小的一半进入max_heap\n        self.min_heap = []  # 数据中大的一半进入min_heap\n\n    def addNum(self, num: int) -> None:\n        if not self.max_heap or num <= -self.max_heap[0]:  # -max_heap[0] 是小数据中的最大值\n            # 多一个的奇数的话，进入max_heap. findMedian奇数的话就从max_heap中取\n            heapq.heappush(self.max_heap, -num)\n            if len(self.max_heap) - len(self.min_heap) > 1:\n                heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n        else:\n            heapq.heappush(self.min_heap, num)\n            if len(self.max_heap) < len(self.min_heap):\n                heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))\n\n    def findMedian(self) -> float:\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2.0\n        return -self.max_heap[0]\n```\n\n时间复杂度：O(nlog(n)) <br>\n空间复杂度：O(n)\n\n- SortedDict\n\n```python\n\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 二分法\n  - 使用二分法插入，使得数据流是有序的\n\n```python\n\n```\n\n## follow up\n\n480. Sliding Window Median",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-mlint4-27",
+    "title": "347. Top K Frequent Elements",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/top k frequent elements/ 直接法 时间复杂度：O() 空间复杂度：O() 堆 优化点在于选出最大",
+    "content": "# 347. Top K Frequent Elements\n\n`https://leetcode.com/problems/top-k-frequent-elements/`\n\n## solution\n\n- 直接法\n\n```python\nimport collections\n\nclass Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        res = dict(collections.Counter(nums))\n        res = sorted(res.items(), key=lambda x: x[1], reverse=True)\n        return [i[0] for i in res[-k:]]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 堆\n  - 优化点在于选出最大的k个，不需要对全部排序。只需要前k排序。优先队列/堆\n  - 堆解决top k问题时，最后pop消耗空间较大，迭代过程中超过k立即pop优化空间\n\n```python\nimport collections\nimport heapq\n\nclass Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        freq_dict = collections.defaultdict(int)\n        for num in nums:\n            freq_dict[num] += 1\n\n        heap = []\n        for num, freq in freq_dict.items():  # heap如果最小堆中按第一个元素升序顺序排\n            heapq.heappush(heap, (-freq, num))\n\n        res = []\n        for _ in range(k):\n            res.append(heapq.heappop(heap)[1])\n        return res\n```\n\n时间复杂度：O(nlog(k)) <br>\n空间复杂度：O(n)\n\n- 桶排序 bucket sort\n\n```python\nclass Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        bucket = [[] for _ in range(len(nums) + 1)]\n        res = []\n        freq = collections.Counter(nums)\n\n        for key, val in freq.items():\n            bucket[val].append(key)  # key是num, val是出现次数. 填充桶时，次数最多的越往大的桶放\n\n        for i in range(len(bucket) - 1, -1, -1):  # 从次数大的桶里往回找，每个桶本身是key\n            res += bucket[i]\n            if len(res) == k:\n                return res\n```\n\n时间复杂度：O(n) <br>\n空间复杂度：O(n)\n\n## follow up\n\n大数据的Top K frequent\n\n> 常见题目如Top K frequent words, Merge K sorted list, 从5亿个数里面找出不重复的数等，都可以问数据量很大，内存不够，怎么办？\n>\n> - 小规模: 一般都可以用堆，哈希表，哈希集读到内存里面来做\n> - 大规模: map-reduce，哈希桶，bitmap（位压缩），多线程，等\n\n1. 有一个 node, limited memory，这样的情况可以 read chunk by chunk, 依次把每个 chunk 里的 words 排序。然后每个 chunk 分配一个指针，初始的时候指向每个 sorted chunk 里的第一个 word. 同时在内存里保留一个 size-k heap, 这样通过移动指针可以找到 total count of each word across all chunks. 然后把 (count, word) 放到 heap 里，同时保证 heap 的 size < k. 常见的错误方法是先在每个 chunk 里找 top K, 然后再找合并后的 top K，这样的话 local top K 会影响 global top K, 最后的结果可能会是错误的。\n2. 有多个 node, 每个 node limited memory, 这样就是 map reduce, 重点在于如何 partition, 有很多人会考虑 range based partition, 比如以 A 开头的 word 分到一个 node, B 开头的到另一个... 但问题在于以有些字母开头的词会更常见，所以有可能导致 unbalanced loads. 更好的方法可以是 hashing.\n\nio efficient merge sort",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-mlint4-28",
+    "title": "378. Kth Smallest Element in a Sorted Matrix",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/kth smallest element in a sorted matrix/ 第k小的值，转化为其负数列表中第k大的",
+    "content": "# 378. Kth Smallest Element in a Sorted Matrix\n\n`https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/`\n\n## solution\n\n- 第k小的值，转化为其负数列表中第k大的值。在python最小堆中，最小的数\n\n```python\nimport heapq\n\nclass Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        if not matrix or not matrix[0]:\n            return -1\n\n        heap = []\n        for i in range(len(matrix)):\n            for j in range(len(matrix[0])):\n                heapq.heappush(heap, matrix[i][j])\n\n        for _ in range(k):\n            res = heapq.heappop(heap)\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- 二分查找\n\n```python\nclass Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        n: int = len(matrix)\n        # 取出矩阵中最小和最大的数字，分别作为二分区间的左右边界\n        l: int = matrix[0][0]\n        r: int = matrix[n - 1][n - 1]\n        # 运用二分找到最小的数 x ，使得矩阵中小于等于 x 的数字个数恰好大于等于 k\n        while l <= r:\n            # 找到区间中点，计算矩阵中小于等于 mid 的数字个数\n            mid: int = l + (r - l) // 2\n            count: int = 0\n            # 统计每一行中小于等于 mid 的数字个数\n            for i in range(n):\n                # 由于每一行的数字是递增的，所以可以使用二分（即 upper_bound ），\n                # 这样就能在 O(logn) 内求出该行小于等于 mid 的数字个数\n                count += bisect.bisect_right(matrix[i], mid)\n\n            if count < k:\n                # 如果矩阵中小于 mid 的数字个数小于 k ，\n                # 则说明第 k 小的数字在区间右边，\n                # 二分区间变为 [mid + 1, r]\n                l = mid + 1\n            else:\n                # 如果矩阵中小于 mid 的数字个数大于等于 k ，\n                # 则说明第 k 小的数字在区间左边，\n                # 二分区间变为 [l, mid - 1]\n                #\n                # （如果恰好 mid 就是所求之数，那么最后区间长度为 1 时，\n                #  区间必为 [mid - 1, mid - 1] ，且必有 l = mid - 1 + 1 = mid ，\n                #  即 l 仍是二分的结果）\n                r = mid - 1\n\n        return l\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-mlint4-29",
+    "title": "692. Top K Frequent Words",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/top k frequent words/ hash 时间复杂度：O() 空间复杂度：O() heap 时间复杂度：O(",
+    "content": "# 692. Top K Frequent Words\n\n`https://leetcode.com/problems/top-k-frequent-words/`\n\n## solution\n\n- hash\n\n```python\nclass Solution:\n    def topKFrequent(self, words: List[str], k: int) -> List[str]:\n        freq_dict = {}\n        for word in words:\n            if word not in freq_dict:\n                freq_dict[word] = 0\n            freq_dict[word] += 1\n\n        freq_dict = sorted(freq_dict.items(), key=lambda x: (-x[1], x[0]), reverse=False)\n        return [i[0] for i in freq_dict[:k]]\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- heap\n\n```python\n# 注意为了更好的控制频率相同的按字典排序, 需要增加一个类: https://walkccc.me/LeetCode/problems/0692/#__tabbed_2_3\n\nclass Solution:\n    def topKFrequent(self, words: List[str], k: int) -> List[str]:\n        mydict = {}\n        for word in words:\n            mydict[word] = mydict.get(word, 0) + 1\n\n        heap = []\n        for key, freq in mydict.items():\n            heapq.heappush(heap, (-freq, key))\n\n        res = []\n        for _ in range(k):\n            res.append(heapq.heappop(heap)[1])\n        return res\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n- Bucket Sort\n\n```python\n\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-mlint4-30",
+    "title": "767. Reorganize String",
+    "date": "2026-11-25",
+    "category": "机器学习面试题解 IV",
+    "tags": [
+      "机器学习",
+      "LeetCode"
+    ],
+    "excerpt": "https://leetcode.com/problems/reorganize string/ 大顶堆，堆中的元素是(频率，字母) reference 时间复杂度：O() 空间复",
+    "content": "# 767. Reorganize String\n\n`https://leetcode.com/problems/reorganize-string/`\n\n## solution\n\n- 大顶堆，堆中的元素是(频率，字母)\n- reference\n\n```python\nclass Solution:\n    def reorganizeString(self, s: str) -> str:\n        # 先最多，第二多，继续最多，第二多\n        counter = collections.defaultdict(int)\n        for char in s:\n            counter[char] += 1\n\n        heap = []\n        for char, freq in counter.items():\n            heapq.heappush(heap, [-freq, char])\n\n        res = []\n        while len(heap) > 1:\n            f1, char1 = heapq.heappop(heap)\n            f2, char2 = heapq.heappop(heap)\n            if f1 < -1:\n                heapq.heappush(heap, [f1+1, char1])\n            if f2 < -1:\n                heapq.heappush(heap, [f2+1, char2])\n            res.append(char1)\n            res.append(char2)\n        if heap:\n            if heap[0][0] < -1:\n                return \"\"\n            res.append(heapq.heappop(heap)[1])\n        return \"\".join(res)\n```\n\n时间复杂度：O() <br>\n空间复杂度：O()\n\n```python\nclass Solution:\n    def reorganizeString(self, s: str) -> str:\n        counter = collections.defaultdict(int)\n        for char in s:\n            counter[char] += 1\n\n        heap = []\n        for char, freq in counter.items():\n            heapq.heappush(heap, (-freq, char))\n\n        prev_freq = 0  # 显式保留并记录上一个的频率和字母, 下一个pop后重新考虑上一任\n        prev_char = ''\n        res = []\n        while heap:\n            freq, char = heapq.heappop(heap)\n            res.append(char)\n            if prev_freq < 0:\n                heapq.heappush(heap, (prev_freq, prev_char))\n\n            prev_freq = freq + 1\n            prev_char = char\n\n        return \"\".join(res) if len(res) == len(s) else ''\n```",
+    "source": "LongxingTan/Machine-learning-interview",
+    "views": 0,
+    "cover": "/images/acg/c755933ea75ddcd5.jpg"
+  },
+  {
+    "id": "g-waytogo5-1",
+    "title": "13.7 Go 中的单元测试和基准测试",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "首先所有的包都应该有一定的必要文档，然后同样重要的是对包的测试。 在第 3 章中提到了 Go 的测试工具 gotest， 我们已经在 9.8 节中使用过了。这里我们会用更多的例子进",
+    "content": "# 13.7 Go 中的单元测试和基准测试\n\n首先所有的包都应该有一定的必要文档，然后同样重要的是对包的测试。\n\n在第 3 章中提到了 Go 的测试工具 gotest， 我们已经在 9.8 节中使用过了。这里我们会用更多的例子进行详细说明。\n\n名为 testing 的包被专门用来进行自动化测试，日志和错误报告。并且还包含一些基准测试函数的功能。\n\n<u>备注：</u>gotest 是 Unix bash 脚本，所以在 Windows 下你需要配置 MINGW 环境（参见 2.5 节）；在 Windows 环境下把所有的 pkg/linux_amd64 替换成 pkg/windows。\n\n对一个包做（单元）测试，需要写一些可以频繁（每次更新后）执行的小块测试单元来检查代码的正确性。于是我们必须写一些 Go 源文件来测试代码。测试程序必须属于被测试的包，并且文件名满足这种形式 `*_test.go`，所以测试代码和包中的业务代码是分开的。\n\n`_test` 程序不会被普通的 Go 编译器编译，所以当放应用部署到生产环境时它们不会被部署；只有 gotest 会编译所有的程序：普通程序和测试程序。\n\n测试文件中必须导入 `\"testing\"` 包，并写一些名字以 `TestZzz` 打头的全局函数，这里的 `Zzz` 是被测试函数的字母描述，如 `TestFmtInterface()`，`TestPayEmployees()` 等。\n\n测试函数必须有这种形式的头部：\n\n```go\nfunc TestAbcde(t *testing.T)\n```\n\n`T` 是传给测试函数的结构类型，用来管理测试状态，支持格式化测试日志，如 `t.Log`，`t.Error`，`t.ErrorF` 等。在函数的结尾把输出跟想要的结果对比，如果不等就打印一个错误，成功的测试则直接返回。\n\n用下面这些函数来通知测试失败：\n\n1）``func (t *T) Fail()``\n\n\t\t标记测试函数为失败，然后继续执行（剩下的测试）。\n\n2）``func (t *T) FailNow()``\n\n\t\t标记测试函数为失败并中止执行；文件中别的测试也被略过，继续执行下一个文件。\n\n3）``func (t *T) Log(args ...interface{})``\n\n\t\targs 被用默认的格式格式化并打印到错误日志中。\n\n4）``func (t *T) Fatal(args ...interface{})``\n\n\t\t结合 先执行 3），然后执行 2）的效果。\n\n运行 go test 来编译测试程序，并执行程序中所有的 `TestZZZ` 函数。如果所有的测试都通过会打印出 `PASS`。\n\ngotest 可以接收一个或多个函数程序作为参数，并指定一些选项。\n\n结合 `--chatty` 或 `-v` 选项，每个执行的测试函数以及测试状态会被打印。\n\n例如：\n\n```bash\ngo test fmt_test.go --chatty\n=== RUN fmt.TestFlagParser\n--- PASS: fmt.TestFlagParser\n=== RUN fmt.TestArrayPrinter\n--- PASS: fmt.TestArrayPrinter\n...\n```\n\n`testing` 包中有一些类型和函数可以用来做简单的基准测试；测试代码中必须包含以 `BenchmarkZzz` 打头的函数并接收一个 `*testing.B` 类型的参数，比如：\n\n```go\nfunc BenchmarkReverse(b *testing.B) {\n\t...\n}\n```\n\n命令 ``go test –test.bench=.*`` 会运行所有的基准测试函数；代码中的函数会被调用 `N` 次（`N` 是非常大的数，如 `N = 1000000`），并展示 `N` 的值和函数执行的平均时间，单位为 ns（纳秒，ns/op）。如果是用 `testing.Benchmark()` 调用这些函数，直接运行程序即可。\n\n具体可以参见 14.16 节 中用 goroutines 运行基准测试的例子以及练习 13.4：string_reverse_test.go\n\n## 链接\n\n- 目录\n- 上一节：启动外部命令和程序\n- 下一节：测试的具体例子",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-waytogo5-2",
+    "title": "13.8 测试的具体例子",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在练习 9.4 中你写了一个叫 main oddeven.go 的程序用来测试前 100 个整数是否是偶数。这个函数属于 even 包。 下面是一种可能的方案： 示例 13.7 e",
+    "content": "# 13.8 测试的具体例子\n\n在练习 9.4 中你写了一个叫 main_oddeven.go 的程序用来测试前 100 个整数是否是偶数。这个函数属于 `even` 包。\n\n下面是一种可能的方案：\n\n示例 13.7 even_main.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"even/even\"\n)\n\nfunc main() {\n\tfor i:=0; i<=100; i++ {\n\t\tfmt.Printf(\"Is the integer %d even? %v\\n\", i, even.Even(i))\n\t}\n}\n```\n\n上面使用了 even.go 中的 `even` 包：\n\n示例 13.8 even/even.go：\n\n```go\npackage even\n\nfunc Even(i int) bool {\t\t// Exported function\n\treturn i%2 == 0\n}\n\nfunc Odd(i int) bool {\t\t// Exported function\n\treturn i%2 != 0\n}\n```\n\n在 `even` 包的路径下，我们创建一个名为 oddeven_test.go 的测试程序：\n\n示例 13.9 even/oddeven_test.go：\n\n```go\npackage even\n\nimport \"testing\"\n\nfunc TestEven(t *testing.T) {\n\tif !Even(10) {\n\t\tt.Log(\" 10 must be even!\")\n\t\tt.Fail()\n\t}\n\tif Even(7) {\n\t\tt.Log(\" 7 is not even!\")\n\t\tt.Fail()\n\t}\n\n}\n\nfunc TestOdd(t *testing.T) {\n\tif !Odd(11) {\n\t\tt.Log(\" 11 must be odd!\")\n\t\tt.Fail()\n\t}\n\tif Odd(10) {\n\t\tt.Log(\" 10 is not odd!\")\n\t\tt.Fail()\n\t}\n}\n```\n\n由于测试需要具体的输入用例且不可能测试到所有的用例（非常像一个无穷的数），所以我们必须对要使用的测试用例思考再三。\n\n至少应该包括：\n\n- 正常的用例\n- 反面的用例（错误的输入，如用负数或字母代替数字，没有输入等）\n- 边界检查用例（如果参数的取值范围是 0 到 1000，检查 0 和 1000 的情况）\n\n可以直接执行 go install 安装 `even` 或者创建一个 以下内容的 Makefile：\n\n```bash\ninclude $(GOROOT)/src/Make.inc\nTARG=even\nGOFILES=\\\n       even.go\\\ninclude $(GOROOT)/src/Make.pkg\n```\n\n然后执行 make（或 gomake）命令来构建归档文件 even.a\n\n测试代码不能在 GOFILES 参数中引用，因为我们不希望生成的程序中有测试代码。如果包含了测试代码，go test 会给出错误提示！go test 会生成一个单独的包含测试代码的 `_test` 程序。\n\n现在我们可以用命令：`go test`（或 `make test`）来测试 even 包。\n\n因为示例 13.5 中的测试函数不会调用 t.Log 和 t.Fail，所以会得到一个 `PASS` 的结果。在这个简单例子中一切都正常执行。\n\n为了看到失败时的输出，把函数 `TestEven()` 改为：\n\n```go\nfunc TestEven(t *testing.T) {\n\tif Even(10) {\n\t\tt.Log(\"Everything OK: 10 is even, just a test to see failed output!\")\n\t\tt.Fail()\n \t}\n}\n```\n\n现在会调用 t.Log 和 t.Fail，得到的结果如下：\n\n```go\n--- FAIL: even.TestEven (0.00 seconds)\nEverything OK: 10 is even, just a test to see failed output!\nFAIL\n```\n\n**练习 13.4：**string_reverse_test.go\n\n为练习 7.14 string_reverse.go 写一个单元测试。\n\n把 string_reverse 放到自己的包 `strev` 中，只包含一个可导出函数 `Reverse()`。\n\n实现并测试它。\n\n## 链接\n\n- 目录\n- 上一节：Go 中的单元测试和基准测试\n- 下一节：用（测试数据）表驱动测试",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-waytogo5-3",
+    "title": "13.9 用（测试数据）表驱动测试",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "编写测试代码时，一个较好的办法是把测试的输入数据和期望的结果写在一起组成一个数据表：表中的每条记录都是一个含有输入和期望值的完整测试用例，有时还可以结合像测试名字这样的额外信息来让",
+    "content": "# 13.9 用（测试数据）表驱动测试\n\n编写测试代码时，一个较好的办法是把测试的输入数据和期望的结果写在一起组成一个数据表：表中的每条记录都是一个含有输入和期望值的完整测试用例，有时还可以结合像测试名字这样的额外信息来让测试输出更多的信息。\n\n实际测试时简单迭代表中的每条记录，并执行必要的测试。这在练习 13.4 中有具体的应用。\n\n可以抽象为下面的代码段：\n\n```go\nvar tests = []struct{ \t// Test table\n\tin  string\n\tout string\n\n}{\n\t{\"in1\", \"exp1\"},\n\t{\"in2\", \"exp2\"},\n\t{\"in3\", \"exp3\"},\n...\n}\n\nfunc TestFunction(t *testing.T) {\n\tfor i, tt := range tests {\n\t\ts := FuncToBeTested(tt.in)\n\t\tif s != tt.out {\n\t\t\tt.Errorf(\"%d. %q => %q, wanted: %q\", i, tt.in, s, tt.out)\n\t\t}\n\t}\n}\n```\n\n如果大部分函数都可以写成这种形式，那么写一个帮助函数 `verify()` 对实际测试会很有帮助：\n\n```go\nfunc verify(t *testing.T, testnum int, testcase, input, output, expected string) {\n\tif expected != output {\n\t\tt.Errorf(\"%d. %s with input = %s: output %s != %s\", testnum, testcase, input, output, expected)\n\t}\n}\n```\n\n`TestFunction()` 则变为：\n\n```go\nfunc TestFunction(t *testing.T) {\n\tfor i, tt := range tests {\n\t\ts := FuncToBeTested(tt.in)\n\t\tverify(t, i, \"FuncToBeTested: \", tt.in, s, tt.out)\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：测试的具体例子\n- 下一节：性能调试：分析并优化 Go 程序",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-waytogo5-5",
+    "title": "14.1 并发、并行和协程",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "一个应用程序是运行在机器上的一个进程；进程是一个运行在自己内存地址空间里的独立执行体。一个进程由一个或多个操作系统线程组成，这些线程其实是共享同一个内存地址空间的一起工作的执行体。",
+    "content": "# 14.1 并发、并行和协程\n\n## 14.1.1 什么是协程\n\n一个应用程序是运行在机器上的一个进程；进程是一个运行在自己内存地址空间里的独立执行体。一个进程由一个或多个操作系统线程组成，这些线程其实是共享同一个内存地址空间的一起工作的执行体。几乎所有'正式'的程序都是多线程的，以便让用户或计算机不必等待，或者能够同时服务多个请求（如 Web 服务器），或增加性能和吞吐量（例如，通过对不同的数据集并行执行代码）。一个并发程序可以在一个处理器或者内核上使用多个线程来执行任务，但是只有同一个程序在某个时间点同时运行在多核或者多处理器上才是真正的并行。\n\n并行是一种通过使用多处理器以提高速度的能力。所以并发程序可以是并行的，也可以不是。\n\n公认的，使用多线程的应用难以做到准确，最主要的问题是内存中的数据共享，它们会被多线程以无法预知的方式进行操作，导致一些无法重现或者随机的结果（称作*竞态*）。\n\n**不要使用全局变量或者共享内存，它们会给你的代码在并发运算的时候带来危险。**\n\n解决之道在于同步不同的线程，对数据加锁，这样同时就只有一个线程可以变更数据。在 Go 的标准库 `sync` 中有一些工具用来在低级别的代码中实现加锁；我们在第 9.3 节中讨论过这个问题。不过过去的软件开发经验告诉我们这会带来更高的复杂度，更容易使代码出错以及更低的性能，所以这个经典的方法明显不再适合现代多核/多处理器编程：`thread-per-connection` 模型不够有效。\n\nGo 更倾向于其他的方式，在诸多比较合适的范式中，有个被称作 `Communicating Sequential Processes（顺序通信处理）`（CSP, C. Hoare 发明的）还有一个叫做 `message passing-model（消息传递）`（已经运用在了其他语言中，比如 Erlang）。\n\n在 Go 中，应用程序并发处理的部分被称作 `goroutines（协程）`，它可以进行更有效的并发运算。在协程和操作系统线程之间并无一对一的关系：协程是根据一个或多个线程的可用性，映射（多路复用，执行于）在他们之上的；协程调度器在 Go 运行时很好的完成了这个工作。\n\n协程工作在相同的地址空间中，所以共享内存的方式一定是同步的；这个可以使用 `sync` 包来实现（参见第 9.3 节），不过我们很不鼓励这样做：Go 使用 `channels` 来同步协程（可以参见第 14.2 节等章节）\n\n当系统调用（比如等待 I/O）阻塞协程时，其他协程会继续在其他线程上工作。协程的设计隐藏了许多线程创建和管理方面的复杂工作。\n\n协程是轻量的，比线程更轻。它们痕迹非常不明显（使用少量的内存和资源）：使用 4K 的栈内存就可以在堆中创建它们。因为创建非常廉价，必要的时候可以轻松创建并运行大量的协程（在同一个地址空间中 100,000 个连续的协程）。并且它们对栈进行了分割，从而动态的增加（或缩减）内存的使用；栈的管理是自动的，但不是由垃圾回收器管理的，而是在协程退出后自动释放。\n\n协程可以运行在多个操作系统线程之间，也可以运行在线程之内，让你可以很小的内存占用就可以处理大量的任务。由于操作系统线程上的协程时间片，你可以使用少量的操作系统线程就能拥有任意多个提供服务的协程，而且 Go 运行时可以聪明的意识到哪些协程被阻塞了，暂时搁置它们并处理其他协程。\n\n存在两种并发方式：确定性的（明确定义排序）和非确定性的（加锁/互斥从而未定义排序）。Go 的协程和通道理所当然的支持确定性的并发方式（例如通道具有一个 sender 和一个 receiver）。我们会在第 14.7 节中使用一个常见的算法问题（工人问题）来对比两种处理方式。\n\n协程是通过使用关键字 `go` 调用（执行）一个函数或者方法来实现的（也可以是匿名或者 lambda 函数）。这样会在当前的计算过程中开始一个同时进行的函数，在相同的地址空间中并且分配了独立的栈，比如：`go sum(bigArray)`，在后台计算总和。\n\n协程的栈会根据需要进行伸缩，不出现栈溢出；开发者不需要关心栈的大小。当协程结束的时候，它会静默退出：用来启动这个协程的函数不会得到任何的返回值。\n\n任何 Go 程序都必须有的 `main()` 函数也可以看做是一个协程，尽管它并没有通过 `go` 来启动。协程可以在程序初始化的过程中运行（在 `init()` 函数中）。\n\n在一个协程中，比如它需要进行非常密集的运算，你可以在运算循环中周期的使用 `runtime.Gosched()`：这会让出处理器，允许运行其他协程；它并不会使当前协程挂起，所以它会自动恢复执行。使用 `Gosched()` 可以使计算均匀分布，使通信不至于迟迟得不到响应。\n\n## 14.1.2 并发和并行的差异\n\nGo 的并发原语提供了良好的并发设计基础：表达程序结构以便表示独立地执行的动作；所以 Go 的重点不在于并行的首要位置：并发程序可能是并行的，也可能不是。并行是一种通过使用多处理器以提高速度的能力。但往往是，一个设计良好的并发程序在并行方面的表现也非常出色。\n\n在当前的运行时（2012 年一月）实现中，Go 默认没有并行指令，只有一个独立的核心或处理器被专门用于 Go 程序，不论它启动了多少个协程；所以这些协程是并发运行的，但他们不是并行运行的：同一时间只有一个协程会处在运行状态。\n\n这个情况在以后可能会发生改变，不过届时，为了使你的程序可以使用多个核心运行，这时协程就真正的是并行运行了，你必须使用 `GOMAXPROCS` 变量。\n\n这会告诉运行时有多少个协程同时执行。\n\n并且只有 gc 编译器真正实现了协程，适当的把协程映射到操作系统线程。使用 `gccgo` 编译器，会为每一个协程创建操作系统线程。\n\n## 14.1.3 使用 GOMAXPROCS\n\n在 gc 编译器下（6g 或者 8g）你必须设置 `GOMAXPROCS` 为一个大于默认值 `1` 的数值来允许运行时支持使用多于 1 个的操作系统线程，所有的协程都会共享同一个线程除非将 `GOMAXPROCS` 设置为一个大于 1 的数。当 `GOMAXPROCS` 大于 1 时，会有一个线程池管理许多的线程。通过 `gccgo` 编译器 `GOMAXPROCS` 有效的与运行中的协程数量相等。假设 `n` 是机器上处理器或者核心的数量。如果你设置环境变量 `GOMAXPROCS>=n`，或者执行 `runtime.GOMAXPROCS(n)`，接下来协程会被分割（分散）到 `n` 个处理器上。更多的处理器并不意味着性能的线性提升。有这样一个经验法则，对于 n 个核心的情况设置 `GOMAXPROCS` 为 `n-1` 以获得最佳性能，也同样需要遵守这条规则：协程的数量 > `1 + GOMAXPROCS` > 1。\n\n所以如果在某一时间只有一个协程在执行，不要设置 `GOMAXPROCS`！\n\n还有一些通过实验观察到的现象：在一台 1 颗 CPU 的笔记本电脑上，增加 `GOMAXPROCS` 到 9 会带来性能提升。在一台 32 核的机器上，设置 `GOMAXPROCS=8` 会达到最好的性能，在测试环境中，更高的数值无法提升性能。如果设置一个很大的 `GOMAXPROCS` 只会带来轻微的性能下降；设置 `GOMAXPROCS=100`，使用 `top` 命令和 `H` 选项查看到只有 7 个活动的线程。\n\n增加 `GOMAXPROCS` 的数值对程序进行并发计算是有好处的；\n\n请看 goroutine_select2.go\n\n总结：`GOMAXPROCS` 等同于（并发的）线程数量，在一台核心数多于 1 个的机器上，会尽可能有等同于核心数的线程在并行运行。\n\n## 14.1.4 如何用命令行指定使用的核心数量\n\n使用 `flags` 包，如下：\n\n```go\nvar numCores = flag.Int(\"n\", 2, \"number of CPU cores to use\")\n```\n在 main() 中：\n```go\nflag.Parse()\nruntime.GOMAXPROCS(*numCores)\n```\n\n协程可以通过调用 `runtime.Goexit()` 来停止，尽管这样做几乎没有必要。\n\n示例 14.1-goroutine1.go 介绍了概念：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tfmt.Println(\"In main()\")\n\tgo longWait()\n\tgo shortWait()\n\tfmt.Println(\"About to sleep in main()\")\n\t// sleep works with a Duration in nanoseconds (ns) !\n\ttime.Sleep(10 * 1e9)\n\tfmt.Println(\"At the end of main()\")\n}\n\nfunc longWait() {\n\tfmt.Println(\"Beginning longWait()\")\n\ttime.Sleep(5 * 1e9) // sleep for 5 seconds\n\tfmt.Println(\"End of longWait()\")\n}\n\nfunc shortWait() {\n\tfmt.Println(\"Beginning shortWait()\")\n\ttime.Sleep(2 * 1e9) // sleep for 2 seconds\n\tfmt.Println(\"End of shortWait()\")\n}\n```\n\n输出：\n\n```\nIn main()\nAbout to sleep in main()\nBeginning longWait()\nBeginning shortWait()\nEnd of shortWait()\nEnd of longWait()\nAt the end of main() // after 10s\n```\n\n`main()`，`longWait()` 和 `shortWait()` 三个函数作为独立的处理单元按顺序启动，然后开始并行运行。每一个函数都在运行的开始和结束阶段输出了消息。为了模拟他们运算的时间消耗，我们使用了 `time` 包中的 `Sleep` 函数。`Sleep()` 可以按照指定的时间来暂停函数或协程的执行，这里使用了纳秒（`ns`，符号 `1e9` 表示 1 乘 10 的 9 次方，`e`=指数）。\n\n他们按照我们期望的顺序打印出了消息，几乎都一样，可是我们明白这是模拟出来的，以并行的方式。我们让 `main()` 函数暂停 10 秒从而确定它会在另外两个协程之后结束。如果不这样（如果我们让 `main()` 函数停止 4 秒），`main()` 会提前结束，`longWait()` 则无法完成。如果我们不在 `main()` 中等待，协程会随着程序的结束而消亡。\n\n当 `main()` 函数返回的时候，程序退出：它不会等待任何其他非 main 协程的结束。这就是为什么在服务器程序中，每一个请求都会启动一个协程来处理，`server()` 函数必须保持运行状态。通常使用一个无限循环来达到这样的目的。\n\n另外，协程是独立的处理单元，一旦陆续启动一些协程，你无法确定他们是什么时候真正开始执行的。你的代码逻辑必须独立于协程调用的顺序。\n\n为了对比使用一个线程，连续调用的情况，移除 `go` 关键字，重新运行程序。\n\n现在输出：\n\n```\nIn main()\nBeginning longWait()\nEnd of longWait()\nBeginning shortWait()\nEnd of shortWait()\nAbout to sleep in main()\nAt the end of main() // after 17 s\n```\n\n协程更有用的一个例子应该是在一个非常长的数组中查找一个元素。\n\n将数组分割为若干个不重复的切片，然后给每一个切片启动一个协程进行查找计算。这样许多并行的协程可以用来进行查找任务，整体的查找时间会缩短（除以协程的数量）。\n\n## 14.1.5 Go 协程 (goroutines) 和协程 (coroutines)\n\n（译者注：标题中的“Go协程 (goroutines)”即是 14 章讲的协程，指的是 Go 语言中的协程。而“协程(coroutines)”指的是其他语言中的协程概念，仅在本节出现。）\n\n在其他语言中，比如 C#，Lua 或者 Python 都有协程的概念。这个名字表明它和 Go 协程有些相似，不过有两点不同：\n\n- Go 协程意味着并行（或者可以以并行的方式部署），协程一般来说不是这样的\n- Go 协程通过通道来通信；协程通过让出和恢复操作来通信\n\nGo 协程比协程更强大，也很容易从协程的逻辑复用到 Go 协程。\n\n## 链接\n\n- 目录\n- 上一节：协程 (goroutine) 与通道 (channel)\n- 下一节：使用通道进行协程间通信",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-waytogo5-6",
+    "title": "14.10 复用",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "客户端 服务器应用正是 goroutines 和 channels 的亮点所在。 客户端 (Client) 可以是运行在任意设备上的任意程序，它会按需发送请求 (request) ",
+    "content": "# 14.10 复用\n\n## 14.10.1 典型的客户端/服务器（C/S）模式\n\n客户端-服务器应用正是 goroutines 和 channels 的亮点所在。\n\n客户端 (Client) 可以是运行在任意设备上的任意程序，它会按需发送请求 (request) 至服务器。服务器 (Server) 接收到这个请求后开始相应的工作，然后再将响应 (response) 返回给客户端。典型情况下一般是多个客户端（即多个请求）对应一个（或少量）服务器。例如我们日常使用的浏览器客户端，其功能就是向服务器请求网页。而 Web 服务器则会向浏览器响应网页数据。\n\n使用 Go 的服务器通常会在协程中执行向客户端的响应，故而会对每一个客户端请求启动一个协程。一个常用的操作方法是客户端请求自身中包含一个通道，而服务器则向这个通道发送响应。\n\n例如下面这个 `Request` 结构，其中内嵌了一个 `replyc` 通道。\n```go\ntype Request struct {\n    a, b      int    \n    replyc    chan int // reply channel inside the Request\n}\n```\n或者更通俗的：\n```go\ntype Reply struct{...}\ntype Request struct{\n    arg1, arg2, arg3 some_type\n    replyc chan *Reply\n}\n```\n\n接下来先使用简单的形式,服务器会为每一个请求启动一个协程并在其中执行 `run()` 函数，此举会将类型为 `binOp` 的 `op` 操作返回的 `int` 值发送到 `replyc` 通道。\n\n```go\ntype binOp func(a, b int) int\n\nfunc run(op binOp, req *Request) {\n    req.replyc <- op(req.a, req.b)\n}\n```\n`server()` 协程会无限循环以从 `chan *Request` 接收请求，并且为了避免被长时间操作所堵塞，它将为每一个请求启动一个协程来做具体的工作：\n\n```go\nfunc server(op binOp, service chan *Request) {\n    for {\n        req := <-service; // requests arrive here  \n        // start goroutine for request:        \n        go run(op, req);  // don’t wait for op to complete    \n    }\n}\n```\n`server()` 本身则是以协程的方式在 `startServer()` 函数中启动：\n\n```go\nfunc startServer(op binOp) chan *Request {\n    reqChan := make(chan *Request);\n    go server(op, reqChan);\n    return reqChan;\n}\n```\n`startServer()` 则会在 `main` 协程中被调用。\n\n在以下测试例子中，100 个请求会被发送到服务器，只有它们全部被送达后我们才会按相反的顺序检查响应：\n```go\nfunc main() {\n    adder := startServer(func(a, b int) int { return a + b })\n    const N = 100\n    var reqs [N]Request\n    for i := 0; i < N; i++ {\n        req := &reqs[i]\n        req.a = i\n        req.b = i + N\n        req.replyc = make(chan int)\n        adder <- req  // adder is a channel of requests\n    }\n    // checks:\n    for i := N - 1; i >= 0; i-- {\n        // doesn’t matter what order\n        if <-reqs[i].replyc != N+2*i {\n            fmt.Println(“fail at”, i)\n        } else {\n            fmt.Println(“Request “, i, “is ok!”)\n        }\n    }\n    fmt.Println(“done”)\n}\n```\n这些代码可以在 multiplex_server.go 找到\n\n输出：\n\n    Request 99 is ok!\n    Request 98 is ok!\n    ...\n    Request 1 is ok!\n    Request 0 is ok!\n    done\n\n这个程序仅启动了 100 个协程。然而即使执行 100,000 个协程我们也能在数秒内看到它完成。这说明了 Go 的协程是如何的轻量：如果我们启动相同数量的真实的线程，程序早就崩溃了。\n\n示例： 14.14-multiplex_server.go\n\n```go\npackage main\n\nimport \"fmt\"\n\ntype Request struct {\n\ta, b   int\n\treplyc chan int // reply channel inside the Request\n}\n\ntype binOp func(a, b int) int\n\nfunc run(op binOp, req *Request) {\n\treq.replyc <- op(req.a, req.b)\n}\n\nfunc server(op binOp, service chan *Request) {\n\tfor {\n\t\treq := <-service // requests arrive here\n\t\t// start goroutine for request:\n\t\tgo run(op, req) // don't wait for op\n\t}\n}\n\nfunc startServer(op binOp) chan *Request {\n\treqChan := make(chan *Request)\n\tgo server(op, reqChan)\n\treturn reqChan\n}\n\nfunc main() {\n\tadder := startServer(func(a, b int) int { return a + b })\n\tconst N = 100\n\tvar reqs [N]Request\n\tfor i := 0; i < N; i++ {\n\t\treq := &reqs[i]\n\t\treq.a = i\n\t\treq.b = i + N\n\t\treq.replyc = make(chan int)\n\t\tadder <- req\n\t}\n\t// checks:\n\tfor i := N - 1; i >= 0; i-- { // doesn't matter what order\n\t\tif <-reqs[i].replyc != N+2*i {\n\t\t\tfmt.Println(\"fail at\", i)\n\t\t} else {\n\t\t\tfmt.Println(\"Request \", i, \" is ok!\")\n\t\t}\n\t}\n\tfmt.Println(\"done\")\n}\n```\n## 14.10.2 卸载 (Teardown)：通过信号通道关闭服务器\n\n在上一个版本中 `server()` 在 `main()` 函数返回后并没有完全关闭，而被强制结束了。为了改进这一点，我们可以提供一个退出通道给 `server()` ：\n\n```go\nfunc startServer(op binOp) (service chan *Request, quit chan bool) {\n    service = make(chan *Request)\n    quit = make(chan bool)\n    go server(op, service, quit)\n    return service, quit\n}\n```\n\n`server()` 函数现在则使用 `select` 在 `service` 通道和 `quit` 通道之间做出选择：\n\n```go\nfunc server(op binOp, service chan *request, quit chan bool) {\n    for {\n        select {\n            case req := <-service:\n                go run(op, req) \n            case <-quit:\n                return   \n        }\n    }\n}\n```\n当 `quit` 通道接收到一个 `true` 值时，`server` 就会返回并结束。\n\n在 `main()` 函数中我们做出如下更改：\n\n```go\n    adder, quit := startServer(func(a, b int) int { return a + b })\n```\n\n在 `main()` 函数的结尾处我们放入这一行：`quit <- true`\n\n完整的代码在 multiplex_server2.go，输出和上一个版本是一样的。\n\n示例： 14.15-multiplex_server2.go\n```go\npackage main\n\nimport \"fmt\"\n\ntype Request struct {\n\ta, b   int\n\treplyc chan int // reply channel inside the Request\n}\n\ntype binOp func(a, b int) int\n\nfunc run(op binOp, req *Request) {\n\treq.replyc <- op(req.a, req.b)\n}\n\nfunc server(op binOp, service chan *Request, quit chan bool) {\n\tfor {\n\t\tselect {\n\t\tcase req := <-service:\n\t\t\tgo run(op, req)\n\t\tcase <-quit:\n\t\t\treturn\n\t\t}\n\t}\n}\n\nfunc startServer(op binOp) (service chan *Request, quit chan bool) {\n\tservice = make(chan *Request)\n\tquit = make(chan bool)\n\tgo server(op, service, quit)\n\treturn service, quit\n}\n\nfunc main() {\n\tadder, quit := startServer(func(a, b int) int { return a + b })\n\tconst N = 100\n\tvar reqs [N]Request\n\tfor i := 0; i < N; i++ {\n\t\treq := &reqs[i]\n\t\treq.a = i\n\t\treq.b = i + N\n\t\treq.replyc = make(chan int)\n\t\tadder <- req\n\t}\n\t// checks:\n\tfor i := N - 1; i >= 0; i-- { // doesn't matter what order\n\t\tif <-reqs[i].replyc != N+2*i {\n\t\t\tfmt.Println(\"fail at\", i)\n\t\t} else {\n\t\t\tfmt.Println(\"Request \", i, \" is ok!\")\n\t\t}\n\t}\n\tquit <- true\n\tfmt.Println(\"done\")\n}\n```\n\n练习 14.13 multiplex_server3.go：使用之前的例子，编写一个在 `Request` 结构上带有 `String()` 方法的版本，它能决定服务器如何输出；并使用以下两个请求来测试这个程序：\n\n```go    \n    req1 := &Request{3, 4, make(chan int)}\n    req2 := &Request{150, 250, make(chan int)}\n    ...\n    // show the output\n    fmt.Println(req1,\"\\n\",req2)\n```\n\n## 链接\n\n- 目录\n- 上一节：实现 Futures 模式\n- 下一节：限制同时处理的请求数",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-waytogo5-7",
+    "title": "14.11 限制同时处理的请求数",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "使用带缓冲区的通道很容易实现这一点（参见 14.2.5），其缓冲区容量就是同时处理请求的最大数量。程序 max tasks.go 虽然没有做什么有用的事但是却包含了这个技巧：超过 ",
+    "content": "# 14.11 限制同时处理的请求数\n\n使用带缓冲区的通道很容易实现这一点（参见 14.2.5），其缓冲区容量就是同时处理请求的最大数量。程序 max_tasks.go 虽然没有做什么有用的事但是却包含了这个技巧：超过 `MAXREQS` 的请求将不会被同时处理，因为当信号通道表示缓冲区已满时 `handle()` 函数会阻塞且不再处理其他请求，直到某个请求从 `sem` 中被移除。`sem` 就像一个信号量，这一专业术语用于在程序中表示特定条件的标志变量。\n\n示例：14.16-max_tasks.go\n```go\npackage main\n\nconst MAXREQS = 50\n\nvar sem = make(chan int, MAXREQS)\n\ntype Request struct {\n\ta, b   int\n\treplyc chan int\n}\n\nfunc process(r *Request) {\n\t// do something\n}\n\nfunc handle(r *Request) {\n\tsem <- 1 // doesn't matter what we put in it\n\tprocess(r)\n\t<-sem // one empty place in the buffer: the next request can start\n}\n\nfunc server(service chan *Request) {\n\tfor {\n\t\trequest := <-service\n\t\tgo handle(request)\n\t}\n}\n\nfunc main() {\n\tservice := make(chan *Request)\n\tgo server(service)\n}\n```\n通过这种方式，应用程序可以通过使用缓冲通道（通道被用作信号量）使协程同步其对该资源的使用，从而充分利用有限的资源（如内存）。\n\n## 链接\n\n- 目录\n- 上一节：复用\n- 下一节：链式协程",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-waytogo5-8",
+    "title": "14.12 链式协程",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "下面的演示程序 chaining.go 再次展示了启动巨量的 Go 协程是多么容易。这些协程已全部在 main() 函数中的 for 循环里启动。当循环完成之后，一个 0 被写入到",
+    "content": "# 14.12 链式协程\n\n下面的演示程序 chaining.go 再次展示了启动巨量的 Go 协程是多么容易。这些协程已全部在 `main()` 函数中的 `for` 循环里启动。当循环完成之后，一个 `0` 被写入到最右边的通道里，于是 100,000 个协程开始执行，接着 `1000000` 这个结果会在 1.5 秒之内被打印出来。\n\n这个程序同时也展示了如何通过 `flag.Int` 来解析命令行中的参数以指定协程数量，例如：`chaining -n=7000` 会生成 7000 个协程。\n\n示例 14.17-chaining.go\n```go\npackage main\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n)\n\nvar ngoroutine = flag.Int(\"n\", 100000, \"how many goroutines\")\n\nfunc f(left, right chan int) { left <- 1 + <-right }\n\nfunc main() {\n\tflag.Parse()\n\tleftmost := make(chan int)\n\tvar left, right chan int = nil, leftmost\n\tfor i := 0; i < *ngoroutine; i++ {\n\t\tleft, right = right, make(chan int)\n\t\tgo f(left, right)\n\t}\n\tright <- 0      // bang!\n\tx := <-leftmost // wait for completion\n\tfmt.Println(x)  // 100000, about 1.5 s\n}\n```\n（\n\n译者注：原本认为  `leftmost` 的结果为 `1` ，认为只在最初做了一次赋值，实际结果为 `100000`（无缓存信道具有同步阻塞的特性）\n\n1. 主线程的 `right <- 0`，right 不是最初循环的那个 `right`，而是最终循环的 `right`\n\n2. `for` 循环中最初的 `go f(left, right)` 因为没有发送者一直处于等待状态\n\n3. 当主线程的 `right <- 0` 执行时，类似于递归函数在最内层产生返回值一般\n\n）\n\n## 链接\n\n- 目录\n- 上一节：限制同时处理的请求数\n- 下一节：在多核心上并行计算",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-waytogo5-9",
+    "title": "14.13 在多核心上并行计算",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "假设我们有 NCPU 个 CPU 核心： const NCPU = 4 //对应一个四核处理器 然后我们想把计算量分成 NCPU 个部分，每一个部分都和其他部分并行运行。 这可以通",
+    "content": "# 14.13 在多核心上并行计算\n\n假设我们有 `NCPU` 个 CPU 核心：`const  NCPU = 4 //对应一个四核处理器` 然后我们想把计算量分成 `NCPU` 个部分，每一个部分都和其他部分并行运行。\n\n这可以通过以下代码所示的方式完成（我们且省略具体参数）\n\n```go\nfunc DoAll(){\n    sem := make(chan int, NCPU) // Buffering optional but sensible\n    for i := 0; i < NCPU; i++ {\n        go DoPart(sem)\n    }\n    // Drain the channel sem, waiting for NCPU tasks to complete\n    for i := 0; i < NCPU; i++ {\n        <-sem // wait for one task to complete\n    }\n    // All done.\n}\n\nfunc DoPart(sem chan int) {\n    // do the part of the computation\n    sem <-1 // signal that this piece is done\n}\n\nfunc main() {\n    runtime.GOMAXPROCS(NCPU) // runtime.GOMAXPROCS = NCPU\n    DoAll()\n}\n```\n\n- `DoAll()` 函数创建了一个 `sem` 通道，每个并行计算都将在对其发送完成信号；在一个 `for` 循环中 `NCPU` 个协程被启动了，每个协程会承担 `1/NCPU` 的工作量。每一个 `DoPart()` 协程都会向 `sem` 通道发送完成信号。\n\n- `DoAll()` 会在 `for` 循环中等待 `NCPU` 个协程完成：`sem` 通道就像一个信号量，这份代码展示了一个经典的信号量模式。（参见 14.2.7）\n\n在以上运行模型中，您还需将 `GOMAXPROCS` 设置为 `NCPU`（参见 14.1.3）。\n\n## 链接\n\n- 目录\n- 上一节：协程链\n- 下一节：并行化大量数据的计算",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/f42b9c44cb9d6066.jpg"
+  },
+  {
+    "id": "g-waytogo5-10",
+    "title": "14.14 并行化大量数据的计算",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "假设我们需要处理一些数量巨大且互不相关的数据项，它们从一个 in 通道被传递进来，当我们处理完以后又要将它们放入另一个 out 通道，就像一个工厂流水线一样。处理每个数据项也可能包",
+    "content": "# 14.14 并行化大量数据的计算\n\n假设我们需要处理一些数量巨大且互不相关的数据项，它们从一个 `in` 通道被传递进来，当我们处理完以后又要将它们放入另一个 `out` 通道，就像一个工厂流水线一样。处理每个数据项也可能包含许多步骤：\n\nPreprocess（预处理） / StepA（步骤A） / StepB（步骤B） / ... / PostProcess（后处理）\n\n一个典型的用于解决按顺序执行每个步骤的顺序流水线算法可以写成下面这样：\n\n```go \nfunc SerialProcessData(in <-chan *Data, out chan<- *Data) {\n    for data := range in {\n        tmpA := PreprocessData(data)\n        tmpB := ProcessStepA(tmpA)\n        tmpC := ProcessStepB(tmpB)\n        out <- PostProcessData(tmpC)\n    }\n}\n```\n\n一次只执行一个步骤，并且按顺序处理每个项目：在第 1 个项目没有被 `PostProcessData()` 并放入 `out` 通道之前绝不会处理第 2 个项目。\n\n如果你仔细想想，你很快就会发现这将会造成巨大的时间浪费。\n\n一个更高效的计算方式是让每一个处理步骤作为一个协程独立工作。每一个步骤从上一步的输出通道中获得输入数据。这种方式仅有极少数时间会被浪费，而大部分时间所有的步骤都在一直执行中：\n\n```go\nfunc ParallelProcessData (in <-chan *Data, out chan<- *Data) {\n    // make channels:\n    preOut := make(chan *Data, 100)\n    stepAOut := make(chan *Data, 100)\n    stepBOut := make(chan *Data, 100)\n    stepCOut := make(chan *Data, 100)\n    // start parallel computations:\n    go PreprocessData(in, preOut)\n    go ProcessStepA(preOut,StepAOut)\n    go ProcessStepB(StepAOut,StepBOut)\n    go ProcessStepC(StepBOut,StepCOut)\n    go PostProcessData(StepCOut,out)\n}   \n```\n\n通道的缓冲区大小可以用来进一步优化整个过程。\n\n## 链接\n\n- 目录\n- 上一节：在多核心上并行计算\n- 下一节：漏桶算法",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-waytogo5-11",
+    "title": "14.15 漏桶算法",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "（译者注：翻译遵照原文，但是对于完全没听过这个算法的人来说比较晦涩，请配合代码片段理解） 考虑以下的客户端 服务器结构：客户端协程执行一个无限循环从某个源头（也许是网络）接收数据；",
+    "content": "# 14.15 漏桶算法\n\n（译者注：翻译遵照原文，但是对于完全没听过这个算法的人来说比较晦涩，请配合代码片段理解）\n\n考虑以下的客户端-服务器结构：客户端协程执行一个无限循环从某个源头（也许是网络）接收数据；数据读取到 `Buffer` 类型的缓冲区。为了避免分配过多的缓冲区以及释放缓冲区，它保留了一份空闲缓冲区列表，并且使用一个缓冲通道来表示这个列表：`var freeList = make(chan *Buffer,100)`\n\n这个可重用的缓冲区队列 (`freeList`) 与服务器是共享的。 当接收数据时，客户端尝试从 `freeList` 获取缓冲区；但如果此时通道为空，则会分配新的缓冲区。一旦消息被加载后，它将被发送到服务器上的 `serverChan` 通道：\n\n```go\nvar serverChan = make(chan *Buffer)\n```\n\n以下是客户端的算法代码：\n\n```go\nfunc client() {\n   for {\n       var b *Buffer\n       // Grab a buffer if available; allocate if not \n       select {\n           case b = <-freeList:\n               // Got one; nothing more to do\n           default:\n               // None free, so allocate a new one\n               b = new(Buffer)\n       }\n       loadInto(b)         // Read next message from the network\n       serverChan <- b     // Send to server\n       \n   }\n}\n```\n\n服务器的循环则接收每一条来自客户端的消息并处理它，之后尝试将缓冲返回给共享的空闲缓冲区：\n\n```go\nfunc server() {\n    for {\n        b := <-serverChan       // Wait for work.\n        process(b)\n        // Reuse buffer if there's room.\n        select {\n            case freeList <- b:\n                // Reuse buffer if free slot on freeList; nothing more to do\n            default:\n                // Free list full, just carry on: the buffer is 'dropped'\n        }\n    }\n}\n```\n\n但是这种方法在 `freeList` 通道已满的时候是行不通的，因为无法放入空闲 `freeList` 通道的缓冲区会被“丢到地上”由垃圾收集器回收（故名：漏桶算法）。\n\n## 链接\n\n- 目录\n- 上一节：并行化大量数据的计算\n- 下一节：对 Go 协程进行基准测试",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-waytogo5-12",
+    "title": "14.16 对 Go 协程进行基准测试",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在 13.7 节 我们提到了在 Go 语言中对你的函数进行基准测试。在此我们将其应用到一个用协程向通道写入整数再读出的实例中。这个函数将通过 testing.Benchmark()",
+    "content": "# 14.16 对 Go 协程进行基准测试\n\n在 13.7 节 我们提到了在 Go 语言中对你的函数进行基准测试。在此我们将其应用到一个用协程向通道写入整数再读出的实例中。这个函数将通过 `testing.Benchmark()` 调用 `N` 次（例如：`N = 1,000,000`），`BenchMarkResult` 有一个 `String()` 方法来输出其结果。`N` 的值将由 `gotest` 来判断并取得一个足够大的数字，以获得合理的基准测试结果。当然同样的基准测试方法也适用于普通函数。\n\n如果你想排除指定部分的代码或者更具体的指定要测试的部分，可以使用 `testing.B.startTimer()` 和 `testing.B.stopTimer()` 来开始或结束计时器。基准测试只有在所有的测试通过后才能运行！ \n\n示例：14.18-benchmark_channels.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"testing\"\n)\n\nfunc main() {\n\tfmt.Println(\" sync\", testing.Benchmark(BenchmarkChannelSync).String())\n\tfmt.Println(\"buffered\", testing.Benchmark(BenchmarkChannelBuffered).String())\n}\n\nfunc BenchmarkChannelSync(b *testing.B) {\n\tch := make(chan int)\n\tgo func() {\n\t\tfor i := 0; i < b.N; i++ {\n\t\t\tch <- i\n\t\t}\n\t\tclose(ch)\n\t}()\n\tfor range ch {\n\t}\n}\n\nfunc BenchmarkChannelBuffered(b *testing.B) {\n\tch := make(chan int, 128)\n\tgo func() {\n\t\tfor i := 0; i < b.N; i++ {\n\t\t\tch <- i\n\t\t}\n\t\tclose(ch)\n\t}()\n\tfor range ch {\n\t}\n}\n```\n\n输出：\n\n```\n  Output:Windows:  N       Time 1 op   Operations per sec\n  sync      1000000  2443 ns/op  -->  409 332 / s\n  buffered   1000000  4850 ns/op  -->  810 477 / s\n  Linux:\n```\n\n## 链接\n\n- 目录\n- 上一节：漏桶算法\n- 下一节：使用通道并发访问对象",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-waytogo5-13",
+    "title": "14.17 使用通道并发访问对象",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "为了保护对象被并发访问修改，我们可以使用协程在后台顺序执行匿名函数来替代使用同步互斥锁。在下面的程序中我们有一个类型 Person 中包含一个字段 chF ，这是一个用于存放匿名函",
+    "content": "# 14.17 使用通道并发访问对象\n\n为了保护对象被并发访问修改，我们可以使用协程在后台顺序执行匿名函数来替代使用同步互斥锁。在下面的程序中我们有一个类型 `Person` 中包含一个字段 `chF` ，这是一个用于存放匿名函数的通道。\n\n这个结构在构造函数 `NewPerson()` 中初始化的同时会启动一个后台协程 `backend()`。`backend()` 方法会在一个无限循环中执行 `chF` 中放置的所有函数，有效地将它们序列化从而提供了安全的并发访问。更改和读取 `salary` 的方法会通过将一个匿名函数写入 `chF` 通道中，然后让 `backend()` 按顺序执行以达到其目的。需注意的是 `Salary()` 方法创建的闭包函数是如何将 `fChan` 通道包含在其中的。\n\n当然，这是一个简化的例子，它不应该被用在这种案例下。但是它却向我们展示了在更复杂的场景中该如何解决这种问题。\n\n示例：14.19-conc_access.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"strconv\"\n)\n\ntype Person struct {\n\tName   string\n\tsalary float64\n\tchF    chan func()\n}\n\nfunc NewPerson(name string, salary float64) *Person {\n\tp := &Person{name, salary, make(chan func())}\n\tgo p.backend()\n\treturn p\n}\n\nfunc (p *Person) backend() {\n\tfor f := range p.chF {\n\t\tf()\n\t}\n}\n\n// Set salary.\nfunc (p *Person) SetSalary(sal float64) {\n\tp.chF <- func() { p.salary = sal }\n}\n\n// Retrieve salary.\nfunc (p *Person) Salary() float64 {\n\tfChan := make(chan float64)\n\tp.chF <- func() { fChan <- p.salary }\n\treturn <-fChan\n}\n\nfunc (p *Person) String() string {\n\treturn \"Person - name is: \" + p.Name + \" - salary is: \" + strconv.FormatFloat(p.Salary(), 'f', 2, 64)\n}\n\nfunc main() {\n\tbs := NewPerson(\"Smith Bill\", 2500.5)\n\tfmt.Println(bs)\n\tbs.SetSalary(4000.25)\n\tfmt.Println(\"Salary changed:\")\n\tfmt.Println(bs)\n}\n```\n\n输出：\n\n```\nPerson - name is: Smith Bill - salary is: 2500.50\nSalary changed:\nPerson - name is: Smith Bill - salary is: 4000.25\n```\n\n## 链接\n\n- 目录\n- 上一节：对Go协程进行基准测试\n- 下一章：网络，模板和网页应用",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-waytogo5-14",
+    "title": "14.2 协程间的信道",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在第一个例子中，协程是独立执行的，他们之间没有通信。他们必须通信才会变得更有用：彼此之间发送和接收信息并且协调/同步他们的工作。协程可以使用共享变量来通信，但是很不提倡这样做，因为",
+    "content": "# 14.2 协程间的信道\n\n## 14.2.1 概念\n\n在第一个例子中，协程是独立执行的，他们之间没有通信。他们必须通信才会变得更有用：彼此之间发送和接收信息并且协调/同步他们的工作。协程可以使用共享变量来通信，但是很不提倡这样做，因为这种方式给所有的共享内存的多线程都带来了困难。\n\n而 Go 有一种特殊的类型，*通道（channel）*，就像一个可以用于发送类型化数据的管道，由其负责协程之间的通信，从而避开所有由共享内存导致的陷阱；这种通过通道进行通信的方式保证了同步性。数据在通道中进行传递：*在任何给定时间，一个数据被设计为只有一个协程可以对其访问，所以不会发生数据竞争。* 数据的所有权（可以读写数据的能力）也因此被传递。\n\n工厂的传送带是个很有用的例子。一个机器（生产者协程）在传送带上放置物品，另外一个机器（消费者协程）拿到物品并打包。\n\n通道服务于通信的两个目的：值的交换，同步的，保证了两个计算（协程）任何时候都是可知状态。\n\n![](/images/figures/waytogo5/eBook_images_14.2_fig14.1.png)\n\n通常使用这样的格式来声明通道：`var identifier chan datatype`\n\n未初始化的通道的值是 `nil`。\n\n所以通道只能传输一种类型的数据，比如 `chan int` 或者 `chan string`，所有的类型都可以用于通道，空接口 `interface{}` 也可以，甚至可以（有时非常有用）创建通道的通道。\n\n通道实际上是类型化消息的队列：使数据得以传输。它是先进先出(FIFO) 的结构所以可以保证发送给他们的元素的顺序（有些人知道，通道可以比作 Unix shells 中的双向管道 (two-way pipe) ）。通道也是引用类型，所以我们使用 `make()` 函数来给它分配内存。这里先声明了一个字符串通道 ch1，然后创建了它（实例化）：\n\n```go\nvar ch1 chan string\nch1 = make(chan string)\n```\n\n当然可以更短： `ch1 := make(chan string)`。\n\n这里我们构建一个 int 通道的通道： `chanOfChans := make(chan chan int)`。\n\n或者函数通道：`funcChan := make(chan func())`（相关示例请看第 14.17 节）。\n\n所以通道是第一类对象：可以存储在变量中，作为函数的参数传递，从函数返回以及通过通道发送它们自身。另外它们是类型化的，允许类型检查，比如尝试使用整数通道发送一个指针。\n\n## 14.2.2 通信操作符 <-\n\n这个操作符直观的标示了数据的传输：信息按照箭头的方向流动。\n\n流向通道（发送）\n\n`ch <- int1` 表示：用通道 `ch` 发送变量 `int1`（双目运算符，中缀 = 发送）\n\n从通道流出（接收），三种方式：\n\n`int2 = <- ch` 表示：变量 `int2` 从通道 ch（一元运算的前缀操作符，前缀 = 接收）接收数据（获取新值）；假设 `int2` 已经声明过了，如果没有的话可以写成：`int2 := <- ch`。\n\n`<- ch` 可以单独调用获取通道的（下一个）值，当前值会被丢弃，但是可以用来验证，所以以下代码是合法的：\n\n```go\nif <- ch != 1000{\n\t...\n}\n```\n\n同一个操作符 `<-` 既用于**发送**也用于**接收**，但 Go 会根据操作对象弄明白该干什么 。虽非强制要求，但为了可读性通道的命名通常以 `ch` 开头或者包含 `chan` 。通道的发送和接收都是原子操作：它们总是互不干扰地完成。下面的示例展示了通信操作符的使用。\n\n示例 14.2-goroutine2.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tch := make(chan string)\n\n\tgo sendData(ch)\n\tgo getData(ch)\n\n\ttime.Sleep(1e9)\n}\n\nfunc sendData(ch chan string) {\n\tch <- \"Washington\"\n\tch <- \"Tripoli\"\n\tch <- \"London\"\n\tch <- \"Beijing\"\n\tch <- \"Tokyo\"\n}\n\nfunc getData(ch chan string) {\n\tvar input string\n\t// time.Sleep(2e9)\n\tfor {\n\t\tinput = <-ch\n\t\tfmt.Printf(\"%s \", input)\n\t}\n}\n```\n\n输出：\n\n```\nWashington Tripoli London Beijing tokyo\n```\n\n`main()` 函数中启动了两个协程：`sendData()` 通过通道 ch 发送了 5 个字符串，`getData()` 按顺序接收它们并打印出来。\n\n如果 2 个协程需要通信，你必须给他们同一个通道作为参数才行。\n\n尝试一下如果注释掉 `time.Sleep(1e9)` 会如何。\n\n我们发现协程之间的同步非常重要：\n\n- `main()` 等待了 1 秒让两个协程完成，如果不这样，`sendData()` 就没有机会输出。\n- `getData()` 使用了无限循环：它随着 `sendData()` 的发送完成和 `ch` 变空也结束了。\n- 如果我们移除一个或所有 `go` 关键字，程序无法运行，Go 运行时会抛出 panic：\n\n```\n---- Error run E:/Go/Goboek/code examples/chapter 14/goroutine2.exe with code Crashed ---- Program exited with code -2147483645: panic: all goroutines are asleep-deadlock!\n```\n\n为什么会这样？运行时 (runtime) 会检查所有的协程（像本例中只有一个）是否在等待着什么东西（可从某个通道读取或者写入某个通道），这意味着程序将无法继续执行。这是死锁 (deadlock) 的一种形式，而运行时 (runtime) 可以为我们检测到这种情况。\n\n注意：不要使用打印状态来表明通道的发送和接收顺序：由于打印状态和通道实际发生读写的时间延迟会导致和真实发生的顺序不同。\n\n练习 14.4：解释一下为什么如果在函数 `getData()` 的一开始插入 `time.Sleep(2e9)`，不会出现错误但也没有输出呢。\n\n## 14.2.3 通道阻塞\n\n默认情况下，通信是同步且无缓冲的：在有接受者接收数据之前，发送不会结束。可以想象一个无缓冲的通道在没有空间来保存数据的时候：必须要一个接收者准备好接收通道的数据然后发送者可以直接把数据发送给接收者。所以通道的发送/接收操作在对方准备好之前是阻塞的：\n\n1）对于同一个通道，发送操作（协程或者函数中的），在接收者准备好之前是阻塞的：如果 `ch` 中的数据无人接收，就无法再给通道传入其他数据：新的输入无法在通道非空的情况下传入。所以发送操作会等待 `ch` 再次变为可用状态：就是通道值被接收时（可以传入变量）。\n\n2）对于同一个通道，接收操作是阻塞的（协程或函数中的），直到发送者可用：如果通道中没有数据，接收者就阻塞了。\n\n尽管这看上去是非常严格的约束，实际在大部分情况下工作的很不错。\n\n程序 channel_block.go 验证了以上理论，一个协程在无限循环中给通道发送整数数据。不过因为没有接收者，只输出了一个数字 `0`。\n\n示例 14.3-channel_block.go\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tch1 := make(chan int)\n\tgo pump(ch1)       // pump hangs\n\tfmt.Println(<-ch1) // prints only 0\n}\n\nfunc pump(ch chan int) {\n\tfor i := 0; ; i++ {\n\t\tch <- i\n\t}\n}\n```\n\n输出：\n\n```\n0\n```\n\n`pump()` 函数为通道提供数值，也被叫做生产者。\n\n为通道解除阻塞定义了 `suck()` 函数来在无限循环中读取通道，参见示例 14.4-channel_block2.go：\n\n```go\nfunc suck(ch chan int) {\n\tfor {\n\t\tfmt.Println(<-ch)\n\t}\n}\n```\n在 `main()` 中使用协程开始它：\n\n```go\ngo pump(ch1)\ngo suck(ch1)\ntime.Sleep(1e9)\n```\n\n给程序 1 秒的时间来运行：输出了上万个整数。\n\n练习 14.1：channel_block3.go：写一个通道证明它的阻塞性，开启一个协程接收通道的数据，持续 15 秒，然后给通道放入一个值。在不同的阶段打印消息并观察输出。\n\n## 14.2.4 通过一个（或多个）通道交换数据进行协程同步。\n\n通信是一种同步形式：通过通道，两个协程在通信（协程会合）中某刻同步交换数据。无缓冲通道成为了多个协程同步的完美工具。\n\n甚至可以在通道两端互相阻塞对方，形成了叫做**死锁**的状态。Go 运行时会检查并 `panic()`，停止程序。死锁几乎完全是由糟糕的设计导致的。\n\n无缓冲通道会被阻塞。设计无阻塞的程序可以避免这种情况，或者使用带缓冲的通道。\n\n练习 14.2： blocking.go\n\n解释为什么下边这个程序会导致 panic：所有的协程都休眠了 - 死锁！\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc f1(in chan int) {\n\tfmt.Println(<-in)\n}\n\nfunc main() {\n\tout := make(chan int)\n\tout <- 2\n\tgo f1(out)\n}\n```\n\n## 14.2.5 同步通道-使用带缓冲的通道\n\n一个无缓冲通道只能包含 1 个元素，有时显得很局限。我们给通道提供了一个缓存，可以在扩展的 `make` 命令中设置它的容量，如下：\n\n```go\nbuf := 100\nch1 := make(chan string, buf)\n```\n\n`buf` 是通道可以同时容纳的元素（这里是 `string`）个数\n\n在缓冲满载（缓冲被全部使用）之前，给一个带缓冲的通道发送数据是不会阻塞的，而从通道读取数据也不会阻塞，直到缓冲空了。\n\n缓冲容量和类型无关，所以可以（尽管可能导致危险）给一些通道设置不同的容量，只要他们拥有同样的元素类型。内置的 `cap()` 函数可以返回缓冲区的容量。\n\n如果容量大于 0，通道就是异步的了：缓冲满载（发送）或变空（接收）之前通信不会阻塞，元素会按照发送的顺序被接收。如果容量是 0 或者未设置，通信仅在收发双方准备好的情况下才可以成功。\n\n同步：`ch :=make(chan type, value)`\n\n- `value == 0 -> synchronous`, unbuffered （阻塞）\n- `value > 0 -> asynchronous`, buffered（非阻塞）取决于 `value` 元素\n\n若使用通道的缓冲，你的程序会在“请求”激增的时候表现更好：更具弹性，专业术语叫：更具有伸缩性(scalable)。在设计算法时首先考虑使用无缓冲通道，只在不确定的情况下使用缓冲。\n\n练习 14.3：channel_buffer.go：给 channel_block3.go 的通道增加缓冲并观察输出有何不同。\n\n## 14.2.6 协程中用通道输出结果\n\n为了知道计算何时完成，可以通过信道回报。在例子 `go sum(bigArray)` 中，要这样写：\n\n```go\nch := make(chan int)\ngo sum(bigArray, ch) // bigArray puts the calculated sum on ch\n// .. do something else for a while\nsum := <- ch // wait for, and retrieve the sum\n```\n\n也可以使用通道来达到同步的目的，这个很有效的用法在传统计算机中称为信号量 (semaphore)。或者换个方式：通过通道发送信号告知处理已经完成（在协程中）。\n\n在其他协程运行时让 `main` 程序无限阻塞的通常做法是在 `main()` 函数的最后放置一个 `select {}`。\n\n也可以使用通道让 `main` 程序等待协程完成，就是所谓的信号量模式，我们会在接下来的部分讨论。\n\n## 14.2.7 信号量模式\n\n下边的片段阐明：协程通过在通道 `ch` 中放置一个值来处理结束的信号。`main()` 协程等待 `<-ch` 直到从中获取到值。\n\n我们期望从这个通道中获取返回的结果，像这样：\n\n```go\nfunc compute(ch chan int){\n\tch <- someComputation() // when it completes, signal on the channel.\n}\n\nfunc main(){\n\tch := make(chan int) \t// allocate a channel.\n\tgo compute(ch)\t\t// start something in a goroutines\n\tdoSomethingElseForAWhile()\n\tresult := <- ch\n}\n```\n\n这个信号也可以是其他的，不返回结果，比如下面这个协程中的匿名函数 (lambda) 协程：\n\n```go\nch := make(chan int)\ngo func(){\n\t// doSomething\n\tch <- 1 // Send a signal; value does not matter\n}()\ndoSomethingElseForAWhile()\n<- ch\t// Wait for goroutine to finish; discard sent value.\n```\n\n或者等待两个协程完成，每一个都会对切片 `s` 的一部分进行排序，片段如下：\n\n```go\ndone := make(chan bool)\n// doSort is a lambda function, so a closure which knows the channel done:\ndoSort := func(s []int){\n\tsort(s)\n\tdone <- true\n}\ni := pivot(s)\ngo doSort(s[:i])\ngo doSort(s[i:])\n<-done\n<-done\n```\n\n下边的代码，用完整的信号量模式对长度为 `N` 的 `float64` 切片进行了 `N` 个 `doSomething()` 计算并同时完成，通道 `sem` 分配了相同的长度（且包含空接口类型的元素），待所有的计算都完成后，发送信号（通过放入值）。在循环中从通道 `sem` 不停的接收数据来等待所有的协程完成。\n\n```go\ntype Empty interface {}\nvar empty Empty\n...\ndata := make([]float64, N)\nres := make([]float64, N)\nsem := make(chan Empty, N)\n...\nfor i, xi := range data {\n\tgo func (i int, xi float64) {\n\t\tres[i] = doSomething(i, xi)\n\t\tsem <- empty\n\t} (i, xi)\n}\n// wait for goroutines to finish\nfor i := 0; i < N; i++ { <-sem }\n```\n\n注意上述代码中闭合函数的用法：`i`、`xi` 都是作为参数传入闭合函数的，这一做法使得每个协程（译者注：在其启动时）获得一份 `i` 和 `xi` 的单独拷贝，从而向闭合函数内部屏蔽了外层循环中的 `i` 和 `xi` 变量；否则，`for` 循环的下一次迭代会更新所有协程中 `i` 和 `xi` 的值。另一方面，切片 `res` 没有传入闭合函数，因为协程不需要 `res` 的单独拷贝。切片 `res` 也在闭合函数中但并不是参数。\n\n## 14.2.8 实现并行的 `for` 循环\n\n在上一部分章节 14.2.7 的代码片段中：`for` 循环的每一个迭代是并行完成的：\n\n```go\nfor i, v := range data {\n\tgo func (i int, v float64) {\n\t\tdoSomething(i, v)\n\t\t...\n\t} (i, v)\n}\n```\n\n在 `for` 循环中并行计算迭代可能带来很好的性能提升。不过所有的迭代都必须是独立完成的。有些语言比如 Fortress 或者其他并行框架以不同的结构实现了这种方式，在 Go 中用协程实现起来非常容易：\n\n## 14.2.9 用带缓冲通道实现一个信号量\n\n信号量是实现互斥锁（排外锁）常见的同步机制，限制对资源的访问，解决读写问题，比如没有实现信号量的 `sync` 的 Go 包，使用带缓冲的通道可以轻松实现：\n\n- 带缓冲通道的容量和要同步的资源容量相同\n- 通道的长度（当前存放的元素个数）与当前资源被使用的数量相同\n- 容量减去通道的长度就是未处理的资源个数（标准信号量的整数值）\n\n不用管通道中存放的是什么，只关注长度；因此我们创建了一个长度可变但容量为 0（字节）的通道：\n\n```go\ntype Empty interface {}\ntype semaphore chan Empty\n```\n\n将可用资源的数量 `N` 来初始化信号量 `semaphore`：`sem = make(semaphore, N)`\n\n然后直接对信号量进行操作：\n\n```go\n// acquire n resources\nfunc (s semaphore) P(n int) {\n\te := new(Empty)\n\tfor i := 0; i < n; i++ {\n\t\ts <- e\n\t}\n}\n\n// release n resources\nfunc (s semaphore) V(n int) {\n\tfor i:= 0; i < n; i++{\n\t\t<- s\n\t}\n}\n```\n\n可以用来实现一个互斥的例子：\n\n```go\n/* mutexes */\nfunc (s semaphore) Lock() {\n\ts.P(1)\n}\n\nfunc (s semaphore) Unlock(){\n\ts.V(1)\n}\n\n/* signal-wait */\nfunc (s semaphore) Wait(n int) {\n\ts.P(n)\n}\n\nfunc (s semaphore) Signal() {\n\ts.V(1)\n}\n```\n\n练习 14.5：gosum.go：用这种习惯用法写一个程序，开启一个协程来计算 2 个整数的和并等待计算结果并打印出来。\n\n练习 14.6：producer_consumer.go：用这种习惯用法写一个程序，有两个协程，第一个提供数字 0，10，20，...，90 并将他们放入通道，第二个协程从通道中读取并打印。`main()` 等待两个协程完成后再结束。\n\n**习惯用法：通道工厂模式**\n\n编程中常见的另外一种模式如下：不将通道作为参数传递给协程，而用函数来生成一个通道并返回（工厂角色）；函数内有个匿名函数被协程调用。\n\n在 channel_block2.go 加入这种模式便有了示例 14.5-channel_idiom.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tstream := pump()\n\tgo suck(stream)\n\ttime.Sleep(1e9)\n}\n\nfunc pump() chan int {\n\tch := make(chan int)\n\tgo func() {\n\t\tfor i := 0; ; i++ {\n\t\t\tch <- i\n\t\t}\n\t}()\n\treturn ch\n}\n\nfunc suck(ch chan int) {\n\tfor {\n\t\tfmt.Println(<-ch)\n\t}\n}\n```\n\n## 14.2.10 给通道使用 for 循环\n\n`for` 循环的 `range` 语句可以用在通道 `ch` 上，便可以从通道中获取值，像这样：\n\n```go\nfor v := range ch {\n\tfmt.Printf(\"The value is %v\\n\", v)\n}\n```\n\n它从指定通道中读取数据直到通道关闭，才继续执行下边的代码。很明显，另外一个协程必须写入 `ch`（不然代码就阻塞在 `for` 循环了），而且必须在写入完成后才关闭。`suck()` 函数可以这样写，且在协程中调用这个动作，程序变成了这样：\n\n示例 14.6-channel_idiom2.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tsuck(pump())\n\ttime.Sleep(1e9)\n}\n\nfunc pump() chan int {\n\tch := make(chan int)\n\tgo func() {\n\t\tfor i := 0; ; i++ {\n\t\t\tch <- i\n\t\t}\n\t}()\n\treturn ch\n}\n\nfunc suck(ch chan int) {\n\tgo func() {\n\t\tfor v := range ch {\n\t\t\tfmt.Println(v)\n\t\t}\n\t}()\n}\n```\n\n**习惯用法：通道迭代器模式**\n\n这个模式用到了后边 14.6 章示例 producer_consumer.go 的生产者-消费者模式。通常，需要从包含了地址索引字段 `items` 的容器给通道填入元素。为容器的类型定义一个方法 `Iter()`，返回一个只读的通道（参见第 14.2.11 节）`items`，如下：\n\n```go\nfunc (c *container) Iter () <- chan item {\n\tch := make(chan item)\n\tgo func () {\n\t\tfor i:= 0; i < c.Len(); i++{\t// or use a for-range loop\n\t\t\tch <- c.items[i]\n\t\t}\n\t} ()\n\treturn ch\n}\n```\n\n在协程里，一个 `for` 循环迭代容器 `c` 中的元素（对于树或图的算法，这种简单的 `for` 循环可以替换为深度优先搜索）。\n\n调用这个方法的代码可以这样迭代容器：\n\n```go\nfor x := range container.Iter() { ... }\n```\n\n其运行在自己启动的协程中，所以上边的迭代用到了一个通道和两个协程（可能运行在不同的线程上）。 这样我们就有了一个典型的生产者-消费者模式。如果在程序结束之前，向通道写值的协程未完成工作，则这个协程不会被垃圾回收；这是设计使然。这种看起来并不符合预期的行为正是由通道这种线程安全的通信方式所导致的。如此一来，一个协程为了写入一个永远无人读取的通道而被挂起就成了一个 bug ，而并非你预想中的那样被悄悄回收掉 (garbage-collected) 了。\n\n**习惯用法：生产者消费者模式**\n\n假设你有 `Produce()` 函数来产生 `Consume()` 函数需要的值。它们都可以运行在独立的协程中，生产者在通道中放入给消费者读取的值。整个处理过程可以替换为无限循环：\n\n```go\nfor {\n\tConsume(Produce())\n}\n```\n\n## 14.2.11 通道的方向\n\n通道类型可以用注解来表示它只发送或者只接收：\n\n```go\nvar send_only chan<- int \t\t// channel can only receive data\nvar recv_only <-chan int\t\t// channel can only send data\n```\n\n只接收的通道 (`<-chan T`) 无法关闭，因为关闭通道是发送者用来表示不再给通道发送值了，所以对只接收通道是没有意义的。通道创建的时候都是双向的，但也可以分配给有方向的通道变量，就像以下代码：\n\n```go\nvar c = make(chan int) // bidirectional\ngo source(c)\ngo sink(c)\n\nfunc source(ch chan<- int){\n\tfor { ch <- 1 }\n}\n\nfunc sink(ch <-chan int) {\n\tfor { <-ch }\n}\n```\n\n**习惯用法：管道和选择器模式**\n\n更具体的例子还有协程处理它从通道接收的数据并发送给输出通道：\n\n```go\nsendChan := make(chan int)\nreceiveChan := make(chan string)\ngo processChannel(sendChan, receiveChan)\n\nfunc processChannel(in <-chan int, out chan<- string) {\n\tfor inValue := range in {\n\t\tresult := ... /// processing inValue\n\t\tout <- result\n\t}\n}\n```\n\n通过使用方向注解来限制协程对通道的操作。\n\n这里有一个来自 Go 指导的很赞的例子，打印了输出的素数，使用选择器（‘筛’）作为它的算法。每个 prime 都有一个选择器，如下图：\n\n![](/images/figures/waytogo5/eBook_images_14.2_fig14.2.png)\n\n版本1：示例 14.7-sieve1.go\n\n```go\n// Copyright 2009 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.package main\npackage main\n\nimport \"fmt\"\n\n// Send the sequence 2, 3, 4, ... to channel 'ch'.\nfunc generate(ch chan int) {\n\tfor i := 2; ; i++ {\n\t\tch <- i // Send 'i' to channel 'ch'.\n\t}\n}\n\n// Copy the values from channel 'in' to channel 'out',\n// removing those divisible by 'prime'.\nfunc filter(in, out chan int, prime int) {\n\tfor {\n\t\ti := <-in // Receive value of new variable 'i' from 'in'.\n\t\tif i%prime != 0 {\n\t\t\tout <- i // Send 'i' to channel 'out'.\n\t\t}\n\t}\n}\n\n// The prime sieve: Daisy-chain filter processes together.\nfunc main() {\n\tch := make(chan int) // Create a new channel.\n\tgo generate(ch)      // Start generate() as a goroutine.\n\tfor {\n\t\tprime := <-ch\n\t\tfmt.Print(prime, \" \")\n\t\tch1 := make(chan int)\n\t\tgo filter(ch, ch1, prime)\n\t\tch = ch1\n\t}\n}\n```\n\n协程 `filter(in, out chan int, prime int)` 拷贝整数到输出通道，丢弃掉可以被 `prime` 整除的数字。然后每个 `prime` 又开启了一个新的协程，生成器和选择器并发请求。\n\n输出：\n\n```\n2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101\n103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223\n227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349\n353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479\n487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619\n631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769\n773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929\n937 941 947 953 967 971 977 983 991 997 1009 1013...\n```\n\n第二个版本引入了上边的习惯用法：函数 `sieve()`、`generate()` 和 `filter()` 都是工厂；它们创建通道并返回，而且使用了协程的 lambda 函数。`main()` 函数现在短小清晰：它调用 `sieve()` 返回了包含素数的通道，然后通过 `fmt.Println(<-primes)` 打印出来。\n\n版本2：示例 14.8-sieve2.go\n\n```go\n// Copyright 2009 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage main\n\nimport (\n\t\"fmt\"\n)\n\n// Send the sequence 2, 3, 4, ... to returned channel\nfunc generate() chan int {\n\tch := make(chan int)\n\tgo func() {\n\t\tfor i := 2; ; i++ {\n\t\t\tch <- i\n\t\t}\n\t}()\n\treturn ch\n}\n\n// Filter out input values divisible by 'prime', send rest to returned channel\nfunc filter(in chan int, prime int) chan int {\n\tout := make(chan int)\n\tgo func() {\n\t\tfor {\n\t\t\tif i := <-in; i%prime != 0 {\n\t\t\t\tout <- i\n\t\t\t}\n\t\t}\n\t}()\n\treturn out\n}\n\nfunc sieve() chan int {\n\tout := make(chan int)\n\tgo func() {\n\t\tch := generate()\n\t\tfor {\n\t\t\tprime := <-ch\n\t\t\tch = filter(ch, prime)\n\t\t\tout <- prime\n\t\t}\n\t}()\n\treturn out\n}\n\nfunc main() {\n\tprimes := sieve()\n\tfor {\n\t\tfmt.Println(<-primes)\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：并发、并行和协程\n- 下一节：协程同步：关闭通道-测试阻塞的通道",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/ccfbfcda3dfb6622.jpg"
+  },
+  {
+    "id": "g-waytogo5-15",
+    "title": "14.3 协程的同步：关闭通道-测试阻塞的通道",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "通道可以被显式的关闭；尽管它们和文件不同：不必每次都关闭。只有在当需要告诉接收者不会再提供新的值的时候，才需要关闭通道。只有发送者需要关闭通道，接收者永远不会需要。 继续看示例 g",
+    "content": "# 14.3 协程的同步：关闭通道-测试阻塞的通道\n\n通道可以被显式的关闭；尽管它们和文件不同：不必每次都关闭。只有在当需要告诉接收者不会再提供新的值的时候，才需要关闭通道。只有发送者需要关闭通道，接收者永远不会需要。\n\n继续看示例 goroutine2.go（示例 14.2）：我们如何在通道的 `sendData()` 完成的时候发送一个信号，`getData()` 又如何检测到通道是否关闭或阻塞？\n\n第一个可以通过函数 `close(ch)` 来完成：这个将通道标记为无法通过发送操作 `<-` 接受更多的值；给已经关闭的通道发送或者再次关闭都会导致运行时的 `panic()`。在创建一个通道后使用 `defer` 语句是个不错的办法（类似这种情况）：\n\n```go\nch := make(chan float64)\ndefer close(ch)\n```\n\n第二个问题可以使用逗号 ok 模式用来检测通道是否被关闭。\n\n如何来检测可以收到没有被阻塞（或者通道没有被关闭）？\n\n```go\nv, ok := <-ch   // ok is true if v received value\n```\n\n通常和 `if` 语句一起使用：\n\n```go\nif v, ok := <-ch; ok {\n  process(v)\n}\n```\n\n或者在 `for` 循环中接收的时候，当关闭的时候使用 `break`：\n\n```go\nv, ok := <-ch\nif !ok {\n  break\n}\nprocess(v)\n```\n\n而检测通道当前是否阻塞，需要使用 `select`（参见第 14.4 节）。\n\n```go\nselect {\ncase v, ok := <-ch:\n  if ok {\n    process(v)\n  } else {\n    fmt.Println(\"The channel is closed\")\n  }\ndefault:\n  fmt.Println(\"The channel is blocked\")\n}\n```\n\n在示例程序 14.2 中使用这些可以改进为版本 goroutine3.go，输出相同。\n\n实现非阻塞通道的读取，需要使用 `select`（参见第 14.4 节）。\n\n示例 14.9-goroutine3.go：\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tch := make(chan string)\n\tgo sendData(ch)\n\tgetData(ch)\n}\n\nfunc sendData(ch chan string) {\n\tch <- \"Washington\"\n\tch <- \"Tripoli\"\n\tch <- \"London\"\n\tch <- \"Beijing\"\n\tch <- \"Tokio\"\n\tclose(ch)\n}\n\nfunc getData(ch chan string) {\n\tfor {\n\t\tinput, open := <-ch\n\t\tif !open {\n\t\t\tbreak\n\t\t}\n\t\tfmt.Printf(\"%s \", input)\n\t}\n}\n```\n\n改变了以下代码：\n\n- 现在只有 `sendData()` 是协程，`getData()` 和 `main()` 在同一个线程中：\n\n```go\ngo sendData(ch)\ngetData(ch)\n```\n\n- 在 `sendData()` 函数的最后，关闭了通道：\n\n```go\nfunc sendData(ch chan string) {\n\tch <- \"Washington\"\n\tch <- \"Tripoli\"\n\tch <- \"London\"\n\tch <- \"Beijing\"\n\tch <- \"Tokio\"\n\tclose(ch)\n}\n```\n\n- 在 `for` 循环的 `getData()` 中，在每次接收通道的数据之前都使用 `if !open` 来检测：\n\n```go\nfor {\n\t\tinput, open := <-ch\n\t\tif !open {\n\t\t\tbreak\n\t\t}\n\t\tfmt.Printf(\"%s \", input)\n\t}\n```\n\n使用 for-range 语句来读取通道是更好的办法，因为这会自动检测通道是否关闭：\n\n```go\nfor input := range ch {\n  \tprocess(input)\n}\n```\n\n阻塞和生产者-消费者模式：\n\n在第 14.2.10 节的通道迭代器中，两个协程经常是一个阻塞另外一个。如果程序工作在多核心的机器上，大部分时间只用到了一个处理器。可以通过使用带缓冲（缓冲空间大于 0）的通道来改善。比如，缓冲大小为 100，迭代器在阻塞之前，至少可以从容器获得 100 个元素。如果消费者协程在独立的内核运行，就有可能让协程不会出现阻塞。\n\n由于容器中元素的数量通常是已知的，需要让通道有足够的容量放置所有的元素。这样，迭代器就不会阻塞（尽管消费者协程仍然可能阻塞）。然而，这实际上加倍了迭代容器所需要的内存使用量，所以通道的容量需要限制一下最大值。记录运行时间和性能测试可以帮助你找到最小的缓存容量带来最好的性能。\n\n## 链接\n\n- 目录\n- 上一节：协程间的信道\n- 下一节：使用 select 切换协程",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
+  },
+  {
+    "id": "g-waytogo5-16",
+    "title": "14.4 使用 select 切换协程",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "从不同的并发执行的协程中获取值可以通过关键字 select 来完成，它和 switch 控制语句非常相似（章节 5.3）也被称作通信开关；它的行为像是“你准备好了吗”的轮询机制； ",
+    "content": "# 14.4 使用 select 切换协程\n\n从不同的并发执行的协程中获取值可以通过关键字 `select` 来完成，它和 `switch` 控制语句非常相似（章节 5.3）也被称作通信开关；它的行为像是“你准备好了吗”的轮询机制；`select` 监听进入通道的数据，也可以是用通道发送值的时候。\n\n```go\nselect {\ncase u:= <- ch1:\n        ...\ncase v:= <- ch2:\n        ...\n        ...\ndefault: // no value ready to be received\n        ...\n}\n```\n\n`default` 语句是可选的；`fallthrough` 行为，和普通的 `switch` 相似，是不允许的。在任何一个 `case` 中执行 `break` 或者 `return`，select 就结束了。\n\n`select` 做的就是：选择处理列出的多个通信情况中的一个。\n\n- 如果都阻塞了，会等待直到其中一个可以处理\n- 如果多个可以处理，随机选择一个\n- 如果没有通道操作可以处理并且写了 `default` 语句，它就会执行：`default` 永远是可运行的（这就是准备好了，可以执行）。\n\n在 `select` 中使用发送操作并且有 `default` 可以确保发送不被阻塞！如果没有 `default`，`select` 就会一直阻塞。\n\n`select` 语句实现了一种监听模式，通常用在（无限）循环中；在某种情况下，通过 `break` 语句使循环退出。\n\n在程序 goroutine_select.go 中有 2 个通道 `ch1` 和 `ch2`，三个协程 `pump1()`、`pump2()` 和 `suck()`。这是一个典型的生产者消费者模式。在无限循环中，`ch1` 和 `ch2` 通过 `pump1()` 和 `pump2()` 填充整数；`suck()` 也是在无限循环中轮询输入的，通过 `select` 语句获取 `ch1` 和 `ch2` 的整数并输出。选择哪一个 `case` 取决于哪一个通道收到了信息。程序在 `main` 执行 1 秒后结束。\n\n示例 14.10-goroutine_select.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tch1 := make(chan int)\n\tch2 := make(chan int)\n\n\tgo pump1(ch1)\n\tgo pump2(ch2)\n\tgo suck(ch1, ch2)\n\n\ttime.Sleep(1e9)\n}\n\nfunc pump1(ch chan int) {\n\tfor i := 0; ; i++ {\n\t\tch <- i * 2\n\t}\n}\n\nfunc pump2(ch chan int) {\n\tfor i := 0; ; i++ {\n\t\tch <- i + 5\n\t}\n}\n\nfunc suck(ch1, ch2 chan int) {\n\tfor {\n\t\tselect {\n\t\tcase v := <-ch1:\n\t\t\tfmt.Printf(\"Received on channel 1: %d\\n\", v)\n\t\tcase v := <-ch2:\n\t\t\tfmt.Printf(\"Received on channel 2: %d\\n\", v)\n\t\t}\n\t}\n}\n```\n\n输出：\n\n```\nReceived on channel 2: 5\nReceived on channel 2: 6\nReceived on channel 1: 0\nReceived on channel 2: 7\nReceived on channel 2: 8\nReceived on channel 2: 9\nReceived on channel 2: 10\nReceived on channel 1: 2\nReceived on channel 2: 11\n...\nReceived on channel 2: 47404\nReceived on channel 1: 94346\nReceived on channel 1: 94348\n```\n\n一秒内的输出非常惊人，如果我们给它计数 (goroutine_select2.go)，得到了 90000 个左右的数字。\n\n## 练习：\n\n练习 14.7：\n\n- a）在练习 5.4 的 for_loop.go 中，有一个常见的 `for` 循环打印数字。在函数 `tel()` 中实现一个 `for` 循环，用协程开始这个函数并在其中给通道发送数字。`main()` 线程从通道中获取并打印。不要使用 `time.Sleep()` 来同步：goroutine_panic.go\n- b）也许你的方案有效，但可能会引发运行时的 `panic()`：`throw:all goroutines are asleep-deadlock!` 为什么会这样？你如何解决这个问题？goroutine_close.go\n- c）解决 a）的另外一种方式：使用一个额外的通道传递给协程，然后在结束的时候随便放点什么进去。`main()` 线程检查是否有数据发送给了这个通道，如果有就停止：goroutine_select.go\n\n练习 14.8：\n\n从示例 6.13 fibonacci.go 的斐波那契程序开始，制定解决方案，使斐波那契周期计算独立到协程中，并可以把结果发送给通道。\n\n结束的时候关闭通道。`main()` 函数读取通道并打印结果：goFibonacci.go\n\n使用练习 6.9 fibonacci2.go 中的算法写一个更短的 gofibonacci2.go\n\n使用 `select` 语句来写，并让通道退出 (gofibonacci_select.go)\n\n注意：当给结果计时并和 6.13 对比时，我们发现使用通道通信的性能开销有轻微削减；这个例子中的算法使用协程并非性能最好的选择；但是 gofibonacci3 方案使用了 2 个协程带来了 3 倍的提速。\n\n练习 14.9：\n\n做一个随机位生成器，程序可以提供无限的随机 0 或者 1 的序列：random_bitgen.go\n\n练习 14.10：polar_to_cartesian.go\n\n（这是一种综合练习，使用到第 4、9、11 章和本章的内容。）写一个可交互的控制台程序，要求用户输入二位平面极坐标上的点（半径和角度（度））。计算对应的笛卡尔坐标系的点的 `x` 和 `y` 并输出。使用极坐标和笛卡尔坐标的结构体。\n\n使用通道和协程：\n\n- `channel1` 用来接收极坐标\n- `channel2` 用来接收笛卡尔坐标\n\n转换过程需要在协程中进行，从 `channel1` 中读取然后发送到 `channel2`。实际上做这种计算不提倡使用协程和通道，但是如果运算量很大很耗时，这种方案设计就非常合适了。\n\n练习 14.11： concurrent_pi.go / concurrent_pi2.go\n\n使用以下序列在协程中计算 pi：开启一个协程来计算公式中的每一项并将结果放入通道，`main()` 函数收集并累加结果，打印出 pi 的近似值。\n\n![](/images/figures/waytogo5/eBook_images_14.4_piseries.png)\n\n计算执行时间（参见第 6.11 节）\n\n再次声明这只是为了一边练习协程的概念一边找点乐子。\n\n如果你需要的话可使用 `math.pi` 中的 `Pi`；而且不使用协程会运算的更快。一个急速版本：使用 `GOMAXPROCS`，开启和 `GOMAXPROCS` 同样多个协程。\n\n**习惯用法：后台服务模式**\n\n服务通常是是用后台协程中的无限循环实现的，在循环中使用 `select` 获取并处理通道中的数据：\n\n```go\n// Backend goroutine.\nfunc backend() {\n\tfor {\n\t\tselect {\n\t\tcase cmd := <-ch1:\n\t\t\t// Handle ...\n\t\tcase cmd := <-ch2:\n\t\t\t...\n\t\tcase cmd := <-chStop:\n\t\t\t// stop server\n\t\t}\n\t}\n}\n```\n\n在程序的其他地方给通道 `ch1`，`ch2` 发送数据，比如：通道 `stop` 用来清理结束服务程序。\n\n另一种方式（但是不太灵活）就是（客户端）在 `chRequest` 上提交请求，后台协程循环这个通道，使用 `switch` 根据请求的行为来分别处理：\n\n```go\nfunc backend() {\n\tfor req := range chRequest {\n\t\tswitch req.Subjext() {\n\t\t\tcase A1:  // Handle case ...\n\t\t\tcase A2:  // Handle case ...\n\t\t\tdefault:\n\t\t\t  // Handle illegal request ..\n\t\t\t  // ...\n\t\t}\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：通道的同步：关闭通道-测试阻塞的通道\n- 下一节：通道，超时和计时器（Ticker）",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/6a26ff381e23bce4.jpg"
+  },
+  {
+    "id": "g-waytogo5-17",
+    "title": "14.5 通道、超时和计时器（Ticker）",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "time 包中有一些有趣的功能可以和通道组合使用。 其中就包含了 time.Ticker 结构体，这个对象以指定的时间间隔重复的向通道 C 发送时间值： 时间间隔的单位是 ns （",
+    "content": "# 14.5 通道、超时和计时器（Ticker）\n\n`time` 包中有一些有趣的功能可以和通道组合使用。\n\n其中就包含了 `time.Ticker` 结构体，这个对象以指定的时间间隔重复的向通道 `C` 发送时间值：\n\n```go\ntype Ticker struct {\n    C <-chan Time // the channel on which the ticks are delivered.\n    // contains filtered or unexported fields\n    ...\n}\n```\n\n时间间隔的单位是 `ns`（纳秒，`int64`），在工厂函数 `time.NewTicker` 中以 `Duration` 类型的参数传入：`func NewTicker(dur) *Ticker`。\n\n在协程周期性的执行一些事情（打印状态日志，输出，计算等等）的时候非常有用。\n\n调用 `Stop()` 使计时器停止，在 `defer` 语句中使用。这些都很好地适应 `select` 语句:\n\n```go\nticker := time.NewTicker(updateInterval)\ndefer ticker.Stop()\n...\nselect {\ncase u:= <-ch1:\n    ...\ncase v:= <-ch2:\n    ...\ncase <-ticker.C:\n    logState(status) // call some logging function logState\ndefault: // no value ready to be received\n    ...\n}\n```\n\n`time.Tick()` 函数声明为 `Tick(d Duration) <-chan Time`，当你想返回一个通道而不必关闭它的时候这个函数非常有用：它以 `d` 为周期给返回的通道发送时间，`d` 是纳秒数。如果需要，像下边的代码一样，可以限制处理频率（函数 `client.Call()` 是一个 RPC 调用，这里暂不赘述（参见第 15.9 节））：\n\n```go\nimport \"time\"\n\nrate_per_sec := 10\nvar dur Duration = 1e9 / rate_per_sec\nchRate := time.Tick(dur) // a tick every 1/10th of a second\nfor req := range requests {\n    <- chRate // rate limit our Service.Method RPC calls\n    go client.Call(\"Service.Method\", req, ...)\n}\n```\n\n这样只会按照指定频率处理请求：`chRate` 阻塞了更高的频率。每秒处理的频率可以根据机器负载（和/或）资源的情况而增加或减少。\n\n问题 14.1：扩展上边的代码，思考如何承载周期请求数的暴增（提示：使用带缓冲通道和计时器对象）。\n\n定时器 (`Timer`)  结构体看上去和计时器 (`Ticker`) 结构体的确很像（构造为 `NewTimer(d Duration)`），但是它只发送一次时间，在 `Dration d` 之后。\n\n还有 `time.After(d)` 函数，声明如下：\n\n```go\nfunc After(d Duration) <-chan Time\n```\n\n在 `Duration d` 之后，当前时间被发到返回的通道；所以它和 `NewTimer(d).C` 是等价的；它类似 `Tick()`，但是 `After()` 只发送一次时间。下边有个很具体的示例，很好的阐明了 `select` 中 `default` 的作用：\n\n示例 14.11：timer_goroutine.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\ttick := time.Tick(1e8)\n\tboom := time.After(5e8)\n\tfor {\n\t\tselect {\n\t\tcase <-tick:\n\t\t\tfmt.Println(\"tick.\")\n\t\tcase <-boom:\n\t\t\tfmt.Println(\"BOOM!\")\n\t\t\treturn\n\t\tdefault:\n\t\t\tfmt.Println(\"    .\")\n\t\t\ttime.Sleep(5e7)\n\t\t}\n\t}\n}\n```\n\n输出：\n\n```\n    .\n    .\ntick.\n    .\n    .\ntick.\n    .\n    .\ntick.\n    .\n    .\ntick.\n    .\n    .\ntick.\nBOOM!\n```\n\n**习惯用法：简单超时模式**\n\n要从通道 `ch` 中接收数据，但是最多等待 1 秒。先创建一个信号通道，然后启动一个 `lambda` 协程，协程在给通道发送数据之前是休眠的：\n\n```go\ntimeout := make(chan bool, 1)\ngo func() {\n        time.Sleep(1e9) // one second\n        timeout <- true\n}()\n```\n\n然后使用 `select` 语句接收 `ch` 或者 `timeout` 的数据：如果 `ch` 在 1 秒内没有收到数据，就选择到了 `time` 分支并放弃了 `ch` 的读取。\n\n```go\nselect {\n    case <-ch:\n        // a read from ch has occured\n    case <-timeout:\n        // the read from ch has timed out\n        break\n}\n```\n\n第二种形式：取消耗时很长的同步调用\n\n也可以使用 `time.After()` 函数替换 `timeout-channel`。可以在 `select` 中通过 `time.After()` 发送的超时信号来停止协程的执行。以下代码，在 `timeoutNs` 纳秒后执行 `select` 的 `timeout` 分支后，执行 `client.Call` 的协程也随之结束，不会给通道 `ch` 返回值：\n\n```go\nch := make(chan error, 1)\ngo func() { ch <- client.Call(\"Service.Method\", args, &reply) } ()\nselect {\ncase resp := <-ch\n    // use resp and reply\ncase <-time.After(timeoutNs):\n    // call timed out\n    break\n}\n```\n\n注意缓冲大小设置为 `1` 是必要的，可以避免协程死锁以及确保超时的通道可以被垃圾回收。此外，需要注意在有多个 `case` 符合条件时， `select` 对 `case` 的选择是伪随机的，如果上面的代码稍作修改如下，则 `select` 语句可能不会在定时器超时信号到来时立刻选中 `time.After(timeoutNs)` 对应的 `case`，因此协程可能不会严格按照定时器设置的时间结束。\n\n```go\nch := make(chan int, 1)\ngo func() { for { ch <- 1 } } ()\nL:\nfor {\n    select {\n    case <-ch:\n        // do something\n    case <-time.After(timeoutNs):\n        // call timed out\n        break L\n    }\n}\n```\n\n第三种形式：假设程序从多个复制的数据库同时读取。只需要一个答案，需要接收首先到达的答案，`Query` 函数获取数据库的连接切片并请求。并行请求每一个数据库并返回收到的第一个响应：\n\n```go\nfunc Query(conns []Conn, query string) Result {\n    ch := make(chan Result, 1)\n    for _, conn := range conns {\n        go func(c Conn) {\n            select {\n            case ch <- c.DoQuery(query):\n            default:\n            }\n        }(conn)\n    }\n    return <- ch\n}\n```\n\n再次声明，结果通道 `ch` 必须是带缓冲的：以保证第一个发送进来的数据有地方可以存放，确保放入的首个数据总会成功，所以第一个到达的值会被获取而与执行的顺序无关。正在执行的协程可以总是可以使用 `runtime.Goexit()` 来停止。\n\n在应用中缓存数据：\n\n应用程序中用到了来自数据库（或者常见的数据存储）的数据时，经常会把数据缓存到内存中，因为从数据库中获取数据的操作代价很高；如果数据库中的值不发生变化就没有问题。但是如果值有变化，我们需要一个机制来周期性的从数据库重新读取这些值：缓存的值就不可用（过期）了，而且我们也不希望用户看到陈旧的数据。\n\n## 链接\n\n- 目录\n- 上一节：使用select切换协程\n- 下一节：协程和恢复（recover）",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/69fe3630106a3736.jpg"
+  },
+  {
+    "id": "g-waytogo5-18",
+    "title": "14.6 协程和恢复 (recover)",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "一个用到 recover() 的程序（参见第 13.3 节停掉了服务器内部一个失败的协程而不影响其他协程的工作。 上边的代码，如果 do(work) 发生 panic() ，错误会",
+    "content": "# 14.6 协程和恢复 (recover)\n\n一个用到 `recover()` 的程序（参见第 13.3 节停掉了服务器内部一个失败的协程而不影响其他协程的工作。\n\n```go\nfunc server(workChan <-chan *Work) {\n    for work := range workChan {\n        go safelyDo(work)   // start the goroutine for that work\n    }\n}\n\nfunc safelyDo(work *Work) {\n    defer func() {\n        if err := recover(); err != nil {\n            log.Printf(\"Work failed with %s in %v\", err, work)\n        }\n    }()\n    do(work)\n}\n```\n\n上边的代码，如果 `do(work)` 发生 `panic()`，错误会被记录且协程会退出并释放，而其他协程不受影响。\n\n因为 `recover()` 总是返回 `nil`，除非直接在 `defer` 修饰的函数中调用，`defer` 修饰的代码可以调用那些自身可以使用 `panic()` 和 `recover()` 避免失败的库例程（库函数）。举例，`safelyDo()` 中 `defer` 修饰的函数可能在调用 `recover()` 之前就调用了一个 `logging()` 函数，panicking 状态不会影响 `logging()` 代码的运行。因为加入了恢复模式，函数 `do()`（以及它调用的任何东西）可以通过调用 `panic()` 来摆脱不好的情况。但是恢复是在 panicking 的协程内部的：不能被另外一个协程恢复。\n\n## 链接\n\n- 目录\n- 上一节：通道，超时和计时器\n- 下一节：对比新旧模型：任务和工作",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/ab33e16ea233c386.jpg"
+  },
+  {
+    "id": "g-waytogo5-19",
+    "title": "14.7 新旧模型对比：任务和 worker",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "假设我们需要处理很多任务；一个 worker 处理一项任务。任务可以被定义为一个结构体（具体的细节在这里并不重要）： 旧模式：使用共享内存进行同步 由各个任务组成的任务池共享内存；",
+    "content": "# 14.7 新旧模型对比：任务和 worker\n\n假设我们需要处理很多任务；一个 worker 处理一项任务。任务可以被定义为一个结构体（具体的细节在这里并不重要）：\n\n```go\ntype Task struct {\n    // some state\n}\n```\n\n旧模式：使用共享内存进行同步\n\n由各个任务组成的任务池共享内存；为了同步各个 worker 以及避免资源竞争，我们需要对任务池进行加锁保护：\n\n```go\n    type Pool struct {\n        Mu      sync.Mutex\n        Tasks   []*Task\n    }\n```\n`sync.Mutex`（参见9.3）是互斥锁：它用来在代码中保护临界区资源：同一时间只有一个 go 协程 (goroutine) 可以进入该临界区。如果出现了同一时间多个 go 协程都进入了该临界区，则会产生竞争：`Pool` 结构就不能保证被正确更新。在传统的模式中（经典的面向对象的语言中应用得比较多，比如 C++，JAVA，C#），worker 代码可能这样写：\n\n```go\nfunc Worker(pool *Pool) {\n    for {\n        pool.Mu.Lock()\n        // begin critical section:\n        task := pool.Tasks[0]        // take the first task\n        pool.Tasks = pool.Tasks[1:]  // update the pool of tasks\n        // end critical section\n        pool.Mu.Unlock()\n        process(task)\n    }\n}\n```\n\n这些 worker 有许多都可以并发执行；他们可以在 go 协程中启动。一个 worker 先将 `pool` 锁定，从 `pool` 获取第一项任务，再解锁和处理任务。加锁保证了同一时间只有一个 go 协程可以进入到 `pool` 中：一项任务有且只能被赋予一个 worker 。如果不加锁，则工作协程可能会在 `task:=pool.Tasks[0]` 发生切换，导致 `pool.Tasks=pool.Tasks[1:]` 结果异常：一些 worker 获取不到任务，而一些任务可能被多个 worker 得到。加锁实现同步的方式在工作协程比较少时可以工作得很好，但是当工作协程数量很大，任务量也很多时，处理效率将会因为频繁的加锁/解锁开销而降低。当工作协程数增加到一个阈值时，程序效率会急剧下降，这就成为了瓶颈。\n\n新模式：使用通道\n\n使用通道进行同步：使用一个通道接受需要处理的任务，一个通道接受处理完成的任务（及其结果）。worker 在协程中启动，其数量 `N` 应该根据任务数量进行调整。\n\n主线程扮演着 Master 节点角色，可能写成如下形式：\n\n```go\n    func main() {\n        pending, done := make(chan *Task), make(chan *Task)\n        go sendWork(pending)       // put tasks with work on the channel\n        for i := 0; i < N; i++ {   // start N goroutines to do work\n            go Worker(pending, done)\n        }\n        consumeWork(done)          // continue with the processed tasks\n    }\n```\n\nworker 的逻辑比较简单：从 `pending` 通道拿任务，处理后将其放到 `done` 通道中：\n\n```go\n    func Worker(in, out chan *Task) {\n        for {\n            t := <-in\n            process(t)\n            out <- t\n        }\n    }\n```\n\n这里并不使用锁：从通道得到新任务的过程没有任何竞争。随着任务数量增加，worker 数量也应该相应增加，同时性能并不会像第一种方式那样下降明显。在 `pending` 通道中存在一份任务的拷贝，第一个 worker 从 `pending` 通道中获得第一个任务并进行处理，这里并不存在竞争（对一个通道读数据和写数据的整个过程是原子性的：参见 14.2.2）。某一个任务会在哪一个 worker 中被执行是不可知的，反过来也是。worker 数量的增多也会增加通信的开销，这会对性能有轻微的影响。\n\n从这个简单的例子中可能很难看出第二种模式的优势，但含有复杂锁运用的程序不仅在编写上显得困难，也不容易编写正确，使用第二种模式的话，就无需考虑这么复杂的东西了。\n\n因此，第二种模式对比第一种模式而言，不仅性能是一个主要优势，而且还有个更大的优势：代码显得更清晰、更优雅。一个更符合 go 语言习惯的 worker 写法：\n\n**IDIOM: Use an in- and out-channel instead of locking**\n\n```go\n    func Worker(in, out chan *Task) {\n        for {\n            t := <-in\n            process(t)\n            out <- t\n        }\n    }\n```\n\n对于任何可以建模为 Master-Worker 范例的问题，一个类似于 worker 使用通道进行通信和交互、Master 进行整体协调的方案都能完美解决。如果系统部署在多台机器上，各个机器上执行 Worker 协程，Master 和 Worker 之间使用 netchan 或者 RPC 进行通信（参见 15 章）。\n\n怎么选择是该使用锁还是通道？\n\n通道是一个较新的概念，本节我们着重强调了在 go 协程里通道的使用，但这并不意味着经典的锁方法就不能使用。go 语言让你可以根据实际问题进行选择：创建一个优雅、简单、可读性强、在大多数场景性能表现都能很好的方案。如果你的问题适合使用锁，也不要忌讳使用它。go 语言注重实用，什么方式最能解决你的问题就用什么方式，而不是强迫你使用一种编码风格。下面列出一个普遍的经验法则：\n\n* 使用锁的情景：\n    - 访问共享数据结构中的缓存信息\n    - 保存应用程序上下文和状态信息数据\n  \n* 使用通道的情景：\n    - 与异步操作的结果进行交互\n    - 分发任务\n    - 传递数据所有权\n\n当你发现你的锁使用规则变得很复杂时，可以反省使用通道会不会使问题变得简单些。\n\n## 链接\n\n- 目录\n- 上一节：协程和恢复（recover）\n- 下一节：惰性生成器实现",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/93f656d2fb2f0829.jpg"
+  },
+  {
+    "id": "g-waytogo5-20",
+    "title": "14.8 惰性生成器的实现",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "生成器是指当被调用时返回一个序列中下一个值的函数，例如： 生成器每次返回的是序列中下一个值而非整个序列；这种特性也称之为惰性求值：只在你需要时进行求值，同时保留相关变量资源（内存和",
+    "content": "# 14.8 惰性生成器的实现\n\n生成器是指当被调用时返回一个序列中下一个值的函数，例如：\n\n```go\n    generateInteger() => 0\n    generateInteger() => 1\n    generateInteger() => 2\n    ....\n```\n\n生成器每次返回的是序列中下一个值而非整个序列；这种特性也称之为惰性求值：只在你需要时进行求值，同时保留相关变量资源（内存和 CPU）：这是一项在需要时对表达式进行求值的技术。例如，生成一个无限数量的偶数序列：要产生这样一个序列并且在一个一个的使用可能会很困难，而且内存会溢出！但是一个含有通道和 go 协程的函数能轻易实现这个需求。\n\n在 14.12 的例子中，我们实现了一个使用 `int` 型通道来实现的生成器。通道被命名为 `yield` 和 `resume` ，这些词经常在协程代码中使用。\n\n示例 14.12 lazy_evaluation.go：\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n)\n\nvar resume chan int\n\nfunc integers() chan int {\n    yield := make(chan int)\n    count := 0\n    go func() {\n        for {\n            yield <- count\n            count++\n        }\n    }()\n    return yield\n}\n\nfunc generateInteger() int {\n    return <-resume\n}\n\nfunc main() {\n    resume = integers()\n    fmt.Println(generateInteger())  //=> 0\n    fmt.Println(generateInteger())  //=> 1\n    fmt.Println(generateInteger())  //=> 2    \n}\n```\n\n有一个细微的区别是从通道读取的值可能会是稍早前产生的，并不是在程序被调用时生成的。如果确实需要这样的行为，就得实现一个请求响应机制。当生成器生成数据的过程是计算密集型且各个结果的顺序并不重要时，那么就可以将生成器放入到 go 协程实现并行化。但是得小心，使用大量的 go 协程的开销可能会超过带来的性能增益。\n\n这些原则可以概括为：通过巧妙地使用空接口、闭包和高阶函数，我们能实现一个通用的惰性生产器的工厂函数 `BuildLazyEvaluator`（这个应该放在一个工具包中实现）。工厂函数需要一个函数和一个初始状态作为输入参数，返回一个无参、返回值是生成序列的函数。传入的函数需要计算出下一个返回值以及下一个状态参数。在工厂函数中，创建一个通道和无限循环的 go 协程。返回值被放到了该通道中，返回函数稍后被调用时从该通道中取得该返回值。每当取得一个值时，下一个值即被计算。在下面的例子中，定义了一个 `evenFunc` 函数，其是一个惰性生成函数：在 `main()` 函数中，我们创建了前 10 个偶数，每个都是通过调用 `even()` 函数取得下一个值的。为此，我们需要在 `BuildLazyIntEvaluator` 函数中具体化我们的生成函数，然后我们能够基于此做出定义。\n\n示例 14.13 general_lazy_evalution1.go：\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n)\n\ntype Any interface{}\ntype EvalFunc func(Any) (Any, Any)\n\nfunc main() {\n    evenFunc := func(state Any) (Any, Any) {\n        os := state.(int)\n        ns := os + 2\n        return os, ns\n    }\n    \n    even := BuildLazyIntEvaluator(evenFunc, 0)\n    \n    for i := 0; i < 10; i++ {\n        fmt.Printf(\"%vth even: %v\\n\", i, even())\n    }\n}\n\nfunc BuildLazyEvaluator(evalFunc EvalFunc, initState Any) func() Any {\n    retValChan := make(chan Any)\n    loopFunc := func() {\n        var actState Any = initState\n        var retVal Any\n        for {\n            retVal, actState = evalFunc(actState)\n            retValChan <- retVal\n        }\n    }\n    retFunc := func() Any {\n        return <- retValChan\n    }\n    go loopFunc()\n    return retFunc\n}\n\nfunc BuildLazyIntEvaluator(evalFunc EvalFunc, initState Any) func() int {\n    ef := BuildLazyEvaluator(evalFunc, initState)\n    return func() int {\n        return ef().(int)\n    }\n}\n```\n\n输出：\n```go\n0th even: 0\n1th even: 2\n2th even: 4\n3th even: 6\n4th even: 8\n5th even: 10\n6th even: 12\n7th even: 14\n8th even: 16\n9th even: 18\n```\n\n练习14.12：general_lazy_evaluation2.go\n通过使用 14.12 中工厂函数生成前 10 个斐波那契数\n\n提示：因为斐波那契数增长很迅速，使用 `uint64` 类型。\n注：这种计算通常被定义为递归函数，但是在没有尾递归的语言中，例如 go 语言，这可能会导致栈溢出，但随着 go 语言中堆栈可扩展的优化，这个问题就不那么严重。这里的诀窍是使用了惰性求值。gccgo 编译器在某些情况下会实现尾递归。\n\n## 链接\n\n- 目录\n- 上一节：新旧模型对比：任务和worker\n- 下一节：实现 Futures 模式",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/cf7f8e24c9504261.jpg"
+  },
+  {
+    "id": "g-waytogo5-21",
+    "title": "14.9 实现 Futures 模式",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "所谓 Futures 就是指：有时候在你使用某一个值之前需要先对其进行计算。这种情况下，你就可以在另一个处理器上进行该值的计算，到使用时，该值就已经计算完毕了。 Futures 模",
+    "content": "# 14.9 实现 Futures 模式\n\n所谓 Futures 就是指：有时候在你使用某一个值之前需要先对其进行计算。这种情况下，你就可以在另一个处理器上进行该值的计算，到使用时，该值就已经计算完毕了。\n\nFutures 模式通过闭包和通道可以很容易实现，类似于生成器，不同地方在于 Futures 需要返回一个值。\n\n参考条目文献给出了一个很精彩的例子：假设我们有一个矩阵类型，我们需要计算两个矩阵 A 和 B 乘积的逆，首先我们通过函数 `Inverse(M)` 分别对其进行求逆运算，再将结果相乘。如下函数 `InverseProduct()` 实现了如上过程：\n\n```go\nfunc InverseProduct(a Matrix, b Matrix) {\n    a_inv := Inverse(a)\n    b_inv := Inverse(b)\n    return Product(a_inv, b_inv)\n}\n```\n\n在这个例子中，`a` 和 `b` 的求逆矩阵需要先被计算。那么为什么在计算 `b` 的逆矩阵时，需要等待 `a` 的逆计算完成呢？显然不必要，这两个求逆运算其实可以并行执行的。换句话说，调用 `Product()` 函数只需要等到 `a_inv` 和 `b_inv` 的计算完成。如下代码实现了并行计算方式：\n\n```go\nfunc InverseProduct(a Matrix, b Matrix) {\n    a_inv_future := InverseFuture(a)   // start as a goroutine\n    b_inv_future := InverseFuture(b)   // start as a goroutine\n    a_inv := <-a_inv_future\n    b_inv := <-b_inv_future\n    return Product(a_inv, b_inv)\n}\n```\n\n`InverseFuture()` 函数以 `goroutine` 的形式起了一个闭包，该闭包会将矩阵求逆结果放入到 `future` 通道中：\n\n```go\nfunc InverseFuture(a Matrix) chan Matrix {\n    future := make(chan Matrix)\n    go func() {\n        future <- Inverse(a)\n    }()\n    return future\n}\n```\n\n当开发一个计算密集型库时，使用 Futures 模式设计 API 接口是很有意义的。在你的包使用 Futures 模式，且能保持友好的 API 接口。此外，Futures 可以通过一个异步的 API 暴露出来。这样你可以以最小的成本将包中的并行计算移到用户代码中。（参见参考文件 18：`http://www.golangpatterns.info/concurrency/futures`）\n\n## 链接\n\n- 目录\n- 上一节：惰性生成器的实现\n- 下一节：复用",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/wallpaper/27e81b957933b0c0.jpg"
+  },
+  {
+    "id": "g-waytogo5-23",
+    "title": "15.1 tcp 服务器",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "这部分我们将使用 TCP 协议和在 14 章讲到的协程范式编写一个简单的客户端 服务器应用，一个 (web) 服务器应用需要响应众多客户端的并发请求：Go 会为每一个客户端产生一个",
+    "content": "# 15.1 tcp 服务器\n\n这部分我们将使用 TCP 协议和在 14 章讲到的协程范式编写一个简单的客户端-服务器应用，一个 (web) 服务器应用需要响应众多客户端的并发请求：Go 会为每一个客户端产生一个协程用来处理请求。我们需要使用 net 包中网络通信的功能。它包含了处理 TCP/IP 以及 UDP 协议、域名解析等方法。\n\n服务器端代码是一个单独的文件：\n\n示例 15.1 server.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"net\"\n)\n\nfunc main() {\n\tfmt.Println(\"Starting the server ...\")\n\t// 创建 listener\n\tlistener, err := net.Listen(\"tcp\", \"localhost:50000\")\n\tif err != nil {\n\t\tfmt.Println(\"Error listening\", err.Error())\n\t\treturn //终止程序\n\t}\n\t// 监听并接受来自客户端的连接\n\tfor {\n\t\tconn, err := listener.Accept()\n\t\tif err != nil {\n\t\t\tfmt.Println(\"Error accepting\", err.Error())\n\t\t\treturn // 终止程序\n\t\t}\n\t\tgo doServerStuff(conn)\n\t}\n}\n\nfunc doServerStuff(conn net.Conn) {\n\tfor {\n\t\tbuf := make([]byte, 512)\n\t\tlen, err := conn.Read(buf)\n\t\tif err != nil {\n\t\t\tfmt.Println(\"Error reading\", err.Error())\n\t\t\treturn //终止程序\n\t\t}\n\t\tfmt.Printf(\"Received data: %v\", string(buf[:len]))\n\t}\n}\n```\n\n在 `main()` 中创建了一个 `net.Listener` 类型的变量 `listener`，他实现了服务器的基本功能：用来监听和接收来自客户端的请求（基于 TCP 协议下，位于 IP 地址为 127.0.0.1、端口为 50000 的 localhost）。`Listen()` 函数可以返回一个 `error` 类型的错误变量。用一个无限 `for` 循环的 `listener.Accept()` 来等待客户端的请求。客户端的请求将产生一个 `net.Conn` 类型的连接变量。然后一个独立的协程使用这个连接执行 `doServerStuff()`，开始使用一个 512 字节的缓冲 `data` 来读取客户端发送来的数据，并且把它们打印到服务器的终端，`len()` 获取客户端发送的数据字节数；当客户端发送的所有数据都被读取完成时，协程就结束了。这段程序会为每一个客户端连接创建一个独立的协程。必须先运行服务器代码，再运行客户端代码。\n\n客户端代码写在另一个文件 client.go 中：\n\n示例 15.2 client.go\n\n```go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"net\"\n\t\"os\"\n\t\"strings\"\n)\n\nfunc main() {\n\t//打开连接:\n\tconn, err := net.Dial(\"tcp\", \"localhost:50000\")\n\tif err != nil {\n\t\t//由于目标计算机积极拒绝而无法创建连接\n\t\tfmt.Println(\"Error dialing\", err.Error())\n\t\treturn // 终止程序\n\t}\n\n\tinputReader := bufio.NewReader(os.Stdin)\n\tfmt.Println(\"First, what is your name?\")\n\tclientName, _ := inputReader.ReadString('\\n')\n\t// fmt.Printf(\"CLIENTNAME %s\", clientName)\n\ttrimmedClient := strings.Trim(clientName, \"\\r\\n\") // Windows 平台下用 \"\\r\\n\"，Linux平台下使用 \"\\n\"\n\t// 给服务器发送信息直到程序退出：\n\tfor {\n\t\tfmt.Println(\"What to send to the server? Type Q to quit.\")\n\t\tinput, _ := inputReader.ReadString('\\n')\n\t\ttrimmedInput := strings.Trim(input, \"\\r\\n\")\n\t\t// fmt.Printf(\"input:--%s--\", input)\n\t\t// fmt.Printf(\"trimmedInput:--%s--\", trimmedInput)\n\t\tif trimmedInput == \"Q\" {\n\t\t\treturn\n\t\t}\n\t\t_, err = conn.Write([]byte(trimmedClient + \" says: \" + trimmedInput))\n\t}\n}\n```\n客户端通过 `net.Dial()` 创建了一个和服务器之间的连接。\n\n它通过无限循环从 `os.Stdin` 接收来自键盘的输入，直到输入了“Q”。注意裁剪 `\\r` 和 `\\n` 字符（仅 Windows 平台需要）。裁剪后的输入被 `connection` 的 `Write()` 方法发送到服务器。\n\n当然，服务器必须先启动好，如果服务器并未开始监听，客户端是无法成功连接的。\n\n如果在服务器没有开始监听的情况下运行客户端程序，客户端会停止并打印出以下错误信息：\n\n```\ndial tcp [::1]:xxxx: connectex: No connection could be made because the target machine actively refused it.\n```\n\n打开命令提示符并转到服务器和客户端代码所在的目录，输入 `go run server.go`，接下来控制台出现以下信息：`Starting the server ...`\n\n在 Windows 系统中，我们可以通过 CTRL+C 停止程序。\n\n然后开启 2 个或者 3 个独立的控制台窗口，分别启动客户端程序\n\n以下是服务器的输出：\n\n```\nStarting the Server ...\nReceived data: IVO says: Hi Server, what's up ?\nReceived data: CHRIS says: Are you busy server ?\nReceived data: MARC says: Don't forget our appointment tomorrow !\n```\n当客户端输入“Q”并结束程序时，服务器会输出以下信息：\n\n```\nError reading WSARecv tcp 127.0.0.1:50000: The specified network name is no longer available.\n```\n在网络编程中 `net.Dial()` 函数是非常重要的，一旦你连接到远程系统，函数就会返回一个 `Conn` 类型的接口，我们可以用它发送和接收数据。`Dial()` 函数简洁地抽象了网络层和传输层。所以不管是 IPv4 还是 IPv6，TCP 或者 UDP 都可以使用这个公用接口。\n\n以下示例先使用 TCP 协议连接远程 80 端口，然后使用 UDP 协议连接，最后使用 TCP 协议连接 IPv6 地址：\n\n示例 15.3 dial.go\n\n```go\n// make a connection with www.example.org:\npackage main\n\nimport (\n\t\"fmt\"\n\t\"net\"\n\t\"os\"\n)\n\nfunc main() {\n\tconn, err := net.Dial(\"tcp\", \"192.0.32.10:80\") // tcp ipv4\n\tcheckConnection(conn, err)\n\tconn, err = net.Dial(\"udp\", \"192.0.32.10:80\") // udp\n\tcheckConnection(conn, err)\n\tconn, err = net.Dial(\"tcp\", \"[2620:0:2d0:200::10]:80\") // tcp ipv6\n\tcheckConnection(conn, err)\n}\nfunc checkConnection(conn net.Conn, err error) {\n\tif err != nil {\n\t\tfmt.Printf(\"error %v connecting!\", err)\n\t\tos.Exit(1)\n\t}\n\tfmt.Printf(\"Connection is made with %v\\n\", conn)\n}\n```\n下边也是一个使用 `net` 包从 socket 中打开，写入，读取数据的例子：\n\n示例 15.4 socket.go\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io\"\n\t\"net\"\n)\n\nfunc main() {\n\tvar (\n\t\thost          = \"www.apache.org\"\n\t\tport          = \"80\"\n\t\tremote        = host + \":\" + port\n\t\tmsg    string = \"GET / \\n\"\n\t\tdata          = make([]uint8, 4096)\n\t\tread          = true\n\t\tcount         = 0\n\t)\n\t// 创建一个 socket\n\tcon, err := net.Dial(\"tcp\", remote)\n\t// 发送我们的消息，一个 http GET 请求\n\tio.WriteString(con, msg)\n\t// 读取服务器的响应\n\tfor read {\n\t\tcount, err = con.Read(data)\n\t\tread = (err == nil)\n\t\tfmt.Printf(string(data[0:count]))\n\t}\n\tcon.Close()\n}\n```\n\n**练习 15.1** \n\n编写新版本的客户端和服务器 (client1.go / server1.go)：\n\n*\t增加一个检查错误的函数 `checkError(error)`；讨论如下方案的利弊：为什么这个重构可能并没有那么理想？看看在 示例 15.14 中它是如何被解决的\n*\t使客户端可以通过发送一条命令 SH 来关闭服务器\n*\t让服务器可以保存已经连接的客户端列表（他们的名字）；当客户端发送 `WHO` 指令的时候，服务器将显示如下列表：\n```\nThis is the client list: 1:active, 0=inactive\nUser IVO is 1\nUser MARC is 1\nUser CHRIS is 1\n```\n注意：当服务器运行的时候，你无法编译/连接同一个目录下的源码来产生一个新的版本，因为 `server.exe` 正在被操作系统使用而无法被替换成新的版本。\n\n下边这个版本的 simple_tcp_server.go 从很多方面优化了第一个 tcp 服务器的示例 server.go 并且拥有更好的结构，它只用了 80 行代码！\n\n示例 15.5 simple_tcp_server.go：\n\n```go\n// Simple multi-thread/multi-core TCP server.\npackage main\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"net\"\n\t\"os\"\n)\n\nconst maxRead = 25\n\nfunc main() {\n\tflag.Parse()\n\tif flag.NArg() != 2 {\n\t\tpanic(\"usage: host port\")\n\t}\n\thostAndPort := fmt.Sprintf(\"%s:%s\", flag.Arg(0), flag.Arg(1))\n\tlistener := initServer(hostAndPort)\n\tfor {\n\t\tconn, err := listener.Accept()\n\t\tcheckError(err, \"Accept: \")\n\t\tgo connectionHandler(conn)\n\t}\n}\n\nfunc initServer(hostAndPort string) *net.TCPListener {\n\tserverAddr, err := net.ResolveTCPAddr(\"tcp\", hostAndPort)\n\tcheckError(err, \"Resolving address:port failed: '\"+hostAndPort+\"'\")\n\tlistener, err := net.ListenTCP(\"tcp\", serverAddr)\n\tcheckError(err, \"ListenTCP: \")\n\tprintln(\"Listening to: \", listener.Addr().String())\n\treturn listener\n}\n\nfunc connectionHandler(conn net.Conn) {\n\tconnFrom := conn.RemoteAddr().String()\n\tprintln(\"Connection from: \", connFrom)\n\tsayHello(conn)\n\tfor {\n\t\tvar ibuf []byte = make([]byte, maxRead+1)\n\t\tlength, err := conn.Read(ibuf[0:maxRead])\n\t\tibuf[maxRead] = 0 // to prevent overflow\n\t\tswitch err {\n\t\tcase nil:\n\t\t\thandleMsg(length, err, ibuf)\n\t\tcase os.EAGAIN: // try again\n\t\t\tcontinue\n\t\tdefault:\n\t\t\tgoto DISCONNECT\n\t\t}\n\t}\nDISCONNECT:\n\terr := conn.Close()\n\tprintln(\"Closed connection: \", connFrom)\n\tcheckError(err, \"Close: \")\n}\n\nfunc sayHello(to net.Conn) {\n\tobuf := []byte{'L', 'e', 't', '\\'', 's', ' ', 'G', 'O', '!', '\\n'}\n\twrote, err := to.Write(obuf)\n\tcheckError(err, \"Write: wrote \"+string(wrote)+\" bytes.\")\n}\n\nfunc handleMsg(length int, err error, msg []byte) {\n\tif length > 0 {\n\t\tprint(\"<\", length, \":\")\n\t\tfor i := 0; ; i++ {\n\t\t\tif msg[i] == 0 {\n\t\t\t\tbreak\n\t\t\t}\n\t\t\tfmt.Printf(\"%c\", msg[i])\n\t\t}\n\t\tprint(\">\")\n\t}\n}\n\nfunc checkError(error error, info string) {\n\tif error != nil {\n\t\tpanic(\"ERROR: \" + info + \" \" + error.Error()) // terminate program\n\t}\n}\n```\n（**译者注：应该是由于 Go 版本的更新，会提示 os.EAGAIN undefined，修改后的代码：simple_tcp_server_v1.go**）\n\n都有哪些改进？\n\n*\t服务器地址和端口不再是硬编码，而是通过命令行参数传入，并通过 `flag` 包来读取这些参数。这里使用了 `flag.NArg()` 检查是否按照期望传入了 2 个参数：\n\n```go\nif flag.NArg() != 2 {\n\tpanic(\"usage: host port\")\n}\n```\n传入的参数通过 `fmt.Sprintf()` 函数格式化成字符串\n```go\nhostAndPort := fmt.Sprintf(\"%s:%s\", flag.Arg(0), flag.Arg(1))\n```\n*\t在 `initServer()` 函数中通过 `net.ResolveTCPAddr()` 得到了服务器地址和端口，这个函数最终返回了一个 `*net.TCPListener`\n*\t每一个连接都会以协程的方式运行 `connectionHandler()` 函数。函数首先通过 `conn.RemoteAddr()` 获取到客户端的地址并显示出来\n*\t它使用 `conn.Write()` 发送 Go 推广消息给客户端\n*\t它使用一个 25 字节的缓冲读取客户端发送的数据并一一打印出来。如果读取的过程中出现错误，代码会进入 `switch` 语句 `default` 分支，退出无限循环并关闭连接。如果是操作系统的 `EAGAIN` 错误，它会重试。\n*\t所有的错误检查都被重构在独立的函数 `checkError` 中，当错误产生时，利用错误上下文来触发 panic。\n\n在命令行中输入 `simple_tcp_server localhost 50000` 来启动服务器程序，然后在独立的命令行窗口启动一些 client.go 的客户端。当有两个客户端连接的情况下服务器的典型输出如下，这里我们可以看到每个客户端都有自己的地址：\n```\nE:\\Go\\GoBoek\\code examples\\chapter 14>simple_tcp_server localhost 50000\nListening to: 127.0.0.1:50000\nConnection from: 127.0.0.1:49346\n<25:Ivo says: Hi server, do y><12:ou hear me ?>\nConnection from: 127.0.0.1:49347\n<25:Marc says: Do you remembe><25:r our first meeting serve><2:r?>\n```\n\n**net.Error：**\n`net` 包返回的错误类型遵循惯例为 `error`，但有些错误实现包含额外的方法，他们被定义为 `net.Error` 接口：\n```go\npackage net\n\ntype Error interface {\n\tTimeout() bool // 错误是否超时\n\tTemporary() bool // 是否是临时错误\n}\n```\n通过类型断言，客户端代码可以测试 `net.Error`，从而区分是临时发生的还是必然会出现的错误。举例来说，一个网络爬虫程序在遇到临时发生的错误时可能会休眠或者重试，如果是一个必然发生的错误，则他会放弃继续执行。\n```go\n// in a loop - some function returns an error err\nif nerr, ok := err.(net.Error); ok && nerr.Temporary() {\n\ttime.Sleep(1e9)\n\tcontinue // try again\n}\nif err != nil {\n\tlog.Fatal(err)\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：网络、模版与网页应用\n- 下一节：一个简单的网页服务器",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/2f90e0a036d67d19.jpg"
+  },
+  {
+    "id": "g-waytogo5-24",
+    "title": "15.10 基于网络的通道 netchan",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "备注：Go 团队决定改进并重新打造 netchan 包的现有版本，它已被移至 old/netchan 。 old/ 目录用于存放过时的包代码，它们不会成为 Go 1.x 的一部分。",
+    "content": "# 15.10 基于网络的通道 netchan\n\n备注：Go 团队决定改进并重新打造 `netchan` 包的现有版本，它已被移至 `old/netchan`。`old/` 目录用于存放过时的包代码，它们不会成为 Go 1.x 的一部分。本节仅出于向后兼容性讨论 `netchan` 包的概念。\n\n一项和 `rpc` 密切相关的技术是基于网络的通道。类似 14 章所使用的通道都是本地的，它们仅存在于被执行的机器内存空间中。`netchan` 包实现了类型安全的网络化通道：它允许一个通道两端出现由网络连接的不同计算机。其实现原理是，在其中一台机器上将传输数据发送到通道中，那么就可以被另一台计算机上同类型的通道接收。一个导出器 (`exporter`) 会按名称发布（一组）通道。导入器 (`importer`) 连接到导出的机器，并按名称导入这些通道。之后，两台机器就可按通常的方式来使用通道。网络通道不是同步的，它们类似于带缓存的通道。\n\n发送端示例代码如下：\n```go\nexp, err := netchan.NewExporter(\"tcp\", \"netchanserver.mydomain.com:1234\")\nif err != nil {\n\tlog.Fatalf(\"Error making Exporter: %v\", err)\n}\nch := make(chan myType)\nerr := exp.Export(\"sendmyType\", ch, netchan.Send)\nif err != nil {\n\tlog.Fatalf(\"Send Error: %v\", err)\n}\n```\n\n接收端示例代码如下：\n```go\nimp, err := netchan.NewImporter(\"tcp\", \"netchanserver.mydomain.com:1234\")\nif err != nil {\n\tlog.Fatalf(\"Error making Importer: %v\", err)\n}\nch := make(chan myType)\nerr = imp.Import(\"sendmyType\", ch, netchan.Receive)\nif err != nil {\n\tlog.Fatalf(\"Receive Error: %v\", err)\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：用 rpc 实现远程过程调用\n- 下一节：与 websocket 通信",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/0c44a11167aa0c23.jpg"
+  },
+  {
+    "id": "g-waytogo5-25",
+    "title": "15.11 与 websocket 通信",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "备注：Go 团队决定从 Go 1 起，将 websocket 包移出 Go 标准库，转移到 code.google.com/p/go 下的子项目 websocket ，同时预计近期",
+    "content": "# 15.11 与 websocket 通信\n\n备注：Go 团队决定从 Go 1 起，将 `websocket`  包移出 Go 标准库，转移到 `code.google.com/p/go` 下的子项目 `websocket`，同时预计近期将做重大更改。\n\n`import \"websocket\"` 这行要改成：\n```go\nimport websocket \"code.google.com/p/go/websocket\"\n```\n\n与 http 协议相反，websocket 是通过客户端与服务器之间的对话，建立的基于单个持久连接的协议。然而在其他方面，其功能几乎与 http 相同。在示例 15.24 中，我们有一个典型的 websocket 服务器，他会自启动并监听 websocket 客户端的连入。示例 15.25 演示了 5 秒后会终止的客户端代码。当连接到来时，服务器先打印 `new connection`，当客户端停止时，服务器打印 `EOF => closing connection`。\n\n示例 15.24 websocket_server.go\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"websocket\"\n)\n\nfunc server(ws *websocket.Conn) {\n\tfmt.Printf(\"new connection\\n\")\n\tbuf := make([]byte, 100)\n\tfor {\n\t\tif _, err := ws.Read(buf); err != nil {\n\t\t\tfmt.Printf(\"%s\", err.Error())\n\t\t\tbreak\n\t\t}\n\t}\n\tfmt.Printf(\" => closing connection\\n\")\n\tws.Close()\n}\n\nfunc main() {\n\thttp.Handle(\"/websocket\", websocket.Handler(server))\n\terr := http.ListenAndServe(\":12345\", nil)\n\tif err != nil {\n\t\tpanic(\"ListenAndServe: \" + err.Error())\n\t}\n}\n```\n\n示例 15.25 websocket_client.go\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n\t\"websocket\"\n)\n\nfunc main() {\n\tws, err := websocket.Dial(\"ws://localhost:12345/websocket\", \"\",\n\t\t\"http://localhost/\")\n\tif err != nil {\n\t\tpanic(\"Dial: \" + err.Error())\n\t}\n\tgo readFromServer(ws)\n\ttime.Sleep(5e9)\n    ws.Close()\n}\n\nfunc readFromServer(ws *websocket.Conn) {\n\tbuf := make([]byte, 1000)\n\tfor {\n\t\tif _, err := ws.Read(buf); err != nil {\n\t\t\tfmt.Printf(\"%s\\n\", err.Error())\n\t\t\tbreak\n\t\t}\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：基于网络的通道 netchan\n- 下一节：用 smtp 发送邮件",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/c20c604f333ea251.jpg"
+  },
+  {
+    "id": "g-waytogo5-26",
+    "title": "15.12 用 smtp 发送邮件",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "smtp 包实现了用于发送邮件的“简单邮件传输协议”（Simple Mail Transfer Protocol）。它有一个 Client 类型，代表一个连接到 SMTP 服务器的",
+    "content": "# 15.12 用 smtp 发送邮件\n\n`smtp` 包实现了用于发送邮件的“简单邮件传输协议”（Simple Mail Transfer Protocol）。它有一个 `Client` 类型，代表一个连接到 SMTP 服务器的客户端：\n\n- `Dial()` 方法返回一个已连接到 SMTP 服务器的客户端 `Client`\n- 设置 `Mail`（from，即发件人）和 `Rcpt`（to，即收件人）\n- `Data()` 方法返回一个用于写入数据的 `Writer`，这里利用 `buf.WriteTo(wc)` 写入\n\n示例 15.26 smtp.go\n```go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"log\"\n\t\"net/smtp\"\n)\n\nfunc main() {\n\t// Connect to the remote SMTP server.\n\tclient, err := smtp.Dial(\"mail.example.com:25\")\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\t// Set the sender and recipient.\n\tclient.Mail(\"sender@example.org\")\n\tclient.Rcpt(\"recipient@example.net\")\n\t// Send the email body.\n\twc, err := client.Data()\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tdefer wc.Close()\n\tbuf := bytes.NewBufferString(\"This is the email body.\")\n\tif _, err = buf.WriteTo(wc); err != nil {\n\t\tlog.Fatal(err)\n\t}\n}\n```\n\n如果需要认证，或有多个收件人时，也可以用 `SendMail()` 函数发送。它连接到地址为 `addr` 的服务器；如果可以，切换到 TLS（“传输层安全”加密和认证协议），并用 PLAIN 机制认证；然后以 `from` 作为发件人，`to` 作为收件人列表，`msg` 作为邮件内容，发出一封邮件：\n```go\nfunc SendMail(addr string, a Auth, from string, to []string, msg []byte) error\n```\n\n示例 15.27 smtp_auth.go\n```go\npackage main\n\nimport (\n\t\"log\"\n\t\"net/smtp\"\n)\n\nfunc main() {\n\t// Set up authentication information.\n\tauth := smtp.PlainAuth(\n\t\t\"\",\n\t\t\"user@example.com\",\n\t\t\"password\",\n\t\t\"mail.example.com\",\n\t)\n\t// Connect to the server, authenticate, set the sender and recipient,\n\t// and send the email all in one step.\n\terr := smtp.SendMail(\n\t\t\"mail.example.com:25\",\n\t\tauth,\n\t\t\"sender@example.org\",\n\t\t[]string{\"recipient@example.net\"},\n\t\t[]byte(\"This is the email body.\"),\n\t)\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n}\n```\n\n## 链接\n\n- 目录\n- 上一节：与 websocket 通信\n- 下一章：常见的陷阱与错误",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/89898d38fc29e52e.webp"
+  },
+  {
+    "id": "g-waytogo5-27",
+    "title": "15.2 一个简单的 web 服务器",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "http 是比 tcp 更高层的协议，它描述了网页服务器如何与客户端浏览器进行通信。Go 提供了 net/http 包，我们马上就来看下。先从一些简单的示例开始，首先编写一个“He",
+    "content": "# 15.2 一个简单的 web 服务器\n\nhttp 是比 tcp 更高层的协议，它描述了网页服务器如何与客户端浏览器进行通信。Go 提供了 `net/http` 包，我们马上就来看下。先从一些简单的示例开始，首先编写一个“Hello world!”网页服务器：查看示例 15.6\n\n我们引入了 `http` 包并启动了网页服务器，和 15.1 节的 `net.Listen(\"tcp\", \"localhost:50000\")` 函数的 tcp 服务器是类似的，使用 `http.ListenAndServe(\"localhost:8080\", nil)` 函数，如果成功会返回空，否则会返回一个错误（地址 `localhost` 部分可以省略，`8080` 是指定的端口号）。\n\n`http.URL` 用于表示网页地址，其中字符串属性 `Path` 用于保存 url 的路径；`http.Request` 描述了客户端请求，内含一个 `URL` 字段。\n\n如果 `req` 是来自 html 表单的 POST 类型请求，`“var1”` 是该表单中一个输入域的名称，那么用户输入的值就可以通过 Go 代码 `req.FormValue(\"var1\")` 获取到（见 15.4 节）。还有一种方法是先执行 `request.ParseForm()`，然后再获取 `request.Form[\"var1\"]` 的第一个返回参数，就像这样：\n```go\nvar1, found := request.Form[\"var1\"]\n```\n第二个参数 `found` 为 `true`。如果 `var1` 并未出现在表单中，`found` 就是 `false`。\n\n表单属性实际上是 `map[string][]string` 类型。网页服务器发送一个 `http.Response` 响应，它是通过 `http.ResponseWriter` 对象输出的，后者组装了 HTTP 服务器响应，通过对其写入内容，我们就将数据发送给了 HTTP 客户端。\n\n现在我们仍然要编写程序，以实现服务器必须做的事，即如何处理请求。这是通过 `http.HandleFunc()` 函数完成的。在这个例子中，当根路径“/”（url 地址是 `http://localhost:8080`）被请求的时候（或者这个服务器上的其他任意地址），`HelloServer()` 函数就被执行了。这个函数是 `http.HandlerFunc` 类型的，它们通常被命名为 Prefhandler，和某个路径前缀 Pref 匹配。\n\n`http.HandleFunc` 注册了一个处理函数（这里是 `HelloServer()`）来处理对应 `/` 的请求。\n\n`/` 可以被替换为其他更特定的 url，比如 `/create`，`/edit` 等等；你可以为每一个特定的 url 定义一个单独的处理函数。这个函数需要两个参数：第一个是 `ReponseWriter` 类型的 `w`；第二个是请求 `req`。程序向 `w` 写入了 `Hello` 和 `r.URL.Path[1:]` 组成的字符串：末尾的 `[1:]` 表示“创建一个从索引为 1 的字符到结尾的子切片”，用来丢弃路径开头的“/”，`fmt.Fprintf()` 函数完成了本次写入（见 12.8 节）；另一种可行的写法是 `io.WriteString(w, \"hello, world!\\n\")`。\n\n总结：第一个参数是请求的路径，第二个参数是当路径被请求时，需要调用的处理函数的引用。\n\n示例 15.6 hello_world_webserver.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n)\n\nfunc HelloServer(w http.ResponseWriter, req *http.Request) {\n\tfmt.Println(\"Inside HelloServer handler\")\n\tfmt.Fprintf(w, \"Hello,\"+req.URL.Path[1:])\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/\", HelloServer)\n\terr := http.ListenAndServe(\"localhost:8080\", nil)\n\tif err != nil {\n\t\tlog.Fatal(\"ListenAndServe: \", err.Error())\n\t}\n}\n```\n使用命令行启动程序，会打开一个命令窗口显示如下文字：\n```\nStarting Process E:/Go/GoBoek/code_examples/chapter_14/hello_world_webserver.exe...\n```\n\n然后打开浏览器并输入 url 地址：`http://localhost:8080/world`，浏览器就会出现文字：`Hello, world`，网页服务器会响应你在 `:8080/` 后边输入的内容。\n\n`fmt.Println()` 在服务器端控制台打印状态；在每个处理函数被调用时，把请求记录下来也许更为有用。\n\n注：\n1）前两行（没有错误处理代码）可以替换成以下写法：\n```go\nhttp.ListenAndServe(\":8080\", http.HandlerFunc(HelloServer))\n```\n\n2）`fmt.Fprint()` 和 `fmt.Fprintf()` 都是可以用来写入 `http.ResponseWriter` 的函数（他们实现了 `io.Writer`）。\n\n比如我们可以使用\n\n```go\nfmt.Fprintf(w, \"<h1>%s</h1><div>%s</div>\", title, body)\n```\n来构建一个非常简单的网页并插入 `title` 和 `body` 的值。\n\n如果你需要更多复杂的替换，使用模板包（见 15.7节）\n\n3）如果你需要使用安全的 https 连接，使用 `http.ListenAndServeTLS()` 代替 `http.ListenAndServe()`\n\n4）除了 `http.HandleFunc(\"/\", Hfunc)`，其中的 `HFunc` 是一个处理函数，签名为：\n\n```go\nfunc HFunc(w http.ResponseWriter, req *http.Request) {\n\t...\n}\n```\n也可以使用这种方式：`http.Handle(\"/\", http.HandlerFunc(HFunc))`\n\n`HandlerFunc` 只是定义了上述 `HFunc` 签名的别名：\n\n```go\ntype HandlerFunc func(ResponseWriter, *Request)\n```\n\n它是一个可以把普通的函数当做 HTTP 处理器 (`Handler`) 的适配器。如果函数 `f` 声明得合适，`HandlerFunc(f)` 就是一个执行 `f` 函数的 `Handler` 对象。\n\n`http.Handle()` 的第二个参数也可以是 `T` 类型的对象 `obj`：`http.Handle(\"/\", obj)`。\n\n如果 `T` 有 `ServeHTTP()` 方法，那就实现了 http 的 `Handler` 接口：\n```go\nfunc (obj *Typ) ServeHTTP(w http.ResponseWriter, req *http.Request) {\n\t...\n}\n```\n\n这个用法也在 15.8 节 `Counter` 和 `Chan` 类型上使用。只要实现了 `http.Handler`，`http` 包就可以处理任何 HTTP 请求。\n\n练习 15.2：webhello2.go\n\n编写一个网页服务器监听端口 9999，有如下处理函数：\n\n*\t当请求 `http://localhost:9999/hello/Name` 时，响应：`hello Name`（`Name` 需是一个合法的姓，比如 Chris 或者 Madeleine）\n\n*\t当请求 `http://localhost:9999/shouthello/Name` 时，响应：`hello NAME`\n\n练习 15.3：hello_server.go\n\n创建一个空结构 `hello` 并为它实现 `http.Handler`。运行并测试。\n\n## 链接\n\n- 目录\n- 上一节：tcp 服务器\n- 下一节：访问并读取页面数据",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/scenery/18900dfe9424a6ae.webp"
+  },
+  {
+    "id": "g-waytogo5-28",
+    "title": "15.3 访问并读取页面数据",
+    "date": "2026-11-25",
+    "category": "The Way to Go 中文版 V",
+    "tags": [
+      "Go",
+      "入门"
+    ],
+    "excerpt": "在下边这个程序中，数组中的 url 都将被访问：会发送一个简单的 http.Head() 请求查看返回值；它的声明如下： func Head(url string) (r Resp",
+    "content": "# 15.3 访问并读取页面数据\n\n在下边这个程序中，数组中的 url 都将被访问：会发送一个简单的 `http.Head()` 请求查看返回值；它的声明如下：`func Head(url string) (r *Response, err error)`\n\n返回的响应 `Response` 其状态码会被打印出来。\n\n示例 15.7 poll_url.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n)\n\nvar urls = []string{\n\t\"http://www.google.com/\",\n\t\"http://golang.org/\",\n\t\"http://blog.golang.org/\",\n}\n\nfunc main() {\n\t// Execute an HTTP HEAD request for all url's\n\t// and returns the HTTP status string or an error string.\n\tfor _, url := range urls {\n\t\tresp, err := http.Head(url)\n\t\tif err != nil {\n\t\t\tfmt.Println(\"Error:\", url, err)\n\t\t}\n\t\tfmt.Println(url, \": \", resp.Status)\n\t}\n}\n```\n\n输出为：\n\n\t`http://www.google.com/` : 302 Found\n\t`http://golang.org/` : 200 OK\n\t`http://blog.golang.org/` : 200 OK\n\n***译者注*** 由于国内的网络环境现状，很有可能见到如下超时错误提示：\n\n​\tError: `http://www.google.com/` Head `http://www.google.com/:` dial tcp 216.58.221.100:80: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.\n\n在下边的程序中我们使用 `http.Get()` 获取并显示网页内容；`Get()` 返回值中的 `Body` 属性包含了网页内容，然后我们用 `ioutil.ReadAll()` 把它读出来：\n\n示例 15.8 http_fetch.go：\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n)\n\nfunc main() {\n\tres, err := http.Get(\"http://www.google.com\")\n\tcheckError(err)\n\tdata, err := ioutil.ReadAll(res.Body)\n\tcheckError(err)\n\tfmt.Printf(\"Got: %q\", string(data))\n}\n\nfunc checkError(err error) {\n\tif err != nil {\n\t\tlog.Fatalf(\"Get : %v\", err)\n\t}\n}\n```\n\n当访问不存在的网站时，这里有一个 `checkError` 输出错误的例子：\n\n\t2011/09/30 11:24:15 Get: Get `http://www.google.bex:` dial tcp www.google.bex:80:GetHostByName: No such host is known.\n\n***译者注*** 和上一个例子相似，你可以把 google.com 更换为一个国内可以顺畅访问的网址进行测试\n\n在下边的程序中，我们获取一个 Twitter 用户的状态，通过 `xml` 包将这个状态解析成为一个结构：\n\n示例 15.9 twitter_status.go\n\n```go\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"net/http\"\n)\n\n/*这个结构会保存解析后的返回数据。\n他们会形成有层级的 XML，可以忽略一些无用的数据*/\ntype Status struct {\n\tText string\n}\n\ntype User struct {\n\tXMLName xml.Name\n\tStatus  Status\n}\n\nfunc main() {\n\t// 发起请求查询推特 Goodland 用户的状态\n\tresponse, _ := http.Get(\"http://twitter.com/users/Googland.xml\")\n\t// 初始化 XML 返回值的结构\n\tuser := User{xml.Name{\"\", \"user\"}, Status{\"\"}}\n\t// 将 XML 解析为我们的结构\n\txml.Unmarshal(response.Body, &user)\n\tfmt.Printf(\"status: %s\", user.Status.Text)\n}\n```\n\n输出：\n\n\tstatus: Robot cars invade California, on orders from Google: Google has been testing self-driving cars ... `http://bit.ly/cbtpUN` `http://retwt.me/97p`<exit code=\"0\" msg=\"process exited normally\"/>\n\n**译者注** 和上边的示例相似，你可能无法获取到 xml 数据，另外由于 Go 版本的更新，`xml.Unmarshal()` 函数的第一个参数必需是 `[]byte` 类型，而无法传入 `Body`。\n\n我们会在 15.4 节 中用到 `http` 包中的其他重要的函数：\n\n*\t`http.Redirect(w ResponseWriter, r *Request, url string, code int)`：这个函数会让浏览器重定向到 `url`（可以是基于请求 url 的相对路径），同时指定状态码。\n*\t`http.NotFound(w ResponseWriter, r *Request)`：这个函数将返回网页没有找到，HTTP 404 错误。\n*\t`http.Error(w ResponseWriter, error string, code int)`：这个函数返回特定的错误信息和 HTTP 代码。\n*\t另一个 `http.Request` 对象 `req` 的重要属性：`req.Method`，这是一个包含 `GET` 或 `POST` 字符串，用来描述网页是以何种方式被请求的。\n\nGo 为所有的 HTTP 状态码定义了常量，比如：\n```go\nhttp.StatusContinue\t\t= 100\nhttp.StatusOK\t\t\t= 200\nhttp.StatusFound\t\t= 302\nhttp.StatusBadRequest\t\t= 400\nhttp.StatusUnauthorized\t\t= 401\nhttp.StatusForbidden\t\t= 403\nhttp.StatusNotFound\t\t= 404\nhttp.StatusInternalServerError\t= 500\n```\n\n你可以使用 `w.header().Set(\"Content-Type\", \"../..\")` 设置头信息。\n\n比如在网页应用发送 html 字符串的时候，在输出之前执行 `w.Header().Set(\"Content-Type\", \"text/html\")`（通常不是必要的）。\n\n练习 15.4：扩展 http_fetch.go 使之可以从控制台读取 url，使用 12.1 节学到的接收控制台输入的方法 (http_fetch2.go)\n\n练习 15.5：获取 json 格式的推特状态，就像示例 15.9 (twitter_status_json.go)\n\n## 链接\n\n- 目录\n- 上一节：一个简单的网页服务器\n- 下一节：写一个简单的网页应用",
+    "source": "Unknwon/the-way-to-go_ZH_CN",
+    "views": 0,
+    "cover": "/images/acg/df6147f3cd414213.jpg"
   }
 ]
