@@ -17,14 +17,14 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 162
+      "count": 186
     },
     {
       "id": "algo",
       "name": "数据结构与算法",
       "icon": "GitBranch",
       "blurb": "数据组织与算法思维，面试与功底的分水岭",
-      "count": 212
+      "count": 248
     },
     {
       "id": "system",
@@ -26679,6 +26679,1026 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-ysgstudyhards-dotnetguide-2"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-1",
+      "kind": "collection",
+      "title": "0001preface",
+      "summary": "写一本通俗易懂的算法书一直是我的心愿，这个想法已经在我心中埋藏了七年之久。至今我仍记得大学时立下的 flag： 要把所学",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-1"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-2",
+      "kind": "collection",
+      "title": "0002datastructuresalgorithms",
+      "summary": "数据结构是程序的骨架，而算法则是程序的灵魂。 《算法 + 数据结构 = 程序》 是 Pascal 语言之父 Niklau",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-2"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-3",
+      "kind": "collection",
+      "title": "0003algorithmcomplexity",
+      "summary": "算法复杂度（Algorithm complexity） ：用于衡量算法在输入规模为 $n$ 时所需的时间和空间资源。 这",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-3"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-4",
+      "kind": "collection",
+      "title": "0004leetcodeguide",
+      "summary": "「LeetCode」 是一个在线编程评测平台，主要包含算法、数据库、Shell、多线程等题目，其中以算法题目为主。Lee",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-4"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-5",
+      "kind": "collection",
+      "title": "LeetCode 面试最常考 100 题（按分类排序）",
+      "summary": "标题 题解 标签 难度 : : : : 0054. 螺旋矩阵 题解 数组、矩阵、模拟 中等 0048. 旋转图像 题解 ",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-5"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-6",
+      "kind": "collection",
+      "title": "LeetCode 面试最常考 200 题（按分类排序）",
+      "summary": "标题 题解 标签 难度 : : : : 0189. 轮转数组 题解 数组、数学、双指针 中等 0498. 对角线遍历 题",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-6"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-7",
+      "kind": "collection",
+      "title": "从数组 nums 中读取下标为 i 的数据元素值",
+      "summary": "数组（Array） ：一种线性表数据结构，利用一段连续的内存空间，存储一组相同类型的数据。 简而言之， 「数组」 是线性",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-7"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-8",
+      "kind": "collection",
+      "title": "0102arraysort",
+      "summary": "数组排序是计算机科学中最基本的问题之一。排序算法有很多种，每种算法都有其特点和适用场景。 排序算法可以按照不同的标准进行",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-8"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-9",
+      "kind": "collection",
+      "title": "0103arraybubblesort",
+      "summary": "冒泡排序（Bubble Sort）基本思想 ： 通过相邻元素的比较与交换，将较大的元素逐步「冒泡」到数组末尾，较小的元素",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-9"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-10",
+      "kind": "collection",
+      "title": "0104arrayselectionsort",
+      "summary": "选择排序（Selection Sort）基本思想 ： 将数组分为两个区间：左侧为已排序区间，右侧为未排序区间。每趟从未排",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-10"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-11",
+      "kind": "collection",
+      "title": "0105arrayinsertionsort",
+      "summary": "插入排序（Insertion Sort）基本思想 ： 将数组分为有序区间和无序区间，每次从无序区间取出一个元素插入到有序",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-11"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-12",
+      "kind": "collection",
+      "title": "0106arrayshellsort",
+      "summary": "希尔排序（Shell Sort）基本思想 ： 通过设定不同的间隔（gap），将数组分组进行插入排序，然后逐步缩小间隔直至",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-12"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-13",
+      "kind": "collection",
+      "title": "0107arraymergesort",
+      "summary": "归并排序（Merge Sort）基本思想 ： 利用分治法，将数组递归地一分为二，直至每个子数组只包含一个元素。随后，将这",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-13"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-14",
+      "kind": "collection",
+      "title": "0108arrayquicksort",
+      "summary": "快速排序（Quick Sort）基本思想 ： 采用分治策略，选择一个基准元素，将数组分为两部分：小于基准的元素放在左侧，",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-14"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-15",
+      "kind": "collection",
+      "title": "0109arrayheapsort",
+      "summary": "「堆排序（Heap sort）」是一种基于「堆结构」实现的高效排序算法。在介绍堆排序之前，我们先来了解什么是堆结构。 堆",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-15"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-16",
+      "kind": "collection",
+      "title": "0110arraycountingsort",
+      "summary": "计数排序（Counting Sort）基本思想 ： 统计数组中每个元素出现的次数，然后根据统计信息将元素按顺序放置到正确",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-16"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-17",
+      "kind": "collection",
+      "title": "0111arraybucketsort",
+      "summary": "桶排序（Bucket Sort） ： 将待排序元素分散到多个桶中，对每个桶单独排序后合并。 1. 确定桶的数量 ：根据待",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-17"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-18",
+      "kind": "collection",
+      "title": "0112arrayradixsort",
+      "summary": "基数排序（Radix Sort）基本思想 ： 按照数字的每一位进行排序，从最低位到最高位，逐位比较。 基数排序算法可以采",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-18"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-19",
+      "kind": "collection",
+      "title": "0113arraybinarysearch01",
+      "summary": "二分查找算法（Binary Search Algorithm） ，又称折半查找或对数查找，是一种在有序数组中高效定位目标",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-19"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-20",
+      "kind": "collection",
+      "title": "0114arraybinarysearch02",
+      "summary": "在上一节中，我们已经掌握了二分查找的基本思路和实现代码。然而，在实际解题过程中，二分查找还涉及许多关键细节，常见的有以下",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-20"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-21",
+      "kind": "collection",
+      "title": "初始化左右指针，分别指向数组的首尾",
+      "summary": "双指针（Two Pointers） ：在遍历序列时，同时用两个指针协同访问元素，以高效解决问题。常见类型有三种：同序列相",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-21"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-22",
+      "kind": "collection",
+      "title": "初始化左右指针，均指向数组起始位置",
+      "summary": "在计算机网络中，滑动窗口协议（Sliding Window Protocol）是传输层进行流控的一种措施，接收方通过通告",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-22"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-23",
+      "kind": "collection",
+      "title": "链节点类",
+      "summary": "链表（Linked List） ：一种线性表数据结构，通过一组任意（可连续或不连续）的存储单元，存储同类型数据。 简而言",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 8,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-23"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-24",
+      "kind": "collection",
+      "title": "0202linkedlistsort",
+      "summary": "链表排序相比数组排序具有独特的挑战性。由于链表 不支持随机访问 ，只能通过 $next$ 指针顺序遍历，这使得某些排序算",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-24"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-25",
+      "kind": "collection",
+      "title": "0203linkedlistbubblesort",
+      "summary": "链表冒泡排序基本思想 ： 通过相邻节点比较和交换，将最大值逐步「冒泡」到链表末尾 。 与数组冒泡排序类似，但需要处理链表",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-25"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-26",
+      "kind": "collection",
+      "title": "0204linkedlistselectionsort",
+      "summary": "链表选择排序基本思想 ： 在未排序部分中找到最小元素，然后将其放到已排序部分的末尾。 1. 初始化 ：使用两个指针 no",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-26"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-27",
+      "kind": "collection",
+      "title": "0205linkedlistinsertionsort",
+      "summary": "链表插入排序基本思想 ： 将链表分为已排序部分和未排序部分，逐个将未排序部分的节点插入到已排序部分的正确位置 。 链表插",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-27"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-28",
+      "kind": "collection",
+      "title": "0206linkedlistmergesort",
+      "summary": "链表归并排序基本思想 ： 采用分治策略，将链表递归分割为更小的子链表，然后两两归并得到有序链表 。 链表归并排序的算法步",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-28"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-29",
+      "kind": "collection",
+      "title": "0207linkedlistquicksort",
+      "summary": "链表快速排序基本思想 ： 通过选择基准值（pivot）将链表分割为两部分，使得左部分所有节点的值都小于基准值，右部分所有",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-29"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-30",
+      "kind": "collection",
+      "title": "0208linkedlistcountingsort",
+      "summary": "计数排序（Counting Sort）基本思想 ： 统计每个元素在序列中出现的次数，然后根据统计结果将元素放回正确的位置",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-30"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-31",
+      "kind": "collection",
+      "title": "0209linkedlistbucketsort",
+      "summary": "桶排序基本思想 ： 将数据分散到若干个有序的桶中，每个桶内再单独排序，最后按顺序合并所有桶。 1. 确定数据范围 ：遍历",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-31"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-32",
+      "kind": "collection",
+      "title": "0210linkedlistradixsort",
+      "summary": "基数排序算法思想 ： 从最低位（个位）开始，按照每一位的数字将节点分配到对应的桶中，然后按顺序重新连接 1. 确定最大位",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-32"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-33",
+      "kind": "collection",
+      "title": "0211linkedlisttwopointers",
+      "summary": "双指针是链表问题中非常常用且高效的技巧，通过两个指针的配合移动，能够巧妙地解决许多复杂问题。 双指针（Two Point",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-33"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-34",
+      "kind": "collection",
+      "title": "0301stackbasic",
+      "summary": "栈（Stack） ：也叫做「堆栈」，一种线性表数据结构，只允许在表的一端进行插入和删除操作。 我们可以把栈想象成一摞叠放",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-34"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-35",
+      "kind": "collection",
+      "title": "0302monotonestack",
+      "summary": "单调栈（Monotone Stack） ：在栈「先进后出」规则的基础上，要求从 栈顶 到 栈底 的元素单调递增或单调递减",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-35"
+    },
+    {
+      "id": "g-auto-itcharge-algonote-36",
+      "kind": "collection",
+      "title": "0303queuebasic",
+      "summary": "队列（Queue） ：一种线性表数据结构，遵循「先进先出（FIFO）」原则，只允许在一端插入元素（队尾），在另一端删除元",
+      "domain": "algo",
+      "category": "算法通关手册",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "acm-icpc",
+        "algo",
+        "algorithm"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-itcharge-algonote-36"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-1",
+      "kind": "collection",
+      "title": "Go 程序员面试笔试宝典",
+      "summary": "作者 : 饶全成, 欧长坤, 楚秦 等编著 ISBN : 978 7 111 70242 9 出版社 ：机械工业出版社 ",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-1"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-2",
+      "kind": "collection",
+      "title": "1-什么是 CSP",
+      "summary": "Do not communicate by sharing memory; instead, share memory ",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-2"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-4",
+      "kind": "collection",
+      "title": "11-关于 channel 的 happened-before 有哪些",
+      "summary": "维基百科上给的定义： In computer science, the happened before relation",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-4"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-5",
+      "kind": "collection",
+      "title": "停止信号",
+      "summary": "Channel 和 goroutine 的结合是 Go 并发编程的大杀器。而 Channel 的实际应用也经常让人眼前一",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-5"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-6",
+      "kind": "collection",
+      "title": "数据结构",
+      "summary": "底层数据结构需要看源码，版本为 go 1.9.2： 关于字段的含义都写在注释里了，再来重点说几个字段： buf 指向底层",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-6"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-7",
+      "kind": "collection",
+      "title": "源码分析",
+      "summary": "发送操作最终转化为 chansend 函数，直接上源码，同样大部分都注释了，可以看懂主流程： 上面的代码注释地比较详细了",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-7"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-8",
+      "kind": "collection",
+      "title": "源码分析",
+      "summary": "我们先来看一下接收相关的源码。在清楚了接收的具体过程之后，再根据一个实际的例子来具体研究。 接收操作有两种写法，一种带 ",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-8"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-9",
+      "kind": "collection",
+      "title": "5-关闭一个 channel 的过程是怎样的",
+      "summary": "关闭某个 channel，会执行函数 closechan ： close 逻辑比较简单，对于一个 channel，rec",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-9"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-12",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "关于 channel 的使用，有几点不方便的地方： 1. 在不改变 channel 自身状态的情况下，无法获知一个 ch",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-12"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-13",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "Channel 发送和接收元素的本质是什么？ All transfer of value on the go chann",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-13"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-15",
+      "kind": "collection",
+      "title": "command-line-arguments",
+      "summary": "在编译原理中，分析指针动态范围的方法称之为逃逸分析。通俗来讲，当一个对象的指针被多个方法或线程引用时，我们称这个指针发生",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-15"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-17",
+      "kind": "collection",
+      "title": "编译过程",
+      "summary": "我们从一个 Hello World 的例子开始： 当我们用键盘敲完上面的 hello world 代码时，保存在硬盘上的",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 9,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-17"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-18",
+      "kind": "collection",
+      "title": "go build",
+      "summary": "直接在终端执行： 就能得到和 go 相关的命令简介： 和编译相关的命令主要是： go build 用来编译指定 pack",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-18"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-19",
+      "kind": "collection",
+      "title": "5-Go 程序启动过程是怎样的",
+      "summary": "我们从一个 Hello World 的例子开始： 在项目根目录下执行： gcflags \" N l\" 是为了关闭编译器优",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-19"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-21",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "先直接来看维基百科里的定义： If it looks like a duck, swims like a duck, a",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-21"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-22",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "接口定义了一种规范，描述了类的行为和功能，而不做具体实现。 C++ 的接口是使用抽象类来实现的，如果类中至少有一个函数被",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-22"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-23",
+      "kind": "collection",
+      "title": "方法",
+      "summary": "方法能给用户自定义的类型添加新的行为。它和函数的区别在于方法有一个接收者，给一个函数添加一个接收者，那么它就变成了方法。",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-23"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-24",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "iface 和 eface 都是 Go 中描述接口的底层结构体，区别在于 iface 描述的接口包含方法，而 eface",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-24"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-25",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "从源码里可以看到： iface 包含两个字段： tab 是接口表指针，指向类型信息； data 是数据指针，则指向具体的",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-25"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-26",
+      "kind": "collection",
+      "title": "5-编译器自动检测类型是否实现接口",
+      "summary": "经常看到一些开源库里会有一些类似下面这种奇怪的用法： 这时候会有点懵，不知道作者想要干什么，实际上这就是此问题的答案。编",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-26"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-27",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "我们已经看过了 iface 和 eface 的源码，知道 iface 最重要的是 itab 和 type 。 为了研究清",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-27"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-28",
+      "kind": "collection",
+      "title": "类型转换",
+      "summary": "我们知道，Go 语言中不允许隐式类型转换，也就是说 = 两边，不允许出现类型不相同的变量。 类型转换 、 类型断言 本质",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-28"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-29",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "通过前面提到的 iface 的源码可以看到，实际上它包含接口的类型 interfacetype 和 实体类型的类型 ty",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-29"
+    },
+    {
+      "id": "g-auto-golang-design-go-questions-30",
+      "kind": "collection",
+      "title": "参考资料",
+      "summary": "Go 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承等概念，但它通过接口却非常优雅地支持了面向对象的特性。 多态是一",
+      "domain": "langs",
+      "category": "Go 面试笔试宝典",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "book",
+        "golang",
+        "interview"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-golang-design-go-questions-30"
     }
   ]
 }

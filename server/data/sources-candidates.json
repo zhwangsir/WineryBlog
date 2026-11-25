@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T01:55:05.766Z",
+ "updatedAt": "2026-11-25T02:15:15.143Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2003,6 +2003,73 @@
       "DotNetStudy.md",
       "CsharpRecommendedBooks.md"
      ]
+    }
+   ]
+  },
+  {
+   "id": "auto-itcharge-algonote",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册",
+   "domain": "algo",
+   "tags": [
+    "acm-icpc",
+    "algo",
+    "algorithm"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T02:15:13.787Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "docs/00_preface",
+     "keywords": [
+      ".md"
+     ],
+     "max": 6,
+     "recursive": true,
+     "files": [
+      "00_01_preface.md",
+      "00_02_data_structures_algorithms.md",
+      "00_03_algorithm_complexity.md",
+      "00_04_leetcode_guide.md",
+      "00_07_interview_100_list.md",
+      "00_08_interview_200_list.md"
+     ]
+    },
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "skip": 8,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-golang-design-go-questions",
+   "repo": "golang-design/go-questions",
+   "branch": "main",
+   "category": "Go 面试笔试宝典",
+   "domain": "langs",
+   "tags": [
+    "book",
+    "golang",
+    "interview"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T02:15:15.143Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "content",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true
     }
    ]
   }
