@@ -115,7 +115,7 @@ function makeEntry({ id, repo, branch, category, domain, tags }, note) {
   return { ...entry, id: `${id}-${slug(branch || 'x')}` };
 }
 
-const added = [], discovered = [], skipped = [];
+const added = [], discovered = [], skipped = [], discoverSkipped = [];
 let pendingNow = pending.length;
 
 // ── 1) 精选清单 ──
@@ -161,8 +161,8 @@ const TECH_SIGNAL = new RegExp([
   '分布式|微服务|消息队列|kafka|rocketmq|zookeeper|高并发|架构|设计模式|重构|软件工程',
   'spring|jvm|tomcat|netty|grpc|rpc|api网关',
   'flutter|android|ios|swiftui|uniapp|小程序|微信开发',
-  'unity|游戏开发|图形学|opengl|godot|cocos|threejs',
-  '面试|校招|秋招|八股文|编程|程序设计|开源教程',
+  'unity|游戏开发|图形学|opengl|godot|cocos|threejs|渲染|shader|pbr|vulkan',
+  '面试|校招|秋招|八股文|编程|程序设计|教程|实战|入门|手册|笔记|指南|学习路线|roadmap|文档|agent|智能体|语音识别|语音|爬虫|正则|解释器|提示词',
 ].join('|'), 'i');
 // domain 细化：搜索桶只给个粗方向，按名称/描述/topics 的关键词落到 14 域里更准的那个
 const DOMAIN_HINTS = [
@@ -176,19 +176,24 @@ const DOMAIN_HINTS = [
   ['system', /操作系统|linux|unix|计算机网络|tcp|http|docker|kubernetes|k8s|云原生|devops|运维|nginx|编译原理|编译器|计算机组成|嵌入式|单片机/i],
   ['backend', /后端|spring|jvm|tomcat|netty|grpc|rpc|java/i],
   ['frontend', /前端|javascript|typescript|react|vue|angular|node|css|html|浏览器|web开发/i],
-  ['langs', /python|golang|go语言|rust|c\+\+|c语言|php|ruby|scala|dart|lua|编程|程序设计/i],
+  ['langs', /python|golang|go语言|rust|c\+\+|c语言|php|ruby|scala|dart|lua|编程|程序设计|vim|emacs/i],
 ];
 const refineDomain = (text, fallback) => {
   for (const [dom, re] of DOMAIN_HINTS) if (re.test(text)) return dom;
   return fallback;
 };
+// 非技术内容的负面信号：命中即拒（「人生进阶指南」这类靠「指南」扩词后会重新溜进来）
+const LIFE_SIGNAL = /(人生|职场|创业|财富|爱情|情感|心理|成长|副业|搞钱)/;
 let discoverAdded = 0;
 if (!CURATED_ONLY && MAX_DISCOVER > 0) {
-  const day = Math.floor(Date.now() / 86400000);
-  const order = BUCKETS.map((b, i) => BUCKETS[(i + day) % BUCKETS.length]);
+  // 按「小时」轮换起始桶（池每 20 分钟补一次，按天轮换会同一天反复撞同一批桶）
+  const slot = Math.floor(Date.now() / 3600000) % BUCKETS.length;
+  const order = BUCKETS.map((b, i) => BUCKETS[(i + slot) % BUCKETS.length]);
+  // 同时翻页轮换：星数排序的前 30 名会耗尽，不同轮次下钻到第 2~3 页
+  const pageNo = 1 + (slot % 3);
   for (const bucket of order) {
     if (discoverAdded >= MAX_DISCOVER) break;
-    const { code, body } = ghJson(`/search/repositories?q=${encodeURIComponent(bucket.q)}&sort=stars&order=desc&per_page=30`);
+    const { code, body } = ghJson(`/search/repositories?q=${encodeURIComponent(bucket.q)}&sort=stars&order=desc&per_page=30&page=${pageNo}`);
     if (code !== 200) { console.log(`discover: 查询失败 ${code}（${bucket.q}）`); continue; }
     let items = [];
     try { items = JSON.parse(body).items || []; } catch { /* 空 */ }
@@ -200,12 +205,13 @@ if (!CURATED_ONLY && MAX_DISCOVER > 0) {
       if (Date.now() - new Date(r.pushed_at).getTime() > PUSHED_WITHIN) continue;
       const desc = String(r.description || '').trim();
       const signalText = [r.name, desc, (r.topics || []).join(' ')].join(' ');
-      if (!TECH_SIGNAL.test(signalText)) { skipped.push(`${full}(非技术内容)`); continue; }
-      if (!readmeIsChinese(full)) { skipped.push(`${full}(README 非中文)`); continue; }
+      if (LIFE_SIGNAL.test(signalText)) { discoverSkipped.push(`${full}(非技术内容)`); continue; }
+      if (!TECH_SIGNAL.test(signalText)) { discoverSkipped.push(`${full}(非技术内容)`); continue; }
+      if (!readmeIsChinese(full)) { discoverSkipped.push(`${full}(README 非中文)`); continue; }
       // md 贫矿淘汰（发现路径同样要查：Awesome 清单 / 代码工程 / notebook 仓库都过不了这一关）
       const md = usableMdCount(full, r.default_branch);
-      if (md === -1) { skipped.push(`${full}(trees api 失败)`); continue; }
-      if (md < 5) { skipped.push(`${full}(仅 ${md} 个可用 md)`); continue; }
+      if (md === -1) { discoverSkipped.push(`${full}(trees api 失败)`); continue; }
+      if (md < 5) { discoverSkipped.push(`${full}(仅 ${md} 个可用 md)`); continue; }
       const id = `auto-${slug(full)}`;
       if (knownIds.has(id)) continue;
       const entry = makeEntry({
@@ -224,7 +230,7 @@ if (!CURATED_ONLY && MAX_DISCOVER > 0) {
       discoverAdded += 1;
     }
   }
-  console.log(`discover: +${discoverAdded}（每轮上限 ${MAX_DISCOVER}）`);
+  console.log(`discover: +${discoverAdded}（每轮上限 ${MAX_DISCOVER}，起始桶 ${slot + 1}/${BUCKETS.length}，第 ${pageNo} 页）${discoverSkipped.length ? `，跳过 ${discoverSkipped.join('、')}` : '，无候选'}`);
   for (const e of discovered) console.log(`  ? ${e.repo} → ${e.domain} / ${e.category}（★${e.stars}，branch ${e.branch}）`);
 }
 

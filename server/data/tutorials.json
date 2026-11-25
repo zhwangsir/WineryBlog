@@ -10,7 +10,7 @@
       "name": "编程基础与工具",
       "icon": "Wrench",
       "blurb": "工具链、计算机组成、效率方法——程序员的内功底盘",
-      "count": 32
+      "count": 40
     },
     {
       "id": "langs",
@@ -59,7 +59,7 @@
       "name": "人工智能",
       "icon": "BrainCircuit",
       "blurb": "机器学习、深度学习、LLM 应用与 RAG",
-      "count": 397
+      "count": 417
     },
     {
       "id": "security",
@@ -28532,6 +28532,482 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-shfshanyue-daily-question-20"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-1",
+      "kind": "collection",
+      "title": "贡献指南",
+      "summary": "感谢你对《Deep Agents 实战》课程网站的关注！ 无论是修正一个错别字，还是改善一段表述，每一份贡献都很有价值。",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-1"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-2",
+      "kind": "collection",
+      "title": "第 1 章：从 Agent Framework 到 Agent Harness — Deep Agents 的诞生逻辑",
+      "summary": "配套实验：第 1 章 Notebook：Agent Harness 与最小运行结构。 本章是《Deep Agents 实",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-2"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-3",
+      "kind": "collection",
+      "title": "第 2 章：快速上手 — 5 分钟构建你的第一个 Deep Agent",
+      "summary": "上一章我们理解了 Deep Agents 的设计定位。本章进入实操环节——从安装到运行，带你完成第一个能搜索网络、撰写报",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-3"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-4",
+      "kind": "collection",
+      "title": "第 3 章：虚拟文件系统 — Deep Agents 的 Context Engineering 核心",
+      "summary": "上一章我们跑通了第一个 Deep Agent。本章深入 Deep Agents 最核心的创新——虚拟文件系统。理解它，就",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-4"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-5",
+      "kind": "collection",
+      "title": "第 4 章：任务规划与分解 — 让 Agent 学会拆解复杂任务",
+      "summary": "上一章我们学习了虚拟文件系统如何管理 Agent 的上下文。本章聚焦另一个核心能力——任务规划。 write todos",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-5"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-6",
+      "kind": "collection",
+      "title": "第 5 章：子 Agent 与上下文隔离 — 让 Agent 学会\"委派\"",
+      "summary": "上一章我们学习了任务规划。但有些子任务非常复杂，需要大量工具调用和中间处理——如果全在主 Agent 里完成，上下文很快",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 12,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-6"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-7",
+      "kind": "collection",
+      "title": "第 6 章：异步子 Agent — 让主 Agent 同时驱动多个子任务",
+      "summary": "上一章我们学习了同步子 Agent，主 Agent 通过 task 工具委派、然后 等待 子 Agent 跑完。但是，当",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-7"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-8",
+      "kind": "collection",
+      "title": "第 7 章：Skills — 可复用的 Agent 能力包",
+      "summary": "工具（Tools）是原子操作——搜索一次、读一个文件、调一次 API。但有些能力需要的不是一次操作，而是 多步骤工作流 ",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-8"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-9",
+      "kind": "collection",
+      "title": "第 8 章：长期记忆 — 让 Agent 拥有跨对话的记忆",
+      "summary": "前几章我们学习了 Deep Agents 的核心能力：虚拟文件系统、任务规划、子 Agent、Skills。Checkp",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-9"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-10",
+      "kind": "collection",
+      "title": "第 9 章：Human-in-the-Loop — 构建安全的人机协作流程",
+      "summary": "Agent 越自主，就越需要安全边界。当 Agent 准备删除文件、发送邮件或调用付费 API 时，你是否希望它先\"问一",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 18,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-10"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-11",
+      "kind": "collection",
+      "title": "第 10 章：沙箱执行 — 让 Agent 安全地运行代码",
+      "summary": "能写文件、运行 Shell、安装依赖的 Agent，已经不只是“回答问题”的模型，而是能改变运行环境的执行者。本章把这份",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-11"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-12",
+      "kind": "collection",
+      "title": "第 11 章：文件系统权限 — 用声明式规则控制 Agent 的读写边界",
+      "summary": "文件系统让 Agent 能把上下文写进文件，也把真实的副作用带进运行时。权限配置要明确三件事：可以执行的操作、可以访问的",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 14,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-12"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-13",
+      "kind": "collection",
+      "title": "第 12 章：MCP — 用标准协议扩展 Deep Agents 工具生态",
+      "summary": "自定义工具适合接入少量、稳定的应用能力；当 Agent 需要连接越来越多的数据库、文件系统和外部服务时，逐个维护专用适配",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 16,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-13"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-14",
+      "kind": "collection",
+      "title": "第 13 章：评分量规 — 让 Agent 按验收标准自我迭代",
+      "summary": "一个 Agent 可以返回完整代码、停止调用工具，甚至自信地解释“任务已经完成”，结果却仍在边界输入上失败。问题不在于它",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 20,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-14"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-15",
+      "kind": "collection",
+      "title": "第 14 章：Streaming — 实时观察主 Agent、子 Agent 与工具调用",
+      "summary": "研究助手已经跑了两分钟。后台日志显示它调用了搜索工具，也确实启动了 researcher ；浏览器里的用户却只看到一个转",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 22,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-15"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-16",
+      "kind": "collection",
+      "title": "第 15 章：Interpreters — 让 Agent 用代码编排工具与数据",
+      "summary": "订单审核 Agent 收到 80 个订单号。它先调用一次查询工具，等结果回来，再调用下一次。几十条工具结果陆续进入上下文",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 15,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-16"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-17",
+      "kind": "collection",
+      "title": "第 16 章：Dynamic Subagents — 用代码编排多个 Agent",
+      "summary": "一个代码仓库里有 24 个路由文件。主 Agent 可以把第一个文件交给代码审查 Agent，等结果回来，再决定是否检查",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-17"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-18",
+      "kind": "collection",
+      "title": "第 17 章：Decision Model Harness — 用模型路由与 Auto Mode 控制 Agent",
+      "summary": "同一个运维助手，既要回答“checkout 服务现在正常吗”，也要分析“为什么发布后出现超时”。前者主要是查询与总结，后",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 13,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-18"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-19",
+      "kind": "collection",
+      "title": "AgentSeek 准备篇（上）：用生命周期工作流启动 DeepAgents 模板",
+      "summary": "首次运行或排障遇到问题？查看 叶静的学习笔记，按环境、网络、配置、追踪和成本定位。 完成本章后，你会得到一个可运行的 D",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 10,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-19"
+    },
+    {
+      "id": "g-auto-datawhalechina-deepagents-in-action-20",
+      "kind": "collection",
+      "title": "AgentSeek 准备篇（下）：为 AI 编码助手安装开发技能",
+      "summary": "首次运行或排障遇到问题？查看 叶静的学习笔记，按环境、网络、配置、追踪和成本定位。 完成本章后，Codex、Claude",
+      "domain": "ai",
+      "category": "DeepAgents 实战",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "agentic-ai",
+        "ai-agents",
+        "astro"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-datawhalechina-deepagents-in-action-20"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-1",
+      "kind": "collection",
+      "title": "Pi 学习蓝皮书项目说明",
+      "summary": "这是一本面向中文初学者的非官方 Pi 学习手册，使用 VitePress 构建。内容从安装、登录和第一次任务开始，逐步讲",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-1"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-2",
+      "kind": "collection",
+      "title": "贡献指南",
+      "summary": "谢谢你帮助完善 Pi 学习蓝皮书。读者指出一个无法照着完成的步骤，与提交代码修复同样有价值。 请先查看 已有 Issue",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-2"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-3",
+      "kind": "collection",
+      "title": "貢獻指南",
+      "summary": "謝謝你幫助完善 Pi 學習藍皮書。讀者指出一個無法照著完成的步驟，與提交程式碼修復同樣有價值。 請先檢視 已有 Issu",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-3"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-4",
+      "kind": "collection",
+      "title": "FAQ 与热词科普图解放置清单",
+      "summary": "docs/diagrams/ 保存 Diagram Design 的自包含 HTML 源稿；网站引用的 SVG 位于 d",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-4"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-5",
+      "kind": "collection",
+      "title": "Pi 学习蓝皮书文章工作流",
+      "summary": "这套流程用于把推文、长文和真实实操整理成可学习、可核验、可发布的章节。所有模型先独立工作，再由主编辑合稿；模型意见不能直",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-5"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-6",
+      "kind": "collection",
+      "title": "项目维护手册",
+      "summary": "这份文件说明 Pi 学习蓝皮书的工程入口、修改边界和发布前检查。它面向维护者；内容写作规范仍以 CONTRIBUTING",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-6"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-7",
+      "kind": "collection",
+      "title": "关于作者",
+      "summary": "ABOUT THE AUTHOR · 小墨同学 我是小墨同学，一名独立开发者，也是 Pi 学习蓝皮书 的整理者。我平时做",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-7"
+    },
+    {
+      "id": "g-auto-xiaomoboy-pi-bluebook-8",
+      "kind": "collection",
+      "title": "从检查点恢复",
+      "summary": "CASE 06 · 可练习 先处理一篇并停止，再由新会话读取 long task/progress.md 完成剩余两篇；",
+      "domain": "basics",
+      "category": "Pi Coding Agent",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "agent-harness",
+        "agent-skills",
+        "ai-agent"
+      ],
+      "prereqs": [],
+      "href": "/post/g-auto-xiaomoboy-pi-bluebook-8"
     }
   ]
 }

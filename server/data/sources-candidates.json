@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T02:55:33.078Z",
+ "updatedAt": "2026-11-25T03:38:43.282Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2147,6 +2147,76 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "auto-byoungd-up",
+   "repo": "byoungd/up",
+   "branch": "main",
+   "category": "人生进阶指南 韩先凯的人生进阶指",
+   "domain": "basics",
+   "tags": [
+    "ai-literacy",
+    "chinese",
+    "english-learning"
+   ],
+   "status": "failed",
+   "addedAt": "2026-11-25T03:38:05.883Z",
+   "note": "人生进阶指南非教程：LIFE_SIGNAL 负面信号规则上线前的存量，人工处理"
+  },
+  {
+   "id": "auto-datawhalechina-deepagents-in-action",
+   "repo": "datawhalechina/deepagents-in-action",
+   "branch": "main",
+   "category": "DeepAgents 实战",
+   "domain": "ai",
+   "tags": [
+    "agentic-ai",
+    "ai-agents",
+    "astro"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T03:38:07.432Z",
+   "note": "auto-discovered",
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 20,
+     "recursive": true
+    }
+   ]
+  },
+  {
+   "id": "auto-xiaomoboy-pi-bluebook",
+   "repo": "xiaomoBoy/pi-bluebook",
+   "branch": "main",
+   "category": "Pi Coding Agent",
+   "domain": "basics",
+   "tags": [
+    "agent-harness",
+    "agent-skills",
+    "ai-agent"
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T03:38:37.582Z",
+   "note": "auto-discovered"
+  },
+  {
+   "id": "auto-hyperai-tvm-cn",
+   "repo": "hyperai/tvm-cn",
+   "branch": "master",
+   "category": "TVM Documentatio",
+   "domain": "ai",
+   "tags": [
+    "apache",
+    "chinese-simplified",
+    "deep-learning"
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T03:38:43.281Z",
+   "note": "auto-discovered"
   }
  ]
 }
