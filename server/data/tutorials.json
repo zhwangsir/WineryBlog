@@ -17,7 +17,7 @@
       "name": "编程语言",
       "icon": "Code2",
       "blurb": "C/Java/Python/JS/Go/Rust——表达思想的语言",
-      "count": 186
+      "count": 241
     },
     {
       "id": "algo",
@@ -31813,6 +31813,886 @@
       ],
       "prereqs": [],
       "href": "/post/g-auto-longxingtan-machine-learning-interview-30"
+    },
+    {
+      "id": "g-opencvtut2-1",
+      "kind": "collection",
+      "title": "图像的基本操作",
+      "summary": "学会： 访问像素值并修改它们 访问图像属性 设置感兴趣区域(ROI) 分割和合并图像 本节中的几乎所有操作都主要与Num",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-1"
+    },
+    {
+      "id": "g-opencvtut2-2",
+      "kind": "collection",
+      "title": "图像上的算术运算",
+      "summary": "学习图像的几种算术运算，例如加法，减法，按位运算等。 您将学习以下功能： cv.add ， cv.addWeighted",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-2"
+    },
+    {
+      "id": "g-opencvtut2-3",
+      "kind": "collection",
+      "title": "性能衡量和提升技术",
+      "summary": "在图像处理中，由于每秒要处理大量操作，因此必须使代码不仅提供正确的解决方案，而且还必须以最快的方式提供。因此，在本章中，",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-3"
+    },
+    {
+      "id": "g-opencvtut2-4",
+      "kind": "collection",
+      "title": "包含(x,y)值的25个已知/训练数据的特征集",
+      "summary": "理解K近邻 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-4"
+    },
+    {
+      "id": "g-opencvtut2-5",
+      "kind": "collection",
+      "title": "现在我们将图像分割为5000个单元格，每个单元格为20x20",
+      "summary": "使用OCR手写数据集运行KNN 作者 OpenCV Python Tutorials 编译 Vincent 来源 Ope",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-5"
+    },
+    {
+      "id": "g-opencvtut2-6",
+      "kind": "collection",
+      "title": "83理解SVM",
+      "summary": "理解SVM 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-6"
+    },
+    {
+      "id": "g-opencvtut2-7",
+      "kind": "collection",
+      "title": "First half is trainData, remaining is testData",
+      "summary": "理解SVM 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-7"
+    },
+    {
+      "id": "g-opencvtut2-8",
+      "kind": "collection",
+      "title": "理解K-Means聚类",
+      "summary": "作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python Tutor",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-8"
+    },
+    {
+      "id": "g-opencvtut2-9",
+      "kind": "collection",
+      "title": "定义终止标准 = ( type, maxiter = 10 , epsilon = 1.0 )",
+      "summary": "OpenCV中的K Means聚类 作者 OpenCV Python Tutorials 编译 Vincent 来源 O",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-9"
+    },
+    {
+      "id": "g-opencvtut2-10",
+      "kind": "collection",
+      "title": "OpenCV-Python教程简介",
+      "summary": "OpenCV由 Gary Bradsky 于1999年在英特尔创立，第一版于2000年问世。 Vadim Pisarev",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-10"
+    },
+    {
+      "id": "g-opencvtut2-11",
+      "kind": "collection",
+      "title": "在Windows中安装OpenCV-Python",
+      "summary": "在本教程中 我们将学习在你的Windows系统中设置OpenCV Python。 下面的步骤在装有Visual Stud",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-11"
+    },
+    {
+      "id": "g-opencvtut2-12",
+      "kind": "collection",
+      "title": "在Fedora中安装OpenCV-Python",
+      "summary": "在本教程中 我们将学习在你的Fedora系统中设置OpenCV Python。针对Fedora 18（64位）和Fedo",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-12"
+    },
+    {
+      "id": "g-opencvtut2-13",
+      "kind": "collection",
+      "title": "在Ubuntu中安装OpenCV-Python",
+      "summary": "在本教程中，我们将学习在Ubuntu System中设置OpenCV Python。以下步骤针对Ubuntu 16.04",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-13"
+    },
+    {
+      "id": "g-opencvtut2-14",
+      "kind": "collection",
+      "title": "如何使用背景分离方法",
+      "summary": "背景分离（BS）是一种通过使用静态相机来生成前景掩码（即包含属于场景中的移动对象像素的二进制图像）的常用技术。 顾名思义",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-14"
+    },
+    {
+      "id": "g-opencvtut2-15",
+      "kind": "collection",
+      "title": "Meanshift和Camshift",
+      "summary": "在本章中， 我们将学习用于跟踪视频中对象的Meanshift和Camshift算法。 Meanshift背后的直觉很简单",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-15"
+    },
+    {
+      "id": "g-opencvtut2-16",
+      "kind": "collection",
+      "title": "光流",
+      "summary": "在本章中， 我们将了解光流的概念及其使用Lucas Kanade方法的估计。 我们将使用 cv.calcOpticalF",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-16"
+    },
+    {
+      "id": "g-opencvtut2-17",
+      "kind": "collection",
+      "title": "特征匹配 + 单应性查找对象",
+      "summary": "在本章节中， 我们将把calib3d模块中的特征匹配和findHomography混合在一起，以在复杂图像中找到已知对象",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-17"
+    },
+    {
+      "id": "g-opencvtut2-18",
+      "kind": "collection",
+      "title": "理解特征",
+      "summary": "在本章中，我们将尝试理解什么是特征，为什么拐角重要等等 你们大多数人都会玩拼图游戏。你会得到很多小图像，需要正确组装它们",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-18"
+    },
+    {
+      "id": "g-opencvtut2-19",
+      "kind": "collection",
+      "title": "哈里斯角检测",
+      "summary": "在本章中， 我们将了解\"Harris Corner Detection”背后的概念。 我们将看到以下函数： cv.cor",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-19"
+    },
+    {
+      "id": "g-opencvtut2-20",
+      "kind": "collection",
+      "title": "Shi-tomas拐角检测器和益于跟踪的特征",
+      "summary": "在本章中， 我们将学习另一个拐角检测器：Shi Tomasi拐角检测器 我们将看到以下函数： cv.goodFeatur",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-20"
+    },
+    {
+      "id": "g-opencvtut2-21",
+      "kind": "collection",
+      "title": "SIFT尺度不变特征变换",
+      "summary": "在这一章当中， 我们将学习SIFT算法的概念 我们将学习找到SIFT关键点和描述算符。 在前两章中，我们看到了一些像Ha",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-21"
+    },
+    {
+      "id": "g-opencvtut2-22",
+      "kind": "collection",
+      "title": "SURF简介（加速的强大功能）",
+      "summary": "在这一章当中， 我们将了解SURF的基础 我们将在OpenCV中看到SURF函数 在上一章中,我们看到了SIFT用于关键",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-22"
+    },
+    {
+      "id": "g-opencvtut2-23",
+      "kind": "collection",
+      "title": "用于角点检测的FAST算法",
+      "summary": "在本章中， 我们将了解FAST算法的基础知识。 我们将使用OpenCV功能对FAST算法进行探索。 我们看到了几个特征检",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-23"
+    },
+    {
+      "id": "g-opencvtut2-24",
+      "kind": "collection",
+      "title": "BRIEF(二进制的鲁棒独立基本特征)",
+      "summary": "在本章中， 我们将看到BRIEF算法的基础知识 我们知道SIFT使用128维矢量作为描述符。由于它使用浮点数，因此基本上",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-24"
+    },
+    {
+      "id": "g-opencvtut2-25",
+      "kind": "collection",
+      "title": "ORB(面向快速和旋转的BRIEF)",
+      "summary": "在本章中， 我们将了解ORB的基础知识 作为OpenCV的狂热者，关于ORB的最重要的事情是它来自“ OpenCV La",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-25"
+    },
+    {
+      "id": "g-opencvtut2-26",
+      "kind": "collection",
+      "title": "特征匹配",
+      "summary": "在本章中， 我们将看到如何将一个图像中的特征与其他图像进行匹配。 我们将在OpenCV中使用Brute Force匹配器",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-26"
+    },
+    {
+      "id": "g-opencvtut2-27",
+      "kind": "collection",
+      "title": "创建5个帧的列表",
+      "summary": "图像去噪 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python ",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-27"
+    },
+    {
+      "id": "g-opencvtut2-28",
+      "kind": "collection",
+      "title": "92图像修补",
+      "summary": "图像修补 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python ",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-28"
+    },
+    {
+      "id": "g-opencvtut2-29",
+      "kind": "collection",
+      "title": "将曝光图像加载到列表中",
+      "summary": "高动态范围 作者 OpenCV Python Tutorials 编译 Vincent 来源 OpenCV Python",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-29"
+    },
+    {
+      "id": "g-opencvtut2-30",
+      "kind": "collection",
+      "title": "图像入门",
+      "summary": "在这里，你将学习如何读取图像，如何显示图像以及如何将其保存回去 你将学习以下功能： cv.imread() ， cv.i",
+      "domain": "langs",
+      "category": "OpenCV-Python 中文教程 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "OpenCV",
+        "图像处理"
+      ],
+      "prereqs": [],
+      "href": "/post/g-opencvtut2-30"
+    },
+    {
+      "id": "g-waytogo2-1",
+      "kind": "collection",
+      "title": "5.1 if-else 结构",
+      "summary": "if 是用于测试某个条件（布尔型或逻辑型）的语句，如果该条件成立，则会执行 if 后由大括号括起来的代码块，否则就忽略该",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-1"
+    },
+    {
+      "id": "g-waytogo2-2",
+      "kind": "collection",
+      "title": "5.2 测试多返回值函数的错误",
+      "summary": "Go 语言的函数经常使用两个返回值来表示执行是否成功：返回某个值以及 true 表示成功；返回零值（或 nil ）和 f",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-2"
+    },
+    {
+      "id": "g-waytogo2-3",
+      "kind": "collection",
+      "title": "5.3 switch 结构",
+      "summary": "相比较 C 和 Java 等其它语言而言，Go 语言中的 switch 结构使用上更加灵活。它接受任意形式的表达式： 变",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-3"
+    },
+    {
+      "id": "g-waytogo2-4",
+      "kind": "collection",
+      "title": "5.4 for 结构",
+      "summary": "如果想要重复执行某些语句，Go 语言中您只有 for 结构可以使用。不要小看它，这个 for 结构比其它语言中的更为灵活",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-4"
+    },
+    {
+      "id": "g-waytogo2-5",
+      "kind": "collection",
+      "title": "5.5 break 与 continue",
+      "summary": "您可以使用 break 语句重写 for2.go 的代码： 示例 5.10 for3.go： 因此每次迭代都会对条件进行",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-5"
+    },
+    {
+      "id": "g-waytogo2-6",
+      "kind": "collection",
+      "title": "5.6 标签与 goto",
+      "summary": "for 、 switch 或 select 语句都可以配合标签 (label) 形式的标识符使用，即某一行第一个以冒号 ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-6"
+    },
+    {
+      "id": "g-waytogo2-8",
+      "kind": "collection",
+      "title": "6.1 介绍",
+      "summary": "每一个程序都包含很多的函数：函数是基本的代码块。 Go是编译型语言，所以函数编写的顺序是无关紧要的；鉴于可读性的需求，最",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-8"
+    },
+    {
+      "id": "g-waytogo2-11",
+      "kind": "collection",
+      "title": "6.12 通过内存缓存来提升性能",
+      "summary": "当在进行大量的计算时，提升性能最直接有效的一种方式就是避免重复计算。通过在内存中缓存和重复利用相同计算的结果，称之为内存",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-11"
+    },
+    {
+      "id": "g-waytogo2-12",
+      "kind": "collection",
+      "title": "6.2 函数参数与返回值",
+      "summary": "函数能够接收参数供自己使用，也可以返回零个或多个值（我们通常把返回多个值称为返回一组值）。相比与 C、C++、Java ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-12"
+    },
+    {
+      "id": "g-waytogo2-13",
+      "kind": "collection",
+      "title": "6.3 传递变长参数",
+      "summary": "如果函数的最后一个参数是采用 ...type 的形式，那么这个函数就可以处理一个变长的参数，这个长度可以为 0，这样的函",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-13"
+    },
+    {
+      "id": "g-waytogo2-14",
+      "kind": "collection",
+      "title": "6.4 defer 和追踪",
+      "summary": "关键字 defer 允许我们推迟到函数返回之前（或任意位置执行 return 语句之后）一刻才执行某个语句或函数（为什么",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-14"
+    },
+    {
+      "id": "g-waytogo2-15",
+      "kind": "collection",
+      "title": "6.5 内置函数",
+      "summary": "Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如： len() 、 c",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-15"
+    },
+    {
+      "id": "g-waytogo2-16",
+      "kind": "collection",
+      "title": "6.6 递归函数",
+      "summary": "当一个函数在其函数体内调用自身，则称之为递归。最经典的例子便是计算斐波那契数列，即前两个数为 1，从第三个数开始每个数均",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-16"
+    },
+    {
+      "id": "g-waytogo2-17",
+      "kind": "collection",
+      "title": "6.7 将函数作为参数",
+      "summary": "函数可以作为其它函数的参数进行传递，然后在其它函数内调用执行，一般称之为回调。下面是一个将函数作为参数的简单例子（fun",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-17"
+    },
+    {
+      "id": "g-waytogo2-18",
+      "kind": "collection",
+      "title": "6.8 闭包",
+      "summary": "当我们不希望给函数起名字的时候，可以使用匿名函数，例如： func(x, y int) int return x + y",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-18"
+    },
+    {
+      "id": "g-waytogo2-19",
+      "kind": "collection",
+      "title": "6.9 应用闭包：将函数作为返回值",
+      "summary": "在程序 function return.go 中我们将会看到函数 Add2() 和 Adder() 均会返回签名为 fu",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-19"
+    },
+    {
+      "id": "g-waytogo2-21",
+      "kind": "collection",
+      "title": "7.1 声明和初始化",
+      "summary": "数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列（这是一种同构的数据结构）；这种类型可以是任意的原始类型例如",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-21"
+    },
+    {
+      "id": "g-waytogo2-22",
+      "kind": "collection",
+      "title": "7.2 切片",
+      "summary": "切片 (slice) 是对数组一个连续片段的引用（该数组我们称之为相关数组，通常是匿名的），所以切片是一个引用类型（因此",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 7,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-22"
+    },
+    {
+      "id": "g-waytogo2-23",
+      "kind": "collection",
+      "title": "7.3 For-range 结构",
+      "summary": "这种构建方法可以应用于数组和切片: 第一个返回值 ix 是数组或者切片的索引，第二个是在该索引位置的值；他们都是仅在 f",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-23"
+    },
+    {
+      "id": "g-waytogo2-24",
+      "kind": "collection",
+      "title": "7.4 切片重组 (reslice)",
+      "summary": "我们已经知道切片创建的时候通常比相关数组小，例如： 其中 start length 作为切片初始长度而 capacity",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-24"
+    },
+    {
+      "id": "g-waytogo2-25",
+      "kind": "collection",
+      "title": "7.5 切片的复制与追加",
+      "summary": "如果想增加切片的容量，我们必须创建一个新的更大的切片并把原分片的内容都拷贝过来。下面的代码描述了从拷贝切片的 copy ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-25"
+    },
+    {
+      "id": "g-waytogo2-26",
+      "kind": "collection",
+      "title": "7.6 字符串、数组和切片的应用",
+      "summary": "假设 s 是一个字符串（本质上是一个字节数组），那么就可以直接通过 c := byte(s) 来获取一个字节的切片 c ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 6,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-26"
+    },
+    {
+      "id": "g-waytogo2-28",
+      "kind": "collection",
+      "title": "8.1 声明、初始化和 make",
+      "summary": "map 是引用类型，可以使用如下声明： （ keytype 和 valuetype 之间允许有空格，但是 gofmt 移",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-28"
+    },
+    {
+      "id": "g-waytogo2-29",
+      "kind": "collection",
+      "title": "8.2 测试键值对是否存在及删除元素",
+      "summary": "测试 map1 中是否存在 key1 ： 在例子 8.1 中，我们已经见过可以使用 val1 = map1 key1 的",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-29"
+    },
+    {
+      "id": "g-waytogo2-30",
+      "kind": "collection",
+      "title": "8.3 for-range 的配套用法",
+      "summary": "可以使用 for 循环读取 map ： 第一个返回值 key 是 map 中的 key 值，第二个返回值则是该 key ",
+      "domain": "langs",
+      "category": "The Way to Go 中文版 II",
+      "difficulty": "进阶",
+      "minutes": 5,
+      "tags": [
+        "Go",
+        "入门"
+      ],
+      "prereqs": [],
+      "href": "/post/g-waytogo2-30"
     }
   ]
 }

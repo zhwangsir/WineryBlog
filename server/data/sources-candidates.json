@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T05:35:07.811Z",
+ "updatedAt": "2026-11-25T06:16:05.890Z",
  "candidates": [
   {
    "id": "labuladong",
@@ -2472,6 +2472,156 @@
      "recursive": true
     }
    ]
+  },
+  {
+   "id": "opencvtut2",
+   "repo": "fendouai/OpenCVTutorials",
+   "branch": "master",
+   "category": "OpenCV-Python 中文教程 II",
+   "domain": "langs",
+   "tags": [
+    "OpenCV",
+    "图像处理"
+   ],
+   "picks": [
+    {
+     "dir": "",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "waytogo2",
+   "repo": "Unknwon/the-way-to-go_ZH_CN",
+   "branch": "master",
+   "category": "The Way to Go 中文版 II",
+   "domain": "langs",
+   "tags": [
+    "Go",
+    "入门"
+   ],
+   "picks": [
+    {
+     "dir": "eBook",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "done",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "es6tut2",
+   "repo": "ruanyf/es6tutorial",
+   "branch": "gh-pages",
+   "category": "ES6 教程 II",
+   "domain": "frontend",
+   "tags": [
+    "JavaScript",
+    "ES6"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 12,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "algonote2",
+   "repo": "itcharge/AlgoNote",
+   "branch": "main",
+   "category": "算法通关手册 II",
+   "domain": "algo",
+   "tags": [
+    "算法",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "docs",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 38
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "dailyq2",
+   "repo": "shfshanyue/Daily-Question",
+   "branch": "next",
+   "category": "大厂面经题库 II",
+   "domain": "swe",
+   "tags": [
+    "面试",
+    "题库"
+   ],
+   "picks": [
+    {
+     "dir": "pages/base",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
+  },
+  {
+   "id": "mlint2",
+   "repo": "LongxingTan/Machine-learning-interview",
+   "branch": "main",
+   "category": "机器学习面试题解 II",
+   "domain": "ai",
+   "tags": [
+    "机器学习",
+    "LeetCode"
+   ],
+   "picks": [
+    {
+     "dir": "01_leetcode",
+     "keywords": [
+      ".md"
+     ],
+     "max": 30,
+     "recursive": true,
+     "skip": 30
+    }
+   ],
+   "status": "pending",
+   "addedAt": "2026-11-25T06:16:05.890Z",
+   "note": "continuation: 存量来源深度续收"
   }
  ]
 }
